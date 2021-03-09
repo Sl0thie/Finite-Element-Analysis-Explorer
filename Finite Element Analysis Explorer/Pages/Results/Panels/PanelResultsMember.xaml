@@ -1,0 +1,293 @@
+﻿<Page
+    x:Class="Finite_Element_Analysis_Explorer.PanelResultsMember"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="300"
+    mc:Ignorable="d" 
+    d:DesignHeight="3000"
+    d:DesignWidth="300"
+    Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.495">
+                <GradientStop Color="#FF080808" Offset="1"/>
+                <GradientStop Color="#FF232323"/>
+                <GradientStop Color="#FF090909" Offset="0.9"/>
+                <GradientStop Color="#FF090909" Offset="0.1"/>
+                <GradientStop Color="#FF121212" Offset="0.5"/>
+                <GradientStop Color="#FF101010" Offset="0.353"/>
+                <GradientStop Color="#FF101010" Offset="0.812"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid x:Name="Headers" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="MenuFlyout_New_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="MenuFlyout_Open_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="MenuFlyout_Save_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="MenuFlyout_SaveAs_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="MenuFlyout_Exit_Click" />
+                    </MenuFlyout>
+                </Button.Flyout>
+                <SymbolIcon Symbol="Save" Foreground="White" Width="32" Height="32"/>
+            </Button>
+
+            <Button x:Name="button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Solve_Click">
+                <SymbolIcon Symbol="Sync" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+            <Button x:Name="button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Construction_Click">
+                <SymbolIcon Symbol="Edit" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+            <Button x:Name="button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Results_Click">
+                <SymbolIcon Symbol="Flag" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+
+            <Button x:Name="button_Sections"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="Button_Sections_Click" Visibility="Collapsed">
+                <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Collapsed"/>
+            </Button>
+            <Button x:Name="button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Reports_Click">
+                <SymbolIcon Symbol="Bullets" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Visible"/>
+            </Button>
+
+            <Button x:Name="button_CreateNewSectionItem"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Section" Click="MenuFlyoutItem_Click" />
+                        <MenuFlyoutItem Text="Profile" IsEnabled="False"/>
+                        <MenuFlyoutItem Text="Material" IsEnabled="False"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <SymbolIcon Symbol="Add" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+
+            <Button x:Name="button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="Button_Help_Click">
+                <SymbolIcon Symbol="Help" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+            <Button x:Name="button_Options"  Grid.Column="7" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsGeneral" Text="General" Click="MenuFlyout_SettingsGeneral_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsSolver" Text="Solver" Click="MenuFlyout_SettingsSolver_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsColors" Text="Colors" Click="MenuFlyout_SettingsColors_Click"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <SymbolIcon Symbol="Setting" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+            </Button>
+        </Grid>
+        <ScrollViewer Margin="0,40,-15,0">
+            <StackPanel HorizontalAlignment="Left" Width="300">
+                <TextBlock x:Name="textBlock_Title" Text="Member" Style="{StaticResource FontPrimaryHeader}" />
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleReactions" Grid.Column="1" Grid.Row="0" Text="Reactions" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconReactions" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:DoubleValue x:Name="doubleValue_ReactionsX" />
+                <local:DoubleValue x:Name="doubleValue_ReactionsY" />
+                <local:DoubleValue x:Name="doubleValue_ReactionsM" />
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleInternalLoads" Grid.Column="1" Grid.Row="0" Text="Internal Loads" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <FontIcon  x:Name="fontIcon_TitleIconInternalLoads" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:DoubleValue x:Name="doubleValue_InternalLoadsX" />
+                <local:DoubleValue x:Name="doubleValue_InternalLoadsY" />
+                <local:DoubleValue x:Name="doubleValue_InternalLoadsM" />
+                
+                
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleConstraints" Grid.Column="1" Grid.Row="0" Text="Constraints" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconConstraints" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+                <local:ConstraintsDisplay x:Name="constraintsDisplay_Currrent" Margin="0,15,0,5"/>
+
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleLocation" Grid.Column="1" Grid.Row="0" Text="Location" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconLocation" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:DoubleValue x:Name="doubleValue_LocationX" />
+                <local:DoubleValue x:Name="doubleValue_LocationY" />
+                <local:DoubleValue x:Name="doubleValue_LocationM" />
+
+
+
+
+
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleProperties" Grid.Column="1" Grid.Row="0" Text="Properties" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconProperties" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:SingleValue x:Name="doubleValue_Angle" />
+                <local:SingleValue x:Name="doubleValue_Length" />
+                <local:SingleValue x:Name="doubleValue_LengthXAxis" />
+                <local:SingleValue x:Name="doubleValue_LengthYAxis" />
+
+                <local:SingleValue x:Name="doubleValue_LengthDifference" />
+                <local:SingleValue x:Name="doubleValue_LengthDifferenceXAxis" />
+                <local:SingleValue x:Name="doubleValue_LengthDifferenceYAxis" />
+                <local:SingleValue x:Name="doubleValue_LengthRatio" />
+
+                <local:SingleValue x:Name="doubleValue_NormalStress" />
+                
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleSection" Grid.Column="1" Grid.Row="0" Text="Section" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconSection" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:SingleValue x:Name="singleValue_E" />
+                <local:SingleValue x:Name="singleValue_I" />
+                <local:SingleValue x:Name="singleValue_Area" />
+                
+                <TextBlock Text="Selected Profile" Style="{StaticResource FontPanelSectionHeader}"/>
+                <TextBlock Margin="30,4,0,4" x:Name="TextBlock_SelectedProfile" Text="Selected Profile Name" Foreground="#FFBFBFBF" TextAlignment="Center" FontFamily="Segoe UI" HorizontalAlignment="Left"/>
+
+                <TextBlock Text="Selected Material" Style="{StaticResource FontPanelSectionHeader}"/>
+                <TextBlock Margin="30,4,0,4" x:Name="TextBlock_SelectedMaterial" Text="Selected Material Name" Foreground="#FFBFBFBF" TextAlignment="Center" FontFamily="Segoe UI" HorizontalAlignment="Left"/>
+
+                
+
+                
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleDisplacement" Grid.Column="1" Grid.Row="0" Text="Displacement" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}" />
+                    <FontIcon  x:Name="fontIcon_TitleIconDisplacement" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:DoubleValue x:Name="doubleValue_DisplacementX" />
+                <local:DoubleValue x:Name="doubleValue_DisplacementY" />
+                <local:DoubleValue x:Name="doubleValue_DisplacementM" />
+
+
+
+                
+
+
+
+
+
+                <Grid Margin="0,5,0,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleLoads" Grid.Column="1" Grid.Row="0" Text="Original Load" Margin="0,14,0,10" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <FontIcon  x:Name="fontIcon_TitleIconLoads" Grid.Column="2" Grid.Row="0" Width="36" Height="36" Glyph="🡳" FontFamily="Segoe UI Symbol" FontSize="24" Foreground="#FF404040" Visibility="Collapsed"/>
+                </Grid>
+                <local:DoubleValue x:Name="doubleValue_LoadsX" />
+                <local:DoubleValue x:Name="doubleValue_LoadsY" />
+                <local:DoubleValue x:Name="doubleValue_LoadsM" />
+                <local:DoubleValue x:Name="doubleValue_Linear" />
+
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleSuperpositionLocal" Grid.Column="1" Grid.Row="0" Text="Superposition" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <FontIcon  x:Name="fontIcon_TitleIconSuperpositionLocal" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:DoubleValue x:Name="doubleValue_SuperpositionLocalX" />
+                <local:DoubleValue x:Name="doubleValue_SuperpositionLocalY" />
+                <local:DoubleValue x:Name="doubleValue_SuperpositionLocalM" />
+
+
+                <Grid Margin="0,10,0,-10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TextBlock_TitleCost" Grid.Column="1" Grid.Row="0" Text="Cost" Margin="0,4,0,10" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <FontIcon  x:Name="fontIcon_TitleIconCost" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
+                </Grid>
+
+                <local:SingleValue x:Name="singleValue_CostPerMeter" />
+                <local:SingleValue x:Name="singleValue_CostNearNode" />
+                <local:SingleValue x:Name="singleValue_CostFarNode" />
+                <local:SingleValue x:Name="singleValue_CostElevation" />
+                <local:SingleValue x:Name="singleValue_CostTransport" />
+                <local:SingleValue x:Name="singleValue_CostTotal" Margin="0,15,0,0"/>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

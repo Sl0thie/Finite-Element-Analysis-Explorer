@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="Finite_Element_Analysis_Explorer.StartupStackPanelItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="30" Height="30" MinHeight="30" MaxHeight="40"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="16" Margin="8,8,8,0" VerticalAlignment="Top" Width="16" Source="ms-appx:///Assets/Blue ball.png"/>
+        <TextBlock x:Name="TextBlockDescription" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="32,0,0,0" TextWrapping="Wrap" Text="" FontSize="16"/>
+    </Grid>
+</UserControl>

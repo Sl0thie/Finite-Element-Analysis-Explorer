@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="Finite_Element_Analysis_Explorer.SolverDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Unloaded="Grid_Unloaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ProgressBar x:Name="progressBar_Track" Grid.Row="0" Height="12" Margin="100,0,100,0" Maximum="23" BorderThickness="1" BorderBrush="#FF191919" Background="#33000000">
+            <ProgressBar.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Reflect">
+                    <GradientStop Color="#FFB5B1FF" Offset="0"/>
+                    <GradientStop Color="#FF0C00FF" Offset="0.843"/>
+                    <GradientStop Color="#FF03003A" Offset="1"/>
+                    <GradientStop Color="#FF0B00E8" Offset="0.502"/>
+                </LinearGradientBrush>
+            </ProgressBar.Foreground>
+        </ProgressBar>
+        <ScrollViewer x:Name="scrollViewer_Console" Grid.Row="1" HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled">
+            <StackPanel  x:Name="StackConsole"/>
+        </ScrollViewer>
+    </Grid>
+</Page>

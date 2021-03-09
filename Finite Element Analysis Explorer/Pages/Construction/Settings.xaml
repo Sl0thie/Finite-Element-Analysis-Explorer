@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="Finite_Element_Analysis_Explorer.Pages.Construction.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer.Pages.Construction"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="Settings"/>
+        <Button x:Name="button_Ok" Content="Ok"/>
+        <ScrollViewer>
+            <StackPanel>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

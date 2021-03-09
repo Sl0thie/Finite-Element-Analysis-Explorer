@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="Finite_Element_Analysis_Explorer.ResultsDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    mc:Ignorable="d" RequestedTheme="Dark" Loaded="Page_Loaded" PointerWheelChanged="Page_PointerWheelChanged" SizeChanged="Page_SizeChanged">
+
+    <Grid Background="#FF000000">
+        <canvas:CanvasAnimatedControl x:Name="canvas" Draw="Canvas_DrawAnimated" CreateResources="Canvas_CreateResources" DoubleTapped="Canvas_DoubleTapped" Tapped="Canvas_Tapped" ClearColor="Black" ManipulationStarting="Canvas_ManipulationStarting" ManipulationDelta="Canvas_ManipulationDelta" ManipulationStarted="Canvas_ManipulationStarted" ManipulationCompleted="Canvas_ManipulationCompleted" ManipulationInertiaStarting="Canvas_ManipulationInertiaStarting" SizeChanged="Canvas_SizeChanged" AutomationProperties.PositionInSet="5" RightTapped="Canvas_RightTapped" />
+    </Grid>
+</Page>

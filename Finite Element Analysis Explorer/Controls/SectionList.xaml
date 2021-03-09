@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="Finite_Element_Analysis_Explorer.SectionList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="300" Loaded="UserControl_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="Black" HorizontalAlignment="Center" Height="600" Stroke="#FF404040" VerticalAlignment="Top" Width="300" RadiusX="10" RadiusY="10" StrokeThickness="2" />
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="Black" HorizontalAlignment="Center" Height="598" Stroke="#FF686868" VerticalAlignment="Top" Width="298" RadiusX="10" RadiusY="10" StrokeThickness="2" />
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1"  Width="280" Height="580" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="listView_Sections" SelectionChanged="listView_Sections_SelectionChanged" Style="{StaticResource ListViewStyle1}" ItemTemplate="{StaticResource DataTemplate1}" ItemContainerStyle="{StaticResource ListViewItemStyle2}">
+                <ListView.Items>
+                    <ListViewItem Content="Test Item" Style="{StaticResource ListViewItemStyle1}"/>
+                </ListView.Items>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D1EA81B4-56CC-44CB-BBFB-2DD0BD3F9BDF}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Finite_Element_Analysis_Explorer</RootNamespace>
+    <AssemblyName>Finite Element Analysis Explorer</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Finite Element Analysis Explorer_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>1ACF9C2AF92D14CD8C3740967E0CD5AF88353874</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+    <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>true</EnableGatekeeperAnalysis>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\AssetGenerator.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Help\Credits\Credits.html" />
+    <Content Include="Assets\Help\General\General.html" />
+    <Content Include="Assets\Help\Images\Constraints.png" />
+    <Content Include="Assets\Help\Images\DualDisplay.png" />
+    <Content Include="Assets\Help\Images\EngineerNotation.png" />
+    <Content Include="Assets\Help\Images\IconAdd.png" />
+    <Content Include="Assets\Help\Images\IconBack.png" />
+    <Content Include="Assets\Help\Images\IconConstruction.png" />
+    <Content Include="Assets\Help\Images\IconFileMenu.png" />
+    <Content Include="Assets\Help\Images\IconHelp.png" />
+    <Content Include="Assets\Help\Images\IconReport.png" />
+    <Content Include="Assets\Help\Images\IconSections.png" />
+    <Content Include="Assets\Help\Images\IconSettings.png" />
+    <Content Include="Assets\Help\Images\IconSolve.png" />
+    <Content Include="Assets\Help\Images\Input.png" />
+    <Content Include="Assets\Help\Properties\Properties.html" />
+    <Content Include="Assets\Help\Quickstart\Quickstart.html" />
+    <Content Include="Assets\Help\style.css" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\LcdD.ttf" />
+    <Content Include="Assets\HANDGOTL.ttf" />
+    <None Include="Class Diagrams\Model Overview.cd" />
+    <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />
+    <None Include="Others\General.cd" />
+    <None Include="Overview.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Camera\Camera.cs" />
+    <Compile Include="Controls\ColorSelector.xaml.cs">
+      <DependentUpon>ColorSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConstraintsDisplay.xaml.cs">
+      <DependentUpon>ConstraintsDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SliderExpValue.xaml.cs">
+      <DependentUpon>SliderExpValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileManager\ObjectSerializer.cs" />
+    <Compile Include="Controls\LineSelectorBox.xaml.cs">
+      <DependentUpon>LineSelectorBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\DisplaySection2.xaml.cs">
+      <DependentUpon>DisplaySection2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Help\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Materials\MaterialsList.cs" />
+    <Compile Include="Model\SectionProfiles\SectionProfile.cs" />
+    <Compile Include="Model\SectionProfiles\SectionProfileCollection.cs" />
+    <Compile Include="Model\SectionProfiles\SectionProfilesList.cs" />
+    <Compile Include="Controls\NewSectionName.xaml.cs">
+      <DependentUpon>NewSectionName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\DisplaySection.xaml.cs">
+      <DependentUpon>DisplaySection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DMatrix\LUPMatrix.cs" />
+    <Compile Include="Controls\NumericInput.xaml.cs">
+      <DependentUpon>NumericInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LogSlider.xaml.cs">
+      <DependentUpon>LogSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineSelector.xaml.cs">
+      <DependentUpon>LineSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Others\DMath.cs" />
+    <Compile Include="DMatrix\DMatrix.cs" />
+    <Compile Include="Model\Nodes\NodalLoad\NodalLoad.cs" />
+    <Compile Include="Pages\Construction\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Help\Panels\PanelHelp.xaml.cs">
+      <DependentUpon>PanelHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\Panels\PanelReport.xaml.cs">
+      <DependentUpon>PanelReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\Panels\PanelResultsModel.xaml.cs">
+      <DependentUpon>PanelResultsModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\Panels\PanelResultsMember.xaml.cs">
+      <DependentUpon>PanelResultsMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\ResultsDisplay.xaml.cs">
+      <DependentUpon>ResultsDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\ResultsReport.xaml.cs">
+      <DependentUpon>ResultsReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solver\SolverMessage.xaml.cs">
+      <DependentUpon>SolverMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SliderValue.xaml.cs">
+      <DependentUpon>SliderValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DoubleValue.xaml.cs">
+      <DependentUpon>DoubleValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SingleValue.xaml.cs">
+      <DependentUpon>SingleValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SectionSelection.xaml.cs">
+      <DependentUpon>SectionSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\Panels\PanelSettingsColors.xaml.cs">
+      <DependentUpon>PanelSettingsColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\Panels\PanelSettingsSolver.xaml.cs">
+      <DependentUpon>PanelSettingsSolver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\Panels\PanelSections.xaml.cs">
+      <DependentUpon>PanelSections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\Panels\PanelSettingsGeneral.xaml.cs">
+      <DependentUpon>PanelSettingsGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SectionList.xaml.cs">
+      <DependentUpon>SectionList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Others\DoubleMatrix.cs" />
+    <Compile Include="PopupMemberLoads.xaml.cs">
+      <DependentUpon>PopupMemberLoads.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Solvers\DoubleLUP\SolverDoubleLUP.cs" />
+    <Compile Include="Solvers\ISolver.cs" />
+    <Compile Include="Others\Constants.cs" />
+    <Compile Include="Model\Nodes\NodeConcurrentCollection.cs" />
+    <Compile Include="Pages\FileLoading\FileLoadingDisplay.xaml.cs">
+      <DependentUpon>FileLoadingDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\ConstructionDisplay.xaml.cs">
+      <DependentUpon>ConstructionDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solver\SolverDisplay.xaml.cs">
+      <DependentUpon>SolverDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solver\Panels\PanelSolver.xaml.cs">
+      <DependentUpon>PanelSolver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Startup\Panels\Details.xaml.cs">
+      <DependentUpon>Details.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FileLoading\FileLoading.xaml.cs">
+      <DependentUpon>FileLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Construction\Construction.xaml.cs">
+      <DependentUpon>Construction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Nodes\Codes\Codes.cs" />
+    <Compile Include="Model\Nodes\Constraints\Constraints.cs" />
+    <Compile Include="Others\DecimalMatrix.cs" />
+    <Compile Include="FileManager\FileManager.cs" />
+    <Compile Include="Others\LineStyle.cs" />
+    <Compile Include="Model\Materials\Material.cs" />
+    <Compile Include="Model\Materials\MaterialCollection.cs" />
+    <Compile Include="Model\Members\Member.cs" />
+    <Compile Include="Model\Members\MemberCollection.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Nodes\Node\Node.cs" />
+    <Compile Include="Options\Options.cs" />
+    <Compile Include="Pages\Construction\Panels\PanelModel.xaml.cs">
+      <DependentUpon>PanelModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Others\Point.cs" />
+    <Compile Include="Pages\Construction\Panels\PanelMember.xaml.cs">
+      <DependentUpon>PanelMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Sections\Section.cs" />
+    <Compile Include="Model\Sections\SectionCollection.cs" />
+    <Compile Include="Others\Enumerations.cs" />
+    <Compile Include="Pages\Startup\Startup.xaml.cs">
+      <DependentUpon>Startup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Results\Results.xaml.cs">
+      <DependentUpon>Results.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solver\Solver.xaml.cs">
+      <DependentUpon>Solver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Startup\Panels\Slim.xaml.cs">
+      <DependentUpon>Slim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Startup\StartupDisplay.xaml.cs">
+      <DependentUpon>StartupDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Startup\Controls\StartupStackPanelItem.xaml.cs">
+      <DependentUpon>StartupStackPanelItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Others\Structures.cs" />
+    <Compile Include="Pages\Construction\Panels\ConstructionSlim.xaml.cs">
+      <DependentUpon>ConstructionSlim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StackPanelHeader.xaml.cs">
+      <DependentUpon>StackPanelHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Segments\Segment.cs" />
+    <Compile Include="Others\ValueChangedEventArgs.cs" />
+    <Compile Include="Controls\TextInput.xaml.cs">
+      <DependentUpon>TextInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Solvers\SolverFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Blue ball.png" />
+    <Content Include="Assets\Nodes\NodeFixedBottom.png" />
+    <Content Include="Assets\Nodes\NodeFixedBottomBlue.png" />
+    <Content Include="Assets\Nodes\NodeFixedLeft.png" />
+    <Content Include="Assets\Nodes\NodeFixedLeftBlue.png" />
+    <Content Include="Assets\Nodes\NodeFixedRight.png" />
+    <Content Include="Assets\Nodes\NodeFixedRightBlue.png" />
+    <Content Include="Assets\Nodes\NodeFixedTop.png" />
+    <Content Include="Assets\Nodes\NodeFixedTopBlue.png" />
+    <Content Include="Assets\Nodes\NodePinnedBottom.png" />
+    <Content Include="Assets\Nodes\NodePinnedBottomBlue.png" />
+    <Content Include="Assets\Nodes\NodePinnedLeft.png" />
+    <Content Include="Assets\Nodes\NodePinnedLeftBlue.png" />
+    <Content Include="Assets\Nodes\NodePinnedRight.png" />
+    <Content Include="Assets\Nodes\NodePinnedRightBlue.png" />
+    <Content Include="Assets\Nodes\NodePinnedTop.png" />
+    <Content Include="Assets\Nodes\NodePinnedTopBlue.png" />
+    <Content Include="Assets\Nodes\NodeRollerBottom.png" />
+    <Content Include="Assets\Nodes\NodeRollerBottomBlue.png" />
+    <Content Include="Assets\Nodes\NodeRollerLeft.png" />
+    <Content Include="Assets\Nodes\NodeRollerLeftBlue.png" />
+    <Content Include="Assets\Nodes\NodeRollerRight.png" />
+    <Content Include="Assets\Nodes\NodeRollerRightBlue.png" />
+    <Content Include="Assets\Nodes\NodeRollerTop.png" />
+    <Content Include="Assets\Nodes\NodeRollerTopBlue.png" />
+    <Content Include="Assets\Nodes\NodeTrackBottom.png" />
+    <Content Include="Assets\Nodes\NodeTrackBottomBlue.png" />
+    <Content Include="Assets\Nodes\NodeTrackLeft.png" />
+    <Content Include="Assets\Nodes\NodeTrackLeftBlue.png" />
+    <Content Include="Assets\Nodes\NodeTrackRight.png" />
+    <Content Include="Assets\Nodes\NodeTrackRightBlue.png" />
+    <Content Include="Assets\Nodes\NodeTrackTop.png" />
+    <Content Include="Assets\Nodes\NodeTrackTopBlue.png" />
+    <Content Include="Assets\PanelTile.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbHollowElipse.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbSolidElipse.png" />
+    <Content Include="Assets\SectionProfiles\ProfileHollow Circle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileHollow Elipse.png" />
+    <Content Include="Assets\SectionProfiles\ProfileHollow Rectangle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileHollow Triangle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageHollowCircle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageHollowRectangle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageHollowSquare.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageIBeam.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageSolidCircle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageSolidRectangle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileImageSolidSquare.png" />
+    <Content Include="Assets\SectionProfiles\ProfileSolid Circle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileSolid Elipse.png" />
+    <Content Include="Assets\SectionProfiles\ProfileSolid Rectangle.png" />
+    <Content Include="Assets\SectionProfiles\ProfileSolid Triangle.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbHollowCircle.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbHollowRectangle.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbHollowSquare.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbIBeam.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbSolidCircle.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbSolidRectangle.png" />
+    <Content Include="Assets\ProfileThumbs\ProfileThumbSolidSquare.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="Package.xml" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Controls\ColorSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConstraintsDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SliderExpValue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LogSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NewSectionName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LineSelectorBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Construction\DisplaySection2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Help\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\DisplaySection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LineSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NumericInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FileLoading\FileLoadingDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\ConstructionDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Help\Panels\PanelHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Results\Panels\PanelReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Results\Panels\PanelResultsModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Results\Panels\PanelResultsMember.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Results\ResultsDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Results\ResultsReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Solver\SolverDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Solver\Panels\PanelSolver.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Startup\Panels\Details.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FileLoading\FileLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Construction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Startup\Startup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Results\Results.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Solver\Solver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Startup\Panels\Slim.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Startup\StartupDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Startup\Controls\StartupStackPanelItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\ConstructionSlim.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StackPanelHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelMember.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Solver\SolverMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SliderValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DoubleValue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SingleValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SectionSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelSettingsColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelSettingsSolver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelSections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Construction\Panels\PanelSettingsGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SectionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupMemberLoads.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\" />
+    <Folder Include="Model\Construction\Elements\" />
+    <Folder Include="Pages\Report\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Analysis%29|x86'">
+    <OutputPath>bin\x86\Release %28Analysis%29\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Analysis%29|ARM'">
+    <OutputPath>bin\ARM\Release %28Analysis%29\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Analysis%29|x64'">
+    <OutputPath>bin\x64\Release %28Analysis%29\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,232 @@
+﻿<Page
+    x:Class="Finite_Element_Analysis_Explorer.DisplaySection2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Finite_Element_Analysis_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    d:DesignHeight="3000"
+    d:DesignWidth="1600"
+    Loaded="Page_Loaded">
+
+    <Grid Background="Black">
+        <ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="226"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="370"/>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="700"/>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="350"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="textBlock_Section_Title" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="Cross Section"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="28" Foreground="Gray" VerticalAlignment="Bottom"/>
+
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Required Properties" VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_YoungsModulus" ValueChanged="singleValue_YoungsModulus_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Density" ValueChanged="singleValue_Density_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MomentOfInertia" ValueChanged="singleValue_MomentOfInertia_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Area" ValueChanged="singleValue_Area_ValueChanged"/>
+                </StackPanel>
+
+                <StackPanel  Grid.Column="2" Grid.Row="1">
+                    <TextBlock Text="Material Properties" VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_RigidityModulus"/>
+                    <local:SingleValue x:Name="singleValue_BulkModulus"/>
+                    <local:SingleValue x:Name="singleValue_VolumePerLength" />
+                    <local:SingleValue x:Name="singleValue_MassPerLength" />
+                </StackPanel>
+
+                <StackPanel  Grid.Column="3" Grid.Row="1">
+                    <TextBlock Text="Construction Costs"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_CostPerLength" ValueChanged="singleValue_CostPerLength_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostVerticalTransport" ValueChanged="singleValue_CostVerticalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostHorizontalTransport" ValueChanged="singleValue_CostHorizontalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostNodeFree" ValueChanged="singleValue_CostNodeFree_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostNodeFixed" ValueChanged="singleValue_CostNodeFixed_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostNodePinned" ValueChanged="singleValue_CostNodePinned_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostNodeRoller" ValueChanged="singleValue_CostNodeRoller_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_CostNodeTrack" ValueChanged="singleValue_CostNodeTrack_ValueChanged"/>
+
+                    <TextBlock Margin="0,20,0,0" Text="Labour"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_LabourTimePerLength"/>
+                    <local:SingleValue x:Name="singleValue_FactorVerticalTime"/>
+                    <local:SingleValue x:Name="singleValue_FactorHorizontalTime"/>
+                </StackPanel>
+
+
+
+
+                <StackPanel Grid.Column="4" Grid.Row="1">
+                    <TextBlock Margin="0,0,0,0" Text="Construction Factors"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_FactorVerticalTransport" ValueChanged="singleValue_FactorVerticalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_FactorHorizontalTransport" ValueChanged="singleValue_FactorHorizontalTransport_ValueChanged"/>
+
+
+                    <TextBlock Margin="0,20,0,0" Text="Maintenance Costs"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_MaintenancePerLength" ValueChanged="singleValue_MaintenancePerLength_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MaintenanceNodeFree" ValueChanged="singleValue_MaintenanceNodeFree_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MaintenanceFixed" ValueChanged="singleValue_MaintenanceFixed_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MaintenancePinned" ValueChanged="singleValue_MaintenancePinned_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MaintenanceRoller" ValueChanged="singleValue_MaintenanceRoller_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_MaintenanceTrack" ValueChanged="singleValue_MaintenanceTrack_ValueChanged"/>
+                </StackPanel>
+
+
+
+
+
+
+
+
+
+
+                <TextBlock x:Name="textBlock_Profile_Title" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Text="Profile"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Column="1" Grid.Row="3">
+                    <TextBlock Text="Section Profiles"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <ScrollViewer HorizontalAlignment="Left" Height="353" Width="260">
+                        <ListView x:Name="listView_Profile" SelectionChanged="listView_Profile_SelectionChanged" Width="260">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <Image Grid.Column="0" Source="{Binding Path}" Width="51" Height="51" HorizontalAlignment="Right" Margin="0,0,14,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
+                    <TextBlock Text="Current Profile"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <Image x:Name="image_Profile" Width="550" Height="353" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="4" Grid.Row="3">
+                    <TextBlock Text="Profile Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_Property1" ValueChanged="singleValue_Property1_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property2" ValueChanged="singleValue_Property2_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property3" ValueChanged="singleValue_Property3_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property4" ValueChanged="singleValue_Property4_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property5" ValueChanged="singleValue_Property5_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property6" ValueChanged="singleValue_Property6_ValueChanged"/>
+                    <local:SingleValue x:Name="singleValue_Property7" ValueChanged="singleValue_Property7_ValueChanged"/>
+
+                    <local:SingleValue x:Name="singleValue_CalculatedArea" Margin="0,15,0,0" />
+                    <local:SingleValue x:Name="singleValue_CalculatedMoment" Margin="0,0,0,0" />
+                    <local:SingleValue x:Name="singleValue_RadiusOfGyration" Margin="0,0,0,0" />
+                    <local:SingleValue x:Name="singleValue_SectionModulus" Margin="0,0,0,0" />
+                </StackPanel>
+
+                <TextBlock x:Name="textBlock_Material_Title" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Text="Material"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <StackPanel Grid.Column="1" Grid.Row="5">
+                    <TextBlock Text="Materials"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <ScrollViewer HorizontalAlignment="Left" Width="260" Height="450">
+                        <ListView x:Name="listView_Materials" HorizontalAlignment="Left" Width="260" SelectionChanged="listView_Materials_SelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="24">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="2" Grid.Row="5">
+                    <TextBlock Text="Material Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+
+
+                    <local:SingleValue x:Name="singleValue_MaterialDensity"/>
+                    <local:SingleValue x:Name="singleValue_MaterialLiquidDensity"/>
+                    <local:SingleValue x:Name="singleValue_MaterialPoissonRatio"/>
+
+
+                    <local:SingleValue x:Name="singleValue_MaterialYoungsModulus"/>
+                    <local:SingleValue x:Name="singleValue_MaterialShearModulus"/>
+                    <local:SingleValue x:Name="singleValue_MaterialBulkModulus"/>
+
+
+                    <local:SingleValue x:Name="singleValue_MaterialMohsHardness"/>
+                    <local:SingleValue x:Name="singleValue_MaterialBrinellHardness"/>
+                    <local:SingleValue x:Name="singleValue_MaterialVickersHardness"/>
+                    <local:SingleValue x:Name="singleValue_MaterialThermalExpansion"/>
+                    <local:SingleValue x:Name="singleValue_MaterialThermalConductivity"/>
+                    <local:SingleValue x:Name="singleValue_MaterialSoundSpeed"/>
+                    <local:SingleValue x:Name="singleValue_MaterialMolarVolume"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Grid.Row="5">
+                    <TextBlock Text="Thermodynamic Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_MaterialAbsoluteBoilingPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialAbsoluteMeltingPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialAdiabaticIndex"/>
+                    <local:SingleValue x:Name="singleValue_MaterialBoilingPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialCriticalPressure"/>
+                    <local:SingleValue x:Name="singleValue_MaterialCriticalTemperature"/>
+                    <local:SingleValue x:Name="singleValue_MaterialCuriePoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialFusionHeat"/>
+                    <local:SingleValue x:Name="singleValue_MaterialMeltingPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialNeelPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialSpecificHeat"/>
+                    <local:SingleValue x:Name="singleValue_MaterialSuperconductingPoint"/>
+                    <local:SingleValue x:Name="singleValue_MaterialVaporizationHeat"/>
+
+                </StackPanel>
+                <StackPanel Grid.Column="4" Grid.Row="5">
+                    <TextBlock Text="Electromagnetic and Optical Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_MaterialElectricalConductivity"/>
+                    <local:SingleValue x:Name="singleValue_MaterialMassMagneticSusceptibility"/>
+                    <local:SingleValue x:Name="singleValue_MaterialMolarMagneticSusceptibility"/>
+                    <local:SingleValue x:Name="singleValue_MaterialResistivity"/>
+                    <local:SingleValue x:Name="singleValue_MaterialVolumeMagneticSusceptibility"/>
+
+                    <TextBlock Margin="0,20,0,0" Text="Abundance Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:SingleValue x:Name="singleValue_MaterialCrustAbundance"/>
+                    <local:SingleValue x:Name="singleValue_MaterialHumanAbundance"/>
+                    <local:SingleValue x:Name="singleValue_MaterialMeteoriteAbundance"/>
+                    <local:SingleValue x:Name="singleValue_MaterialOceanAbundance"/>
+                    <local:SingleValue x:Name="singleValue_MaterialSolarAbundance"/>
+                    <local:SingleValue x:Name="singleValue_MaterialUniverseAbundance"/>
+
+                </StackPanel>
+
+
+                <TextBlock x:Name="textBlock_Drawing_Title" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Text="Drawing"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom" />
+                <StackPanel Grid.Column="1" Grid.Row="7">
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2">
+                    <TextBlock Text="Line"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
+                    <local:LineSelectorBox />
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
+   

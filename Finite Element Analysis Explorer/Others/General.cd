@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Finite_Element_Analysis_Explorer.Model">
+    <Position X="12.25" Y="10.25" Width="3.25" />
+    <AssociationLine Name="Nodes" Type="Finite_Element_Analysis_Explorer.NodeCollection" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.062" Y="10.25" />
+        <Point X="15.062" Y="7.934" />
+        <Point X="17.25" Y="7.934" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAgAAgAAAAABAAAAAAAAAAAAAAAQAQAAEIEAABAYAA=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Members" />
+      <Property Name="Nodes" />
+      <Property Name="Sections" />
+      <Property Name="Materials" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Camera">
+    <Position X="7.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Camera\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Options">
+    <Position X="13.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Options\Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.FileManager">
+    <Position X="12" Y="20.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>oASAAAAAAkAAQAAAAAAABAhIgAAAAAAABAAQAAABBJA=</HashCode>
+      <FileName>FileManager\FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Member" HideInheritanceLine="true">
+    <Position X="22.25" Y="10.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAEAAABAAAAAAAAAAEMCAIAAAAA=</HashCode>
+      <FileName>Model\Members\Member.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NodeNear" />
+      <Property Name="NodeFar" />
+      <Property Name="Section" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.MemberCollection">
+    <Position X="17.25" Y="10.25" Width="3.25" />
+    <AssociationLine Name="CurrentMember" Type="Finite_Element_Analysis_Explorer.Member" FixedFromPoint="true">
+      <Path>
+        <Point X="20.5" Y="10.688" />
+        <Point X="22.25" Y="10.688" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAABAAAAAAAAAAAAQAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Members\MemberCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentMember" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Node">
+    <Position X="22.25" Y="7.5" Width="3.25" />
+    <AssociationLine Name="Codes" Type="Finite_Element_Analysis_Explorer.Codes" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25" Y="7.5" />
+        <Point X="25" Y="6.494" />
+        <Point X="27.25" Y="6.494" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="NodalLoad" Type="Finite_Element_Analysis_Explorer.NodalLoad" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.438" Y="7.5" />
+        <Point X="24.438" Y="4.744" />
+        <Point X="27.25" Y="4.744" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAEAAAAAAAE=</HashCode>
+      <FileName>Model\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Constraints" />
+      <Property Name="Codes" />
+      <Property Name="NodalLoad" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.NodeCollection">
+    <Position X="17.25" Y="7.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Model\Nodes\NodeCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentNode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Section">
+    <Position X="22.25" Y="14.75" Width="3.25" />
+    <AssociationLine Name="LineStyle" Type="Finite_Element_Analysis_Explorer.LineStyle" FixedFromPoint="true">
+      <Path>
+        <Point X="25.5" Y="15.062" />
+        <Point X="27.25" Y="15.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAoAAAABAAAAQBAAAAAAAEAAEAAAQAAAA=</HashCode>
+      <FileName>Model\Sections\Section.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LineStyle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.SectionCollection">
+    <Position X="17.25" Y="14.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Sections\SectionCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentSection" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Material">
+    <Position X="22.25" Y="18" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAAACgAAAUoAAEABQBACAUAQAtAAAGAQAAAgA=</HashCode>
+      <FileName>Model\Materials\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.MaterialCollection">
+    <Position X="17.25" Y="18" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Materials\MaterialCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentMaterial" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.DecimalMatrix">
+    <Position X="7.25" Y="10.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ABQGQAAAAAAgAAAA6AMAICAAQAAAAIIAAAAgARwAAmI=</HashCode>
+      <FileName>Others\DecimalMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.LineStyle">
+    <Position X="27.25" Y="14.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAAAgAAAAAAAAAAACAAEBAAAAEAIBAAAAA=</HashCode>
+      <FileName>Others\LineStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Constraints">
+    <Position X="27.25" Y="7.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAYAA=</HashCode>
+      <FileName>Model\Nodes\Constraints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.Codes">
+    <Position X="27.25" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAYAA=</HashCode>
+      <FileName>Model\Nodes\Codes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Finite_Element_Analysis_Explorer.NodalLoad">
+    <Position X="27.25" Y="4" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAYAA=</HashCode>
+      <FileName>Model\Nodes\NodalLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Finite_Element_Analysis_Explorer.UnitType">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAQAAAAAAAAAAAAIAAAAABBAAAAAAAAAEIAAwSIAQA=</HashCode>
+      <FileName>Others\InternalEnumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Finite_Element_Analysis_Explorer.LineType">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAACAAAAAAoAAQAAAAAAAA=</HashCode>
+      <FileName>Others\InternalEnumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

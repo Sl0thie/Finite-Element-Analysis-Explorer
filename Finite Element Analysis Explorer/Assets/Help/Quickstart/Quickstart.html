@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="../style.css">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>QuickStart</title>
+</head>
+<body>
+    <h1>Quickstart</h1>
+    <p>This App has three primary states. The first state is Construction. Its purpose is to construct a <a href="https://en.wikipedia.org/wiki/2D_geometric_model" target="_blank">2D Model</a> to be passed to the second state, Solving. This next state's purpose is to attempt to solve the model that was made during the construction state. Results is the last state. Its purpose is to display the results calculated during the Solving state.</p>
+    <p>Each state has a root page split into two. On the left is the details pane which is used to display details about the current state. On the right is the Display. This pane is used to display graphical views of the model.</p>
+    <p>To navigate between each state there are icons located at the top of each details pane.</p>
+    <h2>Navigation Icons</h2>
+    <p>The navigation icons are in the top left corner. These are used to traverse between pages.</p>
+    <table class="table1">
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconFileMenu.png" /></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">File Menu:</span> Displays the file management options.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconConstruction.png"/></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Construction:</span> Show the construction state used to make the model.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconSettings.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Settings:</span> Contains the app's settings such as colours.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconReport.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Report:</span> Display the generated report.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconAdd.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Add:</span>&nbsp;Add new sections.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconBack.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Back:</span> Return to previous page.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconSections.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Sections:</span>&nbsp;Manage sections used to define the members.</td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><img src="../Images/IconSolve.png" /></td>
+            <td >&nbsp;</td>
+            <td><span class="tdtitle">Solve:</span> Solve the model.</td>
+        </tr>       
+    </table>
+
+    
+    
+    <h2>Numbers: Engineer's Notation</h2>
+    <p>Ever wondered what that ENG button does on your calculator? This is used to convert a number into a specific format commonly used by engineers, hence the name <a href="https://en.wikipedia.org/wiki/Engineering_notation" target="_blank">Engineering Notation</a>. This App displays model properties in two primary ways. Firstly, is the single value display.</p>
+    <img src="../Images/EngineerNotation.png" class="primaryimage"/>
+    <p>From left to right we first have the property name (Elastic Modulus (E). Then there is the numerical value shown (200 10+E9) followed by the unit type (Pa).</p>
+    <p>The second primary display is for dual values. As each Member has two ends these are useful for reducing the amount of scrolling around.</p>
+    <img src="../Images/DualDisplay.png" class="primaryimage"/>
+    <p>Above are four dual displays stacked to show the common properties related to loads. From left to right we first have the Near Node, then we have an icon describing the related axis. This is followed by the Far Node and then the unit type common to both values. Near Node is a fancy term for the left end of the Member and Far Node is the right end. For the case where the Member is vertical then the Near Node is on the bottom end.</p>
+    <p>From top to bottom the four icons define firstly the X axis then the Y axis. Next is the Moment and lastly is the Linear value. These also show the positive direction of the property.</p>
+    <p>To change the values, there are three choices. To change the Near Node value click on the value. This is similar for the Far Node. If you wish to change both at the same time then click on the icon between the two.</p>
+    <img src="../Images/Input.png" class="primaryimage" />
+    <p>To input data, enter the value into the text box at the bottom on the pane. If you are stuck on a tablet and can&#39;t be bothered getting the keyboard out then use the buttons to manipulate the value. </p>
+    
+    <p>The lock icon is used to hold the value from the last input. This can help if many values have to be changed.</p>
+
+
+
+    
+    
+    
+    <h2>Construction State</h2>
+    <p>To construct a model it is simply a matter of double clicking (tapping) somewhere on the grid within the display to start drawing. This will create the first point (vertex, node) used to define a Member. To finish defining a Member simply click on another part of the grid somewhere. You can continue to click to create more Members of double click to finish. You can also tap and hold to finish as well if using a touch screen.</p>
+    <p>For the solvers to work the model needs to be constrained. If we were to nail a piece of timber (member) across a doorway we would model this as constrained by pins at both ends. This App contains several different types of constraints. To choose a constraint you simply click on either side of the constraints display within the details panel. From there you select the desired constraint type and the model will update.</p>
+    <img src="../Images/Constraints.png" class="primaryimage"/>
+    <p>Each constraint has a choice of either up, down, left or right. The model generally considers these to all be the same thing and the four choices are only for the display. The exceptions to this are Rollers and Tracks, both of these move in either a horizontal or vertical direction therefore top and bottom are the same as with left and right being the same to the model.</p>
+
+
+
+    <table class="table2">
+        <tr>
+            <td ><img src="../../Nodes/NodeFixedTopBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeFixedBottomBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeFixedLeftBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeFixedRightBlue.png" height="32" width="32" /></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Fixed:</span> Fully fixed constraint. This type of constraint restricts movement in both the X and Y axes as well as restricting rotation. A signpost that is concreted into the ground would be considered fully fixed.</td>
+        </tr>
+        <tr>
+            <td ><img src="../../Nodes/NodePinnedTopBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodePinnedBottomBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodePinnedLeftBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodePinnedRightBlue.png" height="32" width="32" /></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Pinned:</span> These prevent movement in both the X and Y axes but allow rotation. A seesaw in a playground is pinned in the centre where the board pivots.</td>
+        </tr>
+        <tr>
+            <td ><img src="../../Nodes/NodeRollerTopBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeRollerBottomBlue.png" height="32" width="32" /></td>
+            <td ></td>
+            <td ></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Roller X axis:</span> Constrained in the Y direction. Movement along the X axis is allowed as well as rotation.</td>
+        </tr>
+        <tr>
+            <td ></td>
+            <td ></td>
+            <td ><img src="../../Nodes/NodeRollerLeftBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeRollerRightBlue.png" height="32" width="32" /></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Roller Y axis:</span>&nbsp; Constrained in the X direction. Movement along the Y axis is allowed as well as rotation.</td>
+        </tr>
+        <tr>
+            <td ><img src="../../Nodes/NodeTrackTopBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeTrackBottomBlue.png" height="32" width="32" /></td>
+            <td ></td>
+            <td ></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Track X axis:</span> Constrained in the Y direction. Movement along the X axis is allowed but rotation is restricted.</td>
+        </tr>
+        <tr>
+            <td ></td>
+            <td ></td>
+            <td ><img src="../../Nodes/NodeTrackLeftBlue.png" height="32" width="32" /></td>
+            <td ><img src="../../Nodes/NodeTrackRightBlue.png" height="32" width="32" /></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Track Y axis:</span> Constrained in the X direction. Movement along the Y axis is allowed but rotation is restricted.</td>
+        </tr>    
+        <tr>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td >&nbsp;</td>
+            <td ><span class="tdtitle">Free:</span> Unconstrained. As members are straight this is usually used where member change direction or join other members at a joint without any restraints.</td>
+        </tr>       
+    </table>
+
+
+
+    <h2>Solver</h2>
+    <p>The solver state requires very little attention. Hit the button and the App will solve the model automatically.</p>
+
+
+    <h2>Results</h2>
+    <p>The results state uses a similar approach as the construction state although most data is read only.</p>
+
+
+
+
+</body>
+</html>
