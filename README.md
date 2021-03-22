@@ -5,4 +5,4 @@ Its the first Universal Windows Platform application to provide a finite element
 Solutions are presented in a graphical display that provides variable scales for all the supported force types as well as the reactions. 
 The resulting displacements can also be scaled to highlight the resulting movements of the elements.
 
-![ScreenShot](https://raw.github.com/Sl0thie/Finite Element Analysis Explorer/master/Finite Element Analysis Explorer/Finite Element Analysis Explorer/Screenshots/1.png)
+![3](https://user-images.githubusercontent.com/28429345/111984797-939eb700-8b57-11eb-8c0e-a9f77d60b446.png)
