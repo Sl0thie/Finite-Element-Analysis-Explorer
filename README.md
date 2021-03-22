@@ -6,3 +6,7 @@ Solutions are presented in a graphical display that provides variable scales for
 The resulting displacements can also be scaled to highlight the resulting movements of the elements.
 
 ![3](https://user-images.githubusercontent.com/28429345/111984797-939eb700-8b57-11eb-8c0e-a9f77d60b446.png)
+
+Many standard materials are included and modifying or creating new ones can be easily achieved using the materials user interface.
+
+
