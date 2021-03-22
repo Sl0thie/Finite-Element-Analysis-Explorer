@@ -4,3 +4,5 @@ Finite Element Analysis Explorer (FEA Explorer) is an application that is design
 Its the first Universal Windows Platform application to provide a finite element solution. 
 Solutions are presented in a graphical display that provides variable scales for all the supported force types as well as the reactions. 
 The resulting displacements can also be scaled to highlight the resulting movements of the elements.
+
+![Asymetrical Load](/Finite Element Analysis Explorer/Screenshots/1.png?raw=true "Asymetrical Load")
