@@ -135,6 +135,9 @@
     <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\LcdD.ttf" />
     <Content Include="Assets\HANDGOTL.ttf" />
+    <Content Include="Screenshots\1.png" />
+    <Content Include="Screenshots\3.png" />
+    <Content Include="Screenshots\5.png" />
     <None Include="Class Diagrams\Model Overview.cd" />
     <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />
     <None Include="Others\General.cd" />
