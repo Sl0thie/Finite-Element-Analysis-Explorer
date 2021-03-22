@@ -11,3 +11,8 @@ Many standard materials are included and modifying or creating new ones can be e
 
 
 ![5](https://user-images.githubusercontent.com/28429345/111985674-a4036180-8b58-11eb-958d-d00495a6c6c0.png)
+
+
+Results of the models show the applied forces and reactions. Compession and tension are displayed in varing colors on the members to display the most stressed members and those that are carrying no loads at all are white.
+
+![P4](https://user-images.githubusercontent.com/28429345/111986323-8a164e80-8b59-11eb-9112-b0870157bfdc.png)
