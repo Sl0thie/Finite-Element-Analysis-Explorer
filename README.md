@@ -7,6 +7,7 @@ The resulting displacements can also be scaled to highlight the resulting moveme
 
 ![3](https://user-images.githubusercontent.com/28429345/111984797-939eb700-8b57-11eb-8c0e-a9f77d60b446.png)
 
-Many standard materials are included and modifying or creating new ones can be easily achieved using the materials user interface.
+Many standard materials are included and modifying or creating new ones can be easily achieved using the materials user interface. Many of the material properties can be modified and the other properties will be updated to suit the changes that are made.
 
 
+![5](https://user-images.githubusercontent.com/28429345/111985674-a4036180-8b58-11eb-958d-d00495a6c6c0.png)
