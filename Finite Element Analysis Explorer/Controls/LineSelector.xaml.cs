@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Graphics.Canvas.Geometry;
-using System.Diagnostics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.UI;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Media;
+
+    /// <summary>
+    /// LineSelector UserControl is used to customize lines.
+    /// </summary>
     public sealed partial class LineSelector : UserControl
     {
-        private bool IsLoaded = false;
+        private bool isControlLoaded = false;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LineSelector"/> class.
+        /// </summary>
         public LineSelector()
         {
             this.InitializeComponent();
@@ -80,7 +77,6 @@ namespace Finite_Element_Analysis_Explorer
                     comboBox_FarCapStyle.SelectedIndex = (int)Options.LineGridNormal.EndCap;
                     comboBox_LineJoinStyle.SelectedIndex = (int)Options.LineGridNormal.LineJoin;
                     break;
-
 
                 case "LineGridMinor":
                     singleValue_ColorAlpha.SetTheValue(Options.ColorGridMinor.A);
@@ -302,7 +298,6 @@ namespace Finite_Element_Analysis_Explorer
                     comboBox_LineJoinStyle.SelectedIndex = (int)Options.LineShearForce.LineJoin;
                     break;
 
-
                 case "LineDistributedForceSelected":
                     singleValue_ColorAlpha.SetTheValue(Options.ColorDistributedForceSelected.A);
                     singleValue_ColorRed.SetTheValue(Options.ColorDistributedForceSelected.R);
@@ -462,18 +457,16 @@ namespace Finite_Element_Analysis_Explorer
                     comboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeOther.EndCap;
                     comboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeOther.LineJoin;
                     break;
-
             }
 
             rectangle_Color.Fill = new SolidColorBrush(Color.FromArgb((byte)singleValue_ColorAlpha.NewValue, (byte)singleValue_ColorRed.NewValue, (byte)singleValue_ColorGreen.NewValue, (byte)singleValue_ColorBlue.NewValue));
 
-            IsLoaded = true;
-            //singleValue_LineWeight.SetValue();
+            isControlLoaded = true;
         }
 
         private void UpdateColor()
         {
-            if (IsLoaded)
+            if (isControlLoaded)
             {
                 Color tmpColor = Color.FromArgb((byte)singleValue_ColorAlpha.NewValue, (byte)singleValue_ColorRed.NewValue, (byte)singleValue_ColorGreen.NewValue, (byte)singleValue_ColorBlue.NewValue);
                 switch (Options.ColorToEdit)
@@ -484,7 +477,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineGridNormal":
                         Options.ColorGridNormal = tmpColor;
-                        //Options.LineGridNormal.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineGridNormal.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineGridNormal.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineGridNormal.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -499,7 +491,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineGridMinor":
                         Options.ColorGridMinor = tmpColor;
-                        //Options.LineGridMinor.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineGridMinor.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineGridMinor.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineGridMinor.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -514,7 +505,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineGridMajor":
                         Options.ColorGridMajor = tmpColor;
-                        //Options.LineGridMajor.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineGridMajor.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineGridMajor.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineGridMajor.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -529,7 +519,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineForce":
                         Options.ColorForce = tmpColor;
-                        //Options.LineForce.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineForce.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineForce.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineForce.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -544,7 +533,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineReaction":
                         Options.ColorReaction = tmpColor;
-                        //Options.LineReaction.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineReaction.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineReaction.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineReaction.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -559,7 +547,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineSelectedElement":
                         Options.ColorSelectedElement = tmpColor;
-                        //Options.LineSelectedElement.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineSelectedElement.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineSelectedElement.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineSelectedElement.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -574,7 +561,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineShearForceSelected":
                         Options.ColorShearForceSelected = tmpColor;
-                        //Options.LineShearForceSelected.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineShearForceSelected.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineShearForceSelected.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineShearForceSelected.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -589,7 +575,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineMomentForceSelected":
                         Options.ColorMomentForceSelected = tmpColor;
-                        //Options.LineMomentForceSelected.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineMomentForceSelected.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineMomentForceSelected.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineMomentForceSelected.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -604,7 +589,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineDistributedForceSelected":
                         Options.ColorDistributedForceSelected = tmpColor;
-                        //Options.LineDistributedForceSelected.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineDistributedForceSelected.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineDistributedForceSelected.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineDistributedForceSelected.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -619,7 +603,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineShearForce":
                         Options.ColorShearForce = tmpColor;
-                        //Options.LineShearForce.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineShearForce.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineShearForce.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineShearForce.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -634,7 +617,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineMomentForce":
                         Options.ColorMomentForce = tmpColor;
-                        //Options.LineMomentForce.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineMomentForce.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineMomentForce.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineMomentForce.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -649,7 +631,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineDistributedForce":
                         Options.ColorDistributedForce = tmpColor;
-                        //Options.LineDistributedForce.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineDistributedForce.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineDistributedForce.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineDistributedForce.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -664,7 +645,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodeFree":
                         Options.ColorNodeFree = tmpColor;
-                        //Options.LineNodeFree.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodeFree.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodeFree.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodeFree.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -679,7 +659,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodeFixed":
                         Options.ColorNodeFixed = tmpColor;
-                        //Options.LineNodeFixed.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodeFixed.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodeFixed.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodeFixed.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -694,7 +673,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodePin":
                         Options.ColorNodePin = tmpColor;
-                        //Options.LineNodePin.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodePin.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodePin.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodePin.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -709,7 +687,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodeRollerX":
                         Options.ColorNodeRollerX = tmpColor;
-                        //Options.LineNodeRollerX.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodeRollerX.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodeRollerX.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodeRollerX.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -724,7 +701,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodeRollerY":
                         Options.ColorNodeRollerY = tmpColor;
-                        //Options.LineNodeRollerY.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodeRollerY.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodeRollerY.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodeRollerY.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -739,7 +715,6 @@ namespace Finite_Element_Analysis_Explorer
 
                     case "LineNodeOther":
                         Options.ColorNodeOther = tmpColor;
-                        //Options.LineNodeOther.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                         Options.LineNodeOther.DashOffset = (float)singleValue_DashOffset.NewValue;
                         Options.LineNodeOther.DashStyle = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                         Options.LineNodeOther.EndCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -752,6 +727,7 @@ namespace Finite_Element_Analysis_Explorer
                         singleValue_LineWeight.SetTheValue((decimal)Options.LineNodeOtherWeight);
                         break;
                 }
+
                 rectangle_Color.Fill = new SolidColorBrush(tmpColor);
                 singleValue_ColorAlpha.SetTheValue(tmpColor.A);
                 singleValue_ColorRed.SetTheValue(tmpColor.R);
@@ -761,99 +737,152 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void singleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorAlpha.NewValue < 0) { singleValue_ColorAlpha.NewValue = 0; }
-            if (singleValue_ColorAlpha.NewValue > 255) { singleValue_ColorAlpha.NewValue = 255; }
+            if (singleValue_ColorAlpha.NewValue < 0)
+            {
+                singleValue_ColorAlpha.NewValue = 0;
+            }
+
+            if (singleValue_ColorAlpha.NewValue > 255)
+            {
+                singleValue_ColorAlpha.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void singleValue_ColorRed_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorRed.NewValue < 0) { singleValue_ColorRed.NewValue = 0; }
-            if (singleValue_ColorRed.NewValue > 255) { singleValue_ColorRed.NewValue = 255; }
+            if (singleValue_ColorRed.NewValue < 0)
+            {
+                singleValue_ColorRed.NewValue = 0;
+            }
+
+            if (singleValue_ColorRed.NewValue > 255)
+            {
+                singleValue_ColorRed.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void singleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorGreen.NewValue < 0) { singleValue_ColorGreen.NewValue = 0; }
-            if (singleValue_ColorGreen.NewValue > 255) { singleValue_ColorGreen.NewValue = 255; }
+            if (singleValue_ColorGreen.NewValue < 0)
+            {
+                singleValue_ColorGreen.NewValue = 0;
+            }
+
+            if (singleValue_ColorGreen.NewValue > 255)
+            {
+                singleValue_ColorGreen.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void singleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorBlue.NewValue < 0) { singleValue_ColorBlue.NewValue = 0; }
-            if (singleValue_ColorBlue.NewValue > 255) { singleValue_ColorBlue.NewValue = 255; }
+            if (singleValue_ColorBlue.NewValue < 0)
+            {
+                singleValue_ColorBlue.NewValue = 0;
+            }
+
+            if (singleValue_ColorBlue.NewValue > 255)
+            {
+                singleValue_ColorBlue.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorAlpha.SetTheValue((byte)slider_A.Value);
             UpdateColor();
         }
 
-        private void slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorRed.SetTheValue((byte)slider_R.Value);
             UpdateColor();
         }
 
-        private void slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorGreen.SetTheValue((byte)slider_G.Value);
             UpdateColor();
         }
 
-        private void slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorBlue.SetTheValue((byte)slider_B.Value);
             UpdateColor();
         }
 
-        private void comboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_NearCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_NearCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_FarCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_FarCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_LineJoinStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_LineJoinStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void singleValue_LineWeight_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_LineWeight_ValueChanged(object sender, EventArgs e)
         {
-            //Debug.WriteLine("LineWeight " + singleValue_LineWeight.NewValue);
-            if (singleValue_LineWeight.NewValue < 0) { singleValue_LineWeight.NewValue = 1; }
-            if (singleValue_LineWeight.NewValue > 255) { singleValue_LineWeight.NewValue = 255; }
+            if (singleValue_LineWeight.NewValue < 0)
+            {
+                singleValue_LineWeight.NewValue = 1;
+            }
+
+            if (singleValue_LineWeight.NewValue > 255)
+            {
+                singleValue_LineWeight.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void singleValue_MiterLimit_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_MiterLimit_ValueChanged(object sender, EventArgs e)
         {
-            //Debug.WriteLine("MiterLimit " + singleValue_MiterLimit.NewValue);
-            if (singleValue_MiterLimit.NewValue < 0) { singleValue_MiterLimit.NewValue = 1; }
-            if (singleValue_MiterLimit.NewValue > 255) { singleValue_MiterLimit.NewValue = 255; }
+            if (singleValue_MiterLimit.NewValue < 0)
+            {
+                singleValue_MiterLimit.NewValue = 1;
+            }
+
+            if (singleValue_MiterLimit.NewValue > 255)
+            {
+                singleValue_MiterLimit.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
-        private void singleValue_DashOffset_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_DashOffset_ValueChanged(object sender, EventArgs e)
         {
-            //Debug.WriteLine("DashOffset " + singleValue_DashOffset.NewValue);
-            if (singleValue_DashOffset.NewValue < 0) { singleValue_DashOffset.NewValue = 1; }
-            if (singleValue_DashOffset.NewValue > 255) { singleValue_DashOffset.NewValue = 255; }
+            if (singleValue_DashOffset.NewValue < 0)
+            {
+                singleValue_DashOffset.NewValue = 1;
+            }
+
+            if (singleValue_DashOffset.NewValue > 255)
+            {
+                singleValue_DashOffset.NewValue = 255;
+            }
+
             UpdateColor();
         }
     }

@@ -6,8 +6,14 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class PanelSolver : Page
     {
+        /// <summary>
+        /// Clayton's singleton.
+        /// </summary>
         internal static PanelSolver Current;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelSolver"/> class.
+        /// </summary>
         public PanelSolver()
         {
             this.InitializeComponent();
@@ -38,27 +44,27 @@ namespace Finite_Element_Analysis_Explorer
             Solver.Current.StartSolver();
         }
 
-        private void comboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Options.CurrentSolver = comboBox_Solver.SelectedIndex;
         }
 
-        private void checkBox_AutoStart_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_AutoStart_Checked(object sender, RoutedEventArgs e)
         {
             Options.AutoStartSolver = true;
         }
 
-        private void checkBox_AutoStart_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_AutoStart_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.AutoStartSolver = false;
         }
 
-        private void checkBox_AutoFinish_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_AutoFinish_Checked(object sender, RoutedEventArgs e)
         {
             Options.AutoFinishSolver = true;
         }
 
-        private void checkBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.AutoFinishSolver = false;
         }
@@ -77,17 +83,17 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Settings Menu
 
-        private void menuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsGeneral();
         }
 
-        private void menuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsSolver();
         }
 
-        private void menuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsColors();
         }

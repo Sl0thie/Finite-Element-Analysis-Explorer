@@ -73,30 +73,30 @@
             <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible">
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="menuFlyout_New_Click"/>
-                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="menuFlyout_Open_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="menuFlyout_Save_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="menuFlyout_SaveAs_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="menuFlyout_Exit_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="MenuFlyout_New_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="MenuFlyout_Open_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="MenuFlyout_Save_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="MenuFlyout_SaveAs_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="MenuFlyout_Exit_Click" />
                     </MenuFlyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Save" Foreground="White" Width="32" Height="32"/>
             </Button>
 
-            <Button x:Name="button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="button_Solve_Click">
+            <Button x:Name="button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Solve_Click">
                 <SymbolIcon Symbol="Sync" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="button_Construction_Click">
+            <Button x:Name="button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Construction_Click">
                 <SymbolIcon Symbol="Edit" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="button_Results_Click">
+            <Button x:Name="button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Results_Click">
                 <SymbolIcon Symbol="Flag" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
 
-            <Button x:Name="button_Sections"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="button_Sections_Click" Visibility="Visible">
+            <Button x:Name="button_Sections"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="Button_Sections_Click" Visibility="Visible">
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Visible"/>
             </Button>
-            <Button x:Name="button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="button_Reports_Click">
+            <Button x:Name="button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Reports_Click">
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Visible"/>
             </Button>
 
@@ -111,15 +111,15 @@
                 <SymbolIcon Symbol="Add" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
 
-            <Button x:Name="button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="button_Help_Click">
+            <Button x:Name="button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="Button_Help_Click">
                 <SymbolIcon Symbol="Help" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
             <Button x:Name="button_Options"  Grid.Column="7" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32">
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Name="menuFlyout_SettingsGeneral" Text="General" Click="menuFlyout_SettingsGeneral_Click"/>
-                        <MenuFlyoutItem x:Name="menuFlyout_SettingsSolver" Text="Solver" Click="menuFlyout_SettingsSolver_Click"/>
-                        <MenuFlyoutItem x:Name="menuFlyout_SettingsColors" Text="Colors" Click="menuFlyout_SettingsColors_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsGeneral" Text="General" Click="MenuFlyout_SettingsGeneral_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsSolver" Text="Solver" Click="MenuFlyout_SettingsSolver_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_SettingsColors" Text="Colors" Click="MenuFlyout_SettingsColors_Click"/>
                     </MenuFlyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Setting" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>

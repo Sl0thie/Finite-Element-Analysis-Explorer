@@ -20,7 +20,7 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class LineSelectorBox : UserControl
     {
-        private bool IsLoaded = false;
+        private bool IsControlLoaded = false;
         public LineSelectorBox()
         {
             this.InitializeComponent();
@@ -72,13 +72,13 @@ namespace Finite_Element_Analysis_Explorer
 
 
 
-            IsLoaded = true;
+            IsControlLoaded = true;
             //singleValue_LineWeight.SetValue();
         }
 
         private void UpdateColor()
         {
-            if (IsLoaded)
+            if (IsControlLoaded)
             {
                 Color tmpColor = Color.FromArgb((byte)singleValue_ColorAlpha.NewValue, (byte)singleValue_ColorRed.NewValue, (byte)singleValue_ColorGreen.NewValue, (byte)singleValue_ColorBlue.NewValue);
 
@@ -108,93 +108,93 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void singleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorAlpha.NewValue < 0) { singleValue_ColorAlpha.NewValue = 0; }
             if (singleValue_ColorAlpha.NewValue > 255) { singleValue_ColorAlpha.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorRed_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorRed.NewValue < 0) { singleValue_ColorRed.NewValue = 0; }
             if (singleValue_ColorRed.NewValue > 255) { singleValue_ColorRed.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorGreen.NewValue < 0) { singleValue_ColorGreen.NewValue = 0; }
             if (singleValue_ColorGreen.NewValue > 255) { singleValue_ColorGreen.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorBlue.NewValue < 0) { singleValue_ColorBlue.NewValue = 0; }
             if (singleValue_ColorBlue.NewValue > 255) { singleValue_ColorBlue.NewValue = 255; }
             UpdateColor();
         }
 
-        private void slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorAlpha.SetTheValue((byte)slider_A.Value);
             UpdateColor();
         }
 
-        private void slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorRed.SetTheValue((byte)slider_R.Value);
             UpdateColor();
         }
 
-        private void slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorGreen.SetTheValue((byte)slider_G.Value);
             UpdateColor();
         }
 
-        private void slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorBlue.SetTheValue((byte)slider_B.Value);
             UpdateColor();
         }
 
-        private void comboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_NearCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_NearCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_FarCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_FarCapStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void comboBox_LineJoinStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_LineJoinStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateColor();
         }
 
-        private void singleValue_LineWeight_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_LineWeight_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_LineWeight.NewValue < 0) { singleValue_LineWeight.NewValue = 1; }
             if (singleValue_LineWeight.NewValue > 255) { singleValue_LineWeight.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_MiterLimit_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_MiterLimit_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_MiterLimit.NewValue < 0) { singleValue_MiterLimit.NewValue = 1; }
             if (singleValue_MiterLimit.NewValue > 255) { singleValue_MiterLimit.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_DashOffset_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_DashOffset_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_DashOffset.NewValue < 0) { singleValue_DashOffset.NewValue = 1; }
             if (singleValue_DashOffset.NewValue > 255) { singleValue_DashOffset.NewValue = 255; }

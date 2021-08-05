@@ -21,7 +21,7 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class Results : Page
     {
         internal static Results Current;
-        private bool IsLoaded = false;
+        private bool IsPageLoaded = false;
 
         private bool detailsIsOpen = true;
         public bool DetailsIsOpen
@@ -40,7 +40,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowMember()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 frameDetails.Navigate(typeof(PanelResultsMember));
             }
@@ -48,7 +48,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowModel()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 frameDetails.Navigate(typeof(PanelResultsModel));
             }
@@ -146,13 +146,13 @@ namespace Finite_Element_Analysis_Explorer
         {
             App.CurrentPageState = PageState.Results;
             Current = this;
-            IsLoaded = true;
+            IsPageLoaded = true;
             frameDetails.Navigate(typeof(PanelResultsModel));
             frameDisplay.Navigate(typeof(ResultsDisplay));
 
             SetTitle("Finite Element Analysis Explorer - " + FileManager.FileTitle);
 
-            IsLoaded = true;
+            IsPageLoaded = true;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -174,7 +174,7 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             //App.CurrentPageState = PageState.Unknown;
-            IsLoaded = false;
+            IsPageLoaded = false;
         }
 
         private void menuButton_Click(object sender, RoutedEventArgs e)

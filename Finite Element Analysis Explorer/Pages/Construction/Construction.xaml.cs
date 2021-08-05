@@ -22,7 +22,7 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class Construction : Page
     {
         internal static Construction Current;
-        private bool IsLoaded = false;
+        private bool IsPageLoaded = false;
 
         private bool detailsIsOpen = true;
         public bool DetailsIsOpen
@@ -39,7 +39,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void Refresh()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Construction));
@@ -60,7 +60,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowSolver()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Solver));
@@ -91,7 +91,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowModel()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 App.CurrentPageState = PageState.Construction;
                 frameDetails.Width = 300;
@@ -101,7 +101,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowSections()
         {
-            FileManager.SaveFile();
+            _ = FileManager.SaveFile();
             App.CurrentPageState = PageState.Sections;
             frameDetails.Width = 220;
             frameDetails.Navigate(typeof(PanelSections));
@@ -110,7 +110,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowSection()
         {
-            FileManager.SaveFile();
+            _ = FileManager.SaveFile();
             App.CurrentPageState = PageState.Sections;
             frameDetails.Width = 220;
             frameDetails.Navigate(typeof(PanelSections));
@@ -185,7 +185,7 @@ namespace Finite_Element_Analysis_Explorer
         {
 
             Current = this;
-            IsLoaded = true;
+            IsPageLoaded = true;
             if (Model.Members.CurrentMember == null)
             {
                 Model.Sections.CurrentSection = Model.Sections["Default"];
@@ -202,7 +202,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            IsLoaded = false;
+            IsPageLoaded = false;
         }
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)
@@ -225,7 +225,7 @@ namespace Finite_Element_Analysis_Explorer
 
         }
 
-        private void menuButton_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             if (detailsIsOpen)
             {

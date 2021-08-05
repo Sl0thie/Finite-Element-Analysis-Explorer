@@ -71,7 +71,7 @@ namespace Finite_Element_Analysis_Explorer
             checkBox_ResetExisting.IsChecked = Options.ResetExistingMembers;
         }
 
-        private void single_NoOfSegments_ValueChanged(object sender, EventArgs e)
+        private void Single_NoOfSegments_ValueChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("No of Segments ValueChanged");
             Options.DefaultNumberOfSegments = (int)single_NoOfSegments.NewValue;
@@ -85,12 +85,12 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void checkBox_ResetExisting_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ResetExisting_Checked(object sender, RoutedEventArgs e)
         {
             Options.ResetExistingMembers = true;
         }
 
-        private void checkBox_ResetExisting_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ResetExisting_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ResetExistingMembers = false;
         }
@@ -99,7 +99,7 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Help Menu
 
-        private void button_Help_ClickAsync(object sender, RoutedEventArgs e)
+        private void Button_Help_ClickAsync(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowHelpAsync();
 
@@ -112,17 +112,17 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Settings Menu
 
-        private void menuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsGeneral();
         }
 
-        private void menuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsSolver();
         }
 
-        private void menuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSettingsColors();
         }
@@ -131,13 +131,13 @@ namespace Finite_Element_Analysis_Explorer
 
         #region File Menu
 
-        private void menuFlyout_New_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
             //New File.
             FileManager.NewFile();
         }
 
-        private async void menuFlyout_Open_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
             //Open file.
             if (await FileManager.PickFileToLoad())
@@ -147,13 +147,13 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private async void menuFlyout_Save_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             //Save File.
             await FileManager.SaveFile();
         }
 
-        private async void menuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
             //Save file as.
             if (await FileManager.PickFileToSave())
@@ -162,7 +162,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void menuFlyout_Exit_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }
@@ -177,27 +177,27 @@ namespace Finite_Element_Analysis_Explorer
             //flyOut_NewSection.ShowAt(button_Save);
         }
 
-        private void button_Solve_Click(object sender, RoutedEventArgs e)
+        private void Button_Solve_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSolver();
         }
 
-        private void button_Construction_Click(object sender, RoutedEventArgs e)
+        private void Button_Construction_Click(object sender, RoutedEventArgs e)
         {
             FileManager.LoadLastFileAsync();
         }
 
-        private void button_Results_Click(object sender, RoutedEventArgs e)
+        private void Button_Results_Click(object sender, RoutedEventArgs e)
         {
             Solver.Current.ShowResults();
         }
 
-        private void button_Sections_Click(object sender, RoutedEventArgs e)
+        private void Button_Sections_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSections();
         }
 
-        private void button_Reports_Click(object sender, RoutedEventArgs e)
+        private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -206,88 +206,88 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private void logSlider_MomentFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowMoment = true;
         }
 
-        private void logSlider_MomentFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowMoment = false;
         }
 
-        private void logSlider_ShearFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowShear = true;
         }
 
-        private void logSlider_ShearFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowShear = false;
         }
 
-        private void logSlider_LinearFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowLinear = true;
         }
 
-        private void logSlider_LinearFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowLinear = false;
         }
 
-        private void logSlider_ForcesFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowForce = true;
         }
 
-        private void logSlider_ForcesFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowForce = false;
         }
 
-        private void logSlider_ReactionsFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowReactions = true;
         }
 
-        private void logSlider_ReactionsFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowReactions = false;
         }
 
-        private void logSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
         {
             Options.MomentFactor = logSlider_MomentFactor.TheValue;
         }
 
-        private void logSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
         {
             Options.ShearFactor = logSlider_ShearFactor.TheValue;
         }
 
-        private void logSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
         {
             Options.LinearFactor = logSlider_LinearFactor.TheValue;
         }
 
-        private void logSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
         {
             Options.ReactionsFactor = logSlider_ReactionsFactor.TheValue;
         }
 
-        private void logSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
         {
             Options.ForcesFactor = logSlider_ForcesFactor.TheValue;
         }
 
-        private void logSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("logSlider_DisplacementFactor_ValueChanged");
             Options.DisplacementFactor = logSlider_DisplacementFactor.TheValue;
         }
 
-        private void button_Help_Click(object sender, RoutedEventArgs e)
+        private void Button_Help_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowHelpAsync();
         }

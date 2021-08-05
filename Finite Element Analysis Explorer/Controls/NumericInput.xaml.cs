@@ -21,7 +21,7 @@ namespace Finite_Element_Analysis_Explorer
     {
         public event EventHandler ValueChanged;
 
-        private int RoundingFactor = 6;
+        private readonly int RoundingFactor = 6;
         private decimal theValue = 0;
         private string numberString = "";
         private string exponentString = "";
@@ -605,9 +605,9 @@ namespace Finite_Element_Analysis_Explorer
         }
 
 
-        #region Popup Events
+        #region Pop-up Events
 
-        private void textBlock_One_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_One_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -616,7 +616,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Ten_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Ten_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -625,7 +625,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Hundred_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Hundred_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -634,7 +634,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Sign_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Sign_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -652,7 +652,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Decimal_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Decimal_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -661,7 +661,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Tenth_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Tenth_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -670,7 +670,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Hundredth_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Hundredth_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -679,7 +679,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Thousandth_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Thousandth_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -740,7 +740,7 @@ namespace Finite_Element_Analysis_Explorer
 
         }
 
-        private void textBox_Input_ValueChanged(object sender, EventArgs e)
+        private void TextBox_Input_ValueChanged(object sender, EventArgs e)
         {
             //Debug.WriteLine("New Input " + textBox_Input.Text);
             newValue = textBox_Input.NewValue;

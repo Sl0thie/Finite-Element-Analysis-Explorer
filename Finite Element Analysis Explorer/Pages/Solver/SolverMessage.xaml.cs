@@ -97,8 +97,6 @@ namespace Finite_Element_Analysis_Explorer
             if (TotalMilliseconds >= 0)
             {
                 long Milliseconds = TotalMilliseconds;
-                string tempString = "";
-
                 long TotalMinutes = 0;
                 long TotalSeconds = 0;
 
@@ -110,8 +108,7 @@ namespace Finite_Element_Analysis_Explorer
                         Milliseconds -= 60000;
                     }
                 } while (Milliseconds >= 60000);
-                tempString = TotalMinutes + ":";
-
+                string tempString = TotalMinutes + ":";
                 do
                 {
                     if (Milliseconds >= 1000)
@@ -132,7 +129,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 if (Milliseconds.ToString().Length == 0)
                 {
-                    tempString = tempString + "000";
+                    tempString += "000";
                 }
                 else if (Milliseconds.ToString().Length == 1)
                 {
@@ -144,7 +141,7 @@ namespace Finite_Element_Analysis_Explorer
                 }
                 else
                 {
-                    tempString = tempString + Milliseconds;
+                    tempString += Milliseconds;
                 }
 
                 return tempString;

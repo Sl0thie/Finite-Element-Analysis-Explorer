@@ -45,8 +45,8 @@
             <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
         <local:NumericInput Grid.Row="1" Grid.Column="1" x:Name="numericInput_NearValue" ValueChanged="numericInput_NearValue_ValueChanged"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="textBlock_Axis" HorizontalAlignment="Center" VerticalAlignment="Center" Text="⭢" FontFamily="Segoe UI Symbol" FontSize="20" Foreground="#FF404040" Tapped="textBlock_Axis_Tapped"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="textBlock_Axis" HorizontalAlignment="Center" VerticalAlignment="Center" Text="⭢" FontFamily="Segoe UI Symbol" FontSize="20" Foreground="#FF404040" Tapped="TextBlock_Axis_Tapped"/>
         <local:NumericInput Grid.Row="1" Grid.Column="3" x:Name="numericInput_FarValue" ValueChanged="numericInput_FarValue_ValueChanged" PointerWheelChanged="numericInput_FarValue_PointerWheelChanged"/>
-        <TextBlock Grid.Row="1"  Grid.Column="4" x:Name="textBlock_UnitType" Padding="2,4,0,0" Text="----" Foreground="#FF404040" FontSize="12" Width="30" Height="25" Tapped="textBlock_UnitType_Tapped"/>
+        <TextBlock Grid.Row="1"  Grid.Column="4" x:Name="textBlock_UnitType" Padding="2,4,0,0" Text="----" Foreground="#FF404040" FontSize="12" Width="30" Height="25" Tapped="TextBlock_UnitType_Tapped"/>
     </Grid>
 </UserControl>

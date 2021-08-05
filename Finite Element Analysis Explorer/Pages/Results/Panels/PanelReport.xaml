@@ -33,7 +33,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible" Click="button_Save_Click">
+            <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible" Click="Button_Save_Click">
 
                 <SymbolIcon Symbol="Back" Foreground="White" Width="32" Height="32"/>
             </Button>

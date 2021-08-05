@@ -23,7 +23,7 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class Solver : Page
     {
         internal static Solver Current;
-        private bool IsLoaded = false;
+        private bool IsPageLoaded = false;
 
         //private bool IsSolving = false;
         private ISolver CurrentSolver;
@@ -42,7 +42,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowConstruction()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Construction));
@@ -82,7 +82,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowResults()
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Results));
@@ -127,7 +127,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             App.CurrentPageState = PageState.Solver;
             Current = this;
-            IsLoaded = true;
+            IsPageLoaded = true;
             frameDetails.Navigate(typeof(PanelSolver));
             frameDisplay.Navigate(typeof(SolverDisplay));
 
@@ -146,7 +146,7 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             //App.CurrentPageState = PageState.Unknown;
-            IsLoaded = false;
+            IsPageLoaded = false;
         }
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)
@@ -169,7 +169,7 @@ namespace Finite_Element_Analysis_Explorer
 
         }
 
-        private void menuButton_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             //if (detailsIsOpen)
             //{

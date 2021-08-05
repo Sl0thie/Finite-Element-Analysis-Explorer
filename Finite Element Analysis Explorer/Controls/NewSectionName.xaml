@@ -27,7 +27,7 @@
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Fill="Black" HorizontalAlignment="Center" Height="98" Stroke="#FF686868" VerticalAlignment="Center" Width="298" RadiusX="10" RadiusY="10" StrokeThickness="2" />
 
         <TextBlock Text="New Section Name" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="Gray"/>
-        <TextBox x:Name="textBox_NewSectionName" Grid.Row="2" Grid.Column="1" BorderThickness="1" KeyDown="textBox_NewSectionName_KeyDown" Style="{StaticResource TextBoxStyle1}"  />
+        <TextBox x:Name="textBox_NewSectionName" Grid.Row="2" Grid.Column="1" BorderThickness="1" KeyDown="TextBox_NewSectionName_KeyDown" Style="{StaticResource TextBoxStyle1}"  />
 
     </Grid>
 </UserControl>

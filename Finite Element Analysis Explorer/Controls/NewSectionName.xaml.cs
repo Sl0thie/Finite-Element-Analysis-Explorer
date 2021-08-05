@@ -29,7 +29,7 @@ namespace Finite_Element_Analysis_Explorer
             textBox_NewSectionName.Focus(FocusState.Keyboard);
         }
 
-        private void textBox_NewSectionName_KeyDown(object sender, KeyRoutedEventArgs e)
+        private void TextBox_NewSectionName_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key.ToString() == "Enter")
             {

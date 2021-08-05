@@ -256,7 +256,6 @@ namespace Finite_Element_Analysis_Explorer
             Camera.Reset();
             members.Reset();
             nodes.Reset();
-            //drawingForces.Reset();        
         }
 
         /// <summary>

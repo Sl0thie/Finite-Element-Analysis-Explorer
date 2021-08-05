@@ -18,10 +18,14 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class ColorSelector : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColorSelector"/> class.
+        /// </summary>
         public ColorSelector()
         {
             this.InitializeComponent();
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             singleValue_ColorAlpha.Title = "Alpha";
@@ -97,53 +101,53 @@ namespace Finite_Element_Analysis_Explorer
             Model.UpdateColors();
         }
 
-        private void singleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorAlpha.NewValue < 0) { singleValue_ColorAlpha.NewValue = 0; }
             if (singleValue_ColorAlpha.NewValue > 255) { singleValue_ColorAlpha.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorRed_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorRed.NewValue < 0) { singleValue_ColorRed.NewValue = 0; }
             if (singleValue_ColorRed.NewValue > 255) { singleValue_ColorRed.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorGreen.NewValue < 0) { singleValue_ColorGreen.NewValue = 0; }
             if (singleValue_ColorGreen.NewValue > 255) { singleValue_ColorGreen.NewValue = 255; }
             UpdateColor();
         }
 
-        private void singleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
             if (singleValue_ColorBlue.NewValue < 0) { singleValue_ColorBlue.NewValue = 0; }
             if (singleValue_ColorBlue.NewValue > 255) { singleValue_ColorBlue.NewValue = 255; }
             UpdateColor();
         }
 
-        private void slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorAlpha.SetTheValue((byte)slider_A.Value);
             UpdateColor();
         }
 
-        private void slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorRed.SetTheValue((byte)slider_R.Value);
             UpdateColor();
         }
 
-        private void slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorGreen.SetTheValue((byte)slider_G.Value);
             UpdateColor();
         }
 
-        private void slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             singleValue_ColorBlue.SetTheValue((byte)slider_B.Value);
             UpdateColor();

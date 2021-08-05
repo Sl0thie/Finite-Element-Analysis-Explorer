@@ -17,7 +17,7 @@ namespace Finite_Element_Analysis_Explorer
         private static bool HasErrors = false;
         private static bool HasWarning = false;
 
-        private static Stopwatch MainTimer = new Stopwatch();
+        private static readonly Stopwatch MainTimer = new Stopwatch();
         private static long StageStart;
 
 

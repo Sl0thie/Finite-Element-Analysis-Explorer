@@ -19,11 +19,14 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class DoubleValue : UserControl
     {
         public event EventHandler ValueChanged;
-        public event EventHandler NearValueChanged;
-        public event EventHandler FarValueChanged;
-        private decimal multiplicationFactor = 1;
 
+        public event EventHandler NearValueChanged;
+
+        public event EventHandler FarValueChanged;
+
+        private decimal multiplicationFactor = 1;
         private decimal nearValue;
+
         public decimal NearValue
         {
             get { return nearValue; }
@@ -31,6 +34,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal farValue;
+
         public decimal FarValue
         {
             get { return farValue; }
@@ -40,14 +44,18 @@ namespace Finite_Element_Analysis_Explorer
         private int axis;
         internal int Axis
         {
-            get { return axis; }
+            get
+            {
+                return axis;
+            }
+
             set
             {
                 axis = value;
                 switch (axis)
                 {
                     case 0:
-                        textBlock_Axis.Text = "";
+                        textBlock_Axis.Text = string.Empty;
                         break;
                     case 1:
                         textBlock_Axis.Text = "⭢";
@@ -70,6 +78,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private bool displayOnly;
+
         public bool DisplayOnly
         {
             get { return displayOnly; }
@@ -82,6 +91,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private UnitType unitType = UnitType.Unitless;
+
         internal UnitType UnitType
         {
             get { return unitType; }
@@ -452,7 +462,7 @@ namespace Finite_Element_Analysis_Explorer
 
         internal void SetValue(decimal newNearValue, decimal newFarValue)
         {
-            //todo: Multiply by unit type factor then pass
+            // todo: Multiply by unit type factor then pass
             nearValue = newNearValue;
             farValue = newFarValue;
 
@@ -475,19 +485,19 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void numericInput_NearValue_ValueChanged(object sender, EventArgs e)
+        private void NumericInput_NearValue_ValueChanged(object sender, EventArgs e)
         {
             nearValue = numericInput_NearValue.NewValue;
             NearValueChanged?.Invoke(this, new EventArgs());
         }
 
-        private void numericInput_FarValue_ValueChanged(object sender, EventArgs e)
+        private void NumericInput_FarValue_ValueChanged(object sender, EventArgs e)
         {
             farValue = numericInput_FarValue.NewValue;
             FarValueChanged?.Invoke(this, new EventArgs());
         }
 
-        private void textBlock_UnitType_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_UnitType_Tapped(object sender, TappedRoutedEventArgs e)
         {
             switch (unitType)
             {
@@ -1178,12 +1188,12 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private void numericInput_FarValue_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        private void NumericInput_FarValue_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
             //Debug.WriteLine("ScrollWheel");
         }
 
-        private void textBlock_Axis_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Axis_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
@@ -1192,7 +1202,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBox_Input_ValueChanged(object sender, EventArgs e)
+        private void TextBox_Input_ValueChanged(object sender, EventArgs e)
         {
             nearValue = textBox_Input.NewValue;
             farValue = textBox_Input.NewValue;

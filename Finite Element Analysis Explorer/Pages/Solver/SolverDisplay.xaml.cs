@@ -45,16 +45,18 @@ namespace Finite_Element_Analysis_Explorer
         public void AddMessage(long total, long step, string message, int messageType)
         {
 
-            SolverMessage NextMessage = new SolverMessage();
-            NextMessage.TotalTime = total;
-            NextMessage.StepTime = step;
-            NextMessage.Message = message;
-            NextMessage.MessageType = messageType;
+            SolverMessage NextMessage = new SolverMessage
+            {
+                TotalTime = total,
+                StepTime = step,
+                Message = message,
+                MessageType = messageType
+            };
             StackConsole.Children.Add(NextMessage);
 
             if (messageType == 0)
             {
-                progressBar_Track.Value = progressBar_Track.Value + 1;
+                progressBar_Track.Value++;
             }
 
             scrollViewer_Console.UpdateLayout();

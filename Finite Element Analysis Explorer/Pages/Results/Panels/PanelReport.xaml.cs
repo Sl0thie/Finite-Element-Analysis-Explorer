@@ -22,7 +22,7 @@ namespace Finite_Element_Analysis_Explorer
             this.InitializeComponent();
         }
 
-        private void button_Save_Click(object sender, RoutedEventArgs e)
+        private void Button_Save_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowDrawing();
         }

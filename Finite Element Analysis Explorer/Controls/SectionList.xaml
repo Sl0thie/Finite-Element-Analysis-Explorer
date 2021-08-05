@@ -25,7 +25,7 @@
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="Black" HorizontalAlignment="Center" Height="598" Stroke="#FF686868" VerticalAlignment="Top" Width="298" RadiusX="10" RadiusY="10" StrokeThickness="2" />
 
         <ScrollViewer Grid.Row="1" Grid.Column="1"  Width="280" Height="580" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden">
-            <ListView x:Name="listView_Sections" SelectionChanged="listView_Sections_SelectionChanged" Style="{StaticResource ListViewStyle1}" ItemTemplate="{StaticResource DataTemplate1}" ItemContainerStyle="{StaticResource ListViewItemStyle2}">
+            <ListView x:Name="listView_Sections" SelectionChanged="ListView_Sections_SelectionChanged" Style="{StaticResource ListViewStyle1}" ItemTemplate="{StaticResource DataTemplate1}" ItemContainerStyle="{StaticResource ListViewItemStyle2}">
                 <ListView.Items>
                     <ListViewItem Content="Test Item" Style="{StaticResource ListViewItemStyle1}"/>
                 </ListView.Items>

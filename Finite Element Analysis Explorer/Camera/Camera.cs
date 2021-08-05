@@ -5,7 +5,7 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal static class Camera
     {
-        //Line Bounds
+        // Line Bounds
         private static float UpperBound;
         private static float LowerBound;
 
@@ -210,7 +210,7 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void MoveCamera(Vector2 cameraMovement)
         {
-            Position = Position + (new Vector2(cameraMovement.X * LineUnit * translationTrim, -cameraMovement.Y * LineUnit * translationTrim));
+            Position += (new Vector2(cameraMovement.X * LineUnit * translationTrim, -cameraMovement.Y * LineUnit * translationTrim));
             UpdateBounds();
         }
         internal static float translationTrim = 0.5f;

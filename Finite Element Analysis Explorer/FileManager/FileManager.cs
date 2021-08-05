@@ -101,7 +101,7 @@ namespace Finite_Element_Analysis_Explorer
             if (await PickFileToSave())
             {
                 Model.Reset();
-                if (ReferenceEquals(NextFile, null))
+                if (NextFile is null)
                 {
                     //Open File Picker Failed.
                     return;
@@ -179,7 +179,7 @@ namespace Finite_Element_Analysis_Explorer
                    }
                    );
             
-            if (!ReferenceEquals(WorkingFile, null))
+            if (WorkingFile is object)
             {
                 try
                 {
@@ -246,7 +246,7 @@ namespace Finite_Element_Analysis_Explorer
                                         StatsLoadingTotalItems = Convert.ToInt32(words[1]);
                                         try
                                         {
-                                            if (!object.ReferenceEquals(null, FileLoadingDisplay.Current))
+                                            if (FileLoadingDisplay.Current is object)
                                             {
                                                 FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + StatsLoadingTotalItems);
                                             }
@@ -356,7 +356,7 @@ namespace Finite_Element_Analysis_Explorer
                                         StatsLoadingTotalItems = Convert.ToInt32(words[1]);
                                         try
                                         {
-                                            if (!object.ReferenceEquals(null, FileLoadingDisplay.Current))
+                                            if (FileLoadingDisplay.Current is object)
                                             {
                                                 FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + StatsLoadingTotalItems);
                                             }
@@ -482,7 +482,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 if (Options.FirstRun)
                 {
-                    var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
+                    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
                     var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
                     Options.FirstRun = false;
                 }
@@ -622,7 +622,7 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static async void SaveLastFile()
         {
-            if (!ReferenceEquals(WorkingFile, null))
+            if (WorkingFile is object)
             {
                 await SaveFile();
             }
@@ -1129,7 +1129,7 @@ namespace Finite_Element_Analysis_Explorer
             NextFile = null;
             NextFile = await openPicker.PickSingleFileAsync();
 
-            if (ReferenceEquals(NextFile, null))
+            if (NextFile is null)
             {
                 //Open File Picker Failed.
                 return false;
@@ -1169,7 +1169,7 @@ namespace Finite_Element_Analysis_Explorer
             savePicker.SuggestedFileName = WorkingFileDisplayName;
             NextFile = null;
             NextFile = await savePicker.PickSaveFileAsync();
-            if (ReferenceEquals(NextFile, null))
+            if (NextFile is null)
             {
                 //File Picker Failed.
                 return false;

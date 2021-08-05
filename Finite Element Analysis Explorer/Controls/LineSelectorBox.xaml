@@ -182,13 +182,13 @@
             <TextBlock Margin="6,5,0,0" Text="Line Color" FontSize="12" Foreground="Silver"/>
             <Rectangle x:Name="rectangle_Color" RadiusX="10" RadiusY="10" Width="240" Height="22" Stroke="#FF404040" Margin="0,0,10,10" StrokeThickness="2"/>
             <local:SingleValue x:Name="singleValue_ColorAlpha" ValueChanged="singleValue_ColorAlpha_ValueChanged" />
-            <Slider x:Name="slider_A" Maximum="255" ValueChanged="slider_A_ValueChanged" Width="260" HorizontalAlignment="Center" />
+            <Slider x:Name="slider_A" Maximum="255" ValueChanged="Slider_A_ValueChanged" Width="260" HorizontalAlignment="Center" />
             <local:SingleValue x:Name="singleValue_ColorRed" ValueChanged="singleValue_ColorRed_ValueChanged"  />
-            <Slider x:Name="slider_R" Maximum="255" ValueChanged="slider_R_ValueChanged" Width="260" HorizontalAlignment="Center"/>
+            <Slider x:Name="slider_R" Maximum="255" ValueChanged="Slider_R_ValueChanged" Width="260" HorizontalAlignment="Center"/>
             <local:SingleValue x:Name="singleValue_ColorGreen" ValueChanged="singleValue_ColorGreen_ValueChanged" />
-            <Slider x:Name="slider_G" Maximum="255" ValueChanged="slider_G_ValueChanged" Width="260" HorizontalAlignment="Center"/>
+            <Slider x:Name="slider_G" Maximum="255" ValueChanged="Slider_G_ValueChanged" Width="260" HorizontalAlignment="Center"/>
             <local:SingleValue x:Name="singleValue_ColorBlue" ValueChanged="singleValue_ColorBlue_ValueChanged" />
-            <Slider x:Name="slider_B" Maximum="255" ValueChanged="slider_B_ValueChanged" Width="260" HorizontalAlignment="Center"/>
+            <Slider x:Name="slider_B" Maximum="255" ValueChanged="Slider_B_ValueChanged" Width="260" HorizontalAlignment="Center"/>
 
             
 
@@ -199,7 +199,7 @@
             <local:SingleValue x:Name="singleValue_MiterLimit"  ValueChanged="singleValue_MiterLimit_ValueChanged" />
             
             <TextBlock Margin="6,5,0,0" Text="Near Cap Style" FontSize="12" Foreground="Silver"/>
-            <ComboBox Margin="0,5,0,10" x:Name="comboBox_NearCapStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="comboBox_NearCapStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}" >
+            <ComboBox Margin="0,5,0,10" x:Name="comboBox_NearCapStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="ComboBox_NearCapStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}" >
                 <ComboBoxItem Content="Flat"/>
                 <ComboBoxItem Content="Square"/>
                 <ComboBoxItem Content="Round"/>
@@ -207,7 +207,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,0,0,0" Text="Far Cap Style" FontSize="12" Foreground="Silver"/>
-            <ComboBox Margin="0,5,0,10" x:Name="comboBox_FarCapStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="comboBox_FarCapStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}">
+            <ComboBox Margin="0,5,0,10" x:Name="comboBox_FarCapStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="ComboBox_FarCapStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}">
                 <ComboBoxItem Content="Flat"/>
                 <ComboBoxItem Content="Square"/>
                 <ComboBoxItem Content="Round"/>
@@ -215,7 +215,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,0,0,0" Text="Line Join Style" FontSize="12" Foreground="Silver"/>
-            <ComboBox Margin="0,5,0,10" x:Name="comboBox_LineJoinStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="comboBox_LineJoinStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}" >
+            <ComboBox Margin="0,5,0,10" x:Name="comboBox_LineJoinStyle" Width="260" BorderThickness="1" SelectedIndex="0" FontSize="12" Foreground="Silver" SelectionChanged="ComboBox_LineJoinStyle_SelectionChanged" BorderBrush="#66404040" Style="{StaticResource ComboBoxStyle1}" >
                 <ComboBoxItem Content="Miter"/>
                 <ComboBoxItem Content="Bevel"/>
                 <ComboBoxItem Content="Round"/>
@@ -223,7 +223,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,0,0,0" Text="Dash Style" FontSize="12" Foreground="Silver"/>
-            <ComboBox Margin="0,5,0,10" x:Name="comboBox_LineStyle" Width="260" BorderThickness="1" SelectionChanged="comboBox_LineStyle_SelectionChanged" SelectedIndex="0" FontSize="12" Foreground="Silver" BorderBrush="#66404040" FocusVisualPrimaryBrush="Red" Style="{StaticResource ComboBoxStyle1}">
+            <ComboBox Margin="0,5,0,10" x:Name="comboBox_LineStyle" Width="260" BorderThickness="1" SelectionChanged="ComboBox_LineStyle_SelectionChanged" SelectedIndex="0" FontSize="12" Foreground="Silver" BorderBrush="#66404040" FocusVisualPrimaryBrush="Red" Style="{StaticResource ComboBoxStyle1}">
                 <ComboBoxItem Content="Solid"/>
                 <ComboBoxItem Content="Dash"/>
                 <ComboBoxItem Content="Dot"/>

@@ -404,7 +404,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
 
-        private void slider_Value_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Slider_Value_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
 
 
@@ -647,134 +647,23 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-
-
-        private void slider_Value_ValueChanged_old(object sender, RangeBaseValueChangedEventArgs e)
+        private void TextBlock_Minus_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
-
-
-            switch ((int)slider_Value.Value)
-            {
-                case 1: theValue = 0.00001f; break;
-                case 2: theValue = 0.00002f; break;
-                case 3: theValue = 0.00003f; break;
-                case 4: theValue = 0.00004f; break;
-                case 5: theValue = 0.00005f; break;
-                case 6: theValue = 0.00006f; break;
-                case 7: theValue = 0.00007f; break;
-                case 8: theValue = 0.00008f; break;
-                case 9: theValue = 0.00009f; break;
-                case 10: theValue = 0.0001f; break;
-                case 11: theValue = 0.0002f; break;
-                case 12: theValue = 0.0003f; break;
-                case 13: theValue = 0.0004f; break;
-                case 14: theValue = 0.0005f; break;
-                case 15: theValue = 0.0006f; break;
-                case 16: theValue = 0.0007f; break;
-                case 17: theValue = 0.0008f; break;
-                case 18: theValue = 0.0009f; break;
-                case 19: theValue = 0.001f; break;
-                case 20: theValue = 0.002f; break;
-                case 21: theValue = 0.003f; break;
-                case 22: theValue = 0.004f; break;
-                case 23: theValue = 0.005f; break;
-                case 24: theValue = 0.006f; break;
-                case 25: theValue = 0.007f; break;
-                case 26: theValue = 0.008f; break;
-                case 27: theValue = 0.009f; break;
-                case 28: theValue = 0.01f; break;
-                case 29: theValue = 0.02f; break;
-                case 30: theValue = 0.03f; break;
-                case 31: theValue = 0.04f; break;
-                case 32: theValue = 0.05f; break;
-                case 33: theValue = 0.06f; break;
-                case 34: theValue = 0.07f; break;
-                case 35: theValue = 0.08f; break;
-                case 36: theValue = 0.09f; break;
-                case 37: theValue = 0.1f; break;
-                case 38: theValue = 0.2f; break;
-                case 39: theValue = 0.3f; break;
-                case 40: theValue = 0.4f; break;
-                case 41: theValue = 0.5f; break;
-                case 42: theValue = 0.6f; break;
-                case 43: theValue = 0.7f; break;
-                case 44: theValue = 0.7f; break;
-                case 45: theValue = 0.8f; break;
-                case 46: theValue = 0.9f; break;
-                case 47: theValue = 1f; break;
-                case 48: theValue = 2f; break;
-                case 49: theValue = 3f; break;
-                case 50: theValue = 4f; break;
-                case 51: theValue = 5f; break;
-                case 52: theValue = 6f; break;
-                case 53: theValue = 7f; break;
-                case 54: theValue = 8f; break;
-                case 55: theValue = 9f; break;
-                case 56: theValue = 10f; break;
-                case 57: theValue = 20f; break;
-                case 58: theValue = 30f; break;
-                case 59: theValue = 40f; break;
-                case 60: theValue = 50f; break;
-                case 61: theValue = 60f; break;
-                case 62: theValue = 70f; break;
-                case 63: theValue = 80f; break;
-                case 64: theValue = 90f; break;
-                case 65: theValue = 100f; break;
-                case 66: theValue = 200f; break;
-                case 67: theValue = 300f; break;
-                case 68: theValue = 400f; break;
-                case 69: theValue = 500f; break;
-                case 70: theValue = 600f; break;
-                case 71: theValue = 700f; break;
-                case 72: theValue = 800f; break;
-                case 73: theValue = 900f; break;
-                case 74: theValue = 1000f; break;
-                case 75: theValue = 2000f; break;
-                case 76: theValue = 3000f; break;
-                case 77: theValue = 4000f; break;
-                case 78: theValue = 5000f; break;
-                case 79: theValue = 6000f; break;
-                case 80: theValue = 7000f; break;
-                case 81: theValue = 8000f; break;
-                case 82: theValue = 9000f; break;
-                case 83: theValue = 10000f; break;
-                case 84: theValue = 20000f; break;
-                case 85: theValue = 30000f; break;
-                case 86: theValue = 40000f; break;
-                case 87: theValue = 50000f; break;
-                case 88: theValue = 60000f; break;
-                case 89: theValue = 70000f; break;
-                case 90: theValue = 80000f; break;
-                case 91: theValue = 90000f; break;
-                case 92: theValue = 100000f; break;
-            }
-
-            textBlock_Value.Text = "x" + theValue.ToString();
-
-            if (!BlockUpdate)
-            {
-                ValueChanged?.Invoke(this, new EventArgs());
-            }
+            if (slider_Value.Value > 1) { slider_Value.Value--; }
         }
 
-        private void textBlock_Minus_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Plus_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (slider_Value.Value > 1) { slider_Value.Value = slider_Value.Value - 1; }
+            if (slider_Value.Value < 92) { slider_Value.Value++; }
         }
 
-        private void textBlock_Plus_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (slider_Value.Value < 92) { slider_Value.Value = slider_Value.Value + 1; }
-        }
-
-        private void textBlock_Title_Checked(object sender, RoutedEventArgs e)
+        private void TextBlock_Title_Checked(object sender, RoutedEventArgs e)
         {
             isChecked = true;
             Checked?.Invoke(this, new EventArgs());
         }
 
-        private void textBlock_Title_Unchecked(object sender, RoutedEventArgs e)
+        private void TextBlock_Title_Unchecked(object sender, RoutedEventArgs e)
         {
             isChecked = false;
             Unchecked?.Invoke(this, new EventArgs());

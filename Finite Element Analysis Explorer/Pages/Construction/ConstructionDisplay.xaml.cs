@@ -27,7 +27,7 @@ namespace Finite_Element_Analysis_Explorer
         internal static ConstructionDisplay Current;
         private SelectionState CurrentSelectionState = SelectionState.Ready;
         private Vector2 FirstNodePosition;
-        private bool IsLoaded = false;
+        private bool IsPageLoaded = false;
 
         #endregion
 
@@ -196,7 +196,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (IsLoaded)
+            if (IsPageLoaded)
             {
                 Camera.ViewportSize = new Vector2((int)canvas.ActualWidth, (int)canvas.ActualHeight);
             }

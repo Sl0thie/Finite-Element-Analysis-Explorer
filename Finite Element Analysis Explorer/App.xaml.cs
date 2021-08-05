@@ -1,31 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Diagnostics;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
 
+    /// <summary>
+    /// App Application manages the application creation and suspension.
+    /// </summary>
     sealed partial class App : Application
     {
         internal static ConstructionMode CurrentConstructionMode = ConstructionMode.Add;
+
         internal static SolveState CurrentSolverState = SolveState.Unknown;
+
         internal static PageState CurrentPageState = PageState.Unknown;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             this.InitializeComponent();
@@ -39,11 +34,9 @@ namespace Finite_Element_Analysis_Explorer
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                //this.DebugSettings.EnableFrameRateCounter = true;
+                // this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
-            
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -58,11 +51,10 @@ namespace Finite_Element_Analysis_Explorer
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    // TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
-
                 Window.Current.Content = rootFrame;
             }
 
@@ -75,6 +67,7 @@ namespace Finite_Element_Analysis_Explorer
                     // parameter
                     rootFrame.Navigate(typeof(Startup), e.Arguments);
                 }
+
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
@@ -85,9 +78,9 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            //throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+            // throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
         /// <summary>

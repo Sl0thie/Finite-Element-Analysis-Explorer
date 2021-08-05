@@ -123,14 +123,14 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void listView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Debug.WriteLine("listView_Sections_SelectionChanged : " + listView_Sections.SelectedItem);
 
-            if (!object.ReferenceEquals(null, listView_Sections.SelectedItem))
+            if (listView_Sections.SelectedItem is object)
             {
                 KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)listView_Sections.SelectedItem;
-                if (!String.IsNullOrEmpty(kvp.Key.Trim()))
+                if (!string.IsNullOrEmpty(kvp.Key.Trim()))
                 {
                     Model.Members.CurrentMember.Section = Model.Sections[kvp.Key.Trim()];
                     Model.Sections.CurrentSection = Model.Sections[kvp.Key.Trim()];
@@ -144,7 +144,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBox_SectionName_KeyDown(object sender, KeyRoutedEventArgs e)
+        private void TextBox_SectionName_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             //if (e.Key.ToString() == "Enter")
             //{
@@ -187,7 +187,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             //Debug.WriteLine("UpdateCurrentSection : " + textBox_SectionName.Text);
 
-            if (!String.IsNullOrEmpty(textBox_SectionName.Text.Trim())) { return; }
+            if (!string.IsNullOrEmpty(textBox_SectionName.Text.Trim())) { return; }
 
             if (!dataLock)
             {
@@ -291,62 +291,62 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Update Events
 
-        private void singleValue_YoungsModulus_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_YoungsModulus_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_MomentOfInertia_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_MomentOfInertia_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_Area_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_Area_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_Density_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_Density_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostPerMeter_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostPerMeter_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostVerticalTransport_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostVerticalTransport_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostHorizontalTransport_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostHorizontalTransport_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostNodeFree_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostNodeFree_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostNodeFixed_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostNodeFixed_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostNodePinned_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostNodePinned_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostNodeRoller_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostNodeRoller_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_CostNodeTrack_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_CostNodeTrack_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
@@ -357,32 +357,32 @@ namespace Finite_Element_Analysis_Explorer
 
 
 
-        private void singleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_ColorRed_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void comboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_LineStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateCurrentSection();
         }
 
-        private void singleValue_LineWeight_ValueChanged(object sender, EventArgs e)
+        private void SingleValue_LineWeight_ValueChanged(object sender, EventArgs e)
         {
             UpdateCurrentSection();
         }

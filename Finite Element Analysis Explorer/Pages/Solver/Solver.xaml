@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="menuButton" Grid.Column="0" Width="32" Height="32" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="0,0,0,0" Click="menuButton_Click" >
+            <Button x:Name="menuButton" Grid.Column="0" Width="32" Height="32" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="0,0,0,0" Click="MenuButton_Click" >
                 <SymbolIcon Symbol="Setting" Foreground="White"/>
             </Button>
             <!-- Title (non-clickable layer) -->

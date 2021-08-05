@@ -151,7 +151,7 @@ namespace Finite_Element_Analysis_Explorer
         private void ItemNear_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
+            if (Model.Members.CurrentMember is object)
             {
                 if (!displayOnly)
                 {
@@ -230,7 +230,7 @@ namespace Finite_Element_Analysis_Explorer
         private void ItemFar_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
+            if (Model.Members.CurrentMember is object)
             {
 
                 if (!displayOnly)
@@ -429,7 +429,7 @@ namespace Finite_Element_Analysis_Explorer
         private void SetNearImage()
         {
 
-            if (!ReferenceEquals(null, Model.Members.CurrentMember))
+            if (Model.Members.CurrentMember is object)
             {
                 switch (Model.Members.CurrentMember.NodeNear.Constraints.ConstraintType)
                 {
@@ -507,7 +507,7 @@ namespace Finite_Element_Analysis_Explorer
         private void SetFarImage()
         {
 
-            if (!ReferenceEquals(null, Model.Members.CurrentMember))
+            if (Model.Members.CurrentMember is object)
             {
                 switch (Model.Members.CurrentMember.NodeFar.Constraints.ConstraintType)
                 {

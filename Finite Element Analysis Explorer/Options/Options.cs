@@ -1460,7 +1460,7 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
             }
-            if (object.ReferenceEquals(null, lastCurrentSectionName)) { lastCurrentSectionName = "Default"; }
+            if (lastCurrentSectionName is null) { lastCurrentSectionName = "Default"; }
             if (string.IsNullOrEmpty(lastCurrentSectionName.Trim())) { lastCurrentSectionName = "Default"; }
 
             #endregion

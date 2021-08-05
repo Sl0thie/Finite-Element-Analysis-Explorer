@@ -27,30 +27,17 @@ namespace Finite_Element_Analysis_Explorer
             listView_Sections.ItemsSource = Model.Sections;
         }
 
-        private void listView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!object.ReferenceEquals(null, listView_Sections.SelectedItem))
+            if (listView_Sections.SelectedItem is object)
             {
                 KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)listView_Sections.SelectedItem;
-                if (!String.IsNullOrEmpty(kvp.Key.Trim()))
+                if (!string.IsNullOrEmpty(kvp.Key.Trim()))
                 {
                     Model.Members.CurrentMember.Section = Model.Sections[kvp.Key.Trim()];
                     Model.Sections.CurrentSection = Model.Sections[kvp.Key.Trim()];
 
-
                     PanelMember.Current.HideSectionList();
-
-
-
-                    //ShowSection(kvp.Key.Trim());
-                    //Model.UpdatePanelPage();
-
-                    //Debug.WriteLine("Listview Change Fired " + kvp.Key.Trim());
-
-                    //Parent.HideSectionList();
-
-
-
                 }
             }
         }

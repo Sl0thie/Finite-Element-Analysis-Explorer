@@ -166,13 +166,13 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Rectangle x:Name="rectangle_Color" RadiusX="10" RadiusY="10" Width="200" Height="52" Stroke="#FF404040" Margin="0,10,0,10"/>
             <local:SingleValue x:Name="singleValue_ColorAlpha" ValueChanged="singleValue_ColorAlpha_ValueChanged"/>
-            <Slider x:Name="slider_A" Maximum="255" ValueChanged="slider_A_ValueChanged" />
+            <Slider x:Name="slider_A" Maximum="255" ValueChanged="Slider_A_ValueChanged" />
             <local:SingleValue x:Name="singleValue_ColorRed" ValueChanged="singleValue_ColorRed_ValueChanged"/>
-            <Slider x:Name="slider_R" Maximum="255" ValueChanged="slider_R_ValueChanged" />
+            <Slider x:Name="slider_R" Maximum="255" ValueChanged="Slider_R_ValueChanged" />
             <local:SingleValue x:Name="singleValue_ColorGreen" ValueChanged="singleValue_ColorGreen_ValueChanged"/>
-            <Slider x:Name="slider_G" Maximum="255" ValueChanged="slider_G_ValueChanged" />
+            <Slider x:Name="slider_G" Maximum="255" ValueChanged="Slider_G_ValueChanged" />
             <local:SingleValue x:Name="singleValue_ColorBlue" ValueChanged="singleValue_ColorBlue_ValueChanged"/>
-            <Slider x:Name="slider_B" Maximum="255" ValueChanged="slider_B_ValueChanged" />
+            <Slider x:Name="slider_B" Maximum="255" ValueChanged="Slider_B_ValueChanged" />
         </StackPanel>
     </Grid>
 </UserControl>
