@@ -130,9 +130,9 @@
             <StackPanel HorizontalAlignment="Left" Width="300">
                 <TextBlock Text="General Settings" Style="{StaticResource FontPrimaryHeader}" />
                 
-                <local:SingleValue x:Name="singleValue_ZoomTrim" ValueChanged="singleValue_ZoomTrim_ValueChanged" />
+                <local:SingleValue x:Name="SingleValue_ZoomTrim" ValueChanged="SingleValue_ZoomTrim_ValueChanged" />
 
-                <local:SingleValue x:Name="singleValue_SelectGridSize" ValueChanged="singleValue_SelectGridSize_ValueChanged" />
+                <local:SingleValue x:Name="SingleValue_SelectGridSize" ValueChanged="SingleValue_SelectGridSize_ValueChanged" />
 
                 <TextBlock Margin="6,6,6,6" Text="* These settings require a program restart"/>
                 

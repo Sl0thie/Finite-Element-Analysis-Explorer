@@ -167,51 +167,51 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_Angle.Title = "Angle";
             doubleValue_Angle.SetTheValue(Model.Members.CurrentMember.SegmentNear.AngleDisplaced);
 
-            singleValue_E.DisplayOnly = true;
-            singleValue_E.Title = "Modulus of Elasticity (E)";
-            singleValue_E.UnitType = UnitType.Pressure;
-            singleValue_E.SetTheValue(Model.Members.CurrentMember.Section.E);
+            SingleValue_E.DisplayOnly = true;
+            SingleValue_E.Title = "Modulus of Elasticity (E)";
+            SingleValue_E.UnitType = UnitType.Pressure;
+            SingleValue_E.SetTheValue(Model.Members.CurrentMember.Section.E);
 
-            singleValue_I.DisplayOnly = true;
-            singleValue_I.Title = "Moment of Inertia (I)";
-            singleValue_I.UnitType = UnitType.MomentOfInertia;
-            singleValue_I.SetTheValue(Model.Members.CurrentMember.Section.I);
+            SingleValue_I.DisplayOnly = true;
+            SingleValue_I.Title = "Moment of Inertia (I)";
+            SingleValue_I.UnitType = UnitType.MomentOfInertia;
+            SingleValue_I.SetTheValue(Model.Members.CurrentMember.Section.I);
 
-            singleValue_Area.DisplayOnly = true;
-            singleValue_Area.Title = "Cross Sectional Area";
-            singleValue_Area.UnitType = UnitType.Area;
-            singleValue_Area.SetTheValue(Model.Members.CurrentMember.Section.Area);
+            SingleValue_Area.DisplayOnly = true;
+            SingleValue_Area.Title = "Cross Sectional Area";
+            SingleValue_Area.UnitType = UnitType.Area;
+            SingleValue_Area.SetTheValue(Model.Members.CurrentMember.Section.Area);
 
-            singleValue_CostPerMeter.DisplayOnly = true;
-            singleValue_CostPerMeter.Title = "Material";
-            singleValue_CostPerMeter.UnitType = UnitType.Money;
-            singleValue_CostPerMeter.SetTheValue(Model.Members.CurrentMember.Section.CostPerLength);
+            SingleValue_CostPerMeter.DisplayOnly = true;
+            SingleValue_CostPerMeter.Title = "Material";
+            SingleValue_CostPerMeter.UnitType = UnitType.Money;
+            SingleValue_CostPerMeter.SetTheValue(Model.Members.CurrentMember.Section.CostPerLength);
 
-            singleValue_CostNearNode.DisplayOnly = true;
-            singleValue_CostNearNode.Title = "Near Node";
-            singleValue_CostNearNode.UnitType = UnitType.Money;
-            singleValue_CostNearNode.SetTheValue(0);
+            SingleValue_CostNearNode.DisplayOnly = true;
+            SingleValue_CostNearNode.Title = "Near Node";
+            SingleValue_CostNearNode.UnitType = UnitType.Money;
+            SingleValue_CostNearNode.SetTheValue(0);
 
-            singleValue_CostFarNode.DisplayOnly = true;
-            singleValue_CostFarNode.Title = "Far Node";
-            singleValue_CostFarNode.UnitType = UnitType.Money;
-            singleValue_CostFarNode.SetTheValue(0);
+            SingleValue_CostFarNode.DisplayOnly = true;
+            SingleValue_CostFarNode.Title = "Far Node";
+            SingleValue_CostFarNode.UnitType = UnitType.Money;
+            SingleValue_CostFarNode.SetTheValue(0);
 
-            singleValue_CostElevation.DisplayOnly = true;
-            singleValue_CostElevation.Title = "Elevation";
-            singleValue_CostElevation.UnitType = UnitType.Money;
-            singleValue_CostElevation.SetTheValue(0);
+            SingleValue_CostElevation.DisplayOnly = true;
+            SingleValue_CostElevation.Title = "Elevation";
+            SingleValue_CostElevation.UnitType = UnitType.Money;
+            SingleValue_CostElevation.SetTheValue(0);
 
-            singleValue_CostTransport.DisplayOnly = true;
-            singleValue_CostTransport.Title = "Transport";
-            singleValue_CostTransport.UnitType = UnitType.Money;
-            singleValue_CostTransport.SetTheValue(0);
+            SingleValue_CostTransport.DisplayOnly = true;
+            SingleValue_CostTransport.Title = "Transport";
+            SingleValue_CostTransport.UnitType = UnitType.Money;
+            SingleValue_CostTransport.SetTheValue(0);
 
 
-            singleValue_CostTotal.DisplayOnly = true;
-            singleValue_CostTotal.Title = "Total Cost";
-            singleValue_CostTotal.UnitType = UnitType.Money;
-            singleValue_CostTotal.SetTheValue(0);
+            SingleValue_CostTotal.DisplayOnly = true;
+            SingleValue_CostTotal.Title = "Total Cost";
+            SingleValue_CostTotal.UnitType = UnitType.Money;
+            SingleValue_CostTotal.SetTheValue(0);
 
 
 

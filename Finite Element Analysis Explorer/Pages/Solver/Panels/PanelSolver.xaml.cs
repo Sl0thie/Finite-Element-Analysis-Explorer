@@ -22,21 +22,21 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            comboBox_Solver.SelectedIndex = Options.CurrentSolver;
-            checkBox_AutoStart.IsChecked = Options.AutoStartSolver;
-            checkBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
+            ComboBox_Solver.SelectedIndex = Options.CurrentSolver;
+            CheckBox_AutoStart.IsChecked = Options.AutoStartSolver;
+            CheckBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
         }
 
         public void SolverHasStarted()
         {
-            comboBox_Solver.IsEnabled = false;
-            button_StartSolver.Visibility = Visibility.Collapsed;
+            ComboBox_Solver.IsEnabled = false;
+            Button_StartSolver.Visibility = Visibility.Collapsed;
         }
 
         public void ShowResultsButton()
         {
-            button_Construction.Visibility = Visibility.Collapsed;
-            button_Results.Visibility = Visibility.Visible;
+            Button_Construction.Visibility = Visibility.Collapsed;
+            Button_Results.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ComboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Options.CurrentSolver = comboBox_Solver.SelectedIndex;
+            Options.CurrentSolver = ComboBox_Solver.SelectedIndex;
         }
 
         private void CheckBox_AutoStart_Checked(object sender, RoutedEventArgs e)
@@ -73,7 +73,7 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Help Menu
 
-        private async void button_Help_Click(object sender, RoutedEventArgs e)
+        private async void Button_Help_Click(object sender, RoutedEventArgs e)
         {
             var uriHelpGeneral = new Uri(@"http://www.bing.com");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
@@ -102,38 +102,38 @@ namespace Finite_Element_Analysis_Explorer
 
         #region File Menu
 
-        private void menuFlyout_New_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
-            //New File.
+            // New File.
             FileManager.NewFile();
         }
 
-        private async void menuFlyout_Open_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
-            //Open file.
+            // file.
             if (await FileManager.PickFileToLoad())
             {
-                //Debug.WriteLine("File Picked, Now loading");
+                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
 
-        private async void menuFlyout_Save_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
-            //Save File.
+            // Save File.
             await FileManager.SaveFile();
         }
 
-        private async void menuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            //Save file as.
+            // Save file as.
             if (await FileManager.PickFileToSave())
             {
                 await FileManager.SaveFile();
             }
         }
 
-        private void menuFlyout_Exit_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }
@@ -145,30 +145,30 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(button_Save);
         }
 
-        private void button_Solve_Click(object sender, RoutedEventArgs e)
+        private void Button_Solve_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSolver();
         }
 
-        private void button_Construction_Click(object sender, RoutedEventArgs e)
+        private void Button_Construction_Click(object sender, RoutedEventArgs e)
         {
             FileManager.LoadLastFileAsync();
         }
 
-        private void button_Results_Click(object sender, RoutedEventArgs e)
+        private void Button_Results_Click(object sender, RoutedEventArgs e)
         {
             Solver.Current.ShowResults();
         }
 
-        private void button_Sections_Click(object sender, RoutedEventArgs e)
+        private void Button_Sections_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSections();
         }
 
-        private void button_Reports_Click(object sender, RoutedEventArgs e)
+        private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
 
         }

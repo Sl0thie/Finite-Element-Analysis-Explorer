@@ -55,9 +55,9 @@ namespace Finite_Element_Analysis_Explorer
                 doubleValue_Linear.Axis = 4;
                 doubleValue_Linear.SetValue(Model.Members.CurrentMember.LDLNear, Model.Members.CurrentMember.LDLFar);
 
-                singleValue_NoOfSegments.Title = "Number of Segments";
-                singleValue_NoOfSegments.UnitType = UnitType.Unitless;
-                singleValue_NoOfSegments.SetTheValue(Model.Members.CurrentMember.TotalSegments);
+                SingleValue_NoOfSegments.Title = "Number of Segments";
+                SingleValue_NoOfSegments.UnitType = UnitType.Unitless;
+                SingleValue_NoOfSegments.SetTheValue(Model.Members.CurrentMember.TotalSegments);
 
                 valueDisplay_Length.Title = "Length";
                 valueDisplay_Length.DisplayOnly = true;
@@ -240,8 +240,8 @@ namespace Finite_Element_Analysis_Explorer
 
         private void SingleValue_NoOfSegments_ValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.TotalSegments = (int)singleValue_NoOfSegments.NewValue;
-            singleValue_NoOfSegments.SetTheValue(Model.Members.CurrentMember.TotalSegments);
+            Model.Members.CurrentMember.TotalSegments = (int)SingleValue_NoOfSegments.NewValue;
+            SingleValue_NoOfSegments.SetTheValue(Model.Members.CurrentMember.TotalSegments);
         }
 
         private void FontIcon_TitleIconSection_Tapped(object sender, TappedRoutedEventArgs e)

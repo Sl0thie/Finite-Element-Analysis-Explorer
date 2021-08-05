@@ -43,13 +43,13 @@
                     <TextBlock Margin="30,4,0,4" x:Name="TextBlock_SelectedMaterial" Text="Selected Material Name" Foreground="#FFBFBFBF" TextAlignment="Center" FontFamily="Segoe UI" HorizontalAlignment="Left"/>
                     
                     <TextBlock Text="Profile Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
-                    <local:SingleValue x:Name="singleValue_Property1" ValueChanged="SingleValue_Property1_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property2" ValueChanged="SingleValue_Property2_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property3" ValueChanged="SingleValue_Property3_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property4" ValueChanged="SingleValue_Property4_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property5" ValueChanged="SingleValue_Property5_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property6" ValueChanged="SingleValue_Property6_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_Property7" ValueChanged="SingleValue_Property7_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property1" ValueChanged="SingleValue_Property1_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property2" ValueChanged="SingleValue_Property2_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property3" ValueChanged="SingleValue_Property3_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property4" ValueChanged="SingleValue_Property4_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property5" ValueChanged="SingleValue_Property5_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property6" ValueChanged="SingleValue_Property6_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_Property7" ValueChanged="SingleValue_Property7_ValueChanged"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
@@ -58,19 +58,19 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="2" >
-                    <local:SingleValue x:Name="singleValue_CalculatedArea"/>
-                    <local:SingleValue x:Name="singleValue_CalculatedMoment"/>
+                    <local:SingleValue x:Name="SingleValue_CalculatedArea"/>
+                    <local:SingleValue x:Name="SingleValue_CalculatedMoment"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Grid.Row="2" >
-                    <local:SingleValue  x:Name="singleValue_RadiusOfGyration"/>
-                    <local:SingleValue  x:Name="singleValue_SectionModulus"/>
+                    <local:SingleValue  x:Name="SingleValue_RadiusOfGyration"/>
+                    <local:SingleValue  x:Name="SingleValue_SectionModulus"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="3" Grid.Row="2">
-                    <local:SingleValue  x:Name="singleValue_VolumePerLength"/>
-                    <local:SingleValue Grid.Column="1" Grid.Row="1" x:Name="singleValue_MassPerLength"/>
-                    <local:SingleValue Grid.Column="1" Grid.Row="1" x:Name="singleValue_WeightPerLength"/>
+                    <local:SingleValue  x:Name="SingleValue_VolumePerLength"/>
+                    <local:SingleValue Grid.Column="1" Grid.Row="1" x:Name="SingleValue_MassPerLength"/>
+                    <local:SingleValue Grid.Column="1" Grid.Row="1" x:Name="SingleValue_WeightPerLength"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="2">
@@ -101,17 +101,17 @@
                 <StackPanel Grid.Column="3" Grid.Row="4">
                     <TextBlock Text="Material Properties"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
 
-                    <local:SingleValue x:Name="singleValue_Cost"/>
+                    <local:SingleValue x:Name="SingleValue_Cost"/>
                     
-                    <local:SingleValue x:Name="singleValue_ElasticModulus"/>
-                    <local:SingleValue x:Name="singleValue_RigidityModulus"/>
-                    <local:SingleValue x:Name="singleValue_BulkModulus"/>
+                    <local:SingleValue x:Name="SingleValue_ElasticModulus"/>
+                    <local:SingleValue x:Name="SingleValue_RigidityModulus"/>
+                    <local:SingleValue x:Name="SingleValue_BulkModulus"/>
 
-                    <local:SingleValue x:Name="singleValue_Density"/>
-                    <local:SingleValue x:Name="singleValue_PoissonRatio"/>
+                    <local:SingleValue x:Name="SingleValue_Density"/>
+                    <local:SingleValue x:Name="SingleValue_PoissonRatio"/>
 
-                    <local:SingleValue x:Name="singleValue_ThermalExpansion"/>
-                    <local:SingleValue x:Name="singleValue_ThermalConductivity"/>
+                    <local:SingleValue x:Name="SingleValue_ThermalExpansion"/>
+                    <local:SingleValue x:Name="SingleValue_ThermalConductivity"/>
 
 
                 </StackPanel>
@@ -137,37 +137,37 @@
 
                 <StackPanel  Grid.Column="1" Grid.Row="6">
                     <TextBlock Text="Construction Costs"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
-                    <local:SingleValue x:Name="singleValue_CostPerLength" ValueChanged="SingleValue_CostPerLength_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostVerticalTransport" ValueChanged="SingleValue_CostVerticalTransport_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostHorizontalTransport" ValueChanged="SingleValue_CostHorizontalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostPerLength" ValueChanged="SingleValue_CostPerLength_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostVerticalTransport" ValueChanged="SingleValue_CostVerticalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostHorizontalTransport" ValueChanged="SingleValue_CostHorizontalTransport_ValueChanged"/>
                 </StackPanel>
 
                 <StackPanel  Grid.Column="2" Grid.Row="6">
                     <TextBlock Text="Construction Costs"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
-                    <local:SingleValue x:Name="singleValue_CostNodeFree" ValueChanged="SingleValue_CostNodeFree_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostNodeFixed" ValueChanged="SingleValue_CostNodeFixed_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostNodePinned" ValueChanged="SingleValue_CostNodePinned_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostNodeRoller" ValueChanged="SingleValue_CostNodeRoller_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_CostNodeTrack" ValueChanged="SingleValue_CostNodeTrack_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostNodeFree" ValueChanged="SingleValue_CostNodeFree_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostNodeFixed" ValueChanged="SingleValue_CostNodeFixed_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostNodePinned" ValueChanged="SingleValue_CostNodePinned_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostNodeRoller" ValueChanged="SingleValue_CostNodeRoller_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_CostNodeTrack" ValueChanged="SingleValue_CostNodeTrack_ValueChanged"/>
                 </StackPanel>
 
 
                 <StackPanel Grid.Column="3" Grid.Row="6">
                     <TextBlock Margin="0,0,0,0" Text="Construction Factors"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
-                    <local:SingleValue x:Name="singleValue_FactorVerticalTransport" ValueChanged="SingleValue_FactorVerticalTransport_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_FactorHorizontalTransport" ValueChanged="SingleValue_FactorHorizontalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_FactorVerticalTransport" ValueChanged="SingleValue_FactorVerticalTransport_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_FactorHorizontalTransport" ValueChanged="SingleValue_FactorHorizontalTransport_ValueChanged"/>
 
                 </StackPanel>
 
                 <StackPanel Grid.Column="4" Grid.Row="6">
                     
                     <TextBlock Text="Maintenance Costs"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
-                    <local:SingleValue x:Name="singleValue_MaintenancePerLength" ValueChanged="SingleValue_MaintenancePerLength_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_MaintenanceNodeFree" ValueChanged="SingleValue_MaintenanceNodeFree_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_MaintenanceFixed" ValueChanged="SingleValue_MaintenanceFixed_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_MaintenancePinned" ValueChanged="SingleValue_MaintenancePinned_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_MaintenanceRoller" ValueChanged="SingleValue_MaintenanceRoller_ValueChanged"/>
-                    <local:SingleValue x:Name="singleValue_MaintenanceTrack" ValueChanged="SingleValue_MaintenanceTrack_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenancePerLength" ValueChanged="SingleValue_MaintenancePerLength_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenanceNodeFree" ValueChanged="SingleValue_MaintenanceNodeFree_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenanceFixed" ValueChanged="SingleValue_MaintenanceFixed_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenancePinned" ValueChanged="SingleValue_MaintenancePinned_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenanceRoller" ValueChanged="SingleValue_MaintenanceRoller_ValueChanged"/>
+                    <local:SingleValue x:Name="SingleValue_MaintenanceTrack" ValueChanged="SingleValue_MaintenanceTrack_ValueChanged"/>
                 </StackPanel>
 
                 

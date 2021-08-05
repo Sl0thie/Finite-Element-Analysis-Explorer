@@ -1,55 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using Windows.Foundation;
+    using Windows.Foundation.Collections;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Data;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+    using Windows.UI.Xaml.Navigation;
+
     public sealed partial class SingleValue : UserControl
     {
         public event EventHandler ValueChanged;
         private decimal multiplicationFactor = 1;
 
         private string title;
+
         public string Title
         {
-            get { return title; }
+            get
+            {
+                return title;
+            }
+
             set
             {
                 title = value;
-                textBlock_Title.Text = title;
+                TextBlock_Title.Text = title;
             }
         }
 
         private bool displayOnly;
+
         public bool DisplayOnly
         {
-            get { return displayOnly; }
+            get
+            {
+                return displayOnly;
+            }
+
             set
             {
                 displayOnly = value;
-                numericInput_Value.DisplayOnly = value;
+                NumericInput_Value.DisplayOnly = value;
             }
         }
 
         private UnitType unitType = UnitType.Unitless;
+
         internal UnitType UnitType
         {
-            get { return unitType; }
+            get
+            {
+                return unitType;
+            }
+
             set
             {
                 unitType = value;
-                numericInput_Value.IsInteger = false;
+                NumericInput_Value.IsInteger = false;
 
                 switch (unitType)
                 {
@@ -59,291 +74,307 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case AngleType.Degrees:
                                 multiplicationFactor = Constants.DegreePerRadian;
-                                textBlock_UnitType.Text = "°";
+                                TextBlock_UnitType.Text = "°";
                                 break;
 
                             case AngleType.Radians:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "rad";
+                                TextBlock_UnitType.Text = "rad";
                                 break;
                         }
                         break;
+
                     #endregion
                     #region Area
+
                     case UnitType.Area:
 
                         switch (Options.Area)
                         {
-                            case AreaType.SquareMetre: // 
+                            case AreaType.SquareMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m²";
+                                TextBlock_UnitType.Text = "m²";
                                 break;
 
-                            case AreaType.SquareCentiMetre: // 
+                            case AreaType.SquareCentiMetre:
                                 multiplicationFactor = Constants.SquareCentimeterPerSquareMeter;
-                                textBlock_UnitType.Text = "cm²";
+                                TextBlock_UnitType.Text = "cm²";
                                 break;
 
-                            case AreaType.SquareMilliMetre: // 
+                            case AreaType.SquareMilliMetre:
                                 multiplicationFactor = Constants.SquareMillimeterPerSquareMeter;
-                                textBlock_UnitType.Text = "mm²";
+                                TextBlock_UnitType.Text = "mm²";
                                 break;
 
                             case AreaType.SquareFoot:
                                 multiplicationFactor = Constants.SquareFootPerSquareMeter;
-                                textBlock_UnitType.Text = "ft²";
+                                TextBlock_UnitType.Text = "ft²";
                                 break;
 
                             case AreaType.SquareInch:
                                 multiplicationFactor = Constants.SquareInchPerSquareMeter;
-                                textBlock_UnitType.Text = "in²";
+                                TextBlock_UnitType.Text = "in²";
                                 break;
                         }
                         break;
-                    #endregion                   
+
+                    #endregion
                     #region Density
+
                     case UnitType.Density:
                         switch (Options.Density)
                         {
                             case DensityType.KilogramPerCubicMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "kg/m³";
+                                TextBlock_UnitType.Text = "kg/m³";
                                 break;
 
                             case DensityType.PoundPerCubicFoot:
                                 multiplicationFactor = Constants.PoundPerCubicFootPerKilogramPerMeter;
-                                textBlock_UnitType.Text = " lb/ft³";
+                                TextBlock_UnitType.Text = " lb/ft³";
                                 break;
                         }
 
                         break;
+
                     #endregion
                     #region Force
+
                     case UnitType.Force:
                         switch (Options.Force)
                         {
                             case ForceType.Dyne:
                                 multiplicationFactor = Constants.DynePerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.GigaNewton:
                                 multiplicationFactor = Constants.GigaNewtonPerNewton;
-                                textBlock_UnitType.Text = "GN";
+                                TextBlock_UnitType.Text = "GN";
                                 break;
 
                             case ForceType.KilogramForce:
                                 multiplicationFactor = Constants.KilogramForcePerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.KiloNewton:
                                 multiplicationFactor = Constants.KiloNewtonPerNewton;
-                                textBlock_UnitType.Text = "kN";
+                                TextBlock_UnitType.Text = "kN";
                                 break;
 
                             case ForceType.MegaNewton:
                                 multiplicationFactor = Constants.MegaNewtonPerNewton;
-                                textBlock_UnitType.Text = "MN";
+                                TextBlock_UnitType.Text = "MN";
                                 break;
 
                             case ForceType.Newton:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "N";
+                                TextBlock_UnitType.Text = "N";
                                 break;
 
                             case ForceType.Poundal:
                                 multiplicationFactor = Constants.PoundalPerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.PoundForce:
                                 multiplicationFactor = Constants.PoundForcePerNewton;
-                                textBlock_UnitType.Text = "lbf";
+                                TextBlock_UnitType.Text = "lbf";
                                 break;
                         }
                         break;
 
                     #endregion
                     #region Length
+
                     case UnitType.Length:
                         switch (Options.Length)
                         {
                             case LengthType.Meter:
                                 multiplicationFactor = Constants.MeterPerMeter;
-                                textBlock_UnitType.Text = "m";
+                                TextBlock_UnitType.Text = "m";
                                 break;
                             case LengthType.Millimeter:
                                 multiplicationFactor = Constants.MilliMeterPerMeter;
-                                textBlock_UnitType.Text = "mm";
+                                TextBlock_UnitType.Text = "mm";
                                 break;
                             case LengthType.CentiMeter:
                                 multiplicationFactor = Constants.CentiMeterPerMeter;
-                                textBlock_UnitType.Text = "cm";
+                                TextBlock_UnitType.Text = "cm";
                                 break;
                             case LengthType.KiloMeter:
                                 multiplicationFactor = Constants.KiloMeterPerMeter;
-                                textBlock_UnitType.Text = "km";
+                                TextBlock_UnitType.Text = "km";
                                 break;
                             case LengthType.Inch:
                                 //
                                 multiplicationFactor = Constants.InchPerMeter;
-                                textBlock_UnitType.Text = "in";
+                                TextBlock_UnitType.Text = "in";
                                 break;
                             case LengthType.Foot:
                                 multiplicationFactor = Constants.FootPerMeter;
-                                textBlock_UnitType.Text = "ft";
+                                TextBlock_UnitType.Text = "ft";
                                 break;
-
                         }
                         break;
+
                     #endregion
                     #region Mass
+
                     case UnitType.Mass:
                         switch (Options.Mass)
                         {
                             case MassType.Kilogram:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "kg";
+                                TextBlock_UnitType.Text = "kg";
                                 break;
                             case MassType.Pound:
                                 multiplicationFactor = Constants.PoundPerKilogram;
-                                textBlock_UnitType.Text = "lb";
+                                TextBlock_UnitType.Text = "lb";
                                 break;
                         }
                         break;
+
                     #endregion
                     #region Moment of inertia
+
                     case UnitType.MomentOfInertia:
                         switch (Options.MomentOfInertia)
                         {
                             case MomentOfInertiaType.QuadMeter:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m⁴";
+                                TextBlock_UnitType.Text = "m⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadCentmeter:
                                 multiplicationFactor = Constants.QuadCentimetersPerQuadMeter;
-                                textBlock_UnitType.Text = "cm⁴";
+                                TextBlock_UnitType.Text = "cm⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadFoot:
                                 multiplicationFactor = Constants.QuadFootPerQuadMeter;
-                                textBlock_UnitType.Text = "ft⁴";
+                                TextBlock_UnitType.Text = "ft⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadInch:
                                 multiplicationFactor = Constants.QuadInchPerQuadMeter;
-                                textBlock_UnitType.Text = "in⁴";
+                                TextBlock_UnitType.Text = "in⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadMillimeter:
                                 multiplicationFactor = Constants.QuadMillimeterPerQuadMeter;
-                                textBlock_UnitType.Text = "mm⁴";
+                                TextBlock_UnitType.Text = "mm⁴";
                                 break;
                         }
 
                         break;
+
                     #endregion
                     #region Moment
+
                     case UnitType.Moment:
                         switch (Options.Moment)
                         {
                             case MomentType.NewtonMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "N·m";
+                                TextBlock_UnitType.Text = "N·m";
                                 break;
 
                             case MomentType.OunceFoot:
                                 multiplicationFactor = Constants.OunceFootPerNewtonMeter;
-                                textBlock_UnitType.Text = "oz·ft";
+                                TextBlock_UnitType.Text = "oz·ft";
                                 break;
 
                             case MomentType.OunceInch:
                                 multiplicationFactor = Constants.OunceInchPerNewtonMeter;
-                                textBlock_UnitType.Text = "oz·in";
+                                TextBlock_UnitType.Text = "oz·in";
                                 break;
 
                             case MomentType.PoundFoot:
                                 multiplicationFactor = Constants.PoundFootPerNewtonMeter;
-                                textBlock_UnitType.Text = "lb·ft";
+                                TextBlock_UnitType.Text = "lb·ft";
                                 break;
 
                             case MomentType.PoundInch:
                                 multiplicationFactor = Constants.PoundInchPerNewtonMeter;
-                                textBlock_UnitType.Text = "lb·in";
+                                TextBlock_UnitType.Text = "lb·in";
                                 break;
                         }
                         break;
+
                     #endregion
                     #region Money
+
                     case UnitType.Money:
                         multiplicationFactor = 1;
-                        //RoundingFactor = 2;
-                        textBlock_UnitType.Text = "";
-                        textBlock_Prefix.Text = "$";
+                        TextBlock_UnitType.Text = string.Empty;
+                        TextBlock_Prefix.Text = "$";
                         break;
+
                     #endregion
                     #region Percentage
 
                     case UnitType.Percentage:
                         multiplicationFactor = 1;
-                        textBlock_UnitType.Text = "%";
+                        TextBlock_UnitType.Text = "%";
                         break;
 
                     #endregion
                     #region Pressure
+
                     case UnitType.Pressure:
                         switch (Options.Pressure)
                         {
                             case PressureType.Pascal:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "Pa";
+                                TextBlock_UnitType.Text = "Pa";
                                 break;
                             case PressureType.Gigapascal:
                                 multiplicationFactor = Constants.GigapascalPerPascal;
-                                textBlock_UnitType.Text = "GPa";
+                                TextBlock_UnitType.Text = "GPa";
                                 break;
                             case PressureType.Hectopascal:
                                 multiplicationFactor = Constants.HectopascalPerPascal;
-                                textBlock_UnitType.Text = "hPa";
+                                TextBlock_UnitType.Text = "hPa";
                                 break;
                             case PressureType.Kilopascal:
                                 multiplicationFactor = Constants.KilopascalPerPascal;
-                                textBlock_UnitType.Text = "kPa";
+                                TextBlock_UnitType.Text = "kPa";
                                 break;
                             case PressureType.KilopoundPerSquareInch:
                                 multiplicationFactor = Constants.KilopoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "kPsi";
+                                TextBlock_UnitType.Text = "kPsi";
                                 break;
                             case PressureType.Megapascal:
                                 multiplicationFactor = Constants.MegapascalPerPascal;
-                                textBlock_UnitType.Text = "MPa";
+                                TextBlock_UnitType.Text = "MPa";
                                 break;
                             case PressureType.MegapoundPerSquareInch:
                                 multiplicationFactor = Constants.MegapoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "MPsi";
+                                TextBlock_UnitType.Text = "MPsi";
                                 break;
                             case PressureType.Millipascal:
                                 multiplicationFactor = Constants.MillpascalPerPascal;
-                                textBlock_UnitType.Text = "mPa";
+                                TextBlock_UnitType.Text = "mPa";
                                 break;
                             case PressureType.PoundPerSqareFoot:
                                 multiplicationFactor = Constants.PoundPerSquareFootPerPascal;
-                                textBlock_UnitType.Text = "Psft";
+                                TextBlock_UnitType.Text = "Psft";
                                 break;
                             case PressureType.PoundPerSquareInch:
                                 multiplicationFactor = Constants.PoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "Psi";
+                                TextBlock_UnitType.Text = "Psi";
                                 break;
                         }
                         break;
+
                     #endregion
                     #region Temprature
 
                     case UnitType.Temprature:
                         multiplicationFactor = 1;
-                        textBlock_UnitType.Text = "k";
+                        TextBlock_UnitType.Text = "k";
                         break;
 
                     #endregion
@@ -354,44 +385,45 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case VolumeType.CubicMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m³";
+                                TextBlock_UnitType.Text = "m³";
                                 break;
 
                             case VolumeType.CubicCentimeter:
                                 multiplicationFactor = Constants.CubicCentimeterPerCubicMeter;
-                                textBlock_UnitType.Text = "cm³";
+                                TextBlock_UnitType.Text = "cm³";
                                 break;
 
                             case VolumeType.CubicFoot:
                                 multiplicationFactor = Constants.CubicFootPerCubicMeter;
-                                textBlock_UnitType.Text = "ft³";
+                                TextBlock_UnitType.Text = "ft³";
                                 break;
 
                             case VolumeType.CubicInch:
                                 multiplicationFactor = Constants.CubicInchPerCubicMeter;
-                                textBlock_UnitType.Text = "in³";
+                                TextBlock_UnitType.Text = "in³";
                                 break;
 
                             case VolumeType.CubicMillimeter:
                                 multiplicationFactor = Constants.CubicMillimeterPerCubicMeter;
-                                textBlock_UnitType.Text = "mm³";
+                                TextBlock_UnitType.Text = "mm³";
                                 break;
                         }
                         break;
+
                     #endregion
                     #region Unitless
+
                     case UnitType.Unitless:
                         multiplicationFactor = 1;
-                        //RoundingFactor = 3;
-                        textBlock_UnitType.Text = "";
+                        TextBlock_UnitType.Text = "";
                         break;
 
                     case UnitType.UnitlessInteger:
-                        numericInput_Value.IsInteger = true;
+                        NumericInput_Value.IsInteger = true;
                         multiplicationFactor = 1;
-                        //RoundingFactor = 3;
-                        textBlock_UnitType.Text = "";
+                        TextBlock_UnitType.Text = "";
                         break;
+
                         #endregion
                 }
             }
@@ -404,38 +436,39 @@ namespace Finite_Element_Analysis_Explorer
 
         internal void SetNull()
         {
-            numericInput_Value.SetNull();
+            NumericInput_Value.SetNull();
         }
 
         internal void SetTheValue(decimal setNewValue)
         {
-            //todo: Multiply by unit type factor then pass
+            // TODO: Multiply by unit type factor then pass.
             if (multiplicationFactor == 1)
             {
-                numericInput_Value.SetValue(setNewValue);
+                NumericInput_Value.SetValue(setNewValue);
                 newValue = setNewValue;
             }
             else
             {
-                numericInput_Value.SetValue(setNewValue * multiplicationFactor);
+                NumericInput_Value.SetValue(setNewValue * multiplicationFactor);
                 newValue = setNewValue * multiplicationFactor;
             }
         }
 
         private decimal newValue;
+
         public decimal NewValue
         {
             get { return newValue; }
             set { newValue = value; }
         }
 
-        private void numericInput_Value_ValueChanged(object sender, EventArgs e)
+        private void NumericInput_Value_ValueChanged(object sender, EventArgs e)
         {
-            newValue = numericInput_Value.NewValue;
+            newValue = NumericInput_Value.NewValue;
             ValueChanged?.Invoke(this, new EventArgs());
         }
 
-        private void textBlock_UnitType_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_UnitType_Tapped(object sender, TappedRoutedEventArgs e)
         {
             switch (unitType)
             {
@@ -1124,7 +1157,7 @@ namespace Finite_Element_Analysis_Explorer
             Model.UpdatePanelPage();
         }
 
-        #endregion    
+        #endregion
 
     }
 }

@@ -100,6 +100,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal forceY;
+
         public static decimal ForceY
         {
             get { return forceY; }
@@ -107,6 +108,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal reactionY;
+
         public static decimal ReactionY
         {
             get { return reactionY; }
@@ -114,6 +116,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal forceM;
+
         public static decimal ForceM
         {
             get { return forceM; }
@@ -121,6 +124,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal reactionM;
+
         public static decimal ReactionM
         {
             get { return reactionM; }
@@ -169,9 +173,6 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-
-
-
         #endregion
 
         #region Methods
@@ -181,8 +182,7 @@ namespace Finite_Element_Analysis_Explorer
             switch (App.CurrentPageState)
             {
                 case PageState.Construction:
-                    //Debug.WriteLine("Updating Page");
-                    if (object.ReferenceEquals(null, Model.members.CurrentMember))
+                    if (ReferenceEquals(null, Model.members.CurrentMember))
                     {
                         Construction.Current.ShowModel();
                     }
@@ -202,7 +202,7 @@ namespace Finite_Element_Analysis_Explorer
 
 
                 case PageState.Results:
-                    if (object.ReferenceEquals(null, Model.members.CurrentMember))
+                    if (ReferenceEquals(null, Model.members.CurrentMember))
                     {
                         Results.Current.ShowModel();
                     }

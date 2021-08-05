@@ -15,37 +15,37 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            singleValue_XForce.SetTheValue(Model.ForceX);
-            singleValue_YForce.SetTheValue(Model.ForceY);
-            singleValue_MForce.SetTheValue(Model.ForceM);
+            SingleValue_XForce.SetTheValue(Model.ForceX);
+            SingleValue_YForce.SetTheValue(Model.ForceY);
+            SingleValue_MForce.SetTheValue(Model.ForceM);
 
-            singleValue_XReaction.SetTheValue(Model.ReactionX);
-            singleValue_YReaction.SetTheValue(Model.ReactionY);
-            singleValue_MReaction.SetTheValue(Model.ReactionM);
+            SingleValue_XReaction.SetTheValue(Model.ReactionX);
+            SingleValue_YReaction.SetTheValue(Model.ReactionY);
+            SingleValue_MReaction.SetTheValue(Model.ReactionM);
 
-            singleValue_XTotal.SetTheValue(Model.ForceX + Model.ReactionX);
-            singleValue_YTotal.SetTheValue(Model.ForceY + Model.ReactionY);
-            singleValue_MTotal.SetTheValue(Model.ForceM + Model.ReactionM);
+            SingleValue_XTotal.SetTheValue(Model.ForceX + Model.ReactionX);
+            SingleValue_YTotal.SetTheValue(Model.ForceY + Model.ReactionY);
+            SingleValue_MTotal.SetTheValue(Model.ForceM + Model.ReactionM);
 
-            logSlider_ForcesFactor.IsChecked = Options.ShowForce;
-            logSlider_LinearFactor.IsChecked = Options.ShowLinear;
-            logSlider_MomentFactor.IsChecked = Options.ShowMoment;
-            logSlider_ReactionsFactor.IsChecked = Options.ShowReactions;
-            logSlider_ShearFactor.IsChecked = Options.ShowShear;
+            LogSlider_ForcesFactor.IsChecked = Options.ShowForce;
+            LogSlider_LinearFactor.IsChecked = Options.ShowLinear;
+            LogSlider_MomentFactor.IsChecked = Options.ShowMoment;
+            LogSlider_ReactionsFactor.IsChecked = Options.ShowReactions;
+            LogSlider_ShearFactor.IsChecked = Options.ShowShear;
 
-            logSlider_DisplacementFactor.Title = "Displacement Factor";
-            logSlider_ForcesFactor.Title = "Force Factor";
-            logSlider_LinearFactor.Title = "Linear Factor";
-            logSlider_MomentFactor.Title = "Moment Factor";
-            logSlider_ReactionsFactor.Title = "Reaction Factor";
-            logSlider_ShearFactor.Title = "Shear Factor";
+            LogSlider_DisplacementFactor.Title = "Displacement Factor";
+            LogSlider_ForcesFactor.Title = "Force Factor";
+            LogSlider_LinearFactor.Title = "Linear Factor";
+            LogSlider_MomentFactor.Title = "Moment Factor";
+            LogSlider_ReactionsFactor.Title = "Reaction Factor";
+            LogSlider_ShearFactor.Title = "Shear Factor";
 
-            logSlider_DisplacementFactor.SetNewValue(Options.DisplacementFactor);
-            logSlider_ForcesFactor.SetNewValue(Options.ForcesFactor);
-            logSlider_LinearFactor.SetNewValue(Options.LinearFactor);
-            logSlider_MomentFactor.SetNewValue(Options.MomentFactor);
-            logSlider_ReactionsFactor.SetNewValue(Options.ReactionsFactor);
-            logSlider_ShearFactor.SetNewValue(Options.ShearFactor);
+            LogSlider_DisplacementFactor.SetNewValue(Options.DisplacementFactor);
+            LogSlider_ForcesFactor.SetNewValue(Options.ForcesFactor);
+            LogSlider_LinearFactor.SetNewValue(Options.LinearFactor);
+            LogSlider_MomentFactor.SetNewValue(Options.MomentFactor);
+            LogSlider_ReactionsFactor.SetNewValue(Options.ReactionsFactor);
+            LogSlider_ShearFactor.SetNewValue(Options.ShearFactor);
 
             single_TotalMembers.Title = "Total Members";
             single_TotalMembers.DisplayOnly = true;
@@ -62,66 +62,66 @@ namespace Finite_Element_Analysis_Explorer
             single_TotalSegments.UnitType = UnitType.UnitlessInteger;
             single_TotalSegments.SetTheValue(0);
 
-            singleValue_XForce.Title = "X axis Forces";
-            singleValue_XReaction.Title = "X axis Reactions";
-            singleValue_XTotal.Title = "X axis Total";
+            SingleValue_XForce.Title = "X axis Forces";
+            SingleValue_XReaction.Title = "X axis Reactions";
+            SingleValue_XTotal.Title = "X axis Total";
 
-            singleValue_YForce.Title = "Y axis Forces";
-            singleValue_YReaction.Title = "Y axis Reactions";
-            singleValue_YTotal.Title = "Y axis Total";
+            SingleValue_YForce.Title = "Y axis Forces";
+            SingleValue_YReaction.Title = "Y axis Reactions";
+            SingleValue_YTotal.Title = "Y axis Total";
 
-            singleValue_MForce.Title = "M axis Forces";
-            singleValue_MReaction.Title = "M axis Reactions";
-            singleValue_MTotal.Title = "M axis Total";
+            SingleValue_MForce.Title = "M axis Forces";
+            SingleValue_MReaction.Title = "M axis Reactions";
+            SingleValue_MTotal.Title = "M axis Total";
 
-            singleValue_XForce.UnitType = UnitType.Force;
-            singleValue_XReaction.UnitType = UnitType.Force;
-            singleValue_XTotal.UnitType = UnitType.Force;
+            SingleValue_XForce.UnitType = UnitType.Force;
+            SingleValue_XReaction.UnitType = UnitType.Force;
+            SingleValue_XTotal.UnitType = UnitType.Force;
 
-            singleValue_YForce.UnitType = UnitType.Force;
-            singleValue_YReaction.UnitType = UnitType.Force;
-            singleValue_YTotal.UnitType = UnitType.Force;
+            SingleValue_YForce.UnitType = UnitType.Force;
+            SingleValue_YReaction.UnitType = UnitType.Force;
+            SingleValue_YTotal.UnitType = UnitType.Force;
 
-            singleValue_MForce.UnitType = UnitType.Moment;
-            singleValue_MReaction.UnitType = UnitType.Moment;
-            singleValue_MTotal.UnitType = UnitType.Moment;
+            SingleValue_MForce.UnitType = UnitType.Moment;
+            SingleValue_MReaction.UnitType = UnitType.Moment;
+            SingleValue_MTotal.UnitType = UnitType.Moment;
 
-            singleValue_XForce.SetTheValue(Model.ForceX);
-            singleValue_XReaction.SetTheValue(Model.ReactionX);
-            singleValue_XTotal.SetTheValue(Model.ForceX + Model.ReactionX);
+            SingleValue_XForce.SetTheValue(Model.ForceX);
+            SingleValue_XReaction.SetTheValue(Model.ReactionX);
+            SingleValue_XTotal.SetTheValue(Model.ForceX + Model.ReactionX);
 
-            singleValue_YForce.SetTheValue(Model.ForceY);
-            singleValue_YReaction.SetTheValue(Model.ReactionY);
-            singleValue_YTotal.SetTheValue(Model.ForceY + Model.ReactionY);
+            SingleValue_YForce.SetTheValue(Model.ForceY);
+            SingleValue_YReaction.SetTheValue(Model.ReactionY);
+            SingleValue_YTotal.SetTheValue(Model.ForceY + Model.ReactionY);
 
-            singleValue_MForce.SetTheValue(Model.ForceM);
-            singleValue_MReaction.SetTheValue(Model.ReactionM);
-            singleValue_MTotal.SetTheValue(Model.ForceM + Model.ReactionM);
+            SingleValue_MForce.SetTheValue(Model.ForceM);
+            SingleValue_MReaction.SetTheValue(Model.ReactionM);
+            SingleValue_MTotal.SetTheValue(Model.ForceM + Model.ReactionM);
 
-            singleValue_MaterialCost.UnitType = UnitType.Money;
-            singleValue_MaterialCost.Title = "Material Cost";
-            singleValue_MaterialCost.DisplayOnly = true;
-            singleValue_MaterialCost.SetTheValue(Model.MaterialCost);
+            SingleValue_MaterialCost.UnitType = UnitType.Money;
+            SingleValue_MaterialCost.Title = "Material Cost";
+            SingleValue_MaterialCost.DisplayOnly = true;
+            SingleValue_MaterialCost.SetTheValue(Model.MaterialCost);
 
-            singleValue_NodeCost.UnitType = UnitType.Money;
-            singleValue_NodeCost.Title = "Node Cost";
-            singleValue_NodeCost.DisplayOnly = true;
-            singleValue_NodeCost.SetTheValue(Model.NodeCost);
+            SingleValue_NodeCost.UnitType = UnitType.Money;
+            SingleValue_NodeCost.Title = "Node Cost";
+            SingleValue_NodeCost.DisplayOnly = true;
+            SingleValue_NodeCost.SetTheValue(Model.NodeCost);
 
-            singleValue_TransportCost.UnitType = UnitType.Money;
-            singleValue_TransportCost.Title = "Transport Cost";
-            singleValue_TransportCost.DisplayOnly = true;
-            singleValue_TransportCost.SetTheValue(Model.TransportCost);
+            SingleValue_TransportCost.UnitType = UnitType.Money;
+            SingleValue_TransportCost.Title = "Transport Cost";
+            SingleValue_TransportCost.DisplayOnly = true;
+            SingleValue_TransportCost.SetTheValue(Model.TransportCost);
 
-            singleValue_ElevationCost.UnitType = UnitType.Money;
-            singleValue_ElevationCost.Title = "Elevation Cost";
-            singleValue_ElevationCost.DisplayOnly = true;
-            singleValue_ElevationCost.SetTheValue(Model.ElevationCost);
+            SingleValue_ElevationCost.UnitType = UnitType.Money;
+            SingleValue_ElevationCost.Title = "Elevation Cost";
+            SingleValue_ElevationCost.DisplayOnly = true;
+            SingleValue_ElevationCost.SetTheValue(Model.ElevationCost);
 
-            singleValue_TotalCost.UnitType = UnitType.Money;
-            singleValue_TotalCost.Title = "Total Cost";
-            singleValue_TotalCost.DisplayOnly = true;
-            singleValue_TotalCost.SetTheValue(Model.TotalCost);
+            SingleValue_TotalCost.UnitType = UnitType.Money;
+            SingleValue_TotalCost.Title = "Total Cost";
+            SingleValue_TotalCost.DisplayOnly = true;
+            SingleValue_TotalCost.SetTheValue(Model.TotalCost);
 
             comboBox_MemberDisplay.SelectedIndex = Options.MemberDisplay;
         }
@@ -176,9 +176,9 @@ namespace Finite_Element_Analysis_Explorer
             Options.ShowReactions = false;
         }
 
-        private void logSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.DisplacementFactor = logSlider_DisplacementFactor.TheValue;
+            Options.DisplacementFactor = LogSlider_DisplacementFactor.TheValue;
         }
 
         private void comboBox_MemberDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -300,79 +300,79 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private void logSlider_MomentFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowMoment = true;
         }
 
-        private void logSlider_MomentFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowMoment = false;
         }
 
-        private void logSlider_ShearFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowShear = true;
         }
 
-        private void logSlider_ShearFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowShear = false;
         }
 
-        private void logSlider_LinearFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowLinear = true;
         }
 
-        private void logSlider_LinearFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowLinear = false;
         }
 
-        private void logSlider_ForcesFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowForce = true;
         }
 
-        private void logSlider_ForcesFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowForce = false;
         }
 
-        private void logSlider_ReactionsFactor_Checked(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_Checked(object sender, EventArgs e)
         {
             Options.ShowReactions = true;
         }
 
-        private void logSlider_ReactionsFactor_Unchecked(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_Unchecked(object sender, EventArgs e)
         {
             Options.ShowReactions = false;
         }
 
-        private void logSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.MomentFactor = logSlider_MomentFactor.TheValue;
+            Options.MomentFactor = LogSlider_MomentFactor.TheValue;
         }
 
-        private void logSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ShearFactor = logSlider_ShearFactor.TheValue;
+            Options.ShearFactor = LogSlider_ShearFactor.TheValue;
         }
 
-        private void logSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.LinearFactor = logSlider_LinearFactor.TheValue;
+            Options.LinearFactor = LogSlider_LinearFactor.TheValue;
         }
 
-        private void logSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ReactionsFactor = logSlider_ReactionsFactor.TheValue;
+            Options.ReactionsFactor = LogSlider_ReactionsFactor.TheValue;
         }
 
-        private void logSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
+        private void LogSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ForcesFactor = logSlider_ForcesFactor.TheValue;
+            Options.ForcesFactor = LogSlider_ForcesFactor.TheValue;
         }
     }
 }

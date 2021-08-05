@@ -1,36 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using Windows.Foundation;
+    using Windows.Foundation.Collections;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Data;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+    using Windows.UI.Xaml.Navigation;
+
     public sealed partial class LogSlider : UserControl
     {
         public event EventHandler ValueChanged;
+
         public event EventHandler Checked;
+
         public event EventHandler Unchecked;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogSlider"/> class.
+        /// </summary>
         public LogSlider()
         {
             this.InitializeComponent();
         }
 
         private string title;
+
         public string Title
         {
-            get { return title; }
+            get
+            {
+                return title;
+            }
+
             set
             {
                 title = value;
@@ -39,9 +49,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private string displayValue;
+
         public string DisplayValue
         {
-            get { return displayValue; }
+            get
+            {
+                return displayValue;
+            }
+
             set
             {
                 displayValue = value;
@@ -49,9 +64,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-
         private bool BlockUpdate = false;
-
 
         internal void SetNewValue(float newValue)
         {
@@ -283,7 +296,6 @@ namespace Finite_Element_Analysis_Explorer
             else if (newValue <= 8000000000000f) { slider_Value.Value = 224; }
             else { slider_Value.Value = 225; }
 
-
             BlockUpdate = false;
         }
 
@@ -385,17 +397,25 @@ namespace Finite_Element_Analysis_Explorer
 
             BlockUpdate = false;
         }
+
         private float theValue;
+
         public float TheValue
         {
             get { return theValue; }
+
             set { theValue = value; }
         }
 
         private bool isChecked;
+
         public bool IsChecked
         {
-            get { return isChecked; }
+            get
+            {
+                return isChecked;
+            }
+
             set
             {
                 isChecked = value;
@@ -403,12 +423,8 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-
         private void Slider_Value_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-
-
-
             switch ((int)slider_Value.Value)
             {
                 case 1: theValue = 0.000000000001f; break;
@@ -636,7 +652,6 @@ namespace Finite_Element_Analysis_Explorer
                 case 223: theValue = 7000000000000f; break;
                 case 224: theValue = 8000000000000f; break;
                 case 225: theValue = 9000000000000f; break;
-
             }
 
             textBlock_Value.Text = "x" + theValue.ToString();
@@ -670,4 +685,3 @@ namespace Finite_Element_Analysis_Explorer
         }
     }
 }
-

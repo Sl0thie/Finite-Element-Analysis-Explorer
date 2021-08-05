@@ -198,9 +198,9 @@
                     <FontIcon  x:Name="fontIcon_TitleIconSection" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
                 </Grid>
 
-                <local:SingleValue x:Name="singleValue_E" />
-                <local:SingleValue x:Name="singleValue_I" />
-                <local:SingleValue x:Name="singleValue_Area" />
+                <local:SingleValue x:Name="SingleValue_E" />
+                <local:SingleValue x:Name="SingleValue_I" />
+                <local:SingleValue x:Name="SingleValue_Area" />
                 
                 <TextBlock Text="Selected Profile" Style="{StaticResource FontPanelSectionHeader}"/>
                 <TextBlock Margin="30,4,0,4" x:Name="TextBlock_SelectedProfile" Text="Selected Profile Name" Foreground="#FFBFBFBF" TextAlignment="Center" FontFamily="Segoe UI" HorizontalAlignment="Left"/>
@@ -280,12 +280,12 @@
                     <FontIcon  x:Name="fontIcon_TitleIconCost" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
                 </Grid>
 
-                <local:SingleValue x:Name="singleValue_CostPerMeter" />
-                <local:SingleValue x:Name="singleValue_CostNearNode" />
-                <local:SingleValue x:Name="singleValue_CostFarNode" />
-                <local:SingleValue x:Name="singleValue_CostElevation" />
-                <local:SingleValue x:Name="singleValue_CostTransport" />
-                <local:SingleValue x:Name="singleValue_CostTotal" Margin="0,15,0,0"/>
+                <local:SingleValue x:Name="SingleValue_CostPerMeter" />
+                <local:SingleValue x:Name="SingleValue_CostNearNode" />
+                <local:SingleValue x:Name="SingleValue_CostFarNode" />
+                <local:SingleValue x:Name="SingleValue_CostElevation" />
+                <local:SingleValue x:Name="SingleValue_CostTransport" />
+                <local:SingleValue x:Name="SingleValue_CostTotal" Margin="0,15,0,0"/>
 
             </StackPanel>
         </ScrollViewer>

@@ -28,23 +28,23 @@ namespace Finite_Element_Analysis_Explorer
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            singleValue_ColorAlpha.Title = "Alpha";
-            singleValue_ColorRed.Title = "Red";
-            singleValue_ColorGreen.Title = "Green";
-            singleValue_ColorBlue.Title = "Blue";
+            SingleValue_ColorAlpha.Title = "Alpha";
+            SingleValue_ColorRed.Title = "Red";
+            SingleValue_ColorGreen.Title = "Green";
+            SingleValue_ColorBlue.Title = "Blue";
 
-            singleValue_ColorAlpha.UnitType = UnitType.UnitlessInteger;
-            singleValue_ColorRed.UnitType = UnitType.UnitlessInteger;
-            singleValue_ColorGreen.UnitType = UnitType.UnitlessInteger;
-            singleValue_ColorBlue.UnitType = UnitType.UnitlessInteger;
+            SingleValue_ColorAlpha.UnitType = UnitType.UnitlessInteger;
+            SingleValue_ColorRed.UnitType = UnitType.UnitlessInteger;
+            SingleValue_ColorGreen.UnitType = UnitType.UnitlessInteger;
+            SingleValue_ColorBlue.UnitType = UnitType.UnitlessInteger;
 
             switch (Options.ColorToEdit)
             {
                 case "ColorBackground":
-                    singleValue_ColorAlpha.SetTheValue(Options.ColorBackground.A);
-                    singleValue_ColorRed.SetTheValue(Options.ColorBackground.R);
-                    singleValue_ColorGreen.SetTheValue(Options.ColorBackground.G);
-                    singleValue_ColorBlue.SetTheValue(Options.ColorBackground.B);
+                    SingleValue_ColorAlpha.SetTheValue(Options.ColorBackground.A);
+                    SingleValue_ColorRed.SetTheValue(Options.ColorBackground.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.ColorBackground.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.ColorBackground.B);
                     slider_A.Value = Options.ColorBackground.A;
                     slider_R.Value = Options.ColorBackground.R;
                     slider_G.Value = Options.ColorBackground.G;
@@ -52,10 +52,10 @@ namespace Finite_Element_Analysis_Explorer
                     break;
 
                 case "ColorForce":
-                    singleValue_ColorAlpha.SetTheValue(Options.ColorForce.A);
-                    singleValue_ColorRed.SetTheValue(Options.ColorForce.R);
-                    singleValue_ColorGreen.SetTheValue(Options.ColorForce.G);
-                    singleValue_ColorBlue.SetTheValue(Options.ColorForce.B);
+                    SingleValue_ColorAlpha.SetTheValue(Options.ColorForce.A);
+                    SingleValue_ColorRed.SetTheValue(Options.ColorForce.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.ColorForce.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.ColorForce.B);
                     slider_A.Value = Options.ColorForce.A;
                     slider_R.Value = Options.ColorForce.R;
                     slider_G.Value = Options.ColorForce.G;
@@ -63,10 +63,10 @@ namespace Finite_Element_Analysis_Explorer
                     break;
 
                 case "ColorReaction":
-                    singleValue_ColorAlpha.SetTheValue(Options.ColorReaction.A);
-                    singleValue_ColorRed.SetTheValue(Options.ColorReaction.R);
-                    singleValue_ColorGreen.SetTheValue(Options.ColorReaction.G);
-                    singleValue_ColorBlue.SetTheValue(Options.ColorReaction.B);
+                    SingleValue_ColorAlpha.SetTheValue(Options.ColorReaction.A);
+                    SingleValue_ColorRed.SetTheValue(Options.ColorReaction.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.ColorReaction.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.ColorReaction.B);
                     slider_A.Value = Options.ColorReaction.A;
                     slider_R.Value = Options.ColorReaction.R;
                     slider_G.Value = Options.ColorReaction.G;
@@ -77,7 +77,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void UpdateColor()
         {
-            Color tmpColor = Color.FromArgb((byte)singleValue_ColorAlpha.NewValue, (byte)singleValue_ColorRed.NewValue, (byte)singleValue_ColorGreen.NewValue, (byte)singleValue_ColorBlue.NewValue);
+            Color tmpColor = Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue);
 
             switch (Options.ColorToEdit)
             {
@@ -93,63 +93,95 @@ namespace Finite_Element_Analysis_Explorer
             }
 
             rectangle_Color.Fill = new SolidColorBrush(tmpColor);
-            singleValue_ColorAlpha.SetTheValue(tmpColor.A);
-            singleValue_ColorRed.SetTheValue(tmpColor.R);
-            singleValue_ColorGreen.SetTheValue(tmpColor.G);
-            singleValue_ColorBlue.SetTheValue(tmpColor.B);
+            SingleValue_ColorAlpha.SetTheValue(tmpColor.A);
+            SingleValue_ColorRed.SetTheValue(tmpColor.R);
+            SingleValue_ColorGreen.SetTheValue(tmpColor.G);
+            SingleValue_ColorBlue.SetTheValue(tmpColor.B);
 
             Model.UpdateColors();
         }
 
         private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorAlpha.NewValue < 0) { singleValue_ColorAlpha.NewValue = 0; }
-            if (singleValue_ColorAlpha.NewValue > 255) { singleValue_ColorAlpha.NewValue = 255; }
+            if (SingleValue_ColorAlpha.NewValue < 0)
+            {
+                SingleValue_ColorAlpha.NewValue = 0;
+            }
+
+            if (SingleValue_ColorAlpha.NewValue > 255)
+            {
+                SingleValue_ColorAlpha.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorRed.NewValue < 0) { singleValue_ColorRed.NewValue = 0; }
-            if (singleValue_ColorRed.NewValue > 255) { singleValue_ColorRed.NewValue = 255; }
+            if (SingleValue_ColorRed.NewValue < 0)
+            {
+                SingleValue_ColorRed.NewValue = 0;
+            }
+
+            if (SingleValue_ColorRed.NewValue > 255)
+            {
+                SingleValue_ColorRed.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorGreen.NewValue < 0) { singleValue_ColorGreen.NewValue = 0; }
-            if (singleValue_ColorGreen.NewValue > 255) { singleValue_ColorGreen.NewValue = 255; }
+            if (SingleValue_ColorGreen.NewValue < 0)
+            {
+                SingleValue_ColorGreen.NewValue = 0;
+            }
+
+            if (SingleValue_ColorGreen.NewValue > 255)
+            {
+                SingleValue_ColorGreen.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
-            if (singleValue_ColorBlue.NewValue < 0) { singleValue_ColorBlue.NewValue = 0; }
-            if (singleValue_ColorBlue.NewValue > 255) { singleValue_ColorBlue.NewValue = 255; }
+            if (SingleValue_ColorBlue.NewValue < 0)
+            {
+                SingleValue_ColorBlue.NewValue = 0;
+            }
+
+            if (SingleValue_ColorBlue.NewValue > 255)
+            {
+                SingleValue_ColorBlue.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void Slider_A_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            singleValue_ColorAlpha.SetTheValue((byte)slider_A.Value);
+            SingleValue_ColorAlpha.SetTheValue((byte)slider_A.Value);
             UpdateColor();
         }
 
         private void Slider_R_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            singleValue_ColorRed.SetTheValue((byte)slider_R.Value);
+            SingleValue_ColorRed.SetTheValue((byte)slider_R.Value);
             UpdateColor();
         }
 
         private void Slider_G_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            singleValue_ColorGreen.SetTheValue((byte)slider_G.Value);
+            SingleValue_ColorGreen.SetTheValue((byte)slider_G.Value);
             UpdateColor();
         }
 
         private void Slider_B_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            singleValue_ColorBlue.SetTheValue((byte)slider_B.Value);
+            SingleValue_ColorBlue.SetTheValue((byte)slider_B.Value);
             UpdateColor();
         }
     }

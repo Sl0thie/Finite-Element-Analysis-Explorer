@@ -23,9 +23,9 @@
             <RowDefinition Height="26"/>
             <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="textBlock_Title" Padding="0,6,0,0" Text="--------------------" Foreground="Silver" FontSize="12"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="textBlock_Prefix" Padding="0,4,0,4" Text="" Foreground="#FF404040" FontSize="12"/>
-        <local:NumericInput Grid.Row="1" Grid.Column="3" x:Name="numericInput_Value" Foreground="Gray" FontSize="12" ValueChanged="numericInput_Value_ValueChanged"/>
-        <TextBlock Grid.Row="1"  Grid.Column="4" x:Name="textBlock_UnitType" Padding="2,6,0,0" Text="-----" Foreground="#FF404040" FontSize="12" Tapped="textBlock_UnitType_Tapped"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="TextBlock_Title" Padding="0,6,0,0" Text="--------------------" Foreground="Silver" FontSize="12"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="TextBlock_Prefix" Padding="0,4,0,4" Text="" Foreground="#FF404040" FontSize="12"/>
+        <local:NumericInput Grid.Row="1" Grid.Column="3" x:Name="NumericInput_Value" Foreground="Gray" FontSize="12" ValueChanged="NumericInput_Value_ValueChanged"/>
+        <TextBlock Grid.Row="1"  Grid.Column="4" x:Name="TextBlock_UnitType" Padding="2,6,0,0" Text="-----" Foreground="#FF404040" FontSize="12" Tapped="TextBlock_UnitType_Tapped"/>
     </Grid>
 </UserControl>

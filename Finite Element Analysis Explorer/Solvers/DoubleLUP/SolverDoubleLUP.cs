@@ -1,51 +1,57 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using MathNet.Numerics.LinearAlgebra;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Threading.Tasks;
+    using Windows.UI.Xaml.Controls;
+
     public class SolverDoubleLUP : ISolver
     {
         #region Properties
 
         #region ISolver Interface
 
-        private Page _parent;
+        private Page parent;
+
         public Page Parent
         {
-            get { return _parent; }
-            set { _parent = value; }
+            get
+            {
+                return parent;
+            }
+
+            set
+            {
+                parent = value;
+            }
         }
 
-        private bool _HasErrors;
+        private bool hasErrors;
+
         public bool HasErrors
         {
-            get { return _HasErrors; }
-            set { _HasErrors = value; }
+            get { return hasErrors; }
+            set { hasErrors = value; }
         }
 
-        #endregion      
+        #endregion
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SolverDoubleLUP"/> class.
+        /// </summary>
+        /// <param name="parent"></param>
         public SolverDoubleLUP(Page parent)
         {
-            _parent = parent;
+            this.parent = parent;
             App.CurrentSolverState = SolveState.Solving;
             SolverDisplay.Current.ClearMessages();
-
 
             Task.Run(() => SolveModel());
         }
 
-        #endregion   
+        #endregion
 
         public void SolveModel()
         {
@@ -61,29 +67,20 @@ namespace Finite_Element_Analysis_Explorer
             SolverFunctions.GetQuFromSubNodes();
             SolverFunctions.GetDkFromSubNodes();
             SolverFunctions.GetDuFromSubNodes();
-
             SolverFunctions.SolveForDu();
             SolverFunctions.SetDuToSubNodes();
-
             SolverFunctions.SolveForQu();
             SolverFunctions.SetQuToSubNodes();
-
-
             SolverFunctions.UpdateMemberAndSegmentsFromMatrix();
             SolverFunctions.CreateLengthRatioColors();
             SolverFunctions.CreateAxialRatioColors();
             SolverFunctions.CreateNormalStressColors();
-
-
             Camera.UpdateAllGraphics();
-
             SolverFunctions.CalculateEqulibriumValues();
             SolverFunctions.CalculateMaterials();
             SolverFunctions.CalculateLabour();
             SolverFunctions.CalculateCost();
             SolverFunctions.DisplayEndMessages();
-
-
         }
     }
 }

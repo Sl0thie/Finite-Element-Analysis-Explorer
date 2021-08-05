@@ -184,7 +184,7 @@
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="240"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle x:Name="rectangle_Background" Grid.Column="0" RadiusX="10" RadiusY="10" Width="200" Height="52" Margin="20,10,0,10">
+                <Rectangle x:Name="Rectangle_Background" Grid.Column="0" RadiusX="10" RadiusY="10" Width="200" Height="52" Margin="20,10,0,10">
                     <Rectangle.Stroke>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -192,23 +192,23 @@
                         </LinearGradientBrush>
                     </Rectangle.Stroke>
                 </Rectangle>
-                <Rectangle x:Name="rectangle_Color" Grid.Column="0" RadiusX="10" RadiusY="10" Width="198" Height="52" Stroke="#FF404040" Margin="20,10,0,10"/>
+                <Rectangle x:Name="Rectangle_Color" Grid.Column="0" RadiusX="10" RadiusY="10" Width="198" Height="52" Stroke="#FF404040" Margin="20,10,0,10"/>
             </Grid>
             
             
             
-            <local:SingleValue x:Name="singleValue_ColorAlpha" ValueChanged="singleValue_ColorAlpha_ValueChanged"/>
-            <Slider x:Name="slider_A" Maximum="255" ValueChanged="Slider_A_ValueChanged" Width="260" HorizontalAlignment="Left"/>
-            <local:SingleValue x:Name="singleValue_ColorRed" ValueChanged="singleValue_ColorRed_ValueChanged"/>
-            <Slider x:Name="slider_R" Maximum="255" ValueChanged="Slider_R_ValueChanged" Width="260" HorizontalAlignment="Left"/>
-            <local:SingleValue x:Name="singleValue_ColorGreen" ValueChanged="singleValue_ColorGreen_ValueChanged"/>
-            <Slider x:Name="slider_G" Maximum="255" ValueChanged="Slider_G_ValueChanged" Width="260" HorizontalAlignment="Left"/>
-            <local:SingleValue x:Name="singleValue_ColorBlue" ValueChanged="singleValue_ColorBlue_ValueChanged"/>
-            <Slider x:Name="slider_B" Maximum="255" ValueChanged="Slider_B_ValueChanged" Width="260" HorizontalAlignment="Left"/>
+            <local:SingleValue x:Name="SingleValue_ColorAlpha" ValueChanged="SingleValue_ColorAlpha_ValueChanged"/>
+            <Slider x:Name="Slider_A" Maximum="255" ValueChanged="Slider_A_ValueChanged" Width="260" HorizontalAlignment="Left"/>
+            <local:SingleValue x:Name="SingleValue_ColorRed" ValueChanged="SingleValue_ColorRed_ValueChanged"/>
+            <Slider x:Name="Slider_R" Maximum="255" ValueChanged="Slider_R_ValueChanged" Width="260" HorizontalAlignment="Left"/>
+            <local:SingleValue x:Name="SingleValue_ColorGreen" ValueChanged="SingleValue_ColorGreen_ValueChanged"/>
+            <Slider x:Name="Slider_G" Maximum="255" ValueChanged="Slider_G_ValueChanged" Width="260" HorizontalAlignment="Left"/>
+            <local:SingleValue x:Name="SingleValue_ColorBlue" ValueChanged="SingleValue_ColorBlue_ValueChanged"/>
+            <Slider x:Name="Slider_B" Maximum="255" ValueChanged="Slider_B_ValueChanged" Width="260" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
             <TextBlock Margin="6,10,0,0" Text="Dash Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
-            <ComboBox Margin="6,5,0,10" x:Name="comboBox_LineStyle" Width="250" BorderThickness="1" SelectionChanged="ComboBox_LineStyle_SelectionChanged" SelectedIndex="0" Foreground="Gray" Style="{StaticResource ComboBoxStyle1}">
+            <ComboBox Margin="6,5,0,10" x:Name="ComboBox_LineStyle" Width="250" BorderThickness="1" SelectionChanged="ComboBox_LineStyle_SelectionChanged" SelectedIndex="0" Foreground="Gray" Style="{StaticResource ComboBoxStyle1}">
                 <ComboBoxItem Content="Solid"/>
                 <ComboBoxItem Content="Dash"/>
                 <ComboBoxItem Content="Dot"/>
@@ -216,14 +216,14 @@
                 <ComboBoxItem Content="DashDotDot"/>
             </ComboBox>
 
-            <local:SingleValue x:Name="singleValue_DashOffset" Margin="0,5,0,10" ValueChanged="singleValue_DashOffset_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_DashOffset" Margin="0,5,0,10" ValueChanged="SingleValue_DashOffset_ValueChanged"/>
 
-            <local:SingleValue x:Name="singleValue_LineWeight" Margin="0,5,0,10" ValueChanged="singleValue_LineWeight_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_LineWeight" Margin="0,5,0,10" ValueChanged="SingleValue_LineWeight_ValueChanged"/>
 
-            <local:SingleValue x:Name="singleValue_MiterLimit" Margin="0,5,0,10" ValueChanged="singleValue_MiterLimit_ValueChanged" />
+            <local:SingleValue x:Name="SingleValue_MiterLimit" Margin="0,5,0,10" ValueChanged="SingleValue_MiterLimit_ValueChanged" />
 
             <TextBlock Margin="6,5,0,0" Text="Near Cap Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
-            <ComboBox Margin="6,5,0,10" x:Name="comboBox_NearCapStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_NearCapStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}" >
+            <ComboBox Margin="6,5,0,10" x:Name="ComboBox_NearCapStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_NearCapStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}" >
                 <ComboBoxItem Content="Flat"/>
                 <ComboBoxItem Content="Square"/>
                 <ComboBoxItem Content="Round"/>
@@ -231,7 +231,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,5,0,0" Text="Far Cap Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
-            <ComboBox Margin="6,5,0,10" x:Name="comboBox_FarCapStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_FarCapStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}">
+            <ComboBox Margin="6,5,0,10" x:Name="ComboBox_FarCapStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_FarCapStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}">
                 <ComboBoxItem Content="Flat"/>
                 <ComboBoxItem Content="Square"/>
                 <ComboBoxItem Content="Round"/>
@@ -239,7 +239,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,5,0,0" Text="Line Join Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
-            <ComboBox Margin="6,5,0,10" x:Name="comboBox_LineJoinStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_LineJoinStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}" >
+            <ComboBox Margin="6,5,0,10" x:Name="ComboBox_LineJoinStyle" Width="250" BorderThickness="1" SelectedIndex="0" Foreground="Gray" SelectionChanged="ComboBox_LineJoinStyle_SelectionChanged" Style="{StaticResource ComboBoxStyle1}" >
                 <ComboBoxItem Content="Miter"/>
                 <ComboBoxItem Content="Bevel"/>
                 <ComboBoxItem Content="Round"/>

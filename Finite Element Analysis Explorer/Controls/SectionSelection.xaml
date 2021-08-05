@@ -44,20 +44,20 @@
             <TextBox Margin="6,0,16,0" x:Name="textBox_SectionName" BorderThickness="1" BorderBrush="#FF404040" Foreground="Gray" KeyDown="TextBox_SectionName_KeyDown" />
             
             
-            <local:SingleValue x:Name="singleValue_YoungsModulus" ValueChanged="singleValue_YoungsModulus_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_MomentOfInertia" ValueChanged="singleValue_MomentOfInertia_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_Area" ValueChanged="singleValue_Area_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_Density" ValueChanged="singleValue_Density_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_YoungsModulus" ValueChanged="SingleValue_YoungsModulus_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_MomentOfInertia" ValueChanged="SingleValue_MomentOfInertia_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_Area" ValueChanged="SingleValue_Area_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_Density" ValueChanged="SingleValue_Density_ValueChanged"/>
 
-            <local:SingleValue x:Name="singleValue_CostPerMeter" ValueChanged="singleValue_CostPerMeter_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostVerticalTransport" ValueChanged="singleValue_CostVerticalTransport_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostHorizontalTransport" ValueChanged="singleValue_CostHorizontalTransport_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostPerMeter" ValueChanged="SingleValue_CostPerMeter_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostVerticalTransport" ValueChanged="SingleValue_CostVerticalTransport_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostHorizontalTransport" ValueChanged="SingleValue_CostHorizontalTransport_ValueChanged"/>
             
-            <local:SingleValue x:Name="singleValue_CostNodeFree" ValueChanged="singleValue_CostNodeFree_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostNodeFixed" ValueChanged="singleValue_CostNodeFixed_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostNodePinned" ValueChanged="singleValue_CostNodePinned_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostNodeRoller" ValueChanged="singleValue_CostNodeRoller_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_CostNodeTrack" ValueChanged="singleValue_CostNodeTrack_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostNodeFree" ValueChanged="SingleValue_CostNodeFree_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostNodeFixed" ValueChanged="SingleValue_CostNodeFixed_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostNodePinned" ValueChanged="SingleValue_CostNodePinned_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostNodeRoller" ValueChanged="SingleValue_CostNodeRoller_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_CostNodeTrack" ValueChanged="SingleValue_CostNodeTrack_ValueChanged"/>
 
             
 
@@ -66,11 +66,10 @@
 
         <StackPanel Grid.Row="1" Grid.Column="3">
             <Rectangle x:Name="rectangle_Color" RadiusX="10" RadiusY="10" Width="200" Height="52" Stroke="#FF404040"/>
-            <local:SingleValue x:Name="singleValue_ColorAlpha" ValueChanged="singleValue_ColorAlpha_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_ColorRed" ValueChanged="singleValue_ColorRed_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_ColorGreen" ValueChanged="singleValue_ColorGreen_ValueChanged"/>
-            <local:SingleValue x:Name="singleValue_ColorBlue" ValueChanged="singleValue_ColorBlue_ValueChanged"/>
-
+            <local:SingleValue x:Name="SingleValue_ColorAlpha" ValueChanged="SingleValue_ColorAlpha_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_ColorRed" ValueChanged="SingleValue_ColorRed_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_ColorGreen" ValueChanged="SingleValue_ColorGreen_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_ColorBlue" ValueChanged="SingleValue_ColorBlue_ValueChanged"/>
 
             <TextBlock Margin="6,5,0,0" Text="Line Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
             <ComboBox Margin="6,5,0,0" x:Name="comboBox_LineStyle" Width="280" BorderThickness="1" SelectionChanged="ComboBox_LineStyle_SelectionChanged" SelectedIndex="0">
@@ -81,7 +80,7 @@
                 <ComboBoxItem Content="DashDotDash"/>
             </ComboBox>
 
-            <local:SingleValue x:Name="singleValue_LineWeight" ValueChanged="singleValue_LineWeight_ValueChanged"/>
+            <local:SingleValue x:Name="SingleValue_LineWeight" ValueChanged="SingleValue_LineWeight_ValueChanged"/>
             
             <TextBlock Margin="6,5,0,0" Text="Near Cap Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
             <ComboBox Margin="6,5,0,0" x:Name="comboBox_NearCapStyle" Width="280" BorderThickness="1" SelectedIndex="0" >
@@ -93,7 +92,7 @@
             </ComboBox>
 
             <TextBlock Margin="6,5,0,0" Text="Far Cap Style" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="12" Foreground="Gray"/>
-            <ComboBox Margin="6,5,0,0" x:Name="comboBox_FarCapStyle" Width="280" BorderThickness="1" SelectedIndex="0" >
+            <ComboBox Margin="6,5,0,0" x:Name="ComboBox_FarCapStyle" Width="280" BorderThickness="1" SelectedIndex="0" >
                 <ComboBoxItem Content="Solid"/>
             <ComboBoxItem Content="Dash"/>
             <ComboBoxItem Content="Dot"/>

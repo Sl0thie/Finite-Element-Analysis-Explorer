@@ -9,7 +9,7 @@ namespace Finite_Element_Analysis_Explorer
         private static float UpperBound;
         private static float LowerBound;
 
-        private static string lengthUnitString = "";
+        private static string lengthUnitString = string.Empty;
         public static string LengthUnitString
         {
             get { return lengthUnitString; }

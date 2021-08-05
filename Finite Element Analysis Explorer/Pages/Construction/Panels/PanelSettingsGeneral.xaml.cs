@@ -148,25 +148,25 @@ namespace Finite_Element_Analysis_Explorer
             Model.Members.CurrentMember = null;
             Model.Sections.CurrentSection = null;
 
-            singleValue_ZoomTrim.Title = "Scale Trim";
-            singleValue_ZoomTrim.UnitType = UnitType.Unitless;
-            singleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+            SingleValue_ZoomTrim.Title = "Scale Trim";
+            SingleValue_ZoomTrim.UnitType = UnitType.Unitless;
+            SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
 
-            singleValue_SelectGridSize.Title = "Touch Grid Size";
-            singleValue_SelectGridSize.UnitType = UnitType.Unitless;
-            singleValue_SelectGridSize.SetTheValue((decimal)Options.SelectGridSize);
+            SingleValue_SelectGridSize.Title = "Touch Grid Size";
+            SingleValue_SelectGridSize.UnitType = UnitType.Unitless;
+            SingleValue_SelectGridSize.SetTheValue((decimal)Options.SelectGridSize);
         }
 
         private void SingleValue_ZoomTrim_ValueChanged(object sender, EventArgs e)
         {
-            Camera.ZoomTrim = (float)singleValue_ZoomTrim.NewValue;
-            singleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+            Camera.ZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
+            SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
         }
 
         private void SingleValue_SelectGridSize_ValueChanged(object sender, EventArgs e)
         {
-            Options.SelectGridSize = (float)singleValue_SelectGridSize.NewValue;
-            singleValue_SelectGridSize.SetTheValue((decimal)Options.SelectGridSize);
+            Options.SelectGridSize = (float)SingleValue_SelectGridSize.NewValue;
+            SingleValue_SelectGridSize.SetTheValue((decimal)Options.SelectGridSize);
         }
     }
 }

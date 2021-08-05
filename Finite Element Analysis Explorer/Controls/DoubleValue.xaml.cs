@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DoubleValue UserControl provides two inputs. One for each node.
+    /// </summary>
     public sealed partial class DoubleValue : UserControl
     {
         public event EventHandler ValueChanged;
@@ -42,6 +45,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private int axis;
+
         internal int Axis
         {
             get
@@ -55,23 +59,23 @@ namespace Finite_Element_Analysis_Explorer
                 switch (axis)
                 {
                     case 0:
-                        textBlock_Axis.Text = string.Empty;
+                        TextBlock_Axis.Text = string.Empty;
                         break;
                     case 1:
-                        textBlock_Axis.Text = "⭢";
-                        textBlock_Axis.FontSize = 24;
+                        TextBlock_Axis.Text = "⭢";
+                        TextBlock_Axis.FontSize = 24;
                         break;
                     case 2:
-                        textBlock_Axis.Text = "⭡";
-                        textBlock_Axis.FontSize = 24;
+                        TextBlock_Axis.Text = "⭡";
+                        TextBlock_Axis.FontSize = 24;
                         break;
                     case 3:
-                        textBlock_Axis.Text = "⭯";
-                        textBlock_Axis.FontSize = 20;
+                        TextBlock_Axis.Text = "⭯";
+                        TextBlock_Axis.FontSize = 20;
                         break;
                     case 4:
-                        textBlock_Axis.Text = "";
-                        textBlock_Axis.FontSize = 16;
+                        TextBlock_Axis.Text = "";
+                        TextBlock_Axis.FontSize = 16;
                         break;
                 }
             }
@@ -85,8 +89,8 @@ namespace Finite_Element_Analysis_Explorer
             set
             {
                 displayOnly = value;
-                numericInput_NearValue.DisplayOnly = value;
-                numericInput_FarValue.DisplayOnly = value;
+                NumericInput_NearValue.DisplayOnly = value;
+                NumericInput_FarValue.DisplayOnly = value;
             }
         }
 
@@ -98,8 +102,8 @@ namespace Finite_Element_Analysis_Explorer
             set
             {
                 unitType = value;
-                numericInput_NearValue.IsInteger = false;
-                numericInput_FarValue.IsInteger = false;
+                NumericInput_NearValue.IsInteger = false;
+                NumericInput_FarValue.IsInteger = false;
                 switch (unitType)
                 {
                     #region Angle
@@ -108,12 +112,12 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case AngleType.Degrees:
                                 multiplicationFactor = Constants.DegreePerRadian;
-                                textBlock_UnitType.Text = "°";
+                                TextBlock_UnitType.Text = "°";
                                 break;
 
                             case AngleType.Radians:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "rad";
+                                TextBlock_UnitType.Text = "rad";
                                 break;
                         }
                         break;
@@ -123,45 +127,45 @@ namespace Finite_Element_Analysis_Explorer
 
                         switch (Options.Area)
                         {
-                            case AreaType.SquareMetre: // 
+                            case AreaType.SquareMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m²";
+                                TextBlock_UnitType.Text = "m²";
                                 break;
 
-                            case AreaType.SquareCentiMetre: // 
+                            case AreaType.SquareCentiMetre:
                                 multiplicationFactor = Constants.SquareCentimeterPerSquareMeter;
-                                textBlock_UnitType.Text = "cm²";
+                                TextBlock_UnitType.Text = "cm²";
                                 break;
 
-                            case AreaType.SquareMilliMetre: // 
+                            case AreaType.SquareMilliMetre:
                                 multiplicationFactor = Constants.SquareMillimeterPerSquareMeter;
-                                textBlock_UnitType.Text = "mm²";
+                                TextBlock_UnitType.Text = "mm²";
                                 break;
 
                             case AreaType.SquareFoot:
                                 multiplicationFactor = Constants.SquareFootPerSquareMeter;
-                                textBlock_UnitType.Text = "ft²";
+                                TextBlock_UnitType.Text = "ft²";
                                 break;
 
                             case AreaType.SquareInch:
                                 multiplicationFactor = Constants.SquareInchPerSquareMeter;
-                                textBlock_UnitType.Text = "in²";
+                                TextBlock_UnitType.Text = "in²";
                                 break;
                         }
                         break;
-                    #endregion                   
+                    #endregion
                     #region Density
                     case UnitType.Density:
                         switch (Options.Density)
                         {
                             case DensityType.KilogramPerCubicMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "kg/m³";
+                                TextBlock_UnitType.Text = "kg/m³";
                                 break;
 
                             case DensityType.PoundPerCubicFoot:
                                 multiplicationFactor = Constants.PoundPerCubicFootPerKilogramPerMeter;
-                                textBlock_UnitType.Text = " lb/ft³";
+                                TextBlock_UnitType.Text = " lb/ft³";
                                 break;
                         }
 
@@ -173,42 +177,42 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case ForceType.Dyne:
                                 multiplicationFactor = Constants.DynePerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.GigaNewton:
                                 multiplicationFactor = Constants.GigaNewtonPerNewton;
-                                textBlock_UnitType.Text = "GN";
+                                TextBlock_UnitType.Text = "GN";
                                 break;
 
                             case ForceType.KilogramForce:
                                 multiplicationFactor = Constants.KilogramForcePerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.KiloNewton:
                                 multiplicationFactor = Constants.KiloNewtonPerNewton;
-                                textBlock_UnitType.Text = "kN";
+                                TextBlock_UnitType.Text = "kN";
                                 break;
 
                             case ForceType.MegaNewton:
                                 multiplicationFactor = Constants.MegaNewtonPerNewton;
-                                textBlock_UnitType.Text = "MN";
+                                TextBlock_UnitType.Text = "MN";
                                 break;
 
                             case ForceType.Newton:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "N";
+                                TextBlock_UnitType.Text = "N";
                                 break;
 
                             case ForceType.Poundal:
                                 multiplicationFactor = Constants.PoundalPerNewton;
-                                textBlock_UnitType.Text = "?";
+                                TextBlock_UnitType.Text = "?";
                                 break;
 
                             case ForceType.PoundForce:
                                 multiplicationFactor = Constants.PoundForcePerNewton;
-                                textBlock_UnitType.Text = "lbf";
+                                TextBlock_UnitType.Text = "lbf";
                                 break;
                         }
                         break;
@@ -222,11 +226,11 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case ForcePerLengthType.NewtonPerMeter:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "N/m";
+                                TextBlock_UnitType.Text = "N/m";
                                 break;
                             case ForcePerLengthType.PoundPerFoot:
                                 multiplicationFactor = Constants.PoundForcePerFootPerNewPerMeter;
-                                textBlock_UnitType.Text = "lb/ft";
+                                TextBlock_UnitType.Text = "lb/ft";
                                 break;
                         }
 
@@ -239,31 +243,30 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case LengthType.Meter:
                                 multiplicationFactor = Constants.MeterPerMeter;
-                                textBlock_UnitType.Text = "m";
+                                TextBlock_UnitType.Text = "m";
                                 break;
                             case LengthType.Millimeter:
                                 multiplicationFactor = Constants.MilliMeterPerMeter;
-                                textBlock_UnitType.Text = "mm";
+                                TextBlock_UnitType.Text = "mm";
                                 break;
                             case LengthType.CentiMeter:
                                 multiplicationFactor = Constants.CentiMeterPerMeter;
-                                textBlock_UnitType.Text = "cm";
+                                TextBlock_UnitType.Text = "cm";
                                 break;
                             case LengthType.KiloMeter:
                                 multiplicationFactor = Constants.KiloMeterPerMeter;
-                                textBlock_UnitType.Text = "km";
+                                TextBlock_UnitType.Text = "km";
                                 break;
                             case LengthType.Inch:
-                                //
                                 multiplicationFactor = Constants.InchPerMeter;
-                                textBlock_UnitType.Text = "in";
+                                TextBlock_UnitType.Text = "in";
                                 break;
                             case LengthType.Foot:
                                 multiplicationFactor = Constants.FootPerMeter;
-                                textBlock_UnitType.Text = "ft";
+                                TextBlock_UnitType.Text = "ft";
                                 break;
-
                         }
+
                         break;
                     #endregion
                     #region Mass
@@ -272,11 +275,11 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case MassType.Kilogram:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "kg";
+                                TextBlock_UnitType.Text = "kg";
                                 break;
                             case MassType.Pound:
                                 multiplicationFactor = Constants.PoundPerKilogram;
-                                textBlock_UnitType.Text = "lb";
+                                TextBlock_UnitType.Text = "lb";
                                 break;
                         }
                         break;
@@ -287,27 +290,27 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case MomentOfInertiaType.QuadMeter:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m⁴";
+                                TextBlock_UnitType.Text = "m⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadCentmeter:
                                 multiplicationFactor = Constants.QuadCentimetersPerQuadMeter;
-                                textBlock_UnitType.Text = "cm⁴";
+                                TextBlock_UnitType.Text = "cm⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadFoot:
                                 multiplicationFactor = Constants.QuadFootPerQuadMeter;
-                                textBlock_UnitType.Text = "ft⁴";
+                                TextBlock_UnitType.Text = "ft⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadInch:
                                 multiplicationFactor = Constants.QuadInchPerQuadMeter;
-                                textBlock_UnitType.Text = "in⁴";
+                                TextBlock_UnitType.Text = "in⁴";
                                 break;
 
                             case MomentOfInertiaType.QuadMillimeter:
                                 multiplicationFactor = Constants.QuadMillimeterPerQuadMeter;
-                                textBlock_UnitType.Text = "mm⁴";
+                                TextBlock_UnitType.Text = "mm⁴";
                                 break;
                         }
 
@@ -319,81 +322,82 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case MomentType.NewtonMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "N·m";
+                                TextBlock_UnitType.Text = "N·m";
                                 break;
 
                             case MomentType.OunceFoot:
                                 multiplicationFactor = Constants.OunceFootPerNewtonMeter;
-                                textBlock_UnitType.Text = "oz·ft";
+                                TextBlock_UnitType.Text = "oz·ft";
                                 break;
 
                             case MomentType.OunceInch:
                                 multiplicationFactor = Constants.OunceInchPerNewtonMeter;
-                                textBlock_UnitType.Text = "oz·in";
+                                TextBlock_UnitType.Text = "oz·in";
                                 break;
 
                             case MomentType.PoundFoot:
                                 multiplicationFactor = Constants.PoundFootPerNewtonMeter;
-                                textBlock_UnitType.Text = "lb·ft";
+                                TextBlock_UnitType.Text = "lb·ft";
                                 break;
 
                             case MomentType.PoundInch:
                                 multiplicationFactor = Constants.PoundInchPerNewtonMeter;
-                                textBlock_UnitType.Text = "lb·in";
+                                TextBlock_UnitType.Text = "lb·in";
                                 break;
                         }
                         break;
                     #endregion
                     #region Money
+
                     case UnitType.Money:
                         multiplicationFactor = 1;
-                        //RoundingFactor = 2;
-                        textBlock_UnitType.Text = "";
+                        TextBlock_UnitType.Text = string.Empty;
                         break;
                     #endregion
                     #region Pressure
+
                     case UnitType.Pressure:
                         switch (Options.Pressure)
                         {
                             case PressureType.Pascal:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "Pa";
+                                TextBlock_UnitType.Text = "Pa";
                                 break;
                             case PressureType.Gigapascal:
                                 multiplicationFactor = Constants.GigapascalPerPascal;
-                                textBlock_UnitType.Text = "GPa";
+                                TextBlock_UnitType.Text = "GPa";
                                 break;
                             case PressureType.Hectopascal:
                                 multiplicationFactor = Constants.HectopascalPerPascal;
-                                textBlock_UnitType.Text = "hPa";
+                                TextBlock_UnitType.Text = "hPa";
                                 break;
                             case PressureType.Kilopascal:
                                 multiplicationFactor = Constants.KilopascalPerPascal;
-                                textBlock_UnitType.Text = "kPa";
+                                TextBlock_UnitType.Text = "kPa";
                                 break;
                             case PressureType.KilopoundPerSquareInch:
                                 multiplicationFactor = Constants.KilopoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "kPsi";
+                                TextBlock_UnitType.Text = "kPsi";
                                 break;
                             case PressureType.Megapascal:
                                 multiplicationFactor = Constants.MegapascalPerPascal;
-                                textBlock_UnitType.Text = "MPa";
+                                TextBlock_UnitType.Text = "MPa";
                                 break;
                             case PressureType.MegapoundPerSquareInch:
                                 multiplicationFactor = Constants.MegapoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "MPsi";
+                                TextBlock_UnitType.Text = "MPsi";
                                 break;
                             case PressureType.Millipascal:
                                 multiplicationFactor = Constants.MillpascalPerPascal;
-                                textBlock_UnitType.Text = "mPa";
+                                TextBlock_UnitType.Text = "mPa";
                                 break;
                             case PressureType.PoundPerSqareFoot:
                                 multiplicationFactor = Constants.PoundPerSquareFootPerPascal;
-                                textBlock_UnitType.Text = "Psft";
+                                TextBlock_UnitType.Text = "Psft";
                                 break;
                             case PressureType.PoundPerSquareInch:
                                 multiplicationFactor = Constants.PoundPerSquareInchPerPascal;
-                                textBlock_UnitType.Text = "Psi";
+                                TextBlock_UnitType.Text = "Psi";
                                 break;
                         }
                         break;
@@ -405,44 +409,43 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             case VolumeType.CubicMetre:
                                 multiplicationFactor = 1;
-                                textBlock_UnitType.Text = "m³";
+                                TextBlock_UnitType.Text = "m³";
                                 break;
 
                             case VolumeType.CubicCentimeter:
                                 multiplicationFactor = Constants.CubicCentimeterPerCubicMeter;
-                                textBlock_UnitType.Text = "cm³";
+                                TextBlock_UnitType.Text = "cm³";
                                 break;
 
                             case VolumeType.CubicFoot:
                                 multiplicationFactor = Constants.CubicFootPerCubicMeter;
-                                textBlock_UnitType.Text = "ft³";
+                                TextBlock_UnitType.Text = "ft³";
                                 break;
 
                             case VolumeType.CubicInch:
                                 multiplicationFactor = Constants.CubicInchPerCubicMeter;
-                                textBlock_UnitType.Text = "in³";
+                                TextBlock_UnitType.Text = "in³";
                                 break;
 
                             case VolumeType.CubicMillimeter:
                                 multiplicationFactor = Constants.CubicMillimeterPerCubicMeter;
-                                textBlock_UnitType.Text = "mm³";
+                                TextBlock_UnitType.Text = "mm³";
                                 break;
                         }
                         break;
                     #endregion
-                    #region Unitless
+                    #region Unit-less
+
                     case UnitType.Unitless:
                         multiplicationFactor = 1;
-                        //RoundingFactor = 3;
-                        textBlock_UnitType.Text = "";
+                        TextBlock_UnitType.Text = string.Empty;
                         break;
 
                     case UnitType.UnitlessInteger:
-                        numericInput_NearValue.IsInteger = true;
-                        numericInput_FarValue.IsInteger = true;
+                        NumericInput_NearValue.IsInteger = true;
+                        NumericInput_FarValue.IsInteger = true;
                         multiplicationFactor = 1;
-                        //RoundingFactor = 3;
-                        textBlock_UnitType.Text = "";
+                        TextBlock_UnitType.Text = string.Empty;
                         break;
                         #endregion
                 }
@@ -456,44 +459,44 @@ namespace Finite_Element_Analysis_Explorer
 
         internal void SetNull()
         {
-            numericInput_NearValue.SetNull();
-            numericInput_FarValue.SetNull();
+            NumericInput_NearValue.SetNull();
+            NumericInput_FarValue.SetNull();
         }
 
         internal void SetValue(decimal newNearValue, decimal newFarValue)
         {
-            // todo: Multiply by unit type factor then pass
+            // TODO: Multiply by unit type factor then pass
             nearValue = newNearValue;
             farValue = newFarValue;
 
             if (multiplicationFactor == 1)
             {
-                numericInput_NearValue.SetValue(newNearValue);
+                NumericInput_NearValue.SetValue(newNearValue);
             }
             else
             {
-                numericInput_NearValue.SetValue(newNearValue * multiplicationFactor);
+                NumericInput_NearValue.SetValue(newNearValue * multiplicationFactor);
             }
 
             if (multiplicationFactor == 1)
             {
-                numericInput_FarValue.SetValue(newFarValue);
+                NumericInput_FarValue.SetValue(newFarValue);
             }
             else
             {
-                numericInput_FarValue.SetValue(newFarValue * multiplicationFactor);
+                NumericInput_FarValue.SetValue(newFarValue * multiplicationFactor);
             }
         }
 
         private void NumericInput_NearValue_ValueChanged(object sender, EventArgs e)
         {
-            nearValue = numericInput_NearValue.NewValue;
+            nearValue = NumericInput_NearValue.NewValue;
             NearValueChanged?.Invoke(this, new EventArgs());
         }
 
         private void NumericInput_FarValue_ValueChanged(object sender, EventArgs e)
         {
-            farValue = numericInput_FarValue.NewValue;
+            farValue = NumericInput_FarValue.NewValue;
             FarValueChanged?.Invoke(this, new EventArgs());
         }
 
@@ -820,7 +823,6 @@ namespace Finite_Element_Analysis_Explorer
                     nextMenuFlyoutVolume.Items.Add(itemCubicInch);
                     nextMenuFlyoutVolume.ShowAt((FrameworkElement)sender);
                     break;
-
             }
         }
 
@@ -985,7 +987,7 @@ namespace Finite_Element_Analysis_Explorer
             Model.UpdatePanelPage();
         }
 
-        #endregion 
+        #endregion
         #region Mass
 
         private void ItemTon_Click(object sender, RoutedEventArgs e)
@@ -1190,22 +1192,21 @@ namespace Finite_Element_Analysis_Explorer
 
         private void NumericInput_FarValue_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
-            //Debug.WriteLine("ScrollWheel");
         }
 
         private void TextBlock_Axis_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_Axis);
-                textBox_Input.SetTheValue(NearValue);
+                flyOut_Shared.ShowAt(TextBlock_Axis);
+                TextBox_Input.SetTheValue(NearValue);
             }
         }
 
         private void TextBox_Input_ValueChanged(object sender, EventArgs e)
         {
-            nearValue = textBox_Input.NewValue;
-            farValue = textBox_Input.NewValue;
+            nearValue = TextBox_Input.NewValue;
+            farValue = TextBox_Input.NewValue;
             flyOut_Shared.Hide();
             ValueChanged?.Invoke(this, new EventArgs());
         }

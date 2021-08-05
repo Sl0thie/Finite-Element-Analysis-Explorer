@@ -121,14 +121,14 @@
                 </Grid>
 
 
-                <local:LogSlider x:Name="logSlider_MomentFactor" Checked="logSlider_MomentFactor_Checked" Unchecked="logSlider_MomentFactor_Unchecked" ValueChanged="logSlider_MomentFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ShearFactor" Checked="logSlider_ShearFactor_Checked"  ValueChanged="logSlider_ShearFactor_ValueChanged" Unchecked="logSlider_ShearFactor_Unchecked"  />
+                <local:LogSlider x:Name="LogSlider_MomentFactor" Checked="LogSlider_MomentFactor_Checked" Unchecked="LogSlider_MomentFactor_Unchecked" ValueChanged="LogSlider_MomentFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ShearFactor" Checked="LogSlider_ShearFactor_Checked"  ValueChanged="LogSlider_ShearFactor_ValueChanged" Unchecked="LogSlider_ShearFactor_Unchecked"  />
 
-                <local:LogSlider x:Name="logSlider_LinearFactor" Checked="logSlider_LinearFactor_Checked" Unchecked="logSlider_LinearFactor_Unchecked" ValueChanged="logSlider_LinearFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ForcesFactor" Checked="logSlider_ForcesFactor_Checked" Unchecked="logSlider_ForcesFactor_Unchecked" ValueChanged="logSlider_ForcesFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ReactionsFactor" Checked="logSlider_ReactionsFactor_Checked" Unchecked="logSlider_ReactionsFactor_Unchecked" ValueChanged="logSlider_ReactionsFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_LinearFactor" Checked="LogSlider_LinearFactor_Checked" Unchecked="LogSlider_LinearFactor_Unchecked" ValueChanged="LogSlider_LinearFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ForcesFactor" Checked="LogSlider_ForcesFactor_Checked" Unchecked="LogSlider_ForcesFactor_Unchecked" ValueChanged="LogSlider_ForcesFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ReactionsFactor" Checked="LogSlider_ReactionsFactor_Checked" Unchecked="LogSlider_ReactionsFactor_Unchecked" ValueChanged="LogSlider_ReactionsFactor_ValueChanged" />
 
-                <local:LogSlider x:Name="logSlider_DisplacementFactor" ValueChanged="logSlider_DisplacementFactor_ValueChanged" Margin="-1,0,1,0"  />
+                <local:LogSlider x:Name="LogSlider_DisplacementFactor" ValueChanged="LogSlider_DisplacementFactor_ValueChanged" Margin="-1,0,1,0"  />
                 
                 
 
@@ -176,17 +176,17 @@
                     <FontIcon  x:Name="fontIcon_TitleIconequilibrium" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
                 </Grid>
 
-                <local:SingleValue x:Name="singleValue_XForce" />
-                <local:SingleValue x:Name="singleValue_XReaction" />
-                <local:SingleValue x:Name="singleValue_XTotal" Margin="0,6,0,20" />
+                <local:SingleValue x:Name="SingleValue_XForce" />
+                <local:SingleValue x:Name="SingleValue_XReaction" />
+                <local:SingleValue x:Name="SingleValue_XTotal" Margin="0,6,0,20" />
 
-                <local:SingleValue x:Name="singleValue_YForce" />
-                <local:SingleValue x:Name="singleValue_YReaction" />
-                <local:SingleValue x:Name="singleValue_YTotal" Margin="0,6,0,20" />
+                <local:SingleValue x:Name="SingleValue_YForce" />
+                <local:SingleValue x:Name="SingleValue_YReaction" />
+                <local:SingleValue x:Name="SingleValue_YTotal" Margin="0,6,0,20" />
 
-                <local:SingleValue x:Name="singleValue_MForce" />
-                <local:SingleValue x:Name="singleValue_MReaction" />
-                <local:SingleValue x:Name="singleValue_MTotal" Margin="0,6,0,20" />
+                <local:SingleValue x:Name="SingleValue_MForce" />
+                <local:SingleValue x:Name="SingleValue_MReaction" />
+                <local:SingleValue x:Name="SingleValue_MTotal" Margin="0,6,0,20" />
 
                 <Grid Margin="0,10,0,-10">
                     <Grid.ColumnDefinitions>
@@ -199,11 +199,11 @@
                     <FontIcon  x:Name="fontIcon_TitleCost" Grid.Column="2" Grid.Row="0" Width="32" Height="32" Glyph="" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="#FF404040"/>
                 </Grid>
 
-                <local:SingleValue x:Name="singleValue_MaterialCost" />
-                <local:SingleValue x:Name="singleValue_NodeCost" />
-                <local:SingleValue x:Name="singleValue_TransportCost" />
-                <local:SingleValue x:Name="singleValue_ElevationCost" />
-                <local:SingleValue x:Name="singleValue_TotalCost" />
+                <local:SingleValue x:Name="SingleValue_MaterialCost" />
+                <local:SingleValue x:Name="SingleValue_NodeCost" />
+                <local:SingleValue x:Name="SingleValue_TransportCost" />
+                <local:SingleValue x:Name="SingleValue_ElevationCost" />
+                <local:SingleValue x:Name="SingleValue_TotalCost" />
                 
             </StackPanel>
         </ScrollViewer>

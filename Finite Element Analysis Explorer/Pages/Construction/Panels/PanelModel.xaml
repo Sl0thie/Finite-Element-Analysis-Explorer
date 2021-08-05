@@ -23,7 +23,7 @@
                 </Style>
             </Flyout.FlyoutPresenterStyle>
             <StackPanel>
-                <local:SectionSelection x:Name="sectionSelection_Current"/>
+                <local:SectionSelection x:Name="SectionSelection_Current"/>
             </StackPanel>
         </Flyout>
     </Page.Resources>
@@ -130,13 +130,13 @@
 
 
 
-                <local:SingleValue x:Name="single_TotalMembers" />
-                <local:SingleValue x:Name="single_TotalNodes"/>
-                <local:SingleValue x:Name="single_TotalDOF"/>
+                <local:SingleValue x:Name="Single_TotalMembers"/>
+                <local:SingleValue x:Name="Single_TotalNodes"/>
+                <local:SingleValue x:Name="Single_TotalDOF"/>
 
 
-                <local:SingleValue x:Name="single_NoOfSegments" Margin="0,40,0,0" ValueChanged="single_NoOfSegments_ValueChanged"/>
-                <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="checkBox_ResetExisting" Margin="6,3,0,3" Content="Reset Existing Members" FontSize="12" Foreground="Gray" Padding="8,7,0,0" Style="{StaticResource CheckBoxStyleDark}" Checked="CheckBox_ResetExisting_Checked" Unchecked="CheckBox_ResetExisting_Unchecked" IsChecked="True"  />
+                <local:SingleValue x:Name="Single_NoOfSegments" Margin="0,40,0,0" ValueChanged="Single_NoOfSegments_ValueChanged"/>
+                <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="CheckBox_ResetExisting" Margin="6,3,0,3" Content="Reset Existing Members" FontSize="12" Foreground="Gray" Padding="8,7,0,0" Style="{StaticResource CheckBoxStyleDark}" Checked="CheckBox_ResetExisting_Checked" Unchecked="CheckBox_ResetExisting_Unchecked" IsChecked="True"  />
 
 
 
@@ -151,14 +151,14 @@
                     <FontIcon  x:Name="fontIcon_TitleFactors" Grid.Column="2" Grid.Row="0" Width="36" Height="36" Glyph="" FontFamily="Segoe UI Symbol" FontSize="28" Foreground="#FF606060"/>
                 </Grid>
                 
-                <local:LogSlider x:Name="logSlider_MomentFactor" Checked="logSlider_MomentFactor_Checked" Unchecked="logSlider_MomentFactor_Unchecked" ValueChanged="logSlider_MomentFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ShearFactor" Checked="logSlider_ShearFactor_Checked"  ValueChanged="logSlider_ShearFactor_ValueChanged" Unchecked="logSlider_ShearFactor_Unchecked"  />
+                <local:LogSlider x:Name="LogSlider_MomentFactor" Checked="LogSlider_MomentFactor_Checked" Unchecked="LogSlider_MomentFactor_Unchecked" ValueChanged="LogSlider_MomentFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ShearFactor" Checked="LogSlider_ShearFactor_Checked"  ValueChanged="LogSlider_ShearFactor_ValueChanged" Unchecked="LogSlider_ShearFactor_Unchecked"  />
 
-                <local:LogSlider x:Name="logSlider_LinearFactor" Checked="logSlider_LinearFactor_Checked" Unchecked="logSlider_LinearFactor_Unchecked" ValueChanged="logSlider_LinearFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ForcesFactor" Checked="logSlider_ForcesFactor_Checked" Unchecked="logSlider_ForcesFactor_Unchecked" ValueChanged="logSlider_ForcesFactor_ValueChanged" />
-                <local:LogSlider x:Name="logSlider_ReactionsFactor" Checked="logSlider_ReactionsFactor_Checked" Unchecked="logSlider_ReactionsFactor_Unchecked" ValueChanged="logSlider_ReactionsFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_LinearFactor" Checked="LogSlider_LinearFactor_Checked" Unchecked="LogSlider_LinearFactor_Unchecked" ValueChanged="LogSlider_LinearFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ForcesFactor" Checked="LogSlider_ForcesFactor_Checked" Unchecked="LogSlider_ForcesFactor_Unchecked" ValueChanged="LogSlider_ForcesFactor_ValueChanged" />
+                <local:LogSlider x:Name="LogSlider_ReactionsFactor" Checked="LogSlider_ReactionsFactor_Checked" Unchecked="LogSlider_ReactionsFactor_Unchecked" ValueChanged="LogSlider_ReactionsFactor_ValueChanged" />
 
-                <local:LogSlider x:Name="logSlider_DisplacementFactor" ValueChanged="logSlider_DisplacementFactor_ValueChanged" Margin="-1,0,1,0"  />
+                <local:LogSlider x:Name="LogSlider_DisplacementFactor" ValueChanged="LogSlider_DisplacementFactor_ValueChanged" Margin="-1,0,1,0"  />
                 
 
 

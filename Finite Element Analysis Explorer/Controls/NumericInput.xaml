@@ -28,7 +28,7 @@
                 </Style>
             </Flyout.FlyoutPresenterStyle>
             <StackPanel>
-                <local:TextInput x:Name="textBox_Input" ValueChanged="textBox_Input_ValueChanged"/>
+                <local:TextInput x:Name="TextBox_Input" ValueChanged="TextBox_Input_ValueChanged"/>
             </StackPanel>
         </Flyout>
     </Control.Resources>

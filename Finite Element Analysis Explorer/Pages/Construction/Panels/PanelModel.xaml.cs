@@ -28,55 +28,55 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            single_TotalMembers.Title = "Members";
-            single_TotalMembers.UnitType = UnitType.UnitlessInteger;
-            single_TotalMembers.DisplayOnly = true;
-            single_TotalMembers.SetTheValue(Model.Members.Count);
+            Single_TotalMembers.Title = "Members";
+            Single_TotalMembers.UnitType = UnitType.UnitlessInteger;
+            Single_TotalMembers.DisplayOnly = true;
+            Single_TotalMembers.SetTheValue(Model.Members.Count);
 
-            single_TotalNodes.Title = "Nodes";
-            single_TotalNodes.UnitType = UnitType.UnitlessInteger;
-            single_TotalNodes.DisplayOnly = true;
-            single_TotalNodes.SetTheValue(Model.Nodes.Count);
+            Single_TotalNodes.Title = "Nodes";
+            Single_TotalNodes.UnitType = UnitType.UnitlessInteger;
+            Single_TotalNodes.DisplayOnly = true;
+            Single_TotalNodes.SetTheValue(Model.Nodes.Count);
 
-            single_TotalDOF.Title = "Degrees of Freedom";
-            single_TotalDOF.UnitType = UnitType.UnitlessInteger;
-            single_TotalDOF.DisplayOnly = true;
-            single_TotalDOF.SetTheValue(Model.Nodes.Count * 3);
+            Single_TotalDOF.Title = "Degrees of Freedom";
+            Single_TotalDOF.UnitType = UnitType.UnitlessInteger;
+            Single_TotalDOF.DisplayOnly = true;
+            Single_TotalDOF.SetTheValue(Model.Nodes.Count * 3);
 
-            single_NoOfSegments.Title = "Default Segments";
-            single_NoOfSegments.UnitType = UnitType.UnitlessInteger;
-            single_NoOfSegments.DisplayOnly = false;
-            single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
+            Single_NoOfSegments.Title = "Default Segments";
+            Single_NoOfSegments.UnitType = UnitType.UnitlessInteger;
+            Single_NoOfSegments.DisplayOnly = false;
+            Single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
 
-            logSlider_ForcesFactor.IsChecked = Options.ShowForce;
-            logSlider_LinearFactor.IsChecked = Options.ShowLinear;
-            logSlider_MomentFactor.IsChecked = Options.ShowMoment;
-            logSlider_ReactionsFactor.IsChecked = Options.ShowReactions;
-            logSlider_ShearFactor.IsChecked = Options.ShowShear;
+            LogSlider_ForcesFactor.IsChecked = Options.ShowForce;
+            LogSlider_LinearFactor.IsChecked = Options.ShowLinear;
+            LogSlider_MomentFactor.IsChecked = Options.ShowMoment;
+            LogSlider_ReactionsFactor.IsChecked = Options.ShowReactions;
+            LogSlider_ShearFactor.IsChecked = Options.ShowShear;
 
-            logSlider_DisplacementFactor.Title = "Displacement Factor";
-            logSlider_ForcesFactor.Title = "Force Factor";
-            logSlider_LinearFactor.Title = "Linear Factor";
-            logSlider_MomentFactor.Title = "Moment Factor";
-            logSlider_ReactionsFactor.Title = "Reaction Factor";
-            logSlider_ShearFactor.Title = "Shear Factor";
+            LogSlider_DisplacementFactor.Title = "Displacement Factor";
+            LogSlider_ForcesFactor.Title = "Force Factor";
+            LogSlider_LinearFactor.Title = "Linear Factor";
+            LogSlider_MomentFactor.Title = "Moment Factor";
+            LogSlider_ReactionsFactor.Title = "Reaction Factor";
+            LogSlider_ShearFactor.Title = "Shear Factor";
 
-            logSlider_DisplacementFactor.SetNewValue(Options.DisplacementFactor);
-            logSlider_ForcesFactor.SetNewValue(Options.ForcesFactor);
-            logSlider_LinearFactor.SetNewValue(Options.LinearFactor);
-            logSlider_MomentFactor.SetNewValue(Options.MomentFactor);
-            logSlider_ReactionsFactor.SetNewValue(Options.ReactionsFactor);
-            logSlider_ShearFactor.SetNewValue(Options.ShearFactor);
+            LogSlider_DisplacementFactor.SetNewValue(Options.DisplacementFactor);
+            LogSlider_ForcesFactor.SetNewValue(Options.ForcesFactor);
+            LogSlider_LinearFactor.SetNewValue(Options.LinearFactor);
+            LogSlider_MomentFactor.SetNewValue(Options.MomentFactor);
+            LogSlider_ReactionsFactor.SetNewValue(Options.ReactionsFactor);
+            LogSlider_ShearFactor.SetNewValue(Options.ShearFactor);
 
-            checkBox_ResetExisting.IsChecked = Options.ResetExistingMembers;
+            CheckBox_ResetExisting.IsChecked = Options.ResetExistingMembers;
         }
 
         private void Single_NoOfSegments_ValueChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("No of Segments ValueChanged");
-            Options.DefaultNumberOfSegments = (int)single_NoOfSegments.NewValue;
-            single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
-            if (checkBox_ResetExisting.IsChecked == true)
+            Options.DefaultNumberOfSegments = (int)Single_NoOfSegments.NewValue;
+            Single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
+            if (CheckBox_ResetExisting.IsChecked == true)
             {
                 foreach (var Item in Model.Members)
                 {
@@ -104,8 +104,6 @@ namespace Finite_Element_Analysis_Explorer
             Construction.Current.ShowHelpAsync();
 
             //dummy comment.
-
-          
         }
 
         #endregion
@@ -258,33 +256,33 @@ namespace Finite_Element_Analysis_Explorer
 
         private void LogSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.MomentFactor = logSlider_MomentFactor.TheValue;
+            Options.MomentFactor = LogSlider_MomentFactor.TheValue;
         }
 
         private void LogSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ShearFactor = logSlider_ShearFactor.TheValue;
+            Options.ShearFactor = LogSlider_ShearFactor.TheValue;
         }
 
         private void LogSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.LinearFactor = logSlider_LinearFactor.TheValue;
+            Options.LinearFactor = LogSlider_LinearFactor.TheValue;
         }
 
         private void LogSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ReactionsFactor = logSlider_ReactionsFactor.TheValue;
+            Options.ReactionsFactor = LogSlider_ReactionsFactor.TheValue;
         }
 
         private void LogSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ForcesFactor = logSlider_ForcesFactor.TheValue;
+            Options.ForcesFactor = LogSlider_ForcesFactor.TheValue;
         }
 
         private void LogSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine("logSlider_DisplacementFactor_ValueChanged");
-            Options.DisplacementFactor = logSlider_DisplacementFactor.TheValue;
+            Debug.WriteLine("LogSlider_DisplacementFactor_ValueChanged");
+            Options.DisplacementFactor = LogSlider_DisplacementFactor.TheValue;
         }
 
         private void Button_Help_Click(object sender, RoutedEventArgs e)
