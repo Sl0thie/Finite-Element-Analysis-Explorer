@@ -1,11 +1,12 @@
 ﻿{
   "dependencies": {
-    "MathNet.Numerics": "3.17.0",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Win2D.uwp": "1.20.0"
+    "MathNet.Numerics": "4.15.0",
+    "Microsoft.CodeAnalysis.CSharp": "3.10.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.12",
+    "Win2D.uwp": "1.26.0"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.19041": {}
   },
   "runtimes": {
     "win10-arm": {},

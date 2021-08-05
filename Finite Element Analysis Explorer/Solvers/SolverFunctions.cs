@@ -10,10 +10,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Windows.UI;
 
-
-
-
-
 namespace Finite_Element_Analysis_Explorer
 {
     internal static class SolverFunctions
