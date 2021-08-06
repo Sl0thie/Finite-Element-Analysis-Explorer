@@ -22,16 +22,16 @@ namespace Finite_Element_Analysis_Explorer
         {
         }
 
-        internal Node(int _index, Point _position, Codes _codes, Constraints _constraints, NodalLoad newLoad, bool _isPrimary)
+        internal Node(int index, Point position, Codes codes, Constraints constraints, NodalLoad newLoad, bool isPrimary)
         {
-            index = _index;
-            position = _position;
-            positionDisplaced = position;
+            this.index = index;
+            this.position = position;
+            positionDisplaced = this.position;
             location = new Vector2((float)positionDisplaced.X, (float)positionDisplaced.Y);
-            codes = _codes;
-            Constraints = _constraints;
+            this.codes = codes;
+            Constraints = constraints;
             Load = newLoad;
-            isPrimary = _isPrimary;
+            this.isPrimary = isPrimary;
         }
 
         #endregion
@@ -140,7 +140,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         /// <summary>
-        /// Should be zero?
+        /// Should be zero?.
         /// </summary>
         private NodalLoad jointLoad;
 

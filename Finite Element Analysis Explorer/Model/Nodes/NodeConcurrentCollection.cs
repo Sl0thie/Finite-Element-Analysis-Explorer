@@ -10,7 +10,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         /// <summary>
-        /// Dictionaries
+        /// Dictionaries.
         /// </summary>
         internal ConcurrentDictionary<int, Node> NodesWithNodalLoads = new ConcurrentDictionary<int, Node>();
         internal ConcurrentDictionary<int, Node> NodesWithConstraints = new ConcurrentDictionary<int, Node>();
@@ -24,11 +24,11 @@ namespace Finite_Element_Analysis_Explorer
             NodesWithReactions.Clear();
         }
 
-        internal Node GetFromPosition(decimal X, decimal Y)
+        internal Node GetFromPosition(decimal x, decimal y)
         {
             foreach (var item in this)
             {
-                if ((item.Value.Position.X == X) && (item.Value.Position.Y == Y))
+                if ((item.Value.Position.X == x) && (item.Value.Position.Y == y))
                 {
                     return (Node)item.Value;
                 }
@@ -50,29 +50,29 @@ namespace Finite_Element_Analysis_Explorer
             return null;
         }
 
-        internal void RemoveNode(Node NodeToRemove)
+        internal void RemoveNode(Node nodeToRemove)
         {
-            if (this.ContainsKey(new Tuple<decimal, decimal>(NodeToRemove.Position.X, NodeToRemove.Position.Y)))
+            if (this.ContainsKey(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y)))
             {
-                if (this.NodesWithConstraints.ContainsKey(NodeToRemove.Index))
+                if (this.NodesWithConstraints.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithConstraints.TryRemove(NodeToRemove.Index, out tempNode);
+                    this.NodesWithConstraints.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                if (this.NodesWithNodalLoads.ContainsKey(NodeToRemove.Index))
+                if (this.NodesWithNodalLoads.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithNodalLoads.TryRemove(NodeToRemove.Index, out tempNode);
+                    this.NodesWithNodalLoads.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                if (this.NodesWithReactions.ContainsKey(NodeToRemove.Index))
+                if (this.NodesWithReactions.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithReactions.TryRemove(NodeToRemove.Index, out tempNode);
+                    this.NodesWithReactions.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                this.TryRemove(new Tuple<decimal, decimal>(NodeToRemove.Position.X, NodeToRemove.Position.Y), out NodeToRemove);
+                this.TryRemove(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y), out nodeToRemove);
             }
         }
     }

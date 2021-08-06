@@ -155,7 +155,6 @@ namespace Finite_Element_Analysis_Explorer
             }
 
             return true;
-            ;
         }
 
         public static bool operator !=(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
@@ -170,7 +169,6 @@ namespace Finite_Element_Analysis_Explorer
 
         public static DecimalMatrix operator ++(DecimalMatrix pMatrix)
         {
-
             for (int i = 0; i < pMatrix.RowCount; i++)
             {
                 for (int j = 0; j < pMatrix.ColumnCount; j++)
@@ -375,9 +373,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        internal void WriteToDebug(string TitleText)
+        internal void WriteToDebug(string titleText)
         {
-            Debug.WriteLine(TitleText + "Matrix Content");
+            Debug.WriteLine(titleText + "Matrix Content");
             for (int i = 0; i < this.RowCount; i++)
             {
                 for (int j = 0; j < this.ColumnCount; j++)

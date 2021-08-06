@@ -17,35 +17,21 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal static class FileManager
     {
-        // static FileManager()
-        // {
-        //    //DefaultFile = localFolder.CreateFileAsync("Untitled.Struct", CreationCollisionOption.ReplaceExisting);
-
-        // //// Create sample file; replace if exists.
-        //    //Windows.Storage.StorageFolder storageFolder =
-        //    //    Windows.Storage.ApplicationData.Current.LocalFolder;
-        //    //Windows.Storage.StorageFile sampleFile =
-        //    //    await storageFolder.CreateFileAsync("sample.txt",
-        //    //        Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
-        // }
         #region Properties
 
-        internal static ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-        internal static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        internal static ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
+        internal static StorageFolder LocalFolder = ApplicationData.Current.LocalFolder;
 
         // Files
-        private static StorageFile WorkingFile;
-        private static StorageFile MaterialsFile;
-        private static StorageFile SectionsFile;
-        private static StorageFile NextFile;
+        private static StorageFile workingFile;
+        private static StorageFile materialsFile;
+        private static StorageFile sectionsFile;
+        private static StorageFile nextFile;
 
-        // private static StorageFile DefaultFile;
-
-        private static string WorkingFilePath = string.Empty;
-        private static string WorkingFileDisplayName = string.Empty;
-        private static string WorkingFileMruToken = string.Empty;
-        private static string WorkingFileListToken = string.Empty;
+        private static string workingFilePath = string.Empty;
+        private static string workingFileDisplayName = string.Empty;
+        private static string workingFileMruToken = string.Empty;
+        private static string workingFileListToken = string.Empty;
 
         internal static int StatsLoadingTotalItems = 0;
         internal static int StatsLoadingTotalMembers = 0;
@@ -61,17 +47,6 @@ namespace Finite_Element_Analysis_Explorer
         internal static long StatsTimeTotalSolving = 0;
         internal static long StatsTotalSolving = 0;
 
-        // private static string fileName = "";
-        // internal static string FileName
-        // {
-        //    get { return fileName; }
-        // }
-
-        // private static string filePath = "";
-        // internal static string FilePath
-        // {
-        //    get { return filePath; }
-        // }
         private static string fileTitle;
 
         public static string FileTitle
@@ -85,11 +60,10 @@ namespace Finite_Element_Analysis_Explorer
 
         public static async void NewFile()
         {
-
             if (await PickFileToSave())
             {
                 Model.Reset();
-                if (NextFile is null)
+                if (nextFile is null)
                 {
                     // Open File Picker Failed.
                     return;
@@ -101,48 +75,26 @@ namespace Finite_Element_Analysis_Explorer
                     Camera.CenterOn(new Vector2(0, 0));
 
                     // New File was picked.
-                    WorkingFile = NextFile;
+                    workingFile = nextFile;
                     var mru = StorageApplicationPermissions.MostRecentlyUsedList;
-                    string mruToken = mru.Add(WorkingFile, WorkingFile.Path);
-                    var listToken = StorageApplicationPermissions.FutureAccessList.Add(WorkingFile);
+                    string mruToken = mru.Add(workingFile, workingFile.Path);
+                    var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
-                    WorkingFileDisplayName = WorkingFile.DisplayName;
-                    WorkingFilePath = WorkingFile.Path;
-                    WorkingFileMruToken = mruToken;
-                    WorkingFileListToken = listToken;
+                    workingFileDisplayName = workingFile.DisplayName;
+                    workingFilePath = workingFile.Path;
+                    workingFileMruToken = mruToken;
+                    workingFileListToken = listToken;
 
-                    localSettings.Values["WorkingFileDisplayName"] = WorkingFileDisplayName;
-                    localSettings.Values["WorkingFilePath"] = WorkingFilePath;
-                    localSettings.Values["WorkingFileMruToken"] = WorkingFileMruToken;
-                    localSettings.Values["WorkingFileListToken"] = WorkingFileListToken;
+                    LocalSettings.Values["WorkingFileDisplayName"] = workingFileDisplayName;
+                    LocalSettings.Values["WorkingFilePath"] = workingFilePath;
+                    LocalSettings.Values["WorkingFileMruToken"] = workingFileMruToken;
+                    LocalSettings.Values["WorkingFileListToken"] = workingFileListToken;
 
-                    // Debug.WriteLine("Open File Picker : " + WorkingFile.DisplayName + " " + WorkingFile.Path + " " + WorkingFileMruToken);
                     await SaveFile();
                     await LoadFile();
                     return;
                 }
             }
-
-            ///Old Version.
-            ////Reset the Model first.
-            // Model.Reset();
-            ////fileName = "";
-            ////filePath = "";
-
-            // DefaultFile = await localFolder.CreateFileAsync("Untitled.Struct", CreationCollisionOption.ReplaceExisting);
-            // WorkingFile = DefaultFile;
-
-            // Camera.Zoom = 1;
-            // Camera.CenterOn(new Vector2(0, 0));
-
-            // await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-            //       () =>
-            //       {
-            //           fileTitle = "Untitled";
-            //           Frame rootFrame = Window.Current.Content as Frame;
-            //           rootFrame.Navigate(typeof(Construction));
-            //       }
-            //       );
         }
 
         internal static async Task<bool> LoadFile()
@@ -152,25 +104,25 @@ namespace Finite_Element_Analysis_Explorer
 
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
-                   () =>
+                () =>
                    {
                        fileTitle = "Untitled";
                        Frame rootFrame = Window.Current.Content as Frame;
                        rootFrame.Navigate(typeof(FileLoading));
                    });
 
-            if (WorkingFile is object)
+            if (workingFile is object)
             {
                 try
                 {
-                    if (StorageApplicationPermissions.MostRecentlyUsedList.ContainsItem(WorkingFileMruToken))
+                    if (StorageApplicationPermissions.MostRecentlyUsedList.ContainsItem(workingFileMruToken))
                     {
                     }
                     else
                     {
                     }
 
-                    if (StorageApplicationPermissions.FutureAccessList.ContainsItem(WorkingFileListToken))
+                    if (StorageApplicationPermissions.FutureAccessList.ContainsItem(workingFileListToken))
                     {
                         // Debug.WriteLine("Found FAL Token");
                     }
@@ -179,7 +131,7 @@ namespace Finite_Element_Analysis_Explorer
                         // Debug.WriteLine("FAL Token Not Found");
                     }
 
-                    if (StorageApplicationPermissions.FutureAccessList.CheckAccess(WorkingFile))
+                    if (StorageApplicationPermissions.FutureAccessList.CheckAccess(workingFile))
                     {
                         // Debug.WriteLine("Have File Access");
                     }
@@ -188,20 +140,20 @@ namespace Finite_Element_Analysis_Explorer
                         // Debug.WriteLine("No File Access");
                     }
 
-                    WorkingFileDisplayName = WorkingFile.DisplayName;
-                    WorkingFilePath = WorkingFile.Path;
-                    fileTitle = WorkingFile.DisplayName;
-                    localSettings.Values["WorkingFileDisplayName"] = WorkingFileDisplayName;
-                    localSettings.Values["WorkingFilePath"] = WorkingFilePath;
+                    workingFileDisplayName = workingFile.DisplayName;
+                    workingFilePath = workingFile.Path;
+                    fileTitle = workingFile.DisplayName;
+                    LocalSettings.Values["WorkingFileDisplayName"] = workingFileDisplayName;
+                    LocalSettings.Values["WorkingFilePath"] = workingFilePath;
 
-                    IList<String> lines = new List<string>();
-                    lines = await FileIO.ReadLinesAsync(WorkingFile);
+                    IList<string> lines = new List<string>();
+                    lines = await FileIO.ReadLinesAsync(workingFile);
 
-                    Debug.WriteLine("WorkingFileDisplayName " + WorkingFilePath);
-                    Debug.WriteLine("WorkingFilePath " + WorkingFilePath);
-                    Debug.WriteLine("WorkingFile.FileType " + WorkingFile.FileType);
+                    Debug.WriteLine("WorkingFileDisplayName " + workingFilePath);
+                    Debug.WriteLine("WorkingFilePath " + workingFilePath);
+                    Debug.WriteLine("WorkingFile.FileType " + workingFile.FileType);
 
-                    if (WorkingFile.FileType == ".struct")
+                    if (workingFile.FileType == ".struct")
                     {
                         foreach (string line in lines)
                         {
@@ -255,11 +207,11 @@ namespace Finite_Element_Analysis_Explorer
                                             new Tuple<decimal, decimal>(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3])),
                                             new Node(
                                                 Convert.ToInt32(words[1]),
-                                            new Point(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3]), 0),
-                                            new Codes(-1, -1, -1),
-                                            new Constraints((ConstraintType)Convert.ToInt32(words[4])),
-                                            new NodalLoad(Convert.ToDecimal(words[5]), Convert.ToDecimal(words[6]), Convert.ToDecimal(words[7])),
-                                            true));
+                                                new Point(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3]), 0),
+                                                new Codes(-1, -1, -1),
+                                                new Constraints((ConstraintType)Convert.ToInt32(words[4])),
+                                                new NodalLoad(Convert.ToDecimal(words[5]), Convert.ToDecimal(words[6]), Convert.ToDecimal(words[7])),
+                                                true));
                                     }
                                     catch (Exception ex)
                                     {
@@ -272,28 +224,19 @@ namespace Finite_Element_Analysis_Explorer
 
                                     try
                                     {
-
                                         Member addMember = new Member(
                                             Convert.ToInt32(words[1]),
-                                           Model.Nodes.GetFromIndex(Convert.ToInt32(words[2])),
-                                           Model.Nodes.GetFromIndex(Convert.ToInt32(words[3])),
-                                           Model.Sections[Convert.ToString(words[4])],
-                                           Convert.ToInt32(words[5]),
-                                           Convert.ToDecimal(words[6]),
-                                           Convert.ToDecimal(words[7]));
+                                            Model.Nodes.GetFromIndex(Convert.ToInt32(words[2])),
+                                            Model.Nodes.GetFromIndex(Convert.ToInt32(words[3])),
+                                            Model.Sections[Convert.ToString(words[4])],
+                                            Convert.ToInt32(words[5]),
+                                            Convert.ToDecimal(words[6]),
+                                            Convert.ToDecimal(words[7]));
                                     }
                                     catch
                                     {
                                         Debug.WriteLine("ERROR: addMember failed.");
                                     }
-
-                                    // Model.Members.AddNewMemberToIndex(Convert.ToInt32(words[1]),
-                                    //       Model.Nodes.GetFromIndex(Convert.ToInt32(words[2])),
-                                    //       Model.Nodes.GetFromIndex(Convert.ToInt32(words[3])),
-                                    //       Model.Sections[Convert.ToString(words[4])],
-                                    //       Convert.ToInt32(words[5]),
-                                    //       Convert.ToDecimal(words[6]),
-                                    //       Convert.ToDecimal(words[7]));
 
                                     try
                                     {
@@ -364,11 +307,11 @@ namespace Finite_Element_Analysis_Explorer
                                             new Tuple<decimal, decimal>(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3])),
                                             new Node(
                                                 Convert.ToInt32(words[1]),
-                                            new Point(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3]), 0),
-                                            new Codes(-1, -1, -1),
-                                            new Constraints((ConstraintType)Convert.ToInt32(words[4])),
-                                            new NodalLoad(Convert.ToDecimal(words[5]), Convert.ToDecimal(words[6]), Convert.ToDecimal(words[7])),
-                                            true));
+                                                new Point(Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3]), 0),
+                                                new Codes(-1, -1, -1),
+                                                new Constraints((ConstraintType)Convert.ToInt32(words[4])),
+                                                new NodalLoad(Convert.ToDecimal(words[5]), Convert.ToDecimal(words[6]), Convert.ToDecimal(words[7])),
+                                                true));
                                     }
                                     catch (Exception ex)
                                     {
@@ -381,15 +324,14 @@ namespace Finite_Element_Analysis_Explorer
 
                                     try
                                     {
-
                                         Member addMember = new Member(
                                             Convert.ToInt32(words[1]),
-                                           Model.Nodes.GetFromIndex(Convert.ToInt32(words[2])),
-                                           Model.Nodes.GetFromIndex(Convert.ToInt32(words[3])),
-                                           Model.Sections[Convert.ToString(words[4])],
-                                           Convert.ToInt32(words[5]),
-                                           Convert.ToDecimal(words[6]),
-                                           Convert.ToDecimal(words[7]));
+                                            Model.Nodes.GetFromIndex(Convert.ToInt32(words[2])),
+                                            Model.Nodes.GetFromIndex(Convert.ToInt32(words[3])),
+                                            Model.Sections[Convert.ToString(words[4])],
+                                            Convert.ToInt32(words[5]),
+                                            Convert.ToDecimal(words[6]),
+                                            Convert.ToDecimal(words[7]));
                                     }
                                     catch
                                     {
@@ -423,13 +365,13 @@ namespace Finite_Element_Analysis_Explorer
             }
 
             var appView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
-            appView.Title = WorkingFileDisplayName;
+            appView.Title = workingFileDisplayName;
 
             await Task.Delay(100);
 
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
-                   () =>
+                () =>
                    {
                        Frame rootFrame = Window.Current.Content as Frame;
                        rootFrame.Navigate(typeof(Construction));
@@ -442,9 +384,9 @@ namespace Finite_Element_Analysis_Explorer
         {
             try
             {
-                WorkingFileMruToken = (string)localSettings.Values["WorkingFileMruToken"];
+                workingFileMruToken = (string)LocalSettings.Values["WorkingFileMruToken"];
                 var mru = StorageApplicationPermissions.MostRecentlyUsedList;
-                WorkingFile = await mru.GetFileAsync(WorkingFileMruToken);
+                workingFile = await mru.GetFileAsync(workingFileMruToken);
                 await LoadFile();
             }
             catch (Exception ex)
@@ -465,116 +407,114 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static async Task<bool> SaveFile()
         {
-
-            if (WorkingFile != null)
+            if (workingFile != null)
             {
-
-                if (WorkingFile.FileType == ".struct")
+                if (workingFile.FileType == ".struct")
                 {
-                    IList<String> lines = new List<string>();
+                    IList<string> lines = new List<string>();
 
-                    string Info = "I|";
+                    string info = "I|";
 
-                    Info = Info + (Model.Members.Count + Model.Nodes.Count()).ToString() + "|";
-                    Info = Info + Model.Members.Count.ToString() + "|";
-                    Info = Info + Model.Nodes.Count.ToString() + "|";
-                    Info += "0|0|0|0|0|0|0|0|0|";
+                    info = info + (Model.Members.Count + Model.Nodes.Count()).ToString() + "|";
+                    info = info + Model.Members.Count.ToString() + "|";
+                    info = info + Model.Nodes.Count.ToString() + "|";
+                    info += "0|0|0|0|0|0|0|0|0|";
 
-                    Info = Info + Camera.Zoom + "|";
-                    Info = Info + Camera.Position.X + "|";
-                    Info = Info + Camera.Position.Y + "|";
-                    lines.Add(Info);
+                    info = info + Camera.Zoom + "|";
+                    info = info + Camera.Position.X + "|";
+                    info = info + Camera.Position.Y + "|";
+                    lines.Add(info);
 
-                    long Count = 0;
-                    foreach (var Item in Model.Nodes)
+                    long count = 0;
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.IsPrimary)
+                        if (node.Value.IsPrimary)
                         {
-                            string Line = "N|" + Item.Value.Index.ToString() + "|";
-                            Line = Line + Item.Value.Position.X.ToString() + "|";
-                            Line = Line + Item.Value.Position.Y.ToString() + "|";
-                            Line = Line + ((int)Item.Value.Constraints.ConstraintType).ToString() + "|";
-                            Line = Line + Item.Value.Load.X.ToString() + "|";
-                            Line = Line + Item.Value.Load.Y.ToString() + "|";
-                            Line += Item.Value.Load.M.ToString();
-                            lines.Add(Line);
-                            Count++;
+                            string line = "N|" + node.Value.Index.ToString() + "|";
+                            line = line + node.Value.Position.X.ToString() + "|";
+                            line = line + node.Value.Position.Y.ToString() + "|";
+                            line = line + ((int)node.Value.Constraints.ConstraintType).ToString() + "|";
+                            line = line + node.Value.Load.X.ToString() + "|";
+                            line = line + node.Value.Load.Y.ToString() + "|";
+                            line += node.Value.Load.M.ToString();
+                            lines.Add(line);
+                            count++;
                         }
                     }
 
-                    Count = 0;
-                    foreach (var Item in Model.Members)
+                    count = 0;
+                    foreach (var member in Model.Members)
                     {
-                        string Line = "M|" + Item.Value.Index + "|";
-                        Line = Line + Item.Value.NodeNear.Index.ToString() + "|";
-                        Line = Line + Item.Value.NodeFar.Index.ToString() + "|";
-                        Line = Line + Item.Value.Section.Name.ToString() + "|";
-                        Line = Line + Item.Value.TotalSegments.ToString() + "|";
-                        Line = Line + Item.Value.LDLNear.ToString() + "|";
-                        Line += Item.Value.LDLFar.ToString();
-                        lines.Add(Line);
-                        Count++;
+                        string line = "M|" + member.Value.Index + "|";
+                        line = line + member.Value.NodeNear.Index.ToString() + "|";
+                        line = line + member.Value.NodeFar.Index.ToString() + "|";
+                        line = line + member.Value.Section.Name.ToString() + "|";
+                        line = line + member.Value.TotalSegments.ToString() + "|";
+                        line = line + member.Value.LDLNear.ToString() + "|";
+                        line += member.Value.LDLFar.ToString();
+                        lines.Add(line);
+                        count++;
                     }
 
-                    await FileIO.WriteLinesAsync(WorkingFile, lines);
-                    CachedFileManager.DeferUpdates(WorkingFile);
-                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(WorkingFile);
+                    await FileIO.WriteLinesAsync(workingFile, lines);
+                    CachedFileManager.DeferUpdates(workingFile);
+                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(workingFile);
                 }
                 else
                 {
-                    IList<String> lines = new List<string>();
+                    IList<string> lines = new List<string>();
 
-                    string Info = "I,";
+                    string info = "I,";
 
-                    Info = Info + (Model.Members.Count + Model.Nodes.Count()).ToString() + ",";
-                    Info = Info + Model.Members.Count.ToString() + ",";
-                    Info = Info + Model.Nodes.Count.ToString() + ",";
-                    Info += "0,0,0,0,0,0,0,0,0,";
+                    info = info + (Model.Members.Count + Model.Nodes.Count()).ToString() + ",";
+                    info = info + Model.Members.Count.ToString() + ",";
+                    info = info + Model.Nodes.Count.ToString() + ",";
+                    info += "0,0,0,0,0,0,0,0,0,";
 
-                    Info = Info + Camera.Zoom + ",";
-                    Info = Info + Camera.Position.X + ",";
-                    Info = Info + Camera.Position.Y + ",";
-                    lines.Add(Info);
+                    info = info + Camera.Zoom + ",";
+                    info = info + Camera.Position.X + ",";
+                    info = info + Camera.Position.Y + ",";
+                    lines.Add(info);
 
-                    long Count = 0;
-                    foreach (var Item in Model.Nodes)
+                    long count = 0;
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.IsPrimary)
+                        if (node.Value.IsPrimary)
                         {
-                            string Line = "N," + Item.Value.Index.ToString() + ",";
-                            Line = Line + Item.Value.Position.X.ToString() + ",";
-                            Line = Line + Item.Value.Position.Y.ToString() + ",";
-                            Line = Line + ((int)Item.Value.Constraints.ConstraintType).ToString() + ",";
-                            Line = Line + Item.Value.Load.X.ToString() + ",";
-                            Line = Line + Item.Value.Load.Y.ToString() + ",";
-                            Line += Item.Value.Load.M.ToString();
-                            lines.Add(Line);
-                            Count++;
+                            string line = "N," + node.Value.Index.ToString() + ",";
+                            line = line + node.Value.Position.X.ToString() + ",";
+                            line = line + node.Value.Position.Y.ToString() + ",";
+                            line = line + ((int)node.Value.Constraints.ConstraintType).ToString() + ",";
+                            line = line + node.Value.Load.X.ToString() + ",";
+                            line = line + node.Value.Load.Y.ToString() + ",";
+                            line += node.Value.Load.M.ToString();
+                            lines.Add(line);
+                            count++;
                         }
                     }
 
-                    Count = 0;
-                    foreach (var Item in Model.Members)
+                    count = 0;
+                    foreach (var member in Model.Members)
                     {
-                        string Line = "M," + Item.Value.Index + ",";
-                        Line = Line + Item.Value.NodeNear.Index.ToString() + ",";
-                        Line = Line + Item.Value.NodeFar.Index.ToString() + ",";
-                        Line = Line + Item.Value.Section.Name.ToString() + ",";
-                        Line = Line + Item.Value.TotalSegments.ToString() + ",";
-                        Line = Line + Item.Value.LDLNear.ToString() + ",";
-                        Line += Item.Value.LDLFar.ToString();
-                        lines.Add(Line);
-                        Count++;
+                        string line = "M," + member.Value.Index + ",";
+                        line = line + member.Value.NodeNear.Index.ToString() + ",";
+                        line = line + member.Value.NodeFar.Index.ToString() + ",";
+                        line = line + member.Value.Section.Name.ToString() + ",";
+                        line = line + member.Value.TotalSegments.ToString() + ",";
+                        line = line + member.Value.LDLNear.ToString() + ",";
+                        line += member.Value.LDLFar.ToString();
+                        lines.Add(line);
+                        count++;
                     }
 
-                    await FileIO.WriteLinesAsync(WorkingFile, lines);
-                    CachedFileManager.DeferUpdates(WorkingFile);
-                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(WorkingFile);
+                    await FileIO.WriteLinesAsync(workingFile, lines);
+                    CachedFileManager.DeferUpdates(workingFile);
+                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(workingFile);
                 }
             }
             else
             {
-                Debug.WriteLine("File is Not Saved : " + WorkingFilePath);
+                Debug.WriteLine("File is Not Saved : " + workingFilePath);
                 return false;
             }
 
@@ -584,7 +524,7 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static async void SaveLastFile()
         {
-            if (WorkingFile is object)
+            if (workingFile is object)
             {
                 await SaveFile();
             }
@@ -592,24 +532,22 @@ namespace Finite_Element_Analysis_Explorer
 
         /// <summary>
         /// Load the Materials from file. File Item Format:
-        /// int = index
-        /// string = Name
-        /// string = Description
-        /// decimal = Cost
-        ///
-        /// decimal = density
-        /// decimal = Ultimate Strength Tension
-        /// decimal = Ultimate Strength Compression
-        /// decimal = Ultimate Strength Shear
-        /// decimal = Yield Strength Tension
-        /// decimal = Yield Strength Shear
-        /// decimal = Modulus of Elasticity
-        /// decimal = Modulus of Rigidity
-        /// decimal = Coefficient of Thermal Expansion
-        /// decimal = Ductility
-        ///
+        /// int = index.
+        /// string = Name.
+        /// string = Description.
+        /// decimal = Cost.
+        /// decimal = density.
+        /// decimal = Ultimate Strength Tension.
+        /// decimal = Ultimate Strength Compression.
+        /// decimal = Ultimate Strength Shear.
+        /// decimal = Yield Strength Tension.
+        /// decimal = Yield Strength Shear.
+        /// decimal = Modulus of Elasticity.
+        /// decimal = Modulus of Rigidity.
+        /// decimal = Coefficient of Thermal Expansion.
+        /// decimal = Ductility.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The count of materials.</returns>
         internal static int LoadMaterialsAsync()
         {
             try
@@ -655,7 +593,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void SaveMaterialsAsyncsec()
         {
-
             // XmlSerializer serializer = new XmlSerializer(typeof(Material));
             // StringBuilder stringBuilder = new StringBuilder();
             // XmlWriterSettings settings = new XmlWriterSettings()
@@ -735,116 +672,115 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static async void SaveMaterialsAsync()
         {
-            MaterialsFile = await localFolder.GetFileAsync("Materials.Data");
+            materialsFile = await LocalFolder.GetFileAsync("Materials.Data");
 
-            IList<String> lines = new List<string>();
-            foreach (var Item in Model.Materials)
+            IList<string> lines = new List<string>();
+            foreach (var material in Model.Materials)
             {
+                string line = material.Value.Name.ToString() + "|";
+                line += material.Value.Description.ToString() + "|";
+                line += material.Value.Cost.ToString() + "|";
+                line += material.Value.Density.ToString() + "|";
+                line += material.Value.UltimateStrengthTension.ToString() + "|";
+                line += material.Value.UltimateStrengthCompression.ToString() + "|";
+                line += material.Value.UltimateStrengthShear.ToString() + "|";
+                line += material.Value.YieldStrengthTension.ToString() + "|";
+                line += material.Value.YieldStrengthShear.ToString() + "|";
+                line += material.Value.ModulusOfElasticity.ToString() + "|";
+                line += material.Value.ModulusOfRigidity.ToString() + "|";
+                line += material.Value.CoefficientOfThermalExpansion.ToString() + "|";
+                line += material.Value.Ductility.ToString() + "|";
 
-                string Line = Item.Value.Name.ToString() + "|";
-                Line += Item.Value.Description.ToString() + "|";
-                Line += Item.Value.Cost.ToString() + "|";
-                Line += Item.Value.Density.ToString() + "|";
-                Line += Item.Value.UltimateStrengthTension.ToString() + "|";
-                Line += Item.Value.UltimateStrengthCompression.ToString() + "|";
-                Line += Item.Value.UltimateStrengthShear.ToString() + "|";
-                Line += Item.Value.YieldStrengthTension.ToString() + "|";
-                Line += Item.Value.YieldStrengthShear.ToString() + "|";
-                Line += Item.Value.ModulusOfElasticity.ToString() + "|";
-                Line += Item.Value.ModulusOfRigidity.ToString() + "|";
-                Line += Item.Value.CoefficientOfThermalExpansion.ToString() + "|";
-                Line += Item.Value.Ductility.ToString() + "|";
+                line += material.Value.Atomic_Number.ToString() + "|";
+                line += material.Value.Symbol.ToString() + "|";
+                line += material.Value.Atomic_Mass.ToString() + "|";
+                line += material.Value.Allotrope_Names.ToString() + "|";
+                line += material.Value.Alternate_Names.ToString() + "|";
+                line += material.Value.CAS_Number.ToString() + "|";
+                line += material.Value.Icon_Color.ToString() + "|";
+                line += material.Value.Block.ToString() + "|";
+                line += material.Value.Group.ToString() + "|";
+                line += material.Value.Period.ToString() + "|";
+                line += material.Value.Series.ToString() + "|";
+                line += material.Value.Atomic_Weight.ToString() + "|";
+                line += material.Value.Brinell_Hardness.ToString() + "|";
+                line += material.Value.Bulk_Modulus.ToString() + "|";
+                line += material.Value.Liquid_Density.ToString() + "|";
+                line += material.Value.Mohs_Hardness.ToString() + "|";
+                line += material.Value.Molar_Volume.ToString() + "|";
+                line += material.Value.Poission_Ratio.ToString() + "|";
+                line += material.Value.ModulusOfRigidity.ToString() + "|";
+                line += material.Value.Sound_Speed.ToString() + "|";
+                line += material.Value.Thermal_Conductivity.ToString() + "|";
+                line += material.Value.Thermal_Expansion.ToString() + "|";
+                line += material.Value.Vickers_Hardness.ToString() + "|";
+                line += material.Value.ModulusOfElasticity.ToString() + "|";
+                line += material.Value.Absolute_Boiling_Point.ToString() + "|";
+                line += material.Value.Absolute_Melting_Point.ToString() + "|";
+                line += material.Value.Adiabatic_Index.ToString() + "|";
+                line += material.Value.Boiling_Point.ToString() + "|";
+                line += material.Value.Critical_Pressure.ToString() + "|";
+                line += material.Value.Critical_Temperature.ToString() + "|";
+                line += material.Value.Curie_Point.ToString() + "|";
+                line += material.Value.Fusion_Heat.ToString() + "|";
+                line += material.Value.Melting_Point.ToString() + "|";
+                line += material.Value.Neel_Point.ToString() + "|";
+                line += material.Value.Phase.ToString() + "|";
+                line += material.Value.Specific_Heat.ToString() + "|";
+                line += material.Value.Superconducting_Point.ToString() + "|";
+                line += material.Value.Vaporization_Heat.ToString() + "|";
+                line += material.Value.Color.ToString() + "|";
+                line += material.Value.Electrical_Conductivity.ToString() + "|";
+                line += material.Value.Electrical_Type.ToString() + "|";
+                line += material.Value.Magnetic_Type.ToString() + "|";
+                line += material.Value.Mass_Magnetic_Susceptibility.ToString() + "|";
+                line += material.Value.Molar_Magnetic_Susceptibility.ToString() + "|";
+                line += material.Value.Resistivity.ToString() + "|";
+                line += material.Value.Volume_Magnetic_Susceptibility.ToString() + "|";
+                line += material.Value.Allotropic_Multiplicities.ToString() + "|";
+                line += material.Value.Electron_Affinity.ToString() + "|";
+                line += material.Value.Gas_Atomic_Multiplicities.ToString() + "|";
+                line += material.Value.Valence.ToString() + "|";
+                line += material.Value.Crystal_Structure.ToString() + "|";
+                line += material.Value.Lattice_Angles.ToString() + "|";
+                line += material.Value.Lattice_Constants.ToString() + "|";
+                line += material.Value.Space_Group_Number.ToString() + "|";
+                line += material.Value.Space_Group_Name.ToString() + "|";
+                line += material.Value.Atomic_Radius.ToString() + "|";
+                line += material.Value.Covalent_Radius.ToString() + "|";
+                line += material.Value.Electron_Configuration.ToString() + "|";
+                line += material.Value.Electron_Configuration_String.ToString() + "|";
+                line += material.Value.Electron_Shell_Configuration.ToString() + "|";
+                line += material.Value.Ionization_Energies.ToString() + "|";
+                line += material.Value.Quantum_Numbers.ToString() + "|";
+                line += material.Value.Van_Der_Waals_Radius.ToString() + "|";
+                line += material.Value.Decay_Mode.ToString() + "|";
+                line += material.Value.HalfLife.ToString() + "|";
+                line += material.Value.Isotope_Abundances.ToString() + "|";
+                line += material.Value.Lifetime.ToString() + "|";
+                line += material.Value.Neutron_Cross_Section.ToString() + "|";
+                line += material.Value.Neutron_Mass_Absorption.ToString() + "|";
+                line += material.Value.Radioactive.ToString() + "|";
+                line += material.Value.Stable_Isotopes.ToString() + "|";
+                line += material.Value.Crust_Abundance.ToString() + "|";
+                line += material.Value.Human_Abundance.ToString() + "|";
+                line += material.Value.Meteorite_Abundance.ToString() + "|";
+                line += material.Value.Ocean_Abundance.ToString() + "|";
+                line += material.Value.Solar_Abundance.ToString() + "|";
+                line += material.Value.Universe_Abundance.ToString() + "|";
+                line += material.Value.Radius_Empirical.ToString() + "|";
+                line += material.Value.Radius_Calculated.ToString() + "|";
+                line += material.Value.Radius_Van_Der_Waals.ToString() + "|";
+                line += material.Value.Radius_Covalent_Single_Bond.ToString() + "|";
+                line += material.Value.Radius_Covalent_Triple_Bond.ToString() + "|";
+                line += material.Value.Radius_Metallic.ToString() + "||||||||||||";
 
-                Line += Item.Value.Atomic_Number.ToString() + "|";
-                Line += Item.Value.Symbol.ToString() + "|";
-                Line += Item.Value.Atomic_Mass.ToString() + "|";
-                Line += Item.Value.Allotrope_Names.ToString() + "|";
-                Line += Item.Value.Alternate_Names.ToString() + "|";
-                Line += Item.Value.CAS_Number.ToString() + "|";
-                Line += Item.Value.Icon_Color.ToString() + "|";
-                Line += Item.Value.Block.ToString() + "|";
-                Line += Item.Value.Group.ToString() + "|";
-                Line += Item.Value.Period.ToString() + "|";
-                Line += Item.Value.Series.ToString() + "|";
-                Line += Item.Value.Atomic_Weight.ToString() + "|";
-                Line += Item.Value.Brinell_Hardness.ToString() + "|";
-                Line += Item.Value.Bulk_Modulus.ToString() + "|";
-                Line += Item.Value.Liquid_Density.ToString() + "|";
-                Line += Item.Value.Mohs_Hardness.ToString() + "|";
-                Line += Item.Value.Molar_Volume.ToString() + "|";
-                Line += Item.Value.Poission_Ratio.ToString() + "|";
-                Line += Item.Value.ModulusOfRigidity.ToString() + "|";
-                Line += Item.Value.Sound_Speed.ToString() + "|";
-                Line += Item.Value.Thermal_Conductivity.ToString() + "|";
-                Line += Item.Value.Thermal_Expansion.ToString() + "|";
-                Line += Item.Value.Vickers_Hardness.ToString() + "|";
-                Line += Item.Value.ModulusOfElasticity.ToString() + "|";
-                Line += Item.Value.Absolute_Boiling_Point.ToString() + "|";
-                Line += Item.Value.Absolute_Melting_Point.ToString() + "|";
-                Line += Item.Value.Adiabatic_Index.ToString() + "|";
-                Line += Item.Value.Boiling_Point.ToString() + "|";
-                Line += Item.Value.Critical_Pressure.ToString() + "|";
-                Line += Item.Value.Critical_Temperature.ToString() + "|";
-                Line += Item.Value.Curie_Point.ToString() + "|";
-                Line += Item.Value.Fusion_Heat.ToString() + "|";
-                Line += Item.Value.Melting_Point.ToString() + "|";
-                Line += Item.Value.Neel_Point.ToString() + "|";
-                Line += Item.Value.Phase.ToString() + "|";
-                Line += Item.Value.Specific_Heat.ToString() + "|";
-                Line += Item.Value.Superconducting_Point.ToString() + "|";
-                Line += Item.Value.Vaporization_Heat.ToString() + "|";
-                Line += Item.Value.Color.ToString() + "|";
-                Line += Item.Value.Electrical_Conductivity.ToString() + "|";
-                Line += Item.Value.Electrical_Type.ToString() + "|";
-                Line += Item.Value.Magnetic_Type.ToString() + "|";
-                Line += Item.Value.Mass_Magnetic_Susceptibility.ToString() + "|";
-                Line += Item.Value.Molar_Magnetic_Susceptibility.ToString() + "|";
-                Line += Item.Value.Resistivity.ToString() + "|";
-                Line += Item.Value.Volume_Magnetic_Susceptibility.ToString() + "|";
-                Line += Item.Value.Allotropic_Multiplicities.ToString() + "|";
-                Line += Item.Value.Electron_Affinity.ToString() + "|";
-                Line += Item.Value.Gas_Atomic_Multiplicities.ToString() + "|";
-                Line += Item.Value.Valence.ToString() + "|";
-                Line += Item.Value.Crystal_Structure.ToString() + "|";
-                Line += Item.Value.Lattice_Angles.ToString() + "|";
-                Line += Item.Value.Lattice_Constants.ToString() + "|";
-                Line += Item.Value.Space_Group_Number.ToString() + "|";
-                Line += Item.Value.Space_Group_Name.ToString() + "|";
-                Line += Item.Value.Atomic_Radius.ToString() + "|";
-                Line += Item.Value.Covalent_Radius.ToString() + "|";
-                Line += Item.Value.Electron_Configuration.ToString() + "|";
-                Line += Item.Value.Electron_Configuration_String.ToString() + "|";
-                Line += Item.Value.Electron_Shell_Configuration.ToString() + "|";
-                Line += Item.Value.Ionization_Energies.ToString() + "|";
-                Line += Item.Value.Quantum_Numbers.ToString() + "|";
-                Line += Item.Value.Van_Der_Waals_Radius.ToString() + "|";
-                Line += Item.Value.Decay_Mode.ToString() + "|";
-                Line += Item.Value.HalfLife.ToString() + "|";
-                Line += Item.Value.Isotope_Abundances.ToString() + "|";
-                Line += Item.Value.Lifetime.ToString() + "|";
-                Line += Item.Value.Neutron_Cross_Section.ToString() + "|";
-                Line += Item.Value.Neutron_Mass_Absorption.ToString() + "|";
-                Line += Item.Value.Radioactive.ToString() + "|";
-                Line += Item.Value.Stable_Isotopes.ToString() + "|";
-                Line += Item.Value.Crust_Abundance.ToString() + "|";
-                Line += Item.Value.Human_Abundance.ToString() + "|";
-                Line += Item.Value.Meteorite_Abundance.ToString() + "|";
-                Line += Item.Value.Ocean_Abundance.ToString() + "|";
-                Line += Item.Value.Solar_Abundance.ToString() + "|";
-                Line += Item.Value.Universe_Abundance.ToString() + "|";
-                Line += Item.Value.Radius_Empirical.ToString() + "|";
-                Line += Item.Value.Radius_Calculated.ToString() + "|";
-                Line += Item.Value.Radius_Van_Der_Waals.ToString() + "|";
-                Line += Item.Value.Radius_Covalent_Single_Bond.ToString() + "|";
-                Line += Item.Value.Radius_Covalent_Triple_Bond.ToString() + "|";
-                Line += Item.Value.Radius_Metallic.ToString() + "||||||||||||";
-
-                lines.Add(Line);
+                lines.Add(line);
             }
 
-            await FileIO.WriteLinesAsync(MaterialsFile, lines);
-            CachedFileManager.DeferUpdates(MaterialsFile);
-            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(MaterialsFile);
+            await FileIO.WriteLinesAsync(materialsFile, lines);
+            CachedFileManager.DeferUpdates(materialsFile);
+            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(materialsFile);
         }
 
         #region Sections
@@ -853,9 +789,9 @@ namespace Finite_Element_Analysis_Explorer
         {
             try
             {
-                SectionsFile = await localFolder.GetFileAsync("Sections.Data");
-                IList<String> lines = new List<string>();
-                lines = await FileIO.ReadLinesAsync(SectionsFile);
+                sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
+                IList<string> lines = new List<string>();
+                lines = await FileIO.ReadLinesAsync(sectionsFile);
                 foreach (string line in lines)
                 {
                     string[] words = line.Split('|');
@@ -899,13 +835,36 @@ namespace Finite_Element_Analysis_Explorer
                         Convert.ToDecimal(words[36]),
                         Convert.ToDecimal(words[37]));
 
-                    Model.Sections.AddNewSection(tmpSection.Name, tmpSection.E, tmpSection.I, tmpSection.Area,
-                        tmpSection.Density, tmpSection.CostPerLength, tmpSection.Alpha, tmpSection.Red, tmpSection.Green, tmpSection.Blue,
-                        tmpSection.Line, tmpSection.LineWeight, tmpSection.NearCapStyle, tmpSection.FarCapStyle,
-                        tmpSection.CostHorizontalTransport, tmpSection.CostVerticalTransport, tmpSection.CostNodeFixed,
-                        tmpSection.CostNodeFree, tmpSection.CostNodePinned, tmpSection.CostNodeRoller, tmpSection.CostNodeTrack,
-                        tmpSection.SectionProfile, tmpSection.SectionProfileProperty1, tmpSection.SectionProfileProperty2, tmpSection.SectionProfileProperty3, tmpSection.SectionProfileProperty4, tmpSection.SectionProfileProperty5,
-                        tmpSection.SectionProfileProperty6, tmpSection.SectionProfileProperty7,
+                    Model.Sections.AddNewSection(
+                        tmpSection.Name,
+                        tmpSection.E,
+                        tmpSection.I,
+                        tmpSection.Area,
+                        tmpSection.Density,
+                        tmpSection.CostPerLength,
+                        tmpSection.Alpha,
+                        tmpSection.Red,
+                        tmpSection.Green,
+                        tmpSection.Blue,
+                        tmpSection.Line,
+                        tmpSection.LineWeight,
+                        tmpSection.NearCapStyle,
+                        tmpSection.FarCapStyle,
+                        tmpSection.CostHorizontalTransport,
+                        tmpSection.CostVerticalTransport,
+                        tmpSection.CostNodeFixed,
+                        tmpSection.CostNodeFree,
+                        tmpSection.CostNodePinned,
+                        tmpSection.CostNodeRoller,
+                        tmpSection.CostNodeTrack,
+                        tmpSection.SectionProfile,
+                        tmpSection.SectionProfileProperty1,
+                        tmpSection.SectionProfileProperty2,
+                        tmpSection.SectionProfileProperty3,
+                        tmpSection.SectionProfileProperty4,
+                        tmpSection.SectionProfileProperty5,
+                        tmpSection.SectionProfileProperty6,
+                        tmpSection.SectionProfileProperty7,
                         tmpSection.Material,
                         tmpSection.MaintenancePerLength,
                         tmpSection.MaintenanceNodeFree,
@@ -933,7 +892,7 @@ namespace Finite_Element_Analysis_Explorer
                     Debug.WriteLine("Error Setting Current Section " + ex2.Message);
                 }
 
-                StorageFile tempFile = await localFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
+                StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
 
                 string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
                 tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
@@ -977,81 +936,104 @@ namespace Finite_Element_Analysis_Explorer
             }
 
             Section tempSection = Model.Sections.LoadLastCurrentSectionSection();
-            Model.Sections.CurrentSection = new Section(tempSection.Name, tempSection.E, tempSection.I, tempSection.Area,
-                tempSection.Density, tempSection.CostPerLength, tempSection.Alpha, tempSection.Red, tempSection.Green, tempSection.Blue,
-                tempSection.Line, tempSection.LineWeight, tempSection.NearCapStyle, tempSection.FarCapStyle,
-                tempSection.CostHorizontalTransport, tempSection.CostVerticalTransport, tempSection.CostNodeFixed,
-                tempSection.CostNodeFree, tempSection.CostNodePinned, tempSection.CostNodeRoller, tempSection.CostNodeTrack,
-                tempSection.SectionProfile, tempSection.SectionProfileProperty1, tempSection.SectionProfileProperty2, tempSection.SectionProfileProperty3, tempSection.SectionProfileProperty4, tempSection.SectionProfileProperty5,
-                tempSection.SectionProfileProperty6, tempSection.SectionProfileProperty7,
-                tempSection.Material,
-                tempSection.MaintenancePerLength,
-                tempSection.MaintenanceNodeFree,
-                tempSection.MaintenanceFixed,
-                tempSection.MaintenancePinned,
-                tempSection.MaintenanceRoller,
-                tempSection.MaintenanceTrack,
-                tempSection.FactorVerticalTransport,
-                tempSection.FactorHorizontalTransport);
+            Model.Sections.CurrentSection = new Section(
+                                                        tempSection.Name,
+                                                        tempSection.E,
+                                                        tempSection.I,
+                                                        tempSection.Area,
+                                                        tempSection.Density,
+                                                        tempSection.CostPerLength,
+                                                        tempSection.Alpha,
+                                                        tempSection.Red,
+                                                        tempSection.Green,
+                                                        tempSection.Blue,
+                                                        tempSection.Line,
+                                                        tempSection.LineWeight,
+                                                        tempSection.NearCapStyle,
+                                                        tempSection.FarCapStyle,
+                                                        tempSection.CostHorizontalTransport,
+                                                        tempSection.CostVerticalTransport,
+                                                        tempSection.CostNodeFixed,
+                                                        tempSection.CostNodeFree,
+                                                        tempSection.CostNodePinned,
+                                                        tempSection.CostNodeRoller,
+                                                        tempSection.CostNodeTrack,
+                                                        tempSection.SectionProfile,
+                                                        tempSection.SectionProfileProperty1,
+                                                        tempSection.SectionProfileProperty2,
+                                                        tempSection.SectionProfileProperty3,
+                                                        tempSection.SectionProfileProperty4,
+                                                        tempSection.SectionProfileProperty5,
+                                                        tempSection.SectionProfileProperty6,
+                                                        tempSection.SectionProfileProperty7,
+                                                        tempSection.Material,
+                                                        tempSection.MaintenancePerLength,
+                                                        tempSection.MaintenanceNodeFree,
+                                                        tempSection.MaintenanceFixed,
+                                                        tempSection.MaintenancePinned,
+                                                        tempSection.MaintenanceRoller,
+                                                        tempSection.MaintenanceTrack,
+                                                        tempSection.FactorVerticalTransport,
+                                                        tempSection.FactorHorizontalTransport);
 
             return Model.Sections.Count;
         }
 
         internal static async void SaveSectionsAsync()
         {
-            SectionsFile = await localFolder.GetFileAsync("Sections.Data");
+            sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
 
-            IList<String> lines = new List<string>();
-            foreach (var Item in Model.Sections)
+            IList<string> lines = new List<string>();
+            foreach (var section in Model.Sections)
             {
-                string Line = Item.Value.Name.ToString() + "|";
-                Line += Item.Value.E.ToString() + "|";
-                Line += Item.Value.I.ToString() + "|";
-                Line += Item.Value.Area.ToString() + "|";
-                Line += Item.Value.Density.ToString() + "|";
-                Line += Item.Value.CostPerLength.ToString() + "|";
-                Line += Item.Value.Alpha.ToString() + "|";
-                Line += Item.Value.Red.ToString() + "|";
-                Line += Item.Value.Green.ToString() + "|";
-                Line += Item.Value.Blue.ToString() + "|";
-                Line += Convert.ToInt32(Item.Value.Line).ToString() + "|";
-                Line += Item.Value.LineWeight.ToString() + "|";
-                Line += Convert.ToInt32(Item.Value.NearCapStyle).ToString() + "|";
-                Line += Convert.ToInt32(Item.Value.FarCapStyle).ToString() + "|";
+                string line = section.Value.Name.ToString() + "|";
+                line += section.Value.E.ToString() + "|";
+                line += section.Value.I.ToString() + "|";
+                line += section.Value.Area.ToString() + "|";
+                line += section.Value.Density.ToString() + "|";
+                line += section.Value.CostPerLength.ToString() + "|";
+                line += section.Value.Alpha.ToString() + "|";
+                line += section.Value.Red.ToString() + "|";
+                line += section.Value.Green.ToString() + "|";
+                line += section.Value.Blue.ToString() + "|";
+                line += Convert.ToInt32(section.Value.Line).ToString() + "|";
+                line += section.Value.LineWeight.ToString() + "|";
+                line += Convert.ToInt32(section.Value.NearCapStyle).ToString() + "|";
+                line += Convert.ToInt32(section.Value.FarCapStyle).ToString() + "|";
 
-                Line += Item.Value.CostHorizontalTransport.ToString() + "|";
-                Line += Item.Value.CostVerticalTransport.ToString() + "|";
-                Line += Item.Value.CostNodeFixed.ToString() + "|";
-                Line += Item.Value.CostNodeFree.ToString() + "|";
-                Line += Item.Value.CostNodePinned.ToString() + "|";
-                Line += Item.Value.CostNodeRoller.ToString() + "|";
-                Line += Item.Value.CostNodeTrack.ToString() + "|";
+                line += section.Value.CostHorizontalTransport.ToString() + "|";
+                line += section.Value.CostVerticalTransport.ToString() + "|";
+                line += section.Value.CostNodeFixed.ToString() + "|";
+                line += section.Value.CostNodeFree.ToString() + "|";
+                line += section.Value.CostNodePinned.ToString() + "|";
+                line += section.Value.CostNodeRoller.ToString() + "|";
+                line += section.Value.CostNodeTrack.ToString() + "|";
 
-                Line += Item.Value.SectionProfile.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty1.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty2.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty3.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty4.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty5.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty6.ToString() + "|";
-                Line += Item.Value.SectionProfileProperty7.ToString() + "|";
-                Line += Item.Value.Material.ToString() + "|";
+                line += section.Value.SectionProfile.ToString() + "|";
+                line += section.Value.SectionProfileProperty1.ToString() + "|";
+                line += section.Value.SectionProfileProperty2.ToString() + "|";
+                line += section.Value.SectionProfileProperty3.ToString() + "|";
+                line += section.Value.SectionProfileProperty4.ToString() + "|";
+                line += section.Value.SectionProfileProperty5.ToString() + "|";
+                line += section.Value.SectionProfileProperty6.ToString() + "|";
+                line += section.Value.SectionProfileProperty7.ToString() + "|";
+                line += section.Value.Material.ToString() + "|";
 
-                Line += Item.Value.MaintenancePerLength.ToString() + "|";
-                Line += Item.Value.MaintenanceNodeFree.ToString() + "|";
-                Line += Item.Value.MaintenanceFixed.ToString() + "|";
-                Line += Item.Value.MaintenancePinned.ToString() + "|";
-                Line += Item.Value.MaintenanceRoller.ToString() + "|";
-                Line += Item.Value.MaintenanceTrack.ToString() + "|";
-                Line += Item.Value.FactorVerticalTransport.ToString() + "|";
-                Line += Item.Value.FactorHorizontalTransport.ToString() + "|";
+                line += section.Value.MaintenancePerLength.ToString() + "|";
+                line += section.Value.MaintenanceNodeFree.ToString() + "|";
+                line += section.Value.MaintenanceFixed.ToString() + "|";
+                line += section.Value.MaintenancePinned.ToString() + "|";
+                line += section.Value.MaintenanceRoller.ToString() + "|";
+                line += section.Value.MaintenanceTrack.ToString() + "|";
+                line += section.Value.FactorVerticalTransport.ToString() + "|";
+                line += section.Value.FactorHorizontalTransport.ToString() + "|";
 
-                lines.Add(Line);
+                lines.Add(line);
             }
 
-            await FileIO.WriteLinesAsync(SectionsFile, lines);
-            CachedFileManager.DeferUpdates(SectionsFile);
-            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(SectionsFile);
+            await FileIO.WriteLinesAsync(sectionsFile, lines);
+            CachedFileManager.DeferUpdates(sectionsFile);
+            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
         }
 
         #endregion
@@ -1065,10 +1047,10 @@ namespace Finite_Element_Analysis_Explorer
             };
             openPicker.FileTypeFilter.Add(".struct");
             openPicker.FileTypeFilter.Add(".csv");
-            NextFile = null;
-            NextFile = await openPicker.PickSingleFileAsync();
+            nextFile = null;
+            nextFile = await openPicker.PickSingleFileAsync();
 
-            if (NextFile is null)
+            if (nextFile is null)
             {
                 // Open File Picker Failed.
                 return false;
@@ -1076,20 +1058,20 @@ namespace Finite_Element_Analysis_Explorer
             else
             {
                 // New File was picked.
-                WorkingFile = NextFile;
+                workingFile = nextFile;
                 var mru = StorageApplicationPermissions.MostRecentlyUsedList;
-                string mruToken = mru.Add(WorkingFile, WorkingFile.Path);
-                var listToken = StorageApplicationPermissions.FutureAccessList.Add(WorkingFile);
+                string mruToken = mru.Add(workingFile, workingFile.Path);
+                var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
-                WorkingFileDisplayName = WorkingFile.DisplayName;
-                WorkingFilePath = WorkingFile.Path;
-                WorkingFileMruToken = mruToken;
-                WorkingFileListToken = listToken;
+                workingFileDisplayName = workingFile.DisplayName;
+                workingFilePath = workingFile.Path;
+                workingFileMruToken = mruToken;
+                workingFileListToken = listToken;
 
-                localSettings.Values["WorkingFileDisplayName"] = WorkingFileDisplayName;
-                localSettings.Values["WorkingFilePath"] = WorkingFilePath;
-                localSettings.Values["WorkingFileMruToken"] = WorkingFileMruToken;
-                localSettings.Values["WorkingFileListToken"] = WorkingFileListToken;
+                LocalSettings.Values["WorkingFileDisplayName"] = workingFileDisplayName;
+                LocalSettings.Values["WorkingFilePath"] = workingFilePath;
+                LocalSettings.Values["WorkingFileMruToken"] = workingFileMruToken;
+                LocalSettings.Values["WorkingFileListToken"] = workingFileListToken;
 
                 // Debug.WriteLine("Open File Picker : " + WorkingFile.DisplayName + " " + WorkingFile.Path + " " + WorkingFileMruToken);
                 return true;
@@ -1098,16 +1080,15 @@ namespace Finite_Element_Analysis_Explorer
 
         public static async Task<bool> PickFileToSave()
         {
-
             FileSavePicker savePicker = new FileSavePicker
             {
                 SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
             };
             savePicker.FileTypeChoices.Add("Structure Files", new List<string>() { ".struct" });
-            savePicker.SuggestedFileName = WorkingFileDisplayName;
-            NextFile = null;
-            NextFile = await savePicker.PickSaveFileAsync();
-            if (NextFile is null)
+            savePicker.SuggestedFileName = workingFileDisplayName;
+            nextFile = null;
+            nextFile = await savePicker.PickSaveFileAsync();
+            if (nextFile is null)
             {
                 // File Picker Failed.
                 return false;
@@ -1115,21 +1096,21 @@ namespace Finite_Element_Analysis_Explorer
             else
             {
                 // Picked ok.
-                WorkingFile = NextFile;
+                workingFile = nextFile;
 
                 var mru = Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList;
-                string mruToken = mru.Add(WorkingFile, WorkingFile.Path);
-                var listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(WorkingFile);
+                string mruToken = mru.Add(workingFile, workingFile.Path);
+                var listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
-                WorkingFileDisplayName = WorkingFile.DisplayName;
-                WorkingFilePath = WorkingFile.Path;
-                WorkingFileMruToken = mruToken;
-                WorkingFileListToken = listToken;
+                workingFileDisplayName = workingFile.DisplayName;
+                workingFilePath = workingFile.Path;
+                workingFileMruToken = mruToken;
+                workingFileListToken = listToken;
 
-                localSettings.Values["WorkingFileDisplayName"] = WorkingFileDisplayName;
-                localSettings.Values["WorkingFilePath"] = WorkingFilePath;
-                localSettings.Values["WorkingFileMruToken"] = WorkingFileMruToken;
-                localSettings.Values["WorkingFileListToken"] = WorkingFileListToken;
+                LocalSettings.Values["WorkingFileDisplayName"] = workingFileDisplayName;
+                LocalSettings.Values["WorkingFilePath"] = workingFilePath;
+                LocalSettings.Values["WorkingFileMruToken"] = workingFileMruToken;
+                LocalSettings.Values["WorkingFileListToken"] = workingFileListToken;
 
                 return true;
             }

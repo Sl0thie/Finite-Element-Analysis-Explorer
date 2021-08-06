@@ -318,25 +318,25 @@ namespace Finite_Element_Analysis_Explorer
         public static bool Shrink()
         {
             // Search for unassigned nodes.
-            foreach (var Item in nodes)
+            foreach (var node in nodes)
             {
-                Item.Value.IsValid = false;
+                node.Value.IsValid = false;
             }
 
-            foreach (var Item in members)
+            foreach (var member in members)
             {
-                foreach (var nextSegment in Item.Value.Segments)
+                foreach (var segment in member.Value.Segments)
                 {
-                    nextSegment.Value.NodeNear.IsValid = true;
-                    nextSegment.Value.NodeFar.IsValid = true;
+                    segment.Value.NodeNear.IsValid = true;
+                    segment.Value.NodeFar.IsValid = true;
                 }
             }
 
-            foreach (var item in nodes)
+            foreach (var node in nodes)
             {
-                if (item.Value.IsValid == false)
+                if (node.Value.IsValid == false)
                 {
-                    Model.nodes.RemoveNode(item.Value);
+                    Model.nodes.RemoveNode(node.Value);
                 }
             }
 

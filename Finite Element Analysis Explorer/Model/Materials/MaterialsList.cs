@@ -2,7 +2,6 @@
 {
     internal static class MaterialsList
     {
-
         internal static void LoadList()
         {
             Material anMaterial = new Material()
@@ -15,8 +14,6 @@
                 MaterialType = "Compound",
             };
             Model.Materials.Add(anMaterial.Name, anMaterial);
-
-
 
             // AnMaterial = new Material()
             // {
@@ -75,8 +72,6 @@
             // AnMaterial.ModulusOfElasticity = 24000000000m;
             // AnMaterial.MaterialType = "Compound";
             // Model.Materials.Add(AnMaterial.Name, AnMaterial);
-
-
             anMaterial = new Material
             {
                 Name = "Concrete 20MPa",

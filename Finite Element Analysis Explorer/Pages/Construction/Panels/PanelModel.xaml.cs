@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
-
     public sealed partial class PanelModel : Page
     {
         public PanelModel()

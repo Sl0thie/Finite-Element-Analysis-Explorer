@@ -14,7 +14,7 @@ namespace Finite_Element_Analysis_Explorer
         private bool isPageLoaded = false;
 
         // private bool IsSolving = false;
-        private ISolver CurrentSolver;
+        private ISolver currentSolver;
 
         private bool detailsIsOpen = true;
 
@@ -47,7 +47,7 @@ namespace Finite_Element_Analysis_Explorer
             switch (Options.CurrentSolver)
             {
                 case 0:
-                    CurrentSolver = new SolverDoubleLUP(this);
+                    currentSolver = new SolverDoubleLUP(this);
                     break;
 
                 case 1:
@@ -63,7 +63,7 @@ namespace Finite_Element_Analysis_Explorer
                     break;
 
                 default:
-                    CurrentSolver = new SolverDoubleLUP(this);
+                    currentSolver = new SolverDoubleLUP(this);
                     break;
             }
 
@@ -86,7 +86,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void CustomizeTitleBar()
         {
-
             // customize title area
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(trickyTitleBar);

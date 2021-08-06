@@ -162,42 +162,38 @@ namespace Finite_Element_Analysis_Explorer
         public int FindNearestElement(Vector2 position)
         {
             int dimX = Convert.ToInt32(position.X / GridSize);
-            int DimY = Convert.ToInt32(position.Y / GridSize);
+            int dimY = Convert.ToInt32(position.Y / GridSize);
+            int closestMember = -1;
+            double closestLength = double.MaxValue;
+            int totalChecked = 0;
 
-            int ClosestMember = -1;
-            double ClosestLength = double.MaxValue;
+            List<Tuple<int, int>> grids = new List<Tuple<int, int>>();
+            grids.Add(new Tuple<int, int>(dimX - 1, dimY - 1));
+            grids.Add(new Tuple<int, int>(dimX, dimY - 1));
+            grids.Add(new Tuple<int, int>(dimX + 1, dimY - 1));
+            grids.Add(new Tuple<int, int>(dimX - 1, dimY));
+            grids.Add(new Tuple<int, int>(dimX, dimY));
+            grids.Add(new Tuple<int, int>(dimX + 1, dimY));
+            grids.Add(new Tuple<int, int>(dimX - 1, dimY + 1));
+            grids.Add(new Tuple<int, int>(dimX, dimY + 1));
+            grids.Add(new Tuple<int, int>(dimX + 1, dimY + 1));
 
-            int TotalChecked = 0;
-
-            List<Tuple<int, int>> Grids = new List<Tuple<int, int>>();
-            Grids.Add(new Tuple<int, int>(dimX - 1, DimY - 1));
-            Grids.Add(new Tuple<int, int>(dimX, DimY - 1));
-            Grids.Add(new Tuple<int, int>(dimX + 1, DimY - 1));
-            Grids.Add(new Tuple<int, int>(dimX - 1, DimY));
-            Grids.Add(new Tuple<int, int>(dimX, DimY));
-            Grids.Add(new Tuple<int, int>(dimX + 1, DimY));
-            Grids.Add(new Tuple<int, int>(dimX - 1, DimY + 1));
-            Grids.Add(new Tuple<int, int>(dimX, DimY + 1));
-            Grids.Add(new Tuple<int, int>(dimX + 1, DimY + 1));
-
-            foreach (Tuple<int, int> grid in Grids)
+            foreach (Tuple<int, int> grid in grids)
             {
-                List<Tuple<int, int>> ITmp = null;
+                List<Tuple<int, int>> iTmp = null;
                 if (MemberTiles.ContainsKey(grid))
                 {
-                    ITmp = MemberTiles[grid];
-                    foreach (Tuple<int, int> nextInt in ITmp)
+                    iTmp = MemberTiles[grid];
+                    foreach (Tuple<int, int> nextInt in iTmp)
                     {
                         try
                         {
-                            TotalChecked++;
-                            double NextLength = Vector2.DistanceSquared(position, Model.Members[nextInt.Item1].Segments[nextInt.Item2].CenterPointDisplaced);
-
-                            // Debug.WriteLine("Check Distance " + NextInt.Item1 + " " + NextInt.Item2 + " " + NextLength);
-                            if (NextLength < ClosestLength)
+                            totalChecked++;
+                            double nextLength = Vector2.DistanceSquared(position, Model.Members[nextInt.Item1].Segments[nextInt.Item2].CenterPointDisplaced);
+                            if (nextLength < closestLength)
                             {
-                                ClosestMember = nextInt.Item1;
-                                ClosestLength = NextLength;
+                                closestMember = nextInt.Item1;
+                                closestLength = nextLength;
                             }
                         }
                         catch (Exception ex)
@@ -208,58 +204,26 @@ namespace Finite_Element_Analysis_Explorer
                 }
             }
 
-            Debug.WriteLine("Closest Member " + ClosestMember + " " + TotalChecked);
-            return ClosestMember;
+            return closestMember;
         }
 
-        public void AddNewElementToTiles(int ElementNumber, Vector2 position)
+        public void AddNewElementToTiles(int elementNumber, Vector2 position)
         {
-            Debug.WriteLine("AddNewElementToTiles " + ElementNumber + " " + Model.Members[ElementNumber].Segments.Count);
-
-            // foreach(Segment nextSegment in Model.Members[ElementNumber].Segments)
-            // {
-            //    Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(nextSegment.CenterPointDisplaced.X / GridSize), Convert.ToInt32(nextSegment.CenterPointDisplaced.Y / GridSize));
-            //    List<Tuple<int, int>> ITmp = null;
-
-            // if (MemberTiles.ContainsKey(Position))
-            //    {
-            //        Debug.WriteLine("Update Position " + Position.ToString());
-
-            // ITmp = MemberTiles[Position];
-            //        ITmp.Add(new Tuple<int, int>(ElementNumber, nextSegment.Index));
-            //    }
-            //    else
-            //    {
-            //        Debug.WriteLine("New Position " + Position.ToString());
-            //        //List<int> NewList = new List<int>();
-            //        List<Tuple<int, int>> NewList = new List<Tuple<int, int>>();
-            //        NewList.Add(new Tuple<int, int>(ElementNumber,nextSegment.Index));
-            //        MemberTiles.TryAdd(Position, NewList);
-            //    }
-            // }
-            foreach (var item in Model.Members[ElementNumber].Segments)
+            foreach (var item in Model.Members[elementNumber].Segments)
             {
-
-                Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
+                Tuple<int, int> position2D = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
                 List<Tuple<int, int>> iTmp = null;
 
-                if (MemberTiles.ContainsKey(Position))
+                if (MemberTiles.ContainsKey(position2D))
                 {
-                    Debug.WriteLine("Update Position " + ElementNumber + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-
-                    iTmp = MemberTiles[Position];
-                    iTmp.Add(new Tuple<int, int>(ElementNumber, item.Value.Index));
+                    iTmp = MemberTiles[position2D];
+                    iTmp.Add(new Tuple<int, int>(elementNumber, item.Value.Index));
                 }
                 else
                 {
-                    Debug.WriteLine("New    Position " + ElementNumber + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-
-                    // List<int> NewList = new List<int>();
                     List<Tuple<int, int>> newList = new List<Tuple<int, int>>();
-                    newList.Add(new Tuple<int, int>(ElementNumber, item.Value.Index));
-
-                    // MemberTiles.TryAdd(Position, NewList);
-                    if (!MemberTiles.TryAdd(Position, newList))
+                    newList.Add(new Tuple<int, int>(elementNumber, item.Value.Index));
+                    if (!MemberTiles.TryAdd(position2D, newList))
                     {
                         Debug.WriteLine("TryAdd Failed");
                     }
@@ -267,100 +231,17 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        public void RemoveElementFromTiles(int ElementNumber, Vector2 position)
+        public void RemoveElementFromTiles(int elementNumber, Vector2 position)
         {
-            // foreach (Segment nextSegment in Model.Members[ElementNumber].Segments)
-            // {
-            //    Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(nextSegment.CenterPointDisplaced.X / GridSize), Convert.ToInt32(nextSegment.CenterPointDisplaced.Y / GridSize));
-            //    if (MemberTiles.ContainsKey(Position))
-            //    {
-            //        List<Tuple<int, int>> ITmp = MemberTiles[Position];
-            //        ITmp.Remove(new Tuple<int, int>(ElementNumber, nextSegment.Index));
-            //    }
-            // }
-            foreach (var item in Model.Members[ElementNumber].Segments)
+            foreach (var item in Model.Members[elementNumber].Segments)
             {
-                Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
-                if (MemberTiles.ContainsKey(Position))
+                Tuple<int, int> position2D = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
+                if (MemberTiles.ContainsKey(position2D))
                 {
-                    List<Tuple<int, int>> iTmp = MemberTiles[Position];
-                    iTmp.Remove(new Tuple<int, int>(ElementNumber, item.Value.Index));
+                    List<Tuple<int, int>> iTmp = MemberTiles[position2D];
+                    iTmp.Remove(new Tuple<int, int>(elementNumber, item.Value.Index));
                 }
             }
         }
-
-        // public int FindNearestElement(Vector2 position)
-        // {
-        //    int DimX = Convert.ToInt32(position.X / GridSize);
-        //    int DimY = Convert.ToInt32(position.Y / GridSize);
-
-        // int ClosestNode = -1;
-        //    double ClosestLength = double.MaxValue;
-
-        // List<Tuple<int, int>> Grids = new List<Tuple<int, int>>();
-        //    Grids.Add(new Tuple<int, int>(DimX - 1, DimY - 1));
-        //    Grids.Add(new Tuple<int, int>(DimX, DimY - 1));
-        //    Grids.Add(new Tuple<int, int>(DimX + 1, DimY - 1));
-        //    Grids.Add(new Tuple<int, int>(DimX - 1, DimY));
-        //    Grids.Add(new Tuple<int, int>(DimX, DimY));
-        //    Grids.Add(new Tuple<int, int>(DimX + 1, DimY));
-        //    Grids.Add(new Tuple<int, int>(DimX - 1, DimY + 1));
-        //    Grids.Add(new Tuple<int, int>(DimX, DimY + 1));
-        //    Grids.Add(new Tuple<int, int>(DimX + 1, DimY + 1));
-
-        // foreach (Tuple<int, int> Grid in Grids)
-        //    {
-        //        List<int> ITmp = null;
-        //        if (MemberTiles.ContainsKey(Grid))
-        //        {
-        //            ITmp = MemberTiles[Grid];
-        //            foreach (int NextInt in ITmp)
-        //            {
-        //                try
-        //                {
-        //                    double NextLength = Vector2.DistanceSquared(position, Model.Members[NextInt].CenterPoint);
-        //                    if (NextLength < ClosestLength)
-        //                    {
-        //                        ClosestNode = NextInt;
-        //                        ClosestLength = NextLength;
-        //                    }
-        //                }
-        //                catch (Exception ex) { Debug.WriteLine("ElementAreas Error " + ex.Message); }
-        //            }
-        //        }
-        //    }
-
-        // Debug.WriteLine("Closest Member " + ClosestNode);
-
-        // return ClosestNode;
-        // }
-
-        // public void AddNewElementToTiles(int ElementNumber, Vector2 position)
-        // {
-        //    Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(position.X / GridSize), Convert.ToInt32(position.Y / GridSize));
-        //    List<int> ITmp = null;
-
-        // if (MemberTiles.ContainsKey(Position))
-        //    {
-        //        ITmp = MemberTiles[Position];
-        //        ITmp.Add(ElementNumber);
-        //    }
-        //    else
-        //    {
-        //        List<int> NewList = new List<int>();
-        //        NewList.Add(ElementNumber);
-        //        MemberTiles.Add(Position, NewList);
-        //    }
-        // }
-
-        // public void RemoveElementFromTiles(int ElementNumber, Vector2 position)
-        // {
-        //    Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(position.X / GridSize), Convert.ToInt32(position.Y / GridSize));
-        //    if (MemberTiles.ContainsKey(Position))
-        //    {
-        //        List<int> ITmp = MemberTiles[Position];
-        //        ITmp.Remove(ElementNumber);
-        //    }
-        // }
     }
 }

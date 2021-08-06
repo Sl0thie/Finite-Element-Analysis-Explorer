@@ -258,7 +258,6 @@
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
 
             // args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
-
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
             int lineCountX = 0;
@@ -432,55 +431,55 @@
                     switch (item.Value.Constraints.ConstraintType)
                     {
                         case ConstraintType.FixedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedTop:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.PinnedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedTop:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedRight:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.RollerBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerTop:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerRight:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.TrackBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackTop:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackRight:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                     }
                 }
@@ -537,7 +536,7 @@
                             args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
                             args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
@@ -662,7 +661,6 @@
                 Debug.WriteLine("Error " + ex.Message);
             }
 
-
             // try
             // {
             //    if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
@@ -776,10 +774,8 @@
             //    }
             // }
             // catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
-
             try
             {
-
                 if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
                 {
                     args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, 10));
@@ -831,7 +827,6 @@
                     // Draw Moment
                     if (Options.ShowMoment)
                     {
-
                         if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.M > 0.000001m)
                         {
                             args.DrawingSession.DrawText(
@@ -878,7 +873,6 @@
             {
             }
 
-
             // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
             // args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
             // args.DrawingSession.DrawText("Position: " + Camera.Position, 0, 20, Colors.White, LabelFormat);
@@ -899,7 +893,6 @@
 
             // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.CenterXPixels - 3, Camera.CenterYPixels - 3));
             // args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
-
             try
             {
                 args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, -20));
@@ -1205,7 +1198,6 @@
 
         private string ConvertToEngineeringNotation(decimal d)
         {
-
             int roundingFactor = 6;
 
             // decimal theValue = 0;
@@ -1383,4 +1375,3 @@
         }
     }
 }
-

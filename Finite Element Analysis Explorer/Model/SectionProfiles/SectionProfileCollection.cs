@@ -4,7 +4,8 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal class SectionProfileCollection : Dictionary<string, SectionProfile>
     {
-        public SectionProfileCollection() : base()
+        public SectionProfileCollection()
+            : base()
         {
         }
 

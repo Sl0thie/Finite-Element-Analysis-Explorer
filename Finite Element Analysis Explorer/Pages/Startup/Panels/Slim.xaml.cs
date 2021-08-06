@@ -2,7 +2,6 @@
 
 namespace Finite_Element_Analysis_Explorer
 {
-
     public sealed partial class Slim : Page
     {
         public Slim()

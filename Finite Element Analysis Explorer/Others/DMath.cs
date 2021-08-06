@@ -5,7 +5,6 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal static class DMath
     {
-
         public const decimal PI = 3.1415926535897932384626433833m;
 
         internal static decimal Abs(decimal x)
@@ -35,7 +34,7 @@ namespace Finite_Element_Analysis_Explorer
                     return 0;
                 }
 
-                current = (previous + x / previous) / 2;
+                current = (previous + (x / previous)) / 2;
             }
             while (Math.Abs(previous - current) > epsilon);
             return current;

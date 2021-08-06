@@ -4,12 +4,12 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal struct Point
     {
-        internal Point(decimal _x, decimal _y, decimal _m)
+        internal Point(decimal x, decimal y, decimal m)
         {
-            x = _x;
-            y = _y;
-            m = _m;
-            location = new Vector2((float)x, (float)y); // Reverse the sign here and also at the node creation to flip the y axis.
+            this.x = x;
+            this.y = y;
+            this.m = m;
+            location = new Vector2((float)this.x, (float)this.y); // Reverse the sign here and also at the node creation to flip the y axis.
         }
 
         internal Point(Point position)

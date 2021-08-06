@@ -6,12 +6,12 @@ namespace Finite_Element_Analysis_Explorer
     internal class Section
     {
         internal Section(
-            string _name,
+            string name,
             decimal e,
             decimal i,
             decimal area,
             decimal density,
-            decimal _costPerLength,
+            decimal costPerLength,
             byte alpha,
             byte red,
             byte green,
@@ -20,72 +20,72 @@ namespace Finite_Element_Analysis_Explorer
             float lineWeight,
             CanvasCapStyle nearCapStyle,
             CanvasCapStyle farCapStyle,
-            decimal _costVerticalTransport,
-            decimal _costHorizontalTransport,
-            decimal _costNodeFree,
-            decimal _costNodeFixed,
-            decimal _costNodePinned,
-            decimal _costNodeRoller,
-            decimal _costNodeTrack,
-            string _sectionProfile,
-            decimal _sectionProfileProperty1,
-            decimal _sectionProfileProperty2,
-            decimal _sectionProfileProperty3,
-            decimal _sectionProfileProperty4,
-            decimal _sectionProfileProperty5,
-            decimal _sectionProfileProperty6,
-            decimal _sectionProfileProperty7,
-            string _material,
-            decimal _MaintenancePerLength,
-            decimal _MaintenanceNodeFree,
-            decimal _MaintenanceFixed,
-            decimal _MaintenancePinned,
-            decimal _MaintenanceRoller,
-            decimal _MaintenanceTrack,
-            decimal _FactorVerticalTransport,
-            decimal _FactorHorizontalTransport)
+            decimal costVerticalTransport,
+            decimal costHorizontalTransport,
+            decimal costNodeFree,
+            decimal costNodeFixed,
+            decimal costNodePinned,
+            decimal costNodeRoller,
+            decimal costNodeTrack,
+            string sectionProfile,
+            decimal sectionProfileProperty1,
+            decimal sectionProfileProperty2,
+            decimal sectionProfileProperty3,
+            decimal sectionProfileProperty4,
+            decimal sectionProfileProperty5,
+            decimal sectionProfileProperty6,
+            decimal sectionProfileProperty7,
+            string material,
+            decimal maintenancePerLength,
+            decimal maintenanceNodeFree,
+            decimal maintenanceFixed,
+            decimal maintenancePinned,
+            decimal maintenanceRoller,
+            decimal maintenanceTrack,
+            decimal factorVerticalTransport,
+            decimal factorHorizontalTransport)
         {
-            name = _name;
-            _e = e;
-            _i = i;
-            _area = area;
-            _density = density;
-            costPerLength = _costPerLength;
-            _alpha = alpha;
-            _red = red;
-            _green = green;
-            _blue = blue;
-            _line = linetype;
-            _lineWeight = lineWeight;
-            _nearCapStyle = nearCapStyle;
-            _farCapStyle = farCapStyle;
+            this.name = name;
+            this.e = e;
+            this.i = i;
+            this.area = area;
+            this.density = density;
+            this.costPerLength = costPerLength;
+            this.alpha = alpha;
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
+            line = linetype;
+            this.lineWeight = lineWeight;
+            this.nearCapStyle = nearCapStyle;
+            this.farCapStyle = farCapStyle;
 
-            costVerticalTransport = _costVerticalTransport;
-            costHorizontalTransport = _costHorizontalTransport;
-            costNodeFree = _costNodeFree;
-            costNodeFixed = _costNodeFixed;
-            costNodePinned = _costNodePinned;
-            costNodeRoller = _costNodeRoller;
-            costNodeTrack = _costNodeTrack;
+            this.costVerticalTransport = costVerticalTransport;
+            this.costHorizontalTransport = costHorizontalTransport;
+            this.costNodeFree = costNodeFree;
+            this.costNodeFixed = costNodeFixed;
+            this.costNodePinned = costNodePinned;
+            this.costNodeRoller = costNodeRoller;
+            this.costNodeTrack = costNodeTrack;
 
-            sectionProfile = _sectionProfile;
-            sectionProfileProperty1 = _sectionProfileProperty1;
-            sectionProfileProperty2 = _sectionProfileProperty2;
-            sectionProfileProperty3 = _sectionProfileProperty3;
-            sectionProfileProperty4 = _sectionProfileProperty4;
-            sectionProfileProperty5 = _sectionProfileProperty5;
-            sectionProfileProperty6 = _sectionProfileProperty6;
-            sectionProfileProperty7 = _sectionProfileProperty7;
-            material = _material;
+            this.sectionProfile = sectionProfile;
+            this.sectionProfileProperty1 = sectionProfileProperty1;
+            this.sectionProfileProperty2 = sectionProfileProperty2;
+            this.sectionProfileProperty3 = sectionProfileProperty3;
+            this.sectionProfileProperty4 = sectionProfileProperty4;
+            this.sectionProfileProperty5 = sectionProfileProperty5;
+            this.sectionProfileProperty6 = sectionProfileProperty6;
+            this.sectionProfileProperty7 = sectionProfileProperty7;
+            this.material = material;
 
-            maintenancePerLength = _MaintenancePerLength;
-            maintenanceNodeFree = _MaintenanceNodeFree;
-            maintenanceFixed = _MaintenanceFixed;
-            maintenancePinned = _MaintenancePinned;
-            maintenanceRoller = _MaintenanceRoller;
-            maintenanceTrack = _MaintenanceTrack;
-            factorVerticalTransport = _FactorVerticalTransport;
-            factorHorizontalTransport = _FactorHorizontalTransport;
+            this.maintenancePerLength = maintenancePerLength;
+            this.maintenanceNodeFree = maintenanceNodeFree;
+            this.maintenanceFixed = maintenanceFixed;
+            this.maintenancePinned = maintenancePinned;
+            this.maintenanceRoller = maintenanceRoller;
+            this.maintenanceTrack = maintenanceTrack;
+            this.factorVerticalTransport = factorVerticalTransport;
+            this.factorHorizontalTransport = factorHorizontalTransport;
 
             UpdateCanvasStrokeStyle();
             UpdateColor();
@@ -99,116 +99,116 @@ namespace Finite_Element_Analysis_Explorer
             set { name = value; }
         }
 
-        private decimal _e;
+        private decimal e;
 
         internal decimal E
         {
-            get { return _e; }
-            set { _e = value; }
+            get { return e; }
+            set { e = value; }
         }
 
-        private decimal _i;
+        private decimal i;
 
         internal decimal I
         {
-            get { return _i; }
-            set { _i = value; }
+            get { return i; }
+            set { i = value; }
         }
 
-        private decimal _area;
+        private decimal area;
 
         internal decimal Area
         {
-            get { return _area; }
-            set { _area = value; }
+            get { return area; }
+            set { area = value; }
         }
 
-        private decimal _density;
+        private decimal density;
 
         internal decimal Density
         {
-            get { return _density; }
-            set { _density = value; }
+            get { return density; }
+            set { density = value; }
         }
 
-        private byte _alpha;
+        private byte alpha;
 
         internal byte Alpha
         {
-            get { return _alpha; }
-            set { _alpha = value; }
+            get { return alpha; }
+            set { alpha = value; }
         }
 
-        private byte _red;
+        private byte red;
 
         internal byte Red
         {
-            get { return _red; }
-            set { _red = value; }
+            get { return red; }
+            set { red = value; }
         }
 
-        private byte _green;
+        private byte green;
 
         internal byte Green
         {
-            get { return _green; }
-            set { _green = value; }
+            get { return green; }
+            set { green = value; }
         }
 
-        private byte _blue;
+        private byte blue;
 
         internal byte Blue
         {
             get
             {
-                return _blue;
+                return blue;
             }
 
             set
             {
-                _blue = value;
+                blue = value;
                 UpdateColor();
             }
         }
 
-        private Color _color;
+        private Color color;
 
         internal Color Color
         {
-            get { return _color; }
-            set { _color = value; }
+            get { return color; }
+            set { color = value; }
         }
 
-        private CanvasDashStyle _line = CanvasDashStyle.Solid;
+        private CanvasDashStyle line = CanvasDashStyle.Solid;
 
         internal CanvasDashStyle Line
         {
-            get { return _line; }
-            set { _line = value; }
+            get { return line; }
+            set { line = value; }
         }
 
-        private CanvasCapStyle _nearCapStyle = CanvasCapStyle.Round;
+        private CanvasCapStyle nearCapStyle = CanvasCapStyle.Round;
 
         internal CanvasCapStyle NearCapStyle
         {
-            get { return _nearCapStyle; }
-            set { _nearCapStyle = value; }
+            get { return nearCapStyle; }
+            set { nearCapStyle = value; }
         }
 
-        private CanvasCapStyle _farCapStyle = CanvasCapStyle.Round;
+        private CanvasCapStyle farCapStyle = CanvasCapStyle.Round;
 
         internal CanvasCapStyle FarCapStyle
         {
-            get { return _farCapStyle; }
-            set { _farCapStyle = value; }
+            get { return farCapStyle; }
+            set { farCapStyle = value; }
         }
 
-        private float _lineWeight = 1.5f;
+        private float lineWeight = 1.5f;
 
         internal float LineWeight
         {
-            get { return _lineWeight; }
-            set { _lineWeight = value; }
+            get { return lineWeight; }
+            set { lineWeight = value; }
         }
 
         private decimal costPerLength = 0;
@@ -447,16 +447,16 @@ namespace Finite_Element_Analysis_Explorer
         {
             LineStyle.DashCap = CanvasCapStyle.Round;
             LineStyle.DashOffset = dashOffset;
-            LineStyle.DashStyle = _line;
-            LineStyle.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalEndCap"];
+            LineStyle.DashStyle = line;
+            LineStyle.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalEndCap"];
             LineStyle.LineJoin = lineJoin;
             LineStyle.MiterLimit = miterLimit;
-            LineStyle.StartCap = _nearCapStyle;
+            LineStyle.StartCap = nearCapStyle;
         }
 
         private void UpdateColor()
         {
-            _color = Color.FromArgb(_alpha, _red, _green, _blue);
+            color = Color.FromArgb(alpha, red, green, blue);
         }
 
         public void Dispose()

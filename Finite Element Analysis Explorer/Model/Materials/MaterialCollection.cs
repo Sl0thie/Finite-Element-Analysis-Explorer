@@ -4,8 +4,8 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal class MaterialCollection : Dictionary<string, Material>
     {
-
-        public MaterialCollection() : base()
+        public MaterialCollection()
+            : base()
         {
         }
 

@@ -2,11 +2,11 @@
 {
     internal struct Codes
     {
-        internal Codes(int _x, int _y, int _m)
+        internal Codes(int x, int y, int m)
         {
-            x = _x;
-            y = _y;
-            m = _m;
+            this.x = x;
+            this.y = y;
+            this.m = m;
         }
 
         internal Codes(Codes codes)

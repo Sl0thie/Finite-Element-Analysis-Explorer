@@ -20,11 +20,11 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        public StartupStackPanelItem(string _description)
+        public StartupStackPanelItem(string description)
         {
             this.InitializeComponent();
-            description = _description;
-            TextBlockDescription.Text = description;
+            this.description = description;
+            TextBlockDescription.Text = this.description;
         }
     }
 }

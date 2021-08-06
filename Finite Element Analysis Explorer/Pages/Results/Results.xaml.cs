@@ -100,7 +100,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void CustomizeTitleBar()
         {
-
             // customize title area
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(trickyTitleBar);

@@ -96,7 +96,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 for (int j = 0; j < cols; ++j)
                 {
-                    result[i][j] = (maxVal - minVal) * (decimal)ran.NextDouble() + minVal;
+                    result[i][j] = ((maxVal - minVal) * (decimal)ran.NextDouble()) + minVal;
                 }
             }
 
@@ -143,9 +143,9 @@ namespace Finite_Element_Analysis_Explorer
                 throw new Exception("Non-conformable matrices in MatrixAreEqual");
             }
 
-            for (int i = 0; i < aRows; ++i) // each row of A and B
+            for (int i = 0; i < aRows; ++i)
             {
-                for (int j = 0; j < aCols; ++j) // each col of A and B
+                for (int j = 0; j < aCols; ++j)
                 {
                     // if (matrixA[i][j] != matrixB[i][j])
                     if (Math.Abs(matrixA[i][j] - matrixB[i][j]) > epsilon)
@@ -171,24 +171,17 @@ namespace Finite_Element_Analysis_Explorer
 
             decimal[][] result = MatrixCreate(aRows, bCols);
 
-            for (int i = 0; i < aRows; ++i) // each row of A
+            for (int i = 0; i < aRows; ++i)
             {
-                for (int j = 0; j < bCols; ++j) // each col of B
+                for (int j = 0; j < bCols; ++j)
                 {
-                    for (int k = 0; k < aCols; ++k) // could use k < bRows
+                    for (int k = 0; k < aCols; ++k)
                     {
                         result[i][j] += matrixA[i][k] * matrixB[k][j];
                     }
                 }
             }
 
-            // Parallel.For(0, aRows, i =>
-            //  {
-            //    for (int j = 0; j < bCols; ++j) // each col of B
-            //      for (int k = 0; k < aCols; ++k) // could use k < bRows
-            //        result[i][j] += matrixA[i][k] * matrixB[k][j];
-            //  }
-            // );
             return result;
         }
 
@@ -238,7 +231,7 @@ namespace Finite_Element_Analysis_Explorer
 
             toggle = 1; // toggle tracks row swaps. +1 -> even, -1 -> odd. used by MatrixDeterminant
 
-            for (int j = 0; j < n - 1; ++j) // each column
+            for (int j = 0; j < n - 1; ++j)
             {
                 decimal colMax = Math.Abs(result[j][j]); // find largest value in col j
                 int pRow = j;
@@ -251,20 +244,20 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
 
-                if (pRow != j) // if largest value not on pivot, swap rows
+                if (pRow != j)
                 {
                     decimal[] rowPtr = result[pRow];
                     result[pRow] = result[j];
                     result[j] = rowPtr;
 
-                    int tmp = perm[pRow]; // and swap perm info
+                    int tmp = perm[pRow];
                     perm[pRow] = perm[j];
                     perm[j] = tmp;
 
                     toggle = -toggle; // adjust the row-swap toggle
                 }
 
-                if (Math.Abs(result[j][j]) < 1.0E-20m) // if diagonal after swap is zero . . .
+                if (Math.Abs(result[j][j]) < 1.0E-20m)
                 {
                     return null; // consider a throw
                 }
@@ -310,7 +303,7 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
 
-                decimal[] x = HelperSolve(lum, b); //
+                decimal[] x = HelperSolve(lum, b);
 
                 for (int j = 0; j < n; ++j)
                 {
@@ -373,15 +366,15 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         }
 
-        internal static decimal[] SystemSolve(decimal[][] A, decimal[] b)
+        internal static decimal[] SystemSolve(decimal[][] a, decimal[] b)
         {
             // Solve Ax = b
-            int n = A.Length;
+            int n = a.Length;
 
             // 1. decompose A
             int[] perm;
             int toggle;
-            decimal[][] luMatrix = MatrixDecompose(A, out perm, out toggle);
+            decimal[][] luMatrix = MatrixDecompose(a, out perm, out toggle);
             if (luMatrix == null)
             {
                 return null;
@@ -403,7 +396,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             // allocates/creates a duplicate of a matrix. assumes matrix is not null.
             decimal[][] result = MatrixCreate(matrix.Length, matrix[0].Length);
-            for (int i = 0; i < matrix.Length; ++i) // copy the values
+            for (int i = 0; i < matrix.Length; ++i)
             {
                 for (int j = 0; j < matrix[i].Length; ++j)
                 {

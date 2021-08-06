@@ -26,7 +26,11 @@ namespace CSWindowsStoreAppSaveCollection
             return stringBuilder.ToString();
         }
 
-        // Deserialize from xml
+        /// <summary>
+        /// De-serialize from XML.
+        /// </summary>
+        /// <param name="xml">The XML containing the object.</param>
+        /// <returns>A generic object.</returns>
         public static T FromXml(string xml)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
@@ -41,4 +45,3 @@ namespace CSWindowsStoreAppSaveCollection
         }
     }
 }
-

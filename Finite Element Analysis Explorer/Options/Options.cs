@@ -7,7 +7,6 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal static class Options
     {
-
         internal static bool FirstRun = true;
 
         #region Camera
@@ -84,7 +83,6 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Colors
 
-        //
         internal static string ColorToEdit;
 
         #region Dark Colors
@@ -214,7 +212,6 @@ namespace Finite_Element_Analysis_Explorer
         {
             get
             {
-
                 return lastCurrentSectionName;
             }
 
@@ -421,10 +418,14 @@ namespace Finite_Element_Analysis_Explorer
         internal static bool ShowMoment
         {
             get
-            { return showMoment; }
+            {
+                return showMoment;
+            }
 
             set
-            { showMoment = value; }
+            {
+                showMoment = value;
+            }
         }
 
         private static bool showShear = true;
@@ -640,90 +641,90 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void LoadOptions()
         {
-            if (FileManager.localSettings.Values["FirstRun"] is object)
+            if (FileManager.LocalSettings.Values["FirstRun"] is object)
             {
-                FirstRun = (bool)FileManager.localSettings.Values["FirstRun"];
+                FirstRun = (bool)FileManager.LocalSettings.Values["FirstRun"];
             }
             else
             {
-                FileManager.localSettings.Values["FirstRun"] = (bool)true;
+                FileManager.LocalSettings.Values["FirstRun"] = (bool)true;
                 FirstRun = true;
             }
 
             if (FirstRun)
             {
-                FileManager.localSettings.Values["UnitAngle"] = (int)AngleType.Degrees;
+                FileManager.LocalSettings.Values["UnitAngle"] = (int)AngleType.Degrees;
                 angle = AngleType.Degrees;
-                FileManager.localSettings.Values["UnitArea"] = (int)AreaType.SquareMetre;
+                FileManager.LocalSettings.Values["UnitArea"] = (int)AreaType.SquareMetre;
                 area = AreaType.SquareMetre;
-                FileManager.localSettings.Values["UnitDensity"] = (int)DensityType.KilogramPerCubicMetre;
+                FileManager.LocalSettings.Values["UnitDensity"] = (int)DensityType.KilogramPerCubicMetre;
                 density = DensityType.KilogramPerCubicMetre;
-                FileManager.localSettings.Values["UnitForce"] = (int)ForceType.Newton;
+                FileManager.LocalSettings.Values["UnitForce"] = (int)ForceType.Newton;
                 force = ForceType.Newton;
-                FileManager.localSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
+                FileManager.LocalSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
                 forcePerLength = ForcePerLengthType.NewtonPerMeter;
-                FileManager.localSettings.Values["UnitLength"] = (int)LengthType.Meter;
+                FileManager.LocalSettings.Values["UnitLength"] = (int)LengthType.Meter;
                 Length = LengthType.Meter;
-                FileManager.localSettings.Values["UnitMass"] = (int)MassType.Kilogram;
+                FileManager.LocalSettings.Values["UnitMass"] = (int)MassType.Kilogram;
                 mass = MassType.Kilogram;
-                FileManager.localSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
+                FileManager.LocalSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
                 moment = MomentType.NewtonMetre;
-                FileManager.localSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
+                FileManager.LocalSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
                 momentOfInertia = MomentOfInertiaType.QuadMeter;
-                FileManager.localSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
+                FileManager.LocalSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
                 pressure = PressureType.Pascal;
-                FileManager.localSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
+                FileManager.LocalSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
                 volume = VolumeType.CubicMetre;
-                FileManager.localSettings.Values["ShowMoment"] = true;
+                FileManager.LocalSettings.Values["ShowMoment"] = true;
                 showMoment = true;
-                FileManager.localSettings.Values["ShowShear"] = true;
+                FileManager.LocalSettings.Values["ShowShear"] = true;
                 showShear = true;
-                FileManager.localSettings.Values["ShowForce"] = true;
+                FileManager.LocalSettings.Values["ShowForce"] = true;
                 showForce = true;
-                FileManager.localSettings.Values["ShowLinear"] = true;
+                FileManager.LocalSettings.Values["ShowLinear"] = true;
                 showLinear = true;
-                FileManager.localSettings.Values["ShowAxial"] = true;
+                FileManager.LocalSettings.Values["ShowAxial"] = true;
                 showAxial = true;
-                FileManager.localSettings.Values["ShowReactions"] = true;
+                FileManager.LocalSettings.Values["ShowReactions"] = true;
                 showReactions = true;
-                FileManager.localSettings.Values["MemberDisplay"] = 0;
+                FileManager.LocalSettings.Values["MemberDisplay"] = 0;
                 memberDisplay = 0;
-                FileManager.localSettings.Values["AutoStartSolver"] = true;
+                FileManager.LocalSettings.Values["AutoStartSolver"] = true;
                 autoStartSolver = true;
-                FileManager.localSettings.Values["AutoFinishSolver"] = true;
+                FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
                 currentSolver = 0;
-                FileManager.localSettings.Values["CurrentSolver"] = (int)currentSolver;
-                FileManager.localSettings.Values["LockNumericalInput"] = false;
+                FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
+                FileManager.LocalSettings.Values["LockNumericalInput"] = false;
                 lockNumericalInput = false;
-                FileManager.localSettings.Values["LoadLastFileOnStartup"] = true;
+                FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = true;
                 loadLastFileOnStartup = true;
-                FileManager.localSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
+                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
-                FileManager.localSettings.Values["ResetExistingMembers"] = true;
+                FileManager.LocalSettings.Values["ResetExistingMembers"] = true;
                 resetExistingMembers = true;
-                FileManager.localSettings.Values["lastCurrentSection"] = "Default";
+                FileManager.LocalSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
-                FileManager.localSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
-                FileManager.localSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
-                FileManager.localSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
-                FileManager.localSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
-                FileManager.localSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
-                FileManager.localSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
-                FileManager.localSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
-                FileManager.localSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
-                FileManager.localSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
-                FileManager.localSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
-                FileManager.localSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
-                FileManager.localSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
-                FileManager.localSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
-                FileManager.localSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
-                FileManager.localSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
-                FileManager.localSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
-                FileManager.localSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
-                FileManager.localSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
-                FileManager.localSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
-                FileManager.localSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
+                FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
+                FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
+                FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
+                FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
+                FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
+                FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
+                FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
+                FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
+                FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
+                FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
+                FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
+                FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
+                FileManager.LocalSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
+                FileManager.LocalSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
+                FileManager.LocalSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
+                FileManager.LocalSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
+                FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
+                FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
+                FileManager.LocalSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
+                FileManager.LocalSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
 
                 LineGridNormal.DashCap = CanvasCapStyle.Round;
                 LineGridNormal.DashOffset = 0;
@@ -734,20 +735,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridNormal.StartCap = CanvasCapStyle.Flat;
                 LineGridNormalWeight = 1;
 
-                FileManager.localSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
-                FileManager.localSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
-                FileManager.localSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
-                FileManager.localSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
+                FileManager.LocalSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
+                FileManager.LocalSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
+                FileManager.LocalSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
+                FileManager.LocalSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
 
-                FileManager.localSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
-                FileManager.localSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
-                FileManager.localSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
-                FileManager.localSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
+                FileManager.LocalSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
+                FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
+                FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
 
-                FileManager.localSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
-                FileManager.localSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
-                FileManager.localSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
-                FileManager.localSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
+                FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
+                FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
+                FileManager.LocalSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
+                FileManager.LocalSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
 
                 LineGridMinor.DashCap = CanvasCapStyle.Round;
                 LineGridMinor.DashOffset = 0;
@@ -758,20 +759,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMinor.StartCap = CanvasCapStyle.Flat;
                 LineGridMinorWeight = 1;
 
-                FileManager.localSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
-                FileManager.localSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
-                FileManager.localSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
-                FileManager.localSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
 
-                FileManager.localSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
-                FileManager.localSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
-                FileManager.localSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
-                FileManager.localSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
+                FileManager.LocalSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
+                FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
 
-                FileManager.localSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
-                FileManager.localSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
-                FileManager.localSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
-                FileManager.localSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
+                FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
+                FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
+                FileManager.LocalSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
+                FileManager.LocalSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
 
                 LineGridMajor.DashCap = CanvasCapStyle.Round;
                 LineGridMajor.DashOffset = 0;
@@ -782,20 +783,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMajor.StartCap = CanvasCapStyle.Flat;
                 LineGridMajorWeight = 1;
 
-                FileManager.localSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
-                FileManager.localSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
-                FileManager.localSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
-                FileManager.localSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
 
-                FileManager.localSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
-                FileManager.localSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
-                FileManager.localSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
-                FileManager.localSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
+                FileManager.LocalSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
+                FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
 
-                FileManager.localSettings.Values["ColorForceA"] = (int)ColorForce.A;
-                FileManager.localSettings.Values["ColorForceR"] = (int)ColorForce.R;
-                FileManager.localSettings.Values["ColorForceG"] = (int)ColorForce.G;
-                FileManager.localSettings.Values["ColorForceB"] = (int)ColorForce.B;
+                FileManager.LocalSettings.Values["ColorForceA"] = (int)ColorForce.A;
+                FileManager.LocalSettings.Values["ColorForceR"] = (int)ColorForce.R;
+                FileManager.LocalSettings.Values["ColorForceG"] = (int)ColorForce.G;
+                FileManager.LocalSettings.Values["ColorForceB"] = (int)ColorForce.B;
 
                 LineForce.DashCap = CanvasCapStyle.Round;
                 LineForce.DashOffset = 0;
@@ -806,20 +807,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineForce.StartCap = CanvasCapStyle.Round;
                 LineForceWeight = 5f;
 
-                FileManager.localSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
-                FileManager.localSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
-                FileManager.localSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
-                FileManager.localSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
+                FileManager.LocalSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
+                FileManager.LocalSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
+                FileManager.LocalSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
+                FileManager.LocalSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
 
-                FileManager.localSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
-                FileManager.localSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
-                FileManager.localSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
-                FileManager.localSettings.Values["LineForceWeight"] = (float)LineForceWeight;
+                FileManager.LocalSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
+                FileManager.LocalSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
+                FileManager.LocalSettings.Values["LineForceWeight"] = (float)LineForceWeight;
 
-                FileManager.localSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
-                FileManager.localSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
-                FileManager.localSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
-                FileManager.localSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
+                FileManager.LocalSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
+                FileManager.LocalSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
+                FileManager.LocalSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
+                FileManager.LocalSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
 
                 LineReaction.DashCap = CanvasCapStyle.Round;
                 LineReaction.DashOffset = 0;
@@ -830,20 +831,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineReaction.StartCap = CanvasCapStyle.Round;
                 LineReactionWeight = 5f;
 
-                FileManager.localSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
-                FileManager.localSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
-                FileManager.localSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
-                FileManager.localSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
+                FileManager.LocalSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
+                FileManager.LocalSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
+                FileManager.LocalSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
+                FileManager.LocalSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
 
-                FileManager.localSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
-                FileManager.localSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
-                FileManager.localSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
-                FileManager.localSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
+                FileManager.LocalSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
+                FileManager.LocalSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
+                FileManager.LocalSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
+                FileManager.LocalSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
 
-                FileManager.localSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
-                FileManager.localSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
-                FileManager.localSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
-                FileManager.localSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
+                FileManager.LocalSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
+                FileManager.LocalSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
+                FileManager.LocalSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
+                FileManager.LocalSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
 
                 LineSelectedElement.DashCap = CanvasCapStyle.Round;
                 LineSelectedElement.DashOffset = 0;
@@ -854,20 +855,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineSelectedElement.StartCap = CanvasCapStyle.Flat;
                 LineSelectedElementWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
-                FileManager.localSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
-                FileManager.localSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
-                FileManager.localSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
+                FileManager.LocalSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
+                FileManager.LocalSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
+                FileManager.LocalSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
+                FileManager.LocalSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
 
-                FileManager.localSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
-                FileManager.localSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
-                FileManager.localSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
-                FileManager.localSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
+                FileManager.LocalSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
+                FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
+                FileManager.LocalSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
+                FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
 
-                FileManager.localSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
-                FileManager.localSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
-                FileManager.localSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
-                FileManager.localSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
 
                 LineShearForceSelected.DashCap = CanvasCapStyle.Round;
                 LineShearForceSelected.DashOffset = 0;
@@ -878,20 +879,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineShearForceSelectedWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
-                FileManager.localSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
-                FileManager.localSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
 
-                FileManager.localSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
-                FileManager.localSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
-                FileManager.localSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
-                FileManager.localSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
 
                 LineMomentForceSelected.DashCap = CanvasCapStyle.Round;
                 LineMomentForceSelected.DashOffset = 0;
@@ -902,20 +903,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceSelectedWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
-                FileManager.localSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
-                FileManager.localSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
 
-                FileManager.localSettings.Values["ColorShearForceFontA"] = (int)ColorShearForceFont.A;
-                FileManager.localSettings.Values["ColorShearForceFontR"] = (int)ColorShearForceFont.R;
-                FileManager.localSettings.Values["ColorShearForceFontG"] = (int)ColorShearForceFont.G;
-                FileManager.localSettings.Values["ColorShearForceFontB"] = (int)ColorShearForceFont.B;
+                FileManager.LocalSettings.Values["ColorShearForceFontA"] = (int)ColorShearForceFont.A;
+                FileManager.LocalSettings.Values["ColorShearForceFontR"] = (int)ColorShearForceFont.R;
+                FileManager.LocalSettings.Values["ColorShearForceFontG"] = (int)ColorShearForceFont.G;
+                FileManager.LocalSettings.Values["ColorShearForceFontB"] = (int)ColorShearForceFont.B;
 
                 LineShearForceFont.DashCap = CanvasCapStyle.Round;
                 LineShearForceFont.DashOffset = 0;
@@ -926,20 +927,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceFont.StartCap = CanvasCapStyle.Flat;
                 LineShearForceFontWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineShearForceFontDashCap"] = (int)LineShearForceFont.DashCap;
-                FileManager.localSettings.Values["LineShearForceFontDashOffset"] = (float)LineShearForceFont.DashOffset;
-                FileManager.localSettings.Values["LineShearForceFontDashStyle"] = (int)LineShearForceFont.DashStyle;
-                FileManager.localSettings.Values["LineShearForceFontEndCap"] = (int)LineShearForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceFontDashCap"] = (int)LineShearForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceFontDashOffset"] = (float)LineShearForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceFontDashStyle"] = (int)LineShearForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceFontEndCap"] = (int)LineShearForceFont.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceFontLineJoin"] = (int)LineShearForceFont.LineJoin;
-                FileManager.localSettings.Values["LineShearForceFontMiterLimit"] = (float)LineShearForceFont.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceFontStartCap"] = (int)LineShearForceFont.StartCap;
-                FileManager.localSettings.Values["LineShearForceFontWeight"] = (float)LineShearForceFontWeight;
+                FileManager.LocalSettings.Values["LineShearForceFontLineJoin"] = (int)LineShearForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceFontMiterLimit"] = (float)LineShearForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceFontStartCap"] = (int)LineShearForceFont.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceFontWeight"] = (float)LineShearForceFontWeight;
 
-                FileManager.localSettings.Values["ColorMomentForceFontA"] = (int)ColorMomentForceFont.A;
-                FileManager.localSettings.Values["ColorMomentForceFontR"] = (int)ColorMomentForceFont.R;
-                FileManager.localSettings.Values["ColorMomentForceFontG"] = (int)ColorMomentForceFont.G;
-                FileManager.localSettings.Values["ColorMomentForceFontB"] = (int)ColorMomentForceFont.B;
+                FileManager.LocalSettings.Values["ColorMomentForceFontA"] = (int)ColorMomentForceFont.A;
+                FileManager.LocalSettings.Values["ColorMomentForceFontR"] = (int)ColorMomentForceFont.R;
+                FileManager.LocalSettings.Values["ColorMomentForceFontG"] = (int)ColorMomentForceFont.G;
+                FileManager.LocalSettings.Values["ColorMomentForceFontB"] = (int)ColorMomentForceFont.B;
 
                 LineMomentForceFont.DashCap = CanvasCapStyle.Round;
                 LineMomentForceFont.DashOffset = 0;
@@ -950,20 +951,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceFont.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceFontWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineMomentForceFontDashCap"] = (int)LineMomentForceFont.DashCap;
-                FileManager.localSettings.Values["LineMomentForceFontDashOffset"] = (float)LineMomentForceFont.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceFontDashStyle"] = (int)LineMomentForceFont.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceFontEndCap"] = (int)LineMomentForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashCap"] = (int)LineMomentForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashOffset"] = (float)LineMomentForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashStyle"] = (int)LineMomentForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceFontEndCap"] = (int)LineMomentForceFont.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceFontLineJoin"] = (int)LineMomentForceFont.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceFontMiterLimit"] = (float)LineMomentForceFont.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceFontStartCap"] = (int)LineMomentForceFont.StartCap;
-                FileManager.localSettings.Values["LineMomentForceFontWeight"] = (float)LineMomentForceFontWeight;
+                FileManager.LocalSettings.Values["LineMomentForceFontLineJoin"] = (int)LineMomentForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceFontMiterLimit"] = (float)LineMomentForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceFontStartCap"] = (int)LineMomentForceFont.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = (float)LineMomentForceFontWeight;
 
-                FileManager.localSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
-                FileManager.localSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
-                FileManager.localSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
-                FileManager.localSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
+                FileManager.LocalSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
+                FileManager.LocalSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
+                FileManager.LocalSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
+                FileManager.LocalSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
 
                 LineShearForce.DashCap = CanvasCapStyle.Round;
                 LineShearForce.DashOffset = 0;
@@ -974,20 +975,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForce.StartCap = CanvasCapStyle.Flat;
                 LineShearForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
-                FileManager.localSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
-                FileManager.localSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
-                FileManager.localSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
-                FileManager.localSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
-                FileManager.localSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
+                FileManager.LocalSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
 
-                FileManager.localSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
-                FileManager.localSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
-                FileManager.localSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
-                FileManager.localSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
+                FileManager.LocalSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
+                FileManager.LocalSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
+                FileManager.LocalSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
+                FileManager.LocalSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
 
                 LineMomentForce.DashCap = CanvasCapStyle.Round;
                 LineMomentForce.DashOffset = 0;
@@ -998,20 +999,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForce.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
-                FileManager.localSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
-                FileManager.localSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
+                FileManager.LocalSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
 
-                FileManager.localSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
-                FileManager.localSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
-                FileManager.localSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
-                FileManager.localSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
+                FileManager.LocalSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
 
                 LineDistributedForce.DashCap = CanvasCapStyle.Round;
                 LineDistributedForce.DashOffset = 0;
@@ -1022,20 +1023,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForce.StartCap = CanvasCapStyle.Flat;
                 LineDistributedForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
-                FileManager.localSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
-                FileManager.localSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
-                FileManager.localSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
 
-                FileManager.localSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
-                FileManager.localSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
-                FileManager.localSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
-                FileManager.localSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
+                FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
 
-                FileManager.localSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
 
                 LineDistributedForceSelected.DashCap = CanvasCapStyle.Round;
                 LineDistributedForceSelected.DashOffset = 0;
@@ -1046,20 +1047,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineDistributedForceSelectedWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
-                FileManager.localSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
 
-                FileManager.localSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
-                FileManager.localSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
-                FileManager.localSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
-                FileManager.localSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
+                FileManager.LocalSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
+                FileManager.LocalSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
+                FileManager.LocalSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
+                FileManager.LocalSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
 
                 LineNodeFree.DashCap = CanvasCapStyle.Round;
                 LineNodeFree.DashOffset = 0;
@@ -1070,20 +1071,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFree.StartCap = CanvasCapStyle.Flat;
                 LineNodeFreeWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
-                FileManager.localSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
-                FileManager.localSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
-                FileManager.localSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
+                FileManager.LocalSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
+                FileManager.LocalSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
 
-                FileManager.localSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
-                FileManager.localSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
-                FileManager.localSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
-                FileManager.localSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
+                FileManager.LocalSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
+                FileManager.LocalSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
 
-                FileManager.localSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
-                FileManager.localSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
-                FileManager.localSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
-                FileManager.localSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
+                FileManager.LocalSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
+                FileManager.LocalSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
+                FileManager.LocalSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
+                FileManager.LocalSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
 
                 LineNodeFixed.DashCap = CanvasCapStyle.Round;
                 LineNodeFixed.DashOffset = 0;
@@ -1094,20 +1095,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFixed.StartCap = CanvasCapStyle.Flat;
                 LineNodeFixedWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
-                FileManager.localSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
-                FileManager.localSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
-                FileManager.localSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
+                FileManager.LocalSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
+                FileManager.LocalSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
 
-                FileManager.localSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
-                FileManager.localSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
-                FileManager.localSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
-                FileManager.localSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
+                FileManager.LocalSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
+                FileManager.LocalSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
 
-                FileManager.localSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
-                FileManager.localSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
-                FileManager.localSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
-                FileManager.localSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
+                FileManager.LocalSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
+                FileManager.LocalSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
+                FileManager.LocalSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
+                FileManager.LocalSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
 
                 LineNodePin.DashCap = CanvasCapStyle.Round;
                 LineNodePin.DashOffset = 0;
@@ -1118,20 +1119,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodePin.StartCap = CanvasCapStyle.Flat;
                 LineNodePinWeight = 1;
 
-                FileManager.localSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
-                FileManager.localSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
-                FileManager.localSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
-                FileManager.localSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
+                FileManager.LocalSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
+                FileManager.LocalSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
+                FileManager.LocalSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
+                FileManager.LocalSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
 
-                FileManager.localSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
-                FileManager.localSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
-                FileManager.localSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
-                FileManager.localSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
+                FileManager.LocalSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
+                FileManager.LocalSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
+                FileManager.LocalSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
 
-                FileManager.localSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
-                FileManager.localSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
-                FileManager.localSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
-                FileManager.localSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
+                FileManager.LocalSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
+                FileManager.LocalSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
+                FileManager.LocalSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
+                FileManager.LocalSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
 
                 LineNodeRollerX.DashCap = CanvasCapStyle.Round;
                 LineNodeRollerX.DashOffset = 0;
@@ -1142,20 +1143,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerX.StartCap = CanvasCapStyle.Flat;
                 LineNodeRollerXWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
-                FileManager.localSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
-                FileManager.localSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
-                FileManager.localSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
 
-                FileManager.localSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
-                FileManager.localSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
-                FileManager.localSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
-                FileManager.localSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
+                FileManager.LocalSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
 
-                FileManager.localSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
-                FileManager.localSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
-                FileManager.localSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
-                FileManager.localSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
+                FileManager.LocalSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
+                FileManager.LocalSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
+                FileManager.LocalSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
+                FileManager.LocalSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
 
                 LineNodeRollerY.DashCap = CanvasCapStyle.Round;
                 LineNodeRollerY.DashOffset = 0;
@@ -1166,20 +1167,20 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerY.StartCap = CanvasCapStyle.Flat;
                 LineNodeRollerYWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
-                FileManager.localSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
-                FileManager.localSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
-                FileManager.localSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
 
-                FileManager.localSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
-                FileManager.localSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
-                FileManager.localSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
-                FileManager.localSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
+                FileManager.LocalSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
 
-                FileManager.localSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
-                FileManager.localSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
-                FileManager.localSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
-                FileManager.localSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
+                FileManager.LocalSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
+                FileManager.LocalSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
+                FileManager.LocalSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
+                FileManager.LocalSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
 
                 LineNodeOther.DashCap = CanvasCapStyle.Round;
                 LineNodeOther.DashOffset = 0;
@@ -1190,267 +1191,267 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeOther.StartCap = CanvasCapStyle.Flat;
                 LineNodeOtherWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
-                FileManager.localSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
-                FileManager.localSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
-                FileManager.localSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
+                FileManager.LocalSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
+                FileManager.LocalSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
 
-                FileManager.localSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
-                FileManager.localSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
-                FileManager.localSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
-                FileManager.localSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
+                FileManager.LocalSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
+                FileManager.LocalSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
 
-                FileManager.localSettings.Values["MomentFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["MomentFactor"] = 0.0001f;
                 momentFactor = 0.0001f;
-                FileManager.localSettings.Values["ShearFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ShearFactor"] = 0.0001f;
                 shearFactor = 0.0001f;
-                FileManager.localSettings.Values["LinearFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["LinearFactor"] = 0.0001f;
                 linearFactor = 0.0001f;
-                FileManager.localSettings.Values["ForcesFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ForcesFactor"] = 0.0001f;
                 forcesFactor = 0.0001f;
-                FileManager.localSettings.Values["ReactionsFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.0001f;
                 reactionsFactor = 0.0001f;
-                FileManager.localSettings.Values["DisplacementFactor"] = 1f;
+                FileManager.LocalSettings.Values["DisplacementFactor"] = 1f;
                 displacementFactor = 1f;
-                FileManager.localSettings.Values["CameraZoomTrim"] = 500f;
+                FileManager.LocalSettings.Values["CameraZoomTrim"] = 500f;
                 CameraZoomTrim = 500f;
-                FileManager.localSettings.Values["SelectGridSize"] = 1f;
+                FileManager.LocalSettings.Values["SelectGridSize"] = 1f;
                 SelectGridSize = 1f;
             }
 
-            if (FileManager.localSettings.Values["UnitAngle"] is object)
+            if (FileManager.LocalSettings.Values["UnitAngle"] is object)
             {
-                angle = (AngleType)FileManager.localSettings.Values["UnitAngle"];
+                angle = (AngleType)FileManager.LocalSettings.Values["UnitAngle"];
             }
             else
             {
-                FileManager.localSettings.Values["UnitAngle"] = (int)AngleType.Degrees;
+                FileManager.LocalSettings.Values["UnitAngle"] = (int)AngleType.Degrees;
                 angle = AngleType.Degrees;
             }
 
-            if (FileManager.localSettings.Values["UnitArea"] is object)
+            if (FileManager.LocalSettings.Values["UnitArea"] is object)
             {
-                area = (AreaType)FileManager.localSettings.Values["UnitArea"];
+                area = (AreaType)FileManager.LocalSettings.Values["UnitArea"];
             }
             else
             {
-                FileManager.localSettings.Values["UnitArea"] = (int)AreaType.SquareMetre;
+                FileManager.LocalSettings.Values["UnitArea"] = (int)AreaType.SquareMetre;
                 area = AreaType.SquareMetre;
             }
 
-            if (FileManager.localSettings.Values["UnitDensity"] is object)
+            if (FileManager.LocalSettings.Values["UnitDensity"] is object)
             {
-                density = (DensityType)FileManager.localSettings.Values["UnitDensity"];
+                density = (DensityType)FileManager.LocalSettings.Values["UnitDensity"];
             }
             else
             {
-                FileManager.localSettings.Values["UnitDensity"] = (int)DensityType.KilogramPerCubicMetre;
+                FileManager.LocalSettings.Values["UnitDensity"] = (int)DensityType.KilogramPerCubicMetre;
                 density = DensityType.KilogramPerCubicMetre;
             }
 
             try
             {
-                force = (ForceType)FileManager.localSettings.Values["UnitForce"];
+                force = (ForceType)FileManager.LocalSettings.Values["UnitForce"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitForce"] = (int)ForceType.Newton;
+                FileManager.LocalSettings.Values["UnitForce"] = (int)ForceType.Newton;
                 force = ForceType.Newton;
             }
 
             try
             {
-                forcePerLength = (ForcePerLengthType)FileManager.localSettings.Values["UnitForcePerLength"];
+                forcePerLength = (ForcePerLengthType)FileManager.LocalSettings.Values["UnitForcePerLength"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
+                FileManager.LocalSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
                 forcePerLength = ForcePerLengthType.NewtonPerMeter;
             }
 
             try
             {
-                Length = (LengthType)FileManager.localSettings.Values["UnitLength"];
+                Length = (LengthType)FileManager.LocalSettings.Values["UnitLength"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitLength"] = (int)LengthType.Meter;
+                FileManager.LocalSettings.Values["UnitLength"] = (int)LengthType.Meter;
                 Length = LengthType.Meter;
             }
 
             try
             {
-                mass = (MassType)FileManager.localSettings.Values["UnitMass"];
+                mass = (MassType)FileManager.LocalSettings.Values["UnitMass"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitMass"] = (int)MassType.Kilogram;
+                FileManager.LocalSettings.Values["UnitMass"] = (int)MassType.Kilogram;
                 mass = MassType.Kilogram;
             }
 
             try
             {
-                moment = (MomentType)FileManager.localSettings.Values["UnitMoment"];
+                moment = (MomentType)FileManager.LocalSettings.Values["UnitMoment"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
+                FileManager.LocalSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
                 moment = MomentType.NewtonMetre;
             }
 
             try
             {
-                momentOfInertia = (MomentOfInertiaType)FileManager.localSettings.Values["UnitMomentOfInertia"];
+                momentOfInertia = (MomentOfInertiaType)FileManager.LocalSettings.Values["UnitMomentOfInertia"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
+                FileManager.LocalSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
                 momentOfInertia = MomentOfInertiaType.QuadMeter;
             }
 
             try
             {
-                pressure = (PressureType)FileManager.localSettings.Values["UnitPressure"];
+                pressure = (PressureType)FileManager.LocalSettings.Values["UnitPressure"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
+                FileManager.LocalSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
                 pressure = PressureType.Pascal;
             }
 
             try
             {
-                volume = (VolumeType)FileManager.localSettings.Values["UnitVolume"];
+                volume = (VolumeType)FileManager.LocalSettings.Values["UnitVolume"];
             }
             catch
             {
-                FileManager.localSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
+                FileManager.LocalSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
                 volume = VolumeType.CubicMetre;
             }
 
             try
             {
-                showMoment = (bool)FileManager.localSettings.Values["ShowMoment"];
+                showMoment = (bool)FileManager.LocalSettings.Values["ShowMoment"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowMoment"] = true;
+                FileManager.LocalSettings.Values["ShowMoment"] = true;
                 showMoment = true;
             }
 
             try
             {
-                showShear = (bool)FileManager.localSettings.Values["ShowShear"];
+                showShear = (bool)FileManager.LocalSettings.Values["ShowShear"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowShear"] = true;
+                FileManager.LocalSettings.Values["ShowShear"] = true;
                 showShear = true;
             }
 
             try
             {
-                showForce = (bool)FileManager.localSettings.Values["ShowForce"];
+                showForce = (bool)FileManager.LocalSettings.Values["ShowForce"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowForce"] = true;
+                FileManager.LocalSettings.Values["ShowForce"] = true;
                 showForce = true;
             }
 
             try
             {
-                showLinear = (bool)FileManager.localSettings.Values["ShowLinear"];
+                showLinear = (bool)FileManager.LocalSettings.Values["ShowLinear"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowLinear"] = true;
+                FileManager.LocalSettings.Values["ShowLinear"] = true;
                 showLinear = true;
             }
 
             try
             {
-                showAxial = (bool)FileManager.localSettings.Values["ShowAxial"];
+                showAxial = (bool)FileManager.LocalSettings.Values["ShowAxial"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowAxial"] = true;
+                FileManager.LocalSettings.Values["ShowAxial"] = true;
                 showAxial = true;
             }
 
             try
             {
-                showReactions = (bool)FileManager.localSettings.Values["ShowReactions"];
+                showReactions = (bool)FileManager.LocalSettings.Values["ShowReactions"];
             }
             catch
             {
-                FileManager.localSettings.Values["ShowReactions"] = true;
+                FileManager.LocalSettings.Values["ShowReactions"] = true;
                 showReactions = true;
             }
 
             try
             {
-                memberDisplay = (int)FileManager.localSettings.Values["MemberDisplay"];
+                memberDisplay = (int)FileManager.LocalSettings.Values["MemberDisplay"];
             }
             catch
             {
-                FileManager.localSettings.Values["MemberDisplay"] = 0;
+                FileManager.LocalSettings.Values["MemberDisplay"] = 0;
                 memberDisplay = 0;
             }
 
             try
             {
-                autoStartSolver = (bool)FileManager.localSettings.Values["AutoStartSolver"];
+                autoStartSolver = (bool)FileManager.LocalSettings.Values["AutoStartSolver"];
             }
             catch
             {
-                FileManager.localSettings.Values["AutoStartSolver"] = true;
+                FileManager.LocalSettings.Values["AutoStartSolver"] = true;
                 autoStartSolver = true;
             }
 
             try
             {
-                autoFinishSolver = (bool)FileManager.localSettings.Values["AutoFinishSolver"];
+                autoFinishSolver = (bool)FileManager.LocalSettings.Values["AutoFinishSolver"];
             }
             catch
             {
-                FileManager.localSettings.Values["AutoFinishSolver"] = true;
+                FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
             }
 
             try
             {
-                currentSolver = (int)FileManager.localSettings.Values["CurrentSolver"];
+                currentSolver = (int)FileManager.LocalSettings.Values["CurrentSolver"];
             }
             catch
             {
                 currentSolver = 0;
-                FileManager.localSettings.Values["CurrentSolver"] = (int)currentSolver;
+                FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
             }
 
             try
             {
-                lockNumericalInput = (bool)FileManager.localSettings.Values["LockNumericalInput"];
+                lockNumericalInput = (bool)FileManager.LocalSettings.Values["LockNumericalInput"];
             }
             catch
             {
-                FileManager.localSettings.Values["LockNumericalInput"] = false;
+                FileManager.LocalSettings.Values["LockNumericalInput"] = false;
                 lockNumericalInput = false;
             }
 
             try
             {
-                loadLastFileOnStartup = (bool)FileManager.localSettings.Values["LoadLastFileOnStartup"];
+                loadLastFileOnStartup = (bool)FileManager.LocalSettings.Values["LoadLastFileOnStartup"];
             }
             catch
             {
-                FileManager.localSettings.Values["LoadLastFileOnStartup"] = true;
+                FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = true;
                 loadLastFileOnStartup = true;
             }
 
             try
             {
-                defaultNumberOfSegments = (int)FileManager.localSettings.Values["defaultNumberOfSegments"];
+                defaultNumberOfSegments = (int)FileManager.LocalSettings.Values["defaultNumberOfSegments"];
                 if (defaultNumberOfSegments < 1)
                 {
                     defaultNumberOfSegments = 1;
@@ -1458,27 +1459,27 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch
             {
-                FileManager.localSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
+                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
             }
 
             try
             {
-                resetExistingMembers = (bool)FileManager.localSettings.Values["ResetExistingMembers"];
+                resetExistingMembers = (bool)FileManager.LocalSettings.Values["ResetExistingMembers"];
             }
             catch
             {
-                FileManager.localSettings.Values["ResetExistingMembers"] = true;
+                FileManager.LocalSettings.Values["ResetExistingMembers"] = true;
                 resetExistingMembers = true;
             }
 
             try
             {
-                lastCurrentSectionName = (string)FileManager.localSettings.Values["lastCurrentSection"];
+                lastCurrentSectionName = (string)FileManager.LocalSettings.Values["lastCurrentSection"];
             }
             catch
             {
-                FileManager.localSettings.Values["lastCurrentSection"] = "Default";
+                FileManager.LocalSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
             }
 
@@ -1494,79 +1495,79 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorBackgroundA"];
-                int R = (int)FileManager.localSettings.Values["ColorBackgroundR"];
-                int G = (int)FileManager.localSettings.Values["ColorBackgroundG"];
-                int B = (int)FileManager.localSettings.Values["ColorBackgroundB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorBackgroundA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorBackgroundR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorBackgroundG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorBackgroundB"];
 
-                ColorBackground = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorBackground = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
             catch
             {
-                FileManager.localSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
-                FileManager.localSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
-                FileManager.localSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
-                FileManager.localSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
+                FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
+                FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
+                FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
+                FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorGridMajorFontA"];
-                int R = (int)FileManager.localSettings.Values["ColorGridMajorFontR"];
-                int G = (int)FileManager.localSettings.Values["ColorGridMajorFontG"];
-                int B = (int)FileManager.localSettings.Values["ColorGridMajorFontB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorGridMajorFontA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorGridMajorFontR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorGridMajorFontG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorGridMajorFontB"];
 
-                ColorGridMajorFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorGridMajorFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
             catch
             {
-                FileManager.localSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
-                FileManager.localSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
-                FileManager.localSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
-                FileManager.localSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
+                FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
+                FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
+                FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
+                FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorLabelA"];
-                int R = (int)FileManager.localSettings.Values["ColorLabelR"];
-                int G = (int)FileManager.localSettings.Values["ColorLabelG"];
-                int B = (int)FileManager.localSettings.Values["ColorLabelB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorLabelA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorLabelR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorLabelG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorLabelB"];
 
-                ColorLabel = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorLabel = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
             catch
             {
-                FileManager.localSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
-                FileManager.localSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
-                FileManager.localSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
-                FileManager.localSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
+                FileManager.LocalSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
+                FileManager.LocalSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
+                FileManager.LocalSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
+                FileManager.LocalSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorGridNormalA"];
-                int R = (int)FileManager.localSettings.Values["ColorGridNormalR"];
-                int G = (int)FileManager.localSettings.Values["ColorGridNormalG"];
-                int B = (int)FileManager.localSettings.Values["ColorGridNormalB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorGridNormalA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorGridNormalR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorGridNormalG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorGridNormalB"];
 
-                ColorGridNormal = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorGridNormal = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineGridNormal.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalDashCap"];
-                LineGridNormal.DashOffset = (float)FileManager.localSettings.Values["LineGridNormalDashOffset"];
-                LineGridNormal.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineGridNormalDashStyle"];
-                LineGridNormal.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalEndCap"];
-                LineGridNormal.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineGridNormalLineJoin"];
-                LineGridNormal.MiterLimit = (float)FileManager.localSettings.Values["LineGridNormalMiterLimit"];
-                LineGridNormal.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalStartCap"];
-                LineGridNormalWeight = (float)FileManager.localSettings.Values["LineGridNormalWeight"];
+                LineGridNormal.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalDashCap"];
+                LineGridNormal.DashOffset = (float)FileManager.LocalSettings.Values["LineGridNormalDashOffset"];
+                LineGridNormal.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineGridNormalDashStyle"];
+                LineGridNormal.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalEndCap"];
+                LineGridNormal.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineGridNormalLineJoin"];
+                LineGridNormal.MiterLimit = (float)FileManager.LocalSettings.Values["LineGridNormalMiterLimit"];
+                LineGridNormal.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalStartCap"];
+                LineGridNormalWeight = (float)FileManager.LocalSettings.Values["LineGridNormalWeight"];
             }
             catch
             {
-                FileManager.localSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
-                FileManager.localSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
-                FileManager.localSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
-                FileManager.localSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
+                FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
+                FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
+                FileManager.LocalSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
+                FileManager.LocalSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
 
                 LineGridNormal.DashCap = CanvasCapStyle.Round;
                 LineGridNormal.DashOffset = 0;
@@ -1577,42 +1578,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridNormal.StartCap = CanvasCapStyle.Flat;
                 LineGridNormalWeight = 1;
 
-                FileManager.localSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
-                FileManager.localSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
-                FileManager.localSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
-                FileManager.localSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
+                FileManager.LocalSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
+                FileManager.LocalSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
+                FileManager.LocalSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
+                FileManager.LocalSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
 
-                FileManager.localSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
-                FileManager.localSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
-                FileManager.localSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
-                FileManager.localSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
+                FileManager.LocalSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
+                FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
+                FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorGridMinorA"];
-                int R = (int)FileManager.localSettings.Values["ColorGridMinorR"];
-                int G = (int)FileManager.localSettings.Values["ColorGridMinorG"];
-                int B = (int)FileManager.localSettings.Values["ColorGridMinorB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorGridMinorA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorGridMinorR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorGridMinorG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorGridMinorB"];
 
-                ColorGridMinor = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorGridMinor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineGridMinor.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMinorDashCap"];
-                LineGridMinor.DashOffset = (float)FileManager.localSettings.Values["LineGridMinorDashOffset"];
-                LineGridMinor.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineGridMinorDashStyle"];
-                LineGridMinor.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMinorEndCap"];
-                LineGridMinor.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineGridMinorLineJoin"];
-                LineGridMinor.MiterLimit = (float)FileManager.localSettings.Values["LineGridMinorMiterLimit"];
-                LineGridMinor.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMinorStartCap"];
-                LineGridMinorWeight = (float)FileManager.localSettings.Values["LineGridMinorWeight"];
+                LineGridMinor.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMinorDashCap"];
+                LineGridMinor.DashOffset = (float)FileManager.LocalSettings.Values["LineGridMinorDashOffset"];
+                LineGridMinor.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineGridMinorDashStyle"];
+                LineGridMinor.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMinorEndCap"];
+                LineGridMinor.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineGridMinorLineJoin"];
+                LineGridMinor.MiterLimit = (float)FileManager.LocalSettings.Values["LineGridMinorMiterLimit"];
+                LineGridMinor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMinorStartCap"];
+                LineGridMinorWeight = (float)FileManager.LocalSettings.Values["LineGridMinorWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
-                FileManager.localSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
-                FileManager.localSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
-                FileManager.localSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
+                FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
+                FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
+                FileManager.LocalSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
+                FileManager.LocalSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
 
                 LineGridMinor.DashCap = CanvasCapStyle.Round;
                 LineGridMinor.DashOffset = 0;
@@ -1623,42 +1623,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMinor.StartCap = CanvasCapStyle.Flat;
                 LineGridMinorWeight = 1;
 
-                FileManager.localSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
-                FileManager.localSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
-                FileManager.localSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
-                FileManager.localSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
 
-                FileManager.localSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
-                FileManager.localSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
-                FileManager.localSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
-                FileManager.localSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
+                FileManager.LocalSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
+                FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorGridMajorA"];
-                int R = (int)FileManager.localSettings.Values["ColorGridMajorR"];
-                int G = (int)FileManager.localSettings.Values["ColorGridMajorG"];
-                int B = (int)FileManager.localSettings.Values["ColorGridMajorB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorGridMajorA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorGridMajorR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorGridMajorG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorGridMajorB"];
 
-                ColorGridMajor = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorGridMajor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineGridMajor.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMajorDashCap"];
-                LineGridMajor.DashOffset = (float)FileManager.localSettings.Values["LineGridMajorDashOffset"];
-                LineGridMajor.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineGridMajorDashStyle"];
-                LineGridMajor.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMajorEndCap"];
-                LineGridMajor.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineGridMajorLineJoin"];
-                LineGridMajor.MiterLimit = (float)FileManager.localSettings.Values["LineGridMajorMiterLimit"];
-                LineGridMajor.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMajorStartCap"];
-                LineGridMajorWeight = (float)FileManager.localSettings.Values["LineGridMajorWeight"];
+                LineGridMajor.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMajorDashCap"];
+                LineGridMajor.DashOffset = (float)FileManager.LocalSettings.Values["LineGridMajorDashOffset"];
+                LineGridMajor.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineGridMajorDashStyle"];
+                LineGridMajor.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMajorEndCap"];
+                LineGridMajor.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineGridMajorLineJoin"];
+                LineGridMajor.MiterLimit = (float)FileManager.LocalSettings.Values["LineGridMajorMiterLimit"];
+                LineGridMajor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMajorStartCap"];
+                LineGridMajorWeight = (float)FileManager.LocalSettings.Values["LineGridMajorWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
-                FileManager.localSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
-                FileManager.localSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
-                FileManager.localSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
+                FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
+                FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
+                FileManager.LocalSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
+                FileManager.LocalSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
 
                 LineGridMajor.DashCap = CanvasCapStyle.Round;
                 LineGridMajor.DashOffset = 0;
@@ -1669,42 +1668,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMajor.StartCap = CanvasCapStyle.Flat;
                 LineGridMajorWeight = 1;
 
-                FileManager.localSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
-                FileManager.localSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
-                FileManager.localSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
-                FileManager.localSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
 
-                FileManager.localSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
-                FileManager.localSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
-                FileManager.localSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
-                FileManager.localSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
+                FileManager.LocalSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
+                FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorForceA"];
-                int R = (int)FileManager.localSettings.Values["ColorForceR"];
-                int G = (int)FileManager.localSettings.Values["ColorForceG"];
-                int B = (int)FileManager.localSettings.Values["ColorForceB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorForceA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorForceR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorForceG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorForceB"];
 
-                ColorForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineForceDashCap"];
-                LineForce.DashOffset = (float)FileManager.localSettings.Values["LineForceDashOffset"];
-                LineForce.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineForceDashStyle"];
-                LineForce.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineForceEndCap"];
-                LineForce.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineForceLineJoin"];
-                LineForce.MiterLimit = (float)FileManager.localSettings.Values["LineForceMiterLimit"];
-                LineForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineForceStartCap"];
-                LineForceWeight = (float)FileManager.localSettings.Values["LineForceWeight"];
+                LineForce.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineForceDashCap"];
+                LineForce.DashOffset = (float)FileManager.LocalSettings.Values["LineForceDashOffset"];
+                LineForce.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineForceDashStyle"];
+                LineForce.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineForceEndCap"];
+                LineForce.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineForceLineJoin"];
+                LineForce.MiterLimit = (float)FileManager.LocalSettings.Values["LineForceMiterLimit"];
+                LineForce.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineForceStartCap"];
+                LineForceWeight = (float)FileManager.LocalSettings.Values["LineForceWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorForceA"] = (int)ColorForce.A;
-                FileManager.localSettings.Values["ColorForceR"] = (int)ColorForce.R;
-                FileManager.localSettings.Values["ColorForceG"] = (int)ColorForce.G;
-                FileManager.localSettings.Values["ColorForceB"] = (int)ColorForce.B;
+                FileManager.LocalSettings.Values["ColorForceA"] = (int)ColorForce.A;
+                FileManager.LocalSettings.Values["ColorForceR"] = (int)ColorForce.R;
+                FileManager.LocalSettings.Values["ColorForceG"] = (int)ColorForce.G;
+                FileManager.LocalSettings.Values["ColorForceB"] = (int)ColorForce.B;
 
                 LineForce.DashCap = CanvasCapStyle.Round;
                 LineForce.DashOffset = 0;
@@ -1715,42 +1713,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineForce.StartCap = CanvasCapStyle.Round;
                 LineForceWeight = 5f;
 
-                FileManager.localSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
-                FileManager.localSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
-                FileManager.localSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
-                FileManager.localSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
+                FileManager.LocalSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
+                FileManager.LocalSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
+                FileManager.LocalSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
+                FileManager.LocalSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
 
-                FileManager.localSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
-                FileManager.localSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
-                FileManager.localSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
-                FileManager.localSettings.Values["LineForceWeight"] = (float)LineForceWeight;
+                FileManager.LocalSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
+                FileManager.LocalSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
+                FileManager.LocalSettings.Values["LineForceWeight"] = (float)LineForceWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorReactionA"];
-                int R = (int)FileManager.localSettings.Values["ColorReactionR"];
-                int G = (int)FileManager.localSettings.Values["ColorReactionG"];
-                int B = (int)FileManager.localSettings.Values["ColorReactionB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorReactionA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorReactionR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorReactionG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorReactionB"];
 
-                ColorReaction = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorReaction = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineReaction.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineReactionDashCap"];
-                LineReaction.DashOffset = (float)FileManager.localSettings.Values["LineReactionDashOffset"];
-                LineReaction.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineReactionDashStyle"];
-                LineReaction.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineReactionEndCap"];
-                LineReaction.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineReactionLineJoin"];
-                LineReaction.MiterLimit = (float)FileManager.localSettings.Values["LineReactionMiterLimit"];
-                LineReaction.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineReactionStartCap"];
-                LineReactionWeight = (float)FileManager.localSettings.Values["LineReactionWeight"];
+                LineReaction.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineReactionDashCap"];
+                LineReaction.DashOffset = (float)FileManager.LocalSettings.Values["LineReactionDashOffset"];
+                LineReaction.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineReactionDashStyle"];
+                LineReaction.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineReactionEndCap"];
+                LineReaction.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineReactionLineJoin"];
+                LineReaction.MiterLimit = (float)FileManager.LocalSettings.Values["LineReactionMiterLimit"];
+                LineReaction.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineReactionStartCap"];
+                LineReactionWeight = (float)FileManager.LocalSettings.Values["LineReactionWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
-                FileManager.localSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
-                FileManager.localSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
-                FileManager.localSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
+                FileManager.LocalSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
+                FileManager.LocalSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
+                FileManager.LocalSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
+                FileManager.LocalSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
 
                 LineReaction.DashCap = CanvasCapStyle.Round;
                 LineReaction.DashOffset = 0;
@@ -1761,42 +1758,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineReaction.StartCap = CanvasCapStyle.Round;
                 LineReactionWeight = 5f;
 
-                FileManager.localSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
-                FileManager.localSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
-                FileManager.localSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
-                FileManager.localSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
+                FileManager.LocalSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
+                FileManager.LocalSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
+                FileManager.LocalSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
+                FileManager.LocalSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
 
-                FileManager.localSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
-                FileManager.localSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
-                FileManager.localSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
-                FileManager.localSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
+                FileManager.LocalSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
+                FileManager.LocalSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
+                FileManager.LocalSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
+                FileManager.LocalSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorSelectedElementA"];
-                int R = (int)FileManager.localSettings.Values["ColorSelectedElementR"];
-                int G = (int)FileManager.localSettings.Values["ColorSelectedElementG"];
-                int B = (int)FileManager.localSettings.Values["ColorSelectedElementB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorSelectedElementA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorSelectedElementR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorSelectedElementG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorSelectedElementB"];
 
-                ColorSelectedElement = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorSelectedElement = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineSelectedElement.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineSelectedElementDashCap"];
-                LineSelectedElement.DashOffset = (float)FileManager.localSettings.Values["LineSelectedElementDashOffset"];
-                LineSelectedElement.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineSelectedElementDashStyle"];
-                LineSelectedElement.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineSelectedElementEndCap"];
-                LineSelectedElement.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineSelectedElementLineJoin"];
-                LineSelectedElement.MiterLimit = (float)FileManager.localSettings.Values["LineSelectedElementMiterLimit"];
-                LineSelectedElement.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineSelectedElementStartCap"];
-                LineSelectedElementWeight = (float)FileManager.localSettings.Values["LineSelectedElementWeight"];
+                LineSelectedElement.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineSelectedElementDashCap"];
+                LineSelectedElement.DashOffset = (float)FileManager.LocalSettings.Values["LineSelectedElementDashOffset"];
+                LineSelectedElement.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineSelectedElementDashStyle"];
+                LineSelectedElement.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineSelectedElementEndCap"];
+                LineSelectedElement.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineSelectedElementLineJoin"];
+                LineSelectedElement.MiterLimit = (float)FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"];
+                LineSelectedElement.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineSelectedElementStartCap"];
+                LineSelectedElementWeight = (float)FileManager.LocalSettings.Values["LineSelectedElementWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
-                FileManager.localSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
-                FileManager.localSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
-                FileManager.localSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
+                FileManager.LocalSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
+                FileManager.LocalSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
+                FileManager.LocalSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
+                FileManager.LocalSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
 
                 LineSelectedElement.DashCap = CanvasCapStyle.Round;
                 LineSelectedElement.DashOffset = 0;
@@ -1807,42 +1803,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineSelectedElement.StartCap = CanvasCapStyle.Flat;
                 LineSelectedElementWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
-                FileManager.localSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
-                FileManager.localSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
-                FileManager.localSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
+                FileManager.LocalSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
+                FileManager.LocalSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
+                FileManager.LocalSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
+                FileManager.LocalSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
 
-                FileManager.localSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
-                FileManager.localSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
-                FileManager.localSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
-                FileManager.localSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
+                FileManager.LocalSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
+                FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
+                FileManager.LocalSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
+                FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorShearForceSelectedA"];
-                int R = (int)FileManager.localSettings.Values["ColorShearForceSelectedR"];
-                int G = (int)FileManager.localSettings.Values["ColorShearForceSelectedG"];
-                int B = (int)FileManager.localSettings.Values["ColorShearForceSelectedB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedB"];
 
-                ColorShearForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorShearForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineShearForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceSelectedDashCap"];
-                LineShearForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineShearForceSelectedDashOffset"];
-                LineShearForceSelected.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineShearForceSelectedDashStyle"];
-                LineShearForceSelected.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceSelectedEndCap"];
-                LineShearForceSelected.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineShearForceSelectedLineJoin"];
-                LineShearForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"];
-                LineShearForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceSelectedStartCap"];
-                LineShearForceSelectedWeight = (float)FileManager.localSettings.Values["LineShearForceSelectedWeight"];
+                LineShearForceSelected.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"];
+                LineShearForceSelected.DashOffset = (float)FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"];
+                LineShearForceSelected.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"];
+                LineShearForceSelected.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"];
+                LineShearForceSelected.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"];
+                LineShearForceSelected.MiterLimit = (float)FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"];
+                LineShearForceSelected.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"];
+                LineShearForceSelectedWeight = (float)FileManager.LocalSettings.Values["LineShearForceSelectedWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
-                FileManager.localSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
-                FileManager.localSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
-                FileManager.localSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
 
                 LineShearForceSelected.DashCap = CanvasCapStyle.Round;
                 LineShearForceSelected.DashOffset = 0;
@@ -1853,42 +1848,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineShearForceSelectedWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
-                FileManager.localSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
-                FileManager.localSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorMomentForceSelectedA"];
-                int R = (int)FileManager.localSettings.Values["ColorMomentForceSelectedR"];
-                int G = (int)FileManager.localSettings.Values["ColorMomentForceSelectedG"];
-                int B = (int)FileManager.localSettings.Values["ColorMomentForceSelectedB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedB"];
 
-                ColorMomentForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorMomentForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineMomentForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceSelectedDashCap"];
-                LineMomentForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceSelectedDashOffset"];
-                LineMomentForceSelected.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineMomentForceSelectedDashStyle"];
-                LineMomentForceSelected.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceSelectedEndCap"];
-                LineMomentForceSelected.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineMomentForceSelectedLineJoin"];
-                LineMomentForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"];
-                LineMomentForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceSelectedStartCap"];
-                LineMomentForceSelectedWeight = (float)FileManager.localSettings.Values["LineMomentForceSelectedWeight"];
+                LineMomentForceSelected.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"];
+                LineMomentForceSelected.DashOffset = (float)FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"];
+                LineMomentForceSelected.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"];
+                LineMomentForceSelected.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"];
+                LineMomentForceSelected.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"];
+                LineMomentForceSelected.MiterLimit = (float)FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"];
+                LineMomentForceSelected.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"];
+                LineMomentForceSelectedWeight = (float)FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
-                FileManager.localSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
-                FileManager.localSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
-                FileManager.localSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
 
                 LineMomentForceSelected.DashCap = CanvasCapStyle.Round;
                 LineMomentForceSelected.DashOffset = 0;
@@ -1899,42 +1893,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceSelectedWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
-                FileManager.localSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
-                FileManager.localSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorShearForceFontA"];
-                int R = (int)FileManager.localSettings.Values["ColorShearForceFontR"];
-                int G = (int)FileManager.localSettings.Values["ColorShearForceFontG"];
-                int B = (int)FileManager.localSettings.Values["ColorShearForceFontB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorShearForceFontA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorShearForceFontR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorShearForceFontG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorShearForceFontB"];
 
-                ColorShearForceFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorShearForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineShearForceFont.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceFontDashCap"];
-                LineShearForceFont.DashOffset = (float)FileManager.localSettings.Values["LineShearForceFontDashOffset"];
-                LineShearForceFont.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineShearForceFontDashStyle"];
-                LineShearForceFont.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceFontEndCap"];
-                LineShearForceFont.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineShearForceFontLineJoin"];
-                LineShearForceFont.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceFontMiterLimit"];
-                LineShearForceFont.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceFontStartCap"];
-                LineShearForceFontWeight = (float)FileManager.localSettings.Values["LineShearForceFontWeight"];
+                LineShearForceFont.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceFontDashCap"];
+                LineShearForceFont.DashOffset = (float)FileManager.LocalSettings.Values["LineShearForceFontDashOffset"];
+                LineShearForceFont.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineShearForceFontDashStyle"];
+                LineShearForceFont.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceFontEndCap"];
+                LineShearForceFont.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineShearForceFontLineJoin"];
+                LineShearForceFont.MiterLimit = (float)FileManager.LocalSettings.Values["LineShearForceFontMiterLimit"];
+                LineShearForceFont.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceFontStartCap"];
+                LineShearForceFontWeight = (float)FileManager.LocalSettings.Values["LineShearForceFontWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorShearForceFontA"] = (int)ColorShearForceFont.A;
-                FileManager.localSettings.Values["ColorShearForceFontR"] = (int)ColorShearForceFont.R;
-                FileManager.localSettings.Values["ColorShearForceFontG"] = (int)ColorShearForceFont.G;
-                FileManager.localSettings.Values["ColorShearForceFontB"] = (int)ColorShearForceFont.B;
+                FileManager.LocalSettings.Values["ColorShearForceFontA"] = (int)ColorShearForceFont.A;
+                FileManager.LocalSettings.Values["ColorShearForceFontR"] = (int)ColorShearForceFont.R;
+                FileManager.LocalSettings.Values["ColorShearForceFontG"] = (int)ColorShearForceFont.G;
+                FileManager.LocalSettings.Values["ColorShearForceFontB"] = (int)ColorShearForceFont.B;
 
                 LineShearForceFont.DashCap = CanvasCapStyle.Round;
                 LineShearForceFont.DashOffset = 0;
@@ -1945,42 +1938,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceFont.StartCap = CanvasCapStyle.Flat;
                 LineShearForceFontWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineShearForceFontDashCap"] = (int)LineShearForceFont.DashCap;
-                FileManager.localSettings.Values["LineShearForceFontDashOffset"] = (float)LineShearForceFont.DashOffset;
-                FileManager.localSettings.Values["LineShearForceFontDashStyle"] = (int)LineShearForceFont.DashStyle;
-                FileManager.localSettings.Values["LineShearForceFontEndCap"] = (int)LineShearForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceFontDashCap"] = (int)LineShearForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceFontDashOffset"] = (float)LineShearForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceFontDashStyle"] = (int)LineShearForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceFontEndCap"] = (int)LineShearForceFont.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceFontLineJoin"] = (int)LineShearForceFont.LineJoin;
-                FileManager.localSettings.Values["LineShearForceFontMiterLimit"] = (float)LineShearForceFont.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceFontStartCap"] = (int)LineShearForceFont.StartCap;
-                FileManager.localSettings.Values["LineShearForceFontWeight"] = (float)LineShearForceFontWeight;
+                FileManager.LocalSettings.Values["LineShearForceFontLineJoin"] = (int)LineShearForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceFontMiterLimit"] = (float)LineShearForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceFontStartCap"] = (int)LineShearForceFont.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceFontWeight"] = (float)LineShearForceFontWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorMomentForceFontA"];
-                int R = (int)FileManager.localSettings.Values["ColorMomentForceFontR"];
-                int G = (int)FileManager.localSettings.Values["ColorMomentForceFontG"];
-                int B = (int)FileManager.localSettings.Values["ColorMomentForceFontB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceFontA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceFontR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceFontG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceFontB"];
 
-                ColorMomentForceFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorMomentForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineMomentForceFont.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceFontDashCap"];
-                LineMomentForceFont.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceFontDashOffset"];
-                LineMomentForceFont.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineMomentForceFontDashStyle"];
-                LineMomentForceFont.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceFontEndCap"];
-                LineMomentForceFont.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineMomentForceFontLineJoin"];
-                LineMomentForceFont.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceFontMiterLimit"];
-                LineMomentForceFont.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceFontStartCap"];
-                LineMomentForceFontWeight = (float)FileManager.localSettings.Values["LineMomentForceFontWeight"];
+                LineMomentForceFont.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceFontDashCap"];
+                LineMomentForceFont.DashOffset = (float)FileManager.LocalSettings.Values["LineMomentForceFontDashOffset"];
+                LineMomentForceFont.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineMomentForceFontDashStyle"];
+                LineMomentForceFont.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceFontEndCap"];
+                LineMomentForceFont.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineMomentForceFontLineJoin"];
+                LineMomentForceFont.MiterLimit = (float)FileManager.LocalSettings.Values["LineMomentForceFontMiterLimit"];
+                LineMomentForceFont.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceFontStartCap"];
+                LineMomentForceFontWeight = (float)FileManager.LocalSettings.Values["LineMomentForceFontWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorMomentForceFontA"] = (int)ColorMomentForceFont.A;
-                FileManager.localSettings.Values["ColorMomentForceFontR"] = (int)ColorMomentForceFont.R;
-                FileManager.localSettings.Values["ColorMomentForceFontG"] = (int)ColorMomentForceFont.G;
-                FileManager.localSettings.Values["ColorMomentForceFontB"] = (int)ColorMomentForceFont.B;
+                FileManager.LocalSettings.Values["ColorMomentForceFontA"] = (int)ColorMomentForceFont.A;
+                FileManager.LocalSettings.Values["ColorMomentForceFontR"] = (int)ColorMomentForceFont.R;
+                FileManager.LocalSettings.Values["ColorMomentForceFontG"] = (int)ColorMomentForceFont.G;
+                FileManager.LocalSettings.Values["ColorMomentForceFontB"] = (int)ColorMomentForceFont.B;
 
                 LineMomentForceFont.DashCap = CanvasCapStyle.Round;
                 LineMomentForceFont.DashOffset = 0;
@@ -1991,42 +1983,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceFont.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceFontWeight = 2.4f;
 
-                FileManager.localSettings.Values["LineMomentForceFontDashCap"] = (int)LineMomentForceFont.DashCap;
-                FileManager.localSettings.Values["LineMomentForceFontDashOffset"] = (float)LineMomentForceFont.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceFontDashStyle"] = (int)LineMomentForceFont.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceFontEndCap"] = (int)LineMomentForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashCap"] = (int)LineMomentForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashOffset"] = (float)LineMomentForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashStyle"] = (int)LineMomentForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceFontEndCap"] = (int)LineMomentForceFont.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceFontLineJoin"] = (int)LineMomentForceFont.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceFontMiterLimit"] = (float)LineMomentForceFont.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceFontStartCap"] = (int)LineMomentForceFont.StartCap;
-                FileManager.localSettings.Values["LineMomentForceFontWeight"] = (float)LineMomentForceFontWeight;
+                FileManager.LocalSettings.Values["LineMomentForceFontLineJoin"] = (int)LineMomentForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceFontMiterLimit"] = (float)LineMomentForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceFontStartCap"] = (int)LineMomentForceFont.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = (float)LineMomentForceFontWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorShearForceA"];
-                int R = (int)FileManager.localSettings.Values["ColorShearForceR"];
-                int G = (int)FileManager.localSettings.Values["ColorShearForceG"];
-                int B = (int)FileManager.localSettings.Values["ColorShearForceB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorShearForceA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorShearForceR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorShearForceG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorShearForceB"];
 
-                ColorShearForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorShearForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineShearForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceDashCap"];
-                LineShearForce.DashOffset = (float)FileManager.localSettings.Values["LineShearForceDashOffset"];
-                LineShearForce.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineShearForceDashStyle"];
-                LineShearForce.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceEndCap"];
-                LineShearForce.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineShearForceLineJoin"];
-                LineShearForce.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceMiterLimit"];
-                LineShearForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceStartCap"];
-                LineShearForceWeight = (float)FileManager.localSettings.Values["LineShearForceWeight"];
+                LineShearForce.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceDashCap"];
+                LineShearForce.DashOffset = (float)FileManager.LocalSettings.Values["LineShearForceDashOffset"];
+                LineShearForce.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineShearForceDashStyle"];
+                LineShearForce.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceEndCap"];
+                LineShearForce.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineShearForceLineJoin"];
+                LineShearForce.MiterLimit = (float)FileManager.LocalSettings.Values["LineShearForceMiterLimit"];
+                LineShearForce.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineShearForceStartCap"];
+                LineShearForceWeight = (float)FileManager.LocalSettings.Values["LineShearForceWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
-                FileManager.localSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
-                FileManager.localSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
-                FileManager.localSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
+                FileManager.LocalSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
+                FileManager.LocalSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
+                FileManager.LocalSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
+                FileManager.LocalSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
 
                 LineShearForce.DashCap = CanvasCapStyle.Round;
                 LineShearForce.DashOffset = 0;
@@ -2037,42 +2028,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForce.StartCap = CanvasCapStyle.Flat;
                 LineShearForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
-                FileManager.localSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
-                FileManager.localSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
-                FileManager.localSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
 
-                FileManager.localSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
-                FileManager.localSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
-                FileManager.localSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
-                FileManager.localSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
+                FileManager.LocalSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
+                FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorMomentForceA"];
-                int R = (int)FileManager.localSettings.Values["ColorMomentForceR"];
-                int G = (int)FileManager.localSettings.Values["ColorMomentForceG"];
-                int B = (int)FileManager.localSettings.Values["ColorMomentForceB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceB"];
 
-                ColorMomentForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorMomentForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineMomentForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceDashCap"];
-                LineMomentForce.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceDashOffset"];
-                LineMomentForce.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineMomentForceDashStyle"];
-                LineMomentForce.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceEndCap"];
-                LineMomentForce.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineMomentForceLineJoin"];
-                LineMomentForce.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceMiterLimit"];
-                LineMomentForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceStartCap"];
-                LineMomentForceWeight = (float)FileManager.localSettings.Values["LineMomentForceWeight"];
+                LineMomentForce.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceDashCap"];
+                LineMomentForce.DashOffset = (float)FileManager.LocalSettings.Values["LineMomentForceDashOffset"];
+                LineMomentForce.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineMomentForceDashStyle"];
+                LineMomentForce.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceEndCap"];
+                LineMomentForce.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineMomentForceLineJoin"];
+                LineMomentForce.MiterLimit = (float)FileManager.LocalSettings.Values["LineMomentForceMiterLimit"];
+                LineMomentForce.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineMomentForceStartCap"];
+                LineMomentForceWeight = (float)FileManager.LocalSettings.Values["LineMomentForceWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
-                FileManager.localSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
-                FileManager.localSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
-                FileManager.localSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
+                FileManager.LocalSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
+                FileManager.LocalSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
+                FileManager.LocalSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
+                FileManager.LocalSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
 
                 LineMomentForce.DashCap = CanvasCapStyle.Round;
                 LineMomentForce.DashOffset = 0;
@@ -2083,42 +2073,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForce.StartCap = CanvasCapStyle.Flat;
                 LineMomentForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
-                FileManager.localSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
-                FileManager.localSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
-                FileManager.localSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
 
-                FileManager.localSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
-                FileManager.localSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
-                FileManager.localSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
-                FileManager.localSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
+                FileManager.LocalSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
+                FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorDistributedForceA"];
-                int R = (int)FileManager.localSettings.Values["ColorDistributedForceR"];
-                int G = (int)FileManager.localSettings.Values["ColorDistributedForceG"];
-                int B = (int)FileManager.localSettings.Values["ColorDistributedForceB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceB"];
 
-                ColorDistributedForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorDistributedForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineDistributedForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceDashCap"];
-                LineDistributedForce.DashOffset = (float)FileManager.localSettings.Values["LineDistributedForceDashOffset"];
-                LineDistributedForce.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineDistributedForceDashStyle"];
-                LineDistributedForce.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceEndCap"];
-                LineDistributedForce.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineDistributedForceLineJoin"];
-                LineDistributedForce.MiterLimit = (float)FileManager.localSettings.Values["LineDistributedForceMiterLimit"];
-                LineDistributedForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceStartCap"];
-                LineDistributedForceWeight = (float)FileManager.localSettings.Values["LineDistributedForceWeight"];
+                LineDistributedForce.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceDashCap"];
+                LineDistributedForce.DashOffset = (float)FileManager.LocalSettings.Values["LineDistributedForceDashOffset"];
+                LineDistributedForce.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineDistributedForceDashStyle"];
+                LineDistributedForce.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceEndCap"];
+                LineDistributedForce.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineDistributedForceLineJoin"];
+                LineDistributedForce.MiterLimit = (float)FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"];
+                LineDistributedForce.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceStartCap"];
+                LineDistributedForceWeight = (float)FileManager.LocalSettings.Values["LineDistributedForceWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
-                FileManager.localSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
-                FileManager.localSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
-                FileManager.localSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
+                FileManager.LocalSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
 
                 LineDistributedForce.DashCap = CanvasCapStyle.Round;
                 LineDistributedForce.DashOffset = 0;
@@ -2129,42 +2118,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForce.StartCap = CanvasCapStyle.Flat;
                 LineDistributedForceWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
-                FileManager.localSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
-                FileManager.localSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
-                FileManager.localSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
 
-                FileManager.localSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
-                FileManager.localSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
-                FileManager.localSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
-                FileManager.localSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
+                FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedA"];
-                int R = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedR"];
-                int G = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedG"];
-                int B = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"];
 
-                ColorDistributedForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorDistributedForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineDistributedForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceSelectedDashCap"];
-                LineDistributedForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineDistributedForceSelectedDashOffset"];
-                LineDistributedForceSelected.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineDistributedForceSelectedDashStyle"];
-                LineDistributedForceSelected.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceSelectedEndCap"];
-                LineDistributedForceSelected.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineDistributedForceSelectedLineJoin"];
-                LineDistributedForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"];
-                LineDistributedForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"];
-                LineDistributedForceSelectedWeight = (float)FileManager.localSettings.Values["LineDistributedForceSelectedWeight"];
+                LineDistributedForceSelected.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"];
+                LineDistributedForceSelected.DashOffset = (float)FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"];
+                LineDistributedForceSelected.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"];
+                LineDistributedForceSelected.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"];
+                LineDistributedForceSelected.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"];
+                LineDistributedForceSelected.MiterLimit = (float)FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"];
+                LineDistributedForceSelected.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"];
+                LineDistributedForceSelectedWeight = (float)FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
-                FileManager.localSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
 
                 LineDistributedForceSelected.DashCap = CanvasCapStyle.Round;
                 LineDistributedForceSelected.DashOffset = 0;
@@ -2175,42 +2163,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForceSelected.StartCap = CanvasCapStyle.Flat;
                 LineDistributedForceSelectedWeight = 1.5f;
 
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
-                FileManager.localSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
-                FileManager.localSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
 
-                FileManager.localSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
-                FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
-                FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
-                FileManager.localSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodeFreeA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodeFreeR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodeFreeG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodeFreeB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodeFreeA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodeFreeR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodeFreeG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodeFreeB"];
 
-                ColorNodeFree = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodeFree = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodeFree.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFreeDashCap"];
-                LineNodeFree.DashOffset = (float)FileManager.localSettings.Values["LineNodeFreeDashOffset"];
-                LineNodeFree.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodeFreeDashStyle"];
-                LineNodeFree.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFreeEndCap"];
-                LineNodeFree.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodeFreeLineJoin"];
-                LineNodeFree.MiterLimit = (float)FileManager.localSettings.Values["LineNodeFreeMiterLimit"];
-                LineNodeFree.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFreeStartCap"];
-                LineNodeFreeWeight = (float)FileManager.localSettings.Values["LineNodeFreeWeight"];
+                LineNodeFree.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFreeDashCap"];
+                LineNodeFree.DashOffset = (float)FileManager.LocalSettings.Values["LineNodeFreeDashOffset"];
+                LineNodeFree.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodeFreeDashStyle"];
+                LineNodeFree.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFreeEndCap"];
+                LineNodeFree.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodeFreeLineJoin"];
+                LineNodeFree.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodeFreeMiterLimit"];
+                LineNodeFree.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFreeStartCap"];
+                LineNodeFreeWeight = (float)FileManager.LocalSettings.Values["LineNodeFreeWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
-                FileManager.localSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
-                FileManager.localSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
-                FileManager.localSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
+                FileManager.LocalSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
+                FileManager.LocalSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
+                FileManager.LocalSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
+                FileManager.LocalSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
 
                 LineNodeFree.DashCap = CanvasCapStyle.Round;
                 LineNodeFree.DashOffset = 0;
@@ -2221,42 +2208,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFree.StartCap = CanvasCapStyle.Flat;
                 LineNodeFreeWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
-                FileManager.localSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
-                FileManager.localSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
-                FileManager.localSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
+                FileManager.LocalSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
+                FileManager.LocalSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
 
-                FileManager.localSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
-                FileManager.localSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
-                FileManager.localSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
-                FileManager.localSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
+                FileManager.LocalSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
+                FileManager.LocalSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodeFixedA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodeFixedR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodeFixedG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodeFixedB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodeFixedA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodeFixedR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodeFixedG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodeFixedB"];
 
-                ColorNodeFixed = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodeFixed = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodeFixed.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFixedDashCap"];
-                LineNodeFixed.DashOffset = (float)FileManager.localSettings.Values["LineNodeFixedDashOffset"];
-                LineNodeFixed.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodeFixedDashStyle"];
-                LineNodeFixed.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFixedEndCap"];
-                LineNodeFixed.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodeFixedLineJoin"];
-                LineNodeFixed.MiterLimit = (float)FileManager.localSettings.Values["LineNodeFixedMiterLimit"];
-                LineNodeFixed.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFixedStartCap"];
-                LineNodeFixedWeight = (float)FileManager.localSettings.Values["LineNodeFixedWeight"];
+                LineNodeFixed.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFixedDashCap"];
+                LineNodeFixed.DashOffset = (float)FileManager.LocalSettings.Values["LineNodeFixedDashOffset"];
+                LineNodeFixed.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodeFixedDashStyle"];
+                LineNodeFixed.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFixedEndCap"];
+                LineNodeFixed.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodeFixedLineJoin"];
+                LineNodeFixed.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodeFixedMiterLimit"];
+                LineNodeFixed.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeFixedStartCap"];
+                LineNodeFixedWeight = (float)FileManager.LocalSettings.Values["LineNodeFixedWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
-                FileManager.localSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
-                FileManager.localSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
-                FileManager.localSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
+                FileManager.LocalSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
+                FileManager.LocalSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
+                FileManager.LocalSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
+                FileManager.LocalSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
 
                 LineNodeFixed.DashCap = CanvasCapStyle.Round;
                 LineNodeFixed.DashOffset = 0;
@@ -2267,42 +2253,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFixed.StartCap = CanvasCapStyle.Flat;
                 LineNodeFixedWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
-                FileManager.localSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
-                FileManager.localSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
-                FileManager.localSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
+                FileManager.LocalSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
+                FileManager.LocalSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
 
-                FileManager.localSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
-                FileManager.localSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
-                FileManager.localSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
-                FileManager.localSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
+                FileManager.LocalSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
+                FileManager.LocalSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodePinA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodePinR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodePinG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodePinB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodePinA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodePinR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodePinG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodePinB"];
 
-                ColorNodePin = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodePin = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodePin.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodePinDashCap"];
-                LineNodePin.DashOffset = (float)FileManager.localSettings.Values["LineNodePinDashOffset"];
-                LineNodePin.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodePinDashStyle"];
-                LineNodePin.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodePinEndCap"];
-                LineNodePin.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodePinLineJoin"];
-                LineNodePin.MiterLimit = (float)FileManager.localSettings.Values["LineNodePinMiterLimit"];
-                LineNodePin.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodePinStartCap"];
-                LineNodePinWeight = (float)FileManager.localSettings.Values["LineNodePinWeight"];
+                LineNodePin.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodePinDashCap"];
+                LineNodePin.DashOffset = (float)FileManager.LocalSettings.Values["LineNodePinDashOffset"];
+                LineNodePin.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodePinDashStyle"];
+                LineNodePin.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodePinEndCap"];
+                LineNodePin.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodePinLineJoin"];
+                LineNodePin.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodePinMiterLimit"];
+                LineNodePin.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodePinStartCap"];
+                LineNodePinWeight = (float)FileManager.LocalSettings.Values["LineNodePinWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
-                FileManager.localSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
-                FileManager.localSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
-                FileManager.localSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
+                FileManager.LocalSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
+                FileManager.LocalSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
+                FileManager.LocalSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
+                FileManager.LocalSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
 
                 LineNodePin.DashCap = CanvasCapStyle.Round;
                 LineNodePin.DashOffset = 0;
@@ -2313,42 +2298,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodePin.StartCap = CanvasCapStyle.Flat;
                 LineNodePinWeight = 1;
 
-                FileManager.localSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
-                FileManager.localSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
-                FileManager.localSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
-                FileManager.localSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
+                FileManager.LocalSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
+                FileManager.LocalSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
+                FileManager.LocalSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
+                FileManager.LocalSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
 
-                FileManager.localSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
-                FileManager.localSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
-                FileManager.localSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
-                FileManager.localSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
+                FileManager.LocalSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
+                FileManager.LocalSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
+                FileManager.LocalSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodeRollerXA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodeRollerXR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodeRollerXG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodeRollerXB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodeRollerXA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodeRollerXR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodeRollerXG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodeRollerXB"];
 
-                ColorNodeRollerX = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodeRollerX = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodeRollerX.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerXDashCap"];
-                LineNodeRollerX.DashOffset = (float)FileManager.localSettings.Values["LineNodeRollerXDashOffset"];
-                LineNodeRollerX.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodeRollerXDashStyle"];
-                LineNodeRollerX.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerXEndCap"];
-                LineNodeRollerX.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodeRollerXLineJoin"];
-                LineNodeRollerX.MiterLimit = (float)FileManager.localSettings.Values["LineNodeRollerXMiterLimit"];
-                LineNodeRollerX.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerXStartCap"];
-                LineNodeRollerXWeight = (float)FileManager.localSettings.Values["LineNodeRollerXWeight"];
+                LineNodeRollerX.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerXDashCap"];
+                LineNodeRollerX.DashOffset = (float)FileManager.LocalSettings.Values["LineNodeRollerXDashOffset"];
+                LineNodeRollerX.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodeRollerXDashStyle"];
+                LineNodeRollerX.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerXEndCap"];
+                LineNodeRollerX.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodeRollerXLineJoin"];
+                LineNodeRollerX.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodeRollerXMiterLimit"];
+                LineNodeRollerX.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerXStartCap"];
+                LineNodeRollerXWeight = (float)FileManager.LocalSettings.Values["LineNodeRollerXWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
-                FileManager.localSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
-                FileManager.localSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
-                FileManager.localSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
+                FileManager.LocalSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
+                FileManager.LocalSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
+                FileManager.LocalSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
+                FileManager.LocalSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
 
                 LineNodeRollerX.DashCap = CanvasCapStyle.Round;
                 LineNodeRollerX.DashOffset = 0;
@@ -2359,42 +2343,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerX.StartCap = CanvasCapStyle.Flat;
                 LineNodeRollerXWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
-                FileManager.localSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
-                FileManager.localSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
-                FileManager.localSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
 
-                FileManager.localSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
-                FileManager.localSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
-                FileManager.localSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
-                FileManager.localSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
+                FileManager.LocalSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
+                FileManager.LocalSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodeRollerYA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodeRollerYR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodeRollerYG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodeRollerYB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodeRollerYA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodeRollerYR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodeRollerYG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodeRollerYB"];
 
-                ColorNodeRollerY = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodeRollerY = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodeRollerY.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerYDashCap"];
-                LineNodeRollerY.DashOffset = (float)FileManager.localSettings.Values["LineNodeRollerYDashOffset"];
-                LineNodeRollerY.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodeRollerYDashStyle"];
-                LineNodeRollerY.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerYEndCap"];
-                LineNodeRollerY.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodeRollerYLineJoin"];
-                LineNodeRollerY.MiterLimit = (float)FileManager.localSettings.Values["LineNodeRollerYMiterLimit"];
-                LineNodeRollerY.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerYStartCap"];
-                LineNodeRollerYWeight = (float)FileManager.localSettings.Values["LineNodeRollerYWeight"];
+                LineNodeRollerY.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerYDashCap"];
+                LineNodeRollerY.DashOffset = (float)FileManager.LocalSettings.Values["LineNodeRollerYDashOffset"];
+                LineNodeRollerY.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodeRollerYDashStyle"];
+                LineNodeRollerY.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerYEndCap"];
+                LineNodeRollerY.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodeRollerYLineJoin"];
+                LineNodeRollerY.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodeRollerYMiterLimit"];
+                LineNodeRollerY.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeRollerYStartCap"];
+                LineNodeRollerYWeight = (float)FileManager.LocalSettings.Values["LineNodeRollerYWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
-                FileManager.localSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
-                FileManager.localSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
-                FileManager.localSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
+                FileManager.LocalSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
+                FileManager.LocalSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
+                FileManager.LocalSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
+                FileManager.LocalSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
 
                 LineNodeRollerY.DashCap = CanvasCapStyle.Round;
                 LineNodeRollerY.DashOffset = 0;
@@ -2405,42 +2388,41 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerY.StartCap = CanvasCapStyle.Flat;
                 LineNodeRollerYWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
-                FileManager.localSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
-                FileManager.localSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
-                FileManager.localSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
 
-                FileManager.localSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
-                FileManager.localSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
-                FileManager.localSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
-                FileManager.localSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
+                FileManager.LocalSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
+                FileManager.LocalSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
             }
 
             try
             {
-                int a = (int)FileManager.localSettings.Values["ColorNodeOtherA"];
-                int R = (int)FileManager.localSettings.Values["ColorNodeOtherR"];
-                int G = (int)FileManager.localSettings.Values["ColorNodeOtherG"];
-                int B = (int)FileManager.localSettings.Values["ColorNodeOtherB"];
+                int a = (int)FileManager.LocalSettings.Values["ColorNodeOtherA"];
+                int r = (int)FileManager.LocalSettings.Values["ColorNodeOtherR"];
+                int g = (int)FileManager.LocalSettings.Values["ColorNodeOtherG"];
+                int b = (int)FileManager.LocalSettings.Values["ColorNodeOtherB"];
 
-                ColorNodeOther = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
+                ColorNodeOther = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
 
-                LineNodeOther.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeOtherDashCap"];
-                LineNodeOther.DashOffset = (float)FileManager.localSettings.Values["LineNodeOtherDashOffset"];
-                LineNodeOther.DashStyle = (CanvasDashStyle)FileManager.localSettings.Values["LineNodeOtherDashStyle"];
-                LineNodeOther.EndCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeOtherEndCap"];
-                LineNodeOther.LineJoin = (CanvasLineJoin)FileManager.localSettings.Values["LineNodeOtherLineJoin"];
-                LineNodeOther.MiterLimit = (float)FileManager.localSettings.Values["LineNodeOtherMiterLimit"];
-                LineNodeOther.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeOtherStartCap"];
-                LineNodeOtherWeight = (float)FileManager.localSettings.Values["LineNodeOtherWeight"];
+                LineNodeOther.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeOtherDashCap"];
+                LineNodeOther.DashOffset = (float)FileManager.LocalSettings.Values["LineNodeOtherDashOffset"];
+                LineNodeOther.DashStyle = (CanvasDashStyle)FileManager.LocalSettings.Values["LineNodeOtherDashStyle"];
+                LineNodeOther.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeOtherEndCap"];
+                LineNodeOther.LineJoin = (CanvasLineJoin)FileManager.LocalSettings.Values["LineNodeOtherLineJoin"];
+                LineNodeOther.MiterLimit = (float)FileManager.LocalSettings.Values["LineNodeOtherMiterLimit"];
+                LineNodeOther.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineNodeOtherStartCap"];
+                LineNodeOtherWeight = (float)FileManager.LocalSettings.Values["LineNodeOtherWeight"];
             }
             catch
             {
-
-                FileManager.localSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
-                FileManager.localSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
-                FileManager.localSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
-                FileManager.localSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
+                FileManager.LocalSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
+                FileManager.LocalSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
+                FileManager.LocalSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
+                FileManager.LocalSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
 
                 LineNodeOther.DashCap = CanvasCapStyle.Round;
                 LineNodeOther.DashOffset = 0;
@@ -2451,98 +2433,98 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeOther.StartCap = CanvasCapStyle.Flat;
                 LineNodeOtherWeight = 1;
 
-                FileManager.localSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
-                FileManager.localSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
-                FileManager.localSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
-                FileManager.localSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
+                FileManager.LocalSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
+                FileManager.LocalSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
+                FileManager.LocalSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
+                FileManager.LocalSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
 
-                FileManager.localSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
-                FileManager.localSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
-                FileManager.localSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
-                FileManager.localSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
+                FileManager.LocalSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
+                FileManager.LocalSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
+                FileManager.LocalSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
+                FileManager.LocalSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["MomentFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["MomentFactor"];
                 momentFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading MomentFactor");
-                FileManager.localSettings.Values["MomentFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["MomentFactor"] = 0.0001f;
                 momentFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["ShearFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["ShearFactor"];
                 shearFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading ShearFactor");
-                FileManager.localSettings.Values["ShearFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ShearFactor"] = 0.0001f;
                 shearFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["LinearFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["LinearFactor"];
                 linearFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading LinearFactor");
-                FileManager.localSettings.Values["LinearFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["LinearFactor"] = 0.0001f;
                 linearFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["ForcesFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["ForcesFactor"];
                 forcesFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading ForcesFactor");
-                FileManager.localSettings.Values["ForcesFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ForcesFactor"] = 0.0001f;
                 forcesFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["ReactionsFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["ReactionsFactor"];
                 reactionsFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading ReactionsFactor");
-                FileManager.localSettings.Values["ReactionsFactor"] = 0.0001f;
+                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.0001f;
                 reactionsFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.localSettings.Values["DisplacementFactor"];
+                double tmpDouble = (double)FileManager.LocalSettings.Values["DisplacementFactor"];
                 displacementFactor = (float)tmpDouble;
             }
             catch
             {
                 Debug.WriteLine("Error Loading DisplacementFactor");
-                FileManager.localSettings.Values["DisplacementFactor"] = 1f;
+                FileManager.LocalSettings.Values["DisplacementFactor"] = 1f;
                 displacementFactor = 1f;
             }
 
             try
             {
-                Single tmpSingle = (Single)FileManager.localSettings.Values["CameraZoomTrim"];
+                Single tmpSingle = (Single)FileManager.LocalSettings.Values["CameraZoomTrim"];
                 CameraZoomTrim = (float)tmpSingle;
             }
             catch
             {
                 Debug.WriteLine("Error Loading ZoomTrim");
-                FileManager.localSettings.Values["CameraZoomTrim"] = 500f;
+                FileManager.LocalSettings.Values["CameraZoomTrim"] = 500f;
                 CameraZoomTrim = 500f;
             }
 
@@ -2550,303 +2532,303 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                Single tmpSingle = (Single)FileManager.localSettings.Values["SelectGridSize"];
+                Single tmpSingle = (Single)FileManager.LocalSettings.Values["SelectGridSize"];
                 SelectGridSize = (float)tmpSingle;
             }
             catch
             {
                 Debug.WriteLine("Error Loading SelectGridSize");
-                FileManager.localSettings.Values["SelectGridSize"] = 1f;
+                FileManager.LocalSettings.Values["SelectGridSize"] = 1f;
                 SelectGridSize = 1f;
             }
         }
 
         internal static void SaveOptions()
         {
-            FileManager.localSettings.Values["CameraZoomTrim"] = (float)CameraZoomTrim;
-            FileManager.localSettings.Values["SelectGridSize"] = (float)SelectGridSize;
-            FileManager.localSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
-            FileManager.localSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
-            FileManager.localSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
-            FileManager.localSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
+            FileManager.LocalSettings.Values["CameraZoomTrim"] = (float)CameraZoomTrim;
+            FileManager.LocalSettings.Values["SelectGridSize"] = (float)SelectGridSize;
+            FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
+            FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
+            FileManager.LocalSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
+            FileManager.LocalSettings.Values["ColorGridNormalB"] = (int)ColorGridNormal.B;
 
-            FileManager.localSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
-            FileManager.localSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
-            FileManager.localSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
-            FileManager.localSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
-            FileManager.localSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
-            FileManager.localSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
-            FileManager.localSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
-            FileManager.localSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
-            FileManager.localSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
-            FileManager.localSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
-            FileManager.localSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
-            FileManager.localSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
+            FileManager.LocalSettings.Values["LineGridNormalDashCap"] = (int)LineGridNormal.DashCap;
+            FileManager.LocalSettings.Values["LineGridNormalDashOffset"] = (float)LineGridNormal.DashOffset;
+            FileManager.LocalSettings.Values["LineGridNormalDashStyle"] = (int)LineGridNormal.DashStyle;
+            FileManager.LocalSettings.Values["LineGridNormalEndCap"] = (int)LineGridNormal.EndCap;
+            FileManager.LocalSettings.Values["LineGridNormalLineJoin"] = (int)LineGridNormal.LineJoin;
+            FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
+            FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
+            FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
+            FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
+            FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
+            FileManager.LocalSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
+            FileManager.LocalSettings.Values["ColorGridMinorB"] = (int)ColorGridMinor.B;
 
-            FileManager.localSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
-            FileManager.localSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
-            FileManager.localSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
-            FileManager.localSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
-            FileManager.localSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
-            FileManager.localSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
-            FileManager.localSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
-            FileManager.localSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
-            FileManager.localSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
-            FileManager.localSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
-            FileManager.localSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
-            FileManager.localSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
+            FileManager.LocalSettings.Values["LineGridMinorDashCap"] = (int)LineGridMinor.DashCap;
+            FileManager.LocalSettings.Values["LineGridMinorDashOffset"] = (float)LineGridMinor.DashOffset;
+            FileManager.LocalSettings.Values["LineGridMinorDashStyle"] = (int)LineGridMinor.DashStyle;
+            FileManager.LocalSettings.Values["LineGridMinorEndCap"] = (int)LineGridMinor.EndCap;
+            FileManager.LocalSettings.Values["LineGridMinorLineJoin"] = (int)LineGridMinor.LineJoin;
+            FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
+            FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
+            FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
+            FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
+            FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
+            FileManager.LocalSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
+            FileManager.LocalSettings.Values["ColorGridMajorB"] = (int)ColorGridMajor.B;
 
-            FileManager.localSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
-            FileManager.localSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
-            FileManager.localSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
-            FileManager.localSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
-            FileManager.localSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
-            FileManager.localSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
-            FileManager.localSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
-            FileManager.localSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
-            FileManager.localSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
-            FileManager.localSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
-            FileManager.localSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
-            FileManager.localSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
+            FileManager.LocalSettings.Values["LineGridMajorDashCap"] = (int)LineGridMajor.DashCap;
+            FileManager.LocalSettings.Values["LineGridMajorDashOffset"] = (float)LineGridMajor.DashOffset;
+            FileManager.LocalSettings.Values["LineGridMajorDashStyle"] = (int)LineGridMajor.DashStyle;
+            FileManager.LocalSettings.Values["LineGridMajorEndCap"] = (int)LineGridMajor.EndCap;
+            FileManager.LocalSettings.Values["LineGridMajorLineJoin"] = (int)LineGridMajor.LineJoin;
+            FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
+            FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
+            FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
+            FileManager.LocalSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
+            FileManager.LocalSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
+            FileManager.LocalSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
+            FileManager.LocalSettings.Values["ColorSelectedElementB"] = (int)ColorSelectedElement.B;
 
-            FileManager.localSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
-            FileManager.localSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
-            FileManager.localSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
-            FileManager.localSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
-            FileManager.localSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
-            FileManager.localSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
-            FileManager.localSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
-            FileManager.localSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
-            FileManager.localSettings.Values["ColorForceA"] = (int)ColorForce.A;
-            FileManager.localSettings.Values["ColorForceR"] = (int)ColorForce.R;
-            FileManager.localSettings.Values["ColorForceG"] = (int)ColorForce.G;
-            FileManager.localSettings.Values["ColorForceB"] = (int)ColorForce.B;
+            FileManager.LocalSettings.Values["LineSelectedElementDashCap"] = (int)LineSelectedElement.DashCap;
+            FileManager.LocalSettings.Values["LineSelectedElementDashOffset"] = (float)LineSelectedElement.DashOffset;
+            FileManager.LocalSettings.Values["LineSelectedElementDashStyle"] = (int)LineSelectedElement.DashStyle;
+            FileManager.LocalSettings.Values["LineSelectedElementEndCap"] = (int)LineSelectedElement.EndCap;
+            FileManager.LocalSettings.Values["LineSelectedElementLineJoin"] = (int)LineSelectedElement.LineJoin;
+            FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
+            FileManager.LocalSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
+            FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
+            FileManager.LocalSettings.Values["ColorForceA"] = (int)ColorForce.A;
+            FileManager.LocalSettings.Values["ColorForceR"] = (int)ColorForce.R;
+            FileManager.LocalSettings.Values["ColorForceG"] = (int)ColorForce.G;
+            FileManager.LocalSettings.Values["ColorForceB"] = (int)ColorForce.B;
 
-            FileManager.localSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
-            FileManager.localSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
-            FileManager.localSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
-            FileManager.localSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
-            FileManager.localSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
-            FileManager.localSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
-            FileManager.localSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
-            FileManager.localSettings.Values["LineForceWeight"] = (float)LineForceWeight;
-            FileManager.localSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
-            FileManager.localSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
-            FileManager.localSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
-            FileManager.localSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
+            FileManager.LocalSettings.Values["LineForceDashCap"] = (int)LineForce.DashCap;
+            FileManager.LocalSettings.Values["LineForceDashOffset"] = (float)LineForce.DashOffset;
+            FileManager.LocalSettings.Values["LineForceDashStyle"] = (int)LineForce.DashStyle;
+            FileManager.LocalSettings.Values["LineForceEndCap"] = (int)LineForce.EndCap;
+            FileManager.LocalSettings.Values["LineForceLineJoin"] = (int)LineForce.LineJoin;
+            FileManager.LocalSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
+            FileManager.LocalSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
+            FileManager.LocalSettings.Values["LineForceWeight"] = (float)LineForceWeight;
+            FileManager.LocalSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
+            FileManager.LocalSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
+            FileManager.LocalSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
+            FileManager.LocalSettings.Values["ColorReactionB"] = (int)ColorReaction.B;
 
-            FileManager.localSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
-            FileManager.localSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
-            FileManager.localSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
-            FileManager.localSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
-            FileManager.localSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
-            FileManager.localSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
-            FileManager.localSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
-            FileManager.localSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
-            FileManager.localSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
-            FileManager.localSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
-            FileManager.localSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
-            FileManager.localSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
+            FileManager.LocalSettings.Values["LineReactionDashCap"] = (int)LineReaction.DashCap;
+            FileManager.LocalSettings.Values["LineReactionDashOffset"] = (float)LineReaction.DashOffset;
+            FileManager.LocalSettings.Values["LineReactionDashStyle"] = (int)LineReaction.DashStyle;
+            FileManager.LocalSettings.Values["LineReactionEndCap"] = (int)LineReaction.EndCap;
+            FileManager.LocalSettings.Values["LineReactionLineJoin"] = (int)LineReaction.LineJoin;
+            FileManager.LocalSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
+            FileManager.LocalSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
+            FileManager.LocalSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
+            FileManager.LocalSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
+            FileManager.LocalSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
+            FileManager.LocalSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
+            FileManager.LocalSettings.Values["ColorShearForceSelectedB"] = (int)ColorShearForceSelected.B;
 
-            FileManager.localSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
-            FileManager.localSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
-            FileManager.localSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
-            FileManager.localSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
-            FileManager.localSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
-            FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
-            FileManager.localSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
-            FileManager.localSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
-            FileManager.localSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
-            FileManager.localSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
-            FileManager.localSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
-            FileManager.localSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
+            FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"] = (int)LineShearForceSelected.DashCap;
+            FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"] = (float)LineShearForceSelected.DashOffset;
+            FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"] = (int)LineShearForceSelected.DashStyle;
+            FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"] = (int)LineShearForceSelected.EndCap;
+            FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"] = (int)LineShearForceSelected.LineJoin;
+            FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
+            FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
+            FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
+            FileManager.LocalSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
+            FileManager.LocalSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
+            FileManager.LocalSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
+            FileManager.LocalSettings.Values["ColorShearForceB"] = (int)ColorShearForce.B;
 
-            FileManager.localSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
-            FileManager.localSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
-            FileManager.localSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
-            FileManager.localSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
-            FileManager.localSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
-            FileManager.localSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
-            FileManager.localSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
-            FileManager.localSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
-            FileManager.localSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
-            FileManager.localSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
-            FileManager.localSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
-            FileManager.localSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
+            FileManager.LocalSettings.Values["LineShearForceDashCap"] = (int)LineShearForce.DashCap;
+            FileManager.LocalSettings.Values["LineShearForceDashOffset"] = (float)LineShearForce.DashOffset;
+            FileManager.LocalSettings.Values["LineShearForceDashStyle"] = (int)LineShearForce.DashStyle;
+            FileManager.LocalSettings.Values["LineShearForceEndCap"] = (int)LineShearForce.EndCap;
+            FileManager.LocalSettings.Values["LineShearForceLineJoin"] = (int)LineShearForce.LineJoin;
+            FileManager.LocalSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
+            FileManager.LocalSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
+            FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
+            FileManager.LocalSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
+            FileManager.LocalSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
+            FileManager.LocalSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
+            FileManager.LocalSettings.Values["ColorMomentForceSelectedB"] = (int)ColorMomentForceSelected.B;
 
-            FileManager.localSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
-            FileManager.localSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
-            FileManager.localSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
-            FileManager.localSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
-            FileManager.localSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
-            FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
-            FileManager.localSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
-            FileManager.localSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
-            FileManager.localSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
-            FileManager.localSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
-            FileManager.localSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
-            FileManager.localSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"] = (int)LineMomentForceSelected.DashCap;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"] = (float)LineMomentForceSelected.DashOffset;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"] = (int)LineMomentForceSelected.DashStyle;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"] = (int)LineMomentForceSelected.EndCap;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"] = (int)LineMomentForceSelected.LineJoin;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
+            FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
+            FileManager.LocalSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
+            FileManager.LocalSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
+            FileManager.LocalSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
+            FileManager.LocalSettings.Values["ColorMomentForceB"] = (int)ColorMomentForce.B;
 
-            FileManager.localSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
-            FileManager.localSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
-            FileManager.localSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
-            FileManager.localSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
-            FileManager.localSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
-            FileManager.localSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
-            FileManager.localSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
-            FileManager.localSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
-            FileManager.localSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
-            FileManager.localSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
-            FileManager.localSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
-            FileManager.localSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
+            FileManager.LocalSettings.Values["LineMomentForceDashCap"] = (int)LineMomentForce.DashCap;
+            FileManager.LocalSettings.Values["LineMomentForceDashOffset"] = (float)LineMomentForce.DashOffset;
+            FileManager.LocalSettings.Values["LineMomentForceDashStyle"] = (int)LineMomentForce.DashStyle;
+            FileManager.LocalSettings.Values["LineMomentForceEndCap"] = (int)LineMomentForce.EndCap;
+            FileManager.LocalSettings.Values["LineMomentForceLineJoin"] = (int)LineMomentForce.LineJoin;
+            FileManager.LocalSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
+            FileManager.LocalSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
+            FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
+            FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
+            FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
+            FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
+            FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"] = (int)ColorDistributedForceSelected.B;
 
-            FileManager.localSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
-            FileManager.localSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
-            FileManager.localSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
-            FileManager.localSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
-            FileManager.localSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
-            FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
-            FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
-            FileManager.localSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
-            FileManager.localSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
-            FileManager.localSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
-            FileManager.localSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
-            FileManager.localSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"] = (int)LineDistributedForceSelected.DashCap;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)LineDistributedForceSelected.DashOffset;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)LineDistributedForceSelected.DashStyle;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"] = (int)LineDistributedForceSelected.EndCap;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)LineDistributedForceSelected.LineJoin;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
+            FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
+            FileManager.LocalSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
+            FileManager.LocalSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
+            FileManager.LocalSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
+            FileManager.LocalSettings.Values["ColorDistributedForceB"] = (int)ColorDistributedForce.B;
 
-            FileManager.localSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
-            FileManager.localSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
-            FileManager.localSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
-            FileManager.localSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
-            FileManager.localSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
-            FileManager.localSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
-            FileManager.localSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
-            FileManager.localSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
-            FileManager.localSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
-            FileManager.localSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
-            FileManager.localSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
-            FileManager.localSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
+            FileManager.LocalSettings.Values["LineDistributedForceDashCap"] = (int)LineDistributedForce.DashCap;
+            FileManager.LocalSettings.Values["LineDistributedForceDashOffset"] = (float)LineDistributedForce.DashOffset;
+            FileManager.LocalSettings.Values["LineDistributedForceDashStyle"] = (int)LineDistributedForce.DashStyle;
+            FileManager.LocalSettings.Values["LineDistributedForceEndCap"] = (int)LineDistributedForce.EndCap;
+            FileManager.LocalSettings.Values["LineDistributedForceLineJoin"] = (int)LineDistributedForce.LineJoin;
+            FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
+            FileManager.LocalSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
+            FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
+            FileManager.LocalSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
+            FileManager.LocalSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
+            FileManager.LocalSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
+            FileManager.LocalSettings.Values["ColorNodeFreeB"] = (int)ColorNodeFree.B;
 
-            FileManager.localSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
-            FileManager.localSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
-            FileManager.localSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
-            FileManager.localSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
-            FileManager.localSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
-            FileManager.localSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
-            FileManager.localSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
-            FileManager.localSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
-            FileManager.localSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
-            FileManager.localSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
-            FileManager.localSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
-            FileManager.localSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
+            FileManager.LocalSettings.Values["LineNodeFreeDashCap"] = (int)LineNodeFree.DashCap;
+            FileManager.LocalSettings.Values["LineNodeFreeDashOffset"] = (float)LineNodeFree.DashOffset;
+            FileManager.LocalSettings.Values["LineNodeFreeDashStyle"] = (int)LineNodeFree.DashStyle;
+            FileManager.LocalSettings.Values["LineNodeFreeEndCap"] = (int)LineNodeFree.EndCap;
+            FileManager.LocalSettings.Values["LineNodeFreeLineJoin"] = (int)LineNodeFree.LineJoin;
+            FileManager.LocalSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
+            FileManager.LocalSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
+            FileManager.LocalSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
+            FileManager.LocalSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
+            FileManager.LocalSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
+            FileManager.LocalSettings.Values["ColorNodeFixedB"] = (int)ColorNodeFixed.B;
 
-            FileManager.localSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
-            FileManager.localSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
-            FileManager.localSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
-            FileManager.localSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
-            FileManager.localSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
-            FileManager.localSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
-            FileManager.localSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
-            FileManager.localSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
-            FileManager.localSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
-            FileManager.localSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
-            FileManager.localSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
-            FileManager.localSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
+            FileManager.LocalSettings.Values["LineNodeFixedDashCap"] = (int)LineNodeFixed.DashCap;
+            FileManager.LocalSettings.Values["LineNodeFixedDashOffset"] = (float)LineNodeFixed.DashOffset;
+            FileManager.LocalSettings.Values["LineNodeFixedDashStyle"] = (int)LineNodeFixed.DashStyle;
+            FileManager.LocalSettings.Values["LineNodeFixedEndCap"] = (int)LineNodeFixed.EndCap;
+            FileManager.LocalSettings.Values["LineNodeFixedLineJoin"] = (int)LineNodeFixed.LineJoin;
+            FileManager.LocalSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
+            FileManager.LocalSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
+            FileManager.LocalSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
+            FileManager.LocalSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
+            FileManager.LocalSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
+            FileManager.LocalSettings.Values["ColorNodePinB"] = (int)ColorNodePin.B;
 
-            FileManager.localSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
-            FileManager.localSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
-            FileManager.localSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
-            FileManager.localSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
-            FileManager.localSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
-            FileManager.localSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
-            FileManager.localSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
-            FileManager.localSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
-            FileManager.localSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
-            FileManager.localSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
-            FileManager.localSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
-            FileManager.localSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
+            FileManager.LocalSettings.Values["LineNodePinDashCap"] = (int)LineNodePin.DashCap;
+            FileManager.LocalSettings.Values["LineNodePinDashOffset"] = (float)LineNodePin.DashOffset;
+            FileManager.LocalSettings.Values["LineNodePinDashStyle"] = (int)LineNodePin.DashStyle;
+            FileManager.LocalSettings.Values["LineNodePinEndCap"] = (int)LineNodePin.EndCap;
+            FileManager.LocalSettings.Values["LineNodePinLineJoin"] = (int)LineNodePin.LineJoin;
+            FileManager.LocalSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
+            FileManager.LocalSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
+            FileManager.LocalSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
+            FileManager.LocalSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
+            FileManager.LocalSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
+            FileManager.LocalSettings.Values["ColorNodeRollerXB"] = (int)ColorNodeRollerX.B;
 
-            FileManager.localSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
-            FileManager.localSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
-            FileManager.localSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
-            FileManager.localSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
-            FileManager.localSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
-            FileManager.localSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
-            FileManager.localSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
-            FileManager.localSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
-            FileManager.localSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
-            FileManager.localSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
-            FileManager.localSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
-            FileManager.localSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
+            FileManager.LocalSettings.Values["LineNodeRollerXDashCap"] = (int)LineNodeRollerX.DashCap;
+            FileManager.LocalSettings.Values["LineNodeRollerXDashOffset"] = (float)LineNodeRollerX.DashOffset;
+            FileManager.LocalSettings.Values["LineNodeRollerXDashStyle"] = (int)LineNodeRollerX.DashStyle;
+            FileManager.LocalSettings.Values["LineNodeRollerXEndCap"] = (int)LineNodeRollerX.EndCap;
+            FileManager.LocalSettings.Values["LineNodeRollerXLineJoin"] = (int)LineNodeRollerX.LineJoin;
+            FileManager.LocalSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
+            FileManager.LocalSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
+            FileManager.LocalSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
+            FileManager.LocalSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
+            FileManager.LocalSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
+            FileManager.LocalSettings.Values["ColorNodeRollerYB"] = (int)ColorNodeRollerY.B;
 
-            FileManager.localSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
-            FileManager.localSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
-            FileManager.localSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
-            FileManager.localSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
-            FileManager.localSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
-            FileManager.localSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
-            FileManager.localSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
-            FileManager.localSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
-            FileManager.localSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
-            FileManager.localSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
-            FileManager.localSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
-            FileManager.localSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
+            FileManager.LocalSettings.Values["LineNodeRollerYDashCap"] = (int)LineNodeRollerY.DashCap;
+            FileManager.LocalSettings.Values["LineNodeRollerYDashOffset"] = (float)LineNodeRollerY.DashOffset;
+            FileManager.LocalSettings.Values["LineNodeRollerYDashStyle"] = (int)LineNodeRollerY.DashStyle;
+            FileManager.LocalSettings.Values["LineNodeRollerYEndCap"] = (int)LineNodeRollerY.EndCap;
+            FileManager.LocalSettings.Values["LineNodeRollerYLineJoin"] = (int)LineNodeRollerY.LineJoin;
+            FileManager.LocalSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
+            FileManager.LocalSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
+            FileManager.LocalSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
+            FileManager.LocalSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
+            FileManager.LocalSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
+            FileManager.LocalSettings.Values["ColorNodeOtherB"] = (int)ColorNodeOther.B;
 
-            FileManager.localSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
-            FileManager.localSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
-            FileManager.localSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
-            FileManager.localSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
-            FileManager.localSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
-            FileManager.localSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
-            FileManager.localSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
-            FileManager.localSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
-            FileManager.localSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
-            FileManager.localSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
-            FileManager.localSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
-            FileManager.localSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
+            FileManager.LocalSettings.Values["LineNodeOtherDashCap"] = (int)LineNodeOther.DashCap;
+            FileManager.LocalSettings.Values["LineNodeOtherDashOffset"] = (float)LineNodeOther.DashOffset;
+            FileManager.LocalSettings.Values["LineNodeOtherDashStyle"] = (int)LineNodeOther.DashStyle;
+            FileManager.LocalSettings.Values["LineNodeOtherEndCap"] = (int)LineNodeOther.EndCap;
+            FileManager.LocalSettings.Values["LineNodeOtherLineJoin"] = (int)LineNodeOther.LineJoin;
+            FileManager.LocalSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
+            FileManager.LocalSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
+            FileManager.LocalSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
+            FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
+            FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
+            FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
+            FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
 
-            FileManager.localSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
-            FileManager.localSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
-            FileManager.localSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
-            FileManager.localSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
+            FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
+            FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
+            FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
+            FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
 
-            FileManager.localSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
-            FileManager.localSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
-            FileManager.localSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
-            FileManager.localSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
-            FileManager.localSettings.Values["UnitAngle"] = (int)angle;
-            FileManager.localSettings.Values["UnitArea"] = (int)area;
-            FileManager.localSettings.Values["UnitDensity"] = (int)density;
-            FileManager.localSettings.Values["UnitForce"] = (int)force;
-            FileManager.localSettings.Values["UnitForcePerLength"] = (int)forcePerLength;
-            FileManager.localSettings.Values["UnitLength"] = (int)length;
-            FileManager.localSettings.Values["UnitMass"] = (int)mass;
+            FileManager.LocalSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
+            FileManager.LocalSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
+            FileManager.LocalSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
+            FileManager.LocalSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
+            FileManager.LocalSettings.Values["UnitAngle"] = (int)angle;
+            FileManager.LocalSettings.Values["UnitArea"] = (int)area;
+            FileManager.LocalSettings.Values["UnitDensity"] = (int)density;
+            FileManager.LocalSettings.Values["UnitForce"] = (int)force;
+            FileManager.LocalSettings.Values["UnitForcePerLength"] = (int)forcePerLength;
+            FileManager.LocalSettings.Values["UnitLength"] = (int)length;
+            FileManager.LocalSettings.Values["UnitMass"] = (int)mass;
 
-            FileManager.localSettings.Values["UnitMoment"] = (int)moment;
-            FileManager.localSettings.Values["UnitMomentOfInertia"] = (int)momentOfInertia;
-            FileManager.localSettings.Values["UnitPressure"] = (int)pressure;
+            FileManager.LocalSettings.Values["UnitMoment"] = (int)moment;
+            FileManager.LocalSettings.Values["UnitMomentOfInertia"] = (int)momentOfInertia;
+            FileManager.LocalSettings.Values["UnitPressure"] = (int)pressure;
 
-            FileManager.localSettings.Values["UnitVolume"] = (int)volume;
-            FileManager.localSettings.Values["ShowMoment"] = showMoment;
-            FileManager.localSettings.Values["ShowShear"] = showShear;
-            FileManager.localSettings.Values["ShowForce"] = showForce;
-            FileManager.localSettings.Values["ShowLinear"] = showLinear;
-            FileManager.localSettings.Values["ShowAxial"] = showAxial;
-            FileManager.localSettings.Values["ShowReactions"] = showReactions;
-            FileManager.localSettings.Values["MemberDisplay"] = (int)memberDisplay;
-            FileManager.localSettings.Values["AutoStartSolver"] = (bool)autoStartSolver;
-            FileManager.localSettings.Values["AutoFinishSolver"] = (bool)autoFinishSolver;
-            FileManager.localSettings.Values["CurrentSolver"] = (int)currentSolver;
-            FileManager.localSettings.Values["LockNumericalInput"] = lockNumericalInput;
-            FileManager.localSettings.Values["LoadLastFileOnStartup"] = loadLastFileOnStartup;
-            FileManager.localSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
-            FileManager.localSettings.Values["lastCurrentSection"] = (string)lastCurrentSectionName;
-            FileManager.localSettings.Values["ResetExistingMembers"] = (bool)resetExistingMembers;
-            FileManager.localSettings.Values["MomentFactor"] = (double)momentFactor;
-            FileManager.localSettings.Values["ShearFactor"] = (double)shearFactor;
-            FileManager.localSettings.Values["LinearFactor"] = (double)linearFactor;
-            FileManager.localSettings.Values["ForcesFactor"] = (double)forcesFactor;
-            FileManager.localSettings.Values["ReactionsFactor"] = (double)reactionsFactor;
-            FileManager.localSettings.Values["DisplacementFactor"] = (double)displacementFactor;
+            FileManager.LocalSettings.Values["UnitVolume"] = (int)volume;
+            FileManager.LocalSettings.Values["ShowMoment"] = showMoment;
+            FileManager.LocalSettings.Values["ShowShear"] = showShear;
+            FileManager.LocalSettings.Values["ShowForce"] = showForce;
+            FileManager.LocalSettings.Values["ShowLinear"] = showLinear;
+            FileManager.LocalSettings.Values["ShowAxial"] = showAxial;
+            FileManager.LocalSettings.Values["ShowReactions"] = showReactions;
+            FileManager.LocalSettings.Values["MemberDisplay"] = (int)memberDisplay;
+            FileManager.LocalSettings.Values["AutoStartSolver"] = (bool)autoStartSolver;
+            FileManager.LocalSettings.Values["AutoFinishSolver"] = (bool)autoFinishSolver;
+            FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
+            FileManager.LocalSettings.Values["LockNumericalInput"] = lockNumericalInput;
+            FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = loadLastFileOnStartup;
+            FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
+            FileManager.LocalSettings.Values["lastCurrentSection"] = (string)lastCurrentSectionName;
+            FileManager.LocalSettings.Values["ResetExistingMembers"] = (bool)resetExistingMembers;
+            FileManager.LocalSettings.Values["MomentFactor"] = (double)momentFactor;
+            FileManager.LocalSettings.Values["ShearFactor"] = (double)shearFactor;
+            FileManager.LocalSettings.Values["LinearFactor"] = (double)linearFactor;
+            FileManager.LocalSettings.Values["ForcesFactor"] = (double)forcesFactor;
+            FileManager.LocalSettings.Values["ReactionsFactor"] = (double)reactionsFactor;
+            FileManager.LocalSettings.Values["DisplacementFactor"] = (double)displacementFactor;
         }
 
         #endregion

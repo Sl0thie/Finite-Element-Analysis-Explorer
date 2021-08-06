@@ -2,7 +2,6 @@
 {
     public class Material
     {
-
         public void Output()
         {
         }
@@ -12,208 +11,207 @@
         }
 
         public Material(
-            string _name,
-            string _description,
-            decimal _cost,
-            decimal _density,
-            decimal _ultimateStrengthTension,
-            decimal _ultimateStrengthCompression,
-            decimal _ultimateStrengthShear,
-            decimal _yieldStrengthTension,
-            decimal _yieldStrengthShear,
-            decimal _modulusOfElasticity,
-            decimal _modulusOfRigidity,
-            decimal _coefficientOfThermalExpansion,
-            decimal _ductility,
-            int _Atomic_Number,
-            string _Symbol,
-            decimal _Atomic_Mass,
-            string _Allotrope_Names,
-            string _Alternate_Names,
-            string _CAS_Number,
-            string _Icon_Color,
-            string _Block,
-            string _Group,
-            string _Period,
-            string _Series,
-            decimal _Atomic_Weight,
-            decimal _Brinell_Hardness,
-            decimal _Bulk_Modulus,
-            decimal _Liquid_Density,
-            decimal _Mohs_Hardness,
-            decimal _Molar_Volume,
-            decimal _Poission_Ratio,
-            decimal _Shear_Modulus,
-            decimal _Sound_Speed,
-            decimal _Thermal_Conductivity,
-            decimal _Thermal_Expansion,
-            decimal _Vickers_Hardness,
-            decimal _Young_Modulus,
-            decimal _Absolute_Boiling_Point,
-            decimal _Absolute_Melting_Point,
-            decimal _Adiabatic_Index,
-            decimal _Boiling_Point,
-            decimal _Critical_Pressure,
-            decimal _Critical_Temperature,
-            decimal _Curie_Point,
-            decimal _Fusion_Heat,
-            decimal _Melting_Point,
-            decimal _Neel_Point,
-            string _Phase,
-            decimal _Specific_Heat,
-            decimal _Superconducting_Point,
-            decimal _Vaporization_Heat,
-            string _Color,
-            decimal _Electrical_Conductivity,
-            string _Electrical_Type,
-            string _Magnetic_Type,
-            decimal _Mass_Magnetic_Susceptibility,
-            decimal _Molar_Magnetic_Susceptibility,
-            decimal _Refractive_Index,
-            decimal _Resistivity,
-            decimal _Volume_Magnetic_Susceptibility,
-            string _Allotropic_Multiplicities,
-            string _Electron_Affinity,
-            string _Electronegativity,
-            string _Gas_Atomic_Multiplicities,
-            string _Valence,
-            string _Crystal_Structure,
-            string _Lattice_Angles,
-            string _Lattice_Constants,
-            string _Space_Group_Number,
-            string _Space_Group_Name,
-            string _Atomic_Radius,
-            string _Covalent_Radius,
-            string _Electron_Configuration,
-            string _Electron_Configuration_String,
-            string _Electron_Shell_Configuration,
-            string _Ionization_Energies,
-            string _Quantum_Numbers,
-            string _Van_Der_Waals_Radius,
-            string _Decay_Mode,
-            string _HalfLife,
-            string _Isotope_Abundances,
-            string _Known_Isotopes,
-            string _Lifetime,
-            string _Neutron_Cross_Section,
-            string _Neutron_Mass_Absorption,
-            string _Radioactive,
-            string _Stable_Isotopes,
-            decimal _Crust_Abundance,
-            decimal _Human_Abundance,
-            decimal _Meteorite_Abundance,
-            decimal _Ocean_Abundance,
-            decimal _Solar_Abundance,
-            decimal _Universe_Abundance,
-            string _Radius_Empirical,
-            string _Radius_Calculated,
-            string _Radius_Van_Der_Waals,
-            string _Radius_Covalent_Single_Bond,
-            string _Radius_Covalent_Triple_Bond,
-            string _Radius_Metallic,
-            string _MaterialType)
+            string name,
+            string description,
+            decimal cost,
+            decimal density,
+            decimal ultimateStrengthTension,
+            decimal ultimateStrengthCompression,
+            decimal ultimateStrengthShear,
+            decimal yieldStrengthTension,
+            decimal yieldStrengthShear,
+            decimal modulusOfElasticity,
+            decimal modulusOfRigidity,
+            decimal coefficientOfThermalExpansion,
+            decimal ductility,
+            int atomic_Number,
+            string symbol,
+            decimal atomic_Mass,
+            string allotrope_Names,
+            string alternate_Names,
+            string cAS_Number,
+            string icon_Color,
+            string block,
+            string group,
+            string period,
+            string series,
+            decimal atomic_Weight,
+            decimal brinell_Hardness,
+            decimal bulk_Modulus,
+            decimal liquid_Density,
+            decimal mohs_Hardness,
+            decimal molar_Volume,
+            decimal poission_Ratio,
+            decimal shear_Modulus,
+            decimal sound_Speed,
+            decimal thermal_Conductivity,
+            decimal thermal_Expansion,
+            decimal vickers_Hardness,
+            decimal young_Modulus,
+            decimal absolute_Boiling_Point,
+            decimal absolute_Melting_Point,
+            decimal adiabatic_Index,
+            decimal boiling_Point,
+            decimal critical_Pressure,
+            decimal critical_Temperature,
+            decimal curie_Point,
+            decimal fusion_Heat,
+            decimal melting_Point,
+            decimal neel_Point,
+            string phase,
+            decimal specific_Heat,
+            decimal superconducting_Point,
+            decimal vaporization_Heat,
+            string color,
+            decimal electrical_Conductivity,
+            string electrical_Type,
+            string magnetic_Type,
+            decimal mass_Magnetic_Susceptibility,
+            decimal molar_Magnetic_Susceptibility,
+            decimal refractive_Index,
+            decimal resistivity,
+            decimal volume_Magnetic_Susceptibility,
+            string allotropic_Multiplicities,
+            string electron_Affinity,
+            string electronegativity,
+            string gas_Atomic_Multiplicities,
+            string valence,
+            string crystal_Structure,
+            string lattice_Angles,
+            string lattice_Constants,
+            string space_Group_Number,
+            string space_Group_Name,
+            string atomic_Radius,
+            string covalent_Radius,
+            string electron_Configuration,
+            string electron_Configuration_String,
+            string electron_Shell_Configuration,
+            string ionization_Energies,
+            string quantum_Numbers,
+            string van_Der_Waals_Radius,
+            string decay_Mode,
+            string halfLife,
+            string isotope_Abundances,
+            string known_Isotopes,
+            string lifetime,
+            string neutron_Cross_Section,
+            string neutron_Mass_Absorption,
+            string radioactive,
+            string stable_Isotopes,
+            decimal crust_Abundance,
+            decimal human_Abundance,
+            decimal meteorite_Abundance,
+            decimal ocean_Abundance,
+            decimal solar_Abundance,
+            decimal universe_Abundance,
+            string radius_Empirical,
+            string radius_Calculated,
+            string radius_Van_Der_Waals,
+            string radius_Covalent_Single_Bond,
+            string radius_Covalent_Triple_Bond,
+            string radius_Metallic,
+            string materialType)
         {
-
-            name = _name;
-            description = _description;
-            cost = _cost;
-            density = _density;
-            ultimateStrengthTension = _ultimateStrengthTension;
-            ultimateStrengthCompression = _ultimateStrengthCompression;
-            ultimateStrengthShear = _ultimateStrengthShear;
-            yieldStrengthTension = _yieldStrengthTension;
-            yieldStrengthShear = _yieldStrengthShear;
-            modulusOfElasticity = _modulusOfElasticity;
-            modulusOfRigidity = _modulusOfRigidity;
-            coefficientOfThermalExpansion = _coefficientOfThermalExpansion;
-            ductility = _ductility;
-            Atomic_Number = _Atomic_Number;
-            Symbol = _Symbol;
-            Atomic_Mass = _Atomic_Mass;
-            Allotrope_Names = _Allotrope_Names;
-            Alternate_Names = _Alternate_Names;
-            CAS_Number = _CAS_Number;
-            Icon_Color = _Icon_Color;
-            Block = _Block;
-            Group = _Group;
-            Period = _Period;
-            Series = _Series;
-            Atomic_Weight = _Atomic_Weight;
-            Brinell_Hardness = _Brinell_Hardness;
-            Bulk_Modulus = _Bulk_Modulus;
-            Liquid_Density = _Liquid_Density;
-            Mohs_Hardness = _Mohs_Hardness;
-            Molar_Volume = _Molar_Volume;
-            Poission_Ratio = _Poission_Ratio;
-            ModulusOfRigidity = _Shear_Modulus;
-            Sound_Speed = _Sound_Speed;
-            Thermal_Conductivity = _Thermal_Conductivity;
-            Thermal_Expansion = _Thermal_Expansion;
-            Vickers_Hardness = _Vickers_Hardness;
-            ModulusOfElasticity = _Young_Modulus;
-            Absolute_Boiling_Point = _Absolute_Boiling_Point;
-            Absolute_Melting_Point = _Absolute_Melting_Point;
-            Adiabatic_Index = _Adiabatic_Index;
-            Boiling_Point = _Boiling_Point;
-            Critical_Pressure = _Critical_Pressure;
-            Critical_Temperature = _Critical_Temperature;
-            Curie_Point = _Curie_Point;
-            Fusion_Heat = _Fusion_Heat;
-            Melting_Point = _Melting_Point;
-            Neel_Point = _Neel_Point;
-            Phase = _Phase;
-            Specific_Heat = _Specific_Heat;
-            Superconducting_Point = _Superconducting_Point;
-            Vaporization_Heat = _Vaporization_Heat;
-            Color = _Color;
-            Electrical_Conductivity = _Electrical_Conductivity;
-            Electrical_Type = _Electrical_Type;
-            Magnetic_Type = _Magnetic_Type;
-            Mass_Magnetic_Susceptibility = _Mass_Magnetic_Susceptibility;
-            Molar_Magnetic_Susceptibility = _Molar_Magnetic_Susceptibility;
-            Refractive_Index = _Refractive_Index;
-            Resistivity = _Resistivity;
-            Volume_Magnetic_Susceptibility = _Volume_Magnetic_Susceptibility;
-            Allotropic_Multiplicities = _Allotropic_Multiplicities;
-            Electron_Affinity = _Electron_Affinity;
-            Electronegativity = _Electronegativity;
-            Gas_Atomic_Multiplicities = _Gas_Atomic_Multiplicities;
-            Valence = _Valence;
-            Crystal_Structure = _Crystal_Structure;
-            Lattice_Angles = _Lattice_Angles;
-            Lattice_Constants = _Lattice_Constants;
-            Space_Group_Number = _Space_Group_Number;
-            Space_Group_Name = _Space_Group_Name;
-            Atomic_Radius = _Atomic_Radius;
-            Covalent_Radius = _Covalent_Radius;
-            Electron_Configuration = _Electron_Configuration;
-            Electron_Configuration_String = _Electron_Configuration_String;
-            Electron_Shell_Configuration = _Electron_Shell_Configuration;
-            Ionization_Energies = _Ionization_Energies;
-            Quantum_Numbers = _Quantum_Numbers;
-            Van_Der_Waals_Radius = _Van_Der_Waals_Radius;
-            Decay_Mode = _Decay_Mode;
-            HalfLife = _HalfLife;
-            Isotope_Abundances = _Isotope_Abundances;
-            Known_Isotopes = _Known_Isotopes;
-            Lifetime = _Lifetime;
-            Neutron_Cross_Section = _Neutron_Cross_Section;
-            Neutron_Mass_Absorption = _Neutron_Mass_Absorption;
-            Radioactive = _Radioactive;
-            Stable_Isotopes = _Stable_Isotopes;
-            Crust_Abundance = _Crust_Abundance;
-            Human_Abundance = _Human_Abundance;
-            Meteorite_Abundance = _Meteorite_Abundance;
-            Ocean_Abundance = _Ocean_Abundance;
-            Solar_Abundance = _Solar_Abundance;
-            Universe_Abundance = _Universe_Abundance;
-            Radius_Empirical = _Radius_Empirical;
-            Radius_Calculated = _Radius_Calculated;
-            Radius_Van_Der_Waals = _Radius_Van_Der_Waals;
-            Radius_Covalent_Single_Bond = _Radius_Covalent_Single_Bond;
-            Radius_Covalent_Triple_Bond = _Radius_Covalent_Triple_Bond;
-            Radius_Metallic = _Radius_Metallic;
-            MaterialType = _MaterialType;
+            this.name = name;
+            this.description = description;
+            this.cost = cost;
+            this.density = density;
+            this.ultimateStrengthTension = ultimateStrengthTension;
+            this.ultimateStrengthCompression = ultimateStrengthCompression;
+            this.ultimateStrengthShear = ultimateStrengthShear;
+            this.yieldStrengthTension = yieldStrengthTension;
+            this.yieldStrengthShear = yieldStrengthShear;
+            this.modulusOfElasticity = modulusOfElasticity;
+            this.modulusOfRigidity = modulusOfRigidity;
+            this.coefficientOfThermalExpansion = coefficientOfThermalExpansion;
+            this.ductility = ductility;
+            this.Atomic_Number = atomic_Number;
+            this.Symbol = symbol;
+            this.Atomic_Mass = atomic_Mass;
+            this.Allotrope_Names = allotrope_Names;
+            this.Alternate_Names = alternate_Names;
+            this.CAS_Number = cAS_Number;
+            this.Icon_Color = icon_Color;
+            this.Block = block;
+            this.Group = group;
+            this.Period = period;
+            this.Series = series;
+            this.Atomic_Weight = atomic_Weight;
+            this.Brinell_Hardness = brinell_Hardness;
+            this.Bulk_Modulus = bulk_Modulus;
+            this.Liquid_Density = liquid_Density;
+            this.Mohs_Hardness = mohs_Hardness;
+            this.Molar_Volume = molar_Volume;
+            this.Poission_Ratio = poission_Ratio;
+            this.ModulusOfRigidity = shear_Modulus;
+            this.Sound_Speed = sound_Speed;
+            this.Thermal_Conductivity = thermal_Conductivity;
+            this.Thermal_Expansion = thermal_Expansion;
+            this.Vickers_Hardness = vickers_Hardness;
+            this.ModulusOfElasticity = young_Modulus;
+            this.Absolute_Boiling_Point = absolute_Boiling_Point;
+            this.Absolute_Melting_Point = absolute_Melting_Point;
+            this.Adiabatic_Index = adiabatic_Index;
+            this.Boiling_Point = boiling_Point;
+            this.Critical_Pressure = critical_Pressure;
+            this.Critical_Temperature = critical_Temperature;
+            this.Curie_Point = curie_Point;
+            this.Fusion_Heat = fusion_Heat;
+            this.Melting_Point = melting_Point;
+            this.Neel_Point = neel_Point;
+            this.Phase = phase;
+            this.Specific_Heat = specific_Heat;
+            this.Superconducting_Point = superconducting_Point;
+            this.Vaporization_Heat = vaporization_Heat;
+            this.Color = color;
+            this.Electrical_Conductivity = electrical_Conductivity;
+            this.Electrical_Type = electrical_Type;
+            this.Magnetic_Type = magnetic_Type;
+            this.Mass_Magnetic_Susceptibility = mass_Magnetic_Susceptibility;
+            this.Molar_Magnetic_Susceptibility = molar_Magnetic_Susceptibility;
+            this.Refractive_Index = refractive_Index;
+            this.Resistivity = resistivity;
+            this.Volume_Magnetic_Susceptibility = volume_Magnetic_Susceptibility;
+            this.Allotropic_Multiplicities = allotropic_Multiplicities;
+            this.Electron_Affinity = electron_Affinity;
+            this.Electronegativity = electronegativity;
+            this.Gas_Atomic_Multiplicities = gas_Atomic_Multiplicities;
+            this.Valence = valence;
+            this.Crystal_Structure = crystal_Structure;
+            this.Lattice_Angles = lattice_Angles;
+            this.Lattice_Constants = lattice_Constants;
+            this.Space_Group_Number = space_Group_Number;
+            this.Space_Group_Name = space_Group_Name;
+            this.Atomic_Radius = atomic_Radius;
+            this.Covalent_Radius = covalent_Radius;
+            this.Electron_Configuration = electron_Configuration;
+            this.Electron_Configuration_String = electron_Configuration_String;
+            this.Electron_Shell_Configuration = electron_Shell_Configuration;
+            this.Ionization_Energies = ionization_Energies;
+            this.Quantum_Numbers = quantum_Numbers;
+            this.Van_Der_Waals_Radius = van_Der_Waals_Radius;
+            this.Decay_Mode = decay_Mode;
+            this.HalfLife = halfLife;
+            this.Isotope_Abundances = isotope_Abundances;
+            this.Known_Isotopes = known_Isotopes;
+            this.Lifetime = lifetime;
+            this.Neutron_Cross_Section = neutron_Cross_Section;
+            this.Neutron_Mass_Absorption = neutron_Mass_Absorption;
+            this.Radioactive = radioactive;
+            this.Stable_Isotopes = stable_Isotopes;
+            this.Crust_Abundance = crust_Abundance;
+            this.Human_Abundance = human_Abundance;
+            this.Meteorite_Abundance = meteorite_Abundance;
+            this.Ocean_Abundance = ocean_Abundance;
+            this.Solar_Abundance = solar_Abundance;
+            this.Universe_Abundance = universe_Abundance;
+            this.Radius_Empirical = radius_Empirical;
+            this.Radius_Calculated = radius_Calculated;
+            this.Radius_Van_Der_Waals = radius_Van_Der_Waals;
+            this.Radius_Covalent_Single_Bond = radius_Covalent_Single_Bond;
+            this.Radius_Covalent_Triple_Bond = radius_Covalent_Triple_Bond;
+            this.Radius_Metallic = radius_Metallic;
+            this.MaterialType = materialType;
         }
 
         #region Added
@@ -309,11 +307,11 @@
         }
 
         /// <summary>
-        /// Modulus of Rigidity (G)
+        /// Modulus of Rigidity (G).
         ///
         ///
-        ///  G = E/2(1+v)
-        ///  E = 2G(1+v)
+        ///  G = E/2(1+v).
+        ///  E = 2G(1+v).
         ///
         /// </summary>
         private decimal modulusOfRigidity = 0;
@@ -325,20 +323,20 @@
         }
 
         /// <summary>
-        /// Bulk Mudulus (K)
+        /// Bulk Modulus (K)
         /// Ability to resist compression.
         ///
-        /// Relation Equation E = 3K(1-2v)
-        ///                   K = E/3(1-2v)
+        /// Relation Equation E = 3K(1-2v).
+        ///                   K = E/3(1-2v).
         ///
         ///
         /// </summary>
-        private decimal _Bulk_Modulus = 0;
+        private decimal bulkModulus = 0;
 
         internal decimal Bulk_Modulus
         {
-            get { return _Bulk_Modulus; }
-            set { _Bulk_Modulus = value; }
+            get { return bulkModulus; }
+            set { bulkModulus = value; }
         }
 
         private decimal coefficientOfThermalExpansion = 0;
@@ -359,108 +357,108 @@
 
         #endregion
 
-        private int _Atomic_Number = 0;
+        private int atomicNumber = 0;
 
         internal int Atomic_Number
         {
-            get { return _Atomic_Number; }
-            set { _Atomic_Number = value; }
+            get { return atomicNumber; }
+            set { atomicNumber = value; }
         }
 
-        private string _Symbol = string.Empty;
+        private string symbol = string.Empty;
 
         internal string Symbol
         {
-            get { return _Symbol; }
-            set { _Symbol = value; }
+            get { return symbol; }
+            set { symbol = value; }
         }
 
-        private decimal _Atomic_Mass = 0;
+        private decimal atomicMass = 0;
 
         internal decimal Atomic_Mass
         {
-            get { return _Atomic_Mass; }
-            set { _Atomic_Mass = value; }
+            get { return atomicMass; }
+            set { atomicMass = value; }
         }
 
-        private string _Allotrope_Names = string.Empty;
+        private string allotropeNames = string.Empty;
 
         internal string Allotrope_Names
         {
-            get { return _Allotrope_Names; }
-            set { _Allotrope_Names = value; }
+            get { return allotropeNames; }
+            set { allotropeNames = value; }
         }
 
-        private string _Alternate_Names = string.Empty;
+        private string alternateNames = string.Empty;
 
         internal string Alternate_Names
         {
-            get { return _Alternate_Names; }
-            set { _Alternate_Names = value; }
+            get { return alternateNames; }
+            set { alternateNames = value; }
         }
 
-        private string _CAS_Number = string.Empty;
+        private string cASNumber = string.Empty;
 
         internal string CAS_Number
         {
-            get { return _CAS_Number; }
-            set { _CAS_Number = value; }
+            get { return cASNumber; }
+            set { cASNumber = value; }
         }
 
-        private string _Icon_Color = string.Empty;
+        private string iconColor = string.Empty;
 
         internal string Icon_Color
         {
-            get { return _Icon_Color; }
-            set { _Icon_Color = value; }
+            get { return iconColor; }
+            set { iconColor = value; }
         }
 
-        private string _Block = string.Empty;
+        private string block = string.Empty;
 
         internal string Block
         {
-            get { return _Block; }
-            set { _Block = value; }
+            get { return block; }
+            set { block = value; }
         }
 
-        private string _Group = string.Empty;
+        private string group = string.Empty;
 
         internal string Group
         {
-            get { return _Group; }
-            set { _Group = value; }
+            get { return group; }
+            set { group = value; }
         }
 
-        private string _Period = string.Empty;
+        private string period = string.Empty;
 
         internal string Period
         {
-            get { return _Period; }
-            set { _Period = value; }
+            get { return period; }
+            set { period = value; }
         }
 
-        private string _Series = string.Empty;
+        private string series = string.Empty;
 
         internal string Series
         {
-            get { return _Series; }
-            set { _Series = value; }
+            get { return series; }
+            set { series = value; }
         }
 
-        private decimal _Atomic_Weight = 0;
+        private decimal atomicWeight = 0;
 
         internal decimal Atomic_Weight
         {
-            get { return _Atomic_Weight; }
-            set { _Atomic_Weight = value; }
+            get { return atomicWeight; }
+            set { atomicWeight = value; }
         }
 
-        private decimal _Brinell_Hardness = 0;
+        private decimal brinellHardness = 0;
 
         internal decimal Brinell_Hardness
         {
-            get { return _Brinell_Hardness; }
-            set { _Brinell_Hardness = value; }
+            get { return brinellHardness; }
+            set { brinellHardness = value; }
         }
 
         // private string _Density;
@@ -469,572 +467,572 @@
         //    get { return _Density; }
         //    set { _Density = value; }
         // }
-        private decimal _Liquid_Density = 0;
+        private decimal liquidDensity = 0;
 
         internal decimal Liquid_Density
         {
-            get { return _Liquid_Density; }
-            set { _Liquid_Density = value; }
+            get { return liquidDensity; }
+            set { liquidDensity = value; }
         }
 
-        private decimal _Mohs_Hardness = 0;
+        private decimal mohsHardness = 0;
 
         internal decimal Mohs_Hardness
         {
-            get { return _Mohs_Hardness; }
-            set { _Mohs_Hardness = value; }
+            get { return mohsHardness; }
+            set { mohsHardness = value; }
         }
 
-        private decimal _Molar_Volume = 0;
+        private decimal molarVolume = 0;
 
         internal decimal Molar_Volume
         {
-            get { return _Molar_Volume; }
-            set { _Molar_Volume = value; }
+            get { return molarVolume; }
+            set { molarVolume = value; }
         }
 
-        private decimal _Poission_Ratio = 0;
+        private decimal poissionRatio = 0;
 
         internal decimal Poission_Ratio
         {
-            get { return _Poission_Ratio; }
-            set { _Poission_Ratio = value; }
+            get { return poissionRatio; }
+            set { poissionRatio = value; }
         }
 
-        private decimal _Sound_Speed = 0;
+        private decimal soundSpeed = 0;
 
         internal decimal Sound_Speed
         {
-            get { return _Sound_Speed; }
-            set { _Sound_Speed = value; }
+            get { return soundSpeed; }
+            set { soundSpeed = value; }
         }
 
-        private decimal _Thermal_Conductivity = 0;
+        private decimal thermalConductivity = 0;
 
         internal decimal Thermal_Conductivity
         {
-            get { return _Thermal_Conductivity; }
-            set { _Thermal_Conductivity = value; }
+            get { return thermalConductivity; }
+            set { thermalConductivity = value; }
         }
 
-        private decimal _Thermal_Expansion = 0;
+        private decimal thermalExpansion = 0;
 
         internal decimal Thermal_Expansion
         {
-            get { return _Thermal_Expansion; }
-            set { _Thermal_Expansion = value; }
+            get { return thermalExpansion; }
+            set { thermalExpansion = value; }
         }
 
-        private decimal _Vickers_Hardness = 0;
+        private decimal vickersHardness = 0;
 
         internal decimal Vickers_Hardness
         {
-            get { return _Vickers_Hardness; }
-            set { _Vickers_Hardness = value; }
+            get { return vickersHardness; }
+            set { vickersHardness = value; }
         }
 
-        private decimal _Absolute_Boiling_Point = 0;
+        private decimal absoluteBoilingPoint = 0;
 
         internal decimal Absolute_Boiling_Point
         {
-            get { return _Absolute_Boiling_Point; }
-            set { _Absolute_Boiling_Point = value; }
+            get { return absoluteBoilingPoint; }
+            set { absoluteBoilingPoint = value; }
         }
 
-        private decimal _Absolute_Melting_Point = 0;
+        private decimal absoluteMeltingPoint = 0;
 
         internal decimal Absolute_Melting_Point
         {
-            get { return _Absolute_Melting_Point; }
-            set { _Absolute_Melting_Point = value; }
+            get { return absoluteMeltingPoint; }
+            set { absoluteMeltingPoint = value; }
         }
 
-        private decimal _Adiabatic_Index = 0;
+        private decimal adiabaticIndex = 0;
 
         internal decimal Adiabatic_Index
         {
-            get { return _Adiabatic_Index; }
-            set { _Adiabatic_Index = value; }
+            get { return adiabaticIndex; }
+            set { adiabaticIndex = value; }
         }
 
-        private decimal _Boiling_Point = 0;
+        private decimal boilingPoint = 0;
 
         internal decimal Boiling_Point
         {
-            get { return _Boiling_Point; }
-            set { _Boiling_Point = value; }
+            get { return boilingPoint; }
+            set { boilingPoint = value; }
         }
 
-        private decimal _Critical_Pressure = 0;
+        private decimal criticalPressure = 0;
 
         internal decimal Critical_Pressure
         {
-            get { return _Critical_Pressure; }
-            set { _Critical_Pressure = value; }
+            get { return criticalPressure; }
+            set { criticalPressure = value; }
         }
 
-        private decimal _Critical_Temperature = 0;
+        private decimal criticalTemperature = 0;
 
         internal decimal Critical_Temperature
         {
-            get { return _Critical_Temperature; }
-            set { _Critical_Temperature = value; }
+            get { return criticalTemperature; }
+            set { criticalTemperature = value; }
         }
 
-        private decimal _Curie_Point = 0;
+        private decimal curiePoint = 0;
 
         internal decimal Curie_Point
         {
-            get { return _Curie_Point; }
-            set { _Curie_Point = value; }
+            get { return curiePoint; }
+            set { curiePoint = value; }
         }
 
-        private decimal _Fusion_Heat = 0;
+        private decimal fusionHeat = 0;
 
         internal decimal Fusion_Heat
         {
-            get { return _Fusion_Heat; }
-            set { _Fusion_Heat = value; }
+            get { return fusionHeat; }
+            set { fusionHeat = value; }
         }
 
-        private decimal _Melting_Point = 0;
+        private decimal meltingPoint = 0;
 
         internal decimal Melting_Point
         {
-            get { return _Melting_Point; }
-            set { _Melting_Point = value; }
+            get { return meltingPoint; }
+            set { meltingPoint = value; }
         }
 
-        private decimal _Neel_Point = 0;
+        private decimal neelPoint = 0;
 
         internal decimal Neel_Point
         {
-            get { return _Neel_Point; }
-            set { _Neel_Point = value; }
+            get { return neelPoint; }
+            set { neelPoint = value; }
         }
 
-        private string _Phase = string.Empty;
+        private string phase = string.Empty;
 
         internal string Phase
         {
-            get { return _Phase; }
-            set { _Phase = value; }
+            get { return phase; }
+            set { phase = value; }
         }
 
-        private decimal _Specific_Heat = 0;
+        private decimal specificHeat = 0;
 
         internal decimal Specific_Heat
         {
-            get { return _Specific_Heat; }
-            set { _Specific_Heat = value; }
+            get { return specificHeat; }
+            set { specificHeat = value; }
         }
 
-        private decimal _Superconducting_Point = 0;
+        private decimal superconductingPoint = 0;
 
         internal decimal Superconducting_Point
         {
-            get { return _Superconducting_Point; }
-            set { _Superconducting_Point = value; }
+            get { return superconductingPoint; }
+            set { superconductingPoint = value; }
         }
 
-        private decimal _Vaporization_Heat = 0;
+        private decimal vaporizationHeat = 0;
 
         internal decimal Vaporization_Heat
         {
-            get { return _Vaporization_Heat; }
-            set { _Vaporization_Heat = value; }
+            get { return vaporizationHeat; }
+            set { vaporizationHeat = value; }
         }
 
-        private string _Color = string.Empty;
+        private string color = string.Empty;
 
         internal string Color
         {
-            get { return _Color; }
-            set { _Color = value; }
+            get { return color; }
+            set { color = value; }
         }
 
-        private decimal _Electrical_Conductivity = 0;
+        private decimal electricalConductivity = 0;
 
         internal decimal Electrical_Conductivity
         {
-            get { return _Electrical_Conductivity; }
-            set { _Electrical_Conductivity = value; }
+            get { return electricalConductivity; }
+            set { electricalConductivity = value; }
         }
 
-        private string _Electrical_Type = string.Empty;
+        private string electricalType = string.Empty;
 
         internal string Electrical_Type
         {
-            get { return _Electrical_Type; }
-            set { _Electrical_Type = value; }
+            get { return electricalType; }
+            set { electricalType = value; }
         }
 
-        private string _Magnetic_Type = string.Empty;
+        private string magneticType = string.Empty;
 
         internal string Magnetic_Type
         {
-            get { return _Magnetic_Type; }
-            set { _Magnetic_Type = value; }
+            get { return magneticType; }
+            set { magneticType = value; }
         }
 
-        private decimal _Mass_Magnetic_Susceptibility = 0;
+        private decimal massMagneticSusceptibility = 0;
 
         internal decimal Mass_Magnetic_Susceptibility
         {
-            get { return _Mass_Magnetic_Susceptibility; }
-            set { _Mass_Magnetic_Susceptibility = value; }
+            get { return massMagneticSusceptibility; }
+            set { massMagneticSusceptibility = value; }
         }
 
-        private decimal _Molar_Magnetic_Susceptibility = 0;
+        private decimal molarMagneticSusceptibility = 0;
 
         internal decimal Molar_Magnetic_Susceptibility
         {
-            get { return _Molar_Magnetic_Susceptibility; }
-            set { _Molar_Magnetic_Susceptibility = value; }
+            get { return molarMagneticSusceptibility; }
+            set { molarMagneticSusceptibility = value; }
         }
 
-        private decimal _Refractive_Index = 0;
+        private decimal refractiveIndex = 0;
 
         internal decimal Refractive_Index
         {
-            get { return _Refractive_Index; }
-            set { _Refractive_Index = value; }
+            get { return refractiveIndex; }
+            set { refractiveIndex = value; }
         }
 
-        private decimal _Resistivity = 0;
+        private decimal resistivity = 0;
 
         internal decimal Resistivity
         {
-            get { return _Resistivity; }
-            set { _Resistivity = value; }
+            get { return resistivity; }
+            set { resistivity = value; }
         }
 
-        private decimal _Volume_Magnetic_Susceptibility = 0;
+        private decimal volumeMagneticSusceptibility = 0;
 
         internal decimal Volume_Magnetic_Susceptibility
         {
-            get { return _Volume_Magnetic_Susceptibility; }
-            set { _Volume_Magnetic_Susceptibility = value; }
+            get { return volumeMagneticSusceptibility; }
+            set { volumeMagneticSusceptibility = value; }
         }
 
-        private string _Allotropic_Multiplicities = string.Empty;
+        private string allotropicMultiplicities = string.Empty;
 
         internal string Allotropic_Multiplicities
         {
-            get { return _Allotropic_Multiplicities; }
-            set { _Allotropic_Multiplicities = value; }
+            get { return allotropicMultiplicities; }
+            set { allotropicMultiplicities = value; }
         }
 
-        private string _Electron_Affinity = string.Empty;
+        private string electronAffinity = string.Empty;
 
         internal string Electron_Affinity
         {
-            get { return _Electron_Affinity; }
-            set { _Electron_Affinity = value; }
+            get { return electronAffinity; }
+            set { electronAffinity = value; }
         }
 
-        private string _Electronegativity = string.Empty;
+        private string electronegativity = string.Empty;
 
         internal string Electronegativity
         {
-            get { return _Electronegativity; }
-            set { _Electronegativity = value; }
+            get { return electronegativity; }
+            set { electronegativity = value; }
         }
 
-        private string _Gas_Atomic_Multiplicities = string.Empty;
+        private string gasAtomicMultiplicities = string.Empty;
 
         internal string Gas_Atomic_Multiplicities
         {
-            get { return _Gas_Atomic_Multiplicities; }
-            set { _Gas_Atomic_Multiplicities = value; }
+            get { return gasAtomicMultiplicities; }
+            set { gasAtomicMultiplicities = value; }
         }
 
-        private string _Valence = string.Empty;
+        private string valence = string.Empty;
 
         internal string Valence
         {
-            get { return _Valence; }
-            set { _Valence = value; }
+            get { return valence; }
+            set { valence = value; }
         }
 
-        private string _Crystal_Structure = string.Empty;
+        private string crystalStructure = string.Empty;
 
         internal string Crystal_Structure
         {
-            get { return _Crystal_Structure; }
-            set { _Crystal_Structure = value; }
+            get { return crystalStructure; }
+            set { crystalStructure = value; }
         }
 
-        private string _Lattice_Angles = string.Empty;
+        private string latticeAngles = string.Empty;
 
         internal string Lattice_Angles
         {
-            get { return _Lattice_Angles; }
-            set { _Lattice_Angles = value; }
+            get { return latticeAngles; }
+            set { latticeAngles = value; }
         }
 
-        private string _Lattice_Constants = string.Empty;
+        private string latticeConstants = string.Empty;
 
         internal string Lattice_Constants
         {
-            get { return _Lattice_Constants; }
-            set { _Lattice_Constants = value; }
+            get { return latticeConstants; }
+            set { latticeConstants = value; }
         }
 
-        private string _Space_Group_Number = string.Empty;
+        private string spaceGroupNumber = string.Empty;
 
         internal string Space_Group_Number
         {
-            get { return _Space_Group_Number; }
-            set { _Space_Group_Number = value; }
+            get { return spaceGroupNumber; }
+            set { spaceGroupNumber = value; }
         }
 
-        private string _Space_Group_Name = string.Empty;
+        private string spaceGroupName = string.Empty;
 
         internal string Space_Group_Name
         {
-            get { return _Space_Group_Name; }
-            set { _Space_Group_Name = value; }
+            get { return spaceGroupName; }
+            set { spaceGroupName = value; }
         }
 
-        private string _Atomic_Radius = string.Empty;
+        private string atomicRadius = string.Empty;
 
         internal string Atomic_Radius
         {
-            get { return _Atomic_Radius; }
-            set { _Atomic_Radius = value; }
+            get { return atomicRadius; }
+            set { atomicRadius = value; }
         }
 
-        private string _Covalent_Radius = string.Empty;
+        private string covalentRadius = string.Empty;
 
         internal string Covalent_Radius
         {
-            get { return _Covalent_Radius; }
-            set { _Covalent_Radius = value; }
+            get { return covalentRadius; }
+            set { covalentRadius = value; }
         }
 
-        private string _Electron_Configuration = string.Empty;
+        private string electronConfiguration = string.Empty;
 
         internal string Electron_Configuration
         {
-            get { return _Electron_Configuration; }
-            set { _Electron_Configuration = value; }
+            get { return electronConfiguration; }
+            set { electronConfiguration = value; }
         }
 
-        private string _Electron_Configuration_String = string.Empty;
+        private string electronConfigurationString = string.Empty;
 
         internal string Electron_Configuration_String
         {
-            get { return _Electron_Configuration_String; }
-            set { _Electron_Configuration_String = value; }
+            get { return electronConfigurationString; }
+            set { electronConfigurationString = value; }
         }
 
-        private string _Electron_Shell_Configuration = string.Empty;
+        private string electronShellConfiguration = string.Empty;
 
         internal string Electron_Shell_Configuration
         {
-            get { return _Electron_Shell_Configuration; }
-            set { _Electron_Shell_Configuration = value; }
+            get { return electronShellConfiguration; }
+            set { electronShellConfiguration = value; }
         }
 
-        private string _Ionization_Energies = string.Empty;
+        private string ionizationEnergies = string.Empty;
 
         internal string Ionization_Energies
         {
-            get { return _Ionization_Energies; }
-            set { _Ionization_Energies = value; }
+            get { return ionizationEnergies; }
+            set { ionizationEnergies = value; }
         }
 
-        private string _Quantum_Numbers = string.Empty;
+        private string quantumNumbers = string.Empty;
 
         internal string Quantum_Numbers
         {
-            get { return _Quantum_Numbers; }
-            set { _Quantum_Numbers = value; }
+            get { return quantumNumbers; }
+            set { quantumNumbers = value; }
         }
 
-        private string _Van_Der_Waals_Radius = string.Empty;
+        private string vanDerWaalsRadius = string.Empty;
 
         internal string Van_Der_Waals_Radius
         {
-            get { return _Van_Der_Waals_Radius; }
-            set { _Van_Der_Waals_Radius = value; }
+            get { return vanDerWaalsRadius; }
+            set { vanDerWaalsRadius = value; }
         }
 
-        private string _Decay_Mode = string.Empty;
+        private string decayMode = string.Empty;
 
         internal string Decay_Mode
         {
-            get { return _Decay_Mode; }
-            set { _Decay_Mode = value; }
+            get { return decayMode; }
+            set { decayMode = value; }
         }
 
-        private string _HalfLife = string.Empty;
+        private string halfLife = string.Empty;
 
         internal string HalfLife
         {
-            get { return _HalfLife; }
-            set { _HalfLife = value; }
+            get { return halfLife; }
+            set { halfLife = value; }
         }
 
-        private string _Isotope_Abundances = string.Empty;
+        private string isotopeAbundances = string.Empty;
 
         internal string Isotope_Abundances
         {
-            get { return _Isotope_Abundances; }
-            set { _Isotope_Abundances = value; }
+            get { return isotopeAbundances; }
+            set { isotopeAbundances = value; }
         }
 
-        private string _Known_Isotopes = string.Empty;
+        private string knownIsotopes = string.Empty;
 
         internal string Known_Isotopes
         {
-            get { return _Known_Isotopes; }
-            set { _Known_Isotopes = value; }
+            get { return knownIsotopes; }
+            set { knownIsotopes = value; }
         }
 
-        private string _Lifetime = string.Empty;
+        private string lifetime = string.Empty;
 
         internal string Lifetime
         {
-            get { return _Lifetime; }
-            set { _Lifetime = value; }
+            get { return lifetime; }
+            set { lifetime = value; }
         }
 
-        private string _Neutron_Cross_Section = string.Empty;
+        private string neutronCrossSection = string.Empty;
 
         internal string Neutron_Cross_Section
         {
-            get { return _Neutron_Cross_Section; }
-            set { _Neutron_Cross_Section = value; }
+            get { return neutronCrossSection; }
+            set { neutronCrossSection = value; }
         }
 
-        private string _Neutron_Mass_Absorption = string.Empty;
+        private string neutronMassAbsorption = string.Empty;
 
         internal string Neutron_Mass_Absorption
         {
-            get { return _Neutron_Mass_Absorption; }
-            set { _Neutron_Mass_Absorption = value; }
+            get { return neutronMassAbsorption; }
+            set { neutronMassAbsorption = value; }
         }
 
-        private string _Radioactive = string.Empty;
+        private string radioactive = string.Empty;
 
         internal string Radioactive
         {
-            get { return _Radioactive; }
-            set { _Radioactive = value; }
+            get { return radioactive; }
+            set { radioactive = value; }
         }
 
-        private string _Stable_Isotopes = string.Empty;
+        private string stableIsotopes = string.Empty;
 
         internal string Stable_Isotopes
         {
-            get { return _Stable_Isotopes; }
-            set { _Stable_Isotopes = value; }
+            get { return stableIsotopes; }
+            set { stableIsotopes = value; }
         }
 
-        private decimal _Crust_Abundance = 0;
+        private decimal crustAbundance = 0;
 
         internal decimal Crust_Abundance
         {
-            get { return _Crust_Abundance; }
-            set { _Crust_Abundance = value; }
+            get { return crustAbundance; }
+            set { crustAbundance = value; }
         }
 
-        private decimal _Human_Abundance = 0;
+        private decimal humanAbundance = 0;
 
         internal decimal Human_Abundance
         {
-            get { return _Human_Abundance; }
-            set { _Human_Abundance = value; }
+            get { return humanAbundance; }
+            set { humanAbundance = value; }
         }
 
-        private decimal _Meteorite_Abundance = 0;
+        private decimal meteoriteAbundance = 0;
 
         internal decimal Meteorite_Abundance
         {
-            get { return _Meteorite_Abundance; }
-            set { _Meteorite_Abundance = value; }
+            get { return meteoriteAbundance; }
+            set { meteoriteAbundance = value; }
         }
 
-        private decimal _Ocean_Abundance = 0;
+        private decimal oceanAbundance = 0;
 
         internal decimal Ocean_Abundance
         {
-            get { return _Ocean_Abundance; }
-            set { _Ocean_Abundance = value; }
+            get { return oceanAbundance; }
+            set { oceanAbundance = value; }
         }
 
-        private decimal _Solar_Abundance = 0;
+        private decimal solarAbundance = 0;
 
         internal decimal Solar_Abundance
         {
-            get { return _Solar_Abundance; }
-            set { _Solar_Abundance = value; }
+            get { return solarAbundance; }
+            set { solarAbundance = value; }
         }
 
-        private decimal _Universe_Abundance = 0;
+        private decimal universeAbundance = 0;
 
         internal decimal Universe_Abundance
         {
-            get { return _Universe_Abundance; }
-            set { _Universe_Abundance = value; }
+            get { return universeAbundance; }
+            set { universeAbundance = value; }
         }
 
-        private string _Radius_Empirical = string.Empty;
+        private string radiusEmpirical = string.Empty;
 
         internal string Radius_Empirical
         {
-            get { return _Radius_Empirical; }
-            set { _Radius_Empirical = value; }
+            get { return radiusEmpirical; }
+            set { radiusEmpirical = value; }
         }
 
-        private string _Radius_Calculated = string.Empty;
+        private string radiusCalculated = string.Empty;
 
         internal string Radius_Calculated
         {
-            get { return _Radius_Calculated; }
-            set { _Radius_Calculated = value; }
+            get { return radiusCalculated; }
+            set { radiusCalculated = value; }
         }
 
-        private string _Radius_Van_Der_Waals = string.Empty;
+        private string radiusVanDerWaals = string.Empty;
 
         internal string Radius_Van_Der_Waals
         {
-            get { return _Radius_Van_Der_Waals; }
-            set { _Radius_Van_Der_Waals = value; }
+            get { return radiusVanDerWaals; }
+            set { radiusVanDerWaals = value; }
         }
 
-        private string _Radius_Covalent_Single_Bond = string.Empty;
+        private string radiusCovalentSingleBond = string.Empty;
 
         internal string Radius_Covalent_Single_Bond
         {
-            get { return _Radius_Covalent_Single_Bond; }
-            set { _Radius_Covalent_Single_Bond = value; }
+            get { return radiusCovalentSingleBond; }
+            set { radiusCovalentSingleBond = value; }
         }
 
-        private string _Radius_Covalent_Triple_Bond = string.Empty;
+        private string radiusCovalentTripleBond = string.Empty;
 
         internal string Radius_Covalent_Triple_Bond
         {
-            get { return _Radius_Covalent_Triple_Bond; }
-            set { _Radius_Covalent_Triple_Bond = value; }
+            get { return radiusCovalentTripleBond; }
+            set { radiusCovalentTripleBond = value; }
         }
 
-        private string _Radius_Metallic = string.Empty;
+        private string radiusMetallic = string.Empty;
 
         internal string Radius_Metallic
         {
-            get { return _Radius_Metallic; }
-            set { _Radius_Metallic = value; }
+            get { return radiusMetallic; }
+            set { radiusMetallic = value; }
         }
 
-        private string _MaterialType;
+        private string materialType;
 
         public string MaterialType
         {
-            get { return _MaterialType; }
-            set { _MaterialType = value; }
+            get { return materialType; }
+            set { materialType = value; }
         }
     }
 }

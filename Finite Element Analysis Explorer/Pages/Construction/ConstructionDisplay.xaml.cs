@@ -24,78 +24,78 @@ namespace Finite_Element_Analysis_Explorer
         #region Operations
 
         internal static ConstructionDisplay Current;
-        private SelectionState CurrentSelectionState = SelectionState.Ready;
-        private Vector2 FirstNodePosition;
-        private bool IsPageLoaded = false;
+        private SelectionState currentSelectionState = SelectionState.Ready;
+        private Vector2 firstNodePosition;
+        private bool isPageLoaded = false;
 
         #endregion
 
         #region Colors
 
-        private Color ColorBackground = Options.ColorBackground;
+        private Color colorBackground = Options.ColorBackground;
 
-        private Color ColorForce = Options.ColorForce;
-        private Color ColorReaction = Options.ColorReaction;
+        private Color colorForce = Options.ColorForce;
+        private Color colorReaction = Options.ColorReaction;
 
-        private Color ColorGridNormal = Options.ColorGridNormal;
-        private Color ColorGridMajor = Options.ColorGridMajor;
-        private Color ColorGridMinor = Options.ColorGridMinor;
+        private Color colorGridNormal = Options.ColorGridNormal;
+        private Color colorGridMajor = Options.ColorGridMajor;
+        private Color colorGridMinor = Options.ColorGridMinor;
 
-        private Color ColorGridMajorFont = Options.ColorGridMajorFont;
+        private Color colorGridMajorFont = Options.ColorGridMajorFont;
 
-        private Color ColorSelectedElement = Options.ColorSelectedElement;
-        private Color ColorSelectedNode = Options.ColorSelectedNode;
+        private Color colorSelectedElement = Options.ColorSelectedElement;
+        private Color colorSelectedNode = Options.ColorSelectedNode;
 
-        private Color ColorShearForceSelected = Options.ColorShearForceSelected;
-        private Color ColorMomentForceSelected = Options.ColorMomentForceSelected;
-        private Color ColorShearForce = Options.ColorShearForce;
-        private Color ColorMomentForce = Options.ColorMomentForce;
-        private Color ColorDistributedForce = Options.ColorDistributedForce;
-        private Color ColorDistributedForceSelected = Options.ColorDistributedForceSelected;
+        private Color colorShearForceSelected = Options.ColorShearForceSelected;
+        private Color colorMomentForceSelected = Options.ColorMomentForceSelected;
+        private Color colorShearForce = Options.ColorShearForce;
+        private Color colorMomentForce = Options.ColorMomentForce;
+        private Color colorDistributedForce = Options.ColorDistributedForce;
+        private Color colorDistributedForceSelected = Options.ColorDistributedForceSelected;
 
-        private Color ColorNodeFree = Options.ColorNodeFree;
-        private Color ColorNodeFixed = Options.ColorNodeFixed;
-        private Color ColorNodePin = Options.ColorNodePin;
-        private Color ColorNodeRollerX = Options.ColorNodeRollerX;
-        private Color ColorNodeRollerY = Options.ColorNodeRollerY;
-        private Color ColorNodeOther = Options.ColorNodeFree;
-        private Color ColorLabel = Color.FromArgb(255, 205, 205, 205);
-        private Color ColorHeaderLabel = Color.FromArgb(255, 255, 255, 255);
+        private Color colorNodeFree = Options.ColorNodeFree;
+        private Color colorNodeFixed = Options.ColorNodeFixed;
+        private Color colorNodePin = Options.ColorNodePin;
+        private Color colorNodeRollerX = Options.ColorNodeRollerX;
+        private Color colorNodeRollerY = Options.ColorNodeRollerY;
+        private Color colorNodeOther = Options.ColorNodeFree;
+        private Color colorLabel = Color.FromArgb(255, 205, 205, 205);
+        private Color colorHeaderLabel = Color.FromArgb(255, 255, 255, 255);
 
-        private Brush BrushBackground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+        private Brush brushBackground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 
         #endregion
 
         #region Lines
 
-        private CanvasStrokeStyle LineGridNormal = Options.LineGridNormal;
-        private CanvasStrokeStyle LineGridMinor = Options.LineGridMinor;
-        private CanvasStrokeStyle LineGridMajor = Options.LineGridMajor;
-        private CanvasStrokeStyle LineForce = Options.LineForce;
-        private CanvasStrokeStyle LineReaction = Options.LineReaction;
-        private CanvasStrokeStyle LineSelectedElement = Options.LineSelectedElement;
-        private CanvasStrokeStyle LineShearForceSelected = Options.LineShearForceSelected;
-        private CanvasStrokeStyle LineMomentForceSelected = Options.LineMomentForceSelected;
-        private CanvasStrokeStyle LineShearForce = Options.LineShearForce;
-        private CanvasStrokeStyle LineMomentForce = Options.LineMomentForce;
-        private CanvasStrokeStyle LineDistributedForce = Options.LineDistributedForce;
-        private CanvasStrokeStyle LineDistributedForceSelected = Options.LineDistributedForceSelected;
-        private CanvasStrokeStyle LineNodeFree = Options.LineNodeFree;
-        private CanvasStrokeStyle LineNodeFixed = Options.LineNodeFixed;
-        private CanvasStrokeStyle LineNodePin = Options.LineNodePin;
-        private CanvasStrokeStyle LineNodeRollerX = Options.LineNodeRollerX;
-        private CanvasStrokeStyle LineNodeRollerY = Options.LineNodeRollerY;
-        private CanvasStrokeStyle LineNodeOther = Options.LineNodeOther;
+        private CanvasStrokeStyle lineGridNormal = Options.LineGridNormal;
+        private CanvasStrokeStyle lineGridMinor = Options.LineGridMinor;
+        private CanvasStrokeStyle lineGridMajor = Options.LineGridMajor;
+        private CanvasStrokeStyle lineForce = Options.LineForce;
+        private CanvasStrokeStyle lineReaction = Options.LineReaction;
+        private CanvasStrokeStyle lineSelectedElement = Options.LineSelectedElement;
+        private CanvasStrokeStyle lineShearForceSelected = Options.LineShearForceSelected;
+        private CanvasStrokeStyle lineMomentForceSelected = Options.LineMomentForceSelected;
+        private CanvasStrokeStyle lineShearForce = Options.LineShearForce;
+        private CanvasStrokeStyle lineMomentForce = Options.LineMomentForce;
+        private CanvasStrokeStyle lineDistributedForce = Options.LineDistributedForce;
+        private CanvasStrokeStyle lineDistributedForceSelected = Options.LineDistributedForceSelected;
+        private CanvasStrokeStyle lineNodeFree = Options.LineNodeFree;
+        private CanvasStrokeStyle lineNodeFixed = Options.LineNodeFixed;
+        private CanvasStrokeStyle lineNodePin = Options.LineNodePin;
+        private CanvasStrokeStyle lineNodeRollerX = Options.LineNodeRollerX;
+        private CanvasStrokeStyle lineNodeRollerY = Options.LineNodeRollerY;
+        private CanvasStrokeStyle lineNodeOther = Options.LineNodeOther;
 
         #endregion
 
         #region Fonts
 
         // Font setup is in the create resources method.
-        private CanvasTextFormat LabelGridX;
-        private CanvasTextFormat LabelGridY;
-        private CanvasTextFormat LabelFormat;
-        private CanvasTextFormat LabelHeaderFormat;
+        private CanvasTextFormat labelGridX;
+        private CanvasTextFormat labelGridY;
+        private CanvasTextFormat labelFormat;
+        private CanvasTextFormat labelHeaderFormat;
 
         #endregion
 
@@ -132,16 +132,16 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private byte OriginalMinorGridAlpha;
-        private byte OriginalNormalGridAlpha;
-        private byte OriginalMajorGridAlpha;
+        private byte originalMinorGridAlpha;
+        private byte originalNormalGridAlpha;
+        private byte originalMajorGridAlpha;
 
-        private float MinorGridAlphaChange;
-        private float NormalGridAlphaChange;
-        private float MajorGridAlphaChange;
+        private float minorGridAlphaChange;
+        private float normalGridAlphaChange;
+        private float majorGridAlphaChange;
 
-        private float TotalGridChanges = 40;
-        private static float CounterGridChanges = 0;
+        private float totalGridChanges = 40;
+        private static float counterGridChanges = 0;
 
         #endregion
 
@@ -193,7 +193,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 Camera.ViewportSize = new Vector2((int)canvas.ActualWidth, (int)canvas.ActualHeight);
             }
@@ -201,11 +201,11 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Canvas_CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            LabelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-            LabelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
+            labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
 
-            LabelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-            LabelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
 
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
 
@@ -214,7 +214,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private async Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
-
             bitMapNodePinnedTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodePinnedTop.png");
             bitMapNodeRollerTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerTop.png");
             bitMapNodeFixedTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedTop.png");
@@ -245,12 +244,11 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Canvas_DrawAnimated(ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
         {
-            args.DrawingSession.Clear(ColorBackground);
+            args.DrawingSession.Clear(colorBackground);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
 
             // args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
-
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
             int lineCountX = 0;
@@ -258,17 +256,17 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                if (CounterGridChanges < TotalGridChanges)
+                if (counterGridChanges < totalGridChanges)
                 {
-                    CounterGridChanges += 1;
-                    ColorGridMinor = Color.FromArgb(Convert.ToByte(MinorGridAlphaChange * CounterGridChanges), ColorGridMinor.R, ColorGridMinor.G, ColorGridMinor.B);
-                    ColorGridNormal = Color.FromArgb(Convert.ToByte(NormalGridAlphaChange * CounterGridChanges), ColorGridNormal.R, ColorGridNormal.G, ColorGridNormal.B);
-                    ColorGridMajor = Color.FromArgb(Convert.ToByte(MajorGridAlphaChange * CounterGridChanges), ColorGridMajor.R, ColorGridMajor.G, ColorGridMajor.B);
+                    counterGridChanges += 1;
+                    colorGridMinor = Color.FromArgb(Convert.ToByte(minorGridAlphaChange * counterGridChanges), colorGridMinor.R, colorGridMinor.G, colorGridMinor.B);
+                    colorGridNormal = Color.FromArgb(Convert.ToByte(normalGridAlphaChange * counterGridChanges), colorGridNormal.R, colorGridNormal.G, colorGridNormal.B);
+                    colorGridMajor = Color.FromArgb(Convert.ToByte(majorGridAlphaChange * counterGridChanges), colorGridMajor.R, colorGridMajor.G, colorGridMajor.B);
                 }
 
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, ColorGridMinor, Camera.LineUnit, LineGridMinor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridMinor, Camera.LineUnit, lineGridMinor);
                     iX += Camera.GridSizeMinor;
                     lineCountX++;
                 }
@@ -276,7 +274,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, ColorGridMinor, Camera.LineUnit, LineGridMinor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridMinor, Camera.LineUnit, lineGridMinor);
                     iY += Camera.GridSizeMinor;
                     lineCountY++;
                 }
@@ -285,8 +283,8 @@ namespace Finite_Element_Analysis_Explorer
                 iY = Camera.TopLeftNormal.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, ColorBackground, Camera.LineUnit, LineGridNormal);
-                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, ColorGridNormal, Camera.LineUnit, LineGridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridNormal, Camera.LineUnit, lineGridNormal);
                     iX += Camera.GridSizeNormal;
                     lineCountX++;
                 }
@@ -294,8 +292,8 @@ namespace Finite_Element_Analysis_Explorer
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, ColorBackground, Camera.LineUnit, LineGridNormal);
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, ColorGridNormal, Camera.LineUnit, LineGridNormal);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorBackground, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridNormal, Camera.LineUnit, lineGridNormal);
                     iY += Camera.GridSizeNormal;
                     lineCountY++;
                 }
@@ -304,8 +302,8 @@ namespace Finite_Element_Analysis_Explorer
                 iY = Camera.TopLeftMajor.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, ColorBackground, Camera.LineUnit, LineGridMajor);
-                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, ColorGridMajor, Camera.LineUnit, LineGridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridMajor, Camera.LineUnit, lineGridMajor);
                     iX += Camera.GridSizeMajor;
                     lineCountX++;
                 }
@@ -313,8 +311,8 @@ namespace Finite_Element_Analysis_Explorer
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, ColorBackground, Camera.LineUnit, LineGridMajor);
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, ColorGridMajor, Camera.LineUnit, LineGridMajor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorBackground, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridMajor, Camera.LineUnit, lineGridMajor);
                     iY += Camera.GridSizeMajor;
                     lineCountY++;
                 }
@@ -334,15 +332,15 @@ namespace Finite_Element_Analysis_Explorer
                     {
                         foreach (var nextSegment in item.Value.Segments)
                         {
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearLDLLine, nextSegment.Value.FarLDLLine, ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearLDLLine, nextSegment.Value.FarLDLLine, colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
 
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.LineLengthLDLArrow), ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.LineLengthLDLArrow), ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.LineLengthLDLArrow), colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.LineLengthLDLArrow), colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
 
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.LineLengthLDLArrow), ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.LineLengthLDLArrow), ColorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, LineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.LineLengthLDLArrow), colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.LineLengthLDLArrow), colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
                         }
                     }
                 }
@@ -372,55 +370,55 @@ namespace Finite_Element_Analysis_Explorer
                     switch (item.Value.Constraints.ConstraintType)
                     {
                         case ConstraintType.FixedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedTop:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.PinnedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedTop:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedRight:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.RollerBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerTop:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerRight:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.TrackBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y - (33 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackTop:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(item.Value.Location.X - (16 * Camera.LineUnit), item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(item.Value.Location.X - (33 * Camera.LineUnit), item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackRight:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                     }
                 }
@@ -433,9 +431,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 foreach (var item in Model.Nodes.NodesWithNodalLoads)
                 {
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, ColorForce, Camera.LineUnit * Options.LineForceWeight, LineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.LineLengthForceArrow), ColorForce, Camera.LineUnit * Options.LineForceWeight, LineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.LineLengthForceArrow), ColorForce, Camera.LineUnit * Options.LineForceWeight, LineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
                 }
             }
             catch
@@ -449,72 +447,72 @@ namespace Finite_Element_Analysis_Explorer
                     switch (item.Value.Constraints.ConstraintType)
                     {
                         case ConstraintType.FixedBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.LineUnit), 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.PinnedBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.RollerBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeRollerX, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeRollerX, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeRollerY, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodeRollerY, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.TrackBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, ColorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                     }
                 }
@@ -529,13 +527,13 @@ namespace Finite_Element_Analysis_Explorer
                 {
                     foreach (var nextItem in Model.Members.CurrentMember.Segments)
                     {
-                        args.DrawingSession.DrawLine(nextItem.Value.NearVector, nextItem.Value.FarVector, ColorSelectedElement, Camera.LineUnit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
+                        args.DrawingSession.DrawLine(nextItem.Value.NearVector, nextItem.Value.FarVector, colorSelectedElement, Camera.LineUnit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
                     }
 
-                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, ColorSelectedElement, Camera.ConstraintWidth);
-                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.ConstraintRadius, ColorBackground);
-                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.ConstraintRadius, ColorSelectedElement, Camera.ConstraintWidth);
+                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, colorBackground);
+                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, colorSelectedElement, Camera.ConstraintWidth);
+                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.ConstraintRadius, colorBackground);
+                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.ConstraintRadius, colorSelectedElement, Camera.ConstraintWidth);
                 }
             }
             catch (Exception ex)
@@ -545,7 +543,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                switch (CurrentSelectionState)
+                switch (currentSelectionState)
                 {
                     case SelectionState.Ready:
                         // nothing?
@@ -553,7 +551,7 @@ namespace Finite_Element_Analysis_Explorer
 
                     case SelectionState.FirstNode:
                         // create member and continue.
-                        args.DrawingSession.FillCircle(FirstNodePosition, 4 * Camera.LineUnit, ColorSelectedNode);
+                        args.DrawingSession.FillCircle(firstNodePosition, 4 * Camera.LineUnit, colorSelectedNode);
                         break;
 
                     case SelectionState.SecondNode:
@@ -565,7 +563,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 Debug.WriteLine("Error " + ex.Message);
             }
-
 
             // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
             // args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
@@ -587,19 +584,16 @@ namespace Finite_Element_Analysis_Explorer
 
             // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.ViewportCenter.X - 3, Camera.ViewportCenter.Y - 3));
             // args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
-
             try
             {
                 args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, -20));
 
                 iX = Camera.TopLeftMinor.X;
                 iY = Camera.TopLeftMinor.Y;
+
                 do
                 {
-                    args.DrawingSession.DrawText(
-                        Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed),
-                        Camera.ViewportSize.Y + 2,
-                        ColorGridMajorFont, LabelGridX);
+                    args.DrawingSession.DrawText(Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed), Camera.ViewportSize.Y + 2, colorGridMajorFont, labelGridX);
 
                     iX += Camera.GridSizeMinor;
                 }
@@ -607,10 +601,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 do
                 {
-                    args.DrawingSession.DrawText(
-                        Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15,
-                        (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y - (iY * Camera.ZoomTrimmed),
-                        ColorGridMajorFont, LabelGridY);
+                    args.DrawingSession.DrawText(Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15, (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y - (iY * Camera.ZoomTrimmed), colorGridMajorFont, labelGridY);
                     iY += Camera.GridSizeMinor;
                 }
                 while (iY < Camera.BottomRight.Y);
@@ -628,7 +619,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             try
             {
-                CounterGridChanges = 0;
+                counterGridChanges = 0;
                 PointerPoint mousePosition = e.GetCurrentPoint(ConstructionDisplay.Current);
                 int delta = mousePosition.Properties.MouseWheelDelta;
                 switch (delta)
@@ -681,13 +672,13 @@ namespace Finite_Element_Analysis_Explorer
 
                 if (e.Delta.Scale != 1)
                 {
-                    CounterGridChanges = 0;
+                    counterGridChanges = 0;
                     Camera.ScaleDeltaScrollWheel((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                 }
 
                 if ((e.Delta.Translation.X != 0) | e.Delta.Translation.Y != 0)
                 {
-                    CounterGridChanges = 0;
+                    counterGridChanges = 0;
                     Camera.MoveCamera(e.Delta.Translation.ToVector2());
                 }
             }
@@ -714,26 +705,26 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 Vector2 mousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-                switch (CurrentSelectionState)
+                switch (currentSelectionState)
                 {
                     case SelectionState.Ready:
                         // Start new member.
-                        FirstNodePosition = new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor));
+                        firstNodePosition = new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor));
                         Model.Members.CurrentMember = null;
-                        CurrentSelectionState = SelectionState.FirstNode;
+                        currentSelectionState = SelectionState.FirstNode;
                         break;
 
                     case SelectionState.FirstNode:
                         // Cancel selection?
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Construction.Current.ShowModel();
                         break;
 
                     case SelectionState.SecondNode:
                         // finish member then cancel.
-                        AddMember(FirstNodePosition, new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor)));
-                        CurrentSelectionState = SelectionState.Ready;
+                        AddMember(firstNodePosition, new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor)));
+                        currentSelectionState = SelectionState.Ready;
 
                         break;
                 }
@@ -748,14 +739,14 @@ namespace Finite_Element_Analysis_Explorer
         {
             Vector2 mousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
 
-            switch (CurrentSelectionState)
+            switch (currentSelectionState)
             {
                 case SelectionState.Ready:
                     // nothing or select member.
                     int tempInt = Model.Members.FindNearestElement(mousePoint);
                     if (tempInt == -1)
                     {
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Construction.Current.ShowModel();
                     }
@@ -769,8 +760,8 @@ namespace Finite_Element_Analysis_Explorer
 
                 case SelectionState.FirstNode:
                     // create member and continue.
-                    AddMember(FirstNodePosition, new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor)));
-                    FirstNodePosition = new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor));
+                    AddMember(firstNodePosition, new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor)));
+                    firstNodePosition = new Vector2(Camera.Snap(mousePoint.X, Camera.GridSizeMinor), Camera.Snap(mousePoint.Y, Camera.GridSizeMinor));
                     break;
 
                 case SelectionState.SecondNode:
@@ -790,7 +781,7 @@ namespace Finite_Element_Analysis_Explorer
         private void Canvas_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-            switch (CurrentSelectionState)
+            switch (currentSelectionState)
             {
                 case SelectionState.Ready:
                     // nothing?
@@ -798,12 +789,12 @@ namespace Finite_Element_Analysis_Explorer
 
                 case SelectionState.FirstNode:
                     // create member and continue.
-                    CurrentSelectionState = SelectionState.Ready;
+                    currentSelectionState = SelectionState.Ready;
                     break;
 
                 case SelectionState.SecondNode:
                     // should not get here?
-                    CurrentSelectionState = SelectionState.Ready;
+                    currentSelectionState = SelectionState.Ready;
                     break;
             }
 
@@ -818,49 +809,47 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private void AddMember(Vector2 _firstNodePosition, Vector2 _secondNodePosition)
+        private void AddMember(Vector2 firstNodePosition, Vector2 secondNodePosition)
         {
             // Check if Nodes are the same location.
-            if ((_firstNodePosition.X == _secondNodePosition.X) && (_firstNodePosition.Y == _secondNodePosition.Y))
+            if ((firstNodePosition.X == secondNodePosition.X) && (firstNodePosition.Y == secondNodePosition.Y))
             {
                 // Debug.WriteLine("Nodes are the same.");
                 return;
             }
 
             Node nodeNear = null;
-            Node NodeFar = null;
-
-            // Debug.WriteLine("New Member " + _firstNodePosition + " " + _secondNodePosition);
+            Node nodeFar = null;
 
             // Switch nodes to suit quadrant.
-            if (_firstNodePosition.X < _secondNodePosition.X)
+            if (firstNodePosition.X < secondNodePosition.X)
             {
-                nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
-                NodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                nodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
             }
-            else if (_firstNodePosition.X > _secondNodePosition.X)
+            else if (firstNodePosition.X > secondNodePosition.X)
             {
-                nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
-                NodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                nodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
             }
             else
             {
-                if (_firstNodePosition.Y < _secondNodePosition.Y)
+                if (firstNodePosition.Y < secondNodePosition.Y)
                 {
-                    nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
-                    NodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                    nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                    nodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
                 }
                 else
                 {
-                    nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)_secondNodePosition.X, (decimal)_secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
-                    NodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)_firstNodePosition.X, (decimal)_firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                    nodeNear = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 1, new Point((decimal)secondNodePosition.X, (decimal)secondNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
+                    nodeFar = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y), new Node((Model.Members.NextIndex * 1000) + 2, new Point((decimal)firstNodePosition.X, (decimal)firstNodePosition.Y, 0), new Codes(0, 0, 0), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), true));
                 }
             }
 
             // Add Member to the collection.
             try
             {
-                Model.Members.CurrentMember = new Member(Model.Members.NextIndex, nodeNear, NodeFar, Model.Sections.CurrentSection, Options.DefaultNumberOfSegments, 0, 0);
+                Model.Members.CurrentMember = new Member(Model.Members.NextIndex, nodeNear, nodeFar, Model.Sections.CurrentSection, Options.DefaultNumberOfSegments, 0, 0);
 
                 // Model.Members.CurrentMember = Model.Members.AddNewMember(NodeNear, NodeFar, Model.Sections.CurrentSection, Options.DefaultNumberOfSegments, 0, 0);
                 Construction.Current.ShowMember();
@@ -878,55 +867,54 @@ namespace Finite_Element_Analysis_Explorer
 
         public void UpdateColors()
         {
-            ColorBackground = Options.ColorBackground;
-            ColorForce = Options.ColorForce;
-            ColorReaction = Options.ColorReaction;
-            ColorGridNormal = Options.ColorGridNormal;
-            ColorGridMajor = Options.ColorGridMajor;
-            ColorGridMinor = Options.ColorGridMinor;
-            ColorGridMajorFont = Options.ColorGridMajorFont;
-            ColorSelectedElement = Options.ColorSelectedElement;
-            ColorSelectedNode = Options.ColorSelectedNode;
-            ColorShearForceSelected = Options.ColorShearForceSelected;
-            ColorMomentForceSelected = Options.ColorMomentForceSelected;
-            ColorShearForce = Options.ColorShearForce;
-            ColorMomentForce = Options.ColorMomentForce;
-            ColorDistributedForce = Options.ColorDistributedForce;
-            ColorDistributedForceSelected = Options.ColorDistributedForceSelected;
-            ColorNodeFree = Options.ColorNodeFree;
-            ColorNodeFixed = Options.ColorNodeFixed;
-            ColorNodePin = Options.ColorNodePin;
-            ColorNodeRollerX = Options.ColorNodeRollerX;
-            ColorNodeRollerY = Options.ColorNodeRollerY;
-            ColorNodeOther = Options.ColorNodeFree;
+            colorBackground = Options.ColorBackground;
+            colorForce = Options.ColorForce;
+            colorReaction = Options.ColorReaction;
+            colorGridNormal = Options.ColorGridNormal;
+            colorGridMajor = Options.ColorGridMajor;
+            colorGridMinor = Options.ColorGridMinor;
+            colorGridMajorFont = Options.ColorGridMajorFont;
+            colorSelectedElement = Options.ColorSelectedElement;
+            colorSelectedNode = Options.ColorSelectedNode;
+            colorShearForceSelected = Options.ColorShearForceSelected;
+            colorMomentForceSelected = Options.ColorMomentForceSelected;
+            colorShearForce = Options.ColorShearForce;
+            colorMomentForce = Options.ColorMomentForce;
+            colorDistributedForce = Options.ColorDistributedForce;
+            colorDistributedForceSelected = Options.ColorDistributedForceSelected;
+            colorNodeFree = Options.ColorNodeFree;
+            colorNodeFixed = Options.ColorNodeFixed;
+            colorNodePin = Options.ColorNodePin;
+            colorNodeRollerX = Options.ColorNodeRollerX;
+            colorNodeRollerY = Options.ColorNodeRollerY;
+            colorNodeOther = Options.ColorNodeFree;
 
-            LineGridNormal = Options.LineGridNormal;
-            LineGridMinor = Options.LineGridMinor;
-            LineGridMajor = Options.LineGridMajor;
-            LineForce = Options.LineForce;
-            LineReaction = Options.LineReaction;
-            LineSelectedElement = Options.LineSelectedElement;
-            LineShearForceSelected = Options.LineShearForceSelected;
-            LineMomentForceSelected = Options.LineMomentForceSelected;
-            LineShearForce = Options.LineShearForce;
-            LineMomentForce = Options.LineMomentForce;
-            LineDistributedForce = Options.LineDistributedForce;
-            LineDistributedForceSelected = Options.LineDistributedForceSelected;
-            LineNodeFree = Options.LineNodeFree;
-            LineNodeFixed = Options.LineNodeFixed;
-            LineNodePin = Options.LineNodePin;
-            LineNodeRollerX = Options.LineNodeRollerX;
-            LineNodeRollerY = Options.LineNodeRollerY;
-            LineNodeFree = Options.LineNodeFree;
+            lineGridNormal = Options.LineGridNormal;
+            lineGridMinor = Options.LineGridMinor;
+            lineGridMajor = Options.LineGridMajor;
+            lineForce = Options.LineForce;
+            lineReaction = Options.LineReaction;
+            lineSelectedElement = Options.LineSelectedElement;
+            lineShearForceSelected = Options.LineShearForceSelected;
+            lineMomentForceSelected = Options.LineMomentForceSelected;
+            lineShearForce = Options.LineShearForce;
+            lineMomentForce = Options.LineMomentForce;
+            lineDistributedForce = Options.LineDistributedForce;
+            lineDistributedForceSelected = Options.LineDistributedForceSelected;
+            lineNodeFree = Options.LineNodeFree;
+            lineNodeFixed = Options.LineNodeFixed;
+            lineNodePin = Options.LineNodePin;
+            lineNodeRollerX = Options.LineNodeRollerX;
+            lineNodeRollerY = Options.LineNodeRollerY;
+            lineNodeFree = Options.LineNodeFree;
 
-            OriginalMinorGridAlpha = ColorGridMinor.A;
-            OriginalNormalGridAlpha = ColorGridNormal.A;
-            OriginalMajorGridAlpha = ColorGridMajor.A;
+            originalMinorGridAlpha = colorGridMinor.A;
+            originalNormalGridAlpha = colorGridNormal.A;
+            originalMajorGridAlpha = colorGridMajor.A;
 
-            MinorGridAlphaChange = OriginalMinorGridAlpha / TotalGridChanges;
-            NormalGridAlphaChange = OriginalNormalGridAlpha / TotalGridChanges;
-            MajorGridAlphaChange = OriginalMajorGridAlpha / TotalGridChanges;
+            minorGridAlphaChange = originalMinorGridAlpha / totalGridChanges;
+            normalGridAlphaChange = originalNormalGridAlpha / totalGridChanges;
+            majorGridAlphaChange = originalMajorGridAlpha / totalGridChanges;
         }
     }
 }
-

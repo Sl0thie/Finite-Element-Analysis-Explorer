@@ -147,7 +147,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void UpdateMaterial(Material selectedMaterial)
         {
-
             SingleValue_MaterialDensity.SetNull();
             SingleValue_MaterialYoungsModulus.SetNull();
             SingleValue_MaterialShearModulus.SetNull();
@@ -825,7 +824,6 @@ namespace Finite_Element_Analysis_Explorer
                                 SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
                                 break;
                             case LengthType.Inch:
-                                //
                                 SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
                                 SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
                                 break;

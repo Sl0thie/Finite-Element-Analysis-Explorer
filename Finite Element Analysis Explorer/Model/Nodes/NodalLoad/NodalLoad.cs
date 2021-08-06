@@ -2,11 +2,11 @@
 {
     internal struct NodalLoad
     {
-        public NodalLoad(decimal _x, decimal _y, decimal _m)
+        public NodalLoad(decimal x, decimal y, decimal m)
         {
-            x = _x;
-            y = _y;
-            m = _m;
+            this.x = x;
+            this.y = y;
+            this.m = m;
         }
 
         public NodalLoad(NodalLoad forces)

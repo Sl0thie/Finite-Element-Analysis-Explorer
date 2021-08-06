@@ -19,29 +19,29 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  nearLDLLine:" + nearLDLLine + "  farLDLLine:" + farLDLLine);
         }
 
-        internal Segment(int _index, Member _parent, Node _nodeNear, Node _nodeFar, Section _section, decimal _LDLNear, decimal _LDLFar, int _previousSegment)
+        internal Segment(int index, Member parent, Node nodeNear, Node nodeFar, Section section, decimal lDLNear, decimal lDLFar, int previousSegment)
         {
             try
             {
-                if (_nodeNear == _nodeFar)
+                if (nodeNear == nodeFar)
                 {
-                    Debug.WriteLine("Zero Length " + _index + " " + _nodeNear.Index + " " + _nodeFar.Index);
+                    Debug.WriteLine("Zero Length " + index + " " + nodeNear.Index + " " + nodeFar.Index);
                 }
 
-                index = _index;
-                parent = _parent;
-                previousSegment = _previousSegment;
-                nodeNear = _nodeNear;
-                nearVector = new Vector2(_nodeNear.Position.Location.X, _nodeNear.Position.Location.Y);
-                nodeFar = _nodeFar;
-                farVector = new Vector2(_nodeFar.Position.Location.X, _nodeFar.Position.Location.Y);
+                this.index = index;
+                this.parent = parent;
+                this.previousSegment = previousSegment;
+                this.nodeNear = nodeNear;
+                nearVector = new Vector2(nodeNear.Position.Location.X, nodeNear.Position.Location.Y);
+                this.nodeFar = nodeFar;
+                farVector = new Vector2(nodeFar.Position.Location.X, nodeFar.Position.Location.Y);
 
-                section = _section;
-                LDLNear = _LDLNear;
-                LDLFar = _LDLFar;
-                ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y);
+                this.section = section;
+                LDLNear = lDLNear;
+                LDLFar = lDLFar;
+                ProcessProperties(this.nodeNear.Position.X, this.nodeNear.Position.Y, this.nodeFar.Position.X, this.nodeFar.Position.Y);
 
-                currentColor = section.Color;
+                currentColor = this.section.Color;
 
                 // Output();
             }
@@ -517,11 +517,11 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Methods
 
-        private void ProcessProperties(decimal NearX, decimal NearY, decimal FarX, decimal FarY)
+        private void ProcessProperties(decimal nearX, decimal nearY, decimal farX, decimal farY)
         {
             // Process Linear Load.
-            lengthXAxis = Math.Abs(FarX - NearX);
-            lengthYAxis = Math.Abs(FarY - NearY);
+            lengthXAxis = Math.Abs(farX - nearX);
+            lengthYAxis = Math.Abs(farY - nearY);
 
             length = DMath.Sqrt((lengthXAxis * lengthXAxis) + (lengthYAxis * lengthYAxis));
 
@@ -530,12 +530,12 @@ namespace Finite_Element_Analysis_Explorer
                 Debug.WriteLine("Zero Length Segment " + this.index);
             }
 
-            if (FarY > NearY)
+            if (farY > nearY)
             {
                 angle = (decimal)Math.Atan2((double)lengthYAxis, (double)lengthXAxis);
                 angleMultiplyer = 1;
             }
-            else if (FarY < NearY)
+            else if (farY < nearY)
             {
                 angle = -(decimal)Math.Atan2((double)lengthYAxis, (double)lengthXAxis);
                 angleMultiplyer = -1;
@@ -548,9 +548,9 @@ namespace Finite_Element_Analysis_Explorer
 
             DecimalMatrix k_prime = CreateFrameMemberStiffnessMatrix();
             DecimalMatrix t = CreateDisplacementTransformationMatrix();
-            DecimalMatrix Tt = CreateForceTransformationMatrix();
+            DecimalMatrix tt = CreateForceTransformationMatrix();
 
-            kMatrix = Tt * k_prime * t;
+            kMatrix = tt * k_prime * t;
 
             if (lDLNear + lDLFar > 0)
             {
@@ -572,7 +572,7 @@ namespace Finite_Element_Analysis_Explorer
                 CreateSuperpositionValues(superposition_local);
             }
 
-            centerPointDisplaced = new Vector2((float)((NearX + FarX) / 2), (float)((NearY + FarY) / 2));
+            centerPointDisplaced = new Vector2((float)((nearX + farX) / 2), (float)((nearY + farY) / 2));
 
             UpdateGraphicsProperties();
         }
@@ -581,64 +581,64 @@ namespace Finite_Element_Analysis_Explorer
         {
             // Create k_prime matrix.
             decimal a = section.Area;
-            decimal E = section.E;
-            decimal I = section.I;
+            decimal e = section.E;
+            decimal i = section.I;
 
-            decimal L = length;
-            decimal L2 = length * length;
-            decimal L3 = length * length * length;
+            decimal l = length;
+            decimal l2 = length * length;
+            decimal l3 = length * length * length;
 
-            DecimalMatrix Rm = new DecimalMatrix(6, 6);
+            DecimalMatrix rm = new DecimalMatrix(6, 6);
 
-            Rm[0, 0] = a * E / L;
-            Rm[0, 1] = 0;
-            Rm[0, 2] = 0;
-            Rm[0, 3] = -(a * E / L);
-            Rm[0, 4] = 0;
-            Rm[0, 5] = 0;
+            rm[0, 0] = a * e / l;
+            rm[0, 1] = 0;
+            rm[0, 2] = 0;
+            rm[0, 3] = -(a * e / l);
+            rm[0, 4] = 0;
+            rm[0, 5] = 0;
 
-            Rm[1, 0] = 0;
-            Rm[1, 1] = 12 * E * I / L3;
-            Rm[1, 2] = 6 * E * I / L2;
-            Rm[1, 3] = 0;
-            Rm[1, 4] = -(12 * E * I / L3);
-            Rm[1, 5] = 6 * E * I / L2;
+            rm[1, 0] = 0;
+            rm[1, 1] = 12 * e * i / l3;
+            rm[1, 2] = 6 * e * i / l2;
+            rm[1, 3] = 0;
+            rm[1, 4] = -(12 * e * i / l3);
+            rm[1, 5] = 6 * e * i / l2;
 
-            Rm[2, 0] = 0;
-            Rm[2, 1] = 6 * E * I / L2;
-            Rm[2, 2] = 4 * E * I / L;
-            Rm[2, 3] = 0;
-            Rm[2, 4] = 0 - (6 * E * I / L2);
-            Rm[2, 5] = 2 * E * I / L;
+            rm[2, 0] = 0;
+            rm[2, 1] = 6 * e * i / l2;
+            rm[2, 2] = 4 * e * i / l;
+            rm[2, 3] = 0;
+            rm[2, 4] = 0 - (6 * e * i / l2);
+            rm[2, 5] = 2 * e * i / l;
 
-            Rm[3, 0] = -(a * E / L);
-            Rm[3, 1] = 0;
-            Rm[3, 2] = 0;
-            Rm[3, 3] = a * E / L;
-            Rm[3, 4] = 0;
-            Rm[3, 5] = 0;
+            rm[3, 0] = -(a * e / l);
+            rm[3, 1] = 0;
+            rm[3, 2] = 0;
+            rm[3, 3] = a * e / l;
+            rm[3, 4] = 0;
+            rm[3, 5] = 0;
 
-            Rm[4, 0] = 0;
-            Rm[4, 1] = -(12 * E * I / L3);
-            Rm[4, 2] = 0 - (6 * E * I / L2);
-            Rm[4, 3] = 0;
-            Rm[4, 4] = 12 * E * I / L3;
-            Rm[4, 5] = -(6 * E * I / L2);
+            rm[4, 0] = 0;
+            rm[4, 1] = -(12 * e * i / l3);
+            rm[4, 2] = 0 - (6 * e * i / l2);
+            rm[4, 3] = 0;
+            rm[4, 4] = 12 * e * i / l3;
+            rm[4, 5] = -(6 * e * i / l2);
 
-            Rm[5, 0] = 0;
-            Rm[5, 1] = 6 * E * I / L2;
-            Rm[5, 2] = 2 * E * I / L;
-            Rm[5, 3] = 0;
-            Rm[5, 4] = -(6 * E * I / L2);
-            Rm[5, 5] = 4 * E * I / L;
+            rm[5, 0] = 0;
+            rm[5, 1] = 6 * e * i / l2;
+            rm[5, 2] = 2 * e * i / l;
+            rm[5, 3] = 0;
+            rm[5, 4] = -(6 * e * i / l2);
+            rm[5, 5] = 4 * e * i / l;
 
-            return Rm;
+            return rm;
         }
 
         private DecimalMatrix CreateDisplacementTransformationMatrix()
         {
-            decimal lamba_X;// = lengthXAxis / length;
-            decimal lamba_Y;// = lengthYAxis / length;
+            decimal lamba_X; // = lengthXAxis / length;
+            decimal lamba_Y; // = lengthYAxis / length;
 
             lamba_X = lengthXAxis / length;
             lamba_Y = lengthYAxis / length * angleMultiplyer;
@@ -698,8 +698,8 @@ namespace Finite_Element_Analysis_Explorer
         {
             // decimal lamba_X = lengthXAxis / length;
             // decimal lamba_Y = lengthYAxis / length;
-            decimal lamba_X;// = lengthXAxis / length;
-            decimal lamba_Y;// = lengthYAxis / length;
+            decimal lamba_X; // = lengthXAxis / length;
+            decimal lamba_Y; // = lengthYAxis / length;
 
             lamba_X = lengthXAxis / length;
             lamba_Y = lengthYAxis / length * angleMultiplyer;
@@ -775,12 +775,11 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         internal void UpdatePropertiesFromMatrix()
         {
-
             DecimalMatrix q_Local = new DecimalMatrix(6, 6);
             DecimalMatrix q_Global = new DecimalMatrix(6, 6);
             DecimalMatrix di = new DecimalMatrix(6, 6);
             DecimalMatrix k_prime = CreateFrameMemberStiffnessMatrix();
-            DecimalMatrix T = CreateDisplacementTransformationMatrix();
+            DecimalMatrix t = CreateDisplacementTransformationMatrix();
 
             // DecimalMatrix Tt = CreateForceTransformationMatrix();
             di[0, 0] = NodeNear.Displacement.X;
@@ -790,7 +789,7 @@ namespace Finite_Element_Analysis_Explorer
             di[4, 0] = NodeFar.Displacement.Y;
             di[5, 0] = NodeFar.Displacement.M;
 
-            q_Local = k_prime * T * di;
+            q_Local = k_prime * t * di;
             q_Global = k_prime * di;
 
             internalLoadNearLocal = new NodalLoad(q_Local[0, 0] - nearSuperLocal.X, q_Local[1, 0] - nearSuperLocal.Y, q_Local[2, 0] - nearSuperLocal.M);
@@ -798,10 +797,10 @@ namespace Finite_Element_Analysis_Explorer
             internalLoadNearGlobal = new NodalLoad(q_Global[0, 0] - nearSuperGlobal.X, q_Global[1, 0] - nearSuperGlobal.Y, q_Global[2, 0] - nearSuperGlobal.M);
             internalLoadFarGlobal = new NodalLoad(q_Global[3, 0] - farSuperGlobal.X, q_Global[4, 0] - farSuperGlobal.Y, q_Global[5, 0] - farSuperGlobal.M);
 
-            int superPositionProcess = 0;// Easy way to try multiple processes.
+            int superPositionProcess = 0; // Easy way to try multiple processes.
             switch (superPositionProcess)
             {
-                case 0:// Process based on individual constraint type.
+                case 0: // Process based on individual constraint type.
                     // Subtract superposition from constrained dofs.
                     if (nodeNear.Constraints.X)
                     {
@@ -835,7 +834,7 @@ namespace Finite_Element_Analysis_Explorer
 
                     break;
 
-                case 1:// Process only Fully Fixed nodes.
+                case 1: // Process only Fully Fixed nodes.
                     if (nodeNear.Constraints.ConstraintType == ConstraintType.Fixed)
                     {
                         nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
@@ -852,7 +851,7 @@ namespace Finite_Element_Analysis_Explorer
 
                     break;
 
-                case 2:// Reverse of case 1.
+                case 2: // Reverse of case 1.
                     if (nodeNear.Constraints.ConstraintType != ConstraintType.Fixed)
                     {
                         nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
@@ -918,7 +917,6 @@ namespace Finite_Element_Analysis_Explorer
         internal void UpdateGraphicsProperties()
         {
             // Debug.WriteLine("UpdateGraphicsProperties " + parent.Index + " " + this.index);
-
             nearVectorDisplaced = new Vector2((float)(nodeNear.Position.X + (nodeNear.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeNear.Position.Y + (nodeNear.Displacement.Y * (decimal)Options.DisplacementFactor)));
             farVectorDisplaced = new Vector2((float)(nodeFar.Position.X + (nodeFar.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeFar.Position.Y + (nodeFar.Displacement.Y * (decimal)Options.DisplacementFactor)));
 
@@ -983,16 +981,16 @@ namespace Finite_Element_Analysis_Explorer
                 // WNear
                 decimal wN = lDLNear - lDLFar;
 
-                decimal M = lDLFar * length * length / 12;
-                decimal Nr = lDLFar * length / 2;
+                decimal m = lDLFar * length * length / 12;
+                decimal nr = lDLFar * length / 2;
 
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr + (wN * length / 3 * 2);
-                superposition_local[2, 0] = M + (wN * length * length / 20);
+                superposition_local[1, 0] = nr + (wN * length / 3 * 2);
+                superposition_local[2, 0] = m + (wN * length * length / 20);
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr + (wN * length / 3);
-                superposition_local[5, 0] = -M + (-(wN * length * length) / 30);
+                superposition_local[4, 0] = nr + (wN * length / 3);
+                superposition_local[5, 0] = -m + (-(wN * length * length) / 30);
                 CreateSuperpositionValues(superposition_local);
             }
             else if (lDLNear < lDLFar)
@@ -1001,16 +999,16 @@ namespace Finite_Element_Analysis_Explorer
                 decimal wF = lDLFar - lDLNear;
 
                 // double WN = WNear - WFar;
-                decimal M = lDLFar * length * length / 12;
-                decimal Nr = lDLFar * length / 2;
+                decimal m = lDLFar * length * length / 12;
+                decimal nr = lDLFar * length / 2;
 
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr + (wF * length / 3);
-                superposition_local[2, 0] = M + (wF * length * length / 30);
+                superposition_local[1, 0] = nr + (wF * length / 3);
+                superposition_local[2, 0] = m + (wF * length * length / 30);
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr + (wF * length / 3 * 2);
-                superposition_local[5, 0] = -M + (-(wF * length * length) / 20);
+                superposition_local[4, 0] = nr + (wF * length / 3 * 2);
+                superposition_local[5, 0] = -m + (-(wF * length * length) / 20);
 
                 CreateSuperpositionValues(superposition_local);
             }
@@ -1018,14 +1016,14 @@ namespace Finite_Element_Analysis_Explorer
             {
                 // pos UDL
                 decimal m = lDLFar * length * length / 12;
-                decimal Nr = lDLFar * length / 2;
+                decimal nr = lDLFar * length / 2;
 
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr;
+                superposition_local[1, 0] = nr;
                 superposition_local[2, 0] = m;
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr;
+                superposition_local[4, 0] = nr;
                 superposition_local[5, 0] = -m;
                 CreateSuperpositionValues(superposition_local);
             }
@@ -1036,46 +1034,42 @@ namespace Finite_Element_Analysis_Explorer
             if (lDLNear > lDLFar)
             {
                 decimal wF = lDLFar - lDLNear;
-                decimal M = lDLNear * length * length / 12;
-                decimal Nr = lDLNear * length / 2;
+                decimal m = lDLNear * length * length / 12;
+                decimal nr = lDLNear * length / 2;
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr + (wF * length * 0.5m / 3);
-                superposition_local[2, 0] = M + (wF * length * length / 30);
+                superposition_local[1, 0] = nr + (wF * length * 0.5m / 3);
+                superposition_local[2, 0] = m + (wF * length * length / 30);
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr + (wF * length * 0.5m / 3 * 2);
-                superposition_local[5, 0] = -M + (-(wF * length * length) / 20);
+                superposition_local[4, 0] = nr + (wF * length * 0.5m / 3 * 2);
+                superposition_local[5, 0] = -m + (-(wF * length * length) / 20);
                 CreateSuperpositionValues(superposition_local);
-
-                // Debug.WriteLine("LDL " + superposition_local[0, 0] + " " + superposition_local[1, 0] + " " + superposition_local[2, 0] + " " + superposition_local[3, 0] + " " + superposition_local[4, 0] + " " + superposition_local[5, 0]);
             }
             else if (lDLNear < lDLFar)
             {
                 decimal wN = lDLNear - lDLFar;
-                decimal M = lDLFar * length * length / 12;
-                decimal Nr = lDLFar * length / 2;
+                decimal m = lDLFar * length * length / 12;
+                decimal nr = lDLFar * length / 2;
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr + (wN * length * 0.5m / 3 * 2);
-                superposition_local[2, 0] = M + (wN * length * length / 20);
+                superposition_local[1, 0] = nr + (wN * length * 0.5m / 3 * 2);
+                superposition_local[2, 0] = m + (wN * length * length / 20);
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr + (wN * length * 0.5m / 3);
-                superposition_local[5, 0] = -M + (-(wN * length * length) / 30);
+                superposition_local[4, 0] = nr + (wN * length * 0.5m / 3);
+                superposition_local[5, 0] = -m + (-(wN * length * length) / 30);
                 CreateSuperpositionValues(superposition_local);
-
-                // Debug.WriteLine("LDL " + superposition_local[0, 0] + " " + superposition_local[1, 0] + " " + superposition_local[2, 0] + " " + superposition_local[3, 0] + " " + superposition_local[4, 0] + " " + superposition_local[5, 0]);
             }
             else
             {
                 // pos UDL
                 decimal m = lDLFar * length * length / 12;
-                decimal Nr = lDLFar * length / 2;
+                decimal nr = lDLFar * length / 2;
                 DecimalMatrix superposition_local = new DecimalMatrix(6, 1);
                 superposition_local[0, 0] = 0;
-                superposition_local[1, 0] = Nr;
+                superposition_local[1, 0] = nr;
                 superposition_local[2, 0] = m;
                 superposition_local[3, 0] = 0;
-                superposition_local[4, 0] = Nr;
+                superposition_local[4, 0] = nr;
                 superposition_local[5, 0] = -m;
                 CreateSuperpositionValues(superposition_local);
             }
@@ -1083,9 +1077,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void CreateSuperpositionValues(DecimalMatrix superposition_local)
         {
-            // Debug.WriteLine("Segment " + index + " L " + length + " N " + lDLNear + " F " + lDLFar);
-            // Debug.WriteLine("LDL " + superposition_local[0, 0] + " " + superposition_local[1, 0] + " " + superposition_local[2, 0] + " " + superposition_local[3, 0] + " " + superposition_local[4, 0] + " " + superposition_local[5, 0]);
-
             // Create a matrix to hold the superposition with respect to the global co-ordinates.
             DecimalMatrix superposition_global = new DecimalMatrix(6, 1);
             DecimalMatrix tt = CreateForceTransformationMatrix();

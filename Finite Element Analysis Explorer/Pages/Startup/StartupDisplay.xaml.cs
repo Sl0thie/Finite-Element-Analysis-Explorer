@@ -94,7 +94,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
-                    () =>
+                () =>
                     {
                         StartupStackPanelItem tempItem = new StartupStackPanelItem(message);
                         StartupDisplay.Current.StackPanelStartup.Children.Add(tempItem);

@@ -2,17 +2,17 @@
 {
     internal struct Constraints
     {
-        internal Constraints(bool _x, bool _y, bool _m)
+        internal Constraints(bool x, bool y, bool m)
         {
-            x = _x;
-            y = _y;
-            m = _m;
+            this.x = x;
+            this.y = y;
+            this.m = m;
 
-            if (x)
+            if (this.x)
             {
-                if (y)
+                if (this.y)
                 {
-                    if (m)
+                    if (this.m)
                     {
                         constraintType = ConstraintType.Fixed;
                     }
@@ -23,7 +23,7 @@
                 }
                 else
                 {
-                    if (m)
+                    if (this.m)
                     {
                         constraintType = ConstraintType.Unknown;
                     }
@@ -35,9 +35,9 @@
             }
             else
             {
-                if (y)
+                if (this.y)
                 {
-                    if (m)
+                    if (this.m)
                     {
                         constraintType = ConstraintType.Unknown;
                     }
@@ -48,7 +48,7 @@
                 }
                 else
                 {
-                    if (m)
+                    if (this.m)
                     {
                         constraintType = ConstraintType.Unknown;
                     }
@@ -118,15 +118,14 @@
             }
         }
 
-        internal Constraints(ConstraintType _constraintType)
+        internal Constraints(ConstraintType constraintType)
         {
-            constraintType = _constraintType;
+            this.constraintType = constraintType;
             x = false;
             y = false;
             m = false;
-            switch (_constraintType)
+            switch (constraintType)
             {
-
                 case ConstraintType.Free:
                     x = false;
                     y = false;

@@ -29,13 +29,13 @@ namespace Finite_Element_Analysis_Explorer
         // {
         //    StackConsole.Children.Clear();
         // }
-        public void AddMessage(long total, long step, string Message)
+        public void AddMessage(long total, long step, string message)
         {
             SolverMessage nextMessage = new SolverMessage
             {
                 TotalTime = total,
                 StepTime = step,
-                Message = Message,
+                Message = message,
             };
             StackConsole.Children.Add(nextMessage);
         }

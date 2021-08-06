@@ -10,7 +10,7 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class Construction : Page
     {
         internal static Construction Current;
-        private bool IsPageLoaded = false;
+        private bool isPageLoaded = false;
 
         private bool detailsIsOpen = true;
 
@@ -28,7 +28,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void Refresh()
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Construction));
@@ -49,7 +49,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowSolver()
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Solver));
@@ -66,7 +66,6 @@ namespace Finite_Element_Analysis_Explorer
             // var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
 
             // http://dallasadams.net/Software/FiniteElementAnalysisExplorer/Help/Default.aspx
-
             var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
 
             // var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
@@ -76,7 +75,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowModel()
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 App.CurrentPageState = PageState.Construction;
                 frameDetails.Width = 300;
@@ -140,7 +139,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void CustomizeTitleBar()
         {
-
             // customize title area
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(trickyTitleBar);
@@ -169,9 +167,8 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
             Current = this;
-            IsPageLoaded = true;
+            isPageLoaded = true;
             if (Model.Members.CurrentMember == null)
             {
                 Model.Sections.CurrentSection = Model.Sections["Default"];
@@ -189,7 +186,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            IsPageLoaded = false;
+            isPageLoaded = false;
         }
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)

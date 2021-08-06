@@ -11,7 +11,7 @@ namespace Finite_Element_Analysis_Explorer
     {
         #region Constructor
 
-        private Object thisLock = new Object();
+        private object thisLock = new object();
 
         internal void Output()
         {
@@ -27,31 +27,31 @@ namespace Finite_Element_Analysis_Explorer
         {
         }
 
-        internal Member(int _index, Node _nodeNear, Node _nodeFar, Section _section, int _totalSegments, decimal _LDLNear, decimal _LDLFar)
+        internal Member(int index, Node nodeNear, Node nodeFar, Section section, int totalSegments, decimal lDLNear, decimal lDLFar)
         {
             // Check if the member is already in the collection.
-            if (Model.Members.ContainsKey(_index))
+            if (Model.Members.ContainsKey(index))
             {
                 Debug.WriteLine("ERROR: Member Constructor - Member already exists!");
             }
             else
             {
                 // Add to the collection.
-                Model.Members.TryAdd(_index, this);
+                Model.Members.TryAdd(index, this);
             }
 
             try
             {
-                index = _index;
-                nodeNear = _nodeNear;
-                nodeFar = _nodeFar;
-                centerPoint = new Vector2((nodeNear.Position.Location.X + nodeFar.Position.Location.X) / 2, (nodeNear.Position.Location.Y + nodeFar.Position.Location.Y) / 2);
-                section = _section;
-                totalSegments = _totalSegments;
-                LDLNear = _LDLNear;
-                LDLFar = _LDLFar;
+                this.index = index;
+                this.nodeNear = nodeNear;
+                this.nodeFar = nodeFar;
+                centerPoint = new Vector2((this.nodeNear.Position.Location.X + this.nodeFar.Position.Location.X) / 2, (this.nodeNear.Position.Location.Y + this.nodeFar.Position.Location.Y) / 2);
+                this.section = section;
+                this.totalSegments = totalSegments;
+                LDLNear = lDLNear;
+                LDLFar = lDLFar;
 
-                Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
+                Task.Run(() => ProcessProperties(this.nodeNear.Position.X, this.nodeNear.Position.Y, this.nodeFar.Position.X, this.nodeFar.Position.Y));
 
                 // Output();
             }
@@ -393,19 +393,19 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Create Segments
 
-        private void ProcessProperties(decimal NearX, decimal NearY, decimal FarX, decimal FarY)
+        private void ProcessProperties(decimal nearX, decimal nearY, decimal farX, decimal farY)
         {
-            lengthXAxis = Math.Abs(FarX - NearX);
-            lengthYAxis = Math.Abs(FarY - NearY);
+            lengthXAxis = Math.Abs(farX - nearX);
+            lengthYAxis = Math.Abs(farY - nearY);
 
             length = DMath.Sqrt((lengthXAxis * lengthXAxis) + (lengthYAxis * lengthYAxis));
 
-            if (FarY > NearY)
+            if (farY > nearY)
             {
                 angle = (decimal)Math.Atan2((double)lengthYAxis, (double)lengthXAxis);
                 angleMultiplyer = 1;
             }
-            else if (FarY < NearY)
+            else if (farY < nearY)
             {
                 angle = -(decimal)Math.Atan2((double)lengthYAxis, (double)lengthXAxis);
                 angleMultiplyer = -1;
@@ -561,14 +561,14 @@ namespace Finite_Element_Analysis_Explorer
                 Segment firstSegment = null;
 
                 decimal xDiv = lengthXAxis / totalSegments;
-                decimal YDiv; // / (totalSegments * angleMultiplyer);
+                decimal yDiv; // (totalSegments * angleMultiplyer);
                 if (angleMultiplyer == 0)
                 {
-                    YDiv = 0;
+                    yDiv = 0;
                 }
                 else
                 {
-                    YDiv = lengthYAxis / (totalSegments * angleMultiplyer);
+                    yDiv = lengthYAxis / (totalSegments * angleMultiplyer);
                 }
 
                 int subSectionsIteration = 1;
@@ -579,17 +579,17 @@ namespace Finite_Element_Analysis_Explorer
                 Node lastNodeFar = NodeNear;
 
                 // LDL
-                decimal LastW = lDLNear;
-                decimal WSeg = (lDLFar - lDLNear) / totalSegments;
+                decimal lastW = lDLNear;
+                decimal wSeg = (lDLFar - lDLNear) / totalSegments;
 
                 while (subSectionsIteration < totalSegments)
                 {
-                    Node NextNode = null;
-                    decimal PosX = lastNodeFar.Position.X + xDiv;
-                    decimal posY = lastNodeFar.Position.Y + YDiv;
-                    NextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(PosX, posY), new Node(nextNodeIndex, new Finite_Element_Analysis_Explorer.Point(PosX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
+                    Node nextNode = null;
+                    decimal posX = lastNodeFar.Position.X + xDiv;
+                    decimal posY = lastNodeFar.Position.Y + yDiv;
+                    nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Finite_Element_Analysis_Explorer.Point(posX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
                     nextNodeIndex++;
-                    Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, NextNode, section, LastW, LastW + WSeg, previousSegmentIndex);
+                    Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, nextNode, section, lastW, lastW + wSeg, previousSegmentIndex);
                     segments.TryAdd(nextSegment.Index, nextSegment);
 
                     if (ReferenceEquals(null, firstSegment))
@@ -600,11 +600,11 @@ namespace Finite_Element_Analysis_Explorer
                     previousSegmentIndex = nextSegment.Index;
                     segmentIndex++;
                     subSectionsIteration++;
-                    LastW += WSeg;
-                    lastNodeFar = NextNode;
+                    lastW += wSeg;
+                    lastNodeFar = nextNode;
                 }
 
-                Segment lastSegment = new Segment(segmentIndex, this, lastNodeFar, NodeFar, section, LastW, LastW + WSeg, previousSegmentIndex);
+                Segment lastSegment = new Segment(segmentIndex, this, lastNodeFar, NodeFar, section, lastW, lastW + wSeg, previousSegmentIndex);
                 segments.TryAdd(lastSegment.Index, lastSegment);
                 segmentIndex++;
 
@@ -619,27 +619,26 @@ namespace Finite_Element_Analysis_Explorer
                 // Add segment to member tiles
                 foreach (var item in Model.Members[index].Segments)
                 {
-
                     Tuple<int, int> position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / Model.Members.GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / Model.Members.GridSize));
-                    List<Tuple<int, int>> ITmp = null;
+                    List<Tuple<int, int>> iTmp = null;
 
                     if (Model.Members.MemberTiles.ContainsKey(position))
                     {
                         // Debug.WriteLine("Update Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-                        ITmp = Model.Members.MemberTiles[position];
-                        ITmp.Add(new Tuple<int, int>(index, item.Value.Index));
+                        iTmp = Model.Members.MemberTiles[position];
+                        iTmp.Add(new Tuple<int, int>(index, item.Value.Index));
                     }
                     else
                     {
                         // Debug.WriteLine("New    Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
                         // List<int> NewList = new List<int>();
-                        List<Tuple<int, int>> NewList = new List<Tuple<int, int>>();
-                        NewList.Add(new Tuple<int, int>(index, item.Value.Index));
+                        List<Tuple<int, int>> newList = new List<Tuple<int, int>>();
+                        newList.Add(new Tuple<int, int>(index, item.Value.Index));
 
                         // MemberTiles.TryAdd(Position, NewList);
-                        if (!Model.Members.MemberTiles.TryAdd(position, NewList))
+                        if (!Model.Members.MemberTiles.TryAdd(position, newList))
                         {
-                            Debug.WriteLine("Segment TryAdd Failed. " + index + " " + position.ToString() + " " + NewList.ToString());
+                            Debug.WriteLine("Segment TryAdd Failed. " + index + " " + position.ToString() + " " + newList.ToString());
                         }
                     }
                 }

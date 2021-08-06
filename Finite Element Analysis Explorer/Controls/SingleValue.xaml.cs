@@ -185,7 +185,6 @@
                                 TextBlock_UnitType.Text = "km";
                                 break;
                             case LengthType.Inch:
-                                //
                                 multiplicationFactor = Constants.InchPerMeter;
                                 TextBlock_UnitType.Text = "in";
                                 break;

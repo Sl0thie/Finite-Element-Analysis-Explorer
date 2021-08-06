@@ -235,7 +235,6 @@ namespace Finite_Element_Analysis_Explorer
         Zoom,
         Settings,
     }
-;
 
     internal enum PageState
     {
@@ -246,7 +245,6 @@ namespace Finite_Element_Analysis_Explorer
         Sections,
         Results,
     }
-;
 
     internal enum SelectionState
     {
@@ -254,7 +252,6 @@ namespace Finite_Element_Analysis_Explorer
         FirstNode,
         SecondNode,
     }
-;
 
     internal enum SolveState
     {
@@ -265,7 +262,5 @@ namespace Finite_Element_Analysis_Explorer
         Cancelling,
         Cancelled,
     }
-;
     #endregion
-
 }

@@ -2,7 +2,6 @@
 {
     internal static class Constants
     {
-
         internal const int HeightTitleBar = 33;
         internal const int WidthDetailsSlim = 33;
         internal const int WidthDetailsNormal = 300;
@@ -37,7 +36,7 @@
 
         // Force Per Length
         internal const decimal NewtonPerMeterNewtonPerMeter = 1; // N/m
-        internal const decimal PoundForcePerFootPerNewPerMeter = 14.5939028871m; //
+        internal const decimal PoundForcePerFootPerNewPerMeter = 14.5939028871m;
 
         // Mass
         internal const decimal PoundPerKilogram = 2.20462262m;

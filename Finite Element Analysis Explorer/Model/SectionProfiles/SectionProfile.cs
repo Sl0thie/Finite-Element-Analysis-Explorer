@@ -6,9 +6,9 @@
         {
         }
 
-        public SectionProfile(string _name)
+        public SectionProfile(string name)
         {
-            name = _name;
+            this.name = name;
         }
 
         private string path;

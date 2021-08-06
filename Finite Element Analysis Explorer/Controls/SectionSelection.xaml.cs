@@ -9,7 +9,6 @@
 
     public sealed partial class SectionSelection : UserControl
     {
-
         private bool dataLock = true;
 
         /// <summary>
@@ -27,11 +26,11 @@
             dataLock = false;
         }
 
-        private void ShowSection(string SectionName)
+        private void ShowSection(string sectionName)
         {
-            if (Model.Sections.ContainsKey(SectionName))
+            if (Model.Sections.ContainsKey(sectionName))
             {
-                Section tmpSection = Model.Sections[SectionName];
+                Section tmpSection = Model.Sections[sectionName];
                 textBox_SectionName.Text = tmpSection.Name;
                 SingleValue_YoungsModulus.Title = "Young's Modulus (E)";
                 SingleValue_YoungsModulus.UnitType = UnitType.Force;
