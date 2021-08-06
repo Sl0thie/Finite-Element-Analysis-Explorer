@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -10,11 +7,14 @@ namespace Finite_Element_Analysis_Explorer
     {
         private decimal[,] mInnerMatrix;
         private int mRowCount = 0;
+
         internal int RowCount
         {
             get { return mRowCount; }
         }
+
         private int mColumnCount = 0;
+
         internal int ColumnCount
         {
             get { return mColumnCount; }
@@ -22,8 +22,8 @@ namespace Finite_Element_Analysis_Explorer
 
         internal DecimalMatrix()
         {
-
         }
+
         internal DecimalMatrix(int rowCount, int columnCount)
         {
             mRowCount = rowCount;
@@ -37,6 +37,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 return mInnerMatrix[rowNumber, columnNumber];
             }
+
             set
             {
                 mInnerMatrix[rowNumber, columnNumber] = value;
@@ -50,19 +51,23 @@ namespace Finite_Element_Analysis_Explorer
             {
                 rowValues[i] = mInnerMatrix[rowIndex, i];
             }
+
             return rowValues;
         }
+
         internal void SetRow(int rowIndex, decimal[] value)
         {
             if (value.Length != mColumnCount)
             {
                 throw new Exception("Boyut Uyusmazligi");
             }
+
             for (int i = 0; i < value.Length; i++)
             {
                 mInnerMatrix[rowIndex, i] = value[i];
             }
         }
+
         internal decimal[] GetColumn(int columnIndex)
         {
             decimal[] columnValues = new decimal[mRowCount];
@@ -70,14 +75,17 @@ namespace Finite_Element_Analysis_Explorer
             {
                 columnValues[i] = mInnerMatrix[i, columnIndex];
             }
+
             return columnValues;
         }
+
         internal void SetColumn(int columnIndex, decimal[] value)
         {
             if (value.Length != mRowCount)
             {
                 throw new Exception("Boyut Uyusmazligi");
             }
+
             for (int i = 0; i < value.Length; i++)
             {
                 mInnerMatrix[i, columnIndex] = value[i];
@@ -90,6 +98,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 throw new Exception("Boyut Uyusmazligi");
             }
+
             DecimalMatrix returnMartix = new DecimalMatrix(pMatrix1.RowCount, pMatrix2.RowCount);
             for (int i = 0; i < pMatrix1.RowCount; i++)
             {
@@ -98,8 +107,10 @@ namespace Finite_Element_Analysis_Explorer
                     returnMartix[i, j] = pMatrix1[i, j] + pMatrix2[i, j];
                 }
             }
+
             return returnMartix;
         }
+
         public static DecimalMatrix operator *(decimal scalarValue, DecimalMatrix pMatrix)
         {
             DecimalMatrix returnMartix = new DecimalMatrix(pMatrix.RowCount, pMatrix.RowCount);
@@ -110,23 +121,28 @@ namespace Finite_Element_Analysis_Explorer
                     returnMartix[i, j] = pMatrix[i, j] * scalarValue;
                 }
             }
+
             return returnMartix;
         }
+
         public static DecimalMatrix operator -(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
             {
                 throw new Exception("Boyut Uyusmazligi");
             }
+
             return pMatrix1 + (-1 * pMatrix2);
         }
+
         public static bool operator ==(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
             {
-                //boyut uyusmazligi
+                // boyut uyusmazligi
                 return false;
             }
+
             for (int i = 0; i < pMatrix1.RowCount; i++)
             {
                 for (int j = 0; j < pMatrix1.ColumnCount; j++)
@@ -137,16 +153,21 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
-            return true; ;
+
+            return true;
+            ;
         }
+
         public static bool operator !=(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             return !(pMatrix1 == pMatrix2);
         }
+
         public static DecimalMatrix operator -(DecimalMatrix pMatrix)
         {
             return -1 * pMatrix;
         }
+
         public static DecimalMatrix operator ++(DecimalMatrix pMatrix)
         {
 
@@ -157,8 +178,10 @@ namespace Finite_Element_Analysis_Explorer
                     pMatrix[i, j] += 1;
                 }
             }
+
             return pMatrix;
         }
+
         public static DecimalMatrix operator --(DecimalMatrix pMatrix)
         {
             for (int i = 0; i < pMatrix.RowCount; i++)
@@ -168,14 +191,17 @@ namespace Finite_Element_Analysis_Explorer
                     pMatrix[i, j] -= 1;
                 }
             }
+
             return pMatrix;
         }
+
         public static DecimalMatrix operator *(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (pMatrix1.ColumnCount != pMatrix2.RowCount)
             {
                 throw new Exception("Boyut Uyusmazligi");
             }
+
             DecimalMatrix returnMatrix = new DecimalMatrix(pMatrix1.RowCount, pMatrix2.ColumnCount);
             for (int i = 0; i < pMatrix1.RowCount; i++)
             {
@@ -188,11 +214,14 @@ namespace Finite_Element_Analysis_Explorer
                     {
                         value += rowValues[a] * columnValues[a];
                     }
+
                     returnMatrix[i, j] = value;
                 }
             }
+
             return returnMatrix;
         }
+
         internal DecimalMatrix Transpose()
         {
             DecimalMatrix mReturnMartix = new DecimalMatrix(ColumnCount, RowCount);
@@ -203,12 +232,15 @@ namespace Finite_Element_Analysis_Explorer
                     mReturnMartix[j, i] = mInnerMatrix[i, j];
                 }
             }
+
             return mReturnMartix;
         }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -226,18 +258,22 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
+
             return true;
         }
+
         internal bool IsSquareMatrix()
         {
-            return (this.RowCount == this.ColumnCount);
+            return this.RowCount == this.ColumnCount;
         }
+
         internal bool IsLowerTriangle()
         {
             if (!this.IsSquareMatrix())
             {
                 return false;
             }
+
             for (int i = 0; i < this.RowCount; i++)
             {
                 for (int j = i + 1; j < this.ColumnCount; j++)
@@ -248,14 +284,17 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
+
             return true;
         }
+
         internal bool IsUpperTriangle()
         {
             if (!this.IsSquareMatrix())
             {
                 return false;
             }
+
             for (int i = 0; i < this.RowCount; i++)
             {
                 for (int j = 0; j < i; j++)
@@ -266,14 +305,17 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
+
             return true;
         }
+
         internal bool IsDiagonalMatrix()
         {
             if (!this.IsSquareMatrix())
             {
                 return false;
             }
+
             for (int i = 0; i < this.RowCount; i++)
             {
                 for (int j = 0; j < this.ColumnCount; j++)
@@ -284,14 +326,17 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
+
             return true;
         }
+
         internal bool IsIdentityMatrix()
         {
             if (!this.IsSquareMatrix())
             {
                 return false;
             }
+
             for (int i = 0; i < this.RowCount; i++)
             {
                 for (int j = 0; j < this.ColumnCount; j++)
@@ -301,20 +346,24 @@ namespace Finite_Element_Analysis_Explorer
                     {
                         checkValue = 1;
                     }
+
                     if (mInnerMatrix[i, j] != checkValue)
                     {
                         return false;
                     }
                 }
             }
+
             return true;
         }
+
         internal bool IsSymetricMatrix()
         {
             if (!this.IsSquareMatrix())
             {
                 return false;
             }
+
             DecimalMatrix transposeMatrix = this.Transpose();
             if (this == transposeMatrix)
             {
@@ -335,10 +384,9 @@ namespace Finite_Element_Analysis_Explorer
                 {
                     Debug.Write(mInnerMatrix[i, j].ToString() + "  ");
                 }
+
                 Debug.Write("\n");
             }
         }
-
-
     }
 }

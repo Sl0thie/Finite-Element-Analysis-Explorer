@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -24,14 +13,14 @@ namespace Finite_Element_Analysis_Explorer
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            listView_Sections.ItemsSource = Model.Sections;
+            ListView_Sections.ItemsSource = Model.Sections;
         }
 
         private void ListView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listView_Sections.SelectedItem is object)
+            if (ListView_Sections.SelectedItem is object)
             {
-                KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)listView_Sections.SelectedItem;
+                KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)ListView_Sections.SelectedItem;
                 if (!string.IsNullOrEmpty(kvp.Key.Trim()))
                 {
                     Model.Members.CurrentMember.Section = Model.Sections[kvp.Key.Trim()];

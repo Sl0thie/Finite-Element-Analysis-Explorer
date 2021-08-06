@@ -25,24 +25,20 @@ namespace Finite_Element_Analysis_Explorer
 
         internal Member()
         {
-
         }
 
         internal Member(int _index, Node _nodeNear, Node _nodeFar, Section _section, int _totalSegments, decimal _LDLNear, decimal _LDLFar)
         {
-            //Check if the member is already in the collection.
+            // Check if the member is already in the collection.
             if (Model.Members.ContainsKey(_index))
             {
                 Debug.WriteLine("ERROR: Member Constructor - Member already exists!");
             }
             else
             {
-                //Add to the collection.
+                // Add to the collection.
                 Model.Members.TryAdd(_index, this);
             }
-
-
-
 
             try
             {
@@ -57,9 +53,12 @@ namespace Finite_Element_Analysis_Explorer
 
                 Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
 
-                //Output();
+                // Output();
             }
-            catch (Exception ex) { Debug.WriteLine("Error Member Construction " + ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error Member Construction " + ex.Message);
+            }
         }
 
         #endregion
@@ -69,6 +68,7 @@ namespace Finite_Element_Analysis_Explorer
         #region Objects
 
         private int index;
+
         internal int Index
         {
             get
@@ -78,6 +78,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Node nodeNear;
+
         internal Node NodeNear
         {
             get
@@ -87,6 +88,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Node nodeFar;
+
         internal Node NodeFar
         {
             get
@@ -96,6 +98,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Segment segmentNear;
+
         public Segment SegmentNear
         {
             get { return segmentNear; }
@@ -103,6 +106,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Segment segmentFar;
+
         public Segment SegmentFar
         {
             get { return segmentFar; }
@@ -110,6 +114,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Section section;
+
         internal Section Section
         {
             get
@@ -124,9 +129,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        //private IList<Segment> segments = new List<Segment>();
-        //internal IList<Segment> Segments
-        //{
+        // private IList<Segment> segments = new List<Segment>();
+        // internal IList<Segment> Segments
+        // {
         //    get
         //    {
         //        lock (segments)
@@ -134,9 +139,9 @@ namespace Finite_Element_Analysis_Explorer
         //            return segments;
         //        }
         //    }
-        //}
-
+        // }
         private ConcurrentDictionary<int, Segment> segments = new ConcurrentDictionary<int, Segment>();
+
         internal ConcurrentDictionary<int, Segment> Segments
         {
             get
@@ -149,6 +154,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private bool dataReady = false;
+
         public bool DataReady
         {
             get { return dataReady; }
@@ -157,9 +163,10 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        #region Construction 
+        #region Construction
 
         private decimal length;
+
         internal decimal Length
         {
             get
@@ -169,6 +176,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lengthXAxis;
+
         internal decimal LengthXAxis
         {
             get
@@ -178,6 +186,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lengthYAxis;
+
         internal decimal LengthYAxis
         {
             get
@@ -186,8 +195,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private int angleMultiplyer = 0; //Needs better fix.
+        private int angleMultiplyer = 0; // Needs better fix.
         private decimal angle;
+
         internal decimal Angle
         {
             get
@@ -197,9 +207,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private int totalSegments;
+
         internal int TotalSegments
         {
-            get { return totalSegments; }
+            get
+            {
+                return totalSegments;
+            }
+
             set
             {
                 totalSegments = value;
@@ -208,12 +223,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lDLNear;
+
         internal decimal LDLNear
         {
             get
             {
                 return lDLNear;
             }
+
             set
             {
                 lDLNear = value;
@@ -223,6 +240,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lDLFar;
+
         internal decimal LDLFar
         {
             get
@@ -238,8 +256,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        //Should be replaced with segments later.
+        // Should be replaced with segments later.
         private Vector2 centerPoint;
+
         public Vector2 CenterPoint
         {
             get { return centerPoint; }
@@ -251,12 +270,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Displaced Properties
 
         private decimal lengthDisplaced;
+
         public decimal LengthDisplaced
         {
             get { return lengthDisplaced; }
         }
 
         private decimal lengthDisplacedXAxis;
+
         internal decimal LengthDisplacedXAxis
         {
             get
@@ -266,6 +287,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lengthDisplacedYAxis;
+
         internal decimal LengthDisplacedYAxis
         {
             get
@@ -275,18 +297,21 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal angleDisplaced;
+
         public decimal AngleDisplaced
         {
             get { return angleDisplaced; }
         }
 
         private decimal lengthDifference;
+
         public decimal LengthDifference
         {
             get { return lengthDifference; }
         }
 
         private decimal lengthDifferenceXAxis;
+
         internal decimal LengthDifferenceXAxis
         {
             get
@@ -296,6 +321,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal lengthDifferenceYAxis;
+
         internal decimal LengthDifferenceYAxis
         {
             get
@@ -305,12 +331,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal angleDifference;
+
         public decimal AngleDifference
         {
             get { return angleDifference; }
         }
 
         private decimal lengthRatio;
+
         public decimal LengthRatio
         {
             get { return lengthRatio; }
@@ -322,6 +350,7 @@ namespace Finite_Element_Analysis_Explorer
         #region Cost
 
         private decimal memberCost;
+
         public decimal MemberCost
         {
             get { return memberCost; }
@@ -329,6 +358,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal materialCost;
+
         public decimal MaterialCost
         {
             get { return materialCost; }
@@ -336,18 +366,19 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal nodeCost;
+
         public decimal NodeCost
         {
             get { return nodeCost; }
             set { nodeCost = value; }
         }
 
-
         #endregion
 
         #region Stress/Strain
 
         private decimal normalStress;
+
         public decimal NormalStress
         {
             get { return normalStress; }
@@ -391,11 +422,9 @@ namespace Finite_Element_Analysis_Explorer
 
             CalculateCosts();
 
-            //Model.Members.AddNewElementToTiles(index,centerPoint);
+            // Model.Members.AddNewElementToTiles(index,centerPoint);
 
-
-            //AssignNeighbours();
-
+            // AssignNeighbours();
             dataReady = true;
         }
 
@@ -446,7 +475,6 @@ namespace Finite_Element_Analysis_Explorer
                     break;
                 case ConstraintType.Unknown:
                     break;
-
             }
 
             switch (nodeFar.Constraints.ConstraintType)
@@ -489,7 +517,6 @@ namespace Finite_Element_Analysis_Explorer
                     break;
                 case ConstraintType.Unknown:
                     break;
-
             }
         }
 
@@ -504,7 +531,9 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryAdd(index, this);
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
             else
             {
@@ -516,7 +545,9 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryRemove(index, out tmpMember);
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
         }
 
@@ -526,11 +557,10 @@ namespace Finite_Element_Analysis_Explorer
             {
                 segments.Clear();
 
-                //segments = new ConcurrentBag<Segment>();
-
+                // segments = new ConcurrentBag<Segment>();
                 Segment firstSegment = null;
 
-                decimal XDiv = lengthXAxis / totalSegments;
+                decimal xDiv = lengthXAxis / totalSegments;
                 decimal YDiv; // / (totalSegments * angleMultiplyer);
                 if (angleMultiplyer == 0)
                 {
@@ -546,32 +576,31 @@ namespace Finite_Element_Analysis_Explorer
                 int segmentIndex = 0;
                 int previousSegmentIndex = -1;
 
-
                 Node lastNodeFar = NodeNear;
 
-                //LDL
+                // LDL
                 decimal LastW = lDLNear;
                 decimal WSeg = (lDLFar - lDLNear) / totalSegments;
 
                 while (subSectionsIteration < totalSegments)
                 {
                     Node NextNode = null;
-                    decimal PosX = lastNodeFar.Position.X + XDiv;
-                    decimal PosY = lastNodeFar.Position.Y + YDiv;
-                    NextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(PosX, PosY), new Node(nextNodeIndex, new Finite_Element_Analysis_Explorer.Point(PosX, PosY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
+                    decimal PosX = lastNodeFar.Position.X + xDiv;
+                    decimal posY = lastNodeFar.Position.Y + YDiv;
+                    NextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(PosX, posY), new Node(nextNodeIndex, new Finite_Element_Analysis_Explorer.Point(PosX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
                     nextNodeIndex++;
-                    Segment NextSegment = new Segment(segmentIndex, this, lastNodeFar, NextNode, section, LastW, LastW + WSeg, previousSegmentIndex);
-                    segments.TryAdd(NextSegment.Index, NextSegment);
+                    Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, NextNode, section, LastW, LastW + WSeg, previousSegmentIndex);
+                    segments.TryAdd(nextSegment.Index, nextSegment);
 
                     if (ReferenceEquals(null, firstSegment))
                     {
-                        firstSegment = NextSegment;
+                        firstSegment = nextSegment;
                     }
 
-                    previousSegmentIndex = NextSegment.Index;
+                    previousSegmentIndex = nextSegment.Index;
                     segmentIndex++;
                     subSectionsIteration++;
-                    LastW = LastW + WSeg;
+                    LastW += WSeg;
                     lastNodeFar = NextNode;
                 }
 
@@ -587,37 +616,33 @@ namespace Finite_Element_Analysis_Explorer
                 segmentNear = firstSegment;
                 segmentFar = lastSegment;
 
-
-
-                //Add segment to member tiles
+                // Add segment to member tiles
                 foreach (var item in Model.Members[index].Segments)
                 {
 
-                    Tuple<int, int> Position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / Model.Members.GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / Model.Members.GridSize));
+                    Tuple<int, int> position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / Model.Members.GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / Model.Members.GridSize));
                     List<Tuple<int, int>> ITmp = null;
 
-                    if (Model.Members.MemberTiles.ContainsKey(Position))
+                    if (Model.Members.MemberTiles.ContainsKey(position))
                     {
-                        //Debug.WriteLine("Update Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-
-                        ITmp = Model.Members.MemberTiles[Position];
+                        // Debug.WriteLine("Update Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
+                        ITmp = Model.Members.MemberTiles[position];
                         ITmp.Add(new Tuple<int, int>(index, item.Value.Index));
                     }
                     else
                     {
-                        //Debug.WriteLine("New    Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-                        //List<int> NewList = new List<int>();
+                        // Debug.WriteLine("New    Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
+                        // List<int> NewList = new List<int>();
                         List<Tuple<int, int>> NewList = new List<Tuple<int, int>>();
                         NewList.Add(new Tuple<int, int>(index, item.Value.Index));
-                        //MemberTiles.TryAdd(Position, NewList);
 
-                        if (!Model.Members.MemberTiles.TryAdd(Position, NewList)) { Debug.WriteLine("Segment TryAdd Failed. " + index + " " + Position.ToString() + " " + NewList.ToString()); }
+                        // MemberTiles.TryAdd(Position, NewList);
+                        if (!Model.Members.MemberTiles.TryAdd(position, NewList))
+                        {
+                            Debug.WriteLine("Segment TryAdd Failed. " + index + " " + position.ToString() + " " + NewList.ToString());
+                        }
                     }
                 }
-
-
-
-
             }
         }
 

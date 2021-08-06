@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -10,10 +7,10 @@ namespace Finite_Element_Analysis_Explorer
 
         public MaterialCollection() : base()
         {
-
         }
 
         private Material currentMaterial;
+
         internal Material CurrentMaterial
         {
             get { return currentMaterial; }

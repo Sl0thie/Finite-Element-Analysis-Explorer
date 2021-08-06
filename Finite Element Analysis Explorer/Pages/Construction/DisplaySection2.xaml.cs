@@ -1,27 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class DisplaySection2 : Page
     {
-        //private string lastMaterialName = "";
-        //private string lastProfileSection = "";
-
+        // private string lastMaterialName = "";
+        // private string lastProfileSection = "";
         public DisplaySection2()
         {
             this.InitializeComponent();
@@ -29,11 +16,11 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //Set item sources.
-            listView_Materials.ItemsSource = Model.Materials.Values;
-            listView_Profile.ItemsSource = Model.SectionProfiles.Values;
+            // Set item sources.
+            ListView_Materials.ItemsSource = Model.Materials.Values;
+            ListView_Profile.ItemsSource = Model.SectionProfiles.Values;
 
-            //Setup form.
+            // Setup form.
             SingleValue_CalculatedArea.UnitType = UnitType.Area;
             SingleValue_CalculatedArea.SetNull();
             SingleValue_CalculatedArea.DisplayOnly = true;
@@ -60,9 +47,7 @@ namespace Finite_Element_Analysis_Explorer
 
             if (!object.ReferenceEquals(null, Model.Sections.CurrentSection))
             {
-                #region Setup Section Panel
-
-                textBlock_Section_Title.Text = "SECTION : " + Model.Sections.CurrentSection.Name;
+                TextBlock_Section_Title.Text = "SECTION : " + Model.Sections.CurrentSection.Name;
 
                 SingleValue_YoungsModulus.Title = "Elastic Modulus";
                 SingleValue_YoungsModulus.UnitType = UnitType.Pressure;
@@ -104,7 +89,6 @@ namespace Finite_Element_Analysis_Explorer
                 SingleValue_MaintenancePerLength.UnitType = UnitType.Money;
                 SingleValue_MaintenancePerLength.SetTheValue(Model.Sections.CurrentSection.MaintenancePerLength);
 
-
                 SingleValue_CostPerLength.Title = "Cost per Length";
                 SingleValue_CostPerLength.UnitType = UnitType.Money;
                 SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength);
@@ -144,11 +128,6 @@ namespace Finite_Element_Analysis_Explorer
                 SingleValue_FactorHorizontalTransport.Title = "Horizontal Factor";
                 SingleValue_FactorHorizontalTransport.UnitType = UnitType.Percentage;
                 SingleValue_FactorHorizontalTransport.SetTheValue(Model.Sections.CurrentSection.FactorHorizontalTransport);
-
-
-                #endregion
-
-
                 if (Model.SectionProfiles.ContainsKey(Model.Sections.CurrentSection.SectionProfile))
                 {
                     UpdateProfile(Model.SectionProfiles[Model.Sections.CurrentSection.SectionProfile]);
@@ -161,7 +140,6 @@ namespace Finite_Element_Analysis_Explorer
             }
             else
             {
-
             }
         }
 
@@ -185,33 +163,27 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MaterialMolarVolume.SetNull();
             SingleValue_MaterialAbsoluteBoilingPoint.SetNull();
 
-            textBlock_Material_Title.Text = "Material : " + selectedMaterial.Name;
-
+            TextBlock_Material_Title.Text = "Material : " + selectedMaterial.Name;
 
             if (Model.Sections.CurrentSection.Material == selectedMaterial.Name)
             {
-
             }
             else
             {
-                //Set Properties to the Section.
+                // Set Properties to the Section.
                 Model.Sections.CurrentSection.Material = selectedMaterial.Name;
                 SingleValue_YoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
 
-                //Debug.WriteLine("E " + selectedMaterial.ModulusOfElasticity + " " + SingleValue_YoungsModulus.NewValue);
-
+                // Debug.WriteLine("E " + selectedMaterial.ModulusOfElasticity + " " + SingleValue_YoungsModulus.NewValue);
                 SingleValue_YoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 SingleValue_Density.SetTheValue(selectedMaterial.Density);
                 Model.Sections.CurrentSection.Density = selectedMaterial.Density;
 
+                // Update Material Cost.
 
-                //Update Material Cost.
-
-                //SingleValue_CostPerLength.SetTheValue(selectedMaterial.Cost * );
-
+                // SingleValue_CostPerLength.SetTheValue(selectedMaterial.Cost * );
             }
-
 
             ////Material
             SingleValue_MaterialDensity.DisplayOnly = true;
@@ -228,7 +200,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialYoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialShearModulus.DisplayOnly = true;
             SingleValue_MaterialShearModulus.Title = "Rigidity Modulus";
@@ -238,7 +212,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialShearModulus.SetTheValue(selectedMaterial.ModulusOfRigidity);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialBulkModulus.DisplayOnly = true;
             SingleValue_MaterialBulkModulus.Title = "Bulk Modulus";
@@ -248,7 +224,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBulkModulus.SetTheValue(selectedMaterial.Bulk_Modulus);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialPoissonRatio.DisplayOnly = true;
             SingleValue_MaterialPoissonRatio.Title = "Poisson Ratio";
@@ -258,7 +236,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialPoissonRatio.SetTheValue(selectedMaterial.Poission_Ratio);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialLiquidDensity.DisplayOnly = true;
             SingleValue_MaterialLiquidDensity.Title = "Liquid Density";
@@ -268,7 +248,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialLiquidDensity.SetTheValue(selectedMaterial.Liquid_Density);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialMohsHardness.DisplayOnly = true;
             SingleValue_MaterialMohsHardness.Title = "Mohs Hardness";
@@ -278,7 +260,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMohsHardness.SetTheValue(selectedMaterial.Mohs_Hardness);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialBrinellHardness.DisplayOnly = true;
             SingleValue_MaterialBrinellHardness.Title = "Brinell Hardness";
@@ -288,7 +272,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBrinellHardness.SetTheValue(selectedMaterial.Brinell_Hardness);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialVickersHardness.DisplayOnly = true;
             SingleValue_MaterialVickersHardness.Title = "Vickers Hardness";
@@ -298,7 +284,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialVickersHardness.SetTheValue(selectedMaterial.Vickers_Hardness);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialThermalExpansion.DisplayOnly = true;
             SingleValue_MaterialThermalExpansion.Title = "Thermal Expansions";
@@ -308,7 +296,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalExpansion.SetTheValue(selectedMaterial.Thermal_Expansion);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialThermalConductivity.DisplayOnly = true;
             SingleValue_MaterialThermalConductivity.Title = "Thermal Conductivity";
@@ -318,7 +308,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalConductivity.SetTheValue(selectedMaterial.Thermal_Conductivity);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialSoundSpeed.DisplayOnly = true;
             SingleValue_MaterialSoundSpeed.Title = "SoundSpeed";
@@ -328,7 +320,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialSoundSpeed.SetTheValue(selectedMaterial.Sound_Speed);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialMolarVolume.DisplayOnly = true;
             SingleValue_MaterialMolarVolume.Title = "MolarVolume";
@@ -338,7 +332,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_MaterialMolarVolume.DisplayOnly = true;
             SingleValue_MaterialMolarVolume.Title = "MolarVolume";
@@ -348,9 +344,11 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch { }
+            catch
+            {
+            }
 
-            //Thermo
+            // Thermo
             SingleValue_MaterialAbsoluteBoilingPoint.DisplayOnly = true;
             SingleValue_MaterialAbsoluteBoilingPoint.Title = "Absolute Boiling Point";
             SingleValue_MaterialAbsoluteBoilingPoint.UnitType = UnitType.Temprature;
@@ -429,8 +427,7 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MaterialVaporizationHeat.SetNull();
             SingleValue_MaterialVaporizationHeat.SetTheValue(selectedMaterial.Vaporization_Heat);
 
-
-            //Electro
+            // Electro
             SingleValue_MaterialElectricalConductivity.DisplayOnly = true;
             SingleValue_MaterialElectricalConductivity.Title = "Electrical Conductivity";
             SingleValue_MaterialElectricalConductivity.UnitType = UnitType.Unitless;
@@ -461,8 +458,7 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MaterialVolumeMagneticSusceptibility.SetNull();
             SingleValue_MaterialVolumeMagneticSusceptibility.SetTheValue(Convert.ToDecimal(selectedMaterial.Molar_Volume.ToString()));
 
-
-            //Abundance
+            // Abundance
             SingleValue_MaterialCrustAbundance.DisplayOnly = true;
             SingleValue_MaterialCrustAbundance.Title = "Crust";
             SingleValue_MaterialCrustAbundance.UnitType = UnitType.Percentage;
@@ -498,17 +494,11 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MaterialUniverseAbundance.UnitType = UnitType.Percentage;
             SingleValue_MaterialUniverseAbundance.SetNull();
             SingleValue_MaterialUniverseAbundance.SetTheValue(Convert.ToDecimal(selectedMaterial.Universe_Abundance.ToString()));
-
-
-
-
-
-
         }
 
-        private void listView_Materials_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_Materials_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Material selectedMaterial = (Material)listView_Materials.SelectedItem;
+            Material selectedMaterial = (Material)ListView_Materials.SelectedItem;
             UpdateMaterial(selectedMaterial);
         }
 
@@ -540,12 +530,11 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_SectionModulus.UnitType = UnitType.Volume;
             SingleValue_SectionModulus.SetNull();
 
-            textBlock_Profile_Title.Text = "MATERIAL : " + selectedProfile.Name;
+            TextBlock_Profile_Title.Text = "MATERIAL : " + selectedProfile.Name;
             if (selectedProfile.ImagePath != null)
             {
                 image_Profile.Source = new BitmapImage(new Uri(selectedProfile.ImagePath));
             }
-
 
             if (selectedProfile.Name == Model.Sections.CurrentSection.SectionProfile)
             {
@@ -562,19 +551,18 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property3.Visibility = Visibility.Visible;
                         SingleValue_Property3.SetNull();
 
-
-                        decimal Breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
                         decimal Width = Model.Sections.CurrentSection.SectionProfileProperty3;
-                        decimal OuterArea = Breadth * Height;
-                        decimal InnerBreadth = Breadth - Width;
+                        decimal OuterArea = breadth * Height;
+                        decimal InnerBreadth = breadth - Width;
                         decimal InnerHeight = Height - Width - Width;
                         decimal InnerArea = InnerBreadth * InnerHeight;
                         decimal Area = OuterArea - InnerArea;
 
                         if (Area == Model.Sections.CurrentSection.Area)
                         {
-                            SingleValue_Property1.SetTheValue(Breadth);
+                            SingleValue_Property1.SetTheValue(breadth);
                             SingleValue_Property2.SetTheValue(Height);
                             SingleValue_Property3.SetTheValue(Width);
                             SingleValue_CalculatedArea.SetTheValue(Model.Sections.CurrentSection.Area);
@@ -586,6 +574,7 @@ namespace Finite_Element_Analysis_Explorer
                                 SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
                             }
                         }
+
                         break;
 
                     case "Solid Circle":
@@ -607,10 +596,10 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case "Solid Elipse":
-                        //SingleValue_Property1.Title = "Length x-axis (a)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Length y-axis (b)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Length x-axis (a)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Length y-axis (b)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Solid Rectangle":
                         SingleValue_Property1.Title = "Breadth (b)";
@@ -636,10 +625,10 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case "Solid Triangle":
-                        //SingleValue_Property1.Title = "Base (b)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Height (h)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Base (b)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Height (h)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
 
                     case "Hollow Circle":
@@ -660,15 +649,14 @@ namespace Finite_Element_Analysis_Explorer
                                 SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                                 SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.SectionProfileProperty1);
                             }
-
                         }
 
                         break;
                     case "Hollow Elipse":
-                        //SingleValue_Property1.Title = "Radius (a)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Radius (b)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Radius (a)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Radius (b)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Hollow Rectangle":
 
@@ -698,10 +686,10 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case "Hollow Triangle":
-                        //SingleValue_Property1.Title = "Width (b)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Height (h)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Width (b)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Height (h)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                 }
             }
@@ -715,10 +703,10 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case "Solid Elipse":
-                        //SingleValue_Property1.Title = "Length x-axis (a)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Length y-axis (b)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Length x-axis (a)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Length y-axis (b)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Solid Rectangle":
                         SingleValue_Property1.Title = "Breadth (b)";
@@ -729,10 +717,10 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property2.SetNull();
                         break;
                     case "Solid Triangle":
-                        //SingleValue_Property1.Title = "Base (b)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Height (h)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Base (b)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Height (h)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Hollow Circle":
                         SingleValue_Property1.Title = "Radius (r)";
@@ -741,10 +729,10 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Hollow Elipse":
-                        //SingleValue_Property1.Title = "Radius (a)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Radius (b)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Radius (a)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Radius (b)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                     case "Hollow Rectangle":
                         SingleValue_Property1.Title = "Breadth (b)";
@@ -758,12 +746,13 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property3.SetNull();
                         break;
                     case "Hollow Triangle":
-                        //SingleValue_Property1.Title = "Width (b)";
-                        //SingleValue_Property1.Visibility = Visibility.Visible;
-                        //SingleValue_Property2.Title = "Height (h)";
-                        //SingleValue_Property2.Visibility = Visibility.Visible;
+                        // SingleValue_Property1.Title = "Width (b)";
+                        // SingleValue_Property1.Visibility = Visibility.Visible;
+                        // SingleValue_Property2.Title = "Height (h)";
+                        // SingleValue_Property2.Visibility = Visibility.Visible;
                         break;
                 }
+
                 SingleValue_Property1.SetTheValue(0);
                 SingleValue_Property2.SetTheValue(0);
                 SingleValue_Property3.SetTheValue(0);
@@ -771,20 +760,19 @@ namespace Finite_Element_Analysis_Explorer
                 SingleValue_Property5.SetTheValue(0);
                 SingleValue_Property6.SetTheValue(0);
                 SingleValue_Property7.SetTheValue(0);
-                Model.Sections.CurrentSection.SectionProfileProperty1 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty2 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty3 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty4 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty5 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty6 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty7 = (0);
+                Model.Sections.CurrentSection.SectionProfileProperty1 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty2 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty3 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty4 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty5 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty6 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty7 = 0;
             }
-
         }
 
-        private void listView_Profile_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_Profile_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SectionProfile selectedProfile = (SectionProfile)listView_Profile.SelectedItem;
+            SectionProfile selectedProfile = (SectionProfile)ListView_Profile.SelectedItem;
             Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             UpdateProfile(selectedProfile);
         }
@@ -796,30 +784,27 @@ namespace Finite_Element_Analysis_Explorer
                 case "I Beam":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
-                        decimal Breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
                         decimal Width = Model.Sections.CurrentSection.SectionProfileProperty3;
-                        decimal OuterArea = Breadth * Height;
-                        decimal InnerBreadth = Breadth - Width;
-                        decimal InnerHeight = Height - Width - Width;
-                        decimal InnerArea = InnerBreadth * InnerHeight;
+                        decimal OuterArea = breadth * Height;
+                        decimal InnerBreadth = breadth - Width;
+                        decimal innerHeight = Height - Width - Width;
+                        decimal InnerArea = InnerBreadth * innerHeight;
                         decimal Area = OuterArea - InnerArea;
 
-                        //Debug.WriteLine("A " + Area + " O " + OuterArea + " I " + InnerArea);
-
+                        // Debug.WriteLine("A " + Area + " O " + OuterArea + " I " + InnerArea);
                         SingleValue_CalculatedArea.SetTheValue(Area);
                         SingleValue_Area.SetTheValue(Area);
                         Model.Sections.CurrentSection.Area = Area;
-                        decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                        decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                        decimal SecondMoment = OuterMoment - InnerMoment;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal OuterMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                        decimal InnerMoment = InnerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                        decimal secondMoment = OuterMoment - InnerMoment;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
-
-
 
                         switch (Options.Length)
                         {
@@ -848,48 +833,49 @@ namespace Finite_Element_Analysis_Explorer
                                 SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
                                 SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
                                 break;
-
                         }
-
                     }
+
                     break;
 
                 case "Solid Circle":
                     if (Model.Sections.CurrentSection.SectionProfileProperty1 > 0)
                     {
-                        decimal Radius = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Area = DMath.PI * Radius * Radius;
+                        decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal Area = DMath.PI * radius * radius;
                         SingleValue_CalculatedArea.SetTheValue(Area);
                         SingleValue_Area.SetTheValue(Area);
                         Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = ((DMath.PI / 4) * Radius * Radius * Radius * Radius);
+                        decimal SecondMoment = DMath.PI / 4 * radius * radius * radius * radius;
                         SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                         SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
                         Model.Sections.CurrentSection.I = SecondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / Radius);
+                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
                     }
+
                     break;
 
                 case "Hollow Circle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
-                        decimal Radius = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Width = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerRadius = Radius - Width;
-                        decimal OuterArea = DMath.PI * Radius * Radius;
+                        decimal InnerRadius = radius - Width;
+                        decimal OuterArea = DMath.PI * radius * radius;
                         decimal InnerArea = DMath.PI * InnerRadius * InnerRadius;
                         decimal Area = OuterArea - InnerArea;
                         SingleValue_CalculatedArea.SetTheValue(Area);
                         SingleValue_Area.SetTheValue(Area);
                         Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = ((DMath.PI / 4) * Radius * Radius * Radius * Radius) - ((DMath.PI / 4) * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
+                        decimal SecondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
                         SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                         SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
                         Model.Sections.CurrentSection.I = SecondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / Radius);
+                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
                     }
+
                     break;
 
                 case "Solid Elipse":
@@ -898,77 +884,79 @@ namespace Finite_Element_Analysis_Explorer
                 case "Solid Rectangle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
-                        decimal Area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
+                        decimal secondMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
                     }
+
                     break;
 
                 case "Hollow Rectangle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
-                        decimal Outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = (Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
-                        decimal InnerHeight = (Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
+                        decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
                         decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = Outer - Inner;
+                        decimal Area = outer - Inner;
                         SingleValue_CalculatedArea.SetTheValue(Area);
                         SingleValue_Area.SetTheValue(Area);
                         Model.Sections.CurrentSection.Area = Area;
-                        decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                        decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                        decimal SecondMoment = OuterMoment - InnerMoment;
+                        decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                        decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
+                        decimal SecondMoment = outerMoment - InnerMoment;
                         SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                         SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
                         Model.Sections.CurrentSection.I = SecondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
                     }
+
                     break;
 
                 case "Solid Square":
                     if (Model.Sections.CurrentSection.SectionProfileProperty1 > 0)
                     {
-                        decimal Area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1) / 12;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
+                        decimal secondMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 / 12;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty1 / 2));
                     }
+
                     break;
 
                 case "Hollow Square":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
-                        decimal Outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = (Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
-                        decimal InnerHeight = (Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
+                        decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
                         decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = Outer - Inner;
+                        decimal Area = outer - Inner;
                         SingleValue_CalculatedArea.SetTheValue(Area);
                         SingleValue_Area.SetTheValue(Area);
                         Model.Sections.CurrentSection.Area = Area;
-                        decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                        decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                        decimal SecondMoment = OuterMoment - InnerMoment;
+                        decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                        decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
+                        decimal SecondMoment = outerMoment - InnerMoment;
                         SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                         SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
                         Model.Sections.CurrentSection.I = SecondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
-
                     }
 
                     break;
@@ -976,7 +964,6 @@ namespace Finite_Element_Analysis_Explorer
                 case "Solid Triangle":
 
                     break;
-
 
                 case "Hollow Elipse":
 
@@ -987,7 +974,6 @@ namespace Finite_Element_Analysis_Explorer
                     break;
             }
         }
-
 
         private void SingleValue_Property1_ValueChanged(object sender, EventArgs e)
         {

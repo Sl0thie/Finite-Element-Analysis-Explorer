@@ -2,19 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Runtime.InteropServices.WindowsRuntime;
-    using Windows.Foundation;
-    using Windows.Foundation.Collections;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Controls.Primitives;
-    using Windows.UI.Xaml.Data;
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Media;
-    using Windows.UI.Xaml.Navigation;
 
     public sealed partial class SectionSelection : UserControl
     {
@@ -27,7 +18,7 @@
         public SectionSelection()
         {
             this.InitializeComponent();
-            listView_Sections.ItemsSource = Model.Sections;
+            ListView_Sections.ItemsSource = Model.Sections;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -102,9 +93,9 @@
 
         private void ListView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listView_Sections.SelectedItem is object)
+            if (ListView_Sections.SelectedItem is object)
             {
-                KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)listView_Sections.SelectedItem;
+                KeyValuePair<string, Section> kvp = (KeyValuePair<string, Section>)ListView_Sections.SelectedItem;
                 if (!string.IsNullOrEmpty(kvp.Key.Trim()))
                 {
                     Model.Members.CurrentMember.Section = Model.Sections[kvp.Key.Trim()];
@@ -118,8 +109,8 @@
 
         private void TextBox_SectionName_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.Key.ToString() == "Enter")
-            //{
+            // if (e.Key.ToString() == "Enter")
+            // {
             //    Debug.WriteLine("textBox_SectionName_KeyDown Enter : " + textBox_SectionName.Text);
             //    if (!Model.Sections.ContainsKey(textBox_SectionName.Text))
             //    {
@@ -145,19 +136,18 @@
             //            SingleValue_CostNodeRoller.NewValue,
             //            SingleValue_CostNodeTrack.NewValue
 
+            // );
 
-            //            );
+            // ListView_Sections.ItemsSource = null;
+            //        ListView_Sections.ItemsSource = Model.Sections;
 
-            //        listView_Sections.ItemsSource = null;
-            //        listView_Sections.ItemsSource = Model.Sections;
-
-            //    }
-            //}
+            // }
+            // }
         }
 
         private void UpdateCurrentSection()
         {
-            if (!string.IsNullOrEmpty(textBox_SectionName.Text.Trim())) 
+            if (!string.IsNullOrEmpty(textBox_SectionName.Text.Trim()))
             {
                 return;
             }

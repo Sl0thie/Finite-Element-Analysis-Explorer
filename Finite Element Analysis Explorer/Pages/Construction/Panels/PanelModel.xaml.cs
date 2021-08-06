@@ -1,20 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
-using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -78,9 +65,9 @@ namespace Finite_Element_Analysis_Explorer
             Single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
             if (CheckBox_ResetExisting.IsChecked == true)
             {
-                foreach (var Item in Model.Members)
+                foreach (var item in Model.Members)
                 {
-                    Item.Value.TotalSegments = Options.DefaultNumberOfSegments;
+                    item.Value.TotalSegments = Options.DefaultNumberOfSegments;
                 }
             }
         }
@@ -103,7 +90,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             Construction.Current.ShowHelpAsync();
 
-            //dummy comment.
+            // dummy comment.
         }
 
         #endregion
@@ -131,29 +118,29 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
-            //New File.
+            // New File.
             FileManager.NewFile();
         }
 
         private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
-            //Open file.
+            // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                //Debug.WriteLine("File Picked, Now loading");
+                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
-            //Save File.
+            // Save File.
             await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            //Save file as.
+            // Save file as.
             if (await FileManager.PickFileToSave())
             {
                 await FileManager.SaveFile();
@@ -165,14 +152,13 @@ namespace Finite_Element_Analysis_Explorer
             Application.Current.Exit();
         }
 
-
         #endregion
 
         #region Changes per Page
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)
@@ -197,7 +183,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         #endregion

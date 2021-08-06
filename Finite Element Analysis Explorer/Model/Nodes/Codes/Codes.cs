@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     internal struct Codes
     {
@@ -22,6 +17,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private int x;
+
         public int X
         {
             get { return x; }
@@ -29,12 +25,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private int y;
+
         public int Y
         {
             get { return y; }
             set { y = value; }
         }
+
         private int m;
+
         public int M
         {
             get { return m; }

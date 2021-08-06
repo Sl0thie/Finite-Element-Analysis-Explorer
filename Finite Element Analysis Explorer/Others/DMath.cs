@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace Finite_Element_Analysis_Explorer
@@ -14,7 +10,11 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static decimal Abs(decimal x)
         {
-            if (x < 0) { x = -x; }
+            if (x < 0)
+            {
+                x = -x;
+            }
+
             return x;
         }
 
@@ -30,12 +30,15 @@ namespace Finite_Element_Analysis_Explorer
             do
             {
                 previous = current;
-                if (previous == 0.0M) return 0;
+                if (previous == 0.0M)
+                {
+                    return 0;
+                }
+
                 current = (previous + x / previous) / 2;
             }
             while (Math.Abs(previous - current) > epsilon);
             return current;
         }
-
     }
 }

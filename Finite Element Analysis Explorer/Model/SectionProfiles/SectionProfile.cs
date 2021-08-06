@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     public class SectionProfile
     {
         public SectionProfile()
         {
-
         }
 
         public SectionProfile(string _name)
@@ -18,6 +12,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private string path;
+
         public string Path
         {
             get { return path; }
@@ -25,16 +20,17 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private string imagePath;
+
         public string ImagePath
         {
             get { return imagePath; }
             set { imagePath = value; }
         }
 
-
         #region Added
 
         private string name;
+
         public string Name
         {
             get { return name; }

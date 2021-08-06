@@ -33,11 +33,11 @@
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="menuButton" Grid.Column="0" Width="32" Height="32" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="0,0,0,0" Click="menuButton_Click" >
+            <Button x:Name="menuButton" Grid.Column="0" Width="32" Height="32" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="0,0,0,0" Click="MenuButton_Click" >
                 <SymbolIcon Symbol="Download" Foreground="White"/>
             </Button>
             <!-- Title (non-clickable layer) -->
-            <TextBlock x:Name="textBlock_Title" Grid.Column="1" Text="Finite Element Analysis Explorer - Results"  Foreground="White" VerticalAlignment="Center" Margin="6,0,6,0"/>
+            <TextBlock x:Name="TextBlock_Title" Grid.Column="1" Text="Finite Element Analysis Explorer - Results"  Foreground="White" VerticalAlignment="Center" Margin="6,0,6,0"/>
 
             <!-- title bar area (Middle layer) Trick: set this as custom title bar-->
             <Grid x:Name="trickyTitleBar" Grid.Column="2" Background="Transparent"/>

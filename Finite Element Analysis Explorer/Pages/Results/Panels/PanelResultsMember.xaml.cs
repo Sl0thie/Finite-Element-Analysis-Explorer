@@ -1,14 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class PanelResultsMember : Page
     {
-        //private bool isLoaded = false;
+        // private bool isLoaded = false;
         public PanelResultsMember()
         {
             this.InitializeComponent();
@@ -16,18 +13,15 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            textBlock_Title.Text = "Member " + Model.Members.CurrentMember.Index;
+            TextBlock_Title.Text = "Member " + Model.Members.CurrentMember.Index;
             constraintsDisplay_Currrent.DisplayOnly = true;
 
             TextBlock_SelectedProfile.Text = Model.Members.CurrentMember.Section.SectionProfile;
             TextBlock_SelectedMaterial.Text = Model.Members.CurrentMember.Section.Material;
 
-
             doubleValue_NormalStress.DisplayOnly = true;
             doubleValue_NormalStress.UnitType = UnitType.Pressure;
             doubleValue_NormalStress.SetTheValue(Model.Members.CurrentMember.NormalStress);
-
-
 
             doubleValue_DisplacementX.DisplayOnly = true;
             doubleValue_DisplacementX.UnitType = UnitType.Length;
@@ -44,7 +38,6 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_DisplacementM.Axis = 3;
             doubleValue_DisplacementM.SetValue(Model.Members.CurrentMember.NodeNear.Displacement.M, Model.Members.CurrentMember.NodeFar.Displacement.M);
 
-
             doubleValue_LocationX.DisplayOnly = true;
             doubleValue_LocationX.UnitType = UnitType.Length;
             doubleValue_LocationX.Axis = 1;
@@ -59,7 +52,6 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_LocationM.UnitType = UnitType.Angle;
             doubleValue_LocationM.Axis = 3;
             doubleValue_LocationM.SetValue(Model.Members.CurrentMember.NodeNear.PositionDisplaced.M, Model.Members.CurrentMember.NodeFar.PositionDisplaced.M);
-
 
             doubleValue_ReactionsX.DisplayOnly = true;
             doubleValue_ReactionsX.UnitType = UnitType.Force;
@@ -76,23 +68,20 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_ReactionsM.Axis = 3;
             doubleValue_ReactionsM.SetValue(Model.Members.CurrentMember.NodeNear.LoadReaction.M, Model.Members.CurrentMember.NodeFar.LoadReaction.M);
 
+            // doubleValue_InternalLoadsX.DisplayOnly = true;
+            // doubleValue_InternalLoadsX.UnitType = UnitType.Force;
+            // doubleValue_InternalLoadsX.Axis = 1;
+            // doubleValue_InternalLoadsX.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.X, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.X);
 
-            //doubleValue_InternalLoadsX.DisplayOnly = true;
-            //doubleValue_InternalLoadsX.UnitType = UnitType.Force;
-            //doubleValue_InternalLoadsX.Axis = 1;
-            //doubleValue_InternalLoadsX.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.X, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.X);
+            // doubleValue_InternalLoadsY.DisplayOnly = true;
+            // doubleValue_InternalLoadsY.UnitType = UnitType.Force;
+            // doubleValue_InternalLoadsY.Axis = 2;
+            // doubleValue_InternalLoadsY.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.Y, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.Y);
 
-
-            //doubleValue_InternalLoadsY.DisplayOnly = true;
-            //doubleValue_InternalLoadsY.UnitType = UnitType.Force;
-            //doubleValue_InternalLoadsY.Axis = 2;
-            //doubleValue_InternalLoadsY.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.Y, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.Y);
-
-            //doubleValue_InternalLoadsM.DisplayOnly = true;
-            //doubleValue_InternalLoadsM.UnitType = UnitType.Moment;
-            //doubleValue_InternalLoadsM.Axis = 3;
-            //doubleValue_InternalLoadsM.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.M, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.M);
-
+            // doubleValue_InternalLoadsM.DisplayOnly = true;
+            // doubleValue_InternalLoadsM.UnitType = UnitType.Moment;
+            // doubleValue_InternalLoadsM.Axis = 3;
+            // doubleValue_InternalLoadsM.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.M, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.M);
             doubleValue_InternalLoadsX.DisplayOnly = true;
             doubleValue_InternalLoadsX.UnitType = UnitType.Force;
             doubleValue_InternalLoadsX.Axis = 1;
@@ -107,16 +96,6 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_InternalLoadsM.UnitType = UnitType.Moment;
             doubleValue_InternalLoadsM.Axis = 3;
             doubleValue_InternalLoadsM.SetValue(-Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.M, Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.M);
-
-
-
-
-
-
-
-
-
-
 
             doubleValue_Length.DisplayOnly = true;
             doubleValue_Length.UnitType = UnitType.Length;
@@ -154,13 +133,11 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_LengthDifferenceYAxis.Title = "Difference (Y axis)";
             doubleValue_LengthDifferenceYAxis.SetTheValue(Model.Members.CurrentMember.LengthDifferenceYAxis);
 
-
             doubleValue_LengthRatio.DisplayOnly = true;
             doubleValue_LengthRatio.UnitType = UnitType.Unitless;
             doubleValue_LengthRatio.DisplayOnly = true;
             doubleValue_LengthRatio.Title = "Length Ratio";
             doubleValue_LengthRatio.SetTheValue(Model.Members.CurrentMember.LengthRatio);
-
 
             doubleValue_Angle.DisplayOnly = true;
             doubleValue_Angle.UnitType = UnitType.Angle;
@@ -207,15 +184,10 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_CostTransport.UnitType = UnitType.Money;
             SingleValue_CostTransport.SetTheValue(0);
 
-
             SingleValue_CostTotal.DisplayOnly = true;
             SingleValue_CostTotal.Title = "Total Cost";
             SingleValue_CostTotal.UnitType = UnitType.Money;
             SingleValue_CostTotal.SetTheValue(0);
-
-
-
-
 
             doubleValue_LoadsX.UnitType = UnitType.Force;
             doubleValue_LoadsX.DisplayOnly = false;
@@ -237,7 +209,6 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_Linear.Axis = 4;
             doubleValue_Linear.SetValue(Model.Members.CurrentMember.LDLNear, Model.Members.CurrentMember.LDLFar);
 
-
             doubleValue_SuperpositionLocalX.DisplayOnly = true;
             doubleValue_SuperpositionLocalY.DisplayOnly = true;
             doubleValue_SuperpositionLocalM.DisplayOnly = true;
@@ -251,13 +222,9 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_SuperpositionLocalY.SetValue(Model.Members.CurrentMember.NodeNear.SuperPosition.Y, Model.Members.CurrentMember.NodeFar.SuperPosition.Y);
             doubleValue_SuperpositionLocalM.SetValue(Model.Members.CurrentMember.NodeNear.SuperPosition.M, Model.Members.CurrentMember.NodeFar.SuperPosition.M);
 
-
             doubleValue_NormalStress.DisplayOnly = true;
             doubleValue_NormalStress.UnitType = UnitType.Pressure;
             doubleValue_NormalStress.SetTheValue(Model.Members.CurrentMember.NormalStress);
-
-
-
         }
 
         #region Common Menus
@@ -294,29 +261,29 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
-            //New File.
+            // New File.
             FileManager.NewFile();
         }
 
         private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
-            //Open file.
+            // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                //Debug.WriteLine("File Picked, Now loading");
+                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
-            //Save File.
+            // Save File.
             await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            //Save file as.
+            // Save file as.
             if (await FileManager.PickFileToSave())
             {
                 await FileManager.SaveFile();
@@ -328,14 +295,13 @@ namespace Finite_Element_Analysis_Explorer
             Application.Current.Exit();
         }
 
-
         #endregion
 
         #region Changes per Page
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)
@@ -360,7 +326,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         #endregion

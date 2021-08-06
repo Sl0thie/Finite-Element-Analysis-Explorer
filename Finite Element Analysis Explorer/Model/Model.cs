@@ -7,15 +7,14 @@ namespace Finite_Element_Analysis_Explorer
     {
         #region Operations
 
-        //static Model()
-        //{
+        // static Model()
+        // {
         //    members = new MemberCollection();
         //    nodes = new NodeConcurrentCollection();
         //    sections = new SectionCollection();
         //    materials = new MaterialCollection();
         //    sectionProfiles = new SectionProfileCollection();
-        //}
-
+        // }
         #endregion
 
         #region Properties
@@ -23,10 +22,11 @@ namespace Finite_Element_Analysis_Explorer
         #region Collections
 
         internal static volatile int TotalMembers;
-        //internal static volatile int TotalNodes;
-        //internal static volatile int TotalSegments;
 
+        // internal static volatile int TotalNodes;
+        // internal static volatile int TotalSegments;
         private static MemberCollection members = new MemberCollection();
+
         internal static MemberCollection Members
         {
             get
@@ -36,6 +36,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static NodeConcurrentCollection nodes = new NodeConcurrentCollection();
+
         internal static NodeConcurrentCollection Nodes
         {
             get
@@ -45,6 +46,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static SectionCollection sections = new SectionCollection();
+
         internal static SectionCollection Sections
         {
             get
@@ -54,6 +56,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static MaterialCollection materials = new MaterialCollection();
+
         internal static MaterialCollection Materials
         {
             get
@@ -63,6 +66,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static SectionProfileCollection sectionProfiles = new SectionProfileCollection();
+
         internal static SectionProfileCollection SectionProfiles
         {
             get
@@ -76,16 +80,17 @@ namespace Finite_Element_Analysis_Explorer
         internal static ConcurrentBag<Segment> SegmentsWithLinearLoad = new ConcurrentBag<Segment>();
 
         private static decimal largestLinear;
+
         internal static decimal LargestLinear
         {
             get { return largestLinear; }
             set { largestLinear = value; }
         }
 
-
         #region Equlibrim Properties
 
         private static decimal forceX;
+
         public static decimal ForceX
         {
             get { return forceX; }
@@ -93,6 +98,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal reactionX;
+
         public static decimal ReactionX
         {
             get { return reactionX; }
@@ -136,6 +142,7 @@ namespace Finite_Element_Analysis_Explorer
         #region Cost
 
         private static decimal totalCost;
+
         public static decimal TotalCost
         {
             get { return totalCost; }
@@ -143,6 +150,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal materialCost;
+
         public static decimal MaterialCost
         {
             get { return materialCost; }
@@ -150,6 +158,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal nodeCost;
+
         public static decimal NodeCost
         {
             get { return nodeCost; }
@@ -157,6 +166,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal transportCost;
+
         public static decimal TransportCost
         {
             get { return transportCost; }
@@ -164,12 +174,12 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal elevationCost;
+
         public static decimal ElevationCost
         {
             get { return elevationCost; }
             set { elevationCost = value; }
         }
-
 
         #endregion
 
@@ -190,6 +200,7 @@ namespace Finite_Element_Analysis_Explorer
                     {
                         Construction.Current.ShowMember();
                     }
+
                     break;
 
                 case PageState.FileLoading:
@@ -200,7 +211,6 @@ namespace Finite_Element_Analysis_Explorer
                     Construction.Current.ShowSection();
                     break;
 
-
                 case PageState.Results:
                     if (ReferenceEquals(null, Model.members.CurrentMember))
                     {
@@ -210,6 +220,7 @@ namespace Finite_Element_Analysis_Explorer
                     {
                         Results.Current.ShowMember();
                     }
+
                     break;
 
                 case PageState.Solver:
@@ -263,7 +274,6 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         internal static void Check()
         {
-
         }
 
         /// <summary>
@@ -271,7 +281,6 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         internal static void Relocate()
         {
-
         }
 
         internal static void Output()
@@ -281,23 +290,22 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  " + nodes.Count + " nodes");
             Debug.WriteLine("  " + sections.Count + " sections");
             Debug.WriteLine("  " + materials.Count + " materials");
-            Debug.WriteLine("");
+            Debug.WriteLine(string.Empty);
 
-            foreach (var Item in Model.Members)
+            foreach (var item in Model.Members)
             {
-                Item.Value.Output();
+                item.Value.Output();
 
-                foreach (var nextItem in Item.Value.Segments)
+                foreach (var nextItem in item.Value.Segments)
                 {
                     nextItem.Value.Output();
                 }
             }
 
-            foreach (var Item in Model.Nodes)
+            foreach (var item in Model.Nodes)
             {
-                Item.Value.Output();
+                item.Value.Output();
             }
-
         }
 
         #endregion
@@ -309,7 +317,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public static bool Shrink()
         {
-            //Search for unassigned nodes.
+            // Search for unassigned nodes.
             foreach (var Item in nodes)
             {
                 Item.Value.IsValid = false;
@@ -331,6 +339,7 @@ namespace Finite_Element_Analysis_Explorer
                     Model.nodes.RemoveNode(item.Value);
                 }
             }
+
             return true;
         }
 

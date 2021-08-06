@@ -33,29 +33,29 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible" Click="Button_Save_Click">
+            <Button x:Name="Button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible" Click="Button_Save_Click">
 
                 <SymbolIcon Symbol="Back" Foreground="White" Width="32" Height="32"/>
             </Button>
 
-            <Button x:Name="button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
+            <Button x:Name="Button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
                 <SymbolIcon Symbol="Sync" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
+            <Button x:Name="Button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
                 <SymbolIcon Symbol="Edit" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
+            <Button x:Name="Button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
                 <SymbolIcon Symbol="Flag" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
 
-            <Button x:Name="button_Sections"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
+            <Button x:Name="Button_Sections"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
+            <Button x:Name="Button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
 
-            <Button x:Name="button_CreateNewSectionItem"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
+            <Button x:Name="Button_CreateNewSectionItem"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="Section"  />
@@ -66,10 +66,10 @@
                 <SymbolIcon Symbol="Add" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
 
-            <Button x:Name="button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32"  Visibility="Collapsed">
+            <Button x:Name="Button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32"  Visibility="Collapsed">
                 <SymbolIcon Symbol="Help" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
-            <Button x:Name="button_Options"  Grid.Column="7" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
+            <Button x:Name="Button_Options"  Grid.Column="7" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed">
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Name="menuFlyout_SettingsGeneral" Text="General" />

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     internal struct NodalLoad
     {
@@ -23,6 +17,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal x;
+
         internal decimal X
         {
             get { return x; }
@@ -30,6 +25,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal y;
+
         internal decimal Y
         {
             get { return y; }
@@ -37,6 +33,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal m;
+
         internal decimal M
         {
             get { return m; }

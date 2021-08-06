@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock Text="Settings"/>
-        <Button x:Name="button_Ok" Content="Ok"/>
+        <Button x:Name="Button_Ok" Content="Ok"/>
         <ScrollViewer>
             <StackPanel>
                 

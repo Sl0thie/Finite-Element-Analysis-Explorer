@@ -31,13 +31,13 @@
         private static Matrix<double> dk;
         private static Matrix<double> du;
 
-        private static double[][] DK;
-        private static double[][] DK11;
-        private static double[][] DK21;
+        private static double[][] sdk;
+        private static double[][] sdk11;
+        private static double[][] sdk21;
 
-        private static double[] DQk;
-        private static double[] DQu;
-        private static double[] DDu;
+        private static double[] dqk;
+        private static double[] dqu;
+        private static double[] ddu;
 
         #region Thread Communications
 
@@ -60,26 +60,32 @@
 
         #endregion
 
-        #region Preperation
+        #region Preparation
 
+        /// <summary>
+        /// Resets the display and shows the welcome message.
+        /// </summary>
         internal static async void ResetDisplayAndShowWelcomeMessage()
         {
             MainTimer.Start();
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                    () =>
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () =>
                     {
                         SolverDisplay.Current.ClearMessages();
-                    }
-                    );
+                    });
 
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Starting solver DoubleLUP.", 0);
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Local matrices for elements and nodes have been created during construction stage.", 0);
         }
 
+        /// <summary>
+        /// Resets the properties for the solver.
+        /// </summary>
         internal static void ResetPropertiesForSolver()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Reset solver properties.", 0);
 
             try
@@ -88,7 +94,6 @@
                 Camera.LargestLengthRatio = 0;
                 Camera.LargestAxialRatio = 0;
                 hasErrors = false;
-
 
                 unrestrainedDOF = 0;
                 restrainedDOF = 0;
@@ -105,12 +110,12 @@
                 dk = null;
                 du = null;
 
-                DK = null;
-                DK11 = null;
-                DK21 = null;
-                DQk = null;
-                DQu = null;
-                DDu = null;
+                sdk = null;
+                sdk11 = null;
+                sdk21 = null;
+                dqk = null;
+                dqu = null;
+                ddu = null;
 
                 Model.ForceX = 0;
                 Model.ForceY = 0;
@@ -128,14 +133,16 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
-
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Displays the model properties.
+        /// </summary>
         internal static void DisplayModelProperties()
         {
             AddMessage(-1, -1, "Model Properties.", 0);
@@ -144,22 +151,24 @@
             AddMessage(-1, -1, "    " + Model.Nodes.Count.ToString("#,###") + " Nodes.", 1);
             AddMessage(-1, -1, "    " + Model.Nodes.NodesWithConstraints.Count.ToString("#,###") + " nodes with constraints.", 1);
             AddMessage(-1, -1, "    " + Model.Nodes.NodesWithNodalLoads.Count.ToString("#,###") + " nodes with nodal loads.", 1);
-
         }
 
+        /// <summary>
+        /// Shrinks the model.
+        /// </summary>
         internal static void ShrinkModel()
         {
             stageStart = MainTimer.ElapsedMilliseconds;
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Shrinking Model. (searching for orphan nodes)", 0);
 
-            int PreviousNodeCount = 0;
-            int PostNodeCount = 0;
+            int previousNodeCount = 0;
+            int postNodeCount = 0;
 
             try
             {
-                PreviousNodeCount = Model.Nodes.Count;
+                previousNodeCount = Model.Nodes.Count;
                 Model.Shrink();
-                PostNodeCount = Model.Nodes.Count;
+                postNodeCount = Model.Nodes.Count;
             }
             catch (Exception ex)
             {
@@ -168,13 +177,16 @@
                 AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    " + ex.Message, 2);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Started with " + PreviousNodeCount + " nodes.", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Ended with " + PostNodeCount + " nodes.", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Removed " + (PreviousNodeCount - PostNodeCount) + " nodes.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Started with " + previousNodeCount + " nodes.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Ended with " + postNodeCount + " nodes.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Removed " + (previousNodeCount - postNodeCount) + " nodes.", 1);
 
             AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Saves to file.
+        /// </summary>
         internal static async void SaveFile()
         {
             stageStart = MainTimer.ElapsedMilliseconds;
@@ -185,6 +197,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Assigns code numbers to degrees or freedoms on nodes.
+        /// </summary>
         internal static void AssignCodeNumbersToDegreesOfFreedom()
         {
             Stopwatch taskTimer = new Stopwatch();
@@ -194,42 +209,46 @@
 
             try
             {
-                //Assign code numbers to the unrestrained first.
-                foreach (var Item in Model.Nodes)
+                // Assign code numbers to the unrestrained first.
+                foreach (var node in Model.Nodes)
                 {
-                    if (Item.Value.Constraints.X == false)
+                    if (node.Value.Constraints.X == false)
                     {
-                        Item.Value.Codes = new Codes(unrestrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
+                        node.Value.Codes = new Codes(unrestrainedDOF, node.Value.Codes.Y, node.Value.Codes.M);
                         unrestrainedDOF++;
                     }
-                    if (Item.Value.Constraints.Y == false)
+
+                    if (node.Value.Constraints.Y == false)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, unrestrainedDOF, Item.Value.Codes.M);
+                        node.Value.Codes = new Codes(node.Value.Codes.X, unrestrainedDOF, node.Value.Codes.M);
                         unrestrainedDOF++;
                     }
-                    if (Item.Value.Constraints.M == false)
+
+                    if (node.Value.Constraints.M == false)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, unrestrainedDOF);
+                        node.Value.Codes = new Codes(node.Value.Codes.X, node.Value.Codes.Y, unrestrainedDOF);
                         unrestrainedDOF++;
                     }
                 }
 
-                //Then assign code number to the remaining.
-                foreach (var Item in Model.Nodes)
+                // Then assign code number to the remaining.
+                foreach (var node in Model.Nodes)
                 {
-                    if (Item.Value.Constraints.X == true)
+                    if (node.Value.Constraints.X == true)
                     {
-                        Item.Value.Codes = new Codes(unrestrainedDOF + restrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
+                        node.Value.Codes = new Codes(unrestrainedDOF + restrainedDOF, node.Value.Codes.Y, node.Value.Codes.M);
                         restrainedDOF++;
                     }
-                    if (Item.Value.Constraints.Y == true)
+
+                    if (node.Value.Constraints.Y == true)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, unrestrainedDOF + restrainedDOF, Item.Value.Codes.M);
+                        node.Value.Codes = new Codes(node.Value.Codes.X, unrestrainedDOF + restrainedDOF, node.Value.Codes.M);
                         restrainedDOF++;
                     }
-                    if (Item.Value.Constraints.M == true)
+
+                    if (node.Value.Constraints.M == true)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, unrestrainedDOF + restrainedDOF);
+                        node.Value.Codes = new Codes(node.Value.Codes.X, node.Value.Codes.Y, unrestrainedDOF + restrainedDOF);
                         restrainedDOF++;
                     }
                 }
@@ -246,82 +265,89 @@
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Create superposition values from segments to nodes.
+        /// </summary>
         internal static void CreateSuperpositionValuesFromSegmentsToNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Superposition Stage One.", 0);
 
             try
             {
-                foreach (var NodeItem in Model.Nodes)
+                foreach (var node in Model.Nodes)
                 {
-                    NodeItem.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
-                    NodeItem.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
+                    node.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
+                    node.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
                 }
-                foreach (var Item in Model.Members)
+
+                foreach (var member in Model.Members)
                 {
-                    foreach (var nextSegment in Item.Value.Segments)
+                    foreach (var nextSegment in member.Value.Segments)
                     {
                         nextSegment.Value.NodeNear.SuperPosition = new NodalLoad(
                             nextSegment.Value.NodeNear.SuperPosition.X + nextSegment.Value.NearSuperGlobal.X,
                             nextSegment.Value.NodeNear.SuperPosition.Y + nextSegment.Value.NearSuperGlobal.Y,
-                            nextSegment.Value.NodeNear.SuperPosition.M + nextSegment.Value.NearSuperGlobal.M
-                            );
+                            nextSegment.Value.NodeNear.SuperPosition.M + nextSegment.Value.NearSuperGlobal.M);
 
                         nextSegment.Value.NodeFar.SuperPosition = new NodalLoad(
                             nextSegment.Value.NodeFar.SuperPosition.X + nextSegment.Value.FarSuperGlobal.X,
                             nextSegment.Value.NodeFar.SuperPosition.Y + nextSegment.Value.FarSuperGlobal.Y,
-                            nextSegment.Value.NodeFar.SuperPosition.M + nextSegment.Value.FarSuperGlobal.M
-                            );
+                            nextSegment.Value.NodeFar.SuperPosition.M + nextSegment.Value.FarSuperGlobal.M);
                     }
                 }
             }
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #region Transfer from Nodes.
 
+        /// <summary>
+        /// Get the QK values from sub nodes.
+        /// </summary>
         internal static void GetQkFromSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Qk] vector from model data.", 0);
 
             try
             {
-                DQk = DoubleMatrix.VectorCreate(unrestrainedDOF);
-                //Get the Qk matrix.
+                dqk = DoubleMatrix.VectorCreate(unrestrainedDOF);
+
+                // Get the Qk matrix.
                 qk = Matrix<double>.Build.Dense(unrestrainedDOF, 1);
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-
-                        if (Item.Value.Codes.X == j)
+                        if (node.Value.Codes.X == j)
                         {
-                            qk[j, 0] = (double)Item.Value.Load.X + (double)Item.Value.SuperPosition.X;
+                            qk[j, 0] = (double)node.Value.Load.X + (double)node.Value.SuperPosition.X;
 
-                            DQk[j] = (double)Item.Value.Load.X + (double)Item.Value.SuperPosition.X;
+                            dqk[j] = (double)node.Value.Load.X + (double)node.Value.SuperPosition.X;
                         }
-                        if (Item.Value.Codes.Y == j)
-                        {
-                            qk[j, 0] = (double)Item.Value.Load.Y + (double)Item.Value.SuperPosition.Y;
 
-                            DQk[j] = (double)Item.Value.Load.Y + (double)Item.Value.SuperPosition.Y;
+                        if (node.Value.Codes.Y == j)
+                        {
+                            qk[j, 0] = (double)node.Value.Load.Y + (double)node.Value.SuperPosition.Y;
+
+                            dqk[j] = (double)node.Value.Load.Y + (double)node.Value.SuperPosition.Y;
                         }
-                        if (Item.Value.Codes.M == j)
-                        {
-                            qk[j, 0] = (double)Item.Value.Load.M + (double)Item.Value.SuperPosition.M;
 
-                            DQk[j] = (double)Item.Value.Load.M + (double)Item.Value.SuperPosition.M;
+                        if (node.Value.Codes.M == j)
+                        {
+                            qk[j, 0] = (double)node.Value.Load.M + (double)node.Value.SuperPosition.M;
+
+                            dqk[j] = (double)node.Value.Load.M + (double)node.Value.SuperPosition.M;
                         }
                     }
                 }
@@ -329,84 +355,98 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Get the QU values from sub nodes.
+        /// </summary>
         internal static void GetQuFromSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Qu] vector from model data.", 0);
 
             try
             {
-                DQu = DoubleMatrix.VectorCreate(restrainedDOF);
-                //Get the Qu matrix.
+                dqu = DoubleMatrix.VectorCreate(restrainedDOF);
+
+                // Get the Qu matrix.
                 qu = Matrix<double>.Build.Dense(restrainedDOF, 1);
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + unrestrainedDOF)
+                        if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            qu[j, 0] = (double)Item.Value.Load.X;
+                            qu[j, 0] = (double)node.Value.Load.X;
 
-                            DQu[j] = (double)Item.Value.Load.X;
+                            dqu[j] = (double)node.Value.Load.X;
                         }
-                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
-                        {
-                            qu[j, 0] = (double)Item.Value.Load.Y;
 
-                            DQu[j] = (double)Item.Value.Load.Y;
+                        if (node.Value.Codes.Y == j + unrestrainedDOF)
+                        {
+                            qu[j, 0] = (double)node.Value.Load.Y;
+
+                            dqu[j] = (double)node.Value.Load.Y;
                         }
-                        if (Item.Value.Codes.M == j + unrestrainedDOF)
-                        {
-                            qu[j, 0] = (double)Item.Value.Load.M;
 
-                            DQu[j] = (double)Item.Value.Load.M;
+                        if (node.Value.Codes.M == j + unrestrainedDOF)
+                        {
+                            qu[j, 0] = (double)node.Value.Load.M;
+
+                            dqu[j] = (double)node.Value.Load.M;
                         }
                     }
                 }
+
                 AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Gets the DK values from the sub nodes.
+        /// </summary>
         internal static void GetDkFromSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Dk] vector from model data.", 0);
 
             try
             {
-                //Get the Qu matrix.
+                // Get the Qu matrix.
                 dk = Matrix<double>.Build.Dense(restrainedDOF, 1);
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + unrestrainedDOF)
+                        if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            dk[j, 0] = (double)Item.Value.Displacement.X;
+                            dk[j, 0] = (double)node.Value.Displacement.X;
                         }
-                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            dk[j, 0] = (double)Item.Value.Displacement.Y;
+                            dk[j, 0] = (double)node.Value.Displacement.Y;
                         }
-                        if (Item.Value.Codes.M == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            dk[j, 0] = (double)Item.Value.Displacement.M;
+                            dk[j, 0] = (double)node.Value.Displacement.M;
                         }
                     }
                 }
@@ -414,46 +454,52 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
             AddMessage(-1, -1, "    Dk " + dk.ColumnCount + " " + dk.RowCount, 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Gets the DU values from the sub nodes.
+        /// </summary>
         internal static void GetDuFromSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Du] vector from model data.", 0);
 
             try
             {
-                DDu = DoubleMatrix.VectorCreate(unrestrainedDOF);
-                //Get the Qk vector.
+                ddu = DoubleMatrix.VectorCreate(unrestrainedDOF);
+
+                // Get the Qk vector.
                 du = Matrix<double>.Build.Dense(unrestrainedDOF, 1, 0);
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j)
+                        if (node.Value.Codes.X == j)
                         {
-                            du[j, 0] = (double)Item.Value.Displacement.X;
+                            du[j, 0] = (double)node.Value.Displacement.X;
 
-                            DDu[j] = (double)Item.Value.Displacement.X;
+                            ddu[j] = (double)node.Value.Displacement.X;
                         }
-                        if (Item.Value.Codes.Y == j)
-                        {
-                            du[j, 0] = (double)Item.Value.Displacement.Y;
 
-                            DDu[j] = (double)Item.Value.Displacement.Y;
+                        if (node.Value.Codes.Y == j)
+                        {
+                            du[j, 0] = (double)node.Value.Displacement.Y;
+
+                            ddu[j] = (double)node.Value.Displacement.Y;
                         }
-                        if (Item.Value.Codes.M == j)
-                        {
-                            du[j, 0] = (double)Item.Value.Displacement.M;
 
-                            DDu[j] = (double)Item.Value.Displacement.M;
+                        if (node.Value.Codes.M == j)
+                        {
+                            du[j, 0] = (double)node.Value.Displacement.M;
+
+                            ddu[j] = (double)node.Value.Displacement.M;
                         }
                     }
                 }
@@ -461,46 +507,50 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
 
         #region Assemble Matrices.
 
+        /// <summary>
+        /// Assembles the stiffness matrix.
+        /// </summary>
         internal static void AssembleStiffnessMatrix()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Assembling global stiffness matrix. {K}", 0);
 
             try
             {
-                //Assemble the stiffness matrix K.
+                // Assemble the stiffness matrix K.
                 totalDOF = Model.Nodes.Count * 3;
-                DK = DoubleMatrix.MatrixCreate(totalDOF, totalDOF);
+                sdk = DoubleMatrix.MatrixCreate(totalDOF, totalDOF);
                 k = Matrix<double>.Build.Dense(totalDOF, totalDOF);
-                int X = 0;
-                int Y = 0;
+                int x = 0;
+                int y = 0;
 
-                foreach (var Item in Model.Members)
+                foreach (var member in Model.Members)
                 {
-                    foreach (var nextItem in Item.Value.Segments)
+                    foreach (var segment in member.Value.Segments)
                     {
-                        int[] enf = { nextItem.Value.NodeNear.Codes.X, nextItem.Value.NodeNear.Codes.Y, nextItem.Value.NodeNear.Codes.M, nextItem.Value.NodeFar.Codes.X, nextItem.Value.NodeFar.Codes.Y, nextItem.Value.NodeFar.Codes.M };
+                        int[] enf = { segment.Value.NodeNear.Codes.X, segment.Value.NodeNear.Codes.Y, segment.Value.NodeNear.Codes.M, segment.Value.NodeFar.Codes.X, segment.Value.NodeFar.Codes.Y, segment.Value.NodeFar.Codes.M };
                         for (int i = 0; i < 6; i++)
                         {
                             for (int j = 0; j < 6; j++)
                             {
-                                X = enf[i];
-                                Y = enf[j];
-                                k[Y, X] = k[Y, X] + (double)nextItem.Value.KMatrix[j, i];
+                                x = enf[i];
+                                y = enf[j];
+                                k[y, x] = k[y, x] + (double)segment.Value.KMatrix[j, i];
 
-                                DK[Y][X] = DK[Y][X] + (double)nextItem.Value.KMatrix[j, i];
+                                sdk[y][x] = sdk[y][x] + (double)segment.Value.KMatrix[j, i];
                             }
                         }
                     }
@@ -509,23 +559,27 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
             AddMessage(-1, -1, "    Total number of elements within matrix is " + (totalDOF * totalDOF).ToString("#,###") + ".", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Assembles the K matrices.
+        /// </summary>
         internal static void AssembleKMatrices()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Divide K matrix into four matries {K11}, {K12}, {K21}, {K22}.", 0);
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Divide K matrix into four matrices {K11}, {K12}, {K21}, {K22}.", 0);
 
             try
             {
-                //Resize and fill the K** Matrices.
+                // Resize and fill the K** Matrices.
                 k11 = Matrix<double>.Build.Dense(unrestrainedDOF, unrestrainedDOF);
                 for (int j = 0; j < k11.RowCount; j++)
                 {
@@ -534,8 +588,8 @@
                         k11[j, i] = k[j, i];
                     }
                 }
-                AddMessage(-1, -1, "    {K11} " + k11.ColumnCount.ToString("#,###") + " x " + k11.RowCount.ToString("#,###") + " = " + (k11.ColumnCount * k11.RowCount).ToString("#,###") + " elements.", 1);
 
+                AddMessage(-1, -1, "    {K11} " + k11.ColumnCount.ToString("#,###") + " x " + k11.RowCount.ToString("#,###") + " = " + (k11.ColumnCount * k11.RowCount).ToString("#,###") + " elements.", 1);
 
                 k12 = Matrix<double>.Build.Dense(unrestrainedDOF, restrainedDOF);
                 for (int j = 0; j < k12.RowCount; j++)
@@ -545,6 +599,7 @@
                         k12[j, i] = k[j, i + unrestrainedDOF];
                     }
                 }
+
                 AddMessage(-1, -1, "    {K12} " + k12.ColumnCount.ToString("#,###") + " x " + k12.RowCount.ToString("#,###") + " = " + (k12.ColumnCount * k12.RowCount).ToString("#,###") + " elements.", 1);
 
                 k21 = Matrix<double>.Build.Dense(restrainedDOF, unrestrainedDOF);
@@ -555,9 +610,8 @@
                         k21[j, i] = k[j + unrestrainedDOF, i];
                     }
                 }
+
                 AddMessage(-1, -1, "    {K21} " + k21.ColumnCount.ToString("#,###") + " x " + k21.RowCount.ToString("#,###") + " = " + (k21.ColumnCount * k21.RowCount).ToString("#,###") + " elements.", 1);
-
-
 
                 k22 = Matrix<double>.Build.Dense(restrainedDOF, restrainedDOF);
                 for (int j = 0; j < k22.RowCount; j++)
@@ -567,127 +621,133 @@
                         k22[j, i] = k[j + unrestrainedDOF, i + unrestrainedDOF];
                     }
                 }
+
                 AddMessage(-1, -1, "    {K22} " + k22.ColumnCount.ToString("#,###") + " x " + k22.RowCount.ToString("#,###") + " = " + (k22.ColumnCount * k22.RowCount).ToString("#,###") + " elements.", 1);
 
-
-
-                DK11 = DoubleMatrix.MatrixCreate(unrestrainedDOF, unrestrainedDOF);
-                for (int j = 0; j < DK11.Length; j++)
+                sdk11 = DoubleMatrix.MatrixCreate(unrestrainedDOF, unrestrainedDOF);
+                for (int j = 0; j < sdk11.Length; j++)
                 {
-                    for (int i = 0; i < DK11[1].Length; i++)
+                    for (int i = 0; i < sdk11[1].Length; i++)
                     {
-                        DK11[j][i] = (double)k[j, i];
+                        sdk11[j][i] = (double)k[j, i];
                     }
                 }
 
-                DK21 = DoubleMatrix.MatrixCreate(restrainedDOF, unrestrainedDOF);
-                for (int j = 0; j < DK21.Length; j++)
+                sdk21 = DoubleMatrix.MatrixCreate(restrainedDOF, unrestrainedDOF);
+                for (int j = 0; j < sdk21.Length; j++)
                 {
-                    for (int i = 0; i < DK21[1].Length; i++)
+                    for (int i = 0; i < sdk21[1].Length; i++)
                     {
-                        DK21[j][i] = (double)k[j, i];
+                        sdk21[j][i] = (double)k[j, i];
                     }
                 }
 
-                //K is no longer nessacary so remove from memory to improve performance.
+                // K is no longer necessary so remove from memory to improve performance.
                 k = null;
 
                 // Dimension Du to prevent errors.
                 du = Matrix<double>.Build.Dense(unrestrainedDOF, 1, 0);
-
-
             }
-
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
 
         #region Solve
 
+        /// <summary>
+        /// Solve for DU.
+        /// </summary>
         internal static void SolveForDu()
         {
-            //Solve for the displacements.
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            // Solve for the displacements.
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Solve For Du", 0);
-            //AddMessage(-1, -1, "    Du " + Du.ColumnCount + " " + Du.RowCount,1);
-            //AddMessage(-1, -1, "    Qk " + Qk.ColumnCount + " " + Qk.RowCount,1);
-            //AddMessage(-1, -1, "    K11 " + K11.ColumnCount + " " + K11.RowCount,1);
 
             try
             {
                 du = k11.Inverse() * qk;
-                DDu = DoubleMatrix.SystemSolve(DK11, DQk);
+                ddu = DoubleMatrix.SystemSolve(sdk11, dqk);
             }
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
             AddMessage(-1, -1, "    Qk " + qk.ColumnCount + " " + qk.RowCount, 1);
             AddMessage(-1, -1, "    K11 " + k11.ColumnCount + " " + k11.RowCount, 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Solve for QU.
+        /// </summary>
         internal static void SolveForQu()
         {
-            //Solve for the reactions.
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            // Solve for the reactions.
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Solve For Qu", 0);
 
             try
             {
                 qu = k21 * du;
-                DQu = DoubleMatrix.MatrixVectorProduct(DK21, DDu);
+                dqu = DoubleMatrix.MatrixVectorProduct(sdk21, ddu);
             }
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
 
         #region Transfer to Nodes.
 
+        /// <summary>
+        /// Set QK values to sub nodes.
+        /// </summary>
         internal static void SetQkToSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Qk] vector from model data.", 0);
 
             try
             {
-                //Set the Qk matrix.
+                // Set the Qk matrix.
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j)
+                        if (node.Value.Codes.X == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad((decimal)qk[j, 0], Item.Value.JointLoad.Y, Item.Value.JointLoad.M);
+                            node.Value.JointLoad = new NodalLoad((decimal)qk[j, 0], node.Value.JointLoad.Y, node.Value.JointLoad.M);
                         }
-                        if (Item.Value.Codes.Y == j)
+
+                        if (node.Value.Codes.Y == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, (decimal)qk[j, 0], Item.Value.JointLoad.M);
+                            node.Value.JointLoad = new NodalLoad(node.Value.JointLoad.X, (decimal)qk[j, 0], node.Value.JointLoad.M);
                         }
-                        if (Item.Value.Codes.M == j)
+
+                        if (node.Value.Codes.M == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, Item.Value.JointLoad.Y, (decimal)qk[j, 0]);
+                            node.Value.JointLoad = new NodalLoad(node.Value.JointLoad.X, node.Value.JointLoad.Y, (decimal)qk[j, 0]);
                         }
                     }
                 }
@@ -695,37 +755,43 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Set the QU values to sub nodes.
+        /// </summary>
         internal static void SetQuToSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Qu] vector from model data.", 0);
 
             try
             {
-                //Set the Qu matrix.
+                // Set the Qu matrix.
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + unrestrainedDOF)
+                        if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad((decimal)qu[j, 0], Item.Value.LoadReaction.Y, Item.Value.LoadReaction.M);
+                            node.Value.LoadReaction = new NodalLoad((decimal)qu[j, 0], node.Value.LoadReaction.Y, node.Value.LoadReaction.M);
                         }
-                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, (decimal)qu[j, 0], Item.Value.LoadReaction.M);
+                            node.Value.LoadReaction = new NodalLoad(node.Value.LoadReaction.X, (decimal)qu[j, 0], node.Value.LoadReaction.M);
                         }
-                        if (Item.Value.Codes.M == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, Item.Value.LoadReaction.Y, (decimal)qu[j, 0]);
+                            node.Value.LoadReaction = new NodalLoad(node.Value.LoadReaction.X, node.Value.LoadReaction.Y, (decimal)qu[j, 0]);
                         }
                     }
                 }
@@ -733,37 +799,43 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Set the Dk values to sub nodes.
+        /// </summary>
         internal static void SetDkToSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Dk] vector from model data.", 0);
 
             try
             {
-                //Set the Dk matrix. These should be zeros as the fixed dof's are fixed.
+                // Set the Dk matrix. These should be zeros as the fixed dof's are fixed.
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + unrestrainedDOF)
+                        if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point((decimal)dk[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
+                            node.Value.Displacement = new Point((decimal)dk[j, 0], node.Value.Displacement.Y, node.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)dk[j, 0], Item.Value.Displacement.M);
+                            node.Value.Displacement = new Point(node.Value.Displacement.X, (decimal)dk[j, 0], node.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.M == j + unrestrainedDOF)
+
+                        if (node.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)dk[j, 0]);
+                            node.Value.Displacement = new Point(node.Value.Displacement.X, node.Value.Displacement.Y, (decimal)dk[j, 0]);
                         }
                     }
                 }
@@ -771,11 +843,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -783,27 +856,29 @@
         /// </summary>
         internal static void SetDuToSubNodes()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Du] vector from model data.", 0);
 
             try
             {
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var Item in Model.Nodes)
+                    foreach (var node in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j)
+                        if (node.Value.Codes.X == j)
                         {
-                            Item.Value.Displacement = new Point((decimal)du[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
+                            node.Value.Displacement = new Point((decimal)du[j, 0], node.Value.Displacement.Y, node.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.Y == j)
+
+                        if (node.Value.Codes.Y == j)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)du[j, 0], Item.Value.Displacement.M);
+                            node.Value.Displacement = new Point(node.Value.Displacement.X, (decimal)du[j, 0], node.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.M == j)
+
+                        if (node.Value.Codes.M == j)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)du[j, 0]);
+                            node.Value.Displacement = new Point(node.Value.Displacement.X, node.Value.Displacement.Y, (decimal)du[j, 0]);
                         }
                     }
                 }
@@ -811,55 +886,63 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
+
             AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
 
+        /// <summary>
+        /// Updates member and segments from the matrix.
+        /// </summary>
         internal static void UpdateMemberAndSegmentsFromMatrix()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Update Members and Segments from Matrix.", 0);
 
             try
             {
-                foreach (var Item in Model.Members)
+                foreach (var segment in Model.Members)
                 {
-                    foreach (var nextSegment in Item.Value.Segments)
+                    foreach (var nextSegment in segment.Value.Segments)
                     {
                         nextSegment.Value.UpdatePropertiesFromMatrix();
                     }
-                    Item.Value.UpdatePropertiesFromMatrix();
+
+                    segment.Value.UpdatePropertiesFromMatrix();
                 }
             }
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Creates length ratio colors.
+        /// </summary>
         internal static void CreateLengthRatioColors()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Length Ratios.", 0);
 
             try
             {
                 if (Camera.LargestLengthRatio == 0)
                 {
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.LengthRatioColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -870,32 +953,49 @@
                 {
                     decimal compression_ratio = 255 / Camera.LargestLengthRatio;
                     decimal tension_ratio = 255 / Camera.LargestLengthRatio;
-                    byte RatioByte;
+                    byte ratioByte;
 
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.LengthRatio > 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.LengthRatio) * tension_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
-                                RatioByte = (byte)(255 - tmpValue);
-                                nextSegment.Value.LengthRatioColor = Color.FromArgb(255, RatioByte, RatioByte, 255);
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
+
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
+
+                                ratioByte = (byte)(255 - tmpValue);
+                                nextSegment.Value.LengthRatioColor = Color.FromArgb(255, ratioByte, ratioByte, 255);
                             }
                             else if (nextSegment.Value.LengthRatio < 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.LengthRatio) * compression_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
-                                RatioByte = (byte)(255 - tmpValue);
-                                nextSegment.Value.LengthRatioColor = Color.FromArgb(255, 255, RatioByte, RatioByte);
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
+
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
+
+                                ratioByte = (byte)(255 - tmpValue);
+                                nextSegment.Value.LengthRatioColor = Color.FromArgb(255, 255, ratioByte, ratioByte);
                             }
                             else
                             {
                                 nextSegment.Value.LengthRatioColor = Color.FromArgb(255, 255, 255, 255);
                             }
+
                             nextSegment.Value.UpdateColor();
                         }
                     }
@@ -906,27 +1006,29 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
-
+        /// <summary>
+        /// Creates axial ratio colors.
+        /// </summary>
         internal static void CreateAxialRatioColors()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
 
             try
             {
                 if (Camera.LargestAxialRatio == 0)
                 {
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.AxialRatioColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -937,32 +1039,49 @@
                 {
                     decimal compression_ratio = 255 / Camera.LargestAxialRatio;
                     decimal tension_ratio = 255 / Camera.LargestAxialRatio;
-                    byte RatioByte;
+                    byte ratioByte;
 
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.InternalLoadNearLocal.X < 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.InternalLoadNearLocal.X) * tension_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
-                                RatioByte = (byte)(255 - tmpValue);
-                                nextSegment.Value.AxialRatioColor = Color.FromArgb(255, RatioByte, RatioByte, 255);
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
+
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
+
+                                ratioByte = (byte)(255 - tmpValue);
+                                nextSegment.Value.AxialRatioColor = Color.FromArgb(255, ratioByte, ratioByte, 255);
                             }
                             else if (nextSegment.Value.InternalLoadNearLocal.X > 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.InternalLoadNearLocal.X) * compression_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
-                                RatioByte = (byte)(255 - tmpValue);
-                                nextSegment.Value.AxialRatioColor = Color.FromArgb(255, 255, RatioByte, RatioByte);
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
+
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
+
+                                ratioByte = (byte)(255 - tmpValue);
+                                nextSegment.Value.AxialRatioColor = Color.FromArgb(255, 255, ratioByte, ratioByte);
                             }
                             else
                             {
                                 nextSegment.Value.AxialRatioColor = Color.FromArgb(255, 255, 255, 255);
                             }
+
                             nextSegment.Value.UpdateColor();
                         }
                     }
@@ -973,25 +1092,29 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Create normal stress colors.
+        /// </summary>
         internal static void CreateNormalStressColors()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
 
             try
             {
                 if (Camera.LargestNormalStress == 0)
                 {
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -1003,21 +1126,28 @@
                     decimal compression_ratio = 255 / Camera.LargestNormalStress;
                     decimal tension_ratio = 255 / Camera.LargestNormalStress;
 
-                    byte RatioByte;
+                    byte ratioByte;
 
-                    foreach (var Item in Model.Members)
+                    foreach (var member in Model.Members)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.NormalStress < 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.NormalStress) * tension_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
 
-                                RatioByte = (byte)(255 - tmpValue);
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
 
-                                nextSegment.Value.NormalStressColor = Color.FromArgb(255, RatioByte, RatioByte, 255);
+                                ratioByte = (byte)(255 - tmpValue);
+
+                                nextSegment.Value.NormalStressColor = Color.FromArgb(255, ratioByte, ratioByte, 255);
                             }
                             else if (nextSegment.Value.NormalStress > 0)
                             {
@@ -1032,14 +1162,13 @@
                                     tmpValue = 0;
                                 }
 
-                                RatioByte = (byte)(255 - tmpValue);
-                                nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, RatioByte, RatioByte);
+                                ratioByte = (byte)(255 - tmpValue);
+                                nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, ratioByte, ratioByte);
                             }
                             else
                             {
                                 nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, 255, 255);
                             }
-
                         }
                     }
                 }
@@ -1049,13 +1178,16 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Calculates equilibrium values.
+        /// </summary>
         internal static void CalculateEqulibriumValues()
         {
             Stopwatch taskTimer = new Stopwatch();
@@ -1064,18 +1196,18 @@
 
             try
             {
-                foreach (var item in Model.Nodes.NodesWithNodalLoads)
+                foreach (var nodalLoad in Model.Nodes.NodesWithNodalLoads)
                 {
-                    Model.ForceX += item.Value.Load.X;
-                    Model.ForceY += item.Value.Load.Y;
-                    Model.ForceM += item.Value.Load.M;
+                    Model.ForceX += nodalLoad.Value.Load.X;
+                    Model.ForceY += nodalLoad.Value.Load.Y;
+                    Model.ForceM += nodalLoad.Value.Load.M;
                 }
 
-                foreach (var item1 in Model.Nodes.NodesWithReactions)
+                foreach (var nodeWithReaction in Model.Nodes.NodesWithReactions)
                 {
-                    Model.ReactionX += item1.Value.LoadReaction.X;
-                    Model.ReactionY += item1.Value.LoadReaction.Y;
-                    Model.ReactionM += item1.Value.LoadReaction.M;
+                    Model.ReactionX += nodeWithReaction.Value.LoadReaction.X;
+                    Model.ReactionY += nodeWithReaction.Value.LoadReaction.Y;
+                    Model.ReactionM += nodeWithReaction.Value.LoadReaction.M;
                 }
             }
             catch (Exception ex)
@@ -1088,42 +1220,51 @@
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// WIP.
+        /// </summary>
         internal static void CalculateMaterials()
         {
-
         }
 
+        /// <summary>
+        /// WIP.
+        /// </summary>
         internal static void CalculateLabour()
         {
-
         }
 
+        /// <summary>
+        /// Calculate the cost.
+        /// </summary>
         internal static void CalculateCost()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equlibrium Values.", 0);
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
 
             try
             {
-                foreach (var Item in Model.Members)
+                foreach (var member in Model.Members)
                 {
-                    Model.TotalCost += Item.Value.MemberCost;
-                    Model.MaterialCost += Item.Value.MaterialCost;
-                    Model.NodeCost += Item.Value.NodeCost;
+                    Model.TotalCost += member.Value.MemberCost;
+                    Model.MaterialCost += member.Value.MaterialCost;
+                    Model.NodeCost += member.Value.NodeCost;
                 }
             }
-
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
+        /// <summary>
+        /// Display the messages when the solver completes.
+        /// </summary>
         internal static async void DisplayEndMessages()
         {
             AddMessage(-1, -1, "    ", 0);
@@ -1133,7 +1274,6 @@
             {
                 if (Options.AutoFinishSolver)
                 {
-
                     if (!hasWarning)
                     {
                         await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
@@ -1165,6 +1305,5 @@
                 }
             }
         }
-
     }
 }

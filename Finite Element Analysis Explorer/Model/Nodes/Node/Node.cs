@@ -20,7 +20,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal Node()
         {
-
         }
 
         internal Node(int _index, Point _position, Codes _codes, Constraints _constraints, NodalLoad newLoad, bool _isPrimary)
@@ -42,12 +41,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Operations
 
         private int index;
+
         internal int Index
         {
             get { return index; }
         }
 
         private bool isPrimary = false;
+
         internal bool IsPrimary
         {
             get { return isPrimary; }
@@ -55,6 +56,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private bool isValid = false;
+
         internal bool IsValid
         {
             get { return isValid; }
@@ -62,6 +64,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Codes codes;
+
         internal Codes Codes
         {
             get { return codes; }
@@ -73,9 +76,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Constraints
 
         private Constraints constraints;
+
         internal Constraints Constraints
         {
-            get { return constraints; }
+            get
+            {
+                return constraints;
+            }
+
             set
             {
                 constraints = value;
@@ -88,9 +96,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Location
 
         private Point position;
+
         internal Point Position
         {
-            get { return position; }
+            get
+            {
+                return position;
+            }
+
             set
             {
                 position = new Point(value);
@@ -99,6 +112,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 location;
+
         public Vector2 Location
         {
             get { return location; }
@@ -110,9 +124,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Load
 
         private NodalLoad load;
+
         internal NodalLoad Load
         {
-            get { return load; }
+            get
+            {
+                return load;
+            }
+
             set
             {
                 load = value;
@@ -124,9 +143,14 @@ namespace Finite_Element_Analysis_Explorer
         /// Should be zero?
         /// </summary>
         private NodalLoad jointLoad;
+
         internal NodalLoad JointLoad
         {
-            get { return jointLoad; }
+            get
+            {
+                return jointLoad;
+            }
+
             set
             {
                 jointLoad = value;
@@ -134,9 +158,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private NodalLoad loadReaction;
+
         internal NodalLoad LoadReaction
         {
-            get { return loadReaction; }
+            get
+            {
+                return loadReaction;
+            }
+
             set
             {
                 loadReaction = value;
@@ -145,6 +174,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private NodalLoad loadOriginal;
+
         public NodalLoad LoadOriginal
         {
             get { return loadOriginal; }
@@ -156,9 +186,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Displacement
 
         private Point displacement = new Point(0, 0, 0);
+
         internal Point Displacement
         {
-            get { return displacement; }
+            get
+            {
+                return displacement;
+            }
+
             set
             {
                 displacement = value;
@@ -166,6 +201,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Point positionDisplaced = new Point(0, 0, 0);
+
         internal Point PositionDisplaced
         {
             get { return positionDisplaced; }
@@ -177,13 +213,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Superposition
 
         private NodalLoad superPosition;
+
         internal NodalLoad SuperPosition
         {
             get
             {
                 return superPosition;
-
             }
+
             set
             {
                 superPosition = value;
@@ -195,6 +232,7 @@ namespace Finite_Element_Analysis_Explorer
         #region Graphics
 
         private Vector2 forceUnit;
+
         internal Vector2 ForceUnit
         {
             get { return forceUnit; }
@@ -202,6 +240,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 forceUnitRight;
+
         internal Vector2 ForceUnitRight
         {
             get { return forceUnitRight; }
@@ -209,6 +248,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 forceUnitLeft;
+
         internal Vector2 ForceUnitLeft
         {
             get { return forceUnitLeft; }
@@ -216,15 +256,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 forceLine;
+
         public Vector2 ForceLine
         {
             get { return forceLine; }
             set { forceLine = value; }
         }
 
-
-
         private Vector2 reactionUnit;
+
         internal Vector2 ReactionUnit
         {
             get { return reactionUnit; }
@@ -232,6 +272,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 reactionUnitRight;
+
         internal Vector2 ReactionUnitRight
         {
             get { return reactionUnitRight; }
@@ -239,18 +280,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 reactionUnitLeft;
+
         internal Vector2 ReactionUnitLeft
         {
             get { return reactionUnitLeft; }
             set { reactionUnitLeft = value; }
         }
 
-
-
-
-
-
         private Vector2 reactionLine;
+
         public Vector2 ReactionLine
         {
             get { return reactionLine; }
@@ -259,7 +297,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private float forceMagnitude = 0;
         private float reactionMagnitude = 0;
-
 
         #endregion
 
@@ -317,11 +354,10 @@ namespace Finite_Element_Analysis_Explorer
                     Node tmpNode;
                     Model.Nodes.NodesWithNodalLoads.TryRemove(index, out tmpNode);
                     tmpNode = Model.Nodes.NodesWithNodalLoads.GetOrAdd(index, this);
-
                 }
+
                 UpdateNodeGraphics();
             }
-
 
             if (Math.Abs(loadReaction.X) + Math.Abs(loadReaction.Y) == 0)
             {
@@ -343,7 +379,7 @@ namespace Finite_Element_Analysis_Explorer
                 }
             }
 
-            //Camera.FindLargestExternalForce();
+            // Camera.FindLargestExternalForce();
         }
 
         internal void UpdateNodeGraphics()

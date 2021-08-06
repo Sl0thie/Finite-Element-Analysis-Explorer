@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     internal struct Constraints
     {
@@ -121,8 +116,6 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
             }
-
-
         }
 
         internal Constraints(ConstraintType _constraintType)
@@ -226,11 +219,11 @@ namespace Finite_Element_Analysis_Explorer
                 case ConstraintType.Unknown:
                 default:
                     break;
-
             }
         }
 
         private bool x;
+
         public bool X
         {
             get { return x; }
@@ -238,12 +231,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private bool y;
+
         public bool Y
         {
             get { return y; }
             set { y = value; }
         }
+
         private bool m;
+
         public bool M
         {
             get { return m; }
@@ -251,14 +247,11 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private ConstraintType constraintType;
+
         public ConstraintType ConstraintType
         {
             get { return constraintType; }
             set { constraintType = value; }
         }
-
-
-
-
     }
 }

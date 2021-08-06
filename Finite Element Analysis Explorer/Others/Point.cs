@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -14,7 +9,7 @@ namespace Finite_Element_Analysis_Explorer
             x = _x;
             y = _y;
             m = _m;
-            location = new Vector2((float)x, (float)y); //Reverse the sign here and also at the node creation to flip the y axis.
+            location = new Vector2((float)x, (float)y); // Reverse the sign here and also at the node creation to flip the y axis.
         }
 
         internal Point(Point position)
@@ -26,6 +21,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal x;
+
         internal decimal X
         {
             get { return x; }
@@ -33,6 +29,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal y;
+
         internal decimal Y
         {
             get { return y; }
@@ -40,6 +37,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal m;
+
         internal decimal M
         {
             get { return m; }
@@ -47,10 +45,10 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private Vector2 location;
+
         internal Vector2 Location
         {
             get { return location; }
         }
     }
-
 }

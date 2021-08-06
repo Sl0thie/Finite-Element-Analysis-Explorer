@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -21,31 +10,49 @@ namespace Finite_Element_Analysis_Explorer
     /// </summary>
     public sealed partial class DoubleValue : UserControl
     {
+        /// <summary>
+        /// Event for when the value has changed.
+        /// </summary>
         public event EventHandler ValueChanged;
 
+        /// <summary>
+        /// Event for when the near value has changed.
+        /// </summary>
         public event EventHandler NearValueChanged;
 
+        /// <summary>
+        /// Event for when the far value has changed.
+        /// </summary>
         public event EventHandler FarValueChanged;
 
         private decimal multiplicationFactor = 1;
         private decimal nearValue;
+        private decimal farValue;
+        private int axis;
+        private bool displayOnly;
+        private UnitType unitType = UnitType.Unitless;
 
+        /// <summary>
+        /// Gets or sets the near value.
+        /// </summary>
         public decimal NearValue
         {
             get { return nearValue; }
             set { nearValue = value; }
         }
 
-        private decimal farValue;
-
+        /// <summary>
+        /// Gets or sets the far value.
+        /// </summary>
         public decimal FarValue
         {
             get { return farValue; }
             set { farValue = value; }
         }
 
-        private int axis;
-
+        /// <summary>
+        /// Gets or sets the axis.
+        /// </summary>
         internal int Axis
         {
             get
@@ -81,11 +88,16 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private bool displayOnly;
-
+        /// <summary>
+        /// Gets or sets a value indicating whether to only display values or also process input to change the value.
+        /// </summary>
         public bool DisplayOnly
         {
-            get { return displayOnly; }
+            get
+            {
+                return displayOnly;
+            }
+
             set
             {
                 displayOnly = value;
@@ -94,11 +106,16 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private UnitType unitType = UnitType.Unitless;
-
+        /// <summary>
+        /// Gets or sets the unit type.
+        /// </summary>
         internal UnitType UnitType
         {
-            get { return unitType; }
+            get
+            {
+                return unitType;
+            }
+
             set
             {
                 unitType = value;
@@ -106,7 +123,6 @@ namespace Finite_Element_Analysis_Explorer
                 NumericInput_FarValue.IsInteger = false;
                 switch (unitType)
                 {
-                    #region Angle
                     case UnitType.Angle:
                         switch (Options.Angle)
                         {
@@ -120,9 +136,9 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "rad";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Area
+
                     case UnitType.Area:
 
                         switch (Options.Area)
@@ -152,9 +168,9 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "in²";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Density
+
                     case UnitType.Density:
                         switch (Options.Density)
                         {
@@ -170,8 +186,7 @@ namespace Finite_Element_Analysis_Explorer
                         }
 
                         break;
-                    #endregion
-                    #region Force
+
                     case UnitType.Force:
                         switch (Options.Force)
                         {
@@ -215,10 +230,8 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "lbf";
                                 break;
                         }
-                        break;
 
-                    #endregion
-                    #region ForcePerLength
+                        break;
 
                     case UnitType.ForcePerLength:
 
@@ -236,8 +249,6 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
 
-                    #endregion
-                    #region Length
                     case UnitType.Length:
                         switch (Options.Length)
                         {
@@ -268,8 +279,7 @@ namespace Finite_Element_Analysis_Explorer
                         }
 
                         break;
-                    #endregion
-                    #region Mass
+
                     case UnitType.Mass:
                         switch (Options.Mass)
                         {
@@ -282,9 +292,9 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "lb";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Moment of inertia
+
                     case UnitType.MomentOfInertia:
                         switch (Options.MomentOfInertia)
                         {
@@ -315,8 +325,7 @@ namespace Finite_Element_Analysis_Explorer
                         }
 
                         break;
-                    #endregion
-                    #region Moment
+
                     case UnitType.Moment:
                         switch (Options.Moment)
                         {
@@ -345,16 +354,13 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "lb·in";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Money
 
                     case UnitType.Money:
                         multiplicationFactor = 1;
                         TextBlock_UnitType.Text = string.Empty;
                         break;
-                    #endregion
-                    #region Pressure
 
                     case UnitType.Pressure:
                         switch (Options.Pressure)
@@ -400,9 +406,8 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "Psi";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Volume
 
                     case UnitType.Volume:
                         switch (Options.Volume)
@@ -432,9 +437,8 @@ namespace Finite_Element_Analysis_Explorer
                                 TextBlock_UnitType.Text = "mm³";
                                 break;
                         }
+
                         break;
-                    #endregion
-                    #region Unit-less
 
                     case UnitType.Unitless:
                         multiplicationFactor = 1;
@@ -447,22 +451,32 @@ namespace Finite_Element_Analysis_Explorer
                         multiplicationFactor = 1;
                         TextBlock_UnitType.Text = string.Empty;
                         break;
-                        #endregion
                 }
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoubleValue"/> class.
+        /// </summary>
         public DoubleValue()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets values to null.
+        /// </summary>
         internal void SetNull()
         {
             NumericInput_NearValue.SetNull();
             NumericInput_FarValue.SetNull();
         }
 
+        /// <summary>
+        /// Sets the values.
+        /// </summary>
+        /// <param name="newNearValue">The near value.</param>
+        /// <param name="newFarValue">The far value.</param>
         internal void SetValue(decimal newNearValue, decimal newFarValue)
         {
             // TODO: Multiply by unit type factor then pass
@@ -506,11 +520,15 @@ namespace Finite_Element_Analysis_Explorer
             {
                 case UnitType.Angle:
                     MenuFlyout nextMenuFlyoutAngle = new MenuFlyout();
-                    MenuFlyoutItem itemRadians = new MenuFlyoutItem();
-                    itemRadians.Text = "Radians (rad)";
+                    MenuFlyoutItem itemRadians = new MenuFlyoutItem
+                    {
+                        Text = "Radians (rad)",
+                    };
                     itemRadians.Click += ItemRadians_Click;
-                    MenuFlyoutItem itemDegrees = new MenuFlyoutItem();
-                    itemDegrees.Text = "Degrees (°)";
+                    MenuFlyoutItem itemDegrees = new MenuFlyoutItem
+                    {
+                        Text = "Degrees (°)",
+                    };
                     itemDegrees.Click += ItemDegrees_Click;
                     nextMenuFlyoutAngle.Items.Add(itemDegrees);
                     nextMenuFlyoutAngle.Items.Add(itemRadians);
@@ -519,20 +537,30 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Area:
                     MenuFlyout nextMenuFlyoutArea = new MenuFlyout();
-                    MenuFlyoutItem itemSquareMetre = new MenuFlyoutItem();
-                    itemSquareMetre.Text = "Square Metre (m²)";
+                    MenuFlyoutItem itemSquareMetre = new MenuFlyoutItem
+                    {
+                        Text = "Square Metre (m²)",
+                    };
                     itemSquareMetre.Click += ItemSquareMetre_Click;
-                    MenuFlyoutItem itemSquareCentiMetre = new MenuFlyoutItem();
-                    itemSquareCentiMetre.Text = "Square Centimetre (cm²)";
+                    MenuFlyoutItem itemSquareCentiMetre = new MenuFlyoutItem
+                    {
+                        Text = "Square Centimetre (cm²)",
+                    };
                     itemSquareCentiMetre.Click += ItemSquareCentiMetre_Click;
-                    MenuFlyoutItem itemSquareMilliMetre = new MenuFlyoutItem();
-                    itemSquareMilliMetre.Text = "Square Millimetre (mm²)";
+                    MenuFlyoutItem itemSquareMilliMetre = new MenuFlyoutItem
+                    {
+                        Text = "Square Millimetre (mm²)",
+                    };
                     itemSquareMilliMetre.Click += ItemSquareMilliMetre_Click;
-                    MenuFlyoutItem itemSquareFoot = new MenuFlyoutItem();
-                    itemSquareFoot.Text = "Square Foot (ft²)";
+                    MenuFlyoutItem itemSquareFoot = new MenuFlyoutItem
+                    {
+                        Text = "Square Foot (ft²)",
+                    };
                     itemSquareFoot.Click += ItemSquareFoot_Click;
-                    MenuFlyoutItem itemSquareInch = new MenuFlyoutItem();
-                    itemSquareInch.Text = "Square Inch (in²)";
+                    MenuFlyoutItem itemSquareInch = new MenuFlyoutItem
+                    {
+                        Text = "Square Inch (in²)",
+                    };
                     itemSquareInch.Click += ItemSquareInch_Click;
                     nextMenuFlyoutArea.Items.Add(itemSquareMetre);
                     nextMenuFlyoutArea.Items.Add(itemSquareFoot);
@@ -544,11 +572,15 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Density:
                     MenuFlyout nextMenuFlyoutDensity = new MenuFlyout();
-                    MenuFlyoutItem itemKilogramPerCubicMetre = new MenuFlyoutItem();
-                    itemKilogramPerCubicMetre.Text = "Kilogram per cubic Metre (kg/m³)";
+                    MenuFlyoutItem itemKilogramPerCubicMetre = new MenuFlyoutItem
+                    {
+                        Text = "Kilogram per cubic Metre (kg/m³)",
+                    };
                     itemKilogramPerCubicMetre.Click += ItemKilogramPerCubicMetre_Click;
-                    MenuFlyoutItem itemPoundPerCubicFoot = new MenuFlyoutItem();
-                    itemPoundPerCubicFoot.Text = "Pound per cubic Foot( (lb/ft³)";
+                    MenuFlyoutItem itemPoundPerCubicFoot = new MenuFlyoutItem
+                    {
+                        Text = "Pound per cubic Foot( (lb/ft³)",
+                    };
                     itemPoundPerCubicFoot.Click += ItemPoundPerCubicFoot_Click;
                     nextMenuFlyoutDensity.Items.Add(itemKilogramPerCubicMetre);
                     nextMenuFlyoutDensity.Items.Add(itemPoundPerCubicFoot);
@@ -557,29 +589,45 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Force:
                     MenuFlyout nextMenuFlyoutForce = new MenuFlyout();
-                    MenuFlyoutItem itemNewton = new MenuFlyoutItem();
-                    itemNewton.Text = "Newton (N)";
+                    MenuFlyoutItem itemNewton = new MenuFlyoutItem
+                    {
+                        Text = "Newton (N)",
+                    };
                     itemNewton.Click += ItemNewton_Click;
-                    MenuFlyoutItem itemKiloNewton = new MenuFlyoutItem();
-                    itemKiloNewton.Text = "KiloNewton (kN)";
+                    MenuFlyoutItem itemKiloNewton = new MenuFlyoutItem
+                    {
+                        Text = "KiloNewton (kN)",
+                    };
                     itemKiloNewton.Click += ItemKiloNewton_Click;
-                    MenuFlyoutItem itemMegaNewton = new MenuFlyoutItem();
-                    itemMegaNewton.Text = "MegaNewton (MN)";
+                    MenuFlyoutItem itemMegaNewton = new MenuFlyoutItem
+                    {
+                        Text = "MegaNewton (MN)",
+                    };
                     itemMegaNewton.Click += ItemMegaNewton_Click;
-                    MenuFlyoutItem itemGigaNewton = new MenuFlyoutItem();
-                    itemGigaNewton.Text = "GigaNewton (GN)";
+                    MenuFlyoutItem itemGigaNewton = new MenuFlyoutItem
+                    {
+                        Text = "GigaNewton (GN)",
+                    };
                     itemGigaNewton.Click += ItemGigaNewton_Click;
-                    MenuFlyoutItem itemDyne = new MenuFlyoutItem();
-                    itemDyne.Text = "Dyne";
+                    MenuFlyoutItem itemDyne = new MenuFlyoutItem
+                    {
+                        Text = "Dyne",
+                    };
                     itemDyne.Click += ItemDyne_Click;
-                    MenuFlyoutItem itemKilogramForce = new MenuFlyoutItem();
-                    itemKilogramForce.Text = "Kilogram Force";
+                    MenuFlyoutItem itemKilogramForce = new MenuFlyoutItem
+                    {
+                        Text = "Kilogram Force",
+                    };
                     itemKilogramForce.Click += ItemKilogramForce_Click;
-                    MenuFlyoutItem itemPoundForce = new MenuFlyoutItem();
-                    itemPoundForce.Text = "Pound Force";
+                    MenuFlyoutItem itemPoundForce = new MenuFlyoutItem
+                    {
+                        Text = "Pound Force",
+                    };
                     itemPoundForce.Click += ItemPoundForce_Click;
-                    MenuFlyoutItem itemPoundal = new MenuFlyoutItem();
-                    itemPoundal.Text = "Poundal";
+                    MenuFlyoutItem itemPoundal = new MenuFlyoutItem
+                    {
+                        Text = "Poundal",
+                    };
                     itemPoundal.Click += ItemPoundal_Click;
                     nextMenuFlyoutForce.Items.Add(itemNewton);
                     nextMenuFlyoutForce.Items.Add(itemKiloNewton);
@@ -594,11 +642,15 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.ForcePerLength:
                     MenuFlyout nextMenuFlyoutForcePerLength = new MenuFlyout();
-                    MenuFlyoutItem itemNewtonPerMeter = new MenuFlyoutItem();
-                    itemNewtonPerMeter.Text = "Newton per Meter (N/m)";
+                    MenuFlyoutItem itemNewtonPerMeter = new MenuFlyoutItem
+                    {
+                        Text = "Newton per Meter (N/m)",
+                    };
                     itemNewtonPerMeter.Click += ItemNewtonPerMeter_Click;
-                    MenuFlyoutItem itemPoundPerFoot = new MenuFlyoutItem();
-                    itemPoundPerFoot.Text = "Pound per Foot (lb/ft)";
+                    MenuFlyoutItem itemPoundPerFoot = new MenuFlyoutItem
+                    {
+                        Text = "Pound per Foot (lb/ft)",
+                    };
                     itemPoundPerFoot.Click += ItemPoundPerFoot_Click;
                     nextMenuFlyoutForcePerLength.Items.Add(itemNewtonPerMeter);
                     nextMenuFlyoutForcePerLength.Items.Add(itemPoundPerFoot);
@@ -607,24 +659,36 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Length:
                     MenuFlyout nextMenuFlyoutLength = new MenuFlyout();
-                    MenuFlyoutItem itemMilliMeter = new MenuFlyoutItem();
-                    itemMilliMeter.Text = "MilliMeter (mm)";
+                    MenuFlyoutItem itemMilliMeter = new MenuFlyoutItem
+                    {
+                        Text = "MilliMeter (mm)",
+                    };
                     itemMilliMeter.Click += ItemMilliMeter_Click;
-                    MenuFlyoutItem itemCentiMeter = new MenuFlyoutItem();
-                    itemCentiMeter.Text = "CentiMeter (cm)";
+                    MenuFlyoutItem itemCentiMeter = new MenuFlyoutItem
+                    {
+                        Text = "CentiMeter (cm)",
+                    };
                     itemCentiMeter.Click += ItemCentiMeter_Click;
-                    MenuFlyoutItem itemMeter = new MenuFlyoutItem();
-                    itemMeter.Text = "Meter (m)";
+                    MenuFlyoutItem itemMeter = new MenuFlyoutItem
+                    {
+                        Text = "Meter (m)",
+                    };
                     itemMeter.Click += ItemMeter_Click;
-                    MenuFlyoutItem itemKiloMeter = new MenuFlyoutItem();
-                    itemKiloMeter.Text = "KiloMeter (km)";
+                    MenuFlyoutItem itemKiloMeter = new MenuFlyoutItem
+                    {
+                        Text = "KiloMeter (km)",
+                    };
                     itemKiloMeter.Click += ItemKiloMeter_Click;
                     MenuFlyoutSeparator seperatorMetric = new MenuFlyoutSeparator();
-                    MenuFlyoutItem itemInch = new MenuFlyoutItem();
-                    itemInch.Text = "Inch (in)";
+                    MenuFlyoutItem itemInch = new MenuFlyoutItem
+                    {
+                        Text = "Inch (in)",
+                    };
                     itemInch.Click += ItemInch_Click;
-                    MenuFlyoutItem itemFoot = new MenuFlyoutItem();
-                    itemFoot.Text = "Foot (ft)";
+                    MenuFlyoutItem itemFoot = new MenuFlyoutItem
+                    {
+                        Text = "Foot (ft)",
+                    };
                     itemFoot.Click += ItemFoot_Click;
                     nextMenuFlyoutLength.Items.Add(itemMilliMeter);
                     nextMenuFlyoutLength.Items.Add(itemCentiMeter);
@@ -638,17 +702,25 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Mass:
                     MenuFlyout nextMenuFlyoutMass = new MenuFlyout();
-                    MenuFlyoutItem itemKilogram = new MenuFlyoutItem();
-                    itemKilogram.Text = "Kilograms (kg)";
+                    MenuFlyoutItem itemKilogram = new MenuFlyoutItem
+                    {
+                        Text = "Kilograms (kg)",
+                    };
                     itemKilogram.Click += ItemKilogram_Click;
-                    MenuFlyoutItem itemGram = new MenuFlyoutItem();
-                    itemGram.Text = "CentiMeters (g)";
+                    MenuFlyoutItem itemGram = new MenuFlyoutItem
+                    {
+                        Text = "CentiMeters (g)",
+                    };
                     itemGram.Click += ItemGram_Click;
-                    MenuFlyoutItem itemTon = new MenuFlyoutItem();
-                    itemTon.Text = "Ton (t)";
+                    MenuFlyoutItem itemTon = new MenuFlyoutItem
+                    {
+                        Text = "Ton (t)",
+                    };
                     itemTon.Click += ItemTon_Click;
-                    MenuFlyoutItem itemPound = new MenuFlyoutItem();
-                    itemPound.Text = "Pound (lb)";
+                    MenuFlyoutItem itemPound = new MenuFlyoutItem
+                    {
+                        Text = "Pound (lb)",
+                    };
                     itemPound.Click += ItemPound_Click;
                     nextMenuFlyoutMass.Items.Add(itemKilogram);
                     nextMenuFlyoutMass.Items.Add(itemGram);
@@ -659,20 +731,30 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Moment:
                     MenuFlyout nextMenuFlyoutMoment = new MenuFlyout();
-                    MenuFlyoutItem itemNewtonMetre = new MenuFlyoutItem();
-                    itemNewtonMetre.Text = "Newton Meter (N·m)";
+                    MenuFlyoutItem itemNewtonMetre = new MenuFlyoutItem
+                    {
+                        Text = "Newton Meter (N·m)",
+                    };
                     itemNewtonMetre.Click += ItemNewtonMetre_Click;
-                    MenuFlyoutItem itemPoundFoot = new MenuFlyoutItem();
-                    itemPoundFoot.Text = "Pound Foot (lb·ft)";
+                    MenuFlyoutItem itemPoundFoot = new MenuFlyoutItem
+                    {
+                        Text = "Pound Foot (lb·ft)",
+                    };
                     itemPoundFoot.Click += ItemPoundFoot_Click;
-                    MenuFlyoutItem itemPoundInch = new MenuFlyoutItem();
-                    itemPoundInch.Text = "Pound Inch (lb·in)";
+                    MenuFlyoutItem itemPoundInch = new MenuFlyoutItem
+                    {
+                        Text = "Pound Inch (lb·in)",
+                    };
                     itemPoundInch.Click += ItemPoundInch_Click;
-                    MenuFlyoutItem itemOunceInch = new MenuFlyoutItem();
-                    itemOunceInch.Text = "Ounce Inch (oz·in)";
+                    MenuFlyoutItem itemOunceInch = new MenuFlyoutItem
+                    {
+                        Text = "Ounce Inch (oz·in)",
+                    };
                     itemOunceInch.Click += ItemOunceInch_Click;
-                    MenuFlyoutItem itemOunceFoot = new MenuFlyoutItem();
-                    itemOunceFoot.Text = "Ounce Foot (oz·ft)";
+                    MenuFlyoutItem itemOunceFoot = new MenuFlyoutItem
+                    {
+                        Text = "Ounce Foot (oz·ft)",
+                    };
                     itemOunceFoot.Click += ItemOunceFoot_Click;
                     nextMenuFlyoutMoment.Items.Add(itemNewtonMetre);
                     nextMenuFlyoutMoment.Items.Add(itemPoundFoot);
@@ -684,20 +766,30 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.MomentOfInertia:
                     MenuFlyout nextMenuFlyoutMomentOfInertia = new MenuFlyout();
-                    MenuFlyoutItem itemQuadMeter = new MenuFlyoutItem();
-                    itemQuadMeter.Text = "Quad Meter (m⁴)";
+                    MenuFlyoutItem itemQuadMeter = new MenuFlyoutItem
+                    {
+                        Text = "Quad Meter (m⁴)",
+                    };
                     itemQuadMeter.Click += ItemQuadMeter_Click;
-                    MenuFlyoutItem itemQuadMillimeter = new MenuFlyoutItem();
-                    itemQuadMillimeter.Text = "Quad Millimeter (mm⁴)";
+                    MenuFlyoutItem itemQuadMillimeter = new MenuFlyoutItem
+                    {
+                        Text = "Quad Millimeter (mm⁴)",
+                    };
                     itemQuadMillimeter.Click += ItemQuadMillimeter_Click;
-                    MenuFlyoutItem itemQuadCentimeter = new MenuFlyoutItem();
-                    itemQuadCentimeter.Text = "Quad Centimeter (cm⁴)";
+                    MenuFlyoutItem itemQuadCentimeter = new MenuFlyoutItem
+                    {
+                        Text = "Quad Centimeter (cm⁴)",
+                    };
                     itemQuadCentimeter.Click += ItemQuadCentimeter_Click;
-                    MenuFlyoutItem itemQuadInch = new MenuFlyoutItem();
-                    itemQuadInch.Text = "Quad Inch (in⁴)";
+                    MenuFlyoutItem itemQuadInch = new MenuFlyoutItem
+                    {
+                        Text = "Quad Inch (in⁴)",
+                    };
                     itemQuadInch.Click += ItemQuadInch_Click;
-                    MenuFlyoutItem itemQuadFoot = new MenuFlyoutItem();
-                    itemQuadFoot.Text = "Quad Foot (ft⁴)";
+                    MenuFlyoutItem itemQuadFoot = new MenuFlyoutItem
+                    {
+                        Text = "Quad Foot (ft⁴)",
+                    };
                     itemQuadFoot.Click += ItemQuadFoot_Click;
 
                     nextMenuFlyoutMomentOfInertia.Items.Add(itemQuadMeter);
@@ -712,51 +804,70 @@ namespace Finite_Element_Analysis_Explorer
 
                     break;
 
-
                 case UnitType.Percentage:
 
                     break;
 
                 case UnitType.Pressure:
                     MenuFlyout nextMenuFlyoutPressure = new MenuFlyout();
-                    MenuFlyoutItem itemPascal = new MenuFlyoutItem();
-                    itemPascal.Text = "Pascal (Pa)";
+                    MenuFlyoutItem itemPascal = new MenuFlyoutItem
+                    {
+                        Text = "Pascal (Pa)",
+                    };
                     itemPascal.Click += ItemPascal_Click;
 
-                    MenuFlyoutItem itemMilliPascal = new MenuFlyoutItem();
-                    itemMilliPascal.Text = "Millipascal (mPa)";
+                    MenuFlyoutItem itemMilliPascal = new MenuFlyoutItem
+                    {
+                        Text = "Milli-pascal (mPa)",
+                    };
                     itemMilliPascal.Click += ItemMilliPascal_Click;
 
-                    MenuFlyoutItem itemHectoPascal = new MenuFlyoutItem();
-                    itemHectoPascal.Text = "Hectopascal (hPa)";
+                    MenuFlyoutItem itemHectoPascal = new MenuFlyoutItem
+                    {
+                        Text = "Hecto-pascal (hPa)",
+                    };
                     itemHectoPascal.Click += ItemHectoPascal_Click;
 
-                    MenuFlyoutItem itemKiloPascal = new MenuFlyoutItem();
-                    itemKiloPascal.Text = "Kilopascal (kPa)";
+                    MenuFlyoutItem itemKiloPascal = new MenuFlyoutItem
+                    {
+                        Text = "Kilo-pascal (kPa)",
+                    };
                     itemKiloPascal.Click += ItemKiloPascal_Click;
 
-                    MenuFlyoutItem itemMegaPascal = new MenuFlyoutItem();
-                    itemMegaPascal.Text = "Megapascal (MPa)";
+                    MenuFlyoutItem itemMegaPascal = new MenuFlyoutItem
+                    {
+                        Text = "Mega-pascal (MPa)",
+                    };
                     itemMegaPascal.Click += ItemMegaPascal_Click;
 
-                    MenuFlyoutItem itemGigaPascal = new MenuFlyoutItem();
-                    itemGigaPascal.Text = "Gigapascal (GPa)";
+                    MenuFlyoutItem itemGigaPascal = new MenuFlyoutItem
+                    {
+                        Text = "Giga-pascal (GPa)",
+                    };
                     itemGigaPascal.Click += ItemGigaPascal_Click;
 
-                    MenuFlyoutItem itemPoundPerSquareInch = new MenuFlyoutItem();
-                    itemPoundPerSquareInch.Text = " ()";
+                    MenuFlyoutItem itemPoundPerSquareInch = new MenuFlyoutItem
+                    {
+                        Text = " ()",
+                    };
                     itemPoundPerSquareInch.Click += ItemPoundPerSquareInch_Click;
 
-                    MenuFlyoutItem itemKilopoundPerSquareInch = new MenuFlyoutItem();
-                    itemKilopoundPerSquareInch.Text = " ()";
+                    MenuFlyoutItem itemKilopoundPerSquareInch = new MenuFlyoutItem
+                    {
+                        Text = " ()",
+                    };
                     itemKilopoundPerSquareInch.Click += ItemKilopoundPerSquareInch_Click;
 
-                    MenuFlyoutItem itemMegaPoundPerSquareInch = new MenuFlyoutItem();
-                    itemMegaPoundPerSquareInch.Text = " ()";
+                    MenuFlyoutItem itemMegaPoundPerSquareInch = new MenuFlyoutItem
+                    {
+                        Text = " ()",
+                    };
                     itemMegaPoundPerSquareInch.Click += ItemMegaPoundPerSquareInch_Click;
 
-                    MenuFlyoutItem itemPoundPerSquareFoot = new MenuFlyoutItem();
-                    itemPoundPerSquareFoot.Text = " ()";
+                    MenuFlyoutItem itemPoundPerSquareFoot = new MenuFlyoutItem
+                    {
+                        Text = " ()",
+                    };
                     itemPoundPerSquareFoot.Click += ItemPoundPerSquareFoot_Click;
 
                     nextMenuFlyoutPressure.Items.Add(itemPascal);
@@ -784,11 +895,9 @@ namespace Finite_Element_Analysis_Explorer
 
                     break;
 
-
                 case UnitType.Unitless:
 
                     break;
-
 
                 case UnitType.UnitlessInteger:
 
@@ -796,24 +905,34 @@ namespace Finite_Element_Analysis_Explorer
 
                 case UnitType.Volume:
                     MenuFlyout nextMenuFlyoutVolume = new MenuFlyout();
-                    MenuFlyoutItem itemCubicMeter = new MenuFlyoutItem();
-                    itemCubicMeter.Text = "Cubic Meter (m³)";
+                    MenuFlyoutItem itemCubicMeter = new MenuFlyoutItem
+                    {
+                        Text = "Cubic Meter (m³)",
+                    };
                     itemCubicMeter.Click += ItemCubicMeter_Click;
 
-                    MenuFlyoutItem itemCubicCentimeter = new MenuFlyoutItem();
-                    itemCubicCentimeter.Text = "Cubic Centimeter (cm³)";
+                    MenuFlyoutItem itemCubicCentimeter = new MenuFlyoutItem
+                    {
+                        Text = "Cubic Centimeter (cm³)",
+                    };
                     itemCubicCentimeter.Click += ItemCubicCentimeter_Click;
 
-                    MenuFlyoutItem itemCubicMillimeter = new MenuFlyoutItem();
-                    itemCubicMillimeter.Text = "Cubic Millimeter (mm³)";
+                    MenuFlyoutItem itemCubicMillimeter = new MenuFlyoutItem
+                    {
+                        Text = "Cubic Millimeter (mm³)",
+                    };
                     itemCubicMillimeter.Click += ItemCubicMillimeter_Click;
 
-                    MenuFlyoutItem itemCubicFoot = new MenuFlyoutItem();
-                    itemCubicFoot.Text = "Cubic Foot (ft³)";
+                    MenuFlyoutItem itemCubicFoot = new MenuFlyoutItem
+                    {
+                        Text = "Cubic Foot (ft³)",
+                    };
                     itemCubicFoot.Click += ItemCubicFoot_Click;
 
-                    MenuFlyoutItem itemCubicInch = new MenuFlyoutItem();
-                    itemCubicInch.Text = "Cubic Inch (in³)";
+                    MenuFlyoutItem itemCubicInch = new MenuFlyoutItem
+                    {
+                        Text = "Cubic Inch (in³)",
+                    };
                     itemCubicInch.Click += ItemCubicInch_Click;
 
                     nextMenuFlyoutVolume.Items.Add(itemCubicMeter);

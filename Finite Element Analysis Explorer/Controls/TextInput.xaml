@@ -89,109 +89,109 @@
 
         <Rectangle Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="23" Grid.RowSpan="1" Margin="5,0,5,0" Fill="Black" HorizontalAlignment="Center" Height="48" RadiusY="5" RadiusX="5" Stroke="#FF404040" StrokeThickness="1" VerticalAlignment="Top" Width="410"/>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="6,-2,0,0" Text="+" x:Name="textBlock_Sign" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_Hundred" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_Ten" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_One" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_Tenth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_Hundredth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_Thousandth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="6,-2,0,0" Text="+" x:Name="TextBlock_Sign" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_Hundred" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_Ten" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_One" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_Tenth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_Hundredth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_Thousandth" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" Padding="0,0,4,0"/>
 
-        <TextBlock Grid.Column="9" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="." x:Name="textBlock_DecimalPoint" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right"/>
-        <TextBlock Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="12,-2,0,0" Text="E" x:Name="textBlock_E" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="18" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="4,-2,0,0" Text="+" x:Name="textBlock_ExponentSign" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" TextAlignment="Right" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_ExpTen" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" TextWrapping="Wrap" Padding="0,0,4,0"/>
-        <TextBlock Grid.Column="22" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="textBlock_ExpOne" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" TextWrapping="Wrap" Padding="0,0,4,0"/>
-
-
+        <TextBlock Grid.Column="9" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="." x:Name="TextBlock_DecimalPoint" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right"/>
+        <TextBlock Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="12,-2,0,0" Text="E" x:Name="TextBlock_E" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="18" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="4,-2,0,0" Text="+" x:Name="TextBlock_ExponentSign" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="42" TextAlignment="Right" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_ExpTen" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" TextWrapping="Wrap" Padding="0,0,4,0"/>
+        <TextBlock Grid.Column="22" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,-11,0,0" Text="0" x:Name="TextBlock_ExpOne" FontFamily="ms-appx:///Assets/LcdD.ttf#LcdD" Foreground="#FF0092FF" FontSize="50" TextAlignment="Right" TextWrapping="Wrap" Padding="0,0,4,0"/>
 
 
 
 
 
 
-        <Button Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_SignUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_SignUp_Click">
+
+
+        <Button Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_SignUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_SignUp_Click">
             <FontIcon Glyph="+" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_HundredUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_HundredUp_Click" >
+        <Button Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_HundredUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_HundredUp_Click" >
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_TenUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_TenUp_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
-        </Button>
-
-        <Button Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_OneUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_OneUp_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
-        </Button>
-        <Button Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_TenthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="button_TenthUp_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
-        </Button>
-        <Button Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_HundredthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="button_HundredthUp_Click">
+        <Button Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_TenUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_TenUp_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
 
-        <Button Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_ThousandthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="button_ThousandthUp_Click">
+        <Button Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_OneUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_OneUp_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="18" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_ExponentSignUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_ExponentSignUp_Click">
+        <Button Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_TenthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="Button_TenthUp_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
+        </Button>
+        <Button Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_HundredthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="Button_HundredthUp_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
+        </Button>
+
+        <Button Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_ThousandthUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="Button_ThousandthUp_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
+        </Button>
+        <Button Grid.Column="18" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_ExponentSignUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_ExponentSignUp_Click">
             <FontIcon Glyph="+" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="20" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_ExpTenUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_ExpTenUp_Click" Visibility="Collapsed">
+        <Button Grid.Column="20" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_ExpTenUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_ExpTenUp_Click" Visibility="Collapsed">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="22" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_ExpOneUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_ExpOneUp_Click">
+        <Button Grid.Column="22" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_ExpOneUp" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_ExpOneUp_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-8,0,0" Width="32" Height="32" />
         </Button>
 
 
 
-        <Button Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_SignDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_SignDown_Click">
+        <Button Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_SignDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_SignDown_Click">
             <FontIcon Glyph="-" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_HundredDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_HundredDown_Click">
+        <Button Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_HundredDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_HundredDown_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_TenDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_TenDown_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
-        </Button>
-
-        <Button Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_OneDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_OneDown_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
-        </Button>
-        <Button Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_TenthDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_TenthDown_Click">
-            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
-        </Button>
-        <Button Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_HundrethDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_HundredthDown_Click">
+        <Button Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_TenDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_TenDown_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
 
-        <Button Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_ThousandthDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="button_ThousandthDown_Click">
+        <Button Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_OneDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_OneDown_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="18" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_SignExponentSignDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_SignExponentSignDown_Click">
+        <Button Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_TenthDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_TenthDown_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
+        </Button>
+        <Button Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_HundrethDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_HundredthDown_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
+        </Button>
+
+        <Button Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_ThousandthDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}"  Click="Button_ThousandthDown_Click">
+            <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
+        </Button>
+        <Button Grid.Column="18" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_SignExponentSignDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_SignExponentSignDown_Click">
             <FontIcon Glyph="-" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="20" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_SignExpTenDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_ExpTenDown_Click" Visibility="Collapsed">
+        <Button Grid.Column="20" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_SignExpTenDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_ExpTenDown_Click" Visibility="Collapsed">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
-        <Button Grid.Column="22" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_SignExpOneDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_ExpOneDown_Click">
+        <Button Grid.Column="22" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_SignExpOneDown" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_ExpOneDown_Click">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-8,-6,0,0" Width="32" Height="32" />
         </Button>
 
 
-        <Button Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="button_Lock" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_Lock_Click">
+        <Button Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1" x:Name="Button_Lock" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_Lock_Click">
             <FontIcon x:Name="fontIcon_Lock" Glyph="🔓" FontFamily="Segoe UI Symbol" Margin="-8,-4" Width="32" Height="32" HorizontalAlignment="Right" />
         </Button>
 
-        <Button Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1" Visibility="Collapsed" x:Name="button_Spare" Width="32" Height="32" Style="{StaticResource ButtonStyle1}">
+        <Button Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1" Visibility="Collapsed" x:Name="Button_Spare" Width="32" Height="32" Style="{StaticResource ButtonStyle1}">
             <FontIcon Glyph="" FontFamily="Segoe UI Symbol" Margin="-10,-8,0,0" Width="32" Height="32" />
         </Button>
 
-        <Button Grid.Column="18" Grid.Row="8" Grid.ColumnSpan="6" Grid.RowSpan="1" x:Name="button_Enter" Width="104" Height="32" Style="{StaticResource ButtonStyle1}" Click="button_Enter_Click">
+        <Button Grid.Column="18" Grid.Row="8" Grid.ColumnSpan="6" Grid.RowSpan="1" x:Name="Button_Enter" Width="104" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_Enter_Click">
             <FontIcon Glyph="⮠" FontFamily="Segoe UI Symbol" Margin="-1,-2,0,0" Width="32" Height="32" />
         </Button>
 
-        <TextBox Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="11" Grid.RowSpan="1" x:Name="textBox_TextInput" Style="{StaticResource TextBoxStyle1}" FontSize="16" MinHeight="30" Height="30" KeyDown="textBox_TextInput_KeyDown" TextAlignment="Right" KeyUp="textBox_TextInput_KeyUp" Visibility="Collapsed"/>
+        <TextBox Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="11" Grid.RowSpan="1" x:Name="TextBox_TextInput" Style="{StaticResource TextBoxStyle1}" FontSize="16" MinHeight="30" Height="30" KeyDown="TextBox_TextInput_KeyDown" TextAlignment="Right" KeyUp="TextBox_TextInput_KeyUp" Visibility="Collapsed"/>
 
 
         <Button  Grid.Column="14" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1" Width="32" Height="32" Style="{StaticResource ButtonStyle1}" Click="Button_Click" >

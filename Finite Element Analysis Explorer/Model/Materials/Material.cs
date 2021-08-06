@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     public class Material
     {
 
         public void Output()
         {
-
         }
 
         public Material()
         {
-
         }
 
-        public Material(string _name,
+        public Material(
+            string _name,
             string _description,
             decimal _cost,
             decimal _density,
@@ -117,8 +111,7 @@ namespace Finite_Element_Analysis_Explorer
             string _Radius_Covalent_Single_Bond,
             string _Radius_Covalent_Triple_Bond,
             string _Radius_Metallic,
-            string _MaterialType
-            )
+            string _MaterialType)
         {
 
             name = _name;
@@ -226,13 +219,15 @@ namespace Finite_Element_Analysis_Explorer
         #region Added
 
         private string name;
+
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
-        private string description = "";
+        private string description = string.Empty;
+
         public string Description
         {
             get { return description; }
@@ -240,6 +235,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal cost = 0;
+
         public decimal Cost
         {
             get { return cost; }
@@ -247,6 +243,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal density = 0;
+
         public decimal Density
         {
             get { return density; }
@@ -254,6 +251,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal ultimateStrengthTension = 0;
+
         public decimal UltimateStrengthTension
         {
             get { return ultimateStrengthTension; }
@@ -261,6 +259,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal ultimateStrengthCompression = 0;
+
         public decimal UltimateStrengthCompression
         {
             get { return ultimateStrengthCompression; }
@@ -268,6 +267,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal ultimateStrengthShear = 0;
+
         public decimal UltimateStrengthShear
         {
             get { return ultimateStrengthShear; }
@@ -275,6 +275,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal yieldStrengthTension = 0;
+
         public decimal YieldStrengthTension
         {
             get { return yieldStrengthTension; }
@@ -282,20 +283,25 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal yieldStrengthShear = 0;
+
         public decimal YieldStrengthShear
         {
-            get { return yieldStrengthShear; }
+            get
+            {
+                return yieldStrengthShear;
+            }
+
             set
             {
-                //YieldStrengthShear = value; 
             }
         }
 
         /// <summary>
         /// Modulus of Elasticity (E) or Young's Modulus.
-        ///       
+        ///
         /// </summary>
         private decimal modulusOfElasticity = 0;
+
         public decimal ModulusOfElasticity
         {
             get { return modulusOfElasticity; }
@@ -304,13 +310,14 @@ namespace Finite_Element_Analysis_Explorer
 
         /// <summary>
         /// Modulus of Rigidity (G)
-        /// 
-        /// 
+        ///
+        ///
         ///  G = E/2(1+v)
         ///  E = 2G(1+v)
-        /// 
+        ///
         /// </summary>
         private decimal modulusOfRigidity = 0;
+
         public decimal ModulusOfRigidity
         {
             get { return modulusOfRigidity; }
@@ -318,15 +325,16 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         /// <summary>
-        /// Bulk Mudulus (K) 
+        /// Bulk Mudulus (K)
         /// Ability to resist compression.
-        /// 
+        ///
         /// Relation Equation E = 3K(1-2v)
         ///                   K = E/3(1-2v)
-        /// 
-        /// 
+        ///
+        ///
         /// </summary>
         private decimal _Bulk_Modulus = 0;
+
         internal decimal Bulk_Modulus
         {
             get { return _Bulk_Modulus; }
@@ -334,6 +342,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal coefficientOfThermalExpansion = 0;
+
         public decimal CoefficientOfThermalExpansion
         {
             get { return coefficientOfThermalExpansion; }
@@ -341,6 +350,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal ductility = 0;
+
         public decimal Ductility
         {
             get { return ductility; }
@@ -349,15 +359,16 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-
         private int _Atomic_Number = 0;
+
         internal int Atomic_Number
         {
             get { return _Atomic_Number; }
             set { _Atomic_Number = value; }
         }
 
-        private string _Symbol = "";
+        private string _Symbol = string.Empty;
+
         internal string Symbol
         {
             get { return _Symbol; }
@@ -365,62 +376,71 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Atomic_Mass = 0;
+
         internal decimal Atomic_Mass
         {
             get { return _Atomic_Mass; }
             set { _Atomic_Mass = value; }
         }
 
-        private string _Allotrope_Names = "";
+        private string _Allotrope_Names = string.Empty;
+
         internal string Allotrope_Names
         {
             get { return _Allotrope_Names; }
             set { _Allotrope_Names = value; }
         }
 
-        private string _Alternate_Names = "";
+        private string _Alternate_Names = string.Empty;
+
         internal string Alternate_Names
         {
             get { return _Alternate_Names; }
             set { _Alternate_Names = value; }
         }
 
-        private string _CAS_Number = "";
+        private string _CAS_Number = string.Empty;
+
         internal string CAS_Number
         {
             get { return _CAS_Number; }
             set { _CAS_Number = value; }
         }
 
-        private string _Icon_Color = "";
+        private string _Icon_Color = string.Empty;
+
         internal string Icon_Color
         {
             get { return _Icon_Color; }
             set { _Icon_Color = value; }
         }
 
-        private string _Block = "";
+        private string _Block = string.Empty;
+
         internal string Block
         {
             get { return _Block; }
             set { _Block = value; }
         }
 
-        private string _Group = "";
+        private string _Group = string.Empty;
+
         internal string Group
         {
             get { return _Group; }
             set { _Group = value; }
         }
 
-        private string _Period = "";
+        private string _Period = string.Empty;
+
         internal string Period
         {
             get { return _Period; }
             set { _Period = value; }
         }
 
-        private string _Series = "";
+        private string _Series = string.Empty;
+
         internal string Series
         {
             get { return _Series; }
@@ -428,6 +448,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Atomic_Weight = 0;
+
         internal decimal Atomic_Weight
         {
             get { return _Atomic_Weight; }
@@ -435,22 +456,21 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Brinell_Hardness = 0;
+
         internal decimal Brinell_Hardness
         {
             get { return _Brinell_Hardness; }
             set { _Brinell_Hardness = value; }
         }
 
-
-
-        //private string _Density;
-        //public string Density
-        //{
+        // private string _Density;
+        // public string Density
+        // {
         //    get { return _Density; }
         //    set { _Density = value; }
-        //}
-
+        // }
         private decimal _Liquid_Density = 0;
+
         internal decimal Liquid_Density
         {
             get { return _Liquid_Density; }
@@ -458,6 +478,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Mohs_Hardness = 0;
+
         internal decimal Mohs_Hardness
         {
             get { return _Mohs_Hardness; }
@@ -465,6 +486,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Molar_Volume = 0;
+
         internal decimal Molar_Volume
         {
             get { return _Molar_Volume; }
@@ -472,15 +494,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Poission_Ratio = 0;
+
         internal decimal Poission_Ratio
         {
             get { return _Poission_Ratio; }
             set { _Poission_Ratio = value; }
         }
 
-
-
         private decimal _Sound_Speed = 0;
+
         internal decimal Sound_Speed
         {
             get { return _Sound_Speed; }
@@ -488,6 +510,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Thermal_Conductivity = 0;
+
         internal decimal Thermal_Conductivity
         {
             get { return _Thermal_Conductivity; }
@@ -495,6 +518,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Thermal_Expansion = 0;
+
         internal decimal Thermal_Expansion
         {
             get { return _Thermal_Expansion; }
@@ -502,15 +526,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Vickers_Hardness = 0;
+
         internal decimal Vickers_Hardness
         {
             get { return _Vickers_Hardness; }
             set { _Vickers_Hardness = value; }
         }
 
-
-
         private decimal _Absolute_Boiling_Point = 0;
+
         internal decimal Absolute_Boiling_Point
         {
             get { return _Absolute_Boiling_Point; }
@@ -518,6 +542,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Absolute_Melting_Point = 0;
+
         internal decimal Absolute_Melting_Point
         {
             get { return _Absolute_Melting_Point; }
@@ -525,6 +550,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Adiabatic_Index = 0;
+
         internal decimal Adiabatic_Index
         {
             get { return _Adiabatic_Index; }
@@ -532,6 +558,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Boiling_Point = 0;
+
         internal decimal Boiling_Point
         {
             get { return _Boiling_Point; }
@@ -539,6 +566,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Critical_Pressure = 0;
+
         internal decimal Critical_Pressure
         {
             get { return _Critical_Pressure; }
@@ -546,6 +574,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Critical_Temperature = 0;
+
         internal decimal Critical_Temperature
         {
             get { return _Critical_Temperature; }
@@ -553,6 +582,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Curie_Point = 0;
+
         internal decimal Curie_Point
         {
             get { return _Curie_Point; }
@@ -560,6 +590,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Fusion_Heat = 0;
+
         internal decimal Fusion_Heat
         {
             get { return _Fusion_Heat; }
@@ -567,6 +598,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Melting_Point = 0;
+
         internal decimal Melting_Point
         {
             get { return _Melting_Point; }
@@ -574,13 +606,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Neel_Point = 0;
+
         internal decimal Neel_Point
         {
             get { return _Neel_Point; }
             set { _Neel_Point = value; }
         }
 
-        private string _Phase = "";
+        private string _Phase = string.Empty;
+
         internal string Phase
         {
             get { return _Phase; }
@@ -588,6 +622,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Specific_Heat = 0;
+
         internal decimal Specific_Heat
         {
             get { return _Specific_Heat; }
@@ -595,6 +630,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Superconducting_Point = 0;
+
         internal decimal Superconducting_Point
         {
             get { return _Superconducting_Point; }
@@ -602,13 +638,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Vaporization_Heat = 0;
+
         internal decimal Vaporization_Heat
         {
             get { return _Vaporization_Heat; }
             set { _Vaporization_Heat = value; }
         }
 
-        private string _Color = "";
+        private string _Color = string.Empty;
+
         internal string Color
         {
             get { return _Color; }
@@ -616,20 +654,23 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Electrical_Conductivity = 0;
+
         internal decimal Electrical_Conductivity
         {
             get { return _Electrical_Conductivity; }
             set { _Electrical_Conductivity = value; }
         }
 
-        private string _Electrical_Type = "";
+        private string _Electrical_Type = string.Empty;
+
         internal string Electrical_Type
         {
             get { return _Electrical_Type; }
             set { _Electrical_Type = value; }
         }
 
-        private string _Magnetic_Type = "";
+        private string _Magnetic_Type = string.Empty;
+
         internal string Magnetic_Type
         {
             get { return _Magnetic_Type; }
@@ -637,6 +678,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Mass_Magnetic_Susceptibility = 0;
+
         internal decimal Mass_Magnetic_Susceptibility
         {
             get { return _Mass_Magnetic_Susceptibility; }
@@ -644,6 +686,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Molar_Magnetic_Susceptibility = 0;
+
         internal decimal Molar_Magnetic_Susceptibility
         {
             get { return _Molar_Magnetic_Susceptibility; }
@@ -651,6 +694,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Refractive_Index = 0;
+
         internal decimal Refractive_Index
         {
             get { return _Refractive_Index; }
@@ -658,6 +702,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Resistivity = 0;
+
         internal decimal Resistivity
         {
             get { return _Resistivity; }
@@ -665,195 +710,223 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Volume_Magnetic_Susceptibility = 0;
+
         internal decimal Volume_Magnetic_Susceptibility
         {
             get { return _Volume_Magnetic_Susceptibility; }
             set { _Volume_Magnetic_Susceptibility = value; }
         }
 
-        private string _Allotropic_Multiplicities = "";
+        private string _Allotropic_Multiplicities = string.Empty;
+
         internal string Allotropic_Multiplicities
         {
             get { return _Allotropic_Multiplicities; }
             set { _Allotropic_Multiplicities = value; }
         }
 
-        private string _Electron_Affinity = "";
+        private string _Electron_Affinity = string.Empty;
+
         internal string Electron_Affinity
         {
             get { return _Electron_Affinity; }
             set { _Electron_Affinity = value; }
         }
 
-        private string _Electronegativity = "";
+        private string _Electronegativity = string.Empty;
+
         internal string Electronegativity
         {
             get { return _Electronegativity; }
             set { _Electronegativity = value; }
         }
 
-        private string _Gas_Atomic_Multiplicities = "";
+        private string _Gas_Atomic_Multiplicities = string.Empty;
+
         internal string Gas_Atomic_Multiplicities
         {
             get { return _Gas_Atomic_Multiplicities; }
             set { _Gas_Atomic_Multiplicities = value; }
         }
 
-        private string _Valence = "";
+        private string _Valence = string.Empty;
+
         internal string Valence
         {
             get { return _Valence; }
             set { _Valence = value; }
         }
 
-        private string _Crystal_Structure = "";
+        private string _Crystal_Structure = string.Empty;
+
         internal string Crystal_Structure
         {
             get { return _Crystal_Structure; }
             set { _Crystal_Structure = value; }
         }
 
-        private string _Lattice_Angles = "";
+        private string _Lattice_Angles = string.Empty;
+
         internal string Lattice_Angles
         {
             get { return _Lattice_Angles; }
             set { _Lattice_Angles = value; }
         }
 
-        private string _Lattice_Constants = "";
+        private string _Lattice_Constants = string.Empty;
+
         internal string Lattice_Constants
         {
             get { return _Lattice_Constants; }
             set { _Lattice_Constants = value; }
         }
 
-        private string _Space_Group_Number = "";
+        private string _Space_Group_Number = string.Empty;
+
         internal string Space_Group_Number
         {
             get { return _Space_Group_Number; }
             set { _Space_Group_Number = value; }
         }
 
-        private string _Space_Group_Name = "";
+        private string _Space_Group_Name = string.Empty;
+
         internal string Space_Group_Name
         {
             get { return _Space_Group_Name; }
             set { _Space_Group_Name = value; }
         }
 
-        private string _Atomic_Radius = "";
+        private string _Atomic_Radius = string.Empty;
+
         internal string Atomic_Radius
         {
             get { return _Atomic_Radius; }
             set { _Atomic_Radius = value; }
         }
 
-        private string _Covalent_Radius = "";
+        private string _Covalent_Radius = string.Empty;
+
         internal string Covalent_Radius
         {
             get { return _Covalent_Radius; }
             set { _Covalent_Radius = value; }
         }
 
-        private string _Electron_Configuration = "";
+        private string _Electron_Configuration = string.Empty;
+
         internal string Electron_Configuration
         {
             get { return _Electron_Configuration; }
             set { _Electron_Configuration = value; }
         }
 
-        private string _Electron_Configuration_String = "";
+        private string _Electron_Configuration_String = string.Empty;
+
         internal string Electron_Configuration_String
         {
             get { return _Electron_Configuration_String; }
             set { _Electron_Configuration_String = value; }
         }
 
-        private string _Electron_Shell_Configuration = "";
+        private string _Electron_Shell_Configuration = string.Empty;
+
         internal string Electron_Shell_Configuration
         {
             get { return _Electron_Shell_Configuration; }
             set { _Electron_Shell_Configuration = value; }
         }
 
-        private string _Ionization_Energies = "";
+        private string _Ionization_Energies = string.Empty;
+
         internal string Ionization_Energies
         {
             get { return _Ionization_Energies; }
             set { _Ionization_Energies = value; }
         }
 
-        private string _Quantum_Numbers = "";
+        private string _Quantum_Numbers = string.Empty;
+
         internal string Quantum_Numbers
         {
             get { return _Quantum_Numbers; }
             set { _Quantum_Numbers = value; }
         }
 
-        private string _Van_Der_Waals_Radius = "";
+        private string _Van_Der_Waals_Radius = string.Empty;
+
         internal string Van_Der_Waals_Radius
         {
             get { return _Van_Der_Waals_Radius; }
             set { _Van_Der_Waals_Radius = value; }
         }
 
-        private string _Decay_Mode = "";
+        private string _Decay_Mode = string.Empty;
+
         internal string Decay_Mode
         {
             get { return _Decay_Mode; }
             set { _Decay_Mode = value; }
         }
 
-        private string _HalfLife = "";
+        private string _HalfLife = string.Empty;
+
         internal string HalfLife
         {
             get { return _HalfLife; }
             set { _HalfLife = value; }
         }
 
-        private string _Isotope_Abundances = "";
+        private string _Isotope_Abundances = string.Empty;
+
         internal string Isotope_Abundances
         {
             get { return _Isotope_Abundances; }
             set { _Isotope_Abundances = value; }
         }
 
-        private string _Known_Isotopes = "";
+        private string _Known_Isotopes = string.Empty;
+
         internal string Known_Isotopes
         {
             get { return _Known_Isotopes; }
             set { _Known_Isotopes = value; }
         }
 
-        private string _Lifetime = "";
+        private string _Lifetime = string.Empty;
+
         internal string Lifetime
         {
             get { return _Lifetime; }
             set { _Lifetime = value; }
         }
 
-        private string _Neutron_Cross_Section = "";
+        private string _Neutron_Cross_Section = string.Empty;
+
         internal string Neutron_Cross_Section
         {
             get { return _Neutron_Cross_Section; }
             set { _Neutron_Cross_Section = value; }
         }
 
-        private string _Neutron_Mass_Absorption = "";
+        private string _Neutron_Mass_Absorption = string.Empty;
+
         internal string Neutron_Mass_Absorption
         {
             get { return _Neutron_Mass_Absorption; }
             set { _Neutron_Mass_Absorption = value; }
         }
 
-        private string _Radioactive = "";
+        private string _Radioactive = string.Empty;
+
         internal string Radioactive
         {
             get { return _Radioactive; }
             set { _Radioactive = value; }
         }
 
-        private string _Stable_Isotopes = "";
+        private string _Stable_Isotopes = string.Empty;
+
         internal string Stable_Isotopes
         {
             get { return _Stable_Isotopes; }
@@ -861,6 +934,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Crust_Abundance = 0;
+
         internal decimal Crust_Abundance
         {
             get { return _Crust_Abundance; }
@@ -868,6 +942,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Human_Abundance = 0;
+
         internal decimal Human_Abundance
         {
             get { return _Human_Abundance; }
@@ -875,6 +950,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Meteorite_Abundance = 0;
+
         internal decimal Meteorite_Abundance
         {
             get { return _Meteorite_Abundance; }
@@ -882,6 +958,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Ocean_Abundance = 0;
+
         internal decimal Ocean_Abundance
         {
             get { return _Ocean_Abundance; }
@@ -889,6 +966,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Solar_Abundance = 0;
+
         internal decimal Solar_Abundance
         {
             get { return _Solar_Abundance; }
@@ -896,48 +974,55 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _Universe_Abundance = 0;
+
         internal decimal Universe_Abundance
         {
             get { return _Universe_Abundance; }
             set { _Universe_Abundance = value; }
         }
 
-        private string _Radius_Empirical = "";
+        private string _Radius_Empirical = string.Empty;
+
         internal string Radius_Empirical
         {
             get { return _Radius_Empirical; }
             set { _Radius_Empirical = value; }
         }
 
-        private string _Radius_Calculated = "";
+        private string _Radius_Calculated = string.Empty;
+
         internal string Radius_Calculated
         {
             get { return _Radius_Calculated; }
             set { _Radius_Calculated = value; }
         }
 
-        private string _Radius_Van_Der_Waals = "";
+        private string _Radius_Van_Der_Waals = string.Empty;
+
         internal string Radius_Van_Der_Waals
         {
             get { return _Radius_Van_Der_Waals; }
             set { _Radius_Van_Der_Waals = value; }
         }
 
-        private string _Radius_Covalent_Single_Bond = "";
+        private string _Radius_Covalent_Single_Bond = string.Empty;
+
         internal string Radius_Covalent_Single_Bond
         {
             get { return _Radius_Covalent_Single_Bond; }
             set { _Radius_Covalent_Single_Bond = value; }
         }
 
-        private string _Radius_Covalent_Triple_Bond = "";
+        private string _Radius_Covalent_Triple_Bond = string.Empty;
+
         internal string Radius_Covalent_Triple_Bond
         {
             get { return _Radius_Covalent_Triple_Bond; }
             set { _Radius_Covalent_Triple_Bond = value; }
         }
 
-        private string _Radius_Metallic = "";
+        private string _Radius_Metallic = string.Empty;
+
         internal string Radius_Metallic
         {
             get { return _Radius_Metallic; }
@@ -945,11 +1030,11 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private string _MaterialType;
+
         public string MaterialType
         {
             get { return _MaterialType; }
             set { _MaterialType = value; }
         }
-
     }
 }

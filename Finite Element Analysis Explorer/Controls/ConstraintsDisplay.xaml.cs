@@ -1,34 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+    using Windows.UI.Xaml.Media.Imaging;
+
+    /// <summary>
+    /// ConstraintsDisplay UserControl.
+    /// </summary>
     public sealed partial class ConstraintsDisplay : UserControl
     {
+        /// <summary>
+        /// Gets or sets the display only value.
+        /// </summary>
+        public bool DisplayOnly
+        {
+            get { return displayOnly; }
+            set { displayOnly = value; }
+        }
+
+        private bool displayOnly = false;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConstraintsDisplay"/> class.
+        /// </summary>
         public ConstraintsDisplay()
         {
             this.InitializeComponent();
         }
 
-        private bool displayOnly = false;
-        public bool DisplayOnly
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            get { return displayOnly; }
-            set { displayOnly = value; }
+            SetNearImage();
+            SetFarImage();
         }
 
         private void Image_NodeNear_Tapped(object sender, TappedRoutedEventArgs e)
@@ -37,89 +43,123 @@ namespace Finite_Element_Analysis_Explorer
             {
                 MenuFlyout nextMenuFlyout = new MenuFlyout();
 
-                MenuFlyoutItem itemFreeBottomNear = new MenuFlyoutItem();
-                itemFreeBottomNear.Text = "    Free";
-                itemFreeBottomNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFreeBottomNear = new MenuFlyoutItem
+                {
+                    Text = "    Free",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFreeBottomNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemFixedBottomNear = new MenuFlyoutItem();
-                itemFixedBottomNear.Text = "△ Fixed";
-                itemFixedBottomNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedBottomNear = new MenuFlyoutItem
+                {
+                    Text = "△ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedBottomNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemFixedTopNear = new MenuFlyoutItem();
-                itemFixedTopNear.Text = "▽ Fixed";
-                itemFixedTopNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedTopNear = new MenuFlyoutItem
+                {
+                    Text = "▽ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedTopNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemFixedLeftNear = new MenuFlyoutItem();
-                itemFixedLeftNear.Text = "▷ Fixed";
-                itemFixedLeftNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedLeftNear = new MenuFlyoutItem
+                {
+                    Text = "▷ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedLeftNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemFixedRightNear = new MenuFlyoutItem();
-                itemFixedRightNear.Text = "◁ Fixed";
-                itemFixedRightNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedRightNear = new MenuFlyoutItem
+                {
+                    Text = "◁ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedRightNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemPinnedBottomNear = new MenuFlyoutItem();
-                itemPinnedBottomNear.Text = "△ Pinned";
-                itemPinnedBottomNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedBottomNear = new MenuFlyoutItem
+                {
+                    Text = "△ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedBottomNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemPinnedTopNear = new MenuFlyoutItem();
-                itemPinnedTopNear.Text = "▽ Pinned";
-                itemPinnedTopNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedTopNear = new MenuFlyoutItem
+                {
+                    Text = "▽ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedTopNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemPinnedLeftNear = new MenuFlyoutItem();
-                itemPinnedLeftNear.Text = "▷ Pinned";
-                itemPinnedLeftNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedLeftNear = new MenuFlyoutItem
+                {
+                    Text = "▷ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedLeftNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemPinnedRightNear = new MenuFlyoutItem();
-                itemPinnedRightNear.Text = "◁ Pinned";
-                itemPinnedRightNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedRightNear = new MenuFlyoutItem
+                {
+                    Text = "◁ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedRightNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemRollerBottomNear = new MenuFlyoutItem();
-                itemRollerBottomNear.Text = "△ Roller (x-axis)";
-                itemRollerBottomNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerBottomNear = new MenuFlyoutItem
+                {
+                    Text = "△ Roller (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerBottomNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemRollerTopNear = new MenuFlyoutItem();
-                itemRollerTopNear.Text = "▽ Roller (x-axis)";
-                itemRollerTopNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerTopNear = new MenuFlyoutItem
+                {
+                    Text = "▽ Roller (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerTopNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemRollerLeftNear = new MenuFlyoutItem();
-                itemRollerLeftNear.Text = "▷ Roller (y-axis)";
-                itemRollerLeftNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerLeftNear = new MenuFlyoutItem
+                {
+                    Text = "▷ Roller (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerLeftNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemRollerRightNear = new MenuFlyoutItem();
-                itemRollerRightNear.Text = "◁ Roller (y-axis)";
-                itemRollerRightNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerRightNear = new MenuFlyoutItem
+                {
+                    Text = "◁ Roller (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerRightNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemTrackBottomNear = new MenuFlyoutItem();
-                itemTrackBottomNear.Text = "△ Track (x-axis)";
-                itemTrackBottomNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackBottomNear = new MenuFlyoutItem
+                {
+                    Text = "△ Track (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackBottomNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemTrackTopNear = new MenuFlyoutItem();
-                itemTrackTopNear.Text = "▽ Track (x-axis)";
-                itemTrackTopNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackTopNear = new MenuFlyoutItem
+                {
+                    Text = "▽ Track (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackTopNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemTrackLeftNear = new MenuFlyoutItem();
-                itemTrackLeftNear.Text = "▷ Track (y-axis)";
-                itemTrackLeftNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackLeftNear = new MenuFlyoutItem
+                {
+                    Text = "▷ Track (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackLeftNear.Click += ItemNear_Click;
 
-                MenuFlyoutItem itemTrackRightNear = new MenuFlyoutItem();
-                itemTrackRightNear.Text = "◁ Track (y-axis)";
-                itemTrackRightNear.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackRightNear = new MenuFlyoutItem
+                {
+                    Text = "◁ Track (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackRightNear.Click += ItemNear_Click;
 
                 nextMenuFlyout.Items.Add(itemFreeBottomNear);
@@ -150,13 +190,11 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemNear_Click(object sender, RoutedEventArgs e)
         {
-
             if (Model.Members.CurrentMember is object)
             {
                 if (!displayOnly)
                 {
                     MenuFlyoutItem tmpItem = (MenuFlyoutItem)e.OriginalSource;
-                    //Debug.WriteLine(tmpItem.Text);
 
                     switch (tmpItem.Text)
                     {
@@ -212,31 +250,19 @@ namespace Finite_Element_Analysis_Explorer
                             Model.Members.CurrentMember.NodeNear.Constraints = new Constraints(ConstraintType.TrackRight);
                             break;
                     }
+
                     Construction.Current.Refresh();
                 }
             }
-            else
-            {
-
-            }
-
-
-            
-
-
-            
         }
 
         private void ItemFar_Click(object sender, RoutedEventArgs e)
         {
-
             if (Model.Members.CurrentMember is object)
             {
-
                 if (!displayOnly)
                 {
                     MenuFlyoutItem tmpItem = (MenuFlyoutItem)e.OriginalSource;
-                    //Debug.WriteLine(tmpItem.Text);
 
                     switch (tmpItem.Text)
                     {
@@ -292,12 +318,9 @@ namespace Finite_Element_Analysis_Explorer
                             Model.Members.CurrentMember.NodeFar.Constraints = new Constraints(ConstraintType.TrackRight);
                             break;
                     }
+
                     Construction.Current.Refresh();
                 }
-            }
-            else
-            {
-
             }
         }
 
@@ -307,92 +330,124 @@ namespace Finite_Element_Analysis_Explorer
             {
                 MenuFlyout nextMenuFlyout = new MenuFlyout();
 
-                MenuFlyoutItem itemFreeBottomFar = new MenuFlyoutItem();
-                itemFreeBottomFar.Text = "    Free";
-                itemFreeBottomFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFreeBottomFar = new MenuFlyoutItem
+                {
+                    Text = "    Free",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFreeBottomFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemFixedBottomFar = new MenuFlyoutItem();
-                itemFixedBottomFar.Text = "△ Fixed";
-                itemFixedBottomFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedBottomFar = new MenuFlyoutItem
+                {
+                    Text = "△ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedBottomFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemFixedTopFar = new MenuFlyoutItem();
-                itemFixedTopFar.Text = "▽ Fixed";
-                itemFixedTopFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedTopFar = new MenuFlyoutItem
+                {
+                    Text = "▽ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedTopFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemFixedLeftFar = new MenuFlyoutItem();
-                itemFixedLeftFar.Text = "▷ Fixed";
-                itemFixedLeftFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedLeftFar = new MenuFlyoutItem
+                {
+                    Text = "▷ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedLeftFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemFixedRightFar = new MenuFlyoutItem();
-                itemFixedRightFar.Text = "◁ Fixed";
-                itemFixedRightFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemFixedRightFar = new MenuFlyoutItem
+                {
+                    Text = "◁ Fixed",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemFixedRightFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemPinnedBottomFar = new MenuFlyoutItem();
-                itemPinnedBottomFar.Text = "△ Pinned";
-                itemPinnedBottomFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedBottomFar = new MenuFlyoutItem
+                {
+                    Text = "△ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedBottomFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemPinnedTopFar = new MenuFlyoutItem();
-                itemPinnedTopFar.Text = "▽ Pinned";
-                itemPinnedTopFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedTopFar = new MenuFlyoutItem
+                {
+                    Text = "▽ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedTopFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemPinnedLeftFar = new MenuFlyoutItem();
-                itemPinnedLeftFar.Text = "▷ Pinned";
-                itemPinnedLeftFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedLeftFar = new MenuFlyoutItem
+                {
+                    Text = "▷ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedLeftFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemPinnedRightFar = new MenuFlyoutItem();
-                itemPinnedRightFar.Text = "◁ Pinned";
-                itemPinnedRightFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemPinnedRightFar = new MenuFlyoutItem
+                {
+                    Text = "◁ Pinned",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemPinnedRightFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemRollerBottomFar = new MenuFlyoutItem();
-                itemRollerBottomFar.Text = "△ Roller (x-axis)";
-                itemRollerBottomFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerBottomFar = new MenuFlyoutItem
+                {
+                    Text = "△ Roller (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerBottomFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemRollerTopFar = new MenuFlyoutItem();
-                itemRollerTopFar.Text = "▽ Roller (x-axis)";
-                itemRollerTopFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerTopFar = new MenuFlyoutItem
+                {
+                    Text = "▽ Roller (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerTopFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemRollerLeftFar = new MenuFlyoutItem();
-                itemRollerLeftFar.Text = "▷ Roller (y-axis)";
-                itemRollerLeftFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerLeftFar = new MenuFlyoutItem
+                {
+                    Text = "▷ Roller (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerLeftFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemRollerRightFar = new MenuFlyoutItem();
-                itemRollerRightFar.Text = "◁ Roller (y-axis)";
-                itemRollerRightFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemRollerRightFar = new MenuFlyoutItem
+                {
+                    Text = "◁ Roller (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemRollerRightFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemTrackBottomFar = new MenuFlyoutItem();
-                itemTrackBottomFar.Text = "△ Track (x-axis)";
-                itemTrackBottomFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackBottomFar = new MenuFlyoutItem
+                {
+                    Text = "△ Track (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackBottomFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemTrackTopFar = new MenuFlyoutItem();
-                itemTrackTopFar.Text = "▽ Track (x-axis)";
-                itemTrackTopFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackTopFar = new MenuFlyoutItem
+                {
+                    Text = "▽ Track (x-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackTopFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemTrackLeftFar = new MenuFlyoutItem();
-                itemTrackLeftFar.Text = "▷ Track (y-axis)";
-                itemTrackLeftFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackLeftFar = new MenuFlyoutItem
+                {
+                    Text = "▷ Track (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackLeftFar.Click += ItemFar_Click;
 
-                MenuFlyoutItem itemTrackRightFar = new MenuFlyoutItem();
-                itemTrackRightFar.Text = "◁ Track (y-axis)";
-                itemTrackRightFar.FontFamily = new FontFamily("Segoe UI Symbol");
+                MenuFlyoutItem itemTrackRightFar = new MenuFlyoutItem
+                {
+                    Text = "◁ Track (y-axis)",
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                };
                 itemTrackRightFar.Click += ItemFar_Click;
-
-
 
                 nextMenuFlyout.Items.Add(itemFreeBottomFar);
 
@@ -420,15 +475,8 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            SetNearImage();
-            SetFarImage();
-        }
-
         private void SetNearImage()
         {
-
             if (Model.Members.CurrentMember is object)
             {
                 switch (Model.Members.CurrentMember.NodeNear.Constraints.ConstraintType)
@@ -490,7 +538,7 @@ namespace Finite_Element_Analysis_Explorer
                         break;
                     case ConstraintType.Unknown:
                     default:
-                        //Not sure?
+                        // Not sure?
                         break;
                 }
             }
@@ -498,20 +546,14 @@ namespace Finite_Element_Analysis_Explorer
             {
                 Image_NodeNear.Source = new BitmapImage(new Uri("ms-appx:///Assets/Nodes/NodeFreeBlue.png"));
             }
-
-
-
-            
         }
 
         private void SetFarImage()
         {
-
             if (Model.Members.CurrentMember is object)
             {
                 switch (Model.Members.CurrentMember.NodeFar.Constraints.ConstraintType)
                 {
-
                     case ConstraintType.Free:
                         Image_NodeFar.Source = new BitmapImage(new Uri("ms-appx:///Assets/Nodes/NodeFreeBlue.png"));
                         break;
@@ -569,7 +611,7 @@ namespace Finite_Element_Analysis_Explorer
                         break;
                     case ConstraintType.Unknown:
                     default:
-                        //Not sure?
+                        // Not sure?
                         break;
                 }
             }
@@ -577,10 +619,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 Image_NodeFar.Source = new BitmapImage(new Uri("ms-appx:///Assets/Nodes/NodeFreeBlue.png"));
             }
-
-
-                
         }
-
     }
 }

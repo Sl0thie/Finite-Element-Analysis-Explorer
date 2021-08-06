@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -126,52 +125,52 @@ namespace Finite_Element_Analysis_Explorer
             comboBox_MemberDisplay.SelectedIndex = Options.MemberDisplay;
         }
 
-        private void checkBox_ShowMoment_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowMoment_Checked(object sender, RoutedEventArgs e)
         {
             Options.ShowMoment = true;
         }
 
-        private void checkBox_ShowMoment_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowMoment_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ShowMoment = false;
         }
 
-        private void checkBox_ShowShear_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowShear_Checked(object sender, RoutedEventArgs e)
         {
             Options.ShowShear = true;
         }
 
-        private void checkBox_ShowShear_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowShear_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ShowShear = false;
         }
 
-        private void checkBox_ShowLinear_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowLinear_Checked(object sender, RoutedEventArgs e)
         {
             Options.ShowLinear = true;
         }
 
-        private void checkBox_ShowLinear_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowLinear_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ShowLinear = false;
         }
 
-        private void checkBox_ShowForces_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowForces_Checked(object sender, RoutedEventArgs e)
         {
             Options.ShowForce = true;
         }
 
-        private void checkBox_ShowForces_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowForces_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ShowForce = false;
         }
 
-        private void checkBox_ShowReactions_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowReactions_Checked(object sender, RoutedEventArgs e)
         {
             Options.ShowReactions = true;
         }
 
-        private void checkBox_ShowReactions_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_ShowReactions_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.ShowReactions = false;
         }
@@ -181,12 +180,12 @@ namespace Finite_Element_Analysis_Explorer
             Options.DisplacementFactor = LogSlider_DisplacementFactor.TheValue;
         }
 
-        private void comboBox_MemberDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_MemberDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Options.MemberDisplay = comboBox_MemberDisplay.SelectedIndex;
-            foreach (var Item in Model.Members)
+            foreach (var item in Model.Members)
             {
-                foreach (var nextSegment in Item.Value.Segments)
+                foreach (var nextSegment in item.Value.Segments)
                 {
                     nextSegment.Value.UpdateColor();
                 }
@@ -197,7 +196,7 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Help Menu
 
-        private void button_Help_Click(object sender, RoutedEventArgs e)
+        private void Button_Help_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowHelpAsync();
         }
@@ -206,17 +205,17 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Settings Menu
 
-        private void menuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowSettingsGeneral();
         }
 
-        private void menuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsSolver_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowSettingsSolver();
         }
 
-        private void menuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_SettingsColors_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowSettingsColors();
         }
@@ -225,42 +224,41 @@ namespace Finite_Element_Analysis_Explorer
 
         #region File Menu
 
-        private void menuFlyout_New_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
-            //New File.
+            // New File.
             FileManager.NewFile();
         }
 
-        private async void menuFlyout_Open_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
-            //Open file.
+            // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                //Debug.WriteLine("File Picked, Now loading");
+                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
 
-        private async void menuFlyout_Save_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
-            //Save File.
+            // Save File.
             await FileManager.SaveFile();
         }
 
-        private async void menuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
+        private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            //Save file as.
+            // Save file as.
             if (await FileManager.PickFileToSave())
             {
                 await FileManager.SaveFile();
             }
         }
 
-        private void menuFlyout_Exit_Click(object sender, RoutedEventArgs e)
+        private void MenuFlyout_Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }
-
 
         #endregion
 
@@ -268,30 +266,30 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
-        private void button_Solve_Click(object sender, RoutedEventArgs e)
+        private void Button_Solve_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSolver();
         }
 
-        private void button_Construction_Click(object sender, RoutedEventArgs e)
+        private void Button_Construction_Click(object sender, RoutedEventArgs e)
         {
             FileManager.LoadLastFileAsync();
         }
 
-        private void button_Results_Click(object sender, RoutedEventArgs e)
+        private void Button_Results_Click(object sender, RoutedEventArgs e)
         {
             Solver.Current.ShowResults();
         }
 
-        private void button_Sections_Click(object sender, RoutedEventArgs e)
+        private void Button_Sections_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowSections();
         }
 
-        private void button_Reports_Click(object sender, RoutedEventArgs e)
+        private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
             Results.Current.ShowReport();
         }

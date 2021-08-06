@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.Graphics.Canvas.Geometry;
-using System;
+using Windows.UI;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -10,7 +9,6 @@ namespace Finite_Element_Analysis_Explorer
     {
 
         internal static bool FirstRun = true;
-
 
         #region Camera
 
@@ -52,7 +50,6 @@ namespace Finite_Element_Analysis_Explorer
         internal static float LineMomentForceFontWeight = 2.8f;
         internal static CanvasStrokeStyle LineMomentForceFont = new CanvasStrokeStyle();
 
-
         internal static float LineShearForceWeight = 1.5f;
         internal static CanvasStrokeStyle LineShearForce = new CanvasStrokeStyle();
 
@@ -90,18 +87,15 @@ namespace Finite_Element_Analysis_Explorer
         //
         internal static string ColorToEdit;
 
-
         #region Dark Colors
 
-        //Custom Colors.
+        // Custom Colors.
         internal static Color ColorBackground = Color.FromArgb(255, 8, 28, 88);
         internal static Color ColorLabel = Color.FromArgb(255, 255, 255, 255);
 
-        //internal static Color ColorBackground = Color.FromArgb(255, 128,128,128);
-
+        // internal static Color ColorBackground = Color.FromArgb(255, 128,128,128);
         internal static Color ColorForce = Color.FromArgb(255, 255, 255, 0);
         internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
-
 
         internal static Color ColorGridNormal = Color.FromArgb(192, 48, 48, 96);
         internal static Color ColorGridMinor = Color.FromArgb(192, 48, 48, 48);
@@ -134,45 +128,45 @@ namespace Finite_Element_Analysis_Explorer
         #region Light Colors (Printing)
 
         ////Custom Colors.
-        //internal static Color ColorBackground = Color.FromArgb(255, 255, 255, 255);
-        //internal static Color ColorLabel = Color.FromArgb(255, 0,0,0);
-        
-        //internal static Color ColorForce = Color.FromArgb(255, 255,255, 0);
-        //internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
+        // internal static Color ColorBackground = Color.FromArgb(255, 255, 255, 255);
+        // internal static Color ColorLabel = Color.FromArgb(255, 0,0,0);
 
-        //internal static Color ColorGridNormal = Color.FromArgb(255, 192, 192, 192);
-        //internal static Color ColorGridMinor = Color.FromArgb(255,192,192,192);
-        //internal static Color ColorGridMajor = Color.FromArgb(255, 192, 192, 192);
-        //internal static Color ColorGridMajorFont = Color.FromArgb(255, 48, 48, 156);
+        // internal static Color ColorForce = Color.FromArgb(255, 255,255, 0);
+        // internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
 
-        //internal static Color ColorSelectedNode = Color.FromArgb(255, 255, 0, 255);
-        //internal static Color ColorSelectedElement = Color.FromArgb(255, 255, 0, 255);
+        // internal static Color ColorGridNormal = Color.FromArgb(255, 192, 192, 192);
+        // internal static Color ColorGridMinor = Color.FromArgb(255,192,192,192);
+        // internal static Color ColorGridMajor = Color.FromArgb(255, 192, 192, 192);
+        // internal static Color ColorGridMajorFont = Color.FromArgb(255, 48, 48, 156);
 
-        //internal static Color ColorShearForceSelected = Color.FromArgb(255, 64, 64, 255);
-        //internal static Color ColorMomentForceSelected = Color.FromArgb(255, 64, 255, 64);
-        //internal static Color ColorDistributedForceSelected = Color.FromArgb(255, 255, 255, 64);
+        // internal static Color ColorSelectedNode = Color.FromArgb(255, 255, 0, 255);
+        // internal static Color ColorSelectedElement = Color.FromArgb(255, 255, 0, 255);
 
-        //internal static Color ColorShearForceFont = Color.FromArgb(255, 0, 0, 128);
-        //internal static Color ColorMomentForceFont = Color.FromArgb(255, 0, 128, 0);
+        // internal static Color ColorShearForceSelected = Color.FromArgb(255, 64, 64, 255);
+        // internal static Color ColorMomentForceSelected = Color.FromArgb(255, 64, 255, 64);
+        // internal static Color ColorDistributedForceSelected = Color.FromArgb(255, 255, 255, 64);
 
-        //internal static Color ColorShearForce = Color.FromArgb(128, 0, 0, 255);
-        //internal static Color ColorMomentForce = Color.FromArgb(128, 0, 255, 0);
-        //internal static Color ColorDistributedForce = Color.FromArgb(128, 255, 255, 0);
+        // internal static Color ColorShearForceFont = Color.FromArgb(255, 0, 0, 128);
+        // internal static Color ColorMomentForceFont = Color.FromArgb(255, 0, 128, 0);
 
-        //internal static Color ColorNodeFree = Color.FromArgb(255, 0, 0, 0);
-        //internal static Color ColorNodeFixed = Color.FromArgb(255, 128,128,128);
-        //internal static Color ColorNodePin = Color.FromArgb(255, 128, 128, 128);
-        //internal static Color ColorNodeRollerX = Color.FromArgb(255, 128, 128, 128);
-        //internal static Color ColorNodeRollerY = Color.FromArgb(255, 128, 128, 128);
-        //internal static Color ColorNodeOther = Color.FromArgb(255, 0, 0, 0);
+        // internal static Color ColorShearForce = Color.FromArgb(128, 0, 0, 255);
+        // internal static Color ColorMomentForce = Color.FromArgb(128, 0, 255, 0);
+        // internal static Color ColorDistributedForce = Color.FromArgb(128, 255, 255, 0);
 
+        // internal static Color ColorNodeFree = Color.FromArgb(255, 0, 0, 0);
+        // internal static Color ColorNodeFixed = Color.FromArgb(255, 128,128,128);
+        // internal static Color ColorNodePin = Color.FromArgb(255, 128, 128, 128);
+        // internal static Color ColorNodeRollerX = Color.FromArgb(255, 128, 128, 128);
+        // internal static Color ColorNodeRollerY = Color.FromArgb(255, 128, 128, 128);
+        // internal static Color ColorNodeOther = Color.FromArgb(255, 0, 0, 0);
         #endregion
-        
+
         #endregion
 
         #region General
 
         private static bool lockNumericalInput = false;
+
         public static bool LockNumericalInput
         {
             get { return lockNumericalInput; }
@@ -180,6 +174,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static decimal lastNumericalInput = 0;
+
         public static decimal LastNumericalInput
         {
             get { return lastNumericalInput; }
@@ -187,22 +182,26 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool loadLastFileOnStartup = true;
+
         internal static bool LoadLastFileOnStartup
         {
             get
             {
                 return loadLastFileOnStartup;
             }
-            //set { loadLastFileOnStartup = value; }
+
+            // set { loadLastFileOnStartup = value; }
         }
 
         private static int defaultNumberOfSegments = 10;
+
         internal static int DefaultNumberOfSegments
         {
             get
             {
                 return defaultNumberOfSegments;
             }
+
             set
             {
                 defaultNumberOfSegments = value;
@@ -210,18 +209,20 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static string lastCurrentSectionName = "Default";
+
         internal static string LastCurrentSectionName
         {
             get
             {
 
-
                 return lastCurrentSectionName;
             }
-            //set { lastCurrentSectionName = value; }
+
+            // set { lastCurrentSectionName = value; }
         }
 
         private static bool resetExistingMembers = true;
+
         public static bool ResetExistingMembers
         {
             get { return resetExistingMembers; }
@@ -233,12 +234,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Units
 
         private static AngleType angle = AngleType.Radians;
+
         internal static AngleType Angle
         {
             get
             {
                 return angle;
             }
+
             set
             {
                 angle = value;
@@ -246,12 +249,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static MassType mass = MassType.Kilogram;
+
         internal static MassType Mass
         {
             get
             {
                 return mass;
             }
+
             set
             {
                 mass = value;
@@ -259,12 +264,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static LengthType length = LengthType.Meter;
+
         internal static LengthType Length
         {
             get
             {
                 return length;
             }
+
             set
             {
                 length = value;
@@ -286,26 +293,28 @@ namespace Finite_Element_Analysis_Explorer
                     case LengthType.KiloMeter:
                         Camera.LengthUnitFactor = (float)Constants.KiloMeterPerMeter;
                         break;
-                    case LengthType.mil:
+                    case LengthType.Mil:
                         break;
-                    case LengthType.mile:
+                    case LengthType.Mile:
                         break;
                     case LengthType.Millimeter:
                         Camera.LengthUnitFactor = (float)Constants.MilliMeterPerMeter;
                         break;
-                    case LengthType.yard:
+                    case LengthType.Yard:
                         break;
                 }
             }
         }
 
         private static VolumeType volume = VolumeType.CubicMetre;
+
         internal static VolumeType Volume
         {
             get
             {
                 return volume;
             }
+
             set
             {
                 volume = value;
@@ -313,12 +322,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static MomentType moment = MomentType.NewtonMetre;
+
         internal static MomentType Moment
         {
             get
             {
                 return moment;
             }
+
             set
             {
                 moment = value;
@@ -326,12 +337,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static PressureType pressure = PressureType.Pascal;
+
         internal static PressureType Pressure
         {
             get
             {
                 return pressure;
             }
+
             set
             {
                 pressure = value;
@@ -339,12 +352,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static MomentOfInertiaType momentOfInertia = MomentOfInertiaType.QuadMeter;
+
         internal static MomentOfInertiaType MomentOfInertia
         {
             get
             {
                 return momentOfInertia;
             }
+
             set
             {
                 momentOfInertia = value;
@@ -352,12 +367,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static AreaType area = AreaType.SquareMetre;
+
         internal static AreaType Area
         {
             get
             {
                 return area;
             }
+
             set
             {
                 area = value;
@@ -365,12 +382,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static DensityType density = DensityType.KilogramPerCubicMetre;
+
         internal static DensityType Density
         {
             get
             {
                 return density;
             }
+
             set
             {
                 density = value;
@@ -378,6 +397,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static ForceType force;
+
         public static ForceType Force
         {
             get { return force; }
@@ -385,6 +405,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static ForcePerLengthType forcePerLength;
+
         public static ForcePerLengthType ForcePerLength
         {
             get { return forcePerLength; }
@@ -396,15 +417,18 @@ namespace Finite_Element_Analysis_Explorer
         #region Show
 
         private static bool showMoment = true;
+
         internal static bool ShowMoment
         {
             get
             { return showMoment; }
+
             set
             { showMoment = value; }
         }
 
         private static bool showShear = true;
+
         internal static bool ShowShear
         {
             get { return showShear; }
@@ -412,12 +436,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool showForce = true;
+
         internal static bool ShowForce
         {
             get
             {
                 return showForce;
             }
+
             set
             {
                 showForce = value;
@@ -425,12 +451,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool showLinear = true;
+
         internal static bool ShowLinear
         {
             get
             {
                 return showLinear;
             }
+
             set
             {
                 showLinear = value;
@@ -438,9 +466,10 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool showAxial = true;
+
         internal static bool ShowAxial
         {
-            //get { return showAxial; }
+            // get { return showAxial; }
             set
             {
                 showAxial = value;
@@ -448,6 +477,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool showReactions;
+
         public static bool ShowReactions
         {
             get { return showReactions; }
@@ -455,6 +485,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static int memberDisplay = 0;
+
         public static int MemberDisplay
         {
             get { return memberDisplay; }
@@ -466,12 +497,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Factors
 
         private static float momentFactor = 0.0001f;
+
         internal static float MomentFactor
         {
             get
             {
                 return momentFactor;
             }
+
             set
             {
                 momentFactor = value;
@@ -480,12 +513,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static float shearFactor = 0.0001f;
+
         internal static float ShearFactor
         {
             get
             {
                 return shearFactor;
             }
+
             set
             {
                 shearFactor = value;
@@ -494,12 +529,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static float linearFactor = 0.0001f;
+
         internal static float LinearFactor
         {
             get
             {
                 return linearFactor;
             }
+
             set
             {
                 linearFactor = value;
@@ -508,12 +545,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static float forcesFactor = 0.0001f;
+
         internal static float ForcesFactor
         {
             get
             {
                 return forcesFactor;
             }
+
             set
             {
                 forcesFactor = value;
@@ -522,12 +561,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static float reactionsFactor = 0.0001f;
+
         internal static float ReactionsFactor
         {
             get
             {
                 return reactionsFactor;
             }
+
             set
             {
                 reactionsFactor = value;
@@ -536,12 +577,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static float displacementFactor = 1;
+
         internal static float DisplacementFactor
         {
             get
             {
                 return displacementFactor;
             }
+
             set
             {
                 displacementFactor = value;
@@ -554,12 +597,14 @@ namespace Finite_Element_Analysis_Explorer
         #region Solver
 
         private static bool autoStartSolver = true;
+
         internal static bool AutoStartSolver
         {
             get
             {
                 return autoStartSolver;
             }
+
             set
             {
                 autoStartSolver = value;
@@ -567,12 +612,14 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static bool autoFinishSolver = true;
+
         internal static bool AutoFinishSolver
         {
             get
             {
                 return autoFinishSolver;
             }
+
             set
             {
                 autoFinishSolver = value;
@@ -580,6 +627,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private static int currentSolver = 0;
+
         public static int CurrentSolver
         {
             get { return currentSolver; }
@@ -1168,12 +1216,7 @@ namespace Finite_Element_Analysis_Explorer
                 CameraZoomTrim = 500f;
                 FileManager.localSettings.Values["SelectGridSize"] = 1f;
                 SelectGridSize = 1f;
-
-
             }
-
-
-            #region Units
 
             if (FileManager.localSettings.Values["UnitAngle"] is object)
             {
@@ -1205,9 +1248,6 @@ namespace Finite_Element_Analysis_Explorer
                 density = DensityType.KilogramPerCubicMetre;
             }
 
-
-
-
             try
             {
                 force = (ForceType)FileManager.localSettings.Values["UnitForce"];
@@ -1228,10 +1268,6 @@ namespace Finite_Element_Analysis_Explorer
                 forcePerLength = ForcePerLengthType.NewtonPerMeter;
             }
 
-
-
-
-
             try
             {
                 Length = (LengthType)FileManager.localSettings.Values["UnitLength"];
@@ -1241,7 +1277,6 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["UnitLength"] = (int)LengthType.Meter;
                 Length = LengthType.Meter;
             }
-
 
             try
             {
@@ -1253,7 +1288,6 @@ namespace Finite_Element_Analysis_Explorer
                 mass = MassType.Kilogram;
             }
 
-
             try
             {
                 moment = (MomentType)FileManager.localSettings.Values["UnitMoment"];
@@ -1263,7 +1297,6 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
                 moment = MomentType.NewtonMetre;
             }
-
 
             try
             {
@@ -1285,7 +1318,6 @@ namespace Finite_Element_Analysis_Explorer
                 pressure = PressureType.Pascal;
             }
 
-
             try
             {
                 volume = (VolumeType)FileManager.localSettings.Values["UnitVolume"];
@@ -1295,12 +1327,6 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
                 volume = VolumeType.CubicMetre;
             }
-
-
-
-            #endregion
-
-            #region Show
 
             try
             {
@@ -1372,10 +1398,6 @@ namespace Finite_Element_Analysis_Explorer
                 memberDisplay = 0;
             }
 
-            #endregion
-
-            #region Solver
-
             try
             {
                 autoStartSolver = (bool)FileManager.localSettings.Values["AutoStartSolver"];
@@ -1406,10 +1428,6 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["CurrentSolver"] = (int)currentSolver;
             }
 
-            #endregion
-
-            #region General
-
             try
             {
                 lockNumericalInput = (bool)FileManager.localSettings.Values["LockNumericalInput"];
@@ -1433,7 +1451,10 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 defaultNumberOfSegments = (int)FileManager.localSettings.Values["defaultNumberOfSegments"];
-                if (defaultNumberOfSegments < 1) { defaultNumberOfSegments = 1; }
+                if (defaultNumberOfSegments < 1)
+                {
+                    defaultNumberOfSegments = 1;
+                }
             }
             catch
             {
@@ -1460,21 +1481,25 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
             }
-            if (lastCurrentSectionName is null) { lastCurrentSectionName = "Default"; }
-            if (string.IsNullOrEmpty(lastCurrentSectionName.Trim())) { lastCurrentSectionName = "Default"; }
 
-            #endregion
+            if (lastCurrentSectionName is null)
+            {
+                lastCurrentSectionName = "Default";
+            }
 
-            #region Colors
+            if (string.IsNullOrEmpty(lastCurrentSectionName.Trim()))
+            {
+                lastCurrentSectionName = "Default";
+            }
 
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorBackgroundA"];
+                int a = (int)FileManager.localSettings.Values["ColorBackgroundA"];
                 int R = (int)FileManager.localSettings.Values["ColorBackgroundR"];
                 int G = (int)FileManager.localSettings.Values["ColorBackgroundG"];
                 int B = (int)FileManager.localSettings.Values["ColorBackgroundB"];
 
-                ColorBackground = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorBackground = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
             }
             catch
             {
@@ -1486,12 +1511,12 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorGridMajorFontA"];
+                int a = (int)FileManager.localSettings.Values["ColorGridMajorFontA"];
                 int R = (int)FileManager.localSettings.Values["ColorGridMajorFontR"];
                 int G = (int)FileManager.localSettings.Values["ColorGridMajorFontG"];
                 int B = (int)FileManager.localSettings.Values["ColorGridMajorFontB"];
 
-                ColorGridMajorFont = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorGridMajorFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
             }
             catch
             {
@@ -1503,12 +1528,12 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorLabelA"];
+                int a = (int)FileManager.localSettings.Values["ColorLabelA"];
                 int R = (int)FileManager.localSettings.Values["ColorLabelR"];
                 int G = (int)FileManager.localSettings.Values["ColorLabelG"];
                 int B = (int)FileManager.localSettings.Values["ColorLabelB"];
 
-                ColorLabel = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorLabel = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
             }
             catch
             {
@@ -1516,22 +1541,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
                 FileManager.localSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
                 FileManager.localSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
-
             }
 
-            #endregion
-
-            #region Lines
-
-            #region Line Grid Normal
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorGridNormalA"];
+                int a = (int)FileManager.localSettings.Values["ColorGridNormalA"];
                 int R = (int)FileManager.localSettings.Values["ColorGridNormalR"];
                 int G = (int)FileManager.localSettings.Values["ColorGridNormalG"];
                 int B = (int)FileManager.localSettings.Values["ColorGridNormalB"];
 
-                ColorGridNormal = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorGridNormal = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineGridNormal.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalDashCap"];
                 LineGridNormal.DashOffset = (float)FileManager.localSettings.Values["LineGridNormalDashOffset"];
@@ -1541,7 +1560,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridNormal.MiterLimit = (float)FileManager.localSettings.Values["LineGridNormalMiterLimit"];
                 LineGridNormal.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridNormalStartCap"];
                 LineGridNormalWeight = (float)FileManager.localSettings.Values["LineGridNormalWeight"];
-
             }
             catch
             {
@@ -1568,20 +1586,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
                 FileManager.localSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
                 FileManager.localSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
-
             }
-
-            #endregion
-            #region Line Grid Minor
 
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorGridMinorA"];
+                int a = (int)FileManager.localSettings.Values["ColorGridMinorA"];
                 int R = (int)FileManager.localSettings.Values["ColorGridMinorR"];
                 int G = (int)FileManager.localSettings.Values["ColorGridMinorG"];
                 int B = (int)FileManager.localSettings.Values["ColorGridMinorB"];
 
-                ColorGridMinor = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorGridMinor = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineGridMinor.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMinorDashCap"];
                 LineGridMinor.DashOffset = (float)FileManager.localSettings.Values["LineGridMinorDashOffset"];
@@ -1591,7 +1605,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMinor.MiterLimit = (float)FileManager.localSettings.Values["LineGridMinorMiterLimit"];
                 LineGridMinor.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMinorStartCap"];
                 LineGridMinorWeight = (float)FileManager.localSettings.Values["LineGridMinorWeight"];
-
             }
             catch
             {
@@ -1619,20 +1632,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
                 FileManager.localSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
                 FileManager.localSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
-
             }
-
-            #endregion
-            #region Line Grid Major
 
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorGridMajorA"];
+                int a = (int)FileManager.localSettings.Values["ColorGridMajorA"];
                 int R = (int)FileManager.localSettings.Values["ColorGridMajorR"];
                 int G = (int)FileManager.localSettings.Values["ColorGridMajorG"];
                 int B = (int)FileManager.localSettings.Values["ColorGridMajorB"];
 
-                ColorGridMajor = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorGridMajor = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineGridMajor.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMajorDashCap"];
                 LineGridMajor.DashOffset = (float)FileManager.localSettings.Values["LineGridMajorDashOffset"];
@@ -1642,7 +1651,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMajor.MiterLimit = (float)FileManager.localSettings.Values["LineGridMajorMiterLimit"];
                 LineGridMajor.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineGridMajorStartCap"];
                 LineGridMajorWeight = (float)FileManager.localSettings.Values["LineGridMajorWeight"];
-
             }
             catch
             {
@@ -1670,19 +1678,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
                 FileManager.localSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
                 FileManager.localSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
-
             }
 
-            #endregion
-            #region Line Force
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorForceA"];
+                int a = (int)FileManager.localSettings.Values["ColorForceA"];
                 int R = (int)FileManager.localSettings.Values["ColorForceR"];
                 int G = (int)FileManager.localSettings.Values["ColorForceG"];
                 int B = (int)FileManager.localSettings.Values["ColorForceB"];
 
-                ColorForce = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineForceDashCap"];
                 LineForce.DashOffset = (float)FileManager.localSettings.Values["LineForceDashOffset"];
@@ -1692,7 +1697,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineForce.MiterLimit = (float)FileManager.localSettings.Values["LineForceMiterLimit"];
                 LineForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineForceStartCap"];
                 LineForceWeight = (float)FileManager.localSettings.Values["LineForceWeight"];
-
             }
             catch
             {
@@ -1720,19 +1724,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
                 FileManager.localSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
                 FileManager.localSettings.Values["LineForceWeight"] = (float)LineForceWeight;
-
             }
 
-            #endregion
-            #region Line Reaction
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorReactionA"];
+                int a = (int)FileManager.localSettings.Values["ColorReactionA"];
                 int R = (int)FileManager.localSettings.Values["ColorReactionR"];
                 int G = (int)FileManager.localSettings.Values["ColorReactionG"];
                 int B = (int)FileManager.localSettings.Values["ColorReactionB"];
 
-                ColorReaction = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorReaction = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineReaction.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineReactionDashCap"];
                 LineReaction.DashOffset = (float)FileManager.localSettings.Values["LineReactionDashOffset"];
@@ -1742,7 +1743,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineReaction.MiterLimit = (float)FileManager.localSettings.Values["LineReactionMiterLimit"];
                 LineReaction.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineReactionStartCap"];
                 LineReactionWeight = (float)FileManager.localSettings.Values["LineReactionWeight"];
-
             }
             catch
             {
@@ -1770,19 +1770,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
                 FileManager.localSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
                 FileManager.localSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
-
             }
 
-            #endregion
-            #region Line Selected Element
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorSelectedElementA"];
+                int a = (int)FileManager.localSettings.Values["ColorSelectedElementA"];
                 int R = (int)FileManager.localSettings.Values["ColorSelectedElementR"];
                 int G = (int)FileManager.localSettings.Values["ColorSelectedElementG"];
                 int B = (int)FileManager.localSettings.Values["ColorSelectedElementB"];
 
-                ColorSelectedElement = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorSelectedElement = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineSelectedElement.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineSelectedElementDashCap"];
                 LineSelectedElement.DashOffset = (float)FileManager.localSettings.Values["LineSelectedElementDashOffset"];
@@ -1792,7 +1789,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineSelectedElement.MiterLimit = (float)FileManager.localSettings.Values["LineSelectedElementMiterLimit"];
                 LineSelectedElement.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineSelectedElementStartCap"];
                 LineSelectedElementWeight = (float)FileManager.localSettings.Values["LineSelectedElementWeight"];
-
             }
             catch
             {
@@ -1820,19 +1816,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
                 FileManager.localSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
                 FileManager.localSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
-
             }
 
-            #endregion
-            #region Line Shear Force Selected
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorShearForceSelectedA"];
+                int a = (int)FileManager.localSettings.Values["ColorShearForceSelectedA"];
                 int R = (int)FileManager.localSettings.Values["ColorShearForceSelectedR"];
                 int G = (int)FileManager.localSettings.Values["ColorShearForceSelectedG"];
                 int B = (int)FileManager.localSettings.Values["ColorShearForceSelectedB"];
 
-                ColorShearForceSelected = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorShearForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineShearForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceSelectedDashCap"];
                 LineShearForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineShearForceSelectedDashOffset"];
@@ -1842,7 +1835,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"];
                 LineShearForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceSelectedStartCap"];
                 LineShearForceSelectedWeight = (float)FileManager.localSettings.Values["LineShearForceSelectedWeight"];
-
             }
             catch
             {
@@ -1870,19 +1862,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
                 FileManager.localSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
                 FileManager.localSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
-
             }
 
-            #endregion
-            #region Line Moment Force Selected
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorMomentForceSelectedA"];
+                int a = (int)FileManager.localSettings.Values["ColorMomentForceSelectedA"];
                 int R = (int)FileManager.localSettings.Values["ColorMomentForceSelectedR"];
                 int G = (int)FileManager.localSettings.Values["ColorMomentForceSelectedG"];
                 int B = (int)FileManager.localSettings.Values["ColorMomentForceSelectedB"];
 
-                ColorMomentForceSelected = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorMomentForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineMomentForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceSelectedDashCap"];
                 LineMomentForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceSelectedDashOffset"];
@@ -1892,7 +1881,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"];
                 LineMomentForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceSelectedStartCap"];
                 LineMomentForceSelectedWeight = (float)FileManager.localSettings.Values["LineMomentForceSelectedWeight"];
-
             }
             catch
             {
@@ -1920,20 +1908,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
                 FileManager.localSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
                 FileManager.localSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
-
             }
 
-            #endregion
-
-            #region Line Shear Force Font
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorShearForceFontA"];
+                int a = (int)FileManager.localSettings.Values["ColorShearForceFontA"];
                 int R = (int)FileManager.localSettings.Values["ColorShearForceFontR"];
                 int G = (int)FileManager.localSettings.Values["ColorShearForceFontG"];
                 int B = (int)FileManager.localSettings.Values["ColorShearForceFontB"];
 
-                ColorShearForceFont = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorShearForceFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineShearForceFont.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceFontDashCap"];
                 LineShearForceFont.DashOffset = (float)FileManager.localSettings.Values["LineShearForceFontDashOffset"];
@@ -1943,7 +1927,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForceFont.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceFontMiterLimit"];
                 LineShearForceFont.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceFontStartCap"];
                 LineShearForceFontWeight = (float)FileManager.localSettings.Values["LineShearForceFontWeight"];
-
             }
             catch
             {
@@ -1971,19 +1954,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineShearForceFontMiterLimit"] = (float)LineShearForceFont.MiterLimit;
                 FileManager.localSettings.Values["LineShearForceFontStartCap"] = (int)LineShearForceFont.StartCap;
                 FileManager.localSettings.Values["LineShearForceFontWeight"] = (float)LineShearForceFontWeight;
-
             }
 
-            #endregion
-            #region Line Moment Force Font
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorMomentForceFontA"];
+                int a = (int)FileManager.localSettings.Values["ColorMomentForceFontA"];
                 int R = (int)FileManager.localSettings.Values["ColorMomentForceFontR"];
                 int G = (int)FileManager.localSettings.Values["ColorMomentForceFontG"];
                 int B = (int)FileManager.localSettings.Values["ColorMomentForceFontB"];
 
-                ColorMomentForceFont = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorMomentForceFont = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineMomentForceFont.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceFontDashCap"];
                 LineMomentForceFont.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceFontDashOffset"];
@@ -1993,7 +1973,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForceFont.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceFontMiterLimit"];
                 LineMomentForceFont.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceFontStartCap"];
                 LineMomentForceFontWeight = (float)FileManager.localSettings.Values["LineMomentForceFontWeight"];
-
             }
             catch
             {
@@ -2021,22 +2000,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineMomentForceFontMiterLimit"] = (float)LineMomentForceFont.MiterLimit;
                 FileManager.localSettings.Values["LineMomentForceFontStartCap"] = (int)LineMomentForceFont.StartCap;
                 FileManager.localSettings.Values["LineMomentForceFontWeight"] = (float)LineMomentForceFontWeight;
-
             }
 
-            #endregion
-
-
-
-            #region Line Shear Force
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorShearForceA"];
+                int a = (int)FileManager.localSettings.Values["ColorShearForceA"];
                 int R = (int)FileManager.localSettings.Values["ColorShearForceR"];
                 int G = (int)FileManager.localSettings.Values["ColorShearForceG"];
                 int B = (int)FileManager.localSettings.Values["ColorShearForceB"];
 
-                ColorShearForce = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorShearForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineShearForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceDashCap"];
                 LineShearForce.DashOffset = (float)FileManager.localSettings.Values["LineShearForceDashOffset"];
@@ -2046,7 +2019,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineShearForce.MiterLimit = (float)FileManager.localSettings.Values["LineShearForceMiterLimit"];
                 LineShearForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineShearForceStartCap"];
                 LineShearForceWeight = (float)FileManager.localSettings.Values["LineShearForceWeight"];
-
             }
             catch
             {
@@ -2074,19 +2046,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
                 FileManager.localSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
                 FileManager.localSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
-
             }
 
-            #endregion
-            #region Line Moment Force
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorMomentForceA"];
+                int a = (int)FileManager.localSettings.Values["ColorMomentForceA"];
                 int R = (int)FileManager.localSettings.Values["ColorMomentForceR"];
                 int G = (int)FileManager.localSettings.Values["ColorMomentForceG"];
                 int B = (int)FileManager.localSettings.Values["ColorMomentForceB"];
 
-                ColorMomentForce = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorMomentForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineMomentForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceDashCap"];
                 LineMomentForce.DashOffset = (float)FileManager.localSettings.Values["LineMomentForceDashOffset"];
@@ -2096,7 +2065,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineMomentForce.MiterLimit = (float)FileManager.localSettings.Values["LineMomentForceMiterLimit"];
                 LineMomentForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineMomentForceStartCap"];
                 LineMomentForceWeight = (float)FileManager.localSettings.Values["LineMomentForceWeight"];
-
             }
             catch
             {
@@ -2124,19 +2092,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
                 FileManager.localSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
                 FileManager.localSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
-
             }
 
-            #endregion
-            #region Line Distributed Force
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorDistributedForceA"];
+                int a = (int)FileManager.localSettings.Values["ColorDistributedForceA"];
                 int R = (int)FileManager.localSettings.Values["ColorDistributedForceR"];
                 int G = (int)FileManager.localSettings.Values["ColorDistributedForceG"];
                 int B = (int)FileManager.localSettings.Values["ColorDistributedForceB"];
 
-                ColorDistributedForce = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorDistributedForce = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineDistributedForce.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceDashCap"];
                 LineDistributedForce.DashOffset = (float)FileManager.localSettings.Values["LineDistributedForceDashOffset"];
@@ -2146,7 +2111,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForce.MiterLimit = (float)FileManager.localSettings.Values["LineDistributedForceMiterLimit"];
                 LineDistributedForce.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceStartCap"];
                 LineDistributedForceWeight = (float)FileManager.localSettings.Values["LineDistributedForceWeight"];
-
             }
             catch
             {
@@ -2174,19 +2138,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
                 FileManager.localSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
                 FileManager.localSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
-
             }
 
-            #endregion
-            #region Line Distributed Force Selected
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedA"];
+                int a = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedA"];
                 int R = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedR"];
                 int G = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedG"];
                 int B = (int)FileManager.localSettings.Values["ColorDistributedForceSelectedB"];
 
-                ColorDistributedForceSelected = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorDistributedForceSelected = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineDistributedForceSelected.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceSelectedDashCap"];
                 LineDistributedForceSelected.DashOffset = (float)FileManager.localSettings.Values["LineDistributedForceSelectedDashOffset"];
@@ -2196,7 +2157,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineDistributedForceSelected.MiterLimit = (float)FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"];
                 LineDistributedForceSelected.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"];
                 LineDistributedForceSelectedWeight = (float)FileManager.localSettings.Values["LineDistributedForceSelectedWeight"];
-
             }
             catch
             {
@@ -2224,19 +2184,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
                 FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
                 FileManager.localSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
-
             }
 
-            #endregion
-            #region Line Node Free
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodeFreeA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodeFreeA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodeFreeR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodeFreeG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodeFreeB"];
 
-                ColorNodeFree = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodeFree = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodeFree.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFreeDashCap"];
                 LineNodeFree.DashOffset = (float)FileManager.localSettings.Values["LineNodeFreeDashOffset"];
@@ -2246,7 +2203,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFree.MiterLimit = (float)FileManager.localSettings.Values["LineNodeFreeMiterLimit"];
                 LineNodeFree.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFreeStartCap"];
                 LineNodeFreeWeight = (float)FileManager.localSettings.Values["LineNodeFreeWeight"];
-
             }
             catch
             {
@@ -2274,19 +2230,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
                 FileManager.localSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
                 FileManager.localSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
-
             }
 
-            #endregion
-            #region Line Node Fixed
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodeFixedA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodeFixedA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodeFixedR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodeFixedG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodeFixedB"];
 
-                ColorNodeFixed = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodeFixed = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodeFixed.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFixedDashCap"];
                 LineNodeFixed.DashOffset = (float)FileManager.localSettings.Values["LineNodeFixedDashOffset"];
@@ -2296,7 +2249,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeFixed.MiterLimit = (float)FileManager.localSettings.Values["LineNodeFixedMiterLimit"];
                 LineNodeFixed.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeFixedStartCap"];
                 LineNodeFixedWeight = (float)FileManager.localSettings.Values["LineNodeFixedWeight"];
-
             }
             catch
             {
@@ -2324,19 +2276,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
                 FileManager.localSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
                 FileManager.localSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
-
             }
 
-            #endregion
-            #region Line Node Pin
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodePinA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodePinA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodePinR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodePinG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodePinB"];
 
-                ColorNodePin = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodePin = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodePin.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodePinDashCap"];
                 LineNodePin.DashOffset = (float)FileManager.localSettings.Values["LineNodePinDashOffset"];
@@ -2346,7 +2295,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodePin.MiterLimit = (float)FileManager.localSettings.Values["LineNodePinMiterLimit"];
                 LineNodePin.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodePinStartCap"];
                 LineNodePinWeight = (float)FileManager.localSettings.Values["LineNodePinWeight"];
-
             }
             catch
             {
@@ -2374,19 +2322,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
                 FileManager.localSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
                 FileManager.localSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
-
             }
 
-            #endregion
-            #region Line Node Roller X
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodeRollerXA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodeRollerXA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodeRollerXR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodeRollerXG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodeRollerXB"];
 
-                ColorNodeRollerX = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodeRollerX = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodeRollerX.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerXDashCap"];
                 LineNodeRollerX.DashOffset = (float)FileManager.localSettings.Values["LineNodeRollerXDashOffset"];
@@ -2396,7 +2341,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerX.MiterLimit = (float)FileManager.localSettings.Values["LineNodeRollerXMiterLimit"];
                 LineNodeRollerX.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerXStartCap"];
                 LineNodeRollerXWeight = (float)FileManager.localSettings.Values["LineNodeRollerXWeight"];
-
             }
             catch
             {
@@ -2424,19 +2368,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
                 FileManager.localSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
                 FileManager.localSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
-
             }
 
-            #endregion
-            #region Line Node Roller Y
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodeRollerYA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodeRollerYA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodeRollerYR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodeRollerYG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodeRollerYB"];
 
-                ColorNodeRollerY = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodeRollerY = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodeRollerY.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerYDashCap"];
                 LineNodeRollerY.DashOffset = (float)FileManager.localSettings.Values["LineNodeRollerYDashOffset"];
@@ -2446,7 +2387,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeRollerY.MiterLimit = (float)FileManager.localSettings.Values["LineNodeRollerYMiterLimit"];
                 LineNodeRollerY.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeRollerYStartCap"];
                 LineNodeRollerYWeight = (float)FileManager.localSettings.Values["LineNodeRollerYWeight"];
-
             }
             catch
             {
@@ -2474,19 +2414,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
                 FileManager.localSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
                 FileManager.localSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
-
             }
 
-            #endregion
-            #region Line Node Other
             try
             {
-                int A = (int)FileManager.localSettings.Values["ColorNodeOtherA"];
+                int a = (int)FileManager.localSettings.Values["ColorNodeOtherA"];
                 int R = (int)FileManager.localSettings.Values["ColorNodeOtherR"];
                 int G = (int)FileManager.localSettings.Values["ColorNodeOtherG"];
                 int B = (int)FileManager.localSettings.Values["ColorNodeOtherB"];
 
-                ColorNodeOther = Color.FromArgb((byte)A, (byte)R, (byte)G, (byte)B);
+                ColorNodeOther = Color.FromArgb((byte)a, (byte)R, (byte)G, (byte)B);
 
                 LineNodeOther.DashCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeOtherDashCap"];
                 LineNodeOther.DashOffset = (float)FileManager.localSettings.Values["LineNodeOtherDashOffset"];
@@ -2496,7 +2433,6 @@ namespace Finite_Element_Analysis_Explorer
                 LineNodeOther.MiterLimit = (float)FileManager.localSettings.Values["LineNodeOtherMiterLimit"];
                 LineNodeOther.StartCap = (CanvasCapStyle)FileManager.localSettings.Values["LineNodeOtherStartCap"];
                 LineNodeOtherWeight = (float)FileManager.localSettings.Values["LineNodeOtherWeight"];
-
             }
             catch
             {
@@ -2524,14 +2460,7 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
                 FileManager.localSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
                 FileManager.localSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
-
             }
-
-            #endregion
-
-            #endregion
-
-            #region Factors
 
             try
             {
@@ -2569,7 +2498,6 @@ namespace Finite_Element_Analysis_Explorer
                 linearFactor = 0.0001f;
             }
 
-
             try
             {
                 double tmpDouble = (double)FileManager.localSettings.Values["ForcesFactor"];
@@ -2594,9 +2522,6 @@ namespace Finite_Element_Analysis_Explorer
                 reactionsFactor = 0.0001f;
             }
 
-
-
-
             try
             {
                 double tmpDouble = (double)FileManager.localSettings.Values["DisplacementFactor"];
@@ -2609,10 +2534,6 @@ namespace Finite_Element_Analysis_Explorer
                 displacementFactor = 1f;
             }
 
-            #endregion
-
-            #region Camera
-
             try
             {
                 Single tmpSingle = (Single)FileManager.localSettings.Values["CameraZoomTrim"];
@@ -2624,8 +2545,8 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["CameraZoomTrim"] = 500f;
                 CameraZoomTrim = 500f;
             }
-            Camera.ZoomTrim = CameraZoomTrim;
 
+            Camera.ZoomTrim = CameraZoomTrim;
 
             try
             {
@@ -2638,24 +2559,12 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.localSettings.Values["SelectGridSize"] = 1f;
                 SelectGridSize = 1f;
             }
-
-            #endregion
         }
 
         internal static void SaveOptions()
         {
-
-            #region Camera
-
             FileManager.localSettings.Values["CameraZoomTrim"] = (float)CameraZoomTrim;
             FileManager.localSettings.Values["SelectGridSize"] = (float)SelectGridSize;
-
-            #endregion
-
-            #region Lines
-
-            #region Line Grid Normal
-
             FileManager.localSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
             FileManager.localSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
             FileManager.localSettings.Values["ColorGridNormalG"] = (int)ColorGridNormal.G;
@@ -2669,10 +2578,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
             FileManager.localSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
             FileManager.localSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
-
-            #endregion
-            #region Line Grid Minor
-
             FileManager.localSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
             FileManager.localSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
             FileManager.localSettings.Values["ColorGridMinorG"] = (int)ColorGridMinor.G;
@@ -2686,10 +2591,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
             FileManager.localSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
             FileManager.localSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
-
-            #endregion
-            #region Line Grid Major
-
             FileManager.localSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
             FileManager.localSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
             FileManager.localSettings.Values["ColorGridMajorG"] = (int)ColorGridMajor.G;
@@ -2703,10 +2604,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
             FileManager.localSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
             FileManager.localSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
-
-            #endregion
-            #region Line Selected Element
-
             FileManager.localSettings.Values["ColorSelectedElementA"] = (int)ColorSelectedElement.A;
             FileManager.localSettings.Values["ColorSelectedElementR"] = (int)ColorSelectedElement.R;
             FileManager.localSettings.Values["ColorSelectedElementG"] = (int)ColorSelectedElement.G;
@@ -2720,10 +2617,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineSelectedElementMiterLimit"] = (float)LineSelectedElement.MiterLimit;
             FileManager.localSettings.Values["LineSelectedElementStartCap"] = (int)LineSelectedElement.StartCap;
             FileManager.localSettings.Values["LineSelectedElementWeight"] = (float)LineSelectedElementWeight;
-
-            #endregion
-            #region Line Force
-
             FileManager.localSettings.Values["ColorForceA"] = (int)ColorForce.A;
             FileManager.localSettings.Values["ColorForceR"] = (int)ColorForce.R;
             FileManager.localSettings.Values["ColorForceG"] = (int)ColorForce.G;
@@ -2737,10 +2630,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineForceMiterLimit"] = (float)LineForce.MiterLimit;
             FileManager.localSettings.Values["LineForceStartCap"] = (int)LineForce.StartCap;
             FileManager.localSettings.Values["LineForceWeight"] = (float)LineForceWeight;
-
-            #endregion
-            #region Line Reaction
-
             FileManager.localSettings.Values["ColorReactionA"] = (int)ColorReaction.A;
             FileManager.localSettings.Values["ColorReactionR"] = (int)ColorReaction.R;
             FileManager.localSettings.Values["ColorReactionG"] = (int)ColorReaction.G;
@@ -2754,10 +2643,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineReactionMiterLimit"] = (float)LineReaction.MiterLimit;
             FileManager.localSettings.Values["LineReactionStartCap"] = (int)LineReaction.StartCap;
             FileManager.localSettings.Values["LineReactionWeight"] = (float)LineReactionWeight;
-
-            #endregion
-            #region Line Shear Force Selected
-
             FileManager.localSettings.Values["ColorShearForceSelectedA"] = (int)ColorShearForceSelected.A;
             FileManager.localSettings.Values["ColorShearForceSelectedR"] = (int)ColorShearForceSelected.R;
             FileManager.localSettings.Values["ColorShearForceSelectedG"] = (int)ColorShearForceSelected.G;
@@ -2771,10 +2656,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineShearForceSelectedMiterLimit"] = (float)LineShearForceSelected.MiterLimit;
             FileManager.localSettings.Values["LineShearForceSelectedStartCap"] = (int)LineShearForceSelected.StartCap;
             FileManager.localSettings.Values["LineShearForceSelectedWeight"] = (float)LineShearForceSelectedWeight;
-
-            #endregion
-            #region Line Shear Force
-
             FileManager.localSettings.Values["ColorShearForceA"] = (int)ColorShearForce.A;
             FileManager.localSettings.Values["ColorShearForceR"] = (int)ColorShearForce.R;
             FileManager.localSettings.Values["ColorShearForceG"] = (int)ColorShearForce.G;
@@ -2788,10 +2669,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineShearForceMiterLimit"] = (float)LineShearForce.MiterLimit;
             FileManager.localSettings.Values["LineShearForceStartCap"] = (int)LineShearForce.StartCap;
             FileManager.localSettings.Values["LineShearForceWeight"] = (float)LineShearForceWeight;
-
-            #endregion
-            #region Line Moment Force Selected
-
             FileManager.localSettings.Values["ColorMomentForceSelectedA"] = (int)ColorMomentForceSelected.A;
             FileManager.localSettings.Values["ColorMomentForceSelectedR"] = (int)ColorMomentForceSelected.R;
             FileManager.localSettings.Values["ColorMomentForceSelectedG"] = (int)ColorMomentForceSelected.G;
@@ -2805,10 +2682,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)LineMomentForceSelected.MiterLimit;
             FileManager.localSettings.Values["LineMomentForceSelectedStartCap"] = (int)LineMomentForceSelected.StartCap;
             FileManager.localSettings.Values["LineMomentForceSelectedWeight"] = (float)LineMomentForceSelectedWeight;
-
-            #endregion
-            #region Line Moment Force
-
             FileManager.localSettings.Values["ColorMomentForceA"] = (int)ColorMomentForce.A;
             FileManager.localSettings.Values["ColorMomentForceR"] = (int)ColorMomentForce.R;
             FileManager.localSettings.Values["ColorMomentForceG"] = (int)ColorMomentForce.G;
@@ -2822,10 +2695,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineMomentForceMiterLimit"] = (float)LineMomentForce.MiterLimit;
             FileManager.localSettings.Values["LineMomentForceStartCap"] = (int)LineMomentForce.StartCap;
             FileManager.localSettings.Values["LineMomentForceWeight"] = (float)LineMomentForceWeight;
-
-            #endregion
-            #region Line Distributed Force Collected
-
             FileManager.localSettings.Values["ColorDistributedForceSelectedA"] = (int)ColorDistributedForceSelected.A;
             FileManager.localSettings.Values["ColorDistributedForceSelectedR"] = (int)ColorDistributedForceSelected.R;
             FileManager.localSettings.Values["ColorDistributedForceSelectedG"] = (int)ColorDistributedForceSelected.G;
@@ -2839,10 +2708,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)LineDistributedForceSelected.MiterLimit;
             FileManager.localSettings.Values["LineDistributedForceSelectedStartCap"] = (int)LineDistributedForceSelected.StartCap;
             FileManager.localSettings.Values["LineDistributedForceSelectedWeight"] = (float)LineDistributedForceSelectedWeight;
-
-            #endregion
-            #region Line Distributed Force
-
             FileManager.localSettings.Values["ColorDistributedForceA"] = (int)ColorDistributedForce.A;
             FileManager.localSettings.Values["ColorDistributedForceR"] = (int)ColorDistributedForce.R;
             FileManager.localSettings.Values["ColorDistributedForceG"] = (int)ColorDistributedForce.G;
@@ -2856,10 +2721,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineDistributedForceMiterLimit"] = (float)LineDistributedForce.MiterLimit;
             FileManager.localSettings.Values["LineDistributedForceStartCap"] = (int)LineDistributedForce.StartCap;
             FileManager.localSettings.Values["LineDistributedForceWeight"] = (float)LineDistributedForceWeight;
-
-            #endregion
-            #region Line Node Free
-
             FileManager.localSettings.Values["ColorNodeFreeA"] = (int)ColorNodeFree.A;
             FileManager.localSettings.Values["ColorNodeFreeR"] = (int)ColorNodeFree.R;
             FileManager.localSettings.Values["ColorNodeFreeG"] = (int)ColorNodeFree.G;
@@ -2873,10 +2734,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodeFreeMiterLimit"] = (float)LineNodeFree.MiterLimit;
             FileManager.localSettings.Values["LineNodeFreeStartCap"] = (int)LineNodeFree.StartCap;
             FileManager.localSettings.Values["LineNodeFreeWeight"] = (float)LineNodeFreeWeight;
-
-            #endregion
-            #region Line Node Fixed
-
             FileManager.localSettings.Values["ColorNodeFixedA"] = (int)ColorNodeFixed.A;
             FileManager.localSettings.Values["ColorNodeFixedR"] = (int)ColorNodeFixed.R;
             FileManager.localSettings.Values["ColorNodeFixedG"] = (int)ColorNodeFixed.G;
@@ -2890,10 +2747,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodeFixedMiterLimit"] = (float)LineNodeFixed.MiterLimit;
             FileManager.localSettings.Values["LineNodeFixedStartCap"] = (int)LineNodeFixed.StartCap;
             FileManager.localSettings.Values["LineNodeFixedWeight"] = (float)LineNodeFixedWeight;
-
-            #endregion
-            #region Line Node Pin
-
             FileManager.localSettings.Values["ColorNodePinA"] = (int)ColorNodePin.A;
             FileManager.localSettings.Values["ColorNodePinR"] = (int)ColorNodePin.R;
             FileManager.localSettings.Values["ColorNodePinG"] = (int)ColorNodePin.G;
@@ -2907,10 +2760,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodePinMiterLimit"] = (float)LineNodePin.MiterLimit;
             FileManager.localSettings.Values["LineNodePinStartCap"] = (int)LineNodePin.StartCap;
             FileManager.localSettings.Values["LineNodePinWeight"] = (float)LineNodePinWeight;
-
-            #endregion
-            #region Line Node Roller X
-
             FileManager.localSettings.Values["ColorNodeRollerXA"] = (int)ColorNodeRollerX.A;
             FileManager.localSettings.Values["ColorNodeRollerXR"] = (int)ColorNodeRollerX.R;
             FileManager.localSettings.Values["ColorNodeRollerXG"] = (int)ColorNodeRollerX.G;
@@ -2924,10 +2773,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodeRollerXMiterLimit"] = (float)LineNodeRollerX.MiterLimit;
             FileManager.localSettings.Values["LineNodeRollerXStartCap"] = (int)LineNodeRollerX.StartCap;
             FileManager.localSettings.Values["LineNodeRollerXWeight"] = (float)LineNodeRollerXWeight;
-
-            #endregion
-            #region Line Node Roller Y
-
             FileManager.localSettings.Values["ColorNodeRollerYA"] = (int)ColorNodeRollerY.A;
             FileManager.localSettings.Values["ColorNodeRollerYR"] = (int)ColorNodeRollerY.R;
             FileManager.localSettings.Values["ColorNodeRollerYG"] = (int)ColorNodeRollerY.G;
@@ -2941,10 +2786,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodeRollerYMiterLimit"] = (float)LineNodeRollerY.MiterLimit;
             FileManager.localSettings.Values["LineNodeRollerYStartCap"] = (int)LineNodeRollerY.StartCap;
             FileManager.localSettings.Values["LineNodeRollerYWeight"] = (float)LineNodeRollerYWeight;
-
-            #endregion
-            #region Line Node Other
-
             FileManager.localSettings.Values["ColorNodeOtherA"] = (int)ColorNodeOther.A;
             FileManager.localSettings.Values["ColorNodeOtherR"] = (int)ColorNodeOther.R;
             FileManager.localSettings.Values["ColorNodeOtherG"] = (int)ColorNodeOther.G;
@@ -2958,12 +2799,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["LineNodeOtherMiterLimit"] = (float)LineNodeOther.MiterLimit;
             FileManager.localSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
             FileManager.localSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
-
-            #endregion
-
-            #endregion
-            #region Colors
-
             FileManager.localSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
             FileManager.localSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
             FileManager.localSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
@@ -2978,10 +2813,6 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
             FileManager.localSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
             FileManager.localSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
-
-            #endregion
-            #region Units
-
             FileManager.localSettings.Values["UnitAngle"] = (int)angle;
             FileManager.localSettings.Values["UnitArea"] = (int)area;
             FileManager.localSettings.Values["UnitDensity"] = (int)density;
@@ -2990,18 +2821,11 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["UnitLength"] = (int)length;
             FileManager.localSettings.Values["UnitMass"] = (int)mass;
 
-
             FileManager.localSettings.Values["UnitMoment"] = (int)moment;
             FileManager.localSettings.Values["UnitMomentOfInertia"] = (int)momentOfInertia;
             FileManager.localSettings.Values["UnitPressure"] = (int)pressure;
 
             FileManager.localSettings.Values["UnitVolume"] = (int)volume;
-
-
-
-            #endregion
-            #region Show
-
             FileManager.localSettings.Values["ShowMoment"] = showMoment;
             FileManager.localSettings.Values["ShowShear"] = showShear;
             FileManager.localSettings.Values["ShowForce"] = showForce;
@@ -3009,36 +2833,20 @@ namespace Finite_Element_Analysis_Explorer
             FileManager.localSettings.Values["ShowAxial"] = showAxial;
             FileManager.localSettings.Values["ShowReactions"] = showReactions;
             FileManager.localSettings.Values["MemberDisplay"] = (int)memberDisplay;
-
-            #endregion
-            #region Solver
-
-
             FileManager.localSettings.Values["AutoStartSolver"] = (bool)autoStartSolver;
             FileManager.localSettings.Values["AutoFinishSolver"] = (bool)autoFinishSolver;
             FileManager.localSettings.Values["CurrentSolver"] = (int)currentSolver;
-
-            #endregion
-            #region General
-
             FileManager.localSettings.Values["LockNumericalInput"] = lockNumericalInput;
             FileManager.localSettings.Values["LoadLastFileOnStartup"] = loadLastFileOnStartup;
             FileManager.localSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
             FileManager.localSettings.Values["lastCurrentSection"] = (string)lastCurrentSectionName;
             FileManager.localSettings.Values["ResetExistingMembers"] = (bool)resetExistingMembers;
-
-
-            #endregion
-            #region Factors
-
             FileManager.localSettings.Values["MomentFactor"] = (double)momentFactor;
             FileManager.localSettings.Values["ShearFactor"] = (double)shearFactor;
             FileManager.localSettings.Values["LinearFactor"] = (double)linearFactor;
             FileManager.localSettings.Values["ForcesFactor"] = (double)forcesFactor;
             FileManager.localSettings.Values["ReactionsFactor"] = (double)reactionsFactor;
             FileManager.localSettings.Values["DisplacementFactor"] = (double)displacementFactor;
-
-            #endregion
         }
 
         #endregion

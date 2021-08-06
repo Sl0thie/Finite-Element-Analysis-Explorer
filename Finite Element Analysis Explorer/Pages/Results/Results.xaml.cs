@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -24,6 +13,7 @@ namespace Finite_Element_Analysis_Explorer
         private bool IsPageLoaded = false;
 
         private bool detailsIsOpen = true;
+
         public bool DetailsIsOpen
         {
             get { return detailsIsOpen; }
@@ -54,16 +44,12 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-
         public void ShowReport()
         {
             frameDetails.Width = 220;
             frameDetails.Navigate(typeof(PanelReport));
             frameDisplay.Navigate(typeof(ResultsReport));
-
         }
-
-
 
         public void ShowSettingsColors()
         {
@@ -82,13 +68,11 @@ namespace Finite_Element_Analysis_Explorer
 
         public async void ShowHelpAsync()
         {
-            //frameDetails.Width = 220;
-            //frameDetails.Navigate(typeof(PanelHelp));
-            //frameDisplay.Navigate(typeof(Help));
-
+            // frameDetails.Width = 220;
+            // frameDetails.Navigate(typeof(PanelHelp));
+            // frameDisplay.Navigate(typeof(Help));
             var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-
         }
 
         public void ShowDrawing()
@@ -103,6 +87,7 @@ namespace Finite_Element_Analysis_Explorer
                 frameDetails.Width = 300;
                 frameDetails.Navigate(typeof(PanelResultsMember));
             }
+
             frameDisplay.Navigate(typeof(ResultsDisplay));
         }
 
@@ -110,7 +95,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void SetTitle(string newTitle)
         {
-            textBlock_Title.Text = newTitle;
+            TextBlock_Title.Text = newTitle;
         }
 
         private void CustomizeTitleBar()
@@ -168,16 +153,17 @@ namespace Finite_Element_Analysis_Explorer
             {
                 frameDetails.Width = Constants.WidthDetailsSlim;
             }
+
             frameDetails.Height = this.ActualHeight - Constants.HeightTitleBar;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            //App.CurrentPageState = PageState.Unknown;
+            // App.CurrentPageState = PageState.Unknown;
             IsPageLoaded = false;
         }
 
-        private void menuButton_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             if (detailsIsOpen)
             {
@@ -191,28 +177,22 @@ namespace Finite_Element_Analysis_Explorer
                 frameDetails.Width = Constants.WidthDetailsNormal;
                 frameDetails.Navigate(typeof(PanelModel));
             }
-
         }
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutOpen(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutSave(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutSaveAs(object sender, RoutedEventArgs e)
         {
-
         }
-
     }
 }

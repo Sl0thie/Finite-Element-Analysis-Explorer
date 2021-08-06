@@ -394,22 +394,22 @@ namespace Finite_Element_Analysis_Explorer
             {
                 if (distance % snapDistance < snapDistance / 2)
                 {
-                    return distance - distance % snapDistance;
+                    return distance - (distance % snapDistance);
                 }
                 else
                 {
-                    return distance + (snapDistance - distance % snapDistance);
+                    return distance + (snapDistance - (distance % snapDistance));
                 }
             }
             else
             {
                 if (Math.Abs(distance % snapDistance) < snapDistance / 2)
                 {
-                    return distance - distance % snapDistance;
+                    return distance - (distance % snapDistance);
                 }
                 else
                 {
-                    return distance + (-snapDistance - distance % snapDistance);
+                    return distance + (-snapDistance - (distance % snapDistance));
                 }
             }
         }
@@ -875,6 +875,7 @@ namespace Finite_Element_Analysis_Explorer
                         gridSizeMajor = (float)(Constants.MeterPerInch * 12);
                         gridSizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
+
                     break;
 
                 case LengthType.Foot:

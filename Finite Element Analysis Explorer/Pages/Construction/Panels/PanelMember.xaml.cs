@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class PanelMember : Page
     {
-        //private bool isLoaded = false;
+        // private bool isLoaded = false;
         internal static PanelMember Current;
 
         public PanelMember()
@@ -21,9 +19,9 @@ namespace Finite_Element_Analysis_Explorer
         {
             Current = this;
 
-            if(!ReferenceEquals(null, Model.Members.CurrentMember))
+            if (!ReferenceEquals(null, Model.Members.CurrentMember))
             {
-                textBlock_Title.Text = "MEMBER " + Model.Members.CurrentMember.Index;
+                TextBlock_Title.Text = "MEMBER " + Model.Members.CurrentMember.Index;
 
                 doubleValue_LocationX.UnitType = UnitType.Length;
                 doubleValue_LocationX.DisplayOnly = true;
@@ -83,8 +81,6 @@ namespace Finite_Element_Analysis_Explorer
                 TextBlock_TitleMaterialName.Text = Model.Members.CurrentMember.Section.Material;
                 TextBlock_TitleProfileName.Text = Model.Members.CurrentMember.Section.SectionProfile;
 
-
-
                 valueDisplay_Area.Title = "Section Area";
                 valueDisplay_Area.DisplayOnly = true;
                 valueDisplay_Area.UnitType = UnitType.Area;
@@ -120,27 +116,21 @@ namespace Finite_Element_Analysis_Explorer
                 valueDisplay_CostPerLength.UnitType = UnitType.Money;
                 valueDisplay_CostPerLength.SetTheValue(Model.Members.CurrentMember.MemberCost);
 
+                // valueDisplay_CostConstraintNear.Title = "Maintinance Cost";
+                // valueDisplay_CostConstraintNear.DisplayOnly = true;
+                // valueDisplay_CostConstraintNear.UnitType = UnitType.Money;
+                // valueDisplay_CostConstraintNear.SetTheValue(0);
 
+                // valueDisplay_CostConstraintFar.Title = "Far Constraint Cost";
+                // valueDisplay_CostConstraintFar.UnitType = UnitType.Money;
+                // valueDisplay_CostConstraintFar.SetTheValue(0); //todo: Finish this.
 
-                //valueDisplay_CostConstraintNear.Title = "Maintinance Cost";
-                //valueDisplay_CostConstraintNear.DisplayOnly = true;
-                //valueDisplay_CostConstraintNear.UnitType = UnitType.Money;
-                //valueDisplay_CostConstraintNear.SetTheValue(0);
+                // valueDisplay_CostElevation.Title = "Elevation Cost";
+                // valueDisplay_CostElevation.UnitType = UnitType.Money;
+                // valueDisplay_CostElevation.SetTheValue(0); //todo: Finish this.
 
-                //valueDisplay_CostConstraintFar.Title = "Far Constraint Cost";
-                //valueDisplay_CostConstraintFar.UnitType = UnitType.Money;
-                //valueDisplay_CostConstraintFar.SetTheValue(0); //todo: Finish this.
-
-                //valueDisplay_CostElevation.Title = "Elevation Cost";
-                //valueDisplay_CostElevation.UnitType = UnitType.Money;
-                //valueDisplay_CostElevation.SetTheValue(0); //todo: Finish this.
-
-                //isLoaded = true;
+                // isLoaded = true;
             }
-
-
-
-
         }
 
         public void HideSectionList()
@@ -152,7 +142,8 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_DeleteMember_Click(object sender, RoutedEventArgs e)
         {
             Model.Members.RemoveMember(Model.Members.CurrentMember.Index);
-            //CurrentSelectionState = SelectionState.Ready;
+
+            // CurrentSelectionState = SelectionState.Ready;
             Model.Members.CurrentMember = null;
             Construction.Current.ShowModel();
         }
@@ -246,51 +237,49 @@ namespace Finite_Element_Analysis_Explorer
 
         private void FontIcon_TitleIconSection_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //flyOut_SectionSelection.ShowAt(button_Save);
-            flyOut_SelectSection.ShowAt(button_Save);
+            // flyOut_SectionSelection.ShowAt(Button_Save);
+            flyOut_SelectSection.ShowAt(Button_Save);
         }
 
-        //private void button_Sections_Click(object sender, RoutedEventArgs e)
-        //{
+        // private void Button_Sections_Click(object sender, RoutedEventArgs e)
+        // {
         //    Construction.Current.ShowSections();
-        //}
-
+        // }
         private void StackPanel_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            //Debug.WriteLine("StackPanel KeyDown");
+            // Debug.WriteLine("StackPanel KeyDown");
         }
 
-        //private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
-        //{
+        // private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
+        // {
         //    Debug.WriteLine("Grid KeyDown");
-        //}
-
+        // }
         private void FontIcon_TitleIconLoads_Tapped(object sender, TappedRoutedEventArgs e)
         {
             MenuFlyout nextMenuFlyoutForceOptions = new MenuFlyout();
             MenuFlyoutItem itemClearLoadsThisMember = new MenuFlyoutItem()
             {
-                Text = "Clear Loads - This Member"
+                Text = "Clear Loads - This Member",
             };
             itemClearLoadsThisMember.Click += ItemClearLoadsThisMember_Click;
             MenuFlyoutItem itemClearLoadsThisSection = new MenuFlyoutItem()
             {
-                Text = "Clear Loads - This Section"
+                Text = "Clear Loads - This Section",
             };
             itemClearLoadsThisSection.Click += ItemClearLoadsThisSection_Click;
             MenuFlyoutItem itemClearLoadsAllMembers = new MenuFlyoutItem()
             {
-                Text = "Clear Loads - All Members"
+                Text = "Clear Loads - All Members",
             };
             itemClearLoadsAllMembers.Click += ItemClearLoadsAllMembers_Click;
             MenuFlyoutItem itemCopyToThisSection = new MenuFlyoutItem()
             {
-                Text = "Copy to - This Section"
+                Text = "Copy to - This Section",
             };
             itemCopyToThisSection.Click += ItemCopyToThisSection_Click;
             MenuFlyoutItem itemCopyToAllMembers = new MenuFlyoutItem()
             {
-                Text = "Copy to - All Members"
+                Text = "Copy to - All Members",
             };
             itemCopyToAllMembers.Click += ItemCopyToAllMembers_Click;
 
@@ -304,30 +293,23 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemCopyToAllMembers_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ItemCopyToThisSection_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ItemClearLoadsAllMembers_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ItemClearLoadsThisSection_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ItemClearLoadsThisMember_Click(object sender, RoutedEventArgs e)
         {
-
-
         }
-
 
         #region Common Menus
 
@@ -337,8 +319,8 @@ namespace Finite_Element_Analysis_Explorer
         {
             Construction.Current.ShowHelpAsync();
 
-            //var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            //var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
+            // var uriHelpGeneral = new Uri(@"http://www.bing.com");
+            // var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
         }
 
         #endregion
@@ -366,29 +348,29 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
         {
-            //New File.
+            // New File.
             FileManager.NewFile();
         }
 
         private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
         {
-            //Open file.
+            // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                //Debug.WriteLine("File Picked, Now loading");
+                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
-            //Save File.
+            // Save File.
             await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            //Save file as.
+            // Save file as.
             if (await FileManager.PickFileToSave())
             {
                 await FileManager.SaveFile();
@@ -400,14 +382,13 @@ namespace Finite_Element_Analysis_Explorer
             Application.Current.Exit();
         }
 
-
         #endregion
 
         #region Changes per Page
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            //flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)
@@ -432,19 +413,11 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
-
-
-
-
-
-
         #endregion
 
         #endregion
-
 
     }
 }

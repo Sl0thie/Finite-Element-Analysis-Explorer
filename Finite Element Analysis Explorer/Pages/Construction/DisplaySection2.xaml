@@ -31,7 +31,7 @@
                     <RowDefinition Height="44"/>
                     <RowDefinition Height="350"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="textBlock_Section_Title" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="Cross Section"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="28" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlock_Section_Title" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="Cross Section"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="28" Foreground="Gray" VerticalAlignment="Bottom"/>
 
                 <StackPanel Grid.Column="1" Grid.Row="1">
                     <TextBlock Text="Required Properties" VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
@@ -93,11 +93,11 @@
 
 
 
-                <TextBlock x:Name="textBlock_Profile_Title" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Text="Profile"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlock_Profile_Title" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Text="Profile"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
                 <StackPanel Grid.Column="1" Grid.Row="3">
                     <TextBlock Text="Section Profiles"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
                     <ScrollViewer HorizontalAlignment="Left" Height="353" Width="260">
-                        <ListView x:Name="listView_Profile" SelectionChanged="listView_Profile_SelectionChanged" Width="260">
+                        <ListView x:Name="ListView_Profile" SelectionChanged="ListView_Profile_SelectionChanged" Width="260">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -135,11 +135,11 @@
                     <local:SingleValue x:Name="SingleValue_SectionModulus" Margin="0,0,0,0" />
                 </StackPanel>
 
-                <TextBlock x:Name="textBlock_Material_Title" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Text="Material"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlock_Material_Title" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Text="Material"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom"/>
                 <StackPanel Grid.Column="1" Grid.Row="5">
                     <TextBlock Text="Materials"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
                     <ScrollViewer HorizontalAlignment="Left" Width="260" Height="450">
-                        <ListView x:Name="listView_Materials" HorizontalAlignment="Left" Width="260" SelectionChanged="listView_Materials_SelectionChanged">
+                        <ListView x:Name="ListView_Materials" HorizontalAlignment="Left" Width="260" SelectionChanged="ListView_Materials_SelectionChanged">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="24">
@@ -215,7 +215,7 @@
                 </StackPanel>
 
 
-                <TextBlock x:Name="textBlock_Drawing_Title" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Text="Drawing"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="TextBlock_Drawing_Title" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Text="Drawing"  FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="18" Foreground="Gray" VerticalAlignment="Bottom" />
                 <StackPanel Grid.Column="1" Grid.Row="7">
 
                 </StackPanel>

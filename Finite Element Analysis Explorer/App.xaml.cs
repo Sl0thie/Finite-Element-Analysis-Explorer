@@ -12,11 +12,24 @@
     /// </summary>
     public sealed partial class App : Application
     {
-        internal static ConstructionMode CurrentConstructionMode = ConstructionMode.Add;
+        /// <summary>
+        /// Gets or sets the current construction mode.
+        /// </summary>
+        internal static ConstructionMode CurrentConstructionMode { get => currentConstructionMode; set => currentConstructionMode = value; }
 
-        internal static SolveState CurrentSolverState = SolveState.Unknown;
+        /// <summary>
+        /// Gets or sets the current solver state.
+        /// </summary>
+        internal static SolveState CurrentSolverState { get => currentSolverState; set => currentSolverState = value; }
 
-        internal static PageState CurrentPageState = PageState.Unknown;
+        /// <summary>
+        /// Gets or sets the current page state.
+        /// </summary>
+        internal static PageState CurrentPageState { get => currentPageState; set => currentPageState = value; }
+
+        private static ConstructionMode currentConstructionMode = ConstructionMode.Add;
+        private static SolveState currentSolverState = SolveState.Unknown;
+        private static PageState currentPageState = PageState.Unknown;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
@@ -29,6 +42,10 @@
             Debug.WriteLine("Path " + FileManager.localFolder.Path);
         }
 
+        /// <summary>
+        /// Starts up the application.
+        /// </summary>
+        /// <param name="e">Unused.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG

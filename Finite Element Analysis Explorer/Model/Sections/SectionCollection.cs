@@ -1,38 +1,35 @@
-﻿using Microsoft.Graphics.Canvas.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Microsoft.Graphics.Canvas.Geometry;
 
 namespace Finite_Element_Analysis_Explorer
 {
     internal class SectionCollection : Dictionary<string, Section>
     {
-        //private KeyValuePair<string, Section> currentKeyPair;
+        // private KeyValuePair<string, Section> currentKeyPair;
 
-        //public KeyValuePair<string, Section> CurrentKeyPair
-        //{
+        // public KeyValuePair<string, Section> CurrentKeyPair
+        // {
         //    get { return currentKeyPair; }
         //    set { currentKeyPair = value; }
-        //}
+        // }
 
-        //private Section _currentSection = new Section("Default 3", 1, 1, 1, 1, 1, 255, 255, 0, 255, LineType.Solid, 1.5f, CapStyle.Round, CapStyle.Round);
+        // private Section _currentSection = new Section("Default 3", 1, 1, 1, 1, 1, 255, 255, 0, 255, LineType.Solid, 1.5f, CapStyle.Round, CapStyle.Round);
         private Section _currentSection; // = new Section();
+
         internal Section CurrentSection
         {
             get
             {
                 return _currentSection;
-
             }
+
             set
             {
 
                 _currentSection = value;
 
-                //if (!object.ReferenceEquals(null, value))
-                //{
+                // if (!object.ReferenceEquals(null, value))
+                // {
                 //    ////todo: Redundant?
                 //    //foreach (var Item in this)
                 //    //{
@@ -41,19 +38,17 @@ namespace Finite_Element_Analysis_Explorer
                 //    _currentSection = value;
                 //    //_currentSection.Selected = true;
                 //    //Debug.WriteLine("Setting new Current Section " + value.Name);
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    _currentSection = value;
-                //}
-
+                // }
             }
         }
 
         internal Section LoadLastCurrentSectionSection()
         {
-            //Debug.WriteLine("Last Current Section " + Options.LastCurrentSection);
-
+            // Debug.WriteLine("Last Current Section " + Options.LastCurrentSection);
             if (ContainsKey(Options.LastCurrentSectionName))
             {
                 try
@@ -82,7 +77,8 @@ namespace Finite_Element_Analysis_Explorer
             return _currentSection;
         }
 
-        internal void AddNewSection(string _name,
+        internal void AddNewSection(
+            string _name,
             decimal _e,
             decimal _i,
             decimal _area,
@@ -119,9 +115,7 @@ namespace Finite_Element_Analysis_Explorer
             decimal _MaintenanceRoller,
             decimal _MaintenanceTrack,
             decimal _FactorVerticalTransport,
-            decimal _FactorHorizontalTransport
-
-            )
+            decimal _FactorHorizontalTransport)
         {
             if (ContainsKey(_name))
             {
@@ -163,12 +157,12 @@ namespace Finite_Element_Analysis_Explorer
                 this[_name].MaintenanceTrack = _MaintenanceTrack;
                 this[_name].FactorVerticalTransport = _FactorVerticalTransport;
                 this[_name].FactorHorizontalTransport = _FactorHorizontalTransport;
-
             }
             else
             {
-                //Debug.WriteLine("Creating Section " + _lineweight);
-                Section newSection = new Section(_name,
+                // Debug.WriteLine("Creating Section " + _lineweight);
+                Section newSection = new Section(
+                    _name,
                     _e,
                     _i,
                     _area,
@@ -205,8 +199,7 @@ namespace Finite_Element_Analysis_Explorer
                     _MaintenanceRoller,
                     _MaintenanceTrack,
                     _FactorVerticalTransport,
-                    _FactorHorizontalTransport
-                    );
+                    _FactorHorizontalTransport);
                 Add(_name, newSection);
             }
         }

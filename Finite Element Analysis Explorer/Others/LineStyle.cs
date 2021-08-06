@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
-    //internal class LineStyle
-    //{
+    // internal class LineStyle
+    // {
     //    public int Index
     //    {
     //        get
@@ -14,108 +9,106 @@ namespace Finite_Element_Analysis_Explorer
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public int Alpha
+    // public int Alpha
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public int Red
+    // public int Red
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public int Green
+    // public int Green
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-
-
-    //    public int Blue
+    // public int Blue
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public LineType LineType
+    // public LineType LineType
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public float Weight
+    // public float Weight
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public int CapStyleStart
+    // public int CapStyleStart
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //    public int CapStyleEnd
+    // public int CapStyleEnd
     //    {
     //        get
     //        {
     //            throw new System.NotImplementedException();
     //        }
 
-    //        set
+    // set
     //        {
     //        }
     //    }
 
-    //}
+    // }
 }

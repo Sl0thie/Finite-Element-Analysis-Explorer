@@ -15,6 +15,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <WebView Grid.Column="1" Grid.Row="1" x:Name="webView_Help" RequestedTheme="Dark" NavigationStarting="webView_Help_NavigationStarting"/>
+        <WebView Grid.Column="1" Grid.Row="1" x:Name="WebView_Help" RequestedTheme="Dark" NavigationStarting="WebView_Help_NavigationStarting"/>
     </Grid>
 </Page>

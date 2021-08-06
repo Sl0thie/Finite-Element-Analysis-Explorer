@@ -31,20 +31,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Button x:Name="button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible">
+            <Button x:Name="Button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible">
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="menuFlyout_New_Click"/>
-                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="menuFlyout_Open_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="menuFlyout_Save_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="menuFlyout_SaveAs_Click" />
-                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="menuFlyout_Exit_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="MenuFlyout_New_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="MenuFlyout_Open_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="MenuFlyout_Save_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="MenuFlyout_SaveAs_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="MenuFlyout_Exit_Click" />
                     </MenuFlyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Save" Foreground="White" Width="32" Height="32"/>
             </Button>
 
-            <Button x:Name="button_Return"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="button_Return_Click">
+            <Button x:Name="Button_Return"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Return_Click">
                 <SymbolIcon Symbol="Back" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
             
@@ -54,10 +54,10 @@
             <StackPanel HorizontalAlignment="Left" Width="220">
                 <TextBlock Text="Help" Style="{StaticResource FontPrimaryHeader}" />
 
-                <Button x:Name="button_HelpGeneral" Content="General" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="button_HelpGeneral_Click"/>
-                <Button x:Name="button_HelpQuickstart" Content="Quickstart" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="button_HelpQuickstart_Click"/>
-                <Button x:Name="button_HelpProperties" Content="Properties" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="button_HelpProperties_Click" />
-                <Button x:Name="button_HelpCredits" Content="Thanks" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="button_HelpCredits_Click"/>
+                <Button x:Name="Button_HelpGeneral" Content="General" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="Button_HelpGeneral_Click"/>
+                <Button x:Name="Button_HelpQuickstart" Content="Quickstart" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="Button_HelpQuickstart_Click"/>
+                <Button x:Name="Button_HelpProperties" Content="Properties" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="Button_HelpProperties_Click" />
+                <Button x:Name="Button_HelpCredits" Content="Thanks" Width="160" Margin="0,5,0,5" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle1}" Click="Button_HelpCredits_Click"/>
                 
             </StackPanel>
         </ScrollViewer>

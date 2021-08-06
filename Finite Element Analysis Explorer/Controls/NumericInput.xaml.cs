@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -94,34 +84,34 @@ namespace Finite_Element_Analysis_Explorer
         {
             this.InitializeComponent();
 
-            textBlock_Sign.Text = string.Empty;
-            textBlock_Hundred.Text = string.Empty;
-            textBlock_Ten.Text = string.Empty;
-            textBlock_One.Text = string.Empty;
-            textBlock_Decimal.Text = string.Empty;
-            textBlock_Tenth.Text = string.Empty;
-            textBlock_Hundredth.Text = string.Empty;
-            textBlock_Thousandth.Text = string.Empty;
-            textBlock_E.Text = string.Empty;
-            textBlock_ESign.Text = string.Empty;
-            textBlock_ETen.Text = string.Empty;
-            textBlock_EOne.Text = string.Empty;
+            TextBlock_Sign.Text = string.Empty;
+            TextBlock_Hundred.Text = string.Empty;
+            TextBlock_Ten.Text = string.Empty;
+            TextBlock_One.Text = string.Empty;
+            TextBlock_Decimal.Text = string.Empty;
+            TextBlock_Tenth.Text = string.Empty;
+            TextBlock_Hundredth.Text = string.Empty;
+            TextBlock_Thousandth.Text = string.Empty;
+            TextBlock_E.Text = string.Empty;
+            TextBlock_ESign.Text = string.Empty;
+            TextBlock_ETen.Text = string.Empty;
+            TextBlock_EOne.Text = string.Empty;
         }
 
         public void SetNull()
         {
-            textBlock_Sign.Text = string.Empty;
-            textBlock_Hundred.Text = string.Empty;
-            textBlock_Ten.Text = string.Empty;
-            textBlock_One.Text = string.Empty;
-            textBlock_Decimal.Text = string.Empty;
-            textBlock_Tenth.Text = string.Empty;
-            textBlock_Hundredth.Text = string.Empty;
-            textBlock_Thousandth.Text = string.Empty;
-            textBlock_E.Text = string.Empty;
-            textBlock_ESign.Text = string.Empty;
-            textBlock_ETen.Text = string.Empty;
-            textBlock_EOne.Text = string.Empty;
+            TextBlock_Sign.Text = string.Empty;
+            TextBlock_Hundred.Text = string.Empty;
+            TextBlock_Ten.Text = string.Empty;
+            TextBlock_One.Text = string.Empty;
+            TextBlock_Decimal.Text = string.Empty;
+            TextBlock_Tenth.Text = string.Empty;
+            TextBlock_Hundredth.Text = string.Empty;
+            TextBlock_Thousandth.Text = string.Empty;
+            TextBlock_E.Text = string.Empty;
+            TextBlock_ESign.Text = string.Empty;
+            TextBlock_ETen.Text = string.Empty;
+            TextBlock_EOne.Text = string.Empty;
         }
 
         internal void SetValue(decimal newValue)
@@ -130,31 +120,34 @@ namespace Finite_Element_Analysis_Explorer
             this.newValue = newValue;
 
             // Clear previous
-            textBlock_Sign.Text = string.Empty;
-            textBlock_Hundred.Text = string.Empty;
-            textBlock_Ten.Text = string.Empty;
-            textBlock_One.Text = string.Empty;
-            textBlock_Decimal.Text = string.Empty;
-            textBlock_Tenth.Text = string.Empty;
-            textBlock_Hundredth.Text = string.Empty;
-            textBlock_Thousandth.Text = string.Empty;
-            textBlock_E.Text = string.Empty;
-            textBlock_ESign.Text = string.Empty;
-            textBlock_ETen.Text = string.Empty;
-            textBlock_EOne.Text = string.Empty;
+            TextBlock_Sign.Text = string.Empty;
+            TextBlock_Hundred.Text = string.Empty;
+            TextBlock_Ten.Text = string.Empty;
+            TextBlock_One.Text = string.Empty;
+            TextBlock_Decimal.Text = string.Empty;
+            TextBlock_Tenth.Text = string.Empty;
+            TextBlock_Hundredth.Text = string.Empty;
+            TextBlock_Thousandth.Text = string.Empty;
+            TextBlock_E.Text = string.Empty;
+            TextBlock_ESign.Text = string.Empty;
+            TextBlock_ETen.Text = string.Empty;
+            TextBlock_EOne.Text = string.Empty;
 
-            textBlock_Sign.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Hundred.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Ten.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_One.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Decimal.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Tenth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Hundredth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
-            textBlock_Thousandth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Sign.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Hundred.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Ten.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_One.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Decimal.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Tenth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Hundredth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
+            TextBlock_Thousandth.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
 
             if (displayOnly)
             {
-                if (DMath.Abs(theValue) < 0.000001m) { theValue = 0; }
+                if (DMath.Abs(theValue) < 0.000001m)
+                {
+                    theValue = 0;
+                }
             }
 
             // Handle negative numbers.
@@ -216,86 +209,86 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ProcessPositiveDecimal()
         {
-            textBlock_Sign.Text = string.Empty;
-            textBlock_Hundred.Text = blockHundred;
-            textBlock_Ten.Text = blockTen;
-            textBlock_One.Text = blockOne;
-            textBlock_Decimal.Text = blockDecimal;
-            textBlock_Tenth.Text = blockTenth;
-            textBlock_Hundredth.Text = blockHundredth;
-            textBlock_Thousandth.Text = blockThousandth;
+            TextBlock_Sign.Text = string.Empty;
+            TextBlock_Hundred.Text = blockHundred;
+            TextBlock_Ten.Text = blockTen;
+            TextBlock_One.Text = blockOne;
+            TextBlock_Decimal.Text = blockDecimal;
+            TextBlock_Tenth.Text = blockTenth;
+            TextBlock_Hundredth.Text = blockHundredth;
+            TextBlock_Thousandth.Text = blockThousandth;
 
             if (!string.IsNullOrEmpty(exponentString))
             {
-                textBlock_E.Text = blockE;
-                textBlock_ESign.Text = blockESign;
-                textBlock_ETen.Text = blockETen;
-                textBlock_EOne.Text = blockEOne;
+                TextBlock_E.Text = blockE;
+                TextBlock_ESign.Text = blockESign;
+                TextBlock_ETen.Text = blockETen;
+                TextBlock_EOne.Text = blockEOne;
             }
 
             if (blockHundred == "0")
             {
-                textBlock_Hundred.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
                 if (blockTen == "0")
                 {
-                    textBlock_Ten.Text = string.Empty;
+                    TextBlock_Ten.Text = string.Empty;
                 }
             }
 
             if (blockThousandth == "0")
             {
-                textBlock_Thousandth.Text = string.Empty;
+                TextBlock_Thousandth.Text = string.Empty;
                 if (blockHundredth == "0")
                 {
-                    textBlock_Hundredth.Text = string.Empty;
+                    TextBlock_Hundredth.Text = string.Empty;
                 }
             }
 
             if (theValue == 0)
             {
-                textBlock_One.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
-                textBlock_Decimal.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
-                textBlock_Tenth.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
+                TextBlock_One.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
+                TextBlock_Decimal.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
+                TextBlock_Tenth.Foreground = new SolidColorBrush(Color.FromArgb(255, 32, 32, 255));
             }
         }
 
         private void ProcessNegativeDecimal()
         {
-            textBlock_Sign.Text = "-";
-            textBlock_Hundred.Text = blockHundred;
-            textBlock_Ten.Text = blockTen;
-            textBlock_One.Text = blockOne;
-            textBlock_Decimal.Text = blockDecimal;
-            textBlock_Tenth.Text = blockTenth;
-            textBlock_Hundredth.Text = blockHundredth;
-            textBlock_Thousandth.Text = blockThousandth;
+            TextBlock_Sign.Text = "-";
+            TextBlock_Hundred.Text = blockHundred;
+            TextBlock_Ten.Text = blockTen;
+            TextBlock_One.Text = blockOne;
+            TextBlock_Decimal.Text = blockDecimal;
+            TextBlock_Tenth.Text = blockTenth;
+            TextBlock_Hundredth.Text = blockHundredth;
+            TextBlock_Thousandth.Text = blockThousandth;
 
             if (!string.IsNullOrEmpty(exponentString))
             {
-                textBlock_E.Text = blockE;
-                textBlock_ESign.Text = blockESign;
-                textBlock_ETen.Text = blockETen;
-                textBlock_EOne.Text = blockEOne;
+                TextBlock_E.Text = blockE;
+                TextBlock_ESign.Text = blockESign;
+                TextBlock_ETen.Text = blockETen;
+                TextBlock_EOne.Text = blockEOne;
             }
 
             if (blockHundred == "0")
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = "-";
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = "-";
                 if (blockTen == "0")
                 {
-                    textBlock_Sign.Text = string.Empty;
-                    textBlock_Hundred.Text = string.Empty;
-                    textBlock_Ten.Text = "-";
+                    TextBlock_Sign.Text = string.Empty;
+                    TextBlock_Hundred.Text = string.Empty;
+                    TextBlock_Ten.Text = "-";
                 }
             }
 
             if (blockThousandth == "0")
             {
-                textBlock_Thousandth.Text = string.Empty;
+                TextBlock_Thousandth.Text = string.Empty;
                 if (blockHundredth == "0")
                 {
-                    textBlock_Hundredth.Text = string.Empty;
+                    TextBlock_Hundredth.Text = string.Empty;
                 }
             }
         }
@@ -308,93 +301,93 @@ namespace Finite_Element_Analysis_Explorer
             }
             else if (theValue > 99999)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Ten.Text = theValue.ToString().Substring(1, 1);
-                textBlock_One.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(4, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(5, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Ten.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_One.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(4, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(5, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 9999)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = theValue.ToString().Substring(0, 1);
-                textBlock_One.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(4, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_One.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(4, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 999)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 99)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = string.Empty;
-                textBlock_Tenth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = string.Empty;
+                TextBlock_Tenth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 9)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = string.Empty;
-                textBlock_Tenth.Text = string.Empty;
-                textBlock_Hundredth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = string.Empty;
+                TextBlock_Tenth.Text = string.Empty;
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = string.Empty;
-                textBlock_Tenth.Text = string.Empty;
-                textBlock_Hundredth.Text = string.Empty;
-                textBlock_Thousandth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = string.Empty;
+                TextBlock_Tenth.Text = string.Empty;
+                TextBlock_Hundredth.Text = string.Empty;
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
         }
 
@@ -406,93 +399,93 @@ namespace Finite_Element_Analysis_Explorer
             }
             else if (theValue > 99999)
             {
-                textBlock_Sign.Text = "-";
-                textBlock_Hundred.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Ten.Text = theValue.ToString().Substring(1, 1);
-                textBlock_One.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(4, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(5, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = "-";
+                TextBlock_Hundred.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Ten.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_One.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(4, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(5, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 9999)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = "-";
-                textBlock_Ten.Text = theValue.ToString().Substring(0, 1);
-                textBlock_One.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(4, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = "-";
+                TextBlock_Ten.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_One.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(4, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 999)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = "-";
-                textBlock_One.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Decimal.Text = ",";
-                textBlock_Tenth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(3, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = "-";
+                TextBlock_One.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Decimal.Text = ",";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(3, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 99)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = "-";
-                textBlock_Tenth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Hundredth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(2, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = "-";
+                TextBlock_Tenth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(2, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else if (theValue > 9)
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = string.Empty;
-                textBlock_Tenth.Text = "-";
-                textBlock_Hundredth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_Thousandth.Text = theValue.ToString().Substring(1, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = string.Empty;
+                TextBlock_Tenth.Text = "-";
+                TextBlock_Hundredth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(1, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
             else
             {
-                textBlock_Sign.Text = string.Empty;
-                textBlock_Hundred.Text = string.Empty;
-                textBlock_Ten.Text = string.Empty;
-                textBlock_One.Text = string.Empty;
-                textBlock_Decimal.Text = string.Empty;
-                textBlock_Tenth.Text = string.Empty;
-                textBlock_Hundredth.Text = "-";
-                textBlock_Thousandth.Text = theValue.ToString().Substring(0, 1);
-                textBlock_E.Text = string.Empty;
-                textBlock_ESign.Text = string.Empty;
-                textBlock_ETen.Text = string.Empty;
-                textBlock_EOne.Text = string.Empty;
+                TextBlock_Sign.Text = string.Empty;
+                TextBlock_Hundred.Text = string.Empty;
+                TextBlock_Ten.Text = string.Empty;
+                TextBlock_One.Text = string.Empty;
+                TextBlock_Decimal.Text = string.Empty;
+                TextBlock_Tenth.Text = string.Empty;
+                TextBlock_Hundredth.Text = "-";
+                TextBlock_Thousandth.Text = theValue.ToString().Substring(0, 1);
+                TextBlock_E.Text = string.Empty;
+                TextBlock_ESign.Text = string.Empty;
+                TextBlock_ETen.Text = string.Empty;
+                TextBlock_EOne.Text = string.Empty;
             }
         }
 
@@ -513,6 +506,7 @@ namespace Finite_Element_Analysis_Explorer
                             numberString = "001.000";
                             exponentString = "e+03";
                         }
+
                         break;
                     case 3:
                     case 4:
@@ -576,6 +570,7 @@ namespace Finite_Element_Analysis_Explorer
                             numberString = "001.000";
                             exponentString = string.Empty;
                         }
+
                         break;
                     case -4:
                     case -5:
@@ -626,14 +621,13 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-
         #region Pop-up Events
 
         private void TextBlock_One_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -642,7 +636,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -651,7 +645,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -660,7 +654,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -669,7 +663,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -678,7 +672,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -687,7 +681,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -696,7 +690,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -705,7 +699,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -714,7 +708,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -723,7 +717,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -732,7 +726,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -741,7 +735,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }
@@ -750,7 +744,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!displayOnly)
             {
-                flyOut_Shared.ShowAt(textBlock_One);
+                flyOut_Shared.ShowAt(TextBlock_One);
                 TextBox_Input.SetTheValue(theValue);
             }
         }

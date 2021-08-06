@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
@@ -10,8 +6,8 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class FileLoadingDisplay : Page
     {
         internal static FileLoadingDisplay Current;
-        //private bool IsLoaded = false;
 
+        // private bool IsLoaded = false;
         public FileLoadingDisplay()
         {
             this.InitializeComponent();
@@ -20,36 +16,37 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            //IsLoaded = true;
+
+            // IsLoaded = true;
         }
 
         private void Grid_Unloaded(object sender, RoutedEventArgs e)
         {
-            //IsLoaded = false;
+            // IsLoaded = false;
         }
 
-        //public void ClearMessages()
-        //{
+        // public void ClearMessages()
+        // {
         //    StackConsole.Children.Clear();
-        //}
-
+        // }
         public void AddMessage(long total, long step, string Message)
         {
-            SolverMessage NextMessage = new SolverMessage();
-            NextMessage.TotalTime = total;
-            NextMessage.StepTime = step;
-            NextMessage.Message = Message;
-            StackConsole.Children.Add(NextMessage);
-
+            SolverMessage nextMessage = new SolverMessage
+            {
+                TotalTime = total,
+                StepTime = step,
+                Message = Message,
+            };
+            StackConsole.Children.Add(nextMessage);
         }
 
-        //private Task ProcessAsync()
-        //{
+        // private Task ProcessAsync()
+        // {
         //    //try
         //    //{
         //    //    await FileManager.LoadLastFileAsync();
 
-        //    //    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
+        // //    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
         //    //        () =>
         //    //        {
         //    //            FileLoading.Current.NavigateToConstruction();
@@ -57,6 +54,6 @@ namespace Finite_Element_Analysis_Explorer
         //    //        );
         //    //}
         //    //catch (Exception ex) { Debug.WriteLine("FileLoadingDisplay Error: " + ex.Message); }
-        //}
+        // }
     }
 }

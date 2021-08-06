@@ -165,10 +165,10 @@
             </Grid.ColumnDefinitions>
 
 
-            <CheckBox  Grid.Column="1"  x:Name="textBlock_Title" Style="{StaticResource CheckBoxStyleDark}" Checked="TextBlock_Title_Checked" Unchecked="TextBlock_Title_Unchecked"/>
+            <CheckBox  Grid.Column="1"  x:Name="TextBlock_Title" Style="{StaticResource CheckBoxStyleDark}" Checked="TextBlock_Title_Checked" Unchecked="TextBlock_Title_Unchecked"/>
             
             
-            <TextBlock Grid.Column="2" Text="" x:Name="textBlock_Value" Foreground="Silver" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="" x:Name="TextBlock_Value" Foreground="Silver" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
         <Grid Height="32">
             <Grid.ColumnDefinitions>
@@ -178,9 +178,9 @@
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="6"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1" Margin="0,-4,0,0" x:Name="textBlock_Minus" Text="-" Foreground="#FF404040"  FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="TextBlock_Minus_Tapped"/>
+            <TextBlock Grid.Column="1" Margin="0,-4,0,0" x:Name="TextBlock_Minus" Text="-" Foreground="#FF404040"  FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="TextBlock_Minus_Tapped"/>
             <Slider Grid.Column="2" x:Name="slider_Value" Maximum="225" LargeChange="1" Value="113" IsThumbToolTipEnabled="False" ValueChanged="Slider_Value_ValueChanged" Minimum="1" />
-            <TextBlock Grid.Column="3" Margin="0,-3,0,0" x:Name="textBlock_Plus" Text="+" Foreground="#FF404040"  FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="TextBlock_Plus_Tapped"/>
+            <TextBlock Grid.Column="3" Margin="0,-3,0,0" x:Name="TextBlock_Plus" Text="+" Foreground="#FF404040"  FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="TextBlock_Plus_Tapped"/>
         </Grid>
     </StackPanel>
 </UserControl>

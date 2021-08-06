@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -9,28 +6,28 @@ namespace Finite_Element_Analysis_Explorer
 
     internal enum ConstraintType
     {
-        Unknown,            //???
-        Free,               //000
-        RollerX,            //010 
-        RollerY,            //100
-        Pinned,             //110 
-        Fixed,              //111
-        FixedBottom,        //111
-        FixedTop,           //111
-        FixedLeft,          //111
-        FixedRight,         //111
-        PinnedBottom,       //110
-        PinnedTop,          //110
-        PinnedLeft,         //110
-        PinnedRight,        //110
-        RollerBottom,       //010
-        RollerTop,          //010
-        RollerLeft,         //100
-        RollerRight,        //100
-        TrackBottom,        //011
-        TrackTop,           //011
-        TrackLeft,          //101
-        TrackRight          //101
+        Unknown,            // ???
+        Free,               // 000
+        RollerX,            // 010
+        RollerY,            // 100
+        Pinned,             // 110
+        Fixed,              // 111
+        FixedBottom,        // 111
+        FixedTop,           // 111
+        FixedLeft,          // 111
+        FixedRight,         // 111
+        PinnedBottom,       // 110
+        PinnedTop,          // 110
+        PinnedLeft,         // 110
+        PinnedRight,        // 110
+        RollerBottom,       // 010
+        RollerTop,          // 010
+        RollerLeft,         // 100
+        RollerRight,        // 100
+        TrackBottom,        // 011
+        TrackTop,           // 011
+        TrackLeft,          // 101
+        TrackRight,          // 101
     }
 
     [Obsolete]
@@ -40,7 +37,7 @@ namespace Finite_Element_Analysis_Explorer
         Top,
         Bottom,
         Left,
-        Right
+        Right,
     }
 
     #endregion
@@ -66,27 +63,30 @@ namespace Finite_Element_Analysis_Explorer
         Time,
         Unitless,
         UnitlessInteger,
-        Volume
+        Volume,
     }
 
     internal enum AngleType
     {
         Degrees,
-        Radians
+        Radians,
     }
+
     internal enum AreaType
     {
         SquareMetre,
         SquareCentiMetre,
         SquareMilliMetre,
         SquareFoot,
-        SquareInch
+        SquareInch,
     }
+
     internal enum DensityType
     {
         KilogramPerCubicMetre,
-        PoundPerCubicFoot
+        PoundPerCubicFoot,
     }
+
     internal enum ForceType
     {
         Newton,
@@ -96,56 +96,64 @@ namespace Finite_Element_Analysis_Explorer
         Dyne,
         KilogramForce,
         PoundForce,
-        Poundal
+        Poundal,
     }
+
     internal enum ForcePerLengthType
     {
         NewtonPerMeter,
-        PoundPerFoot
+        PoundPerFoot,
     }
+
     internal enum LengthType
     {
-        Meter,          //m  1 / 1m
-        Millimeter,     //mm 1000 / 0.001m
-        CentiMeter,     //cm 100 / 0.01m
-        KiloMeter,      //km 0.001 / 1000m
-        mil,            //39370.0787 / 0.0000254m
-        Inch,           //in 39.3700787 / 0.0254m
-        Foot,           //ft 3.2808399 / 0.3048m
-        yard,           //yard 1.0936133 / 0.9144m
-        mile            //mile 0.00062137 / 1609.344m
+        Meter,          // m  1 / 1m
+        Millimeter,     // mm 1000 / 0.001m
+        CentiMeter,     // cm 100 / 0.01m
+        KiloMeter,      // km 0.001 / 1000m
+        Mil,            // 39370.0787 / 0.0000254m
+        Inch,           // in 39.3700787 / 0.0254m
+        Foot,           // ft 3.2808399 / 0.3048m
+        Yard,           // yard 1.0936133 / 0.9144m
+        Mile,            // mile 0.00062137 / 1609.344m
     }
+
     internal enum MassType
     {
         Kilogram,
         Pound,
         Gram,
-        Ton
+        Ton,
     }
+
     internal enum MomentType
     {
         NewtonMetre,
         PoundFoot,
         PoundInch,
         OunceInch,
-        OunceFoot
+        OunceFoot,
     }
+
     internal enum MomentOfInertiaType
     {
         QuadMeter,
         QuadMillimeter,
         QuadCentmeter,
         QuadFoot,
-        QuadInch
+        QuadInch,
     }
+
     internal enum MoneyType
     {
-        Default
+        Default,
     }
+
     internal enum PercentageType
     {
-        Default
+        Default,
     }
+
     internal enum PressureType
     {
         Pascal,
@@ -157,28 +165,32 @@ namespace Finite_Element_Analysis_Explorer
         PoundPerSquareInch,
         KilopoundPerSquareInch,
         MegapoundPerSquareInch,
-        PoundPerSqareFoot
+        PoundPerSqareFoot,
     }
+
     internal enum SpeedType
     {
-        MeterPerSecond
+        MeterPerSecond,
     }
+
     internal enum TempratureType
     {
         Kelvin,
-        Cel
+        Cel,
     }
+
     internal enum TimeType
     {
-        Seconds
+        Seconds,
     }
+
     internal enum VolumeType
     {
         CubicMetre,
         CubicCentimeter,
         CubicMillimeter,
         CubicFoot,
-        CubicInch
+        CubicInch,
     }
 
     #endregion
@@ -191,19 +203,21 @@ namespace Finite_Element_Analysis_Explorer
         Dash,
         Dot,
         DashDot,
-        DashDotDash
+        DashDotDash,
     }
+
     internal enum CapStyle
     {
         Flat,
         Square,
         Round,
-        Triangle
+        Triangle,
     }
+
     internal enum LoadType
     {
         Nodal,
-        Linear
+        Linear,
     }
 
     #endregion
@@ -219,8 +233,9 @@ namespace Finite_Element_Analysis_Explorer
         Sections,
         Help,
         Zoom,
-        Settings
-    };
+        Settings,
+    }
+;
 
     internal enum PageState
     {
@@ -229,15 +244,17 @@ namespace Finite_Element_Analysis_Explorer
         Construction,
         Solver,
         Sections,
-        Results
-    };
+        Results,
+    }
+;
 
     internal enum SelectionState
     {
         Ready,  // Not selected.
         FirstNode,
-        SecondNode
-    };
+        SecondNode,
+    }
+;
 
     internal enum SolveState
     {
@@ -246,8 +263,9 @@ namespace Finite_Element_Analysis_Explorer
         Solving,
         Solved,
         Cancelling,
-        Cancelled
-    };
+        Cancelled,
+    }
+;
     #endregion
 
 }

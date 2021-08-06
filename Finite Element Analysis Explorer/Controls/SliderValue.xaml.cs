@@ -1,52 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// SliderValue UserControl provides a sider input.
+    /// </summary>
     public sealed partial class SliderValue : UserControl
     {
+        /// <summary>
+        /// Event that is raised when the value changes.
+        /// </summary>
         public event EventHandler ValueChanged;
 
         private string title;
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
         public string Title
         {
-            get { return title; }
+            get
+            {
+                return title;
+            }
+
             set
             {
                 title = value;
-                textBlock_Title.Text = title;
+                TextBlock_Title.Text = title;
             }
         }
 
         private string displayValue;
+
+        /// <summary>
+        /// Gets or sets the display value.
+        /// </summary>
         public string DisplayValue
         {
-            get { return displayValue; }
+            get
+            {
+                return displayValue;
+            }
+
             set
             {
                 displayValue = value;
-                textBlock_Value.Text = displayValue;
-
+                TextBlock_Value.Text = displayValue;
             }
         }
 
         private double minValue;
+
+        /// <summary>
+        /// Gets or sets the minimum value.
+        /// </summary>
         public double MinValue
         {
-            get { return minValue; }
+            get
+            {
+                return minValue;
+            }
+
             set
             {
                 minValue = value;
@@ -55,21 +73,36 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private double maxValue;
+
+        /// <summary>
+        /// Gets or sets the maximum value.
+        /// </summary>
         public double MaxValue
         {
-            get { return maxValue; }
+            get
+            {
+                return maxValue;
+            }
+
             set
             {
-
                 maxValue = value;
                 Slider_Primary.Maximum = value;
             }
         }
 
         private double newValue;
+
+        /// <summary>
+        /// Gets or sets the new value.
+        /// </summary>
         public double NewValue
         {
-            get { return newValue; }
+            get
+            {
+                return newValue;
+            }
+
             set
             {
                 newValue = value;
@@ -78,43 +111,45 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private double oldValue;
+
+        /// <summary>
+        /// Gets or sets the old value.
+        /// </summary>
         public double OldValue
         {
-            get { return oldValue; }
+            get
+            {
+                return oldValue;
+            }
+
             set
             {
                 oldValue = value;
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SliderValue"/> class.
+        /// </summary>
         public SliderValue()
         {
             this.InitializeComponent();
         }
-
-        //public void SetSliderValue(int newValue)
-        //{
-        //    Slider_Primary.Value = newValue;
-        //}
 
         private void Slider_Primary_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             newValue = Slider_Primary.Value;
             if (newValue == oldValue)
             {
-
             }
             else
             {
-                //Debug.WriteLine("Firing Event " + Slider_Primary.Value);
-
                 oldValue = newValue;
                 ValueChanged?.Invoke(this, new EventArgs());
             }
-
         }
 
-        private void textBlock_Minus_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Minus_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (Slider_Primary.Value > Slider_Primary.Minimum)
             {
@@ -122,7 +157,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void textBlock_Plus_Tapped(object sender, TappedRoutedEventArgs e)
+        private void TextBlock_Plus_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (Slider_Primary.Value < Slider_Primary.Maximum)
             {

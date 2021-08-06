@@ -108,7 +108,6 @@
         private CanvasStrokeStyle LineNodeRollerY = Options.LineNodeRollerY;
         private CanvasStrokeStyle LineNodeOther = Options.LineNodeOther;
 
-
         #endregion
 
         #region CanvasBitmaps
@@ -199,7 +198,8 @@
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            //Options.Font = 1;
+
+            // Options.Font = 1;
             UpdateColors();
         }
 
@@ -220,11 +220,11 @@
             labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
 
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-            //Dots = new CanvasStrokeStyle() { LineJoin = CanvasLineJoin.Round, DashStyle = CanvasDashStyle.Dot };
 
+            // Dots = new CanvasStrokeStyle() { LineJoin = CanvasLineJoin.Round, DashStyle = CanvasDashStyle.Dot };
         }
 
-        async Task CreateResourcesAsync(CanvasAnimatedControl sender)
+        private async Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             bitMapNodePinnedTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodePinnedTop.png");
             bitMapNodeRollerTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerTop.png");
@@ -245,7 +245,6 @@
             bitMapNodeRollerRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerRight.png");
             bitMapNodeFixedRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedRight.png");
             bitMapNodeTrackRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackRight.png");
-
         }
 
         #endregion
@@ -254,15 +253,11 @@
 
         private void Canvas_DrawAnimated(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
         {
-            #region Transform and other Settings
-
             args.DrawingSession.Clear(colorBackground);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
-            //args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
 
-            #endregion
-            #region Grid
+            // args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
 
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
@@ -271,8 +266,6 @@
 
             try
             {
-                #region Grid Fade
-
                 if (CounterGridChanges < TotalGridChanges)
                 {
                     CounterGridChanges += 1;
@@ -281,13 +274,9 @@
                     colorGridMajor = Color.FromArgb(Convert.ToByte(MajorGridAlphaChange * CounterGridChanges), colorGridMajor.R, colorGridMajor.G, colorGridMajor.B);
                 }
 
-                #endregion
-
-                #region Minor Grid
-
                 do
                 {
-                    args.DrawingSession.DrawLine((iX), Camera.TopLeftNormal.Y, (iX), Camera.BottomRight.Y, colorGridMinor, Camera.LineUnit, lineGridMinor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridMinor, Camera.LineUnit, lineGridMinor);
                     iX += Camera.GridSizeMinor;
                     lineCountX++;
                 }
@@ -295,21 +284,17 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, (iY), Camera.BottomRight.X, (iY), colorGridMinor, Camera.LineUnit, lineGridMinor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridMinor, Camera.LineUnit, lineGridMinor);
                     iY += Camera.GridSizeMinor;
                     lineCountY++;
                 }
                 while (iY < Camera.BottomRight.Y);
-
-                #endregion
-                #region Major Normal
-
                 iX = Camera.TopLeftNormal.X;
                 iY = Camera.TopLeftNormal.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine((iX), Camera.TopLeftNormal.Y, (iX), Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridNormal);
-                    args.DrawingSession.DrawLine((iX), Camera.TopLeftNormal.Y, (iX), Camera.BottomRight.Y, colorGridNormal, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridNormal, Camera.LineUnit, lineGridNormal);
                     iX += Camera.GridSizeNormal;
                     lineCountX++;
                 }
@@ -317,22 +302,18 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, (iY), Camera.BottomRight.X, (iY), colorBackground, Camera.LineUnit, lineGridNormal);
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, (iY), Camera.BottomRight.X, (iY), colorGridNormal, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorBackground, Camera.LineUnit, lineGridNormal);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridNormal, Camera.LineUnit, lineGridNormal);
                     iY += Camera.GridSizeNormal;
                     lineCountY++;
                 }
                 while (iY < Camera.BottomRight.Y);
-
-                #endregion
-                #region Major Grid
-
                 iX = Camera.TopLeftMajor.X;
                 iY = Camera.TopLeftMajor.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine((iX), Camera.TopLeftNormal.Y, (iX), Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridMajor);
-                    args.DrawingSession.DrawLine((iX), Camera.TopLeftNormal.Y, (iX), Camera.BottomRight.Y, colorGridMajor, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorBackground, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.TopLeftNormal.Y, iX, Camera.BottomRight.Y, colorGridMajor, Camera.LineUnit, lineGridMajor);
                     iX += Camera.GridSizeMajor;
                     lineCountX++;
                 }
@@ -340,19 +321,16 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, (iY), Camera.BottomRight.X, (iY), colorBackground, Camera.LineUnit, lineGridMajor);
-                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, (iY), Camera.BottomRight.X, (iY), colorGridMajor, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorBackground, Camera.LineUnit, lineGridMajor);
+                    args.DrawingSession.DrawLine(Camera.TopLeftNormal.X, iY, Camera.BottomRight.X, iY, colorGridMajor, Camera.LineUnit, lineGridMajor);
                     iY += Camera.GridSizeMajor;
                     lineCountY++;
                 }
                 while (iY < Camera.BottomRight.Y);
-
-                #endregion
             }
-            catch { }
-
-            #endregion
-            #region Draw LDL's
+            catch
+            {
+            }
 
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
 
@@ -360,9 +338,9 @@
             {
                 try
                 {
-                    foreach (var Item in Model.Members.MembersWithLinearLoads)
+                    foreach (var item in Model.Members.MembersWithLinearLoads)
                     {
-                        foreach (var nextSegment in Item.Value.Segments)
+                        foreach (var nextSegment in item.Value.Segments)
                         {
                             args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
                             args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, colorDistributedForce, Camera.LineUnit * Options.LineDistributedForceWeight, lineDistributedForce);
@@ -376,24 +354,24 @@
                         }
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
-
-            #endregion
-            #region Draw Shear Force Diagrams and Moment Diagrams.
 
             if (Options.ShowShear)
             {
                 try
                 {
-                    foreach (var Item in Model.Members)
+                    foreach (var item in Model.Members)
                     {
-                        foreach (var nextItem in Item.Value.Segments)
+                        foreach (var nextItem in item.Value.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
                                 args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.ShearNear, colorShearForce, Camera.LineUnit * Options.LineShearForceWeight, lineShearForce);
                             }
+
                             args.DrawingSession.DrawLine(nextItem.Value.ShearNear, nextItem.Value.ShearFar, colorShearForce, Camera.LineUnit * Options.LineShearForceWeight, lineShearForce);
                             if (nextItem.Value.NodeFar.IsPrimary)
                             {
@@ -402,21 +380,24 @@
                         }
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
 
             if (Options.ShowMoment)
             {
                 try
                 {
-                    foreach (var Item in Model.Members)
+                    foreach (var item in Model.Members)
                     {
-                        foreach (var nextItem in Item.Value.Segments)
+                        foreach (var nextItem in item.Value.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
                                 args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.MomentNear, colorMomentForce, Camera.LineUnit * Options.LineMomentForceWeight, lineMomentForce);
                             }
+
                             args.DrawingSession.DrawLine(nextItem.Value.MomentNear, nextItem.Value.MomentFar, colorMomentForce, Camera.LineUnit * Options.LineMomentForceWeight, lineMomentForce);
                             if (nextItem.Value.NodeFar.IsPrimary)
                             {
@@ -425,210 +406,204 @@
                         }
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
-
-            #endregion
-            #region Draw Members
 
             try
             {
-                foreach (var Item in Model.Members)
+                foreach (var item in Model.Members)
                 {
-                    foreach (var nextItem in Item.Value.Segments)
+                    foreach (var nextItem in item.Value.Segments)
                     {
-                        args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.FarVectorDisplaced, nextItem.Value.CurrentColor, Camera.LineUnit * Item.Value.Section.LineWeight, Item.Value.Section.LineStyle);
+                        args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.FarVectorDisplaced, nextItem.Value.CurrentColor, Camera.LineUnit * item.Value.Section.LineWeight, item.Value.Section.LineStyle);
                     }
                 }
             }
-            catch { }
-
-            #endregion
-            #region Draw Images for Constraints
+            catch
+            {
+            }
 
             try
             {
-                foreach (var Item in Model.Nodes.NodesWithConstraints)
+                foreach (var item in Model.Nodes.NodesWithConstraints)
                 {
-                    switch (Item.Value.Constraints.ConstraintType)
+                    switch (item.Value.Constraints.ConstraintType)
                     {
                         case ConstraintType.FixedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedTop:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(Item.Value.Location.X - 33 * Camera.LineUnit, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(Item.Value.Location.X, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.PinnedBottom:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedTop:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedLeft:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(Item.Value.Location.X - 33 * Camera.LineUnit, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.PinnedRight:
-                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(Item.Value.Location.X, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodePinnedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.RollerBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerTop:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(Item.Value.Location.X - 33 * Camera.LineUnit, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.RollerRight:
-                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(Item.Value.Location.X, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeRollerRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
 
                         case ConstraintType.TrackBottom:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackBottom, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y - 33 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackTop:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(Item.Value.Location.X - 16 * Camera.LineUnit, Item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackTop, new Rect(item.Value.Location.X - 16 * Camera.LineUnit, item.Value.Location.Y, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackLeft:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(Item.Value.Location.X - 33 * Camera.LineUnit, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackLeft, new Rect(item.Value.Location.X - 33 * Camera.LineUnit, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                         case ConstraintType.TrackRight:
-                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(Item.Value.Location.X, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.DrawImage(bitMapNodeTrackRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
                             break;
                     }
                 }
             }
-            catch { }
-
-            #endregion           
-            #region Draw Forces
+            catch
+            {
+            }
 
             try
             {
-                foreach (var Item in Model.Nodes.NodesWithNodalLoads)
+                foreach (var item in Model.Nodes.NodesWithNodalLoads)
                 {
-                    args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + Item.Value.ForceLine, colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + (Item.Value.ForceUnitLeft * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + (Item.Value.ForceUnitRight * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.LineLengthForceArrow), colorForce, Camera.LineUnit * Options.LineForceWeight, lineForce);
                 }
             }
-            catch { }
-
-            #endregion
-            #region Draw Reactions
+            catch
+            {
+            }
 
             try
             {
                 if (Options.ShowReactions)
                 {
-                    foreach (var Item in Model.Nodes.NodesWithReactions)
+                    foreach (var item in Model.Nodes.NodesWithReactions)
                     {
-                        args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + Item.Value.ReactionLine, colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineForce);
-                        args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + (Item.Value.ReactionUnitLeft * Camera.LineLengthForceArrow), colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineReaction);
-                        args.DrawingSession.DrawLine(Item.Value.Location, Item.Value.Location + (Item.Value.ReactionUnitRight * Camera.LineLengthForceArrow), colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineReaction);
+                        args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ReactionLine, colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineForce);
+                        args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ReactionUnitLeft * Camera.LineLengthForceArrow), colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineReaction);
+                        args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ReactionUnitRight * Camera.LineLengthForceArrow), colorReaction, Camera.LineUnit * Options.LineReactionWeight, lineReaction);
                     }
                 }
             }
-            catch { }
-
-            #endregion
-            #region Draw Circles for Constraints
+            catch
+            {
+            }
 
             try
             {
-                foreach (var Item in Model.Nodes.NodesWithConstraints)
+                foreach (var item in Model.Nodes.NodesWithConstraints)
                 {
-                    switch (Item.Value.Constraints.ConstraintType)
+                    switch (item.Value.Constraints.ConstraintType)
                     {
                         case ConstraintType.FixedBottom:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedTop:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedLeft:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(Item.Value.Location.X, Item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
+                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - 16 * Camera.LineUnit, 33 * Camera.LineUnit, 33 * Camera.LineUnit));
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeFixed, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.PinnedBottom:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedTop:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedLeft:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.PinnedRight:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.RollerBottom:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerTop:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerX, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerLeft:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.RollerRight:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodeRollerY, Camera.ConstraintWidth);
                             break;
 
                         case ConstraintType.TrackBottom:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackTop:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackLeft:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                         case ConstraintType.TrackRight:
-                            args.DrawingSession.FillCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(Item.Value.Location.X, Item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
+                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorBackground);
+                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.ConstraintRadius, colorNodePin, Camera.ConstraintWidth);
                             break;
                     }
                 }
             }
-            catch { }
-
-            #endregion
-            #region Draw Selected Member
+            catch
+            {
+            }
 
             try
             {
                 if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
                 {
-                    //Draw Shear
+                    // Draw Shear
                     if (Options.ShowShear)
                     {
                         foreach (var nextItem in Model.Members.CurrentMember.Segments)
@@ -637,6 +612,7 @@
                             {
                                 args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.ShearNear, colorShearForceSelected, Camera.LineUnit * Options.LineShearForceSelectedWeight, lineShearForceSelected);
                             }
+
                             args.DrawingSession.DrawLine(nextItem.Value.ShearNear, nextItem.Value.ShearFar, colorShearForceSelected, Camera.LineUnit * Options.LineShearForceSelectedWeight, lineShearForceSelected);
                             if (nextItem.Value.NodeFar.IsPrimary)
                             {
@@ -644,13 +620,13 @@
                             }
                         }
 
-                        //if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y != 0)
-                        //{
+                        // if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y != 0)
+                        // {
                         //    args.DrawingSession.DrawText("Testgsfdghsdfghdsfghdfghdfghdfghdfghdfghdfghdfg", Model.Members.CurrentMember.SegmentNear.ShearNear, ColorShearForceSelected, LabelGridX);
-                        //}
+                        // }
                     }
 
-                    //Draw Moment
+                    // Draw Moment
                     if (Options.ShowMoment)
                     {
                         foreach (var nextItem in Model.Members.CurrentMember.Segments)
@@ -659,6 +635,7 @@
                             {
                                 args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.MomentNear, colorMomentForce, Camera.LineUnit * Options.LineMomentForceSelectedWeight, lineMomentForceSelected);
                             }
+
                             args.DrawingSession.DrawLine(nextItem.Value.MomentNear, nextItem.Value.MomentFar, colorMomentForce, Camera.LineUnit * Options.LineMomentForceSelectedWeight, lineMomentForceSelected);
                             if (nextItem.Value.NodeFar.IsPrimary)
                             {
@@ -667,13 +644,11 @@
                         }
                     }
 
-
                     foreach (var nextItem in Model.Members.CurrentMember.Segments)
                     {
-                        //Draw Member
+                        // Draw Member
                         args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.FarVectorDisplaced, colorSelectedElement, Camera.LineUnit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
                     }
-
 
                     args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, colorBackground);
                     args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.ConstraintRadius, colorSelectedElement, Camera.ConstraintWidth);
@@ -682,13 +657,14 @@
                     args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.ConstraintRadius, colorSelectedElement, Camera.ConstraintWidth);
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
 
-            #endregion
-            #region Draw Members Text Labels
 
-            //try
-            //{
+            // try
+            // {
             //    if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
             //    {
             //        args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, 10));
@@ -718,9 +694,9 @@
             //                else
             //                {
 
-            //                }
+            // }
 
-            //                if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y > 0.000001m)
+            // if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y > 0.000001m)
             //                {
             //                    args.DrawingSession.DrawText(
             //                    ConvertToEngineeringNotation(-Item.Value.SegmentFar.InternalLoadFarLocal.Y),
@@ -741,11 +717,11 @@
             //                else
             //                {
 
-            //                }
+            // }
             //            }
             //        }
 
-            //        //Draw Moment
+            // //Draw Moment
             //        if (Options.ShowMoment)
             //        {
             //            foreach (var Item in Model.Members)
@@ -771,9 +747,9 @@
             //                else
             //                {
 
-            //                }
+            // }
 
-            //                if (Item.Value.SegmentFar.InternalLoadFarLocal.M > 0.000001m)
+            // if (Item.Value.SegmentFar.InternalLoadFarLocal.M > 0.000001m)
             //                {
             //                    args.DrawingSession.DrawText(
             //                    ConvertToEngineeringNotation(Item.Value.SegmentFar.InternalLoadFarLocal.M),
@@ -794,15 +770,12 @@
             //                else
             //                {
 
-            //                }
+            // }
             //            }
             //        }
             //    }
-            //}
-            //catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
-
-            #endregion
-            #region Draw Selected Member Text Labels
+            // }
+            // catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
 
             try
             {
@@ -810,7 +783,8 @@
                 if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
                 {
                     args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, 10));
-                    //Draw Shear
+
+                    // Draw Shear
                     if (Options.ShowShear)
                     {
                         if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y > 0.000001m)
@@ -819,8 +793,7 @@
                             ConvertToEngineeringNotation(Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentNear.ShearNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentNear.ShearNear.Y * Camera.ZoomTrimmed)),
                             colorShearForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y < -0.000001m)
                         {
@@ -828,12 +801,10 @@
                             ConvertToEngineeringNotation(Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentNear.ShearNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentNear.ShearNear.Y * Camera.ZoomTrimmed)),
                             colorShearForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else
                         {
-
                         }
 
                         if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y > 0.000001m)
@@ -842,8 +813,7 @@
                             ConvertToEngineeringNotation(-Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentFar.ShearFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentFar.ShearFar.Y * Camera.ZoomTrimmed)),
                             colorShearForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y < -0.000001m)
                         {
@@ -851,16 +821,14 @@
                             ConvertToEngineeringNotation(-Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentFar.ShearFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentFar.ShearFar.Y * Camera.ZoomTrimmed)),
                             colorShearForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else
                         {
-
                         }
                     }
 
-                    //Draw Moment
+                    // Draw Moment
                     if (Options.ShowMoment)
                     {
 
@@ -870,8 +838,7 @@
                             ConvertToEngineeringNotation(-Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.M),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentNear.MomentNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentNear.MomentNear.Y * Camera.ZoomTrimmed)),
                             colorMomentForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.M < -0.000001m)
                         {
@@ -879,12 +846,10 @@
                             ConvertToEngineeringNotation(-Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.M),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentNear.MomentNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentNear.MomentNear.Y * Camera.ZoomTrimmed)),
                             colorMomentForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else
                         {
-
                         }
 
                         if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.M > 0.000001m)
@@ -893,8 +858,7 @@
                             ConvertToEngineeringNotation(Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.M),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentFar.MomentFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentFar.MomentFar.Y * Camera.ZoomTrimmed)),
                             colorMomentForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.M < -0.000001m)
                         {
@@ -902,44 +866,39 @@
                             ConvertToEngineeringNotation(Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.M),
                             new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Model.Members.CurrentMember.SegmentFar.MomentFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Model.Members.CurrentMember.SegmentFar.MomentFar.Y * Camera.ZoomTrimmed)),
                             colorMomentForceFont,
-                            labelFormat
-                            );
+                            labelFormat);
                         }
                         else
                         {
-
                         }
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
 
-            #endregion
-            #region Debug Text
 
-            //args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
-            //args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
-            //args.DrawingSession.DrawText("Position: " + Camera.Position, 0, 20, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("Zoom: " + Camera.Zoom, 0, 40, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("ViewportWidth: " + Camera.ViewportWidth + " " + Camera.ViewportHeight, 0, 60, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("ViewportCenter: " + Camera.ViewportCenter, 0, 80, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("translationTrim: " + Camera.translationTrim, 0, 100, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("TranslationMatrix: " + Camera.TranslationMatrix, 0, 120, Colors.White, LabelFormat);
+            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
+            // args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
+            // args.DrawingSession.DrawText("Position: " + Camera.Position, 0, 20, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("Zoom: " + Camera.Zoom, 0, 40, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("ViewportWidth: " + Camera.ViewportWidth + " " + Camera.ViewportHeight, 0, 60, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("ViewportCenter: " + Camera.ViewportCenter, 0, 80, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("translationTrim: " + Camera.translationTrim, 0, 100, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("TranslationMatrix: " + Camera.TranslationMatrix, 0, 120, Colors.White, LabelFormat);
 
-            //args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 200));
-            //args.DrawingSession.DrawText("GRID", 0, 0, Colors.Gray, LabelHeaderFormat);
-            //args.DrawingSession.DrawText("gridSizeNormal: " + Camera.GridSizeNormal, 0, 20, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("TopLeft: " + Camera.TopLeftNormal, 0, 40, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("BottomRight: " + Camera.BottomRight, 0, 60, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("lineCountX: " + lineCountX, 0, 80, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("lineCountY: " + lineCountY, 0, 100, Colors.White, LabelFormat);
-            //args.DrawingSession.DrawText("LineInverse: " + Camera.LineInverse, 0, 120, Colors.White, LabelFormat);
+            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 200));
+            // args.DrawingSession.DrawText("GRID", 0, 0, Colors.Gray, LabelHeaderFormat);
+            // args.DrawingSession.DrawText("gridSizeNormal: " + Camera.GridSizeNormal, 0, 20, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("TopLeft: " + Camera.TopLeftNormal, 0, 40, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("BottomRight: " + Camera.BottomRight, 0, 60, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("lineCountX: " + lineCountX, 0, 80, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("lineCountY: " + lineCountY, 0, 100, Colors.White, LabelFormat);
+            // args.DrawingSession.DrawText("LineInverse: " + Camera.LineInverse, 0, 120, Colors.White, LabelFormat);
 
-            //args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.CenterXPixels - 3, Camera.CenterYPixels - 3));
-            //args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
-
-            #endregion
-            #region Grid Labels
+            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.CenterXPixels - 3, Camera.CenterYPixels - 3));
+            // args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
 
             try
             {
@@ -950,10 +909,9 @@
                 do
                 {
                     args.DrawingSession.DrawText(
-                        Math.Round((iX * Camera.LengthUnitFactor), 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed),
+                        Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed),
                         Camera.ViewportSize.Y + 2,
-                        colorGridMajorFont, labelGridX
-                        );
+                        colorGridMajorFont, labelGridX);
 
                     iX += Camera.GridSizeMinor;
                 }
@@ -962,16 +920,16 @@
                 do
                 {
                     args.DrawingSession.DrawText(
-                        Math.Round((iY * Camera.LengthUnitFactor), 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15,
+                        Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15,
                         (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y - (iY * Camera.ZoomTrimmed),
                         colorGridMajorFont, labelGridY);
                     iY += Camera.GridSizeMinor;
                 }
                 while (iY < Camera.BottomRight.Y);
             }
-            catch { }
-
-            #endregion
+            catch
+            {
+            }
         }
 
         #endregion
@@ -996,17 +954,21 @@
                         break;
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
-
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
         }
 
         private void Canvas_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             try
             {
-
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
         }
 
         private void Canvas_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -1019,6 +981,7 @@
                     e.Complete();
                     return;
                 }
+
                 previousTransform.Matrix = transforms.Value;
 
                 // Get center point for rotation
@@ -1029,7 +992,7 @@
 
                 if (e.Delta.Scale != 1)
                 {
-                    //Camera.ScaleDelta((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
+                    // Camera.ScaleDelta((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                     Camera.ScaleDeltaScrollWheel((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                 }
 
@@ -1038,32 +1001,29 @@
                     Camera.MoveCamera(e.Delta.Translation.ToVector2());
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
-
-
-
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
         }
 
         private void Canvas_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
         {
-
         }
 
         private void Canvas_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
-
         }
 
         private void Canvas_ManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
         {
-
         }
 
         private void Canvas_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             try
             {
-                //Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
+                // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
                 switch (CurrentSelectionState)
                 {
                     case SelectionState.Ready:
@@ -1073,8 +1033,7 @@
                         break;
 
                     case SelectionState.FirstNode:
-                        //Cancel selection?
-
+                        // Cancel selection?
                         CurrentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
@@ -1087,42 +1046,42 @@
                         break;
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
         }
 
         private void Canvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
+            Vector2 mousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
             switch (CurrentSelectionState)
             {
                 case SelectionState.Ready:
-                    //nothing or select member.
-                    int tempInt = Model.Members.FindNearestElement(MousePoint);
+                    // nothing or select member.
+                    int tempInt = Model.Members.FindNearestElement(mousePoint);
                     if (tempInt != -1)
                     {
                         Model.Members.CurrentMember = Model.Members[tempInt];
                         Results.Current.ShowMember();
 
-                        //decimal Largest = 0;
-                        //decimal NegLargest = 0;
+                        // decimal Largest = 0;
+                        // decimal NegLargest = 0;
 
-                        //foreach (var Item in Model.Members.CurrentMember.Segments)
-                        //{
+                        // foreach (var Item in Model.Members.CurrentMember.Segments)
+                        // {
                         //    Debug.WriteLine(Item.Value.Index + " " + -Item.Value.InternalLoadNearLocal.M + " " + Item.Value.InternalLoadFarLocal.M + Item.Value.NodeNear.Position.X);
 
-                        //    if (-Item.Value.InternalLoadNearLocal.M > Largest) { Largest = -Item.Value.InternalLoadNearLocal.M; }
+                        // if (-Item.Value.InternalLoadNearLocal.M > Largest) { Largest = -Item.Value.InternalLoadNearLocal.M; }
                         //    if (-Item.Value.InternalLoadNearLocal.M < NegLargest) { NegLargest = -Item.Value.InternalLoadNearLocal.M; }
 
-                        //    if (Item.Value.InternalLoadFarLocal.M > Largest) { Largest = Item.Value.InternalLoadFarLocal.M; }
+                        // if (Item.Value.InternalLoadFarLocal.M > Largest) { Largest = Item.Value.InternalLoadFarLocal.M; }
                         //    if (Item.Value.InternalLoadFarLocal.M < NegLargest) { NegLargest = Item.Value.InternalLoadFarLocal.M; }
 
+                        // }
 
-                        //}
-
-
-                        //Debug.WriteLine("Largest " + Largest);
-                        //Debug.WriteLine("NegLargest " + NegLargest);
-
+                        // Debug.WriteLine("Largest " + Largest);
+                        // Debug.WriteLine("NegLargest " + NegLargest);
                     }
                     else
                     {
@@ -1130,6 +1089,7 @@
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
                     }
+
                     break;
 
                 case SelectionState.FirstNode:
@@ -1139,42 +1099,44 @@
                     break;
 
                 case SelectionState.SecondNode:
-                    //should not get here?
+                    // should not get here?
                     break;
             }
 
             try
             {
-
             }
-            catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error " + ex.Message);
+            }
         }
 
         private void Canvas_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            //Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-            //switch (CurrentSelectionState)
-            //{
+            // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
+            // switch (CurrentSelectionState)
+            // {
             //    case SelectionState.Ready:
             //        //nothing?
             //        break;
 
-            //    case SelectionState.FirstNode:
+            // case SelectionState.FirstNode:
             //        //create member and continue.
             //        CurrentSelectionState = SelectionState.Ready;
             //        break;
 
-            //    case SelectionState.SecondNode:
+            // case SelectionState.SecondNode:
             //        //should not get here?
             //        CurrentSelectionState = SelectionState.Ready;
             //        break;
-            //}
+            // }
 
-            //try
-            //{
+            // try
+            // {
 
-            //}
-            //catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
+            // }
+            // catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -1213,7 +1175,6 @@
             colorNodeRollerY = Options.ColorNodeRollerY;
             colorNodeOther = Options.ColorNodeFree;
 
-
             lineGridNormal = Options.LineGridNormal;
             lineGridMinor = Options.LineGridMinor;
             lineGridMajor = Options.LineGridMajor;
@@ -1240,16 +1201,16 @@
             MinorGridAlphaChange = OriginalMinorGridAlpha / TotalGridChanges;
             NormalGridAlphaChange = OriginalNormalGridAlpha / TotalGridChanges;
             MajorGridAlphaChange = OriginalMajorGridAlpha / TotalGridChanges;
-
         }
-        
+
         private string ConvertToEngineeringNotation(decimal d)
         {
 
-            int RoundingFactor = 6;
-            //decimal theValue = 0;
-            string numberString = "";
-            string exponentString = "";
+            int roundingFactor = 6;
+
+            // decimal theValue = 0;
+            string numberString = string.Empty;
+            string exponentString = string.Empty;
 
             bool IsNegative = false;
 
@@ -1260,10 +1221,7 @@
             }
             else if (d == 0)
             {
-
             }
-
-
 
             double exponent = Math.Log10(Math.Abs((double)d));
             if (Math.Abs(d) >= 1)
@@ -1273,58 +1231,59 @@
                     case 0:
                     case 1:
                     case 2:
-                        numberString = Math.Round(d, RoundingFactor).ToString("000.000") + "";
-                        exponentString = "";
+                        numberString = Math.Round(d, roundingFactor).ToString("000.000") + string.Empty;
+                        exponentString = string.Empty;
                         if (numberString == "1000.000")
                         {
                             numberString = "001.000";
                             exponentString = "e+03";
                         }
+
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        numberString = Math.Round((d / 1e3m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e3m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+03";
                         break;
                     case 6:
                     case 7:
                     case 8:
-                        numberString = Math.Round((d / 1e6m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e6m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+06";
                         break;
                     case 9:
                     case 10:
                     case 11:
-                        numberString = Math.Round((d / 1e9m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e9m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+09";
                         break;
                     case 12:
                     case 13:
                     case 14:
-                        numberString = Math.Round((d / 1e12m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e12m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+12";
                         break;
                     case 15:
                     case 16:
                     case 17:
-                        numberString = Math.Round((d / 1e15m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e15m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+15";
                         break;
                     case 18:
                     case 19:
                     case 20:
-                        numberString = Math.Round((d / 1e18m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e18m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+18";
                         break;
                     case 21:
                     case 22:
                     case 23:
-                        numberString = Math.Round((d / 1e21m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e21m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+21";
                         break;
                     default:
-                        numberString = Math.Round((d / 1e24m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d / 1e24m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e+24";
                         break;
                 }
@@ -1336,52 +1295,53 @@
                     case -1:
                     case -2:
                     case -3:
-                        numberString = Math.Round((d * 1e3m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e3m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-03";
                         if (numberString == "1000.000")
                         {
                             numberString = "001.000";
-                            exponentString = "";
+                            exponentString = string.Empty;
                         }
+
                         break;
                     case -4:
                     case -5:
                     case -6:
-                        numberString = Math.Round((d * 1e6m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e6m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-06";
                         break;
                     case -7:
                     case -8:
                     case -9:
-                        numberString = Math.Round((d * 1e9m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e9m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-09";
                         break;
                     case -10:
                     case -11:
                     case -12:
-                        numberString = Math.Round((d * 1e12m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e12m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-12";
                         break;
                     case -13:
                     case -14:
                     case -15:
-                        numberString = Math.Round((d * 1e15m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e15m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-15";
                         break;
                     case -16:
                     case -17:
                     case -18:
-                        numberString = Math.Round((d * 1e18m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e18m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-18";
                         break;
                     case -19:
                     case -20:
                     case -21:
-                        numberString = Math.Round((d * 1e21m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e21m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-21";
                         break;
                     default:
-                        numberString = Math.Round((d * 1e24m), RoundingFactor).ToString("000.000") + "";
+                        numberString = Math.Round(d * 1e24m, roundingFactor).ToString("000.000") + string.Empty;
                         exponentString = "e-24";
                         break;
                 }
@@ -1389,7 +1349,7 @@
             else
             {
                 numberString = "000.000";
-                exponentString = "";
+                exponentString = string.Empty;
             }
 
             if (numberString.Substring(0, 1) == "0")
@@ -1411,9 +1371,6 @@
             {
                 numberString = numberString.Substring(0, numberString.Length - 1);
             }
-
-
-
 
             if (IsNegative)
             {
@@ -1424,7 +1381,6 @@
                 return numberString + exponentString;
             }
         }
-
     }
 }
 

@@ -1,16 +1,12 @@
 ﻿using Microsoft.Graphics.Canvas.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using Windows.UI;
 
 namespace Finite_Element_Analysis_Explorer
 {
     internal class Section
     {
-        internal Section(string _name,
+        internal Section(
+            string _name,
             decimal e,
             decimal i,
             decimal area,
@@ -47,8 +43,7 @@ namespace Finite_Element_Analysis_Explorer
             decimal _MaintenanceRoller,
             decimal _MaintenanceTrack,
             decimal _FactorVerticalTransport,
-            decimal _FactorHorizontalTransport
-            )
+            decimal _FactorHorizontalTransport)
         {
             name = _name;
             _e = e;
@@ -97,6 +92,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private string name;
+
         public string Name
         {
             get { return name; }
@@ -104,6 +100,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _e;
+
         internal decimal E
         {
             get { return _e; }
@@ -111,6 +108,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _i;
+
         internal decimal I
         {
             get { return _i; }
@@ -118,6 +116,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _area;
+
         internal decimal Area
         {
             get { return _area; }
@@ -125,6 +124,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal _density;
+
         internal decimal Density
         {
             get { return _density; }
@@ -132,6 +132,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private byte _alpha;
+
         internal byte Alpha
         {
             get { return _alpha; }
@@ -139,6 +140,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private byte _red;
+
         internal byte Red
         {
             get { return _red; }
@@ -146,6 +148,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private byte _green;
+
         internal byte Green
         {
             get { return _green; }
@@ -153,13 +156,23 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private byte _blue;
+
         internal byte Blue
         {
-            get { return _blue; }
-            set { _blue = value; UpdateColor(); }
+            get
+            {
+                return _blue;
+            }
+
+            set
+            {
+                _blue = value;
+                UpdateColor();
+            }
         }
 
         private Color _color;
+
         internal Color Color
         {
             get { return _color; }
@@ -167,6 +180,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private CanvasDashStyle _line = CanvasDashStyle.Solid;
+
         internal CanvasDashStyle Line
         {
             get { return _line; }
@@ -174,6 +188,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private CanvasCapStyle _nearCapStyle = CanvasCapStyle.Round;
+
         internal CanvasCapStyle NearCapStyle
         {
             get { return _nearCapStyle; }
@@ -181,6 +196,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private CanvasCapStyle _farCapStyle = CanvasCapStyle.Round;
+
         internal CanvasCapStyle FarCapStyle
         {
             get { return _farCapStyle; }
@@ -188,6 +204,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private float _lineWeight = 1.5f;
+
         internal float LineWeight
         {
             get { return _lineWeight; }
@@ -195,6 +212,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costPerLength = 0;
+
         internal decimal CostPerLength
         {
             get { return costPerLength; }
@@ -202,6 +220,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costVerticalTransport = 0;
+
         public decimal CostVerticalTransport
         {
             get { return costVerticalTransport; }
@@ -209,6 +228,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costHorizontalTransport = 0;
+
         public decimal CostHorizontalTransport
         {
             get { return costHorizontalTransport; }
@@ -216,6 +236,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costNodeFree = 0;
+
         public decimal CostNodeFree
         {
             get { return costNodeFree; }
@@ -223,6 +244,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costNodeFixed = 0;
+
         public decimal CostNodeFixed
         {
             get { return costNodeFixed; }
@@ -230,6 +252,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costNodePinned = 0;
+
         public decimal CostNodePinned
         {
             get { return costNodePinned; }
@@ -237,6 +260,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costNodeRoller = 0;
+
         public decimal CostNodeRoller
         {
             get { return costNodeRoller; }
@@ -244,14 +268,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal costNodeTrack = 0;
+
         public decimal CostNodeTrack
         {
             get { return costNodeTrack; }
             set { costNodeTrack = value; }
         }
 
-
         private string sectionProfile = "Solid Rectangle";
+
         public string SectionProfile
         {
             get { return sectionProfile; }
@@ -259,6 +284,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty1 = 0m;
+
         public decimal SectionProfileProperty1
         {
             get { return sectionProfileProperty1; }
@@ -266,6 +292,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty2 = 0m;
+
         public decimal SectionProfileProperty2
         {
             get { return sectionProfileProperty2; }
@@ -273,6 +300,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty3 = 0m;
+
         public decimal SectionProfileProperty3
         {
             get { return sectionProfileProperty3; }
@@ -280,6 +308,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty4 = 0m;
+
         public decimal SectionProfileProperty4
         {
             get { return sectionProfileProperty4; }
@@ -287,6 +316,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty5 = 0m;
+
         public decimal SectionProfileProperty5
         {
             get { return sectionProfileProperty5; }
@@ -294,6 +324,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty6 = 0m;
+
         public decimal SectionProfileProperty6
         {
             get { return sectionProfileProperty6; }
@@ -301,15 +332,15 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal sectionProfileProperty7 = 0m;
+
         public decimal SectionProfileProperty7
         {
             get { return sectionProfileProperty7; }
             set { sectionProfileProperty7 = value; }
         }
 
-
-
         private string material = "Default";
+
         public string Material
         {
             get { return material; }
@@ -317,6 +348,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private float miterLimit;
+
         public float MiterLimit
         {
             get { return miterLimit; }
@@ -324,6 +356,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private float dashOffset;
+
         public float DashOffset
         {
             get { return dashOffset; }
@@ -331,6 +364,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private CanvasLineJoin lineJoin = CanvasLineJoin.Round;
+
         public CanvasLineJoin LineJoin
         {
             get { return lineJoin; }
@@ -338,6 +372,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private CanvasStrokeStyle lineStyle = new CanvasStrokeStyle();
+
         public CanvasStrokeStyle LineStyle
         {
             get { return lineStyle; }
@@ -345,6 +380,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenancePerLength;
+
         public decimal MaintenancePerLength
         {
             get { return maintenancePerLength; }
@@ -352,6 +388,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenanceNodeFree;
+
         public decimal MaintenanceNodeFree
         {
             get { return maintenanceNodeFree; }
@@ -359,6 +396,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenanceFixed;
+
         public decimal MaintenanceFixed
         {
             get { return maintenanceFixed; }
@@ -366,6 +404,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenancePinned;
+
         public decimal MaintenancePinned
         {
             get { return maintenancePinned; }
@@ -373,6 +412,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenanceRoller;
+
         public decimal MaintenanceRoller
         {
             get { return maintenanceRoller; }
@@ -380,6 +420,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal maintenanceTrack;
+
         public decimal MaintenanceTrack
         {
             get { return maintenanceTrack; }
@@ -387,6 +428,7 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal factorVerticalTransport;
+
         public decimal FactorVerticalTransport
         {
             get { return factorVerticalTransport; }
@@ -394,13 +436,12 @@ namespace Finite_Element_Analysis_Explorer
         }
 
         private decimal factorHorizontalTransport;
+
         public decimal FactorHorizontalTransport
         {
             get { return factorHorizontalTransport; }
             set { factorHorizontalTransport = value; }
         }
-
-
 
         private void UpdateCanvasStrokeStyle()
         {
@@ -412,7 +453,6 @@ namespace Finite_Element_Analysis_Explorer
             LineStyle.MiterLimit = miterLimit;
             LineStyle.StartCap = _nearCapStyle;
         }
-
 
         private void UpdateColor()
         {

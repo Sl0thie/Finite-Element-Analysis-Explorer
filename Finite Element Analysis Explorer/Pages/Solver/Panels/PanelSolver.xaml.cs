@@ -138,14 +138,13 @@ namespace Finite_Element_Analysis_Explorer
             Application.Current.Exit();
         }
 
-
         #endregion
 
         #region Changes per Page
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            // flyOut_NewSection.ShowAt(button_Save);
+            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)
@@ -170,7 +169,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         #endregion

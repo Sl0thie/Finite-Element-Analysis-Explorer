@@ -1,154 +1,187 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media;
+
+    /// <summary>
+    /// SolverMessage UserControl used to display messages from the solver.
+    /// </summary>
     public sealed partial class SolverMessage : UserControl
     {
-        private long _TotalTime;
+        /// <summary>
+        /// Gets or sets the total time the solver has taken up to this point.
+        /// </summary>
         public long TotalTime
         {
-            get { return _TotalTime; }
+            get
+            {
+                return totalTime;
+            }
+
             set
             {
-                _TotalTime = value;
-                textBlock_TotalTime.Text = MakeString(_TotalTime);
+                totalTime = value;
+                TextBlock_TotalTime.Text = MakeString(totalTime);
             }
         }
 
-        private long _StepTime;
+        /// <summary>
+        /// Gets or sets the time it has taken to perform this step.
+        /// </summary>
         public long StepTime
         {
-            get { return _StepTime; }
+            get
+            {
+                return stepTime;
+            }
+
             set
             {
-                _StepTime = value;
-                textBlock_StepTime.Text = MakeString(_StepTime);
+                stepTime = value;
+                TextBlock_StepTime.Text = MakeString(stepTime);
             }
         }
 
-        private string _Message;
+        /// <summary>
+        /// Gets or sets the message to display.
+        /// </summary>
         public string Message
         {
-            get { return _Message; }
+            get
+            {
+                return message;
+            }
+
             set
             {
-                _Message = value;
-                textBlock_Message.Text = _Message;
+                message = value;
+                TextBlock_Message.Text = message;
             }
         }
 
-        private int _Icon;
+        /// <summary>
+        /// Gets or sets the icon to use for the message.
+        /// </summary>
         public int Icon
         {
-            get { return _Icon; }
-            set { _Icon = value; }
+            get { return icon; }
+            set { icon = value; }
         }
 
-
-        private int messageType;
+        /// <summary>
+        /// Gets or sets the message type to use for the message.
+        /// </summary>
         public int MessageType
         {
-            get { return messageType; }
+            get
+            {
+                return messageType;
+            }
+
             set
             {
                 messageType = value;
                 switch (messageType)
                 {
                     case 0:
-                        textBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 192, 192, 192));
+                        TextBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 192, 192, 192));
                         break;
 
                     case 1:
-                        textBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 128, 128, 128));
+                        TextBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 128, 128, 128));
                         break;
 
                     case 2:
-                        textBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 32, 32));
+                        TextBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 32, 32));
                         break;
 
                     case 3:
-                        textBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 32));
+                        TextBlock_Message.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 32));
                         break;
                 }
             }
         }
 
+        private long totalTime;
+        private long stepTime;
+        private string message;
+        private int icon;
+        private int messageType;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SolverMessage"/> class.
+        /// </summary>
         public SolverMessage()
         {
             InitializeComponent();
         }
 
-        private string MakeString(long TotalMilliseconds)
+        /// <summary>
+        /// Makes a time string.
+        /// </summary>
+        /// <param name="totalMilliseconds">The length of the time string in milliseconds.</param>
+        /// <returns>A human readable string of time.</returns>
+        private string MakeString(long totalMilliseconds)
         {
-            if (TotalMilliseconds >= 0)
+            if (totalMilliseconds >= 0)
             {
-                long Milliseconds = TotalMilliseconds;
-                long TotalMinutes = 0;
-                long TotalSeconds = 0;
+                long milliseconds = totalMilliseconds;
+                long totalMinutes = 0;
+                long totalSeconds = 0;
 
                 do
                 {
-                    if (Milliseconds > 60000)
+                    if (milliseconds > 60000)
                     {
-                        TotalMinutes++;
-                        Milliseconds -= 60000;
+                        totalMinutes++;
+                        milliseconds -= 60000;
                     }
-                } while (Milliseconds >= 60000);
-                string tempString = TotalMinutes + ":";
+                }
+                while (milliseconds >= 60000);
+
+                string tempString = totalMinutes + ":";
                 do
                 {
-                    if (Milliseconds >= 1000)
+                    if (milliseconds >= 1000)
                     {
-                        TotalSeconds++;
-                        Milliseconds -= 1000;
+                        totalSeconds++;
+                        milliseconds -= 1000;
                     }
-                } while (Milliseconds >= 1000);
+                }
+                while (milliseconds >= 1000);
 
-                if (TotalSeconds < 10)
+                if (totalSeconds < 10)
                 {
-                    tempString = tempString + "0" + TotalSeconds + ":";
+                    tempString = tempString + "0" + totalSeconds + ":";
                 }
                 else
                 {
-                    tempString = tempString + TotalSeconds + ":";
+                    tempString = tempString + totalSeconds + ":";
                 }
 
-                if (Milliseconds.ToString().Length == 0)
+                if (milliseconds.ToString().Length == 0)
                 {
                     tempString += "000";
                 }
-                else if (Milliseconds.ToString().Length == 1)
+                else if (milliseconds.ToString().Length == 1)
                 {
-                    tempString = tempString + "00" + Milliseconds;
+                    tempString = tempString + "00" + milliseconds;
                 }
-                else if (Milliseconds.ToString().Length == 2)
+                else if (milliseconds.ToString().Length == 2)
                 {
-                    tempString = tempString + "0" + Milliseconds;
+                    tempString = tempString + "0" + milliseconds;
                 }
                 else
                 {
-                    tempString += Milliseconds;
+                    tempString += milliseconds;
                 }
 
                 return tempString;
             }
             else
             {
-                return "";
+                return string.Empty;
             }
         }
     }

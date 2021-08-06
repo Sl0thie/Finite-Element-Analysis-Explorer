@@ -33,7 +33,7 @@
                     <RowDefinition Height="44"/>
                     <RowDefinition Height="350"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="textBlock_Section_Title" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="Section" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="28" Foreground="Gray" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlock_Section_Title" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="Section" FontFamily="ms-appx:///Assets/HandelGotDLig#HandelGotDLig" FontSize="28" Foreground="Gray" VerticalAlignment="Bottom"/>
 
                 <StackPanel Grid.Column="1" Grid.Row="1">
                     <TextBlock Text="Selected Profile" Style="{StaticResource FontPanelSectionHeader}"/>
@@ -76,7 +76,7 @@
                 <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="2">
                     <TextBlock Text="Section Profiles"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
                     <ScrollViewer HorizontalAlignment="Left" Height="408" Width="300">
-                        <ListView x:Name="listView_Profile" SelectionChanged="ListView_Profile_SelectionChanged" Width="300">
+                        <ListView x:Name="ListView_Profile" SelectionChanged="ListView_Profile_SelectionChanged" Width="300">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -120,7 +120,7 @@
                 <StackPanel Grid.Column="4" Grid.Row="4">
                     <TextBlock Text="Materials"  VerticalAlignment="Bottom" Style="{StaticResource FontPanelSectionHeader}"/>
                     <ScrollViewer HorizontalAlignment="Left" Width="300" Height="350">
-                        <ListView x:Name="listView_Materials" HorizontalAlignment="Left" Width="300" SelectionChanged="ListView_Materials_SelectionChanged" CanReorderItems="True">
+                        <ListView x:Name="ListView_Materials" HorizontalAlignment="Left" Width="300" SelectionChanged="ListView_Materials_SelectionChanged" CanReorderItems="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="24">

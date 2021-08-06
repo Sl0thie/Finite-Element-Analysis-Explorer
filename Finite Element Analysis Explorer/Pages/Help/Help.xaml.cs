@@ -1,46 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Help Page provides a means to display help.
+    /// </summary>
     public sealed partial class Help : Page
     {
-        public static Help Current;
+        private static Help current;
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Help"/> class.
+        /// </summary>
         public Help()
         {
             this.InitializeComponent();
         }
 
-        public void ShowHelpPage(string PageURI)
-        {
-            webView_Help.Navigate(new Uri(PageURI));
-        }
+        /// <summary>
+        /// Gets or sets current. The Clayton's singleton.
+        /// </summary>
+        public static Help Current { get => current; set => current = value; }
 
+        /// <summary>
+        /// Show the help page.
+        /// </summary>
+        /// <param name="pageURI">The URL of the help page.</param>
+        public void ShowHelpPage(string pageURI)
+        {
+            WebView_Help.Navigate(new Uri(pageURI));
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            webView_Help.Navigate(new Uri("ms-appx-web:///Assets/Help/General/General.html"));
+            WebView_Help.Navigate(new Uri("ms-appx-web:///Assets/Help/General/General.html"));
         }
 
-        private void webView_Help_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        private void WebView_Help_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
-            // Debug.WriteLine("NavigationStarting " + args.Uri.ToString());
         }
     }
 }

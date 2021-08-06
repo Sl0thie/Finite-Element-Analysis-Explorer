@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Diagnostics;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -8,7 +7,6 @@ namespace Finite_Element_Analysis_Explorer
     {
         internal NodeConcurrentCollection()
         {
-
         }
 
         /// <summary>
@@ -17,7 +15,6 @@ namespace Finite_Element_Analysis_Explorer
         internal ConcurrentDictionary<int, Node> NodesWithNodalLoads = new ConcurrentDictionary<int, Node>();
         internal ConcurrentDictionary<int, Node> NodesWithConstraints = new ConcurrentDictionary<int, Node>();
         internal ConcurrentDictionary<int, Node> NodesWithReactions = new ConcurrentDictionary<int, Node>();
-
 
         internal void Reset()
         {
@@ -29,25 +26,27 @@ namespace Finite_Element_Analysis_Explorer
 
         internal Node GetFromPosition(decimal X, decimal Y)
         {
-            foreach (var Item in this)
+            foreach (var item in this)
             {
-                if ((Item.Value.Position.X == X) && (Item.Value.Position.Y == Y))
+                if ((item.Value.Position.X == X) && (item.Value.Position.Y == Y))
                 {
-                    return (Node)Item.Value;
+                    return (Node)item.Value;
                 }
             }
+
             return null;
         }
 
         internal Node GetFromIndex(int index)
         {
-            foreach (var Item in this)
+            foreach (var item in this)
             {
-                if (Item.Value.Index == index)
+                if (item.Value.Index == index)
                 {
-                    return (Node)Item.Value;
+                    return (Node)item.Value;
                 }
             }
+
             return null;
         }
 

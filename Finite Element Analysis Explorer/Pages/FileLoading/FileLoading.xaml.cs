@@ -1,28 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class FileLoading : Page
     {
         internal static FileLoading Current;
-        //private bool IsLoaded = false;
 
+        // private bool IsLoaded = false;
         public FileLoading()
         {
             this.InitializeComponent();
@@ -62,22 +50,24 @@ namespace Finite_Element_Analysis_Explorer
         {
             App.CurrentPageState = PageState.FileLoading;
             Current = this;
-            //IsLoaded = true;
+
+            // IsLoaded = true;
             frameFileLoadingDisplay.Navigate(typeof(FileLoadingDisplay));
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            //App.CurrentPageState = PageState.Unknown;
+            // App.CurrentPageState = PageState.Unknown;
             Window.Current.SizeChanged -= Current_SizeChanged_UpdateTitleBar;
-            //IsLoaded = false;
+
+            // IsLoaded = false;
         }
 
-        //public void NavigateToConstruction()
-        //{
+        // public void NavigateToConstruction()
+        // {
         //    //Frame.Navigate(typeof(Construction));
         //    Frame rootFrame = Window.Current.Content as Frame;
         //    rootFrame.Navigate(typeof(Construction));
-        //}
+        // }
     }
 }

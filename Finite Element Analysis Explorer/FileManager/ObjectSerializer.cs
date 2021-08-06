@@ -22,6 +22,7 @@ namespace CSWindowsStoreAppSaveCollection
             {
                 serializer.Serialize(xmlWriter, value);
             }
+
             return stringBuilder.ToString();
         }
 

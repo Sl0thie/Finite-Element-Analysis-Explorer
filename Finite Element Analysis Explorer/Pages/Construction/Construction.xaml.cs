@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -25,6 +13,7 @@ namespace Finite_Element_Analysis_Explorer
         private bool IsPageLoaded = false;
 
         private bool detailsIsOpen = true;
+
         public bool DetailsIsOpen
         {
             get { return detailsIsOpen; }
@@ -48,7 +37,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void SetTitle(string newTitle)
         {
-            textBlock_Title.Text = newTitle;
+            TextBlock_Title.Text = newTitle;
         }
 
         #region Show
@@ -69,24 +58,20 @@ namespace Finite_Element_Analysis_Explorer
 
         public async void ShowHelpAsync()
         {
-            //frameDetails.Width = 220;
-            //frameDetails.Navigate(typeof(PanelHelp));
-            //frameDisplay.Navigate(typeof(Help));
+            // frameDetails.Width = 220;
+            // frameDetails.Navigate(typeof(PanelHelp));
+            // frameDisplay.Navigate(typeof(Help));
 
+            // var uriHelpGeneral = new Uri(@"http://www.bing.com");
+            // var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
 
-            //var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            //var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });           
-
-            //http://dallasadams.net/Software/FiniteElementAnalysisExplorer/Help/Default.aspx
-
-
-
+            // http://dallasadams.net/Software/FiniteElementAnalysisExplorer/Help/Default.aspx
 
             var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
-            //var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
-            //var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
+
+            // var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
+            // var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-            
         }
 
         public void ShowModel()
@@ -147,6 +132,7 @@ namespace Finite_Element_Analysis_Explorer
                 frameDetails.Width = 300;
                 frameDetails.Navigate(typeof(PanelMember));
             }
+
             frameDisplay.Navigate(typeof(ConstructionDisplay));
         }
 
@@ -195,6 +181,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 frameDetails.Navigate(typeof(PanelMember));
             }
+
             frameDisplay.Navigate(typeof(ConstructionDisplay));
             App.CurrentPageState = PageState.Construction;
             SetTitle("Finite Element Analysis Explorer - " + FileManager.FileTitle);
@@ -207,22 +194,18 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutOpen(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutSave(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutSaveAs(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -239,7 +222,6 @@ namespace Finite_Element_Analysis_Explorer
                 frameDetails.Width = Constants.WidthDetailsNormal;
                 frameDetails.Navigate(typeof(PanelModel));
             }
-
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -255,6 +237,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 frameDetails.Width = Constants.WidthDetailsSlim;
             }
+
             frameDetails.Height = this.ActualHeight - Constants.HeightTitleBar;
         }
     }

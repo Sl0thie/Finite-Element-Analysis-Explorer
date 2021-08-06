@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Finite_Element_Analysis_Explorer
 {
     internal class DoubleMatrix
     {
-
 
         internal static double[][] MatrixCreate(int rows, int cols)
         {
@@ -16,12 +11,13 @@ namespace Finite_Element_Analysis_Explorer
             // do error checking here
             double[][] result = new double[rows][];
             for (int i = 0; i < rows; ++i)
+            {
                 result[i] = new double[cols];
+            }
 
-            //for (int i = 0; i < rows; ++i)
+            // for (int i = 0; i < rows; ++i)
             //  for (int j = 0; j < cols; ++j)
             //    result[i][j] = 0.0; // explicit initialization needed in some languages
-
             return result;
         }
 
@@ -34,15 +30,19 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
-
         internal static double[][] MatrixRandom(int rows, int cols, double minVal, double maxVal, int seed)
         {
             // return a matrix with random values
             Random ran = new Random(seed);
             double[][] result = MatrixCreate(rows, cols);
             for (int i = 0; i < rows; ++i)
+            {
                 for (int j = 0; j < cols; ++j)
+                {
                     result[i][j] = (maxVal - minVal) * (double)ran.NextDouble() + minVal;
+                }
+            }
+
             return result;
         }
 
@@ -51,75 +51,110 @@ namespace Finite_Element_Analysis_Explorer
             // return an n x n Identity matrix
             double[][] result = MatrixCreate(n, n);
             for (int i = 0; i < n; ++i)
+            {
                 result[i][i] = 1.0;
+            }
 
             return result;
         }
 
         internal static string MatrixAsString(double[][] matrix)
         {
-            string s = "";
+            string s = string.Empty;
             for (int i = 0; i < matrix.Length; ++i)
             {
                 for (int j = 0; j < matrix[i].Length; ++j)
+                {
                     s += matrix[i][j].ToString("F3").PadLeft(8) + " ";
+                }
+
                 s += Environment.NewLine;
             }
+
             return s;
         }
 
         internal static bool MatrixAreEqual(double[][] matrixA, double[][] matrixB, double epsilon)
         {
             // true if all values in matrixA == corresponding values in matrixB
-            int aRows = matrixA.Length; int aCols = matrixA[0].Length;
-            int bRows = matrixB.Length; int bCols = matrixB[0].Length;
+            int aRows = matrixA.Length;
+            int aCols = matrixA[0].Length;
+            int bRows = matrixB.Length;
+            int bCols = matrixB[0].Length;
             if (aRows != bRows || aCols != bCols)
+            {
                 throw new Exception("Non-conformable matrices in MatrixAreEqual");
+            }
 
             for (int i = 0; i < aRows; ++i) // each row of A and B
+            {
                 for (int j = 0; j < aCols; ++j) // each col of A and B
-                                                //if (matrixA[i][j] != matrixB[i][j])
+                {
+                    // if (matrixA[i][j] != matrixB[i][j])
                     if (Math.Abs(matrixA[i][j] - matrixB[i][j]) > epsilon)
+                    {
                         return false;
+                    }
+                }
+            }
+
             return true;
         }
 
         internal static double[][] MatrixProduct(double[][] matrixA, double[][] matrixB)
         {
-            int aRows = matrixA.Length; int aCols = matrixA[0].Length;
-            int bRows = matrixB.Length; int bCols = matrixB[0].Length;
+            int aRows = matrixA.Length;
+            int aCols = matrixA[0].Length;
+            int bRows = matrixB.Length;
+            int bCols = matrixB[0].Length;
             if (aCols != bRows)
+            {
                 throw new Exception("Non-conformable matrices in MatrixProduct");
+            }
 
             double[][] result = MatrixCreate(aRows, bCols);
 
             for (int i = 0; i < aRows; ++i) // each row of A
+            {
                 for (int j = 0; j < bCols; ++j) // each col of B
+                {
                     for (int k = 0; k < aCols; ++k) // could use k < bRows
+                    {
                         result[i][j] += matrixA[i][k] * matrixB[k][j];
+                    }
+                }
+            }
 
-            //Parallel.For(0, aRows, i =>
+            // Parallel.For(0, aRows, i =>
             //  {
             //    for (int j = 0; j < bCols; ++j) // each col of B
             //      for (int k = 0; k < aCols; ++k) // could use k < bRows
             //        result[i][j] += matrixA[i][k] * matrixB[k][j];
             //  }
-            //);
-
+            // );
             return result;
         }
 
         internal static double[] MatrixVectorProduct(double[][] matrix, double[] vector)
         {
             // result of multiplying an n x m matrix by a m x 1 column vector (yielding an n x 1 column vector)
-            int mRows = matrix.Length; int mCols = matrix[0].Length;
+            int mRows = matrix.Length;
+            int mCols = matrix[0].Length;
             int vRows = vector.Length;
             if (mCols != vRows)
+            {
                 throw new Exception("Non-conformable matrix and vector in MatrixVectorProduct");
+            }
+
             double[] result = new double[mRows]; // an n x m matrix times a m x 1 column vector is a n x 1 column vector
             for (int i = 0; i < mRows; ++i)
+            {
                 for (int j = 0; j < mCols; ++j)
+                {
                     result[i] += matrix[i][j] * vector[j];
+                }
+            }
+
             return result;
         }
 
@@ -130,14 +165,19 @@ namespace Finite_Element_Analysis_Explorer
             int rows = matrix.Length;
             int cols = matrix[0].Length; // assume all rows have the same number of columns so just use row [0].
             if (rows != cols)
+            {
                 throw new Exception("Attempt to MatrixDecompose a non-square mattrix");
+            }
 
             int n = rows; // convenience
 
             double[][] result = MatrixDuplicate(matrix); // make a copy of the input matrix
 
             perm = new int[n]; // set up row permutation result
-            for (int i = 0; i < n; ++i) { perm[i] = i; }
+            for (int i = 0; i < n; ++i)
+            {
+                perm[i] = i;
+            }
 
             toggle = 1; // toggle tracks row swaps. +1 -> even, -1 -> odd. used by MatrixDeterminant
 
@@ -168,7 +208,9 @@ namespace Finite_Element_Analysis_Explorer
                 }
 
                 if (Math.Abs(result[j][j]) < 1.0E-20) // if diagonal after swap is zero . . .
+                {
                     return null; // consider a throw
+                }
 
                 for (int i = j + 1; i < n; ++i)
                 {
@@ -192,7 +234,9 @@ namespace Finite_Element_Analysis_Explorer
             int toggle;
             double[][] lum = MatrixDecompose(matrix, out perm, out toggle);
             if (lum == null)
+            {
                 throw new Exception("Unable to compute inverse");
+            }
 
             double[] b = new double[n];
             for (int i = 0; i < n; ++i)
@@ -200,16 +244,23 @@ namespace Finite_Element_Analysis_Explorer
                 for (int j = 0; j < n; ++j)
                 {
                     if (i == perm[j])
+                    {
                         b[j] = 1.0;
+                    }
                     else
+                    {
                         b[j] = 0.0;
+                    }
                 }
 
-                double[] x = HelperSolve(lum, b); // 
+                double[] x = HelperSolve(lum, b); //
 
                 for (int j = 0; j < n; ++j)
+                {
                     result[j][i] = x[j];
+                }
             }
+
             return result;
         }
 
@@ -219,10 +270,16 @@ namespace Finite_Element_Analysis_Explorer
             int toggle;
             double[][] lum = MatrixDecompose(matrix, out perm, out toggle);
             if (lum == null)
+            {
                 throw new Exception("Unable to compute MatrixDeterminant");
+            }
+
             double result = toggle;
             for (int i = 0; i < lum.Length; ++i)
+            {
                 result *= lum[i][i];
+            }
+
             return result;
         }
 
@@ -237,7 +294,10 @@ namespace Finite_Element_Analysis_Explorer
             {
                 double sum = x[i];
                 for (int j = 0; j < i; ++j)
+                {
                     sum -= luMatrix[i][j] * x[j];
+                }
+
                 x[i] = sum;
             }
 
@@ -246,7 +306,10 @@ namespace Finite_Element_Analysis_Explorer
             {
                 double sum = x[i];
                 for (int j = i + 1; j < n; ++j)
+                {
                     sum -= luMatrix[i][j] * x[j];
+                }
+
                 x[i] = sum / luMatrix[i][i];
             }
 
@@ -263,12 +326,16 @@ namespace Finite_Element_Analysis_Explorer
             int toggle;
             double[][] luMatrix = MatrixDecompose(A, out perm, out toggle);
             if (luMatrix == null)
+            {
                 return null;
+            }
 
             // 2. permute b according to perm[] into bp
             double[] bp = new double[b.Length];
             for (int i = 0; i < n; ++i)
+            {
                 bp[i] = b[perm[i]];
+            }
 
             // 3. call helper
             double[] x = HelperSolve(luMatrix, bp);
@@ -280,42 +347,57 @@ namespace Finite_Element_Analysis_Explorer
             // allocates/creates a duplicate of a matrix. assumes matrix is not null.
             double[][] result = MatrixCreate(matrix.Length, matrix[0].Length);
             for (int i = 0; i < matrix.Length; ++i) // copy the values
+            {
                 for (int j = 0; j < matrix[i].Length; ++j)
+                {
                     result[i][j] = matrix[i][j];
+                }
+            }
+
             return result;
         }
 
         internal static double[][] ExtractLower(double[][] matrix)
         {
             // lower part of a Doolittle decomposition (1.0s on diagonal, 0.0s in upper)
-            int rows = matrix.Length; int cols = matrix[0].Length;
+            int rows = matrix.Length;
+            int cols = matrix[0].Length;
             double[][] result = MatrixCreate(rows, cols);
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
                 {
                     if (i == j)
+                    {
                         result[i][j] = 1.0;
+                    }
                     else if (i > j)
+                    {
                         result[i][j] = matrix[i][j];
+                    }
                 }
             }
+
             return result;
         }
 
         internal static double[][] ExtractUpper(double[][] matrix)
         {
             // upper part of a Doolittle decomposition (0.0s in the strictly lower part)
-            int rows = matrix.Length; int cols = matrix[0].Length;
+            int rows = matrix.Length;
+            int cols = matrix[0].Length;
             double[][] result = MatrixCreate(rows, cols);
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
                 {
                     if (i <= j)
+                    {
                         result[i][j] = matrix[i][j];
+                    }
                 }
             }
+
             return result;
         }
 
@@ -325,7 +407,10 @@ namespace Finite_Element_Analysis_Explorer
             int n = perm.Length;
             double[][] result = MatrixCreate(n, n);
             for (int i = 0; i < n; ++i)
+            {
                 result[i][perm[i]] = 1.0;
+            }
+
             return result;
         }
 
@@ -337,28 +422,38 @@ namespace Finite_Element_Analysis_Explorer
 
             int[] unperm = new int[perm.Length];
             for (int i = 0; i < perm.Length; ++i)
+            {
                 unperm[perm[i]] = i;
+            }
 
             for (int r = 0; r < luProduct.Length; ++r)
+            {
                 result[r] = luProduct[unperm[r]];
+            }
 
             return result;
         } // UnPermute
 
         internal static string VectorAsString(double[] vector)
         {
-            string s = "";
+            string s = string.Empty;
             for (int i = 0; i < vector.Length; ++i)
+            {
                 s += vector[i].ToString("F3").PadLeft(8) + Environment.NewLine;
+            }
+
             s += Environment.NewLine;
             return s;
         }
 
         internal static string VectorAsString(int[] vector)
         {
-            string s = "";
+            string s = string.Empty;
             for (int i = 0; i < vector.Length; ++i)
+            {
                 s += vector[i].ToString().PadLeft(2) + " ";
+            }
+
             s += Environment.NewLine;
             return s;
         }

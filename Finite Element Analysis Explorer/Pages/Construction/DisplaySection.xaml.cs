@@ -8,9 +8,8 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class DisplaySection : Page
     {
-        //private string lastMaterialName = "";
-        //private string lastProfileSection = "";
-
+        // private string lastMaterialName = "";
+        // private string lastProfileSection = "";
         public DisplaySection()
         {
             this.InitializeComponent();
@@ -19,12 +18,9 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //Set item sources.
-            listView_Materials.ItemsSource = Model.Materials.Values;
-            listView_Profile.ItemsSource = Model.SectionProfiles.Values;
-
-            #region Set Form Properties  
-
+            // Set item sources.
+            ListView_Materials.ItemsSource = Model.Materials.Values;
+            ListView_Profile.ItemsSource = Model.SectionProfiles.Values;
             if (Model.Members.CurrentMember == null)
             {
                 if (Model.Sections.CurrentSection == null)
@@ -33,9 +29,9 @@ namespace Finite_Element_Analysis_Explorer
                 }
             }
 
-            textBlock_Section_Title.Text = "Section : " + Model.Sections.CurrentSection.Name;
+            TextBlock_Section_Title.Text = "Section : " + Model.Sections.CurrentSection.Name;
 
-            //Section.
+            // Section.
             SingleValue_CalculatedArea.Title = "Area";
             SingleValue_CalculatedArea.UnitType = UnitType.Area;
 
@@ -57,7 +53,6 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_WeightPerLength.Title = "Weight per Length";
             SingleValue_WeightPerLength.UnitType = UnitType.Force;
 
-
             SingleValue_Property1.UnitType = UnitType.Length;
             SingleValue_Property2.UnitType = UnitType.Length;
             SingleValue_Property3.UnitType = UnitType.Length;
@@ -66,8 +61,7 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_Property6.UnitType = UnitType.Length;
             SingleValue_Property7.UnitType = UnitType.Length;
 
-
-            //Profile.
+            // Profile.
             SingleValue_ElasticModulus.Title = "Elastic Modulus";
             SingleValue_ElasticModulus.UnitType = UnitType.Pressure;
 
@@ -83,14 +77,13 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_PoissonRatio.Title = "Poisson Ratio";
             SingleValue_PoissonRatio.UnitType = UnitType.Unitless;
 
-
             SingleValue_ThermalExpansion.Title = "Thermal Expansion";
             SingleValue_ThermalExpansion.UnitType = UnitType.Unitless;
 
             SingleValue_ThermalConductivity.Title = "Thermal Conductivity";
             SingleValue_ThermalConductivity.UnitType = UnitType.Unitless;
 
-            //Costs.           
+            // Costs.
             SingleValue_CostPerLength.Title = "Cost per Length";
             SingleValue_CostPerLength.UnitType = UnitType.Money;
 
@@ -142,7 +135,6 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_Cost.Title = "Cost";
             SingleValue_Cost.UnitType = UnitType.Money;
 
-
             SingleValue_CostVerticalTransport.SetTheValue(Model.Sections.CurrentSection.CostVerticalTransport);
             SingleValue_CostHorizontalTransport.SetTheValue(Model.Sections.CurrentSection.CostHorizontalTransport);
             SingleValue_CostNodeFree.SetTheValue(Model.Sections.CurrentSection.CostNodeFree);
@@ -158,10 +150,6 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MaintenancePinned.SetTheValue(Model.Sections.CurrentSection.MaintenancePinned);
             SingleValue_MaintenanceRoller.SetTheValue(Model.Sections.CurrentSection.MaintenanceRoller);
             SingleValue_MaintenanceTrack.SetTheValue(Model.Sections.CurrentSection.MaintenanceTrack);
-
-            #endregion
-
-            #region Update Form
             if (Model.SectionProfiles.ContainsKey(Model.Sections.CurrentSection.SectionProfile))
             {
                 UpdateProfile(Model.SectionProfiles[Model.Sections.CurrentSection.SectionProfile]);
@@ -182,12 +170,8 @@ namespace Finite_Element_Analysis_Explorer
                 UpdateMaterial(Model.Materials[Model.Sections.CurrentSection.Material]);
             }
 
+            // Cost factors.
 
-            //Cost factors.
-
-
-
-            #endregion  
         }
 
         private void CalculateSection()
@@ -203,17 +187,16 @@ namespace Finite_Element_Analysis_Explorer
 
             switch (Model.Sections.CurrentSection.SectionProfile)
             {
-                #region I Beam
                 case "I Beam":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
-                        decimal Breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
                         decimal Width = Model.Sections.CurrentSection.SectionProfileProperty3;
-                        decimal OuterArea = Breadth * Height;
-                        decimal InnerBreadth = Breadth - Width;
-                        decimal InnerHeight = Height - Width - Width;
-                        decimal InnerArea = InnerBreadth * InnerHeight;
+                        decimal OuterArea = breadth * Height;
+                        decimal InnerBreadth = breadth - Width;
+                        decimal innerHeight = Height - Width - Width;
+                        decimal InnerArea = InnerBreadth * innerHeight;
                         decimal Area = OuterArea - InnerArea;
 
                         if (Area > 0)
@@ -221,275 +204,276 @@ namespace Finite_Element_Analysis_Explorer
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
 
-                            decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                            decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                            decimal SecondMoment = OuterMoment - InnerMoment;
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            decimal OuterMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                            decimal InnerMoment = InnerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                            decimal secondMoment = OuterMoment - InnerMoment;
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                            Model.Sections.CurrentSection.I = secondMoment;
 
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
 
-
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
-
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    break;
-                #endregion
-                #region Solid Rectangle
 
+                    break;
                 case "Solid Rectangle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
-                        decimal Breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal Area = Breadth * Height;
+                        decimal Area = breadth * Height;
 
                         if (Area > 0)
                         {
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
 
-                            decimal SecondMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            decimal secondMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                            Model.Sections.CurrentSection.I = secondMoment;
 
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    break;
-                #endregion
-                #region Hollow Rectangle
 
+                    break;
                 case "Hollow Rectangle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
-                        decimal Outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = (Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
-                        decimal InnerHeight = (Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
+                        decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
                         decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = Outer - Inner;
+                        decimal Area = outer - Inner;
 
                         if (Area > 0)
                         {
 
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
-                            decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                            decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                            decimal SecondMoment = OuterMoment - InnerMoment;
+                            decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                            decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
+                            decimal SecondMoment = outerMoment - InnerMoment;
                             SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                             Model.Sections.CurrentSection.I = SecondMoment;
 
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
+
                     break;
-
-                #endregion
-                #region Solid Circle
-
                 case "Solid Circle":
                     if (Model.Sections.CurrentSection.SectionProfileProperty1 > 0)
                     {
-                        decimal Radius = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Area = DMath.PI * Radius * Radius;
+                        decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal Area = DMath.PI * radius * radius;
 
                         if (Area > 0)
                         {
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
-                            decimal SecondMoment = ((DMath.PI / 4) * Radius * Radius * Radius * Radius);
+                            decimal SecondMoment = DMath.PI / 4 * radius * radius * radius * radius;
                             SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                             Model.Sections.CurrentSection.I = SecondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                            SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / Radius);
+                            SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    break;
-                #endregion
-                #region Hollow Circle
 
+                    break;
                 case "Hollow Circle":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
-                        decimal Radius = Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
                         decimal Width = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerRadius = Radius - Width;
-                        decimal OuterArea = DMath.PI * Radius * Radius;
+                        decimal InnerRadius = radius - Width;
+                        decimal OuterArea = DMath.PI * radius * radius;
                         decimal InnerArea = DMath.PI * InnerRadius * InnerRadius;
                         decimal Area = OuterArea - InnerArea;
 
@@ -497,212 +481,202 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
-                            decimal SecondMoment = ((DMath.PI / 4) * Radius * Radius * Radius * Radius) - ((DMath.PI / 4) * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
+                            decimal SecondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
                             SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
 
                             Model.Sections.CurrentSection.I = SecondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                            SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / Radius);
+                            SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
-
                         }
-                        else { return; }
-
-
+                        else
+                        {
+                            return;
+                        }
                     }
+
                     break;
-
-                #endregion
-                #region Solid Square
-
                 case "Solid Square":
                     if (Model.Sections.CurrentSection.SectionProfileProperty1 > 0)
                     {
-                        decimal Area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1;
+                        decimal area = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1;
 
-                        if (Area > 0)
+                        if (area > 0)
                         {
-                            SingleValue_CalculatedArea.SetTheValue(Area);
-                            Model.Sections.CurrentSection.Area = Area;
-                            decimal SecondMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1) / 12;
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            SingleValue_CalculatedArea.SetTheValue(area);
+                            Model.Sections.CurrentSection.Area = area;
+                            decimal secondMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty1 / 12;
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                            Model.Sections.CurrentSection.I = secondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty1 / 2));
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
+
                     break;
-
-                #endregion
-                #region Hollow Square
-
                 case "Hollow Square":
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
-                        decimal Outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = (Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
-                        decimal InnerHeight = (Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2));
+                        decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
                         decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = Outer - Inner;
+                        decimal Area = outer - Inner;
 
                         if (Area > 0)
                         {
                             SingleValue_CalculatedArea.SetTheValue(Area);
                             Model.Sections.CurrentSection.Area = Area;
-                            decimal OuterMoment = (Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2) / 12;
-                            decimal InnerMoment = (InnerBreadth * InnerHeight * InnerHeight * InnerHeight) / 12;
-                            decimal SecondMoment = OuterMoment - InnerMoment;
+                            decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                            decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
+                            decimal SecondMoment = outerMoment - InnerMoment;
                             SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
                             Model.Sections.CurrentSection.I = SecondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
 
-                            Model.Sections.CurrentSection.CostPerLength = (Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost);
+                            Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
                             switch (Options.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Millimeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MilliMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.MilliMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.CentiMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.CentiMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.CentiMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.KiloMeter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.KiloMeterPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.KiloMeterPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Inch:
                                     //
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.InchPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.InchPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.InchPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                                 case LengthType.Foot:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter);
-                                    SingleValue_MassPerLength.SetTheValue((Model.Sections.CurrentSection.Area / Constants.FootPerMeter) * SingleValue_Density.NewValue);
+                                    SingleValue_MassPerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.FootPerMeter * SingleValue_Density.NewValue);
                                     SingleValue_CostPerLength.SetTheValue(Model.Sections.CurrentSection.CostPerLength / Constants.FootPerMeter);
                                     SingleValue_WeightPerLength.SetTheValue(SingleValue_MassPerLength.NewValue * 9.81m);
                                     break;
                             }
                         }
-                        else { return; }
+                        else
+                        {
+                            return;
+                        }
                     }
 
                     break;
-
-                #endregion
-                #region Solid Elipse
-
                 case "Solid Elipse":
 
                     break;
-
-                #endregion   
-                #region Hollow Elipse
-
                 case "Hollow Elipse":
 
                     break;
-
-                    #endregion
             }
         }
 
@@ -713,7 +687,6 @@ namespace Finite_Element_Analysis_Explorer
             TextBlock_SelectedMaterial.Text = selectedMaterial.Name;
             Model.Sections.CurrentSection.Material = selectedMaterial.Name;
 
-
             SingleValue_ElasticModulus.SetNull();
             SingleValue_RigidityModulus.SetNull();
             SingleValue_BulkModulus.SetNull();
@@ -722,26 +695,25 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_ThermalExpansion.SetNull();
             SingleValue_ThermalConductivity.SetNull();
 
-            //if (Model.Sections.CurrentSection.Material == selectedMaterial.Name)
-            //{
+            // if (Model.Sections.CurrentSection.Material == selectedMaterial.Name)
+            // {
 
-            //}
-            //else
-            //{
+            // }
+            // else
+            // {
             //    //Set Properties to the Section.
             //    Model.Sections.CurrentSection.Material = selectedMaterial.Name;
             //    SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
             //    Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
             //    SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
             //    SingleValue_Density.SetTheValue(selectedMaterial.Density);
-            //    Model.Sections.CurrentSection.Density = selectedMaterial.Density;            
-            //}
+            //    Model.Sections.CurrentSection.Density = selectedMaterial.Density;
+            // }
 
             ////Material
 
             SingleValue_Cost.SetNull();
             SingleValue_Cost.SetTheValue(selectedMaterial.Cost);
-
 
             SingleValue_Density.DisplayOnly = true;
             SingleValue_Density.SetNull();
@@ -755,9 +727,13 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
-                //SingleValue_CalculatedMoment.SetTheValue(selectedMaterial.ModulusOfElasticity);
+
+                // SingleValue_CalculatedMoment.SetTheValue(selectedMaterial.ModulusOfElasticity);
             }
-            catch { Debug.WriteLine("Error Setting E "); }
+            catch
+            {
+                Debug.WriteLine("Error Setting E ");
+            }
 
             SingleValue_RigidityModulus.DisplayOnly = true;
             SingleValue_RigidityModulus.Title = "Rigidity Modulus";
@@ -767,7 +743,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_RigidityModulus.SetTheValue(selectedMaterial.ModulusOfRigidity);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_BulkModulus.DisplayOnly = true;
             SingleValue_BulkModulus.Title = "Bulk Modulus";
@@ -777,7 +755,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_BulkModulus.SetTheValue(selectedMaterial.Bulk_Modulus);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_PoissonRatio.DisplayOnly = true;
             SingleValue_PoissonRatio.Title = "Poisson Ratio";
@@ -787,8 +767,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_PoissonRatio.SetTheValue(selectedMaterial.Poission_Ratio);
             }
-            catch { }
-
+            catch
+            {
+            }
 
             SingleValue_ThermalExpansion.DisplayOnly = true;
             SingleValue_ThermalExpansion.Title = "Thermal Expansions";
@@ -798,7 +779,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ThermalExpansion.SetTheValue(selectedMaterial.Thermal_Expansion);
             }
-            catch { }
+            catch
+            {
+            }
 
             SingleValue_ThermalConductivity.DisplayOnly = true;
             SingleValue_ThermalConductivity.Title = "Thermal Conductivity";
@@ -808,14 +791,16 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ThermalConductivity.SetTheValue(selectedMaterial.Thermal_Conductivity);
             }
-            catch { }
+            catch
+            {
+            }
 
             CalculateSection();
         }
 
         private void ListView_Materials_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Material selectedMaterial = (Material)listView_Materials.SelectedItem;
+            Material selectedMaterial = (Material)ListView_Materials.SelectedItem;
 
             UpdateMaterial(selectedMaterial);
         }
@@ -828,8 +813,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             TextBlock_SelectedProfile.Text = selectedProfile.Name;
 
-            //Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
-
+            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             if (selectedProfile.ImagePath != null)
             {
                 image_Profile.Source = new BitmapImage(new Uri(selectedProfile.ImagePath));
@@ -859,7 +843,6 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_VolumePerLength.SetNull();
             SingleValue_MassPerLength.SetNull();
             SingleValue_WeightPerLength.SetNull();
-
 
             if (selectedProfile.Name == Model.Sections.CurrentSection.SectionProfile)
             {
@@ -949,7 +932,6 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property3.SetTheValue(Model.Sections.CurrentSection.SectionProfileProperty3);
                         break;
                 }
-
             }
             else
             {
@@ -1034,8 +1016,6 @@ namespace Finite_Element_Analysis_Explorer
                         break;
                 }
 
-
-
                 SingleValue_Property1.SetTheValue(0);
                 SingleValue_Property2.SetTheValue(0);
                 SingleValue_Property3.SetTheValue(0);
@@ -1043,28 +1023,27 @@ namespace Finite_Element_Analysis_Explorer
                 SingleValue_Property5.SetTheValue(0);
                 SingleValue_Property6.SetTheValue(0);
                 SingleValue_Property7.SetTheValue(0);
-                Model.Sections.CurrentSection.SectionProfileProperty1 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty2 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty3 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty4 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty5 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty6 = (0);
-                Model.Sections.CurrentSection.SectionProfileProperty7 = (0);
+                Model.Sections.CurrentSection.SectionProfileProperty1 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty2 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty3 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty4 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty5 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty6 = 0;
+                Model.Sections.CurrentSection.SectionProfileProperty7 = 0;
             }
 
-
-
             Model.Sections[Model.Sections.CurrentSection.Name].SectionProfile = selectedProfile.Name;
-            //Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
 
+            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
 
             CalculateSection();
         }
 
         private void ListView_Profile_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SectionProfile selectedProfile = (SectionProfile)listView_Profile.SelectedItem;
-            //Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
+            SectionProfile selectedProfile = (SectionProfile)ListView_Profile.SelectedItem;
+
+            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             UpdateProfile(selectedProfile);
         }
 
@@ -1123,26 +1102,26 @@ namespace Finite_Element_Analysis_Explorer
 
         private void SingleValue_YoungsModulus_ValueChanged(object sender, EventArgs e)
         {
-            //Model.Sections.CurrentSection.E = SingleValue_YoungsModulus.NewValue;
-            //SingleValue_YoungsModulus.SetTheValue(Model.Sections.CurrentSection.E);
+            // Model.Sections.CurrentSection.E = SingleValue_YoungsModulus.NewValue;
+            // SingleValue_YoungsModulus.SetTheValue(Model.Sections.CurrentSection.E);
         }
 
         private void SingleValue_MomentOfInertia_ValueChanged(object sender, EventArgs e)
         {
-            //Model.Sections.CurrentSection.I = SingleValue_MomentOfInertia.NewValue;
-            //SingleValue_MomentOfInertia.SetTheValue(Model.Sections.CurrentSection.I);
+            // Model.Sections.CurrentSection.I = SingleValue_MomentOfInertia.NewValue;
+            // SingleValue_MomentOfInertia.SetTheValue(Model.Sections.CurrentSection.I);
         }
 
         private void SingleValue_Area_ValueChanged(object sender, EventArgs e)
         {
-            //Model.Sections.CurrentSection.Area = SingleValue_Area.NewValue;
-            //SingleValue_Area.SetTheValue(Model.Sections.CurrentSection.Area);
+            // Model.Sections.CurrentSection.Area = SingleValue_Area.NewValue;
+            // SingleValue_Area.SetTheValue(Model.Sections.CurrentSection.Area);
         }
 
         private void SingleValue_Density_ValueChanged(object sender, EventArgs e)
         {
-            //Model.Sections.CurrentSection.Density = SingleValue_Density.NewValue;
-            //SingleValue_Density.SetTheValue(Model.Sections.CurrentSection.Density);
+            // Model.Sections.CurrentSection.Density = SingleValue_Density.NewValue;
+            // SingleValue_Density.SetTheValue(Model.Sections.CurrentSection.Density);
         }
 
         private void SingleValue_MaintenancePerLength_ValueChanged(object sender, EventArgs e)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Finite_Element_Analysis_Explorer
 {
@@ -9,19 +6,14 @@ namespace Finite_Element_Analysis_Explorer
     {
         public SectionProfileCollection() : base()
         {
-
         }
 
         private Material currentSectionProfile;
+
         internal Material CurrentSectionProfile
         {
             get { return currentSectionProfile; }
             set { currentSectionProfile = value; }
         }
-
-
-
-
-
     }
 }

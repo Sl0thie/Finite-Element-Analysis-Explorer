@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Graphics.Canvas.Geometry;
-using System.Diagnostics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.UI;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Media;
+
+    /// <summary>
+    /// LineSelectorBox UserControl used to select line types.
+    /// </summary>
     public sealed partial class LineSelectorBox : UserControl
     {
-        private bool IsControlLoaded = false;
+        private bool isControlLoaded = false;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LineSelectorBox"/> class.
+        /// </summary>
         public LineSelectorBox()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -32,8 +29,6 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_ColorRed.Title = "Red";
             SingleValue_ColorGreen.Title = "Green";
             SingleValue_ColorBlue.Title = "Blue";
-
-
 
             SingleValue_ColorAlpha.UnitType = UnitType.UnitlessInteger;
             SingleValue_ColorRed.UnitType = UnitType.UnitlessInteger;
@@ -70,15 +65,12 @@ namespace Finite_Element_Analysis_Explorer
 
             rectangle_Color.Fill = new SolidColorBrush(Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue));
 
-
-
-            IsControlLoaded = true;
-            //SingleValue_LineWeight.SetValue();
+            isControlLoaded = true;
         }
 
         private void UpdateColor()
         {
-            if (IsControlLoaded)
+            if (isControlLoaded)
             {
                 Color tmpColor = Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue);
 
@@ -87,7 +79,6 @@ namespace Finite_Element_Analysis_Explorer
                 Model.Sections.CurrentSection.Green = tmpColor.G;
                 Model.Sections.CurrentSection.Blue = tmpColor.B;
 
-                //Model.Sections.CurrentSection.DashCap = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
                 Model.Sections.CurrentSection.DashOffset = (float)SingleValue_DashOffset.NewValue;
                 Model.Sections.CurrentSection.Line = (CanvasDashStyle)comboBox_LineStyle.SelectedIndex;
                 Model.Sections.CurrentSection.NearCapStyle = (CanvasCapStyle)comboBox_FarCapStyle.SelectedIndex;
@@ -110,29 +101,61 @@ namespace Finite_Element_Analysis_Explorer
 
         private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_ColorAlpha.NewValue < 0) { SingleValue_ColorAlpha.NewValue = 0; }
-            if (SingleValue_ColorAlpha.NewValue > 255) { SingleValue_ColorAlpha.NewValue = 255; }
+            if (SingleValue_ColorAlpha.NewValue < 0)
+            {
+                SingleValue_ColorAlpha.NewValue = 0;
+            }
+
+            if (SingleValue_ColorAlpha.NewValue > 255)
+            {
+                SingleValue_ColorAlpha.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorRed_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_ColorRed.NewValue < 0) { SingleValue_ColorRed.NewValue = 0; }
-            if (SingleValue_ColorRed.NewValue > 255) { SingleValue_ColorRed.NewValue = 255; }
+            if (SingleValue_ColorRed.NewValue < 0)
+            {
+                SingleValue_ColorRed.NewValue = 0;
+            }
+
+            if (SingleValue_ColorRed.NewValue > 255)
+            {
+                SingleValue_ColorRed.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorGreen_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_ColorGreen.NewValue < 0) { SingleValue_ColorGreen.NewValue = 0; }
-            if (SingleValue_ColorGreen.NewValue > 255) { SingleValue_ColorGreen.NewValue = 255; }
+            if (SingleValue_ColorGreen.NewValue < 0)
+            {
+                SingleValue_ColorGreen.NewValue = 0;
+            }
+
+            if (SingleValue_ColorGreen.NewValue > 255)
+            {
+                SingleValue_ColorGreen.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_ColorBlue_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_ColorBlue.NewValue < 0) { SingleValue_ColorBlue.NewValue = 0; }
-            if (SingleValue_ColorBlue.NewValue > 255) { SingleValue_ColorBlue.NewValue = 255; }
+            if (SingleValue_ColorBlue.NewValue < 0)
+            {
+                SingleValue_ColorBlue.NewValue = 0;
+            }
+
+            if (SingleValue_ColorBlue.NewValue > 255)
+            {
+                SingleValue_ColorBlue.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
@@ -182,22 +205,46 @@ namespace Finite_Element_Analysis_Explorer
 
         private void SingleValue_LineWeight_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_LineWeight.NewValue < 0) { SingleValue_LineWeight.NewValue = 1; }
-            if (SingleValue_LineWeight.NewValue > 255) { SingleValue_LineWeight.NewValue = 255; }
+            if (SingleValue_LineWeight.NewValue < 0)
+            {
+                SingleValue_LineWeight.NewValue = 1;
+            }
+
+            if (SingleValue_LineWeight.NewValue > 255)
+            {
+                SingleValue_LineWeight.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_MiterLimit_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_MiterLimit.NewValue < 0) { SingleValue_MiterLimit.NewValue = 1; }
-            if (SingleValue_MiterLimit.NewValue > 255) { SingleValue_MiterLimit.NewValue = 255; }
+            if (SingleValue_MiterLimit.NewValue < 0)
+            {
+                SingleValue_MiterLimit.NewValue = 1;
+            }
+
+            if (SingleValue_MiterLimit.NewValue > 255)
+            {
+                SingleValue_MiterLimit.NewValue = 255;
+            }
+
             UpdateColor();
         }
 
         private void SingleValue_DashOffset_ValueChanged(object sender, EventArgs e)
         {
-            if (SingleValue_DashOffset.NewValue < 0) { SingleValue_DashOffset.NewValue = 1; }
-            if (SingleValue_DashOffset.NewValue > 255) { SingleValue_DashOffset.NewValue = 255; }
+            if (SingleValue_DashOffset.NewValue < 0)
+            {
+                SingleValue_DashOffset.NewValue = 1;
+            }
+
+            if (SingleValue_DashOffset.NewValue > 255)
+            {
+                SingleValue_DashOffset.NewValue = 255;
+            }
+
             UpdateColor();
         }
     }

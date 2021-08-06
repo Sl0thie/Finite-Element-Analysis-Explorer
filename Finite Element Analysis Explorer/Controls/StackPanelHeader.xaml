@@ -19,9 +19,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
         </Grid.RowDefinitions>
-        <FontIcon  x:Name="fontIcon_TitleIcon" Grid.Column="1" Grid.Row="0" Width="24" Height="24" Glyph="&#xE2FD;" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="Gray"/>
+        <FontIcon  x:Name="FontIcon_TitleIcon" Grid.Column="1" Grid.Row="0" Width="24" Height="24" Glyph="&#xE2FD;" FontFamily="Segoe UI Symbol" FontSize="16" Foreground="Gray"/>
         <TextBlock x:Name="TextBlock_Title" Grid.Column="2" Grid.Row="0" Text="Temp Title" Margin="5,1,0,0" Foreground="Gray"/>
-        <FontIcon x:Name="fontIcon_IconOpen" Grid.Column="3" Grid.Row="0"  Width="16" Height="16" Visibility="Collapsed" FontFamily="Segoe UI Symbol" FontSize="12" Glyph="&#xE011;" Tapped="fontIcon_IconOpen_Tapped"/>
-        <FontIcon x:Name="fontIcon_IconClosed" Grid.Column="3" Grid.Row="0" Width="16" Height="16" Visibility="Visible" FontFamily="Segoe UI Symbol" FontSize="12" Glyph="&#xE010;" Tapped="fontIcon_IconClosed_Tapped" Foreground="Gray"/>
+        <FontIcon x:Name="FontIcon_IconOpen" Grid.Column="3" Grid.Row="0"  Width="16" Height="16" Visibility="Collapsed" FontFamily="Segoe UI Symbol" FontSize="12" Glyph="&#xE011;" Tapped="FontIcon_IconOpen_Tapped"/>
+        <FontIcon x:Name="FontIcon_IconClosed" Grid.Column="3" Grid.Row="0" Width="16" Height="16" Visibility="Visible" FontFamily="Segoe UI Symbol" FontSize="12" Glyph="&#xE010;" Tapped="FontIcon_IconClosed_Tapped" Foreground="Gray"/>
     </Grid>
 </UserControl>
