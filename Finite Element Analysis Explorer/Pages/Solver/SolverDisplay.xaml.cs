@@ -11,8 +11,10 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class SolverDisplay : Page
     {
         internal static SolverDisplay Current;
-        //private bool IsLoaded = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SolverDisplay"/> class.
+        /// </summary>
         public SolverDisplay()
         {
             this.InitializeComponent();
@@ -21,8 +23,6 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            //IsLoaded = true;
-
             AddMessage(-1, -1, "Solver State", 0);
 
 

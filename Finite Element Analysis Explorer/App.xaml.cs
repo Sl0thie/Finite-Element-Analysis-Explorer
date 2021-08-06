@@ -10,7 +10,7 @@
     /// <summary>
     /// App Application manages the application creation and suspension.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         internal static ConstructionMode CurrentConstructionMode = ConstructionMode.Add;
 

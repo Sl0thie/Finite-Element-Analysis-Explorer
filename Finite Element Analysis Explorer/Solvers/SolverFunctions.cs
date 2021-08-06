@@ -1,64 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using MathNet.Numerics.LinearAlgebra;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using MathNet.Numerics.LinearAlgebra;
+    using Windows.UI;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
+    /// <summary>
+    /// Functions to solve the solution.
+    /// </summary>
     internal static class SolverFunctions
     {
-        private static bool HasErrors = false;
-        private static bool HasWarning = false;
-
         private static readonly Stopwatch MainTimer = new Stopwatch();
-        private static long StageStart;
+        private static bool hasErrors = false;
+        private static bool hasWarning = false;
+        private static long stageStart;
+        private static int unrestrainedDOF = 0;
+        private static int restrainedDOF = 0;
+        private static int totalDOF = 0;
+        private static Matrix<double> k;
+        private static Matrix<double> k11;
+        private static Matrix<double> k12;
+        private static Matrix<double> k21;
+        private static Matrix<double> k22;
 
-
-        private static int UnrestrainedDOF = 0;
-        private static int RestrainedDOF = 0;
-        private static int TotalDOF = 0;
-
-
-        private static Matrix<double> K;
-        //private Matrix<double> K11square;
-        private static Matrix<double> K11;
-        private static Matrix<double> K12;
-        private static Matrix<double> K21;
-        private static Matrix<double> K22;
-
-        private static Matrix<double> Qk;
-        private static Matrix<double> Qu;
-        private static Matrix<double> Dk;
-        private static Matrix<double> Du;
+        private static Matrix<double> qk;
+        private static Matrix<double> qu;
+        private static Matrix<double> dk;
+        private static Matrix<double> du;
 
         private static double[][] DK;
         private static double[][] DK11;
-        //private static  double[][] DK11Inversed;
         private static double[][] DK21;
 
         private static double[] DQk;
         private static double[] DQu;
-        //private static  double[] DDk;
         private static double[] DDu;
-
 
         #region Thread Communications
 
+        /// <summary>
+        /// Adds a message to the solver display.
+        /// </summary>
+        /// <param name="total">Total time. The time between the start of the solve and now.</param>
+        /// <param name="step">The time the step has taken.</param>
+        /// <param name="message">The message to be displayed.</param>
+        /// <param name="messageType">The type of message. The color that is displayed.</param>
         public static async void AddMessage(long total, long step, string message, int messageType)
         {
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                    () =>
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () =>
                     {
                         SolverDisplay.Current.AddMessage(total, step, message, messageType);
-                    }
-                    );
+                    });
         }
 
         #endregion
@@ -90,23 +87,23 @@ namespace Finite_Element_Analysis_Explorer
                 Model.Members.CurrentMember = null;
                 Camera.LargestLengthRatio = 0;
                 Camera.LargestAxialRatio = 0;
-                HasErrors = false;
+                hasErrors = false;
 
 
-                UnrestrainedDOF = 0;
-                RestrainedDOF = 0;
-                TotalDOF = 0;
+                unrestrainedDOF = 0;
+                restrainedDOF = 0;
+                totalDOF = 0;
 
-                K = null;
-                K11 = null;
-                K12 = null;
-                K21 = null;
-                K22 = null;
+                k = null;
+                k11 = null;
+                k12 = null;
+                k21 = null;
+                k22 = null;
 
-                Qk = null;
-                Qu = null;
-                Dk = null;
-                Du = null;
+                qk = null;
+                qu = null;
+                dk = null;
+                du = null;
 
                 DK = null;
                 DK11 = null;
@@ -130,7 +127,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -152,7 +149,7 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void ShrinkModel()
         {
-            StageStart = MainTimer.ElapsedMilliseconds;
+            stageStart = MainTimer.ElapsedMilliseconds;
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Shrinking Model. (searching for orphan nodes)", 0);
 
             int PreviousNodeCount = 0;
@@ -166,54 +163,54 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - StageStart, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - StageStart, "    " + ex.Message, 2);
+                hasErrors = true;
+                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    " + ex.Message, 2);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Started with " + PreviousNodeCount + " nodes.", 1);
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Ended with " + PostNodeCount + " nodes.", 1);
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Removed " + (PreviousNodeCount - PostNodeCount) + " nodes.", 1);
 
-            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - StageStart, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
         internal static async void SaveFile()
         {
-            StageStart = MainTimer.ElapsedMilliseconds;
+            stageStart = MainTimer.ElapsedMilliseconds;
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Saving File.", 0);
             await FileManager.SaveFile();
-            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - StageStart, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
         #endregion
 
         internal static void AssignCodeNumbersToDegreesOfFreedom()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "Assigning code numbers to the degrees of freedom.", 0);
             AddMessage(-1, -1, "    Each node has three degrees of freedom.", 1);
 
             try
             {
-                //Assign code numbers to the unrestrained first.          
+                //Assign code numbers to the unrestrained first.
                 foreach (var Item in Model.Nodes)
                 {
                     if (Item.Value.Constraints.X == false)
                     {
-                        Item.Value.Codes = new Codes(UnrestrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
-                        UnrestrainedDOF++;
+                        Item.Value.Codes = new Codes(unrestrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
+                        unrestrainedDOF++;
                     }
                     if (Item.Value.Constraints.Y == false)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, UnrestrainedDOF, Item.Value.Codes.M);
-                        UnrestrainedDOF++;
+                        Item.Value.Codes = new Codes(Item.Value.Codes.X, unrestrainedDOF, Item.Value.Codes.M);
+                        unrestrainedDOF++;
                     }
                     if (Item.Value.Constraints.M == false)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, UnrestrainedDOF);
-                        UnrestrainedDOF++;
+                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, unrestrainedDOF);
+                        unrestrainedDOF++;
                     }
                 }
 
@@ -222,31 +219,31 @@ namespace Finite_Element_Analysis_Explorer
                 {
                     if (Item.Value.Constraints.X == true)
                     {
-                        Item.Value.Codes = new Codes(UnrestrainedDOF + RestrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
-                        RestrainedDOF++;
+                        Item.Value.Codes = new Codes(unrestrainedDOF + restrainedDOF, Item.Value.Codes.Y, Item.Value.Codes.M);
+                        restrainedDOF++;
                     }
                     if (Item.Value.Constraints.Y == true)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, UnrestrainedDOF + RestrainedDOF, Item.Value.Codes.M);
-                        RestrainedDOF++;
+                        Item.Value.Codes = new Codes(Item.Value.Codes.X, unrestrainedDOF + restrainedDOF, Item.Value.Codes.M);
+                        restrainedDOF++;
                     }
                     if (Item.Value.Constraints.M == true)
                     {
-                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, UnrestrainedDOF + RestrainedDOF);
-                        RestrainedDOF++;
+                        Item.Value.Codes = new Codes(Item.Value.Codes.X, Item.Value.Codes.Y, unrestrainedDOF + restrainedDOF);
+                        restrainedDOF++;
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                hasErrors = true;
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + UnrestrainedDOF + ".", 1);
-            AddMessage(-1, -1, "    Total restrained degrees of freedom " + RestrainedDOF + ".", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + unrestrainedDOF + ".", 1);
+            AddMessage(-1, -1, "    Total restrained degrees of freedom " + restrainedDOF + ".", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         internal static void CreateSuperpositionValuesFromSegmentsToNodes()
@@ -282,7 +279,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -300,29 +297,29 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                DQk = DoubleMatrix.VectorCreate(UnrestrainedDOF);
+                DQk = DoubleMatrix.VectorCreate(unrestrainedDOF);
                 //Get the Qk matrix.
-                Qk = Matrix<double>.Build.Dense(UnrestrainedDOF, 1);
-                for (int j = 0; j < UnrestrainedDOF; j++)
+                qk = Matrix<double>.Build.Dense(unrestrainedDOF, 1);
+                for (int j = 0; j < unrestrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
 
                         if (Item.Value.Codes.X == j)
                         {
-                            Qk[j, 0] = (double)Item.Value.Load.X + (double)Item.Value.SuperPosition.X;
+                            qk[j, 0] = (double)Item.Value.Load.X + (double)Item.Value.SuperPosition.X;
 
                             DQk[j] = (double)Item.Value.Load.X + (double)Item.Value.SuperPosition.X;
                         }
                         if (Item.Value.Codes.Y == j)
                         {
-                            Qk[j, 0] = (double)Item.Value.Load.Y + (double)Item.Value.SuperPosition.Y;
+                            qk[j, 0] = (double)Item.Value.Load.Y + (double)Item.Value.SuperPosition.Y;
 
                             DQk[j] = (double)Item.Value.Load.Y + (double)Item.Value.SuperPosition.Y;
                         }
                         if (Item.Value.Codes.M == j)
                         {
-                            Qk[j, 0] = (double)Item.Value.Load.M + (double)Item.Value.SuperPosition.M;
+                            qk[j, 0] = (double)Item.Value.Load.M + (double)Item.Value.SuperPosition.M;
 
                             DQk[j] = (double)Item.Value.Load.M + (double)Item.Value.SuperPosition.M;
                         }
@@ -331,11 +328,11 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    [Qk] vector length " + Qk.RowCount.ToString("#,###"), 1);
+            AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -347,38 +344,38 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                DQu = DoubleMatrix.VectorCreate(RestrainedDOF);
+                DQu = DoubleMatrix.VectorCreate(restrainedDOF);
                 //Get the Qu matrix.
-                Qu = Matrix<double>.Build.Dense(RestrainedDOF, 1);
-                for (int j = 0; j < RestrainedDOF; j++)
+                qu = Matrix<double>.Build.Dense(restrainedDOF, 1);
+                for (int j = 0; j < restrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Qu[j, 0] = (double)Item.Value.Load.X;
+                            qu[j, 0] = (double)Item.Value.Load.X;
 
                             DQu[j] = (double)Item.Value.Load.X;
                         }
-                        if (Item.Value.Codes.Y == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Qu[j, 0] = (double)Item.Value.Load.Y;
+                            qu[j, 0] = (double)Item.Value.Load.Y;
 
                             DQu[j] = (double)Item.Value.Load.Y;
                         }
-                        if (Item.Value.Codes.M == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Qu[j, 0] = (double)Item.Value.Load.M;
+                            qu[j, 0] = (double)Item.Value.Load.M;
 
                             DQu[j] = (double)Item.Value.Load.M;
                         }
                     }
                 }
-                AddMessage(-1, -1, "    [Qu] vector length " + Qu.RowCount.ToString("#,###"), 1);
+                AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -394,34 +391,34 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Get the Qu matrix.
-                Dk = Matrix<double>.Build.Dense(RestrainedDOF, 1);
-                for (int j = 0; j < RestrainedDOF; j++)
+                dk = Matrix<double>.Build.Dense(restrainedDOF, 1);
+                for (int j = 0; j < restrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Dk[j, 0] = (double)Item.Value.Displacement.X;
+                            dk[j, 0] = (double)Item.Value.Displacement.X;
                         }
-                        if (Item.Value.Codes.Y == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Dk[j, 0] = (double)Item.Value.Displacement.Y;
+                            dk[j, 0] = (double)Item.Value.Displacement.Y;
                         }
-                        if (Item.Value.Codes.M == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Dk[j, 0] = (double)Item.Value.Displacement.M;
+                            dk[j, 0] = (double)Item.Value.Displacement.M;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(-1, -1, "    Dk " + Dk.ColumnCount + " " + Dk.RowCount, 1);
+            AddMessage(-1, -1, "    Dk " + dk.ColumnCount + " " + dk.RowCount, 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -433,28 +430,28 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                DDu = DoubleMatrix.VectorCreate(UnrestrainedDOF);
+                DDu = DoubleMatrix.VectorCreate(unrestrainedDOF);
                 //Get the Qk vector.
-                Du = Matrix<double>.Build.Dense(UnrestrainedDOF, 1, 0);
-                for (int j = 0; j < UnrestrainedDOF; j++)
+                du = Matrix<double>.Build.Dense(unrestrainedDOF, 1, 0);
+                for (int j = 0; j < unrestrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
                         if (Item.Value.Codes.X == j)
                         {
-                            Du[j, 0] = (double)Item.Value.Displacement.X;
+                            du[j, 0] = (double)Item.Value.Displacement.X;
 
                             DDu[j] = (double)Item.Value.Displacement.X;
                         }
                         if (Item.Value.Codes.Y == j)
                         {
-                            Du[j, 0] = (double)Item.Value.Displacement.Y;
+                            du[j, 0] = (double)Item.Value.Displacement.Y;
 
                             DDu[j] = (double)Item.Value.Displacement.Y;
                         }
                         if (Item.Value.Codes.M == j)
                         {
-                            Du[j, 0] = (double)Item.Value.Displacement.M;
+                            du[j, 0] = (double)Item.Value.Displacement.M;
 
                             DDu[j] = (double)Item.Value.Displacement.M;
                         }
@@ -463,11 +460,11 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    Du " + Du.ColumnCount + " " + Du.RowCount, 1);
+            AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -484,9 +481,9 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Assemble the stiffness matrix K.
-                TotalDOF = Model.Nodes.Count * 3;
-                DK = DoubleMatrix.MatrixCreate(TotalDOF, TotalDOF);
-                K = Matrix<double>.Build.Dense(TotalDOF, TotalDOF);
+                totalDOF = Model.Nodes.Count * 3;
+                DK = DoubleMatrix.MatrixCreate(totalDOF, totalDOF);
+                k = Matrix<double>.Build.Dense(totalDOF, totalDOF);
                 int X = 0;
                 int Y = 0;
 
@@ -501,7 +498,7 @@ namespace Finite_Element_Analysis_Explorer
                             {
                                 X = enf[i];
                                 Y = enf[j];
-                                K[Y, X] = K[Y, X] + (double)nextItem.Value.KMatrix[j, i];
+                                k[Y, X] = k[Y, X] + (double)nextItem.Value.KMatrix[j, i];
 
                                 DK[Y][X] = DK[Y][X] + (double)nextItem.Value.KMatrix[j, i];
                             }
@@ -511,12 +508,12 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    Matrix size is " + TotalDOF.ToString("#,###") + " x " + TotalDOF.ToString("#,###") + ".", 1);
-            AddMessage(-1, -1, "    Total number of elements within matrix is " + (TotalDOF * TotalDOF).ToString("#,###") + ".", 1);
+            AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
+            AddMessage(-1, -1, "    Total number of elements within matrix is " + (totalDOF * totalDOF).ToString("#,###") + ".", 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -529,81 +526,81 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Resize and fill the K** Matrices.
-                K11 = Matrix<double>.Build.Dense(UnrestrainedDOF, UnrestrainedDOF);
-                for (int j = 0; j < K11.RowCount; j++)
+                k11 = Matrix<double>.Build.Dense(unrestrainedDOF, unrestrainedDOF);
+                for (int j = 0; j < k11.RowCount; j++)
                 {
-                    for (int i = 0; i < K11.ColumnCount; i++)
+                    for (int i = 0; i < k11.ColumnCount; i++)
                     {
-                        K11[j, i] = K[j, i];
+                        k11[j, i] = k[j, i];
                     }
                 }
-                AddMessage(-1, -1, "    {K11} " + K11.ColumnCount.ToString("#,###") + " x " + K11.RowCount.ToString("#,###") + " = " + (K11.ColumnCount * K11.RowCount).ToString("#,###") + " elements.", 1);
+                AddMessage(-1, -1, "    {K11} " + k11.ColumnCount.ToString("#,###") + " x " + k11.RowCount.ToString("#,###") + " = " + (k11.ColumnCount * k11.RowCount).ToString("#,###") + " elements.", 1);
 
 
-                K12 = Matrix<double>.Build.Dense(UnrestrainedDOF, RestrainedDOF);
-                for (int j = 0; j < K12.RowCount; j++)
+                k12 = Matrix<double>.Build.Dense(unrestrainedDOF, restrainedDOF);
+                for (int j = 0; j < k12.RowCount; j++)
                 {
-                    for (int i = 0; i < K12.ColumnCount; i++)
+                    for (int i = 0; i < k12.ColumnCount; i++)
                     {
-                        K12[j, i] = K[j, i + UnrestrainedDOF];
+                        k12[j, i] = k[j, i + unrestrainedDOF];
                     }
                 }
-                AddMessage(-1, -1, "    {K12} " + K12.ColumnCount.ToString("#,###") + " x " + K12.RowCount.ToString("#,###") + " = " + (K12.ColumnCount * K12.RowCount).ToString("#,###") + " elements.", 1);
+                AddMessage(-1, -1, "    {K12} " + k12.ColumnCount.ToString("#,###") + " x " + k12.RowCount.ToString("#,###") + " = " + (k12.ColumnCount * k12.RowCount).ToString("#,###") + " elements.", 1);
 
-                K21 = Matrix<double>.Build.Dense(RestrainedDOF, UnrestrainedDOF);
-                for (int j = 0; j < K21.RowCount; j++)
+                k21 = Matrix<double>.Build.Dense(restrainedDOF, unrestrainedDOF);
+                for (int j = 0; j < k21.RowCount; j++)
                 {
-                    for (int i = 0; i < K21.ColumnCount; i++)
+                    for (int i = 0; i < k21.ColumnCount; i++)
                     {
-                        K21[j, i] = K[j + UnrestrainedDOF, i];
+                        k21[j, i] = k[j + unrestrainedDOF, i];
                     }
                 }
-                AddMessage(-1, -1, "    {K21} " + K21.ColumnCount.ToString("#,###") + " x " + K21.RowCount.ToString("#,###") + " = " + (K21.ColumnCount * K21.RowCount).ToString("#,###") + " elements.", 1);
+                AddMessage(-1, -1, "    {K21} " + k21.ColumnCount.ToString("#,###") + " x " + k21.RowCount.ToString("#,###") + " = " + (k21.ColumnCount * k21.RowCount).ToString("#,###") + " elements.", 1);
 
 
 
-                K22 = Matrix<double>.Build.Dense(RestrainedDOF, RestrainedDOF);
-                for (int j = 0; j < K22.RowCount; j++)
+                k22 = Matrix<double>.Build.Dense(restrainedDOF, restrainedDOF);
+                for (int j = 0; j < k22.RowCount; j++)
                 {
-                    for (int i = 0; i < K22.ColumnCount; i++)
+                    for (int i = 0; i < k22.ColumnCount; i++)
                     {
-                        K22[j, i] = K[j + UnrestrainedDOF, i + UnrestrainedDOF];
+                        k22[j, i] = k[j + unrestrainedDOF, i + unrestrainedDOF];
                     }
                 }
-                AddMessage(-1, -1, "    {K22} " + K22.ColumnCount.ToString("#,###") + " x " + K22.RowCount.ToString("#,###") + " = " + (K22.ColumnCount * K22.RowCount).ToString("#,###") + " elements.", 1);
+                AddMessage(-1, -1, "    {K22} " + k22.ColumnCount.ToString("#,###") + " x " + k22.RowCount.ToString("#,###") + " = " + (k22.ColumnCount * k22.RowCount).ToString("#,###") + " elements.", 1);
 
 
 
-                DK11 = DoubleMatrix.MatrixCreate(UnrestrainedDOF, UnrestrainedDOF);
+                DK11 = DoubleMatrix.MatrixCreate(unrestrainedDOF, unrestrainedDOF);
                 for (int j = 0; j < DK11.Length; j++)
                 {
                     for (int i = 0; i < DK11[1].Length; i++)
                     {
-                        DK11[j][i] = (double)K[j, i];
+                        DK11[j][i] = (double)k[j, i];
                     }
                 }
 
-                DK21 = DoubleMatrix.MatrixCreate(RestrainedDOF, UnrestrainedDOF);
+                DK21 = DoubleMatrix.MatrixCreate(restrainedDOF, unrestrainedDOF);
                 for (int j = 0; j < DK21.Length; j++)
                 {
                     for (int i = 0; i < DK21[1].Length; i++)
                     {
-                        DK21[j][i] = (double)K[j, i];
+                        DK21[j][i] = (double)k[j, i];
                     }
                 }
 
                 //K is no longer nessacary so remove from memory to improve performance.
-                K = null;
+                k = null;
 
                 // Dimension Du to prevent errors.
-                Du = Matrix<double>.Build.Dense(UnrestrainedDOF, 1, 0);
+                du = Matrix<double>.Build.Dense(unrestrainedDOF, 1, 0);
 
 
             }
 
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -626,19 +623,19 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                Du = K11.Inverse() * Qk;
+                du = k11.Inverse() * qk;
                 DDu = DoubleMatrix.SystemSolve(DK11, DQk);
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
 
-            AddMessage(-1, -1, "    Du " + Du.ColumnCount + " " + Du.RowCount, 1);
-            AddMessage(-1, -1, "    Qk " + Qk.ColumnCount + " " + Qk.RowCount, 1);
-            AddMessage(-1, -1, "    K11 " + K11.ColumnCount + " " + K11.RowCount, 1);
+            AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
+            AddMessage(-1, -1, "    Qk " + qk.ColumnCount + " " + qk.RowCount, 1);
+            AddMessage(-1, -1, "    K11 " + k11.ColumnCount + " " + k11.RowCount, 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -651,12 +648,12 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                Qu = K21 * Du;
+                qu = k21 * du;
                 DQu = DoubleMatrix.MatrixVectorProduct(DK21, DDu);
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -676,32 +673,32 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Set the Qk matrix.
-                for (int j = 0; j < UnrestrainedDOF; j++)
+                for (int j = 0; j < unrestrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
                         if (Item.Value.Codes.X == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad((decimal)Qk[j, 0], Item.Value.JointLoad.Y, Item.Value.JointLoad.M);
+                            Item.Value.JointLoad = new NodalLoad((decimal)qk[j, 0], Item.Value.JointLoad.Y, Item.Value.JointLoad.M);
                         }
                         if (Item.Value.Codes.Y == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, (decimal)Qk[j, 0], Item.Value.JointLoad.M);
+                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, (decimal)qk[j, 0], Item.Value.JointLoad.M);
                         }
                         if (Item.Value.Codes.M == j)
                         {
-                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, Item.Value.JointLoad.Y, (decimal)Qk[j, 0]);
+                            Item.Value.JointLoad = new NodalLoad(Item.Value.JointLoad.X, Item.Value.JointLoad.Y, (decimal)qk[j, 0]);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    [Qk] vector length " + Qk.RowCount.ToString("#,###"), 1);
+            AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -714,32 +711,32 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Set the Qu matrix.
-                for (int j = 0; j < RestrainedDOF; j++)
+                for (int j = 0; j < restrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad((decimal)Qu[j, 0], Item.Value.LoadReaction.Y, Item.Value.LoadReaction.M);
+                            Item.Value.LoadReaction = new NodalLoad((decimal)qu[j, 0], Item.Value.LoadReaction.Y, Item.Value.LoadReaction.M);
                         }
-                        if (Item.Value.Codes.Y == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, (decimal)Qu[j, 0], Item.Value.LoadReaction.M);
+                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, (decimal)qu[j, 0], Item.Value.LoadReaction.M);
                         }
-                        if (Item.Value.Codes.M == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, Item.Value.LoadReaction.Y, (decimal)Qu[j, 0]);
+                            Item.Value.LoadReaction = new NodalLoad(Item.Value.LoadReaction.X, Item.Value.LoadReaction.Y, (decimal)qu[j, 0]);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    [Qu] vector length " + Qu.RowCount.ToString("#,###"), 1);
+            AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -752,32 +749,32 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 //Set the Dk matrix. These should be zeros as the fixed dof's are fixed.
-                for (int j = 0; j < RestrainedDOF; j++)
+                for (int j = 0; j < restrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
-                        if (Item.Value.Codes.X == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.X == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point((decimal)Dk[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
+                            Item.Value.Displacement = new Point((decimal)dk[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.Y == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.Y == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)Dk[j, 0], Item.Value.Displacement.M);
+                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)dk[j, 0], Item.Value.Displacement.M);
                         }
-                        if (Item.Value.Codes.M == j + UnrestrainedDOF)
+                        if (Item.Value.Codes.M == j + unrestrainedDOF)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)Dk[j, 0]);
+                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)dk[j, 0]);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    [Dk] vector length " + Dk.RowCount.ToString("#,###"), 1);
+            AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -792,32 +789,32 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                for (int j = 0; j < UnrestrainedDOF; j++)
+                for (int j = 0; j < unrestrainedDOF; j++)
                 {
                     foreach (var Item in Model.Nodes)
                     {
                         if (Item.Value.Codes.X == j)
                         {
-                            Item.Value.Displacement = new Point((decimal)Du[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
+                            Item.Value.Displacement = new Point((decimal)du[j, 0], Item.Value.Displacement.Y, Item.Value.Displacement.M);
                         }
                         if (Item.Value.Codes.Y == j)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)Du[j, 0], Item.Value.Displacement.M);
+                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, (decimal)du[j, 0], Item.Value.Displacement.M);
                         }
                         if (Item.Value.Codes.M == j)
                         {
-                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)Du[j, 0]);
+                            Item.Value.Displacement = new Point(Item.Value.Displacement.X, Item.Value.Displacement.Y, (decimal)du[j, 0]);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
-            AddMessage(-1, -1, "    [Du] vector length " + Du.RowCount.ToString("#,###"), 1);
+            AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -842,7 +839,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
             }
@@ -908,7 +905,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasWarning = true;
+                hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
@@ -975,7 +972,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasWarning = true;
+                hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
@@ -1018,7 +1015,6 @@ namespace Finite_Element_Analysis_Explorer
                                 if (tmpValue > 255) { tmpValue = 255; }
                                 if (tmpValue < 0) { tmpValue = 0; }
 
-                                //Debug.WriteLine("tmpValue " + tmpValue);
                                 RatioByte = (byte)(255 - tmpValue);
 
                                 nextSegment.Value.NormalStressColor = Color.FromArgb(255, RatioByte, RatioByte, 255);
@@ -1026,12 +1022,17 @@ namespace Finite_Element_Analysis_Explorer
                             else if (nextSegment.Value.NormalStress > 0)
                             {
                                 int tmpValue = (int)(Math.Abs(nextSegment.Value.NormalStress) * compression_ratio);
-                                if (tmpValue > 255) { tmpValue = 255; }
-                                if (tmpValue < 0) { tmpValue = 0; }
+                                if (tmpValue > 255)
+                                {
+                                    tmpValue = 255;
+                                }
 
-                                //Debug.WriteLine("tmpValue " + tmpValue);
+                                if (tmpValue < 0)
+                                {
+                                    tmpValue = 0;
+                                }
+
                                 RatioByte = (byte)(255 - tmpValue);
-
                                 nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, RatioByte, RatioByte);
                             }
                             else
@@ -1047,7 +1048,7 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                HasWarning = true;
+                hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
@@ -1057,34 +1058,34 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void CalculateEqulibriumValues()
         {
-            Stopwatch TaskTimer = new Stopwatch();
-            TaskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equlibrium Values.", 0);
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
+            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
 
             try
             {
-                foreach (var Item in Model.Nodes.NodesWithNodalLoads)
+                foreach (var item in Model.Nodes.NodesWithNodalLoads)
                 {
-                    Model.ForceX += Item.Value.Load.X;
-                    Model.ForceY += Item.Value.Load.Y;
-                    Model.ForceM += Item.Value.Load.M;
+                    Model.ForceX += item.Value.Load.X;
+                    Model.ForceY += item.Value.Load.Y;
+                    Model.ForceM += item.Value.Load.M;
                 }
 
-                foreach (var Item in Model.Nodes.NodesWithReactions)
+                foreach (var item1 in Model.Nodes.NodesWithReactions)
                 {
-                    Model.ReactionX += Item.Value.LoadReaction.X;
-                    Model.ReactionY += Item.Value.LoadReaction.Y;
-                    Model.ReactionM += Item.Value.LoadReaction.M;
+                    Model.ReactionX += item1.Value.LoadReaction.X;
+                    Model.ReactionY += item1.Value.LoadReaction.Y;
+                    Model.ReactionM += item1.Value.LoadReaction.M;
                 }
             }
             catch (Exception ex)
             {
-                HasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                hasWarning = true;
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         internal static void CalculateMaterials()
@@ -1115,7 +1116,7 @@ namespace Finite_Element_Analysis_Explorer
 
             catch (Exception ex)
             {
-                HasWarning = true;
+                hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, TaskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
             }
@@ -1128,39 +1129,39 @@ namespace Finite_Element_Analysis_Explorer
             AddMessage(-1, -1, "    ", 0);
             AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds, "    Finished.", 0);
 
-            if (!HasErrors)
+            if (!hasErrors)
             {
                 if (Options.AutoFinishSolver)
                 {
 
-                    if (!HasWarning)
+                    if (!hasWarning)
                     {
-                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                       () =>
+                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                            CoreDispatcherPriority.High,
+                            () =>
                        {
                            Frame rootFrame = Window.Current.Content as Frame;
                            rootFrame.Navigate(typeof(Results));
-                       }
-                       );
+                       });
                     }
                     else
                     {
-                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                       () =>
+                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                            CoreDispatcherPriority.High,
+                            () =>
                        {
                            PanelSolver.Current.ShowResultsButton();
-                       }
-                       );
+                       });
                     }
                 }
                 else
                 {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                       () =>
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                        CoreDispatcherPriority.High,
+                        () =>
                        {
                            PanelSolver.Current.ShowResultsButton();
-                       }
-                       );
+                       });
                 }
             }
         }
