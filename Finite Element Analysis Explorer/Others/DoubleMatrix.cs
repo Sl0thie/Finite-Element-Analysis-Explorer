@@ -14,9 +14,6 @@ namespace Finite_Element_Analysis_Explorer
                 result[i] = new double[cols];
             }
 
-            // for (int i = 0; i < rows; ++i)
-            //  for (int j = 0; j < cols; ++j)
-            //    result[i][j] = 0.0; // explicit initialization needed in some languages
             return result;
         }
 

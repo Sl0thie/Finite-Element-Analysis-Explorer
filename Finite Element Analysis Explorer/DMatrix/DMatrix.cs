@@ -4,63 +4,6 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal class DMatrix
     {
-        // static void Main(string[] args)
-        // {
-        //    Console.WriteLine("\nBegin matrix decomposition demo\n");
-
-        // double[][] m = MatrixCreate(4, 4);
-        //    m[0][0] = 3.0; m[0][1] = 7.0; m[0][2] = 2.0; m[0][3] = 5.0;
-        //    m[1][0] = 1.0; m[1][1] = 8.0; m[1][2] = 4.0; m[1][3] = 2.0;
-        //    m[2][0] = 2.0; m[2][1] = 1.0; m[2][2] = 9.0; m[2][3] = 3.0;
-        //    m[3][0] = 5.0; m[3][1] = 4.0; m[3][2] = 7.0; m[3][3] = 1.0;
-
-        // Console.WriteLine("Matrix m = \n" + MatrixAsString(m));
-
-        // int[] perm;
-        //    int toggle;
-        //    double[][] luMatrix = MatrixDecompose(m, out perm, out toggle);
-        //    double[][] lower = ExtractLower(luMatrix);
-        //    double[][] upper = ExtractUpper(luMatrix);
-
-        // Console.WriteLine("The (combined) LUP decomposition of m is\n" + MatrixAsString(luMatrix));
-        //    Console.WriteLine("The decomposition permutation array is: " + VectorAsString(perm));
-        //    Console.WriteLine("The decomposition toggle value is: " + toggle);
-        //    Console.WriteLine("\nThe lower part of LU is \n" + MatrixAsString(lower));
-        //    Console.WriteLine("The upper part of LU is \n" + MatrixAsString(upper));
-
-        // double[][] inverse = MatrixInverse(m);
-        //    Console.WriteLine("Inverse of m computed from its decomposition is\n" + MatrixAsString(inverse));
-
-        // double det = MatrixDeterminant(m);
-        //    Console.WriteLine("Determinant of m computed via decomposition = " + det.ToString("F1"));
-
-        // Console.WriteLine("\nLinear system mx = b problem: \n");
-        //    Console.WriteLine("3x0 + 7x1 + 2x2 + 5x3 = 49");
-        //    Console.WriteLine(" x0 + 8x1 + 4x2 + 2x3 = 30");
-        //    Console.WriteLine("2x0 +  x1 + 9x2 + 3x3 = 43");
-        //    Console.WriteLine("5x0 + 4x1 + 7x2 +  x3 = 52");
-        //    Console.WriteLine("");
-
-        // double[] b = new double[] { 49.0, 30.0, 43.0, 52.0 };
-        //    Console.WriteLine("Solving system via decomposition");
-        //    double[] x = SystemSolve(m, b);
-        //    Console.WriteLine("\nSolution is x = \n" + VectorAsString(x));
-
-        // // extra: matrix decomposition concepts
-        //    double[][] lu = MatrixProduct(lower, upper);
-        //    double[][] orig = UnPermute(lu, perm);  // use a custom method with the perm array to unscramble LU
-        //    if (MatrixAreEqual(orig, m, 0.000000001) == true)
-        //        Console.WriteLine("Product of L and U successfully unpermuted using perm array");
-
-        // double[][] permMatrix = PermArrayToMatrix(perm); // convert the perm array to a matrix
-        //    orig = MatrixProduct(permMatrix, lu); // another way to unscramble
-        //    if (MatrixAreEqual(orig, m, 0.000000001) == true)
-        //        Console.WriteLine("\nProduct of L and U successfully unpermuted using perm matrix\n");
-
-        // Console.WriteLine("End matrix decomposition demo\n");
-        //    Console.ReadLine();
-        // }
-
         // static matrix methods - consider placing in a class.
         private static decimal[][] MatrixCreate(int rows, int cols)
         {

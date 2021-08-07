@@ -5,7 +5,7 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal class SectionCollection : Dictionary<string, Section>
     {
-        private Section currentSection; // = new Section();
+        private Section currentSection;
 
         internal Section CurrentSection
         {
@@ -22,7 +22,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal Section LoadLastCurrentSectionSection()
         {
-            // Debug.WriteLine("Last Current Section " + Options.LastCurrentSection);
             if (ContainsKey(Options.LastCurrentSectionName))
             {
                 try
@@ -134,7 +133,6 @@ namespace Finite_Element_Analysis_Explorer
             }
             else
             {
-                // Debug.WriteLine("Creating Section " + _lineweight);
                 Section newSection = new Section(
                     name,
                     e,

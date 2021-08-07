@@ -91,7 +91,6 @@ namespace Finite_Element_Analysis_Explorer
         internal static Color ColorBackground = Color.FromArgb(255, 8, 28, 88);
         internal static Color ColorLabel = Color.FromArgb(255, 255, 255, 255);
 
-        // internal static Color ColorBackground = Color.FromArgb(255, 128,128,128);
         internal static Color ColorForce = Color.FromArgb(255, 255, 255, 0);
         internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
 
@@ -187,8 +186,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 return loadLastFileOnStartup;
             }
-
-            // set { loadLastFileOnStartup = value; }
         }
 
         private static int defaultNumberOfSegments = 10;
@@ -214,8 +211,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 return lastCurrentSectionName;
             }
-
-            // set { lastCurrentSectionName = value; }
         }
 
         private static bool resetExistingMembers = true;
@@ -470,7 +465,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static bool ShowAxial
         {
-            // get { return showAxial; }
             set
             {
                 showAxial = value;
@@ -2518,7 +2512,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                Single tmpSingle = (Single)FileManager.LocalSettings.Values["CameraZoomTrim"];
+                float tmpSingle = (float)FileManager.LocalSettings.Values["CameraZoomTrim"];
                 CameraZoomTrim = (float)tmpSingle;
             }
             catch
@@ -2532,7 +2526,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                Single tmpSingle = (Single)FileManager.LocalSettings.Values["SelectGridSize"];
+                float tmpSingle = (float)FileManager.LocalSettings.Values["SelectGridSize"];
                 SelectGridSize = (float)tmpSingle;
             }
             catch

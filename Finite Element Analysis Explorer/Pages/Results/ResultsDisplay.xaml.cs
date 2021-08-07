@@ -31,9 +31,20 @@
         /// </summary>
         internal static ResultsDisplay Current;
 
-        private SelectionState CurrentSelectionState = SelectionState.Ready;
+        private SelectionState currentSelectionState = SelectionState.Ready;
 
         internal bool IsPageLoaded = false;
+
+        private static float counterGridChanges = 0;
+        private byte originalMinorGridAlpha;
+        private byte originalNormalGridAlpha;
+        private byte originalMajorGridAlpha;
+
+        private float minorGridAlphaChange;
+        private float normalGridAlphaChange;
+        private float majorGridAlphaChange;
+
+        private float totalGridChanges = 40;
 
         #endregion
 
@@ -105,8 +116,8 @@
         private CanvasStrokeStyle lineNodeFixed = Options.LineNodeFixed;
         private CanvasStrokeStyle lineNodePin = Options.LineNodePin;
         private CanvasStrokeStyle lineNodeRollerX = Options.LineNodeRollerX;
-        private CanvasStrokeStyle LineNodeRollerY = Options.LineNodeRollerY;
-        private CanvasStrokeStyle LineNodeOther = Options.LineNodeOther;
+        private CanvasStrokeStyle lineNodeRollerY = Options.LineNodeRollerY;
+        private CanvasStrokeStyle lineNodeOther = Options.LineNodeOther;
 
         #endregion
 
@@ -142,17 +153,6 @@
         private bool forceManipulationsToEnd;
 
         #endregion
-
-        private byte OriginalMinorGridAlpha;
-        private byte OriginalNormalGridAlpha;
-        private byte OriginalMajorGridAlpha;
-
-        private float MinorGridAlphaChange;
-        private float NormalGridAlphaChange;
-        private float MajorGridAlphaChange;
-
-        private float TotalGridChanges = 40;
-        private static float CounterGridChanges = 0;
 
         #endregion
 
@@ -199,7 +199,6 @@
         {
             Current = this;
 
-            // Options.Font = 1;
             UpdateColors();
         }
 
@@ -220,8 +219,6 @@
             labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
 
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-
-            // Dots = new CanvasStrokeStyle() { LineJoin = CanvasLineJoin.Round, DashStyle = CanvasDashStyle.Dot };
         }
 
         private async Task CreateResourcesAsync(CanvasAnimatedControl sender)
@@ -257,7 +254,6 @@
             args.DrawingSession.Transform = Camera.TranslationMatrix;
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
 
-            // args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
             int lineCountX = 0;
@@ -265,12 +261,12 @@
 
             try
             {
-                if (CounterGridChanges < TotalGridChanges)
+                if (counterGridChanges < totalGridChanges)
                 {
-                    CounterGridChanges += 1;
-                    colorGridMinor = Color.FromArgb(Convert.ToByte(MinorGridAlphaChange * CounterGridChanges), colorGridMinor.R, colorGridMinor.G, colorGridMinor.B);
-                    colorGridNormal = Color.FromArgb(Convert.ToByte(NormalGridAlphaChange * CounterGridChanges), colorGridNormal.R, colorGridNormal.G, colorGridNormal.B);
-                    colorGridMajor = Color.FromArgb(Convert.ToByte(MajorGridAlphaChange * CounterGridChanges), colorGridMajor.R, colorGridMajor.G, colorGridMajor.B);
+                    counterGridChanges += 1;
+                    colorGridMinor = Color.FromArgb(Convert.ToByte(minorGridAlphaChange * counterGridChanges), colorGridMinor.R, colorGridMinor.G, colorGridMinor.B);
+                    colorGridNormal = Color.FromArgb(Convert.ToByte(normalGridAlphaChange * counterGridChanges), colorGridNormal.R, colorGridNormal.G, colorGridNormal.B);
+                    colorGridMajor = Color.FromArgb(Convert.ToByte(majorGridAlphaChange * counterGridChanges), colorGridMajor.R, colorGridMajor.G, colorGridMajor.B);
                 }
 
                 do
@@ -618,11 +614,6 @@
                                 args.DrawingSession.DrawLine(nextItem.Value.FarVectorDisplaced, nextItem.Value.ShearFar, colorShearForceSelected, Camera.LineUnit * Options.LineShearForceSelectedWeight, lineShearForceSelected);
                             }
                         }
-
-                        // if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y != 0)
-                        // {
-                        //    args.DrawingSession.DrawText("Testgsfdghsdfghdsfghdfghdfghdfghdfghdfghdfghdfg", Model.Members.CurrentMember.SegmentNear.ShearNear, ColorShearForceSelected, LabelGridX);
-                        // }
                     }
 
                     // Draw Moment
@@ -661,122 +652,9 @@
                 Debug.WriteLine("Error " + ex.Message);
             }
 
-            // try
-            // {
-            //    if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
-            //    {
-            //        args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, 10));
-            //        //Draw Shear
-            //        if (Options.ShowShear)
-            //        {
-            //            foreach (var Item in Model.Members)
-            //            {
-            //                if (Item.Value.SegmentNear.InternalLoadNearLocal.Y > 0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(Item.Value.SegmentNear.InternalLoadNearLocal.Y),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentNear.ShearNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentNear.ShearNear.Y * Camera.ZoomTrimmed)),
-            //                    ColorShearForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else if (Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y < -0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(Model.Members.CurrentMember.SegmentNear.InternalLoadNearLocal.Y),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentNear.ShearNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentNear.ShearNear.Y * Camera.ZoomTrimmed)),
-            //                    ColorShearForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else
-            //                {
-
-            // }
-
-            // if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y > 0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(-Item.Value.SegmentFar.InternalLoadFarLocal.Y),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentFar.ShearFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentFar.ShearFar.Y * Camera.ZoomTrimmed)),
-            //                    ColorShearForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else if (Model.Members.CurrentMember.SegmentFar.InternalLoadFarLocal.Y < -0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(-Item.Value.SegmentFar.InternalLoadFarLocal.Y),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentFar.ShearFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentFar.ShearFar.Y * Camera.ZoomTrimmed)),
-            //                    ColorShearForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else
-            //                {
-
-            // }
-            //            }
-            //        }
-
-            // //Draw Moment
-            //        if (Options.ShowMoment)
-            //        {
-            //            foreach (var Item in Model.Members)
-            //            {
-            //                if (Item.Value.SegmentNear.InternalLoadNearLocal.M > 0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(-Item.Value.SegmentNear.InternalLoadNearLocal.M),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentNear.MomentNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentNear.MomentNear.Y * Camera.ZoomTrimmed)),
-            //                    ColorMomentForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else if (Item.Value.SegmentNear.InternalLoadNearLocal.M < -0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(-Item.Value.SegmentNear.InternalLoadNearLocal.M),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentNear.MomentNear.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentNear.MomentNear.Y * Camera.ZoomTrimmed)),
-            //                    ColorMomentForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else
-            //                {
-
-            // }
-
-            // if (Item.Value.SegmentFar.InternalLoadFarLocal.M > 0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(Item.Value.SegmentFar.InternalLoadFarLocal.M),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentFar.MomentFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentFar.MomentFar.Y * Camera.ZoomTrimmed)),
-            //                    ColorMomentForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else if (Item.Value.SegmentFar.InternalLoadFarLocal.M < -0.000001m)
-            //                {
-            //                    args.DrawingSession.DrawText(
-            //                    ConvertToEngineeringNotation(Item.Value.SegmentFar.InternalLoadFarLocal.M),
-            //                    new Vector2((Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (Item.Value.SegmentFar.MomentFar.X * Camera.ZoomTrimmed), (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y + (-Item.Value.SegmentFar.MomentFar.Y * Camera.ZoomTrimmed)),
-            //                    ColorMomentForceFont,
-            //                    LabelFormat
-            //                    );
-            //                }
-            //                else
-            //                {
-
-            // }
-            //            }
-            //        }
-            //    }
-            // }
-            // catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
             try
             {
-                if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
+                if (Model.Members.CurrentMember is object)
                 {
                     args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, 10));
 
@@ -873,26 +751,6 @@
             {
             }
 
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
-            // args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
-            // args.DrawingSession.DrawText("Position: " + Camera.Position, 0, 20, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("Zoom: " + Camera.Zoom, 0, 40, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("ViewportWidth: " + Camera.ViewportWidth + " " + Camera.ViewportHeight, 0, 60, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("ViewportCenter: " + Camera.ViewportCenter, 0, 80, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("translationTrim: " + Camera.translationTrim, 0, 100, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("TranslationMatrix: " + Camera.TranslationMatrix, 0, 120, Colors.White, LabelFormat);
-
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 200));
-            // args.DrawingSession.DrawText("GRID", 0, 0, Colors.Gray, LabelHeaderFormat);
-            // args.DrawingSession.DrawText("gridSizeNormal: " + Camera.GridSizeNormal, 0, 20, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("TopLeft: " + Camera.TopLeftNormal, 0, 40, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("BottomRight: " + Camera.BottomRight, 0, 60, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("lineCountX: " + lineCountX, 0, 80, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("lineCountY: " + lineCountY, 0, 100, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("LineInverse: " + Camera.LineInverse, 0, 120, Colors.White, LabelFormat);
-
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.CenterXPixels - 3, Camera.CenterYPixels - 3));
-            // args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
             try
             {
                 args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, -20));
@@ -902,9 +760,11 @@
                 do
                 {
                     args.DrawingSession.DrawText(
-                        Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed),
+                        Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString,
+                        (Camera.Position.X * Camera.ZoomTrimmed) + Camera.ViewportCenter.X + (iX * Camera.ZoomTrimmed),
                         Camera.ViewportSize.Y + 2,
-                        colorGridMajorFont, labelGridX);
+                        colorGridMajorFont,
+                        labelGridX);
 
                     iX += Camera.GridSizeMinor;
                 }
@@ -913,9 +773,11 @@
                 do
                 {
                     args.DrawingSession.DrawText(
-                        Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15,
+                        Math.Round(
+                            iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.ViewportSize.X - 15,
                         (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.ViewportCenter.Y - (iY * Camera.ZoomTrimmed),
-                        colorGridMajorFont, labelGridY);
+                        colorGridMajorFont,
+                        labelGridY);
                     iY += Camera.GridSizeMinor;
                 }
                 while (iY < Camera.BottomRight.Y);
@@ -985,7 +847,6 @@
 
                 if (e.Delta.Scale != 1)
                 {
-                    // Camera.ScaleDelta((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                     Camera.ScaleDeltaScrollWheel((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                 }
 
@@ -1016,24 +877,23 @@
         {
             try
             {
-                // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-                switch (CurrentSelectionState)
+                switch (currentSelectionState)
                 {
                     case SelectionState.Ready:
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
                         break;
 
                     case SelectionState.FirstNode:
                         // Cancel selection?
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
                         break;
 
                     case SelectionState.SecondNode:
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
                         break;
@@ -1048,7 +908,7 @@
         private void Canvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Vector2 mousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-            switch (CurrentSelectionState)
+            switch (currentSelectionState)
             {
                 case SelectionState.Ready:
                     // nothing or select member.
@@ -1057,28 +917,10 @@
                     {
                         Model.Members.CurrentMember = Model.Members[tempInt];
                         Results.Current.ShowMember();
-
-                        // decimal Largest = 0;
-                        // decimal NegLargest = 0;
-
-                        // foreach (var Item in Model.Members.CurrentMember.Segments)
-                        // {
-                        //    Debug.WriteLine(Item.Value.Index + " " + -Item.Value.InternalLoadNearLocal.M + " " + Item.Value.InternalLoadFarLocal.M + Item.Value.NodeNear.Position.X);
-
-                        // if (-Item.Value.InternalLoadNearLocal.M > Largest) { Largest = -Item.Value.InternalLoadNearLocal.M; }
-                        //    if (-Item.Value.InternalLoadNearLocal.M < NegLargest) { NegLargest = -Item.Value.InternalLoadNearLocal.M; }
-
-                        // if (Item.Value.InternalLoadFarLocal.M > Largest) { Largest = Item.Value.InternalLoadFarLocal.M; }
-                        //    if (Item.Value.InternalLoadFarLocal.M < NegLargest) { NegLargest = Item.Value.InternalLoadFarLocal.M; }
-
-                        // }
-
-                        // Debug.WriteLine("Largest " + Largest);
-                        // Debug.WriteLine("NegLargest " + NegLargest);
                     }
                     else
                     {
-                        CurrentSelectionState = SelectionState.Ready;
+                        currentSelectionState = SelectionState.Ready;
                         Model.Members.CurrentMember = null;
                         Results.Current.ShowModel();
                     }
@@ -1086,7 +928,7 @@
                     break;
 
                 case SelectionState.FirstNode:
-                    CurrentSelectionState = SelectionState.Ready;
+                    currentSelectionState = SelectionState.Ready;
                     Model.Members.CurrentMember = null;
                     Results.Current.ShowModel();
                     break;
@@ -1107,29 +949,6 @@
 
         private void Canvas_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
-            // switch (CurrentSelectionState)
-            // {
-            //    case SelectionState.Ready:
-            //        //nothing?
-            //        break;
-
-            // case SelectionState.FirstNode:
-            //        //create member and continue.
-            //        CurrentSelectionState = SelectionState.Ready;
-            //        break;
-
-            // case SelectionState.SecondNode:
-            //        //should not get here?
-            //        CurrentSelectionState = SelectionState.Ready;
-            //        break;
-            // }
-
-            // try
-            // {
-
-            // }
-            // catch (Exception ex) { Debug.WriteLine("Error " + ex.Message); }
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -1184,31 +1003,29 @@
             lineNodeFixed = Options.LineNodeFixed;
             lineNodePin = Options.LineNodePin;
             lineNodeRollerX = Options.LineNodeRollerX;
-            LineNodeRollerY = Options.LineNodeRollerY;
+            lineNodeRollerY = Options.LineNodeRollerY;
             lineNodeFree = Options.LineNodeFree;
 
-            OriginalMinorGridAlpha = colorGridMinor.A;
-            OriginalNormalGridAlpha = colorGridNormal.A;
-            OriginalMajorGridAlpha = colorGridMajor.A;
+            originalMinorGridAlpha = colorGridMinor.A;
+            originalNormalGridAlpha = colorGridNormal.A;
+            originalMajorGridAlpha = colorGridMajor.A;
 
-            MinorGridAlphaChange = OriginalMinorGridAlpha / TotalGridChanges;
-            NormalGridAlphaChange = OriginalNormalGridAlpha / TotalGridChanges;
-            MajorGridAlphaChange = OriginalMajorGridAlpha / TotalGridChanges;
+            minorGridAlphaChange = originalMinorGridAlpha / totalGridChanges;
+            normalGridAlphaChange = originalNormalGridAlpha / totalGridChanges;
+            majorGridAlphaChange = originalMajorGridAlpha / totalGridChanges;
         }
 
         private string ConvertToEngineeringNotation(decimal d)
         {
             int roundingFactor = 6;
-
-            // decimal theValue = 0;
             string numberString = string.Empty;
             string exponentString = string.Empty;
 
-            bool IsNegative = false;
+            bool isNegative = false;
 
             if (d < 0)
             {
-                IsNegative = true;
+                isNegative = true;
                 d = DMath.Abs(d);
             }
             else if (d == 0)
@@ -1364,7 +1181,7 @@
                 numberString = numberString.Substring(0, numberString.Length - 1);
             }
 
-            if (IsNegative)
+            if (isNegative)
             {
                 return "-" + numberString + exponentString;
             }

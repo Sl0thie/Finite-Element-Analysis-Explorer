@@ -5,26 +5,12 @@ namespace Finite_Element_Analysis_Explorer
 {
     internal static class Model
     {
-        #region Operations
-
-        // static Model()
-        // {
-        //    members = new MemberCollection();
-        //    nodes = new NodeConcurrentCollection();
-        //    sections = new SectionCollection();
-        //    materials = new MaterialCollection();
-        //    sectionProfiles = new SectionProfileCollection();
-        // }
-        #endregion
-
         #region Properties
 
         #region Collections
 
         internal static volatile int TotalMembers;
 
-        // internal static volatile int TotalNodes;
-        // internal static volatile int TotalSegments;
         private static MemberCollection members = new MemberCollection();
 
         internal static MemberCollection Members

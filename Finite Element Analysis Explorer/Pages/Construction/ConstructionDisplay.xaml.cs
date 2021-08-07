@@ -247,8 +247,6 @@ namespace Finite_Element_Analysis_Explorer
             args.DrawingSession.Clear(colorBackground);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
-
-            // args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
             int lineCountX = 0;
@@ -564,26 +562,6 @@ namespace Finite_Element_Analysis_Explorer
                 Debug.WriteLine("Error " + ex.Message);
             }
 
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 20));
-            // args.DrawingSession.DrawText("CAMERA", 0, 0, Colors.Gray, LabelHeaderFormat);
-            // args.DrawingSession.DrawText("Position: " + Camera.Position, 0, 20, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("Zoom: " + Camera.Zoom, 0, 40, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("ViewportWidth: " + Camera.ViewportWidth + " " + Camera.ViewportHeight, 0, 60, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("ViewportCenter: " + Camera.ViewportCenter, 0, 80, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("translationTrim: " + Camera.translationTrim, 0, 100, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("TranslationMatrix: " + Camera.TranslationMatrix, 0, 120, Colors.White, LabelFormat);
-
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(350, 200));
-            // args.DrawingSession.DrawText("GRID", 0, 0, Colors.Gray, LabelHeaderFormat);
-            // args.DrawingSession.DrawText("gridSizeNormal: " + Camera.GridSizeNormal, 0, 20, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("TopLeft: " + Camera.TopLeftNormal, 0, 40, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("BottomRight: " + Camera.BottomRight, 0, 60, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("lineCountX: " + lineCountX, 0, 80, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("lineCountY: " + lineCountY, 0, 100, Colors.White, LabelFormat);
-            // args.DrawingSession.DrawText("LineUnit: " + Camera.LineUnit, 0, 120, Colors.White, LabelFormat);
-
-            // args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(Camera.ViewportCenter.X - 3, Camera.ViewportCenter.Y - 3));
-            // args.DrawingSession.DrawRectangle(0, 0, 5, 5, ColorSelectedElement, 4);
             try
             {
                 args.DrawingSession.Transform = Matrix3x2.CreateTranslation(new Vector2(10, -20));
@@ -780,7 +758,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Canvas_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            // Vector2 MousePoint = Camera.ScreenToWorld(new Vector2((float)e.GetPosition(canvas).X, (float)e.GetPosition(canvas).Y));
             switch (currentSelectionState)
             {
                 case SelectionState.Ready:
@@ -814,7 +791,6 @@ namespace Finite_Element_Analysis_Explorer
             // Check if Nodes are the same location.
             if ((firstNodePosition.X == secondNodePosition.X) && (firstNodePosition.Y == secondNodePosition.Y))
             {
-                // Debug.WriteLine("Nodes are the same.");
                 return;
             }
 
@@ -850,8 +826,6 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 Model.Members.CurrentMember = new Member(Model.Members.NextIndex, nodeNear, nodeFar, Model.Sections.CurrentSection, Options.DefaultNumberOfSegments, 0, 0);
-
-                // Model.Members.CurrentMember = Model.Members.AddNewMember(NodeNear, NodeFar, Model.Sections.CurrentSection, Options.DefaultNumberOfSegments, 0, 0);
                 Construction.Current.ShowMember();
             }
             catch (Exception ex)

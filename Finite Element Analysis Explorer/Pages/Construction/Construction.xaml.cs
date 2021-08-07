@@ -58,18 +58,8 @@ namespace Finite_Element_Analysis_Explorer
 
         public async void ShowHelpAsync()
         {
-            // frameDetails.Width = 220;
-            // frameDetails.Navigate(typeof(PanelHelp));
-            // frameDisplay.Navigate(typeof(Help));
-
-            // var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            // var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
-
             // http://dallasadams.net/Software/FiniteElementAnalysisExplorer/Help/Default.aspx
             var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
-
-            // var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
-            // var uriHelpGeneral = new Uri(@"http://dallasadams.net/FEAExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
 

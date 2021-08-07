@@ -139,7 +139,6 @@ namespace Finite_Element_Analysis_Explorer
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
             {
-                // boyut uyusmazligi
                 return false;
             }
 

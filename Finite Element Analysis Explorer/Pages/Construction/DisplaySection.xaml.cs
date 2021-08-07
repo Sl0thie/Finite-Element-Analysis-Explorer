@@ -8,8 +8,6 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class DisplaySection : Page
     {
-        // private string lastMaterialName = "";
-        // private string lastProfileSection = "";
         public DisplaySection()
         {
             this.InitializeComponent();
@@ -340,10 +338,10 @@ namespace Finite_Element_Analysis_Explorer
                             SingleValue_CalculatedArea.SetTheValue(area);
                             Model.Sections.CurrentSection.Area = area;
                             decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
-                            decimal InnerMoment = innerBreadth * innerHeight * innerHeight * innerHeight / 12;
-                            decimal SecondMoment = outerMoment - InnerMoment;
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            decimal innerMoment = innerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                            decimal secondMoment = outerMoment - innerMoment;
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                            Model.Sections.CurrentSection.I = secondMoment;
 
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
@@ -406,9 +404,9 @@ namespace Finite_Element_Analysis_Explorer
                         {
                             SingleValue_CalculatedArea.SetTheValue(area);
                             Model.Sections.CurrentSection.Area = area;
-                            decimal SecondMoment = DMath.PI / 4 * radius * radius * radius * radius;
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            decimal secondMoment = DMath.PI / 4 * radius * radius * radius * radius;
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                            Model.Sections.CurrentSection.I = secondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
@@ -464,20 +462,20 @@ namespace Finite_Element_Analysis_Explorer
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
                         decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Width = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerRadius = radius - Width;
-                        decimal OuterArea = DMath.PI * radius * radius;
-                        decimal InnerArea = DMath.PI * InnerRadius * InnerRadius;
-                        decimal Area = OuterArea - InnerArea;
+                        decimal width = Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal innerRadius = radius - width;
+                        decimal outerArea = DMath.PI * radius * radius;
+                        decimal innerArea = DMath.PI * innerRadius * innerRadius;
+                        decimal area = outerArea - innerArea;
 
-                        if (Area > 0)
+                        if (area > 0)
                         {
-                            SingleValue_CalculatedArea.SetTheValue(Area);
-                            Model.Sections.CurrentSection.Area = Area;
-                            decimal SecondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
-                            SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
+                            SingleValue_CalculatedArea.SetTheValue(area);
+                            Model.Sections.CurrentSection.Area = area;
+                            decimal secondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * innerRadius * innerRadius * innerRadius * innerRadius);
+                            SingleValue_CalculatedMoment.SetTheValue(secondMoment);
 
-                            Model.Sections.CurrentSection.I = SecondMoment;
+                            Model.Sections.CurrentSection.I = secondMoment;
                             SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
@@ -685,23 +683,7 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_ThermalExpansion.SetNull();
             SingleValue_ThermalConductivity.SetNull();
 
-            // if (Model.Sections.CurrentSection.Material == selectedMaterial.Name)
-            // {
-
-            // }
-            // else
-            // {
-            //    //Set Properties to the Section.
-            //    Model.Sections.CurrentSection.Material = selectedMaterial.Name;
-            //    SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
-            //    Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
-            //    SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
-            //    SingleValue_Density.SetTheValue(selectedMaterial.Density);
-            //    Model.Sections.CurrentSection.Density = selectedMaterial.Density;
-            // }
-
-            ////Material
-
+            // Material
             SingleValue_Cost.SetNull();
             SingleValue_Cost.SetTheValue(selectedMaterial.Cost);
 
@@ -717,8 +699,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
-
-                // SingleValue_CalculatedMoment.SetTheValue(selectedMaterial.ModulusOfElasticity);
             }
             catch
             {
@@ -803,7 +783,6 @@ namespace Finite_Element_Analysis_Explorer
         {
             TextBlock_SelectedProfile.Text = selectedProfile.Name;
 
-            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             if (selectedProfile.ImagePath != null)
             {
                 image_Profile.Source = new BitmapImage(new Uri(selectedProfile.ImagePath));
@@ -1023,16 +1002,12 @@ namespace Finite_Element_Analysis_Explorer
             }
 
             Model.Sections[Model.Sections.CurrentSection.Name].SectionProfile = selectedProfile.Name;
-
-            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             CalculateSection();
         }
 
         private void ListView_Profile_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SectionProfile selectedProfile = (SectionProfile)ListView_Profile.SelectedItem;
-
-            // Model.Sections.CurrentSection.SectionProfile = selectedProfile.Name;
             UpdateProfile(selectedProfile);
         }
 

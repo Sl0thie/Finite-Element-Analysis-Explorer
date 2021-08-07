@@ -25,10 +25,6 @@ namespace Finite_Element_Analysis_Explorer
             // IsLoaded = false;
         }
 
-        // public void ClearMessages()
-        // {
-        //    StackConsole.Children.Clear();
-        // }
         public void AddMessage(long total, long step, string message)
         {
             SolverMessage nextMessage = new SolverMessage
@@ -39,21 +35,5 @@ namespace Finite_Element_Analysis_Explorer
             };
             StackConsole.Children.Add(nextMessage);
         }
-
-        // private Task ProcessAsync()
-        // {
-        //    //try
-        //    //{
-        //    //    await FileManager.LoadLastFileAsync();
-
-        // //    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-        //    //        () =>
-        //    //        {
-        //    //            FileLoading.Current.NavigateToConstruction();
-        //    //        }
-        //    //        );
-        //    //}
-        //    //catch (Exception ex) { Debug.WriteLine("FileLoadingDisplay Error: " + ex.Message); }
-        // }
     }
 }

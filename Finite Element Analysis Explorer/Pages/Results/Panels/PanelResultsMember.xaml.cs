@@ -68,20 +68,6 @@ namespace Finite_Element_Analysis_Explorer
             doubleValue_ReactionsM.Axis = 3;
             doubleValue_ReactionsM.SetValue(Model.Members.CurrentMember.NodeNear.LoadReaction.M, Model.Members.CurrentMember.NodeFar.LoadReaction.M);
 
-            // doubleValue_InternalLoadsX.DisplayOnly = true;
-            // doubleValue_InternalLoadsX.UnitType = UnitType.Force;
-            // doubleValue_InternalLoadsX.Axis = 1;
-            // doubleValue_InternalLoadsX.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.X, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.X);
-
-            // doubleValue_InternalLoadsY.DisplayOnly = true;
-            // doubleValue_InternalLoadsY.UnitType = UnitType.Force;
-            // doubleValue_InternalLoadsY.Axis = 2;
-            // doubleValue_InternalLoadsY.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.Y, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.Y);
-
-            // doubleValue_InternalLoadsM.DisplayOnly = true;
-            // doubleValue_InternalLoadsM.UnitType = UnitType.Moment;
-            // doubleValue_InternalLoadsM.Axis = 3;
-            // doubleValue_InternalLoadsM.SetValue(Model.Members.CurrentMember.SegmentNear.InternalLoadNearGlobal.M, Model.Members.CurrentMember.SegmentFar.InternalLoadFarGlobal.M);
             doubleValue_InternalLoadsX.DisplayOnly = true;
             doubleValue_InternalLoadsX.UnitType = UnitType.Force;
             doubleValue_InternalLoadsX.Axis = 1;
@@ -270,7 +256,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }

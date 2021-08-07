@@ -10,7 +10,6 @@ namespace Finite_Element_Analysis_Explorer
     {
         internal static Startup Current;
 
-        // private bool IsLoaded = false;
         public Startup()
         {
             this.InitializeComponent();
@@ -47,7 +46,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            // Debug.WriteLine("Menu Button Clicked");
             if (LeftFrameColumn.Width == new GridLength(32))
             {
                 LeftFrameColumn.Width = new GridLength(320);
@@ -63,26 +61,13 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-
-            // IsLoaded = true;
             frameContentDetails.Navigate(typeof(Slim));
             frameContentDisplay.Navigate(typeof(StartupDisplay));
-
-            // Debug.WriteLine("Page Loaded");
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged_UpdateTitleBar;
-
-            // IsLoaded = false;
         }
-
-        // public void NavigateToFileLoading()
-        // {
-        //    //Frame.Navigate(typeof(FileLoading));
-        //    Frame rootFrame = Window.Current.Content as Frame;
-        //    rootFrame.Navigate(typeof(FileLoading));
-        // }
     }
 }

@@ -52,8 +52,6 @@ namespace Finite_Element_Analysis_Explorer
         public static string FileTitle
         {
             get { return fileTitle; }
-
-            // set { fileTitle = value; }
         }
 
         #endregion
@@ -518,7 +516,6 @@ namespace Finite_Element_Analysis_Explorer
                 return false;
             }
 
-            // Debug.WriteLine("File : " + WorkingFileDisplayName + " " + WorkingFilePath);
             return true;
         }
 
@@ -554,38 +551,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 MaterialsList.LoadList();
                 SectionProfilesList.LoadList();
-
-                // MaterialsFile = await localFolder.GetFileAsync("Materials.Data");
-                // IList<String> Lines = new List<string>();
-                // Lines = await FileIO.ReadLinesAsync(MaterialsFile);
-                // foreach (string line in Lines)
-                // {
-                //    string[] words = line.Split('|');
-                //    Material tempMaterial = new Material(Convert.ToString(words[0]), Convert.ToString(words[1]), Convert.ToDecimal(words[2]), Convert.ToDecimal(words[3]), Convert.ToDecimal(words[4]), Convert.ToDecimal(words[5]), Convert.ToDecimal(words[6]), Convert.ToDecimal(words[7]), Convert.ToDecimal(words[8]), Convert.ToDecimal(words[9]), Convert.ToDecimal(words[10]), Convert.ToDecimal(words[11]), Convert.ToInt32(words[12]), Convert.ToInt32(words[13]), Convert.ToString(words[14]), Convert.ToDecimal(words[15]), Convert.ToString(words[16]), Convert.ToString(words[17]), Convert.ToString(words[18]), Convert.ToString(words[19]), Convert.ToString(words[20]), Convert.ToString(words[21]), Convert.ToString(words[22]), Convert.ToString(words[23]), Convert.ToString(words[24]), Convert.ToString(words[25]), Convert.ToString(words[26]), Convert.ToString(words[27]), Convert.ToString(words[28]), Convert.ToString(words[29]), Convert.ToString(words[30]), Convert.ToString(words[31]), Convert.ToString(words[32]), Convert.ToString(words[33]), Convert.ToString(words[34]), Convert.ToString(words[35]), Convert.ToString(words[36]), Convert.ToString(words[37]), Convert.ToString(words[38]), Convert.ToString(words[39]), Convert.ToString(words[40]), Convert.ToString(words[41]), Convert.ToString(words[42]), Convert.ToString(words[43]), Convert.ToString(words[44]), Convert.ToString(words[45]), Convert.ToString(words[46]), Convert.ToString(words[47]), Convert.ToString(words[48]), Convert.ToString(words[49]), Convert.ToString(words[50]), Convert.ToString(words[51]), Convert.ToString(words[52]), Convert.ToString(words[53]), Convert.ToString(words[54]), Convert.ToString(words[55]), Convert.ToString(words[56]), Convert.ToString(words[57]), Convert.ToString(words[58]), Convert.ToString(words[59]), Convert.ToString(words[60]), Convert.ToString(words[61]), Convert.ToString(words[62]), Convert.ToString(words[63]), Convert.ToString(words[64]), Convert.ToString(words[65]), Convert.ToString(words[66]), Convert.ToString(words[67]), Convert.ToString(words[68]), Convert.ToString(words[69]), Convert.ToString(words[70]), Convert.ToString(words[71]), Convert.ToString(words[72]), Convert.ToString(words[73]), Convert.ToString(words[74]), Convert.ToString(words[75]), Convert.ToString(words[76]), Convert.ToString(words[77]), Convert.ToString(words[78]), Convert.ToString(words[79]), Convert.ToString(words[80]), Convert.ToString(words[81]), Convert.ToString(words[82]), Convert.ToString(words[83]), Convert.ToString(words[84]), Convert.ToString(words[85]), Convert.ToString(words[86]), Convert.ToString(words[87]), Convert.ToString(words[88]), Convert.ToString(words[89]), Convert.ToString(words[90]), Convert.ToString(words[91]), Convert.ToString(words[92]), Convert.ToString(words[93]), Convert.ToString(words[94]), Convert.ToString(words[95]), Convert.ToString(words[96]), Convert.ToString(words[97]), Convert.ToString(words[98]), Convert.ToString(words[99]));
-                //    Model.Materials.Add(tempMaterial.Name, tempMaterial);
-                // }
             }
             catch
             {
-                // Material tempMaterial = new Material("Steel (Structural)", "", 1, 8860, 480000000, -1, -1, 260000000, 145000000, 200000000000, 79000000000, 11700000, 23);
-                // Model.Materials.Add(tempMaterial.Name, tempMaterial);
-
-                // tempMaterial = new Material("Steel (High - Strength)", "", 1, 8860, 480000000, -1, -1, 350000000, 210000000, 200000000000, 79000000000, 11700000, 21);
-                // Model.Materials.Add(tempMaterial.Name, tempMaterial);
-
-                // tempMaterial = new Material("Aluminum (1100 - H14)", "", 1, 2710, 110000000, -1, 75000000, 95000000, 55000000, 70000000000, 26000000000, 23600000, 20);
-                // Model.Materials.Add(tempMaterial.Name, tempMaterial);
-
-                // StorageFile tempFile = await localFolder.CreateFileAsync("Materials.Data", CreationCollisionOption.ReplaceExisting);
-                // await FileIO.WriteTextAsync(tempFile, "Steel (Structural)||1|8860|480000000|-1|-1|260000000|145000000|200000000000|79000000000|11700000|23");
-                // await FileIO.WriteTextAsync(tempFile, "Steel (High-Strength)||1|8860|480000000|-1|-1|350000000|210000000|200000000000|79000000000|11700000|21");
-                // await FileIO.WriteTextAsync(tempFile, "Aluminum (1100-H14)||1|2710|110000000|-1|75000000|95000000|55000000|70000000000|26000000000|23600000|20");
-                // await Task.Run(() => SaveMaterialsAsync());
-
-                // StorageFile tempFile = await localFolder.CreateFileAsync("Materials.Data", CreationCollisionOption.ReplaceExisting);
-                // await Task.Run(() => SaveMaterialsAsync());
-
-                // Debug.WriteLine("ERROR Loading Materials");
             }
 
             return Model.Materials.Count;
@@ -593,81 +561,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void SaveMaterialsAsyncsec()
         {
-            // XmlSerializer serializer = new XmlSerializer(typeof(Material));
-            // StringBuilder stringBuilder = new StringBuilder();
-            // XmlWriterSettings settings = new XmlWriterSettings()
-            // {
-            //    Indent = true,
-            //    OmitXmlDeclaration = true,
-            // };
-
-            // using (XmlWriter xmlWriter = XmlWriter.Create(stringBuilder, settings))
-            // {
-            //    serializer.Serialize(xmlWriter, Model.Materials);
-            // }
-
-            // try
-            // {
-            //    string localData = ObjectSerializer<Dictionary<string,Material>.ToXml(Model.Materials);
-
-            // if (!string.IsNullOrEmpty(localData))
-            //    {
-            //        StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("Materials.xml", CreationCollisionOption.ReplaceExisting);
-            //        await FileIO.WriteTextAsync(localFile, localData);
-            //    }
-            // }
-            // catch (Exception ex)
-            // {
-            //    Debug.WriteLine("XML Error " + ex.Message);
-            // }
-
-            // string jsonContents = JsonConvert.SerializeObject(clocksItem);
-            // StorageFile data = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-            // using (IRandomAccessStream textStream = await data.OpenAsync(FileAccessMode.ReadWrite))
-            // {
-            //    using (DataWriter textWriter = new DataWriter(textStream))
-            //    {
-            //        textWriter.WriteString(jsonContents);
-            //        await textWriter.StoreAsync();
-            //    }
-
-            // }
-
-            // StorageFile file = await localFolder.CreateFileAsync("Materials.xml", CreationCollisionOption.ReplaceExisting);
-            // using (IRandomAccessStream writeStream = await file.OpenAsync(FileAccessMode.ReadWrite))
-            // {
-            //    System.IO.Stream s = writeStream.AsStreamForWrite();
-            //    System.Xml.XmlWriterSettings settings = new System.Xml.XmlWriterSettings();
-            //    settings.Async = true;
-            //    using (System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(s, settings))
-            //    {
-            //        //writer.Settings.ConformanceLevel = System.Xml.ConformanceLevel.Auto;
-
-            // foreach (var Item in Model.Materials)
-            //        {
-            //            writer.WriteStartElement("Material");
-            //            writer.WriteElementString("Name", Item.Value.Name);
-            //            writer.WriteElementString("Description", Item.Value.Description);
-            //            writer.WriteElementString("Cost", Item.Value.Cost.ToString());
-
-            // writer.WriteElementString("Density", Item.Value.Density.ToString());
-            //            writer.WriteElementString("UltimateStrengthTension", Item.Value.UltimateStrengthTension.ToString());
-            //            writer.WriteElementString("UltimateStrengthCompression", Item.Value.UltimateStrengthCompression.ToString());
-            //            writer.WriteElementString("UltimateStrengthShear", Item.Value.UltimateStrengthShear.ToString());
-            //            writer.WriteElementString("YieldStrengthTension", Item.Value.YieldStrengthTension.ToString());
-            //            writer.WriteElementString("YieldStrengthShear", Item.Value.YieldStrengthShear.ToString());
-            //            writer.WriteElementString("ModulusOfElasticity", Item.Value.ModulusOfElasticity.ToString());
-            //            writer.WriteElementString("ModulusOfRigidity", Item.Value.ModulusOfRigidity.ToString());
-            //            writer.WriteElementString("CoefficientOfThermalExpansion", Item.Value.CoefficientOfThermalExpansion.ToString());
-            //            writer.WriteElementString("Ductility", Item.Value.Ductility.ToString());
-
-            // writer.WriteEndElement();
-            //        }
-
-            // writer.Flush();
-            //        await writer.FlushAsync();
-            //    }
-            // }
         }
 
         internal static async void SaveMaterialsAsync()
@@ -882,7 +775,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 Debug.WriteLine("Failed to load sections.");
 
-                // Model.Sections.AddNewSection("Default", 200000000000m, 0.000022m, 0.1m, 2450m, 100m, 255, 192, 192, 192, CanvasDashStyle.Solid, 1.5f, CanvasCapStyle.Round, CanvasCapStyle.Round, 0, 0, 0, 0, 0, 0, 0, "Solid Rectangle", 0, 0, 0, 0, 0, 0, 0, "Default", 0, 0, 0, 0, 0, 0, 0, 0);
                 try
                 {
                     Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
@@ -913,22 +805,6 @@ namespace Finite_Element_Analysis_Explorer
 
                 await FileIO.WriteTextAsync(tempFile, tempString);
 
-                // await FileIO.WriteTextAsync(tempFile, "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Steel 250 UB 37|200000000000|0.0000502116060000000000000000|0.004770|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.146|0.256|0.009|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Steel 410 UB 60|200000000000|0.0001961423633750000000000000|0.00778050|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.178|0.4060|0.0105|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Steel 610 UB 125|200000000000|0.0008849453840416666666666667|0.01610450|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.229|0.6120|0.0155|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Concrete 100x100 25MPa|200000000000|0.0000083333333333333333333333|0.01|2450|2.61|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.1|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Concrete 200x200 25MPa|200000000000|0.0001333333333333333333333333|0.04000000|2450|10.44000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.2000|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Concrete 300x300 25MPa|200000000000|0.000675000000|0.090000|2450|23.490000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.300|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 70x35|200000000000|0.0000010004166666666666666667|0.002450|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.070|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 90x35|200000000000|0.000002126250|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 70x45|200000000000|0.0000005315625|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.070|0.045|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 90x45|200000000000|0.000002733750|0.004050|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.045|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
-                // await FileIO.WriteTextAsync(tempFile, "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|");
                 Model.Sections.CurrentSection = Model.Sections["Default"];
                 await Task.Run(() => SaveSectionsAsync());
 
@@ -1073,7 +949,6 @@ namespace Finite_Element_Analysis_Explorer
                 LocalSettings.Values["WorkingFileMruToken"] = workingFileMruToken;
                 LocalSettings.Values["WorkingFileListToken"] = workingFileListToken;
 
-                // Debug.WriteLine("Open File Picker : " + WorkingFile.DisplayName + " " + WorkingFile.Path + " " + WorkingFileMruToken);
                 return true;
             }
         }

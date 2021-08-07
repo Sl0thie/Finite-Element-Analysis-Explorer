@@ -113,7 +113,6 @@ namespace Finite_Element_Analysis_Explorer
             // file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
@@ -144,7 +143,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)

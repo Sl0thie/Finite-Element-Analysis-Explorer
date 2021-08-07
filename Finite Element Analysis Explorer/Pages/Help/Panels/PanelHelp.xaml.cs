@@ -112,7 +112,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }

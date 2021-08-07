@@ -41,7 +41,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="SolverDoubleLUP"/> class.
         /// </summary>
-        /// <param name="parent"></param>
+        /// <param name="parent">The parent page.</param>
         public SolverDoubleLUP(Page parent)
         {
             this.parent = parent;

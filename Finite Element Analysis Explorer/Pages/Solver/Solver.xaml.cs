@@ -12,10 +12,7 @@ namespace Finite_Element_Analysis_Explorer
     {
         internal static Solver Current;
         private bool isPageLoaded = false;
-
-        // private bool IsSolving = false;
         private ISolver currentSolver;
-
         private bool detailsIsOpen = true;
 
         public bool DetailsIsOpen
@@ -41,7 +38,6 @@ namespace Finite_Element_Analysis_Explorer
 
         public void StartSolver()
         {
-            // CurrentSolver = new SolverBasic2(this, true);
             PanelSolver.Current.SolverHasStarted();
 
             switch (Options.CurrentSolver)
@@ -66,8 +62,6 @@ namespace Finite_Element_Analysis_Explorer
                     currentSolver = new SolverDoubleLUP(this);
                     break;
             }
-
-            // CurrentSolver = new SolverDoubleLUP(this, true);
         }
 
         public void ShowResults()
@@ -124,7 +118,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 if (Options.AutoStartSolver)
                 {
-                    // Debug.WriteLine("Autostarting..");
                     await Task.Delay(TimeSpan.FromMilliseconds(500));
                     Solver.Current.StartSolver();
                 }
@@ -136,7 +129,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            // App.CurrentPageState = PageState.Unknown;
             isPageLoaded = false;
         }
 
@@ -158,34 +150,10 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            // if (detailsIsOpen)
-            // {
-            //    detailsIsOpen = false;
-            //    frameDetails.Width = Constants.WidthDetailsSlim;
-            //    frameDetails.Navigate(typeof(ConstructionSlim));
-            // }
-            // else
-            // {
-            //    detailsIsOpen = true;
-            //    frameDetails.Width = Constants.WidthDetailsNormal;
-            //    frameDetails.Navigate(typeof(PanelModel));
-            // }
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // frameDisplay.Width = this.ActualWidth;
-            // frameDisplay.Height = this.ActualHeight - Constants.HeightTitleBar;
-
-            // if (detailsIsOpen)
-            // {
-            //    frameDetails.Width = Constants.WidthDetailsNormal;
-            // }
-            // else
-            // {
-            //    frameDetails.Width = Constants.WidthDetailsSlim;
-            // }
-            // frameDetails.Height = this.ActualHeight - Constants.HeightTitleBar;
         }
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)

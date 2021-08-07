@@ -115,8 +115,6 @@ namespace Finite_Element_Analysis_Explorer
             set
             {
                 section = value;
-
-                // ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y);
             }
         }
 
@@ -199,8 +197,6 @@ namespace Finite_Element_Analysis_Explorer
             set
             {
                 lDLFar = value;
-
-                // ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y);
             }
         }
 
@@ -639,14 +635,8 @@ namespace Finite_Element_Analysis_Explorer
         {
             decimal lamba_X; // = lengthXAxis / length;
             decimal lamba_Y; // = lengthYAxis / length;
-
             lamba_X = lengthXAxis / length;
             lamba_Y = lengthYAxis / length * angleMultiplyer;
-
-            // Debug.WriteLine("Segment " + index + " " + lamba_X + " " + lamba_Y);
-
-            // decimal lamba_X = lengthXAxis / length * angleMultiplyer;
-            // decimal lamba_Y = lengthYAxis / length * angleMultiplyer;
             DecimalMatrix t = new DecimalMatrix(6, 6);
 
             t[0, 0] = lamba_X;
@@ -696,14 +686,10 @@ namespace Finite_Element_Analysis_Explorer
 
         private DecimalMatrix CreateForceTransformationMatrix()
         {
-            // decimal lamba_X = lengthXAxis / length;
-            // decimal lamba_Y = lengthYAxis / length;
             decimal lamba_X; // = lengthXAxis / length;
             decimal lamba_Y; // = lengthYAxis / length;
-
             lamba_X = lengthXAxis / length;
             lamba_Y = lengthYAxis / length * angleMultiplyer;
-
             DecimalMatrix tt = new DecimalMatrix(6, 6);
 
             tt[0, 0] = lamba_X;
@@ -781,7 +767,6 @@ namespace Finite_Element_Analysis_Explorer
             DecimalMatrix k_prime = CreateFrameMemberStiffnessMatrix();
             DecimalMatrix t = CreateDisplacementTransformationMatrix();
 
-            // DecimalMatrix Tt = CreateForceTransformationMatrix();
             di[0, 0] = NodeNear.Displacement.X;
             di[1, 0] = NodeNear.Displacement.Y;
             di[2, 0] = NodeNear.Displacement.M;
@@ -916,7 +901,6 @@ namespace Finite_Element_Analysis_Explorer
 
         internal void UpdateGraphicsProperties()
         {
-            // Debug.WriteLine("UpdateGraphicsProperties " + parent.Index + " " + this.index);
             nearVectorDisplaced = new Vector2((float)(nodeNear.Position.X + (nodeNear.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeNear.Position.Y + (nodeNear.Displacement.Y * (decimal)Options.DisplacementFactor)));
             farVectorDisplaced = new Vector2((float)(nodeFar.Position.X + (nodeFar.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeFar.Position.Y + (nodeFar.Displacement.Y * (decimal)Options.DisplacementFactor)));
 
@@ -967,11 +951,6 @@ namespace Finite_Element_Analysis_Explorer
                 nearLDLLine = NearVectorDisplaced + (LDLUnit * (-(float)lDLNear * (float)Options.LinearFactor));
                 farLDLLine = FarVectorDisplaced + (LDLUnit * (-(float)lDLFar * (float)Options.LinearFactor));
             }
-
-            // centerPointDisplaced = new Vector2((float)((nearVectorDisplaced.X + farVectorDisplaced.X) /2), (float)((nearVectorDisplaced.Y + farVectorDisplaced.Y) /2));
-
-            // Debug.WriteLine("CenterPoint " + parent.Index + " " + this.index + " " + centerPointDisplaced);
-            // Output();
         }
 
         private void Add_PositiveLoad()

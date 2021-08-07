@@ -7,8 +7,6 @@ namespace Finite_Element_Analysis_Explorer
 {
     public sealed partial class DisplaySection2 : Page
     {
-        // private string lastMaterialName = "";
-        // private string lastProfileSection = "";
         public DisplaySection2()
         {
             this.InitializeComponent();
@@ -173,18 +171,12 @@ namespace Finite_Element_Analysis_Explorer
                 Model.Sections.CurrentSection.Material = selectedMaterial.Name;
                 SingleValue_YoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
-
-                // Debug.WriteLine("E " + selectedMaterial.ModulusOfElasticity + " " + SingleValue_YoungsModulus.NewValue);
                 SingleValue_YoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 SingleValue_Density.SetTheValue(selectedMaterial.Density);
                 Model.Sections.CurrentSection.Density = selectedMaterial.Density;
-
-                // Update Material Cost.
-
-                // SingleValue_CostPerLength.SetTheValue(selectedMaterial.Cost * );
             }
 
-            ////Material
+            // Material
             SingleValue_MaterialDensity.DisplayOnly = true;
             SingleValue_MaterialDensity.Title = "Density";
             SingleValue_MaterialDensity.UnitType = UnitType.Density;
@@ -551,26 +543,26 @@ namespace Finite_Element_Analysis_Explorer
                         SingleValue_Property3.SetNull();
 
                         decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal Width = Model.Sections.CurrentSection.SectionProfileProperty3;
-                        decimal OuterArea = breadth * Height;
-                        decimal InnerBreadth = breadth - Width;
-                        decimal InnerHeight = Height - Width - Width;
-                        decimal InnerArea = InnerBreadth * InnerHeight;
-                        decimal Area = OuterArea - InnerArea;
+                        decimal height = Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal width = Model.Sections.CurrentSection.SectionProfileProperty3;
+                        decimal outerArea = breadth * height;
+                        decimal innerBreadth = breadth - width;
+                        decimal innerHeight = height - width - width;
+                        decimal innerArea = innerBreadth * innerHeight;
+                        decimal area = outerArea - innerArea;
 
-                        if (Area == Model.Sections.CurrentSection.Area)
+                        if (area == Model.Sections.CurrentSection.Area)
                         {
                             SingleValue_Property1.SetTheValue(breadth);
-                            SingleValue_Property2.SetTheValue(Height);
-                            SingleValue_Property3.SetTheValue(Width);
+                            SingleValue_Property2.SetTheValue(height);
+                            SingleValue_Property3.SetTheValue(width);
                             SingleValue_CalculatedArea.SetTheValue(Model.Sections.CurrentSection.Area);
 
                             if (Model.Sections.CurrentSection.Area > 0)
                             {
                                 SingleValue_CalculatedMoment.SetTheValue(Model.Sections.CurrentSection.I);
                                 SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                                SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
+                                SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (height / 2));
                             }
                         }
 
@@ -784,26 +776,25 @@ namespace Finite_Element_Analysis_Explorer
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
                         decimal breadth = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Height = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal Width = Model.Sections.CurrentSection.SectionProfileProperty3;
-                        decimal OuterArea = breadth * Height;
-                        decimal InnerBreadth = breadth - Width;
-                        decimal innerHeight = Height - Width - Width;
-                        decimal InnerArea = InnerBreadth * innerHeight;
-                        decimal Area = OuterArea - InnerArea;
+                        decimal height = Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal width = Model.Sections.CurrentSection.SectionProfileProperty3;
+                        decimal outerArea = breadth * height;
+                        decimal innerBreadth = breadth - width;
+                        decimal innerHeight = height - width - width;
+                        decimal innerArea = innerBreadth * innerHeight;
+                        decimal area = outerArea - innerArea;
 
-                        // Debug.WriteLine("A " + Area + " O " + OuterArea + " I " + InnerArea);
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
-                        decimal OuterMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
-                        decimal InnerMoment = InnerBreadth * innerHeight * innerHeight * innerHeight / 12;
-                        decimal secondMoment = OuterMoment - InnerMoment;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
+                        decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
+                        decimal innerMoment = innerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                        decimal secondMoment = outerMoment - innerMoment;
                         SingleValue_CalculatedMoment.SetTheValue(secondMoment);
                         SingleValue_MomentOfInertia.SetTheValue(secondMoment);
                         Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
-                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Height / 2));
+                        SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (height / 2));
 
                         switch (Options.Length)
                         {
@@ -840,14 +831,14 @@ namespace Finite_Element_Analysis_Explorer
                     if (Model.Sections.CurrentSection.SectionProfileProperty1 > 0)
                     {
                         decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Area = DMath.PI * radius * radius;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = DMath.PI / 4 * radius * radius * radius * radius;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal area = DMath.PI * radius * radius;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
+                        decimal secondMoment = DMath.PI / 4 * radius * radius * radius * radius;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
                     }
@@ -858,18 +849,18 @@ namespace Finite_Element_Analysis_Explorer
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
                         decimal radius = Model.Sections.CurrentSection.SectionProfileProperty1;
-                        decimal Width = Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerRadius = radius - Width;
-                        decimal OuterArea = DMath.PI * radius * radius;
-                        decimal InnerArea = DMath.PI * InnerRadius * InnerRadius;
-                        decimal Area = OuterArea - InnerArea;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
-                        decimal SecondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * InnerRadius * InnerRadius * InnerRadius * InnerRadius);
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal width = Model.Sections.CurrentSection.SectionProfileProperty2;
+                        decimal innerRadius = radius - width;
+                        decimal outerArea = DMath.PI * radius * radius;
+                        decimal innerArea = DMath.PI * innerRadius * innerRadius;
+                        decimal area = outerArea - innerArea;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
+                        decimal secondMoment = (DMath.PI / 4 * radius * radius * radius * radius) - (DMath.PI / 4 * innerRadius * innerRadius * innerRadius * innerRadius);
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
                     }
@@ -900,19 +891,19 @@ namespace Finite_Element_Analysis_Explorer
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty3 > 0))
                     {
                         decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
-                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
-                        decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = outer - Inner;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
+                        decimal innerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal innerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal inner = innerBreadth * innerHeight;
+                        decimal area = outer - inner;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
                         decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
-                        decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
-                        decimal SecondMoment = outerMoment - InnerMoment;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal innerMoment = innerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                        decimal secondMoment = outerMoment - innerMoment;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
                     }
@@ -940,19 +931,19 @@ namespace Finite_Element_Analysis_Explorer
                     if ((Model.Sections.CurrentSection.SectionProfileProperty1 > 0) && (Model.Sections.CurrentSection.SectionProfileProperty2 > 0))
                     {
                         decimal outer = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2;
-                        decimal InnerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
-                        decimal InnerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
-                        decimal Inner = InnerBreadth * InnerHeight;
-                        decimal Area = outer - Inner;
-                        SingleValue_CalculatedArea.SetTheValue(Area);
-                        SingleValue_Area.SetTheValue(Area);
-                        Model.Sections.CurrentSection.Area = Area;
+                        decimal innerBreadth = Model.Sections.CurrentSection.SectionProfileProperty2 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal innerHeight = Model.Sections.CurrentSection.SectionProfileProperty1 - (Model.Sections.CurrentSection.SectionProfileProperty3 * 2);
+                        decimal inner = innerBreadth * innerHeight;
+                        decimal area = outer - inner;
+                        SingleValue_CalculatedArea.SetTheValue(area);
+                        SingleValue_Area.SetTheValue(area);
+                        Model.Sections.CurrentSection.Area = area;
                         decimal outerMoment = Model.Sections.CurrentSection.SectionProfileProperty1 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 * Model.Sections.CurrentSection.SectionProfileProperty2 / 12;
-                        decimal InnerMoment = InnerBreadth * InnerHeight * InnerHeight * InnerHeight / 12;
-                        decimal SecondMoment = outerMoment - InnerMoment;
-                        SingleValue_CalculatedMoment.SetTheValue(SecondMoment);
-                        SingleValue_MomentOfInertia.SetTheValue(SecondMoment);
-                        Model.Sections.CurrentSection.I = SecondMoment;
+                        decimal innerMoment = innerBreadth * innerHeight * innerHeight * innerHeight / 12;
+                        decimal secondMoment = outerMoment - innerMoment;
+                        SingleValue_CalculatedMoment.SetTheValue(secondMoment);
+                        SingleValue_MomentOfInertia.SetTheValue(secondMoment);
+                        Model.Sections.CurrentSection.I = secondMoment;
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
                     }

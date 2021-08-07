@@ -10,7 +10,7 @@ namespace Finite_Element_Analysis_Explorer
     public sealed partial class Results : Page
     {
         internal static Results Current;
-        private bool IsPageLoaded = false;
+        private bool isPageLoaded = false;
 
         private bool detailsIsOpen = true;
 
@@ -30,7 +30,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowMember()
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 frameDetails.Navigate(typeof(PanelResultsMember));
             }
@@ -38,7 +38,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public void ShowModel()
         {
-            if (IsPageLoaded)
+            if (isPageLoaded)
             {
                 frameDetails.Navigate(typeof(PanelResultsModel));
             }
@@ -68,9 +68,6 @@ namespace Finite_Element_Analysis_Explorer
 
         public async void ShowHelpAsync()
         {
-            // frameDetails.Width = 220;
-            // frameDetails.Navigate(typeof(PanelHelp));
-            // frameDisplay.Navigate(typeof(Help));
             var uriHelpGeneral = new Uri(@"http://dallasadams.net/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
@@ -130,13 +127,13 @@ namespace Finite_Element_Analysis_Explorer
         {
             App.CurrentPageState = PageState.Results;
             Current = this;
-            IsPageLoaded = true;
+            isPageLoaded = true;
             frameDetails.Navigate(typeof(PanelResultsModel));
             frameDisplay.Navigate(typeof(ResultsDisplay));
 
             SetTitle("Finite Element Analysis Explorer - " + FileManager.FileTitle);
 
-            IsPageLoaded = true;
+            isPageLoaded = true;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -158,8 +155,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            // App.CurrentPageState = PageState.Unknown;
-            IsPageLoaded = false;
+            isPageLoaded = false;
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)

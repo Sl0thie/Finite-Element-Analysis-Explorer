@@ -461,12 +461,6 @@
             set { brinellHardness = value; }
         }
 
-        // private string _Density;
-        // public string Density
-        // {
-        //    get { return _Density; }
-        //    set { _Density = value; }
-        // }
         private decimal liquidDensity = 0;
 
         internal decimal Liquid_Density

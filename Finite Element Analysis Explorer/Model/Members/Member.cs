@@ -129,17 +129,6 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        // private IList<Segment> segments = new List<Segment>();
-        // internal IList<Segment> Segments
-        // {
-        //    get
-        //    {
-        //        lock (segments)
-        //        {
-        //            return segments;
-        //        }
-        //    }
-        // }
         private ConcurrentDictionary<int, Segment> segments = new ConcurrentDictionary<int, Segment>();
 
         internal ConcurrentDictionary<int, Segment> Segments
@@ -422,8 +411,6 @@ namespace Finite_Element_Analysis_Explorer
 
             CalculateCosts();
 
-            // Model.Members.AddNewElementToTiles(index,centerPoint);
-
             // AssignNeighbours();
             dataReady = true;
         }
@@ -556,12 +543,10 @@ namespace Finite_Element_Analysis_Explorer
             lock (thisLock)
             {
                 segments.Clear();
-
-                // segments = new ConcurrentBag<Segment>();
                 Segment firstSegment = null;
 
                 decimal xDiv = lengthXAxis / totalSegments;
-                decimal yDiv; // (totalSegments * angleMultiplyer);
+                decimal yDiv;
                 if (angleMultiplyer == 0)
                 {
                     yDiv = 0;
@@ -624,18 +609,14 @@ namespace Finite_Element_Analysis_Explorer
 
                     if (Model.Members.MemberTiles.ContainsKey(position))
                     {
-                        // Debug.WriteLine("Update Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
                         iTmp = Model.Members.MemberTiles[position];
                         iTmp.Add(new Tuple<int, int>(index, item.Value.Index));
                     }
                     else
                     {
-                        // Debug.WriteLine("New    Position " + index + " " + item.Key + " " + Position.ToString() + " " + item.Value.CenterPointDisplaced.ToString());
-                        // List<int> NewList = new List<int>();
                         List<Tuple<int, int>> newList = new List<Tuple<int, int>>();
                         newList.Add(new Tuple<int, int>(index, item.Value.Index));
 
-                        // MemberTiles.TryAdd(Position, NewList);
                         if (!Model.Members.MemberTiles.TryAdd(position, newList))
                         {
                             Debug.WriteLine("Segment TryAdd Failed. " + index + " " + position.ToString() + " " + newList.ToString());

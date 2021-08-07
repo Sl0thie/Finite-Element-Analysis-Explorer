@@ -378,8 +378,6 @@ namespace Finite_Element_Analysis_Explorer
                     Node tmpNode = Model.Nodes.NodesWithReactions.GetOrAdd(index, this);
                 }
             }
-
-            // Camera.FindLargestExternalForce();
         }
 
         internal void UpdateNodeGraphics()

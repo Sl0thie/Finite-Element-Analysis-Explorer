@@ -58,25 +58,12 @@ namespace Finite_Element_Analysis_Explorer
         public int Total
         {
             get { return total; }
-
-            // set { total = value; }
         }
 
         internal void RemoveMember(int indexToRemove)
         {
             if (this.ContainsKey(indexToRemove))
             {
-                // foreach (Segment nextSegment in Model.Members[indexToRemove].Segments)
-                // {
-                //    if (!nextSegment.NodeNear.IsPrimary)
-                //    {
-                //        Model.Nodes.RemoveNode(nextSegment.NodeNear);
-                //    }
-                //    if (!nextSegment.NodeFar.IsPrimary)
-                //    {
-                //        Model.Nodes.RemoveNode(nextSegment.NodeFar);
-                //    }
-                // }
                 foreach (var item in Model.Members[indexToRemove].Segments)
                 {
                     if (!item.Value.NodeNear.IsPrimary)
@@ -92,7 +79,6 @@ namespace Finite_Element_Analysis_Explorer
 
                 if (this.MembersWithLinearLoads.ContainsKey(indexToRemove))
                 {
-                    // MembersWithLinearLoads.Remove(indexToRemove);
                     Member tmpMember = new Member();
                     MembersWithLinearLoads.TryRemove(indexToRemove, out tmpMember);
                 }
@@ -107,33 +93,6 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        // internal Member AddNewMember(Node _nearNode, Node _farNode, Section _section, int _totalSegments, decimal _LDLNear, decimal _LDLFar)
-        // {
-        //    int nextIndexToUse = nextIndex;
-        //    if (this.ContainsKey(nextIndexToUse))
-        //    {
-        //        Debug.WriteLine("Index is already in use");
-        //    }
-
-        // Member newMember = new Member(nextIndexToUse, _nearNode, _farNode, _section, _totalSegments, _LDLNear, _LDLFar);
-        //    if (!TryAdd(newMember.Index, newMember)) { Debug.WriteLine("AddNewMember TryAdd Failed"); }
-        //    //AddNewElementToTiles(newMember.Index, newMember.CenterPoint);
-        //    FindNextIndex();
-        //    total++;
-        //    return newMember;
-        // }
-
-        // internal Member AddNewMemberToIndex(int _index, Node _nearNode, Node _farNode, Section _section, int _totalSegments, decimal _LDLNear, decimal _LDLFar)
-        // {
-        //    Member newMember = new Member(_index, _nearNode, _farNode, _section, _totalSegments, _LDLNear, _LDLFar);
-        //    //TryAdd(_index, newMember);
-        //    if (!TryAdd(_index, newMember)) { Debug.WriteLine("AddNewMemberToIndex TryAdd Failed"); }
-        //    //AddNewElementToTiles(newMember.Index, newMember.CenterPoint);
-        //    FindNextIndex();
-
-        // total++;
-        //    return newMember;
-        // }
         internal void Reset()
         {
             Model.TotalMembers = 0;

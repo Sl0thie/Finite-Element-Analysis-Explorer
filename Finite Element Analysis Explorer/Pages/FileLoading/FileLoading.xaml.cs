@@ -61,12 +61,5 @@ namespace Finite_Element_Analysis_Explorer
 
             // IsLoaded = false;
         }
-
-        // public void NavigateToConstruction()
-        // {
-        //    //Frame.Navigate(typeof(Construction));
-        //    Frame rootFrame = Window.Current.Content as Frame;
-        //    rootFrame.Navigate(typeof(Construction));
-        // }
     }
 }

@@ -108,40 +108,6 @@
 
         private void TextBox_SectionName_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            // if (e.Key.ToString() == "Enter")
-            // {
-            //    Debug.WriteLine("textBox_SectionName_KeyDown Enter : " + textBox_SectionName.Text);
-            //    if (!Model.Sections.ContainsKey(textBox_SectionName.Text))
-            //    {
-            //        Model.Sections.AddNewSection(textBox_SectionName.Text,
-            //            SingleValue_YoungsModulus.NewValue,
-            //            SingleValue_MomentOfInertia.NewValue,
-            //            SingleValue_Area.NewValue,
-            //            SingleValue_Density.NewValue,
-            //            SingleValue_CostPerMeter.NewValue,
-            //            (byte)SingleValue_ColorAlpha.NewValue,
-            //            (byte)SingleValue_ColorRed.NewValue,
-            //            (byte)SingleValue_ColorGreen.NewValue,
-            //            (byte)SingleValue_ColorBlue.NewValue,
-            //            (LineType)0,
-            //            (float)SingleValue_LineWeight.NewValue,
-            //            (CapStyle)0,
-            //            (CapStyle)0,
-            //            SingleValue_CostHorizontalTransport.NewValue,
-            //            SingleValue_CostVerticalTransport.NewValue,
-            //            SingleValue_CostNodeFixed.NewValue,
-            //            SingleValue_CostNodeFree.NewValue,
-            //            SingleValue_CostNodePinned.NewValue,
-            //            SingleValue_CostNodeRoller.NewValue,
-            //            SingleValue_CostNodeTrack.NewValue
-
-            // );
-
-            // ListView_Sections.ItemsSource = null;
-            //        ListView_Sections.ItemsSource = Model.Sections;
-
-            // }
-            // }
         }
 
         private void UpdateCurrentSection()
