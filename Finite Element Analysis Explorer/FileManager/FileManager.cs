@@ -33,19 +33,19 @@ namespace Finite_Element_Analysis_Explorer
         private static string workingFileMruToken = string.Empty;
         private static string workingFileListToken = string.Empty;
 
-        internal static int StatsLoadingTotalItems = 0;
-        internal static int StatsLoadingTotalMembers = 0;
-        internal static int StatsLoadingTotalNodes = 0;
-        internal static int StatsLoadingTotalSections = 0;
+        private static int statsLoadingTotalItems = 0;
+        private static int statsLoadingTotalMembers = 0;
+        private static int statsLoadingTotalNodes = 0;
+        private static int statsLoadingTotalSections = 0;
 
-        internal static int StatsLastSolverUsed = 0;
-        internal static long StatsTimeCreated = 0;
-        internal static long StatsTimeLastOpened = 0;
-        internal static long StatsTimeLastClosed = 0;
-        internal static long StatsTimeTotalOpened = 0;
-        internal static long StatsTotalOpened = 0;
-        internal static long StatsTimeTotalSolving = 0;
-        internal static long StatsTotalSolving = 0;
+        private static int statsLastSolverUsed = 0;
+        private static long statsTimeCreated = 0;
+        private static long statsTimeLastOpened = 0;
+        private static long statsTimeLastClosed = 0;
+        private static long statsTimeTotalOpened = 0;
+        private static long statsTotalOpened = 0;
+        private static long statsTimeTotalSolving = 0;
+        private static long statsTotalSolving = 0;
 
         private static string fileTitle;
 
@@ -162,31 +162,31 @@ namespace Finite_Element_Analysis_Explorer
                                     try
                                     {
                                         // Stats for Loading
-                                        StatsLoadingTotalItems = Convert.ToInt32(words[1]);
+                                        statsLoadingTotalItems = Convert.ToInt32(words[1]);
                                         try
                                         {
                                             if (FileLoadingDisplay.Current is object)
                                             {
-                                                FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + StatsLoadingTotalItems);
+                                                FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + statsLoadingTotalItems);
                                             }
                                         }
                                         catch
                                         {
                                         }
 
-                                        StatsLoadingTotalMembers = Convert.ToInt32(words[2]);
-                                        StatsLoadingTotalNodes = Convert.ToInt32(words[3]);
-                                        StatsLoadingTotalSections = Convert.ToInt32(words[4]);
+                                        statsLoadingTotalMembers = Convert.ToInt32(words[2]);
+                                        statsLoadingTotalNodes = Convert.ToInt32(words[3]);
+                                        statsLoadingTotalSections = Convert.ToInt32(words[4]);
 
                                         // Other Stats
-                                        StatsLastSolverUsed = Convert.ToInt32(words[5]);
-                                        StatsTimeCreated = Convert.ToInt32(words[6]);
-                                        StatsTimeLastOpened = Convert.ToInt32(words[7]);
-                                        StatsTimeLastClosed = Convert.ToInt32(words[8]);
-                                        StatsTimeTotalOpened = Convert.ToInt32(words[9]);
-                                        StatsTotalOpened = Convert.ToInt32(words[10]);
-                                        StatsTimeTotalSolving = Convert.ToInt32(words[11]);
-                                        StatsTotalSolving = Convert.ToInt32(words[12]);
+                                        statsLastSolverUsed = Convert.ToInt32(words[5]);
+                                        statsTimeCreated = Convert.ToInt32(words[6]);
+                                        statsTimeLastOpened = Convert.ToInt32(words[7]);
+                                        statsTimeLastClosed = Convert.ToInt32(words[8]);
+                                        statsTimeTotalOpened = Convert.ToInt32(words[9]);
+                                        statsTotalOpened = Convert.ToInt32(words[10]);
+                                        statsTimeTotalSolving = Convert.ToInt32(words[11]);
+                                        statsTotalSolving = Convert.ToInt32(words[12]);
 
                                         // Load Camera Settings
                                         Camera.SetupFromFile(Convert.ToSingle(words[13]), new Vector2(Convert.ToSingle(words[14]), Convert.ToSingle(words[15])));
@@ -262,31 +262,31 @@ namespace Finite_Element_Analysis_Explorer
                                     try
                                     {
                                         // Stats for Loading
-                                        StatsLoadingTotalItems = Convert.ToInt32(words[1]);
+                                        statsLoadingTotalItems = Convert.ToInt32(words[1]);
                                         try
                                         {
                                             if (FileLoadingDisplay.Current is object)
                                             {
-                                                FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + StatsLoadingTotalItems);
+                                                FileLoadingDisplay.Current.AddMessage(-1, -1, "Total Elements " + statsLoadingTotalItems);
                                             }
                                         }
                                         catch
                                         {
                                         }
 
-                                        StatsLoadingTotalMembers = Convert.ToInt32(words[2]);
-                                        StatsLoadingTotalNodes = Convert.ToInt32(words[3]);
-                                        StatsLoadingTotalSections = Convert.ToInt32(words[4]);
+                                        statsLoadingTotalMembers = Convert.ToInt32(words[2]);
+                                        statsLoadingTotalNodes = Convert.ToInt32(words[3]);
+                                        statsLoadingTotalSections = Convert.ToInt32(words[4]);
 
                                         // Other Stats
-                                        StatsLastSolverUsed = Convert.ToInt32(words[5]);
-                                        StatsTimeCreated = Convert.ToInt32(words[6]);
-                                        StatsTimeLastOpened = Convert.ToInt32(words[7]);
-                                        StatsTimeLastClosed = Convert.ToInt32(words[8]);
-                                        StatsTimeTotalOpened = Convert.ToInt32(words[9]);
-                                        StatsTotalOpened = Convert.ToInt32(words[10]);
-                                        StatsTimeTotalSolving = Convert.ToInt32(words[11]);
-                                        StatsTotalSolving = Convert.ToInt32(words[12]);
+                                        statsLastSolverUsed = Convert.ToInt32(words[5]);
+                                        statsTimeCreated = Convert.ToInt32(words[6]);
+                                        statsTimeLastOpened = Convert.ToInt32(words[7]);
+                                        statsTimeLastClosed = Convert.ToInt32(words[8]);
+                                        statsTimeTotalOpened = Convert.ToInt32(words[9]);
+                                        statsTotalOpened = Convert.ToInt32(words[10]);
+                                        statsTimeTotalSolving = Convert.ToInt32(words[11]);
+                                        statsTotalSolving = Convert.ToInt32(words[12]);
 
                                         // Load Camera Settings
                                         Camera.SetupFromFile(Convert.ToSingle(words[13]), new Vector2(Convert.ToSingle(words[14]), Convert.ToSingle(words[15])));
