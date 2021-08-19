@@ -16,3 +16,9 @@ Many standard materials are included and modifying or creating new ones can be e
 Results of the models show the applied forces and reactions. Compession and tension are displayed in varing colors on the members to display the most stressed members and those that are carrying no loads at all are white.
 
 ![P4](https://user-images.githubusercontent.com/28429345/111986323-8a164e80-8b59-11eb-9112-b0870157bfdc.png)
+
+Avaliable for download at:
+
+https://www.microsoft.com/store/apps/9PM3QFL1FL92
+
+ms-windows-store://pdp/?productid=9PM3QFL1FL92
