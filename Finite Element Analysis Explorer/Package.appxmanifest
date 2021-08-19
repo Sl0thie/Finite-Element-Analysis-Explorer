@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="22043IntaEngineering.FEMExplorer" Publisher="CN=5C3F1F5F-135A-453E-940D-1D240228ED49" Version="1.1.36.0" />
+  <Identity Name="22043IntaEngineering.FEMExplorer" Publisher="CN=5C3F1F5F-135A-453E-940D-1D240228ED49" Version="1.1.45.0" />
   <mp:PhoneIdentity PhoneProductId="345e11b2-3631-4da7-85a8-0232c0fedf99" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Finite Element Analysis Explorer</DisplayName>
@@ -25,6 +25,8 @@
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="black" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>

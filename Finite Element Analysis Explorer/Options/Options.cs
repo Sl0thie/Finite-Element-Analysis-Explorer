@@ -2440,19 +2440,18 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["MomentFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["MomentFactor"];
                 momentFactor = (float)tmpDouble;
             }
             catch
             {
-                Debug.WriteLine("Error Loading MomentFactor");
                 FileManager.LocalSettings.Values["MomentFactor"] = 0.0001f;
                 momentFactor = 0.0001f;
             }
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["ShearFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["ShearFactor"];
                 shearFactor = (float)tmpDouble;
             }
             catch
@@ -2464,7 +2463,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["LinearFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["LinearFactor"];
                 linearFactor = (float)tmpDouble;
             }
             catch
@@ -2476,7 +2475,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["ForcesFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["ForcesFactor"];
                 forcesFactor = (float)tmpDouble;
             }
             catch
@@ -2488,7 +2487,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["ReactionsFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["ReactionsFactor"];
                 reactionsFactor = (float)tmpDouble;
             }
             catch
@@ -2500,7 +2499,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                double tmpDouble = (double)FileManager.LocalSettings.Values["DisplacementFactor"];
+                float tmpDouble = (float)FileManager.LocalSettings.Values["DisplacementFactor"];
                 displacementFactor = (float)tmpDouble;
             }
             catch

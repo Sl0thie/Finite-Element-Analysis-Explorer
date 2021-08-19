@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas.Geometry;
 using Windows.Storage;
@@ -382,24 +383,36 @@ namespace Finite_Element_Analysis_Explorer
         {
             try
             {
-                workingFileMruToken = (string)LocalSettings.Values["WorkingFileMruToken"];
-                var mru = StorageApplicationPermissions.MostRecentlyUsedList;
-                workingFile = await mru.GetFileAsync(workingFileMruToken);
-                await LoadFile();
+                if (Options.FirstRun)
+                {
+                    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
+                    var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
+                    Options.FirstRun = false;
+                    NewFile();
+                    Frame rootFrame = Window.Current.Content as Frame;
+                    rootFrame.Navigate(typeof(Construction));
+                }
+                else
+                {
+                    workingFileMruToken = (string)LocalSettings.Values["WorkingFileMruToken"];
+                    var mru = StorageApplicationPermissions.MostRecentlyUsedList;
+                    workingFile = await mru.GetFileAsync(workingFileMruToken);
+                    await LoadFile();
+                }
             }
             catch (Exception ex)
             {
-                if (Options.FirstRun)
-                {
-                    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
-                    var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-                    Options.FirstRun = false;
-                }
+                //if (Options.FirstRun)
+                //{
+                //    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
+                //    var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
+                //    Options.FirstRun = false;
+                //}
 
                 Debug.WriteLine("ERROR LoadLastFileAsync " + ex.Message + " " + ex.Data.ToString() + " " + ex.StackTrace);
-                NewFile();
-                Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Construction));
+                //NewFile();
+                //Frame rootFrame = Window.Current.Content as Frame;
+                //rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -682,6 +695,35 @@ namespace Finite_Element_Analysis_Explorer
         {
             try
             {
+
+                if(await LocalFolder.TryGetItemAsync("Sections.Data") == null)
+                {
+                    StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
+
+                    string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Steel 250 UB 37|200000000000|0.0000502116060000000000000000|0.004770|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.146|0.256|0.009|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Steel 410 UB 60|200000000000|0.0001961423633750000000000000|0.00778050|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.178|0.4060|0.0105|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Steel 610 UB 125|200000000000|0.0008849453840416666666666667|0.01610450|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.229|0.6120|0.0155|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Concrete 100x100 25MPa|200000000000|0.0000083333333333333333333333|0.01|2450|2.61|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.1|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Concrete 200x200 25MPa|200000000000|0.0001333333333333333333333333|0.04000000|2450|10.44000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.2000|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Concrete 300x300 25MPa|200000000000|0.000675000000|0.090000|2450|23.490000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.300|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 70x35|200000000000|0.0000010004166666666666666667|0.002450|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.070|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 90x35|200000000000|0.000002126250|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 70x45|200000000000|0.0000005315625|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.070|0.045|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 90x45|200000000000|0.000002733750|0.004050|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.045|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+                    tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+
+                    await FileIO.WriteTextAsync(tempFile, tempString);
+                }
+                else
+                {
+                    Debug.WriteLine("HERE");
+                }
+
                 sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
                 IList<string> lines = new List<string>();
                 lines = await FileIO.ReadLinesAsync(sectionsFile);
@@ -771,44 +813,9 @@ namespace Finite_Element_Analysis_Explorer
 
                 Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
             }
-            catch
+            catch(Exception ex)
             {
-                Debug.WriteLine("Failed to load sections.");
-
-                try
-                {
-                    Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
-                }
-                catch (Exception ex2)
-                {
-                    Debug.WriteLine("Error Setting Current Section " + ex2.Message);
-                }
-
-                StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
-
-                string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
-                tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                tempString += "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                tempString += "Steel 250 UB 37|200000000000|0.0000502116060000000000000000|0.004770|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.146|0.256|0.009|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                tempString += "Steel 410 UB 60|200000000000|0.0001961423633750000000000000|0.00778050|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.178|0.4060|0.0105|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                tempString += "Steel 610 UB 125|200000000000|0.0008849453840416666666666667|0.01610450|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.229|0.6120|0.0155|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                tempString += "Concrete 100x100 25MPa|200000000000|0.0000083333333333333333333333|0.01|2450|2.61|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.1|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                tempString += "Concrete 200x200 25MPa|200000000000|0.0001333333333333333333333333|0.04000000|2450|10.44000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.2000|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                tempString += "Concrete 300x300 25MPa|200000000000|0.000675000000|0.090000|2450|23.490000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.300|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 70x35|200000000000|0.0000010004166666666666666667|0.002450|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.070|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 90x35|200000000000|0.000002126250|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 70x45|200000000000|0.0000005315625|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.070|0.045|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 90x45|200000000000|0.000002733750|0.004050|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.045|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-
-                await FileIO.WriteTextAsync(tempFile, tempString);
-
-                Model.Sections.CurrentSection = Model.Sections["Default"];
-                await Task.Run(() => SaveSectionsAsync());
-
-                await Task.Run(() => LoadSectionsAsync());
+                Debug.WriteLine("Failed to load sections. " + ex.Message);
             }
 
             Section tempSection = Model.Sections.LoadLastCurrentSectionSection();
