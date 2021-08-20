@@ -5,158 +5,360 @@ using Windows.UI;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Options static class manages the options for the application.
+    /// </summary>
     internal static class Options
     {
-        internal static bool FirstRun = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether the application has run before.
+        /// </summary>
+        internal static bool FirstRun { get; set; } = true;
 
         #region Camera
 
-        internal static float CameraZoomTrim = 500f;
+        /// <summary>
+        /// Gets or sets the camera zoom trim.
+        /// </summary>
+        internal static float CameraZoomTrim { get; set; } = 500f;
 
-        internal static float SelectGridSize = 1f;
+        /// <summary>
+        /// Gets or sets the selected grid size.
+        /// </summary>
+        internal static float SelectGridSize { get; set; } = 1f;
 
         #endregion
 
         #region Lines
 
-        internal static float LineGridNormalWeight = 1f;
-        internal static CanvasStrokeStyle LineGridNormal = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid normal weight.
+        /// </summary>
+        internal static float LineGridNormalWeight { get; set; } = 1f;
 
-        internal static float LineGridMinorWeight = 1f;
-        internal static CanvasStrokeStyle LineGridMinor = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid normal canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineGridNormal { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineGridMajorWeight = 1f;
-        internal static CanvasStrokeStyle LineGridMajor = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid minor weight.
+        /// </summary>
+        internal static float LineGridMinorWeight { get; set; } = 1f;
 
-        internal static float LineForceWeight = 5f;
-        internal static CanvasStrokeStyle LineForce = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid minor canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineGridMinor { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineReactionWeight = 5f;
-        internal static CanvasStrokeStyle LineReaction = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid major weight.
+        /// </summary>
+        internal static float LineGridMajorWeight { get; set; } = 1f;
 
-        internal static float LineSelectedElementWeight = 2.8f;
-        internal static CanvasStrokeStyle LineSelectedElement = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line grid major canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineGridMajor { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineShearForceSelectedWeight = 2.8f;
-        internal static CanvasStrokeStyle LineShearForceSelected = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line force weight.
+        /// </summary>
+        internal static float LineForceWeight { get; set; } = 5f;
 
-        internal static float LineMomentForceSelectedWeight = 2.8f;
-        internal static CanvasStrokeStyle LineMomentForceSelected = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line force canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineForce { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineShearForceFontWeight = 2.8f;
-        internal static CanvasStrokeStyle LineShearForceFont = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line reaction weight.
+        /// </summary>
+        internal static float LineReactionWeight { get; set; } = 5f;
 
-        internal static float LineMomentForceFontWeight = 2.8f;
-        internal static CanvasStrokeStyle LineMomentForceFont = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line reaction canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineReaction { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineShearForceWeight = 1.5f;
-        internal static CanvasStrokeStyle LineShearForce = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line selected element weight.
+        /// </summary>
+        internal static float LineSelectedElementWeight { get; set; } = 2.8f;
 
-        internal static float LineMomentForceWeight = 1.5f;
-        internal static CanvasStrokeStyle LineMomentForce = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line selected element canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineSelectedElement { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineDistributedForceWeight = 1.5f;
-        internal static CanvasStrokeStyle LineDistributedForce = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line shear force selected weight.
+        /// </summary>
+        internal static float LineShearForceSelectedWeight { get; set; } = 2.8f;
 
-        internal static float LineDistributedForceSelectedWeight = 1.8f;
-        internal static CanvasStrokeStyle LineDistributedForceSelected = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line shear force selected canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineShearForceSelected { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineNodeFreeWeight = 1f;
-        internal static CanvasStrokeStyle LineNodeFree = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line moment force selected weight.
+        /// </summary>
+        internal static float LineMomentForceSelectedWeight { get; set; } = 2.8f;
 
-        internal static float LineNodeFixedWeight = 1f;
-        internal static CanvasStrokeStyle LineNodeFixed = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line moment force selected canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineMomentForceSelected { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineNodePinWeight = 1f;
-        internal static CanvasStrokeStyle LineNodePin = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line shear force font weight.
+        /// </summary>
+        internal static float LineShearForceFontWeight { get; set; } = 2.8f;
 
-        internal static float LineNodeRollerXWeight = 1f;
-        internal static CanvasStrokeStyle LineNodeRollerX = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line shear force font canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineShearForceFont { get; set; } = new CanvasStrokeStyle();
 
-        internal static float LineNodeRollerYWeight = 1f;
-        internal static CanvasStrokeStyle LineNodeRollerY = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line moment force font weight.
+        /// </summary>
+        internal static float LineMomentForceFontWeight { get; set; } = 2.8f;
 
-        internal static float LineNodeOtherWeight = 1f;
-        internal static CanvasStrokeStyle LineNodeOther = new CanvasStrokeStyle();
+        /// <summary>
+        /// Gets or sets the line moment force font canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineMomentForceFont { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line shear force weight.
+        /// </summary>
+        internal static float LineShearForceWeight { get; set; } = 1.5f;
+
+        /// <summary>
+        /// Gets or sets the line shear force canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineShearForce { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line moment force weight.
+        /// </summary>
+        internal static float LineMomentForceWeight { get; set; } = 1.5f;
+
+        /// <summary>
+        /// Gets or sets the line moment force canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineMomentForce { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line distributed force weight.
+        /// </summary>
+        internal static float LineDistributedForceWeight { get; set; } = 1.5f;
+
+        /// <summary>
+        /// Gets or sets the line distributed force canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineDistributedForce { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line distributed force selected weight.
+        /// </summary>
+        internal static float LineDistributedForceSelectedWeight { get; set; } = 1.8f;
+
+        /// <summary>
+        /// Gets or sets the line distributed force selected canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineDistributedForceSelected { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node free weight.
+        /// </summary>
+        internal static float LineNodeFreeWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node free canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodeFree { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node fixed weight.
+        /// </summary>
+        internal static float LineNodeFixedWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node fixed canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodeFixed { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node pin weight.
+        /// </summary>
+        internal static float LineNodePinWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node pin canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodePin { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node roller X weight.
+        /// </summary>
+        internal static float LineNodeRollerXWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node roller X canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodeRollerX { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node roller Y weight.
+        /// </summary>
+        internal static float LineNodeRollerYWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node roller Y canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodeRollerY { get; set; } = new CanvasStrokeStyle();
+
+        /// <summary>
+        /// Gets or sets the line node other weight.
+        /// </summary>
+        internal static float LineNodeOtherWeight { get; set; } = 1f;
+
+        /// <summary>
+        /// Gets or sets the line node other canvas stroke style.
+        /// </summary>
+        internal static CanvasStrokeStyle LineNodeOther { get; set; } = new CanvasStrokeStyle();
 
         #endregion
 
         #region Colors
 
-        internal static string ColorToEdit;
+        /// <summary>
+        /// Gets or sets the color to edit.
+        /// </summary>
+        internal static string ColorToEdit { get; set; }
 
-        #region Dark Colors
+        /// <summary>
+        /// Gets or sets background color.
+        /// </summary>
+        internal static Color ColorBackground { get; set; } = Color.FromArgb(255, 8, 28, 88);
 
-        // Custom Colors.
-        internal static Color ColorBackground = Color.FromArgb(255, 8, 28, 88);
-        internal static Color ColorLabel = Color.FromArgb(255, 255, 255, 255);
+        /// <summary>
+        /// Gets or sets the label color.
+        /// </summary>
+        internal static Color ColorLabel { get; set; } = Color.FromArgb(255, 255, 255, 255);
 
-        internal static Color ColorForce = Color.FromArgb(255, 255, 255, 0);
-        internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
+        /// <summary>
+        /// Gets or sets the force color.
+        /// </summary>
+        internal static Color ColorForce { get; set; } = Color.FromArgb(255, 255, 255, 0);
 
-        internal static Color ColorGridNormal = Color.FromArgb(192, 48, 48, 96);
-        internal static Color ColorGridMinor = Color.FromArgb(192, 48, 48, 48);
-        internal static Color ColorGridMajor = Color.FromArgb(192, 48, 96, 48);
-        internal static Color ColorGridMajorFont = Color.FromArgb(255, 48, 48, 156);
+        /// <summary>
+        /// Gets or sets the reaction color.
+        /// </summary>
+        internal static Color ColorReaction { get; set; } = Color.FromArgb(255, 255, 0, 0);
 
-        internal static Color ColorSelectedNode = Color.FromArgb(255, 64, 64, 255);
-        internal static Color ColorSelectedElement = Color.FromArgb(255, 255, 0, 255);
+        /// <summary>
+        /// Gets or sets the normal grid color.
+        /// </summary>
+        internal static Color ColorGridNormal { get; set; } = Color.FromArgb(192, 48, 48, 96);
 
-        internal static Color ColorShearForceSelected = Color.FromArgb(255, 64, 64, 255);
-        internal static Color ColorMomentForceSelected = Color.FromArgb(255, 0, 255, 0);
-        internal static Color ColorDistributedForceSelected = Color.FromArgb(255, 255, 255, 64);
+        /// <summary>
+        /// Gets or sets the minor grid color.
+        /// </summary>
+        internal static Color ColorGridMinor { get; set; } = Color.FromArgb(192, 48, 48, 48);
 
-        internal static Color ColorShearForceFont = Color.FromArgb(255, 128, 128, 255);
-        internal static Color ColorMomentForceFont = Color.FromArgb(255, 64, 255, 64);
+        /// <summary>
+        /// Gets or sets the major grid color.
+        /// </summary>
+        internal static Color ColorGridMajor { get; set; } = Color.FromArgb(192, 48, 96, 48);
 
-        internal static Color ColorShearForce = Color.FromArgb(128, 0, 0, 255);
-        internal static Color ColorMomentForce = Color.FromArgb(128, 0, 255, 0);
-        internal static Color ColorDistributedForce = Color.FromArgb(128, 255, 255, 0);
+        /// <summary>
+        /// Gets or sets the major grid font.
+        /// </summary>
+        internal static Color ColorGridMajorFont { get; set; } = Color.FromArgb(255, 48, 48, 156);
 
-        internal static Color ColorNodeFree = Color.FromArgb(255, 0, 0, 0);
-        internal static Color ColorNodeFixed = Color.FromArgb(255, 192, 192, 192);
-        internal static Color ColorNodePin = Color.FromArgb(255, 192, 192, 192);
-        internal static Color ColorNodeRollerX = Color.FromArgb(255, 192, 192, 192);
-        internal static Color ColorNodeRollerY = Color.FromArgb(255, 192, 192, 192);
-        internal static Color ColorNodeOther = Color.FromArgb(255, 0, 0, 0);
+        /// <summary>
+        /// Gets or sets the selected node color.
+        /// </summary>
+        internal static Color ColorSelectedNode { get; set; } = Color.FromArgb(255, 64, 64, 255);
 
-        #endregion
+        /// <summary>
+        /// Gets or sets the selected element color.
+        /// </summary>
+        internal static Color ColorSelectedElement { get; set; } = Color.FromArgb(255, 255, 0, 255);
 
-        #region Light Colors (Printing)
+        /// <summary>
+        /// Gets or sets the selected shear force color.
+        /// </summary>
+        internal static Color ColorShearForceSelected { get; set; } = Color.FromArgb(255, 64, 64, 255);
 
-        ////Custom Colors.
-        // internal static Color ColorBackground = Color.FromArgb(255, 255, 255, 255);
-        // internal static Color ColorLabel = Color.FromArgb(255, 0,0,0);
+        /// <summary>
+        /// Gets or sets the selected moment force color.
+        /// </summary>
+        internal static Color ColorMomentForceSelected { get; set; } = Color.FromArgb(255, 0, 255, 0);
 
-        // internal static Color ColorForce = Color.FromArgb(255, 255,255, 0);
-        // internal static Color ColorReaction = Color.FromArgb(255, 255, 0, 0);
+        /// <summary>
+        /// Gets or sets the selected distributed force color.
+        /// </summary>
+        internal static Color ColorDistributedForceSelected { get; set; } = Color.FromArgb(255, 255, 255, 64);
 
-        // internal static Color ColorGridNormal = Color.FromArgb(255, 192, 192, 192);
-        // internal static Color ColorGridMinor = Color.FromArgb(255,192,192,192);
-        // internal static Color ColorGridMajor = Color.FromArgb(255, 192, 192, 192);
-        // internal static Color ColorGridMajorFont = Color.FromArgb(255, 48, 48, 156);
+        /// <summary>
+        /// Gets or sets the shear force font.
+        /// </summary>
+        internal static Color ColorShearForceFont { get; set; } = Color.FromArgb(255, 128, 128, 255);
 
-        // internal static Color ColorSelectedNode = Color.FromArgb(255, 255, 0, 255);
-        // internal static Color ColorSelectedElement = Color.FromArgb(255, 255, 0, 255);
+        /// <summary>
+        /// Gets or sets the moment force font.
+        /// </summary>
+        internal static Color ColorMomentForceFont { get; set; } = Color.FromArgb(255, 64, 255, 64);
 
-        // internal static Color ColorShearForceSelected = Color.FromArgb(255, 64, 64, 255);
-        // internal static Color ColorMomentForceSelected = Color.FromArgb(255, 64, 255, 64);
-        // internal static Color ColorDistributedForceSelected = Color.FromArgb(255, 255, 255, 64);
+        /// <summary>
+        /// Gets or sets the shear force color.
+        /// </summary>
+        internal static Color ColorShearForce { get; set; } = Color.FromArgb(128, 0, 0, 255);
 
-        // internal static Color ColorShearForceFont = Color.FromArgb(255, 0, 0, 128);
-        // internal static Color ColorMomentForceFont = Color.FromArgb(255, 0, 128, 0);
+        /// <summary>
+        /// Gets or sets the moment force color.
+        /// </summary>
+        internal static Color ColorMomentForce { get; set; } = Color.FromArgb(128, 0, 255, 0);
 
-        // internal static Color ColorShearForce = Color.FromArgb(128, 0, 0, 255);
-        // internal static Color ColorMomentForce = Color.FromArgb(128, 0, 255, 0);
-        // internal static Color ColorDistributedForce = Color.FromArgb(128, 255, 255, 0);
+        /// <summary>
+        /// Gets or sets the distributed force color.
+        /// </summary>
+        internal static Color ColorDistributedForce { get; set; } = Color.FromArgb(128, 255, 255, 0);
 
-        // internal static Color ColorNodeFree = Color.FromArgb(255, 0, 0, 0);
-        // internal static Color ColorNodeFixed = Color.FromArgb(255, 128,128,128);
-        // internal static Color ColorNodePin = Color.FromArgb(255, 128, 128, 128);
-        // internal static Color ColorNodeRollerX = Color.FromArgb(255, 128, 128, 128);
-        // internal static Color ColorNodeRollerY = Color.FromArgb(255, 128, 128, 128);
-        // internal static Color ColorNodeOther = Color.FromArgb(255, 0, 0, 0);
-        #endregion
+        /// <summary>
+        /// Gets or sets the free node color.
+        /// </summary>
+        internal static Color ColorNodeFree { get; set; } = Color.FromArgb(255, 0, 0, 0);
+
+        /// <summary>
+        /// Gets or sets the fixed node color.
+        /// </summary>
+        internal static Color ColorNodeFixed { get; set; } = Color.FromArgb(255, 192, 192, 192);
+
+        /// <summary>
+        /// Gets or sets the pin node color.
+        /// </summary>
+        internal static Color ColorNodePin { get; set; } = Color.FromArgb(255, 192, 192, 192);
+
+        /// <summary>
+        /// Gets or sets the node roller X color.
+        /// </summary>
+        internal static Color ColorNodeRollerX { get; set; } = Color.FromArgb(255, 192, 192, 192);
+
+        /// <summary>
+        /// Gets or sets the node roller Y color.
+        /// </summary>
+        internal static Color ColorNodeRollerY { get; set; } = Color.FromArgb(255, 192, 192, 192);
+
+        /// <summary>
+        /// Gets or sets the other node color.
+        /// </summary>
+        internal static Color ColorNodeOther { get; set; } = Color.FromArgb(255, 0, 0, 0);
 
         #endregion
 
@@ -164,6 +366,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool lockNumericalInput = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the numerical input is locked.
+        /// </summary>
         public static bool LockNumericalInput
         {
             get { return lockNumericalInput; }
@@ -172,6 +377,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal lastNumericalInput = 0;
 
+        /// <summary>
+        /// Gets or sets the last numerical input.
+        /// </summary>
         public static decimal LastNumericalInput
         {
             get { return lastNumericalInput; }
@@ -180,6 +388,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool loadLastFileOnStartup = true;
 
+        /// <summary>
+        /// Gets a value indicating whether to load the last opened file on startup.
+        /// </summary>
         internal static bool LoadLastFileOnStartup
         {
             get
@@ -190,6 +401,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static int defaultNumberOfSegments = 10;
 
+        /// <summary>
+        /// Gets or sets the default number of segments for a member.
+        /// </summary>
         internal static int DefaultNumberOfSegments
         {
             get
@@ -205,6 +419,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static string lastCurrentSectionName = "Default";
 
+        /// <summary>
+        /// Gets the last current section name.
+        /// </summary>
         internal static string LastCurrentSectionName
         {
             get
@@ -215,6 +432,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool resetExistingMembers = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to reset existing members.
+        /// </summary>
         public static bool ResetExistingMembers
         {
             get { return resetExistingMembers; }
@@ -227,6 +447,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static AngleType angle = AngleType.Radians;
 
+        /// <summary>
+        /// Gets or sets the angle type.
+        /// </summary>
         internal static AngleType Angle
         {
             get
@@ -242,6 +465,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static MassType mass = MassType.Kilogram;
 
+        /// <summary>
+        /// Gets or sets the mass type.
+        /// </summary>
         internal static MassType Mass
         {
             get
@@ -257,6 +483,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static LengthType length = LengthType.Meter;
 
+        /// <summary>
+        /// Gets or sets the length type.
+        /// </summary>
         internal static LengthType Length
         {
             get
@@ -300,6 +529,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static VolumeType volume = VolumeType.CubicMetre;
 
+        /// <summary>
+        /// Gets or sets the volume type.
+        /// </summary>
         internal static VolumeType Volume
         {
             get
@@ -315,6 +547,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static MomentType moment = MomentType.NewtonMetre;
 
+        /// <summary>
+        /// Gets or sets the moment type.
+        /// </summary>
         internal static MomentType Moment
         {
             get
@@ -330,6 +565,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static PressureType pressure = PressureType.Pascal;
 
+        /// <summary>
+        /// Gets or sets the pressure type.
+        /// </summary>
         internal static PressureType Pressure
         {
             get
@@ -345,6 +583,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static MomentOfInertiaType momentOfInertia = MomentOfInertiaType.QuadMeter;
 
+        /// <summary>
+        /// Gets or sets the moment of inertia type.
+        /// </summary>
         internal static MomentOfInertiaType MomentOfInertia
         {
             get
@@ -360,6 +601,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static AreaType area = AreaType.SquareMetre;
 
+        /// <summary>
+        /// Gets or sets the area type.
+        /// </summary>
         internal static AreaType Area
         {
             get
@@ -375,6 +619,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static DensityType density = DensityType.KilogramPerCubicMetre;
 
+        /// <summary>
+        /// Gets or sets the density type.
+        /// </summary>
         internal static DensityType Density
         {
             get
@@ -390,6 +637,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static ForceType force;
 
+        /// <summary>
+        /// Gets or sets the force type.
+        /// </summary>
         public static ForceType Force
         {
             get { return force; }
@@ -398,6 +648,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static ForcePerLengthType forcePerLength;
 
+        /// <summary>
+        /// Gets or sets the force per length type.
+        /// </summary>
         public static ForcePerLengthType ForcePerLength
         {
             get { return forcePerLength; }
@@ -410,6 +663,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showMoment = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display moment.
+        /// </summary>
         internal static bool ShowMoment
         {
             get
@@ -425,6 +681,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showShear = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display shear.
+        /// </summary>
         internal static bool ShowShear
         {
             get { return showShear; }
@@ -433,6 +692,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showForce = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display force.
+        /// </summary>
         internal static bool ShowForce
         {
             get
@@ -448,6 +710,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showLinear = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display linear force.
+        /// </summary>
         internal static bool ShowLinear
         {
             get
@@ -463,6 +728,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showAxial = true;
 
+        /// <summary>
+        /// Sets a value indicating whether to display axial force.
+        /// </summary>
         internal static bool ShowAxial
         {
             set
@@ -473,6 +741,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool showReactions;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display reaction force.
+        /// </summary>
         public static bool ShowReactions
         {
             get { return showReactions; }
@@ -481,6 +752,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static int memberDisplay = 0;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to display members.
+        /// </summary>
         public static int MemberDisplay
         {
             get { return memberDisplay; }
@@ -493,6 +767,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float momentFactor = 0.0001f;
 
+        /// <summary>
+        /// Gets or sets the moment factor.
+        /// </summary>
         internal static float MomentFactor
         {
             get
@@ -509,6 +786,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float shearFactor = 0.0001f;
 
+        /// <summary>
+        /// Gets or sets the shear factor.
+        /// </summary>
         internal static float ShearFactor
         {
             get
@@ -525,6 +805,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float linearFactor = 0.0001f;
 
+        /// <summary>
+        /// Gets or sets the linear factor.
+        /// </summary>
         internal static float LinearFactor
         {
             get
@@ -541,6 +824,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float forcesFactor = 0.0001f;
 
+        /// <summary>
+        /// Gets or sets the force factor.
+        /// </summary>
         internal static float ForcesFactor
         {
             get
@@ -557,6 +843,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float reactionsFactor = 0.0001f;
 
+        /// <summary>
+        /// Gets or sets the reactions factor.
+        /// </summary>
         internal static float ReactionsFactor
         {
             get
@@ -573,6 +862,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static float displacementFactor = 1;
 
+        /// <summary>
+        /// Gets or sets the displacement factor.
+        /// </summary>
         internal static float DisplacementFactor
         {
             get
@@ -593,6 +885,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool autoStartSolver = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically start the solver.
+        /// </summary>
         internal static bool AutoStartSolver
         {
             get
@@ -608,6 +903,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static bool autoFinishSolver = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically finish the solver.
+        /// </summary>
         internal static bool AutoFinishSolver
         {
             get
@@ -623,6 +921,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static int currentSolver = 0;
 
+        /// <summary>
+        /// Gets or sets the current solver.
+        /// </summary>
         public static int CurrentSolver
         {
             get { return currentSolver; }
@@ -633,6 +934,9 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Methods
 
+        /// <summary>
+        /// Loads the options from the Application Data Container named LocalSettings.
+        /// </summary>
         internal static void LoadOptions()
         {
             if (FileManager.LocalSettings.Values["FirstRun"] is object)
@@ -1247,7 +1551,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 force = (ForceType)FileManager.LocalSettings.Values["UnitForce"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitForce"] = (int)ForceType.Newton;
                 force = ForceType.Newton;
@@ -1258,7 +1562,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 forcePerLength = (ForcePerLengthType)FileManager.LocalSettings.Values["UnitForcePerLength"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
                 forcePerLength = ForcePerLengthType.NewtonPerMeter;
@@ -1269,7 +1573,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 Length = (LengthType)FileManager.LocalSettings.Values["UnitLength"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitLength"] = (int)LengthType.Meter;
                 Length = LengthType.Meter;
@@ -1280,7 +1584,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 mass = (MassType)FileManager.LocalSettings.Values["UnitMass"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMass"] = (int)MassType.Kilogram;
                 mass = MassType.Kilogram;
@@ -1291,7 +1595,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 moment = (MomentType)FileManager.LocalSettings.Values["UnitMoment"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
                 moment = MomentType.NewtonMetre;
@@ -1302,7 +1606,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 momentOfInertia = (MomentOfInertiaType)FileManager.LocalSettings.Values["UnitMomentOfInertia"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
                 momentOfInertia = MomentOfInertiaType.QuadMeter;
@@ -1313,7 +1617,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 pressure = (PressureType)FileManager.LocalSettings.Values["UnitPressure"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
                 pressure = PressureType.Pascal;
@@ -1324,7 +1628,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 volume = (VolumeType)FileManager.LocalSettings.Values["UnitVolume"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
                 volume = VolumeType.CubicMetre;
@@ -1335,7 +1639,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showMoment = (bool)FileManager.LocalSettings.Values["ShowMoment"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowMoment"] = true;
                 showMoment = true;
@@ -1346,7 +1650,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showShear = (bool)FileManager.LocalSettings.Values["ShowShear"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowShear"] = true;
                 showShear = true;
@@ -1357,7 +1661,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showForce = (bool)FileManager.LocalSettings.Values["ShowForce"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowForce"] = true;
                 showForce = true;
@@ -1368,7 +1672,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showLinear = (bool)FileManager.LocalSettings.Values["ShowLinear"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowLinear"] = true;
                 showLinear = true;
@@ -1379,7 +1683,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showAxial = (bool)FileManager.LocalSettings.Values["ShowAxial"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowAxial"] = true;
                 showAxial = true;
@@ -1390,7 +1694,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 showReactions = (bool)FileManager.LocalSettings.Values["ShowReactions"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowReactions"] = true;
                 showReactions = true;
@@ -1401,7 +1705,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 memberDisplay = (int)FileManager.LocalSettings.Values["MemberDisplay"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["MemberDisplay"] = 0;
                 memberDisplay = 0;
@@ -1412,7 +1716,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 autoStartSolver = (bool)FileManager.LocalSettings.Values["AutoStartSolver"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["AutoStartSolver"] = true;
                 autoStartSolver = true;
@@ -1423,7 +1727,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 autoFinishSolver = (bool)FileManager.LocalSettings.Values["AutoFinishSolver"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
@@ -1434,7 +1738,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 currentSolver = (int)FileManager.LocalSettings.Values["CurrentSolver"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 currentSolver = 0;
                 FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
@@ -1445,7 +1749,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 lockNumericalInput = (bool)FileManager.LocalSettings.Values["LockNumericalInput"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["LockNumericalInput"] = false;
                 lockNumericalInput = false;
@@ -1456,7 +1760,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 loadLastFileOnStartup = (bool)FileManager.LocalSettings.Values["LoadLastFileOnStartup"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = true;
                 loadLastFileOnStartup = true;
@@ -1471,7 +1775,7 @@ namespace Finite_Element_Analysis_Explorer
                     defaultNumberOfSegments = 1;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
@@ -1482,7 +1786,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 resetExistingMembers = (bool)FileManager.LocalSettings.Values["ResetExistingMembers"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ResetExistingMembers"] = true;
                 resetExistingMembers = true;
@@ -1493,7 +1797,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 lastCurrentSectionName = (string)FileManager.LocalSettings.Values["lastCurrentSection"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
@@ -1519,7 +1823,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorBackground = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
                 FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
@@ -1537,7 +1841,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorGridMajorFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
                 FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
@@ -1555,7 +1859,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorLabel = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
                 FileManager.LocalSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
@@ -1582,7 +1886,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridNormal.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalStartCap"];
                 LineGridNormalWeight = (float)FileManager.LocalSettings.Values["LineGridNormalWeight"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
                 FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
@@ -1628,7 +1932,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMinor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMinorStartCap"];
                 LineGridMinorWeight = (float)FileManager.LocalSettings.Values["LineGridMinorWeight"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
                 FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
@@ -1674,7 +1978,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMajor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMajorStartCap"];
                 LineGridMajorWeight = (float)FileManager.LocalSettings.Values["LineGridMajorWeight"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
                 FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
@@ -2473,8 +2777,8 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch
             {
-                FileManager.LocalSettings.Values["MomentFactor"] = 0.0001f;
-                momentFactor = 0.0001f;
+                FileManager.LocalSettings.Values["MomentFactor"] = 0.001f;
+                momentFactor = 0.001f;
             }
 
             try
@@ -2484,8 +2788,8 @@ namespace Finite_Element_Analysis_Explorer
             catch
             {
                 Debug.WriteLine("Error Loading ShearFactor");
-                FileManager.LocalSettings.Values["ShearFactor"] = 0.0001f;
-                shearFactor = 0.0001f;
+                FileManager.LocalSettings.Values["ShearFactor"] = 0.001f;
+                shearFactor = 0.001f;
             }
 
             try
@@ -2495,8 +2799,8 @@ namespace Finite_Element_Analysis_Explorer
             catch
             {
                 Debug.WriteLine("Error Loading LinearFactor");
-                FileManager.LocalSettings.Values["LinearFactor"] = 0.0001f;
-                linearFactor = 0.0001f;
+                FileManager.LocalSettings.Values["LinearFactor"] = 0.001f;
+                linearFactor = 0.001f;
             }
 
             try
@@ -2506,8 +2810,8 @@ namespace Finite_Element_Analysis_Explorer
             catch
             {
                 Debug.WriteLine("Error Loading ForcesFactor");
-                FileManager.LocalSettings.Values["ForcesFactor"] = 0.0001f;
-                forcesFactor = 0.0001f;
+                FileManager.LocalSettings.Values["ForcesFactor"] = 0.001f;
+                forcesFactor = 0.001f;
             }
 
             try
@@ -2517,8 +2821,8 @@ namespace Finite_Element_Analysis_Explorer
             catch
             {
                 Debug.WriteLine("Error Loading ReactionsFactor");
-                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.0001f;
-                reactionsFactor = 0.0001f;
+                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.001f;
+                reactionsFactor = 0.001f;
             }
 
             try
@@ -2536,7 +2840,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 CameraZoomTrim = Convert.ToSingle(FileManager.LocalSettings.Values["CameraZoomTrim"]);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Error Loading CameraZoomTrim " + ex.Message);
                 FileManager.LocalSettings.Values["CameraZoomTrim"] = 500f;
@@ -2547,9 +2851,6 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                //double tmpSingle = (double)FileManager.LocalSettings.Values["SelectGridSize"];
-                //SelectGridSize = (float)tmpSingle;
-
                 SelectGridSize = Convert.ToSingle(FileManager.LocalSettings.Values["SelectGridSize"]);
             }
             catch
@@ -2560,6 +2861,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Saves the options to the Application Data Container named LocalSettings.
+        /// </summary>
         internal static void SaveOptions()
         {
             FileManager.LocalSettings.Values["FirstRun"] = (bool)FirstRun;

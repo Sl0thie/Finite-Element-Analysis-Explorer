@@ -5,11 +5,19 @@ using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// PanelMember page.
+    /// </summary>
     public sealed partial class PanelMember : Page
     {
-        // private bool isLoaded = false;
-        internal static PanelMember Current;
+        /// <summary>
+        /// Gets or sets the current panel member page.
+        /// </summary>
+        internal static PanelMember Current { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelMember"/> class.
+        /// </summary>
         public PanelMember()
         {
             this.InitializeComponent();
@@ -115,24 +123,12 @@ namespace Finite_Element_Analysis_Explorer
                 valueDisplay_CostPerLength.DisplayOnly = true;
                 valueDisplay_CostPerLength.UnitType = UnitType.Money;
                 valueDisplay_CostPerLength.SetTheValue(Model.Members.CurrentMember.MemberCost);
-
-                // valueDisplay_CostConstraintNear.Title = "Maintinance Cost";
-                // valueDisplay_CostConstraintNear.DisplayOnly = true;
-                // valueDisplay_CostConstraintNear.UnitType = UnitType.Money;
-                // valueDisplay_CostConstraintNear.SetTheValue(0);
-
-                // valueDisplay_CostConstraintFar.Title = "Far Constraint Cost";
-                // valueDisplay_CostConstraintFar.UnitType = UnitType.Money;
-                // valueDisplay_CostConstraintFar.SetTheValue(0); //todo: Finish this.
-
-                // valueDisplay_CostElevation.Title = "Elevation Cost";
-                // valueDisplay_CostElevation.UnitType = UnitType.Money;
-                // valueDisplay_CostElevation.SetTheValue(0); //todo: Finish this.
-
-                // isLoaded = true;
             }
         }
 
+        /// <summary>
+        /// Hides the section list.
+        /// </summary>
         public void HideSectionList()
         {
             flyOut_SelectSection.Hide();
@@ -237,23 +233,13 @@ namespace Finite_Element_Analysis_Explorer
 
         private void FontIcon_TitleIconSection_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            // flyOut_SectionSelection.ShowAt(Button_Save);
             flyOut_SelectSection.ShowAt(Button_Save);
         }
 
-        // private void Button_Sections_Click(object sender, RoutedEventArgs e)
-        // {
-        //    Construction.Current.ShowSections();
-        // }
         private void StackPanel_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            // Debug.WriteLine("StackPanel KeyDown");
         }
 
-        // private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
-        // {
-        //    Debug.WriteLine("Grid KeyDown");
-        // }
         private void FontIcon_TitleIconLoads_Tapped(object sender, TappedRoutedEventArgs e)
         {
             MenuFlyout nextMenuFlyoutForceOptions = new MenuFlyout();
@@ -318,9 +304,6 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_Help_Click(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowHelpAsync();
-
-            // var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            // var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
         }
 
         #endregion
@@ -357,7 +340,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }
@@ -388,7 +370,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            // flyOut_NewSection.ShowAt(Button_Save);
         }
 
         private void Button_Solve_Click(object sender, RoutedEventArgs e)

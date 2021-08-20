@@ -700,7 +700,7 @@ namespace Finite_Element_Analysis_Explorer
                 SingleValue_ElasticModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
                 Model.Sections.CurrentSection.E = selectedMaterial.ModulusOfElasticity;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Error Setting E ");
                 WService.ReportException(ex);
@@ -714,7 +714,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_RigidityModulus.SetTheValue(selectedMaterial.ModulusOfRigidity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -727,7 +727,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_BulkModulus.SetTheValue(selectedMaterial.Bulk_Modulus);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -740,7 +740,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_PoissonRatio.SetTheValue(selectedMaterial.Poission_Ratio);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -753,7 +753,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ThermalExpansion.SetTheValue(selectedMaterial.Thermal_Expansion);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -766,7 +766,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_ThermalConductivity.SetTheValue(selectedMaterial.Thermal_Conductivity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }

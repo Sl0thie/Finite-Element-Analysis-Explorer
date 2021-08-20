@@ -7,25 +7,41 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Construction page.
+    /// </summary>
     public sealed partial class Construction : Page
     {
-        internal static Construction Current;
+        /// <summary>
+        /// Gets or sets the current construction page.
+        /// </summary>
+        internal static Construction Current { get; set; }
+
         private bool isPageLoaded = false;
 
         private bool detailsIsOpen = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the details are open.
+        /// </summary>
         public bool DetailsIsOpen
         {
             get { return detailsIsOpen; }
             set { detailsIsOpen = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Construction"/> class.
+        /// </summary>
         public Construction()
         {
             this.InitializeComponent();
             CustomizeTitleBar();
         }
 
+        /// <summary>
+        /// Refreshes the page.
+        /// </summary>
         public void Refresh()
         {
             if (isPageLoaded)
@@ -35,6 +51,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Sets the page title.
+        /// </summary>
+        /// <param name="newTitle">The title to set.</param>
         public void SetTitle(string newTitle)
         {
             TextBlock_Title.Text = newTitle;
@@ -42,11 +62,17 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Show
 
+        /// <summary>
+        /// Show the member page.
+        /// </summary>
         public void ShowMember()
         {
             frameDetails.Navigate(typeof(PanelMember));
         }
 
+        /// <summary>
+        /// Show the solver page.
+        /// </summary>
         public void ShowSolver()
         {
             if (isPageLoaded)
@@ -56,12 +82,18 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Show the external help.
+        /// </summary>
         public async void ShowHelpAsync()
         {
             var uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
 
+        /// <summary>
+        /// Shows the model page.
+        /// </summary>
         public void ShowModel()
         {
             if (isPageLoaded)
@@ -72,6 +104,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Shows the sections page.
+        /// </summary>
         public void ShowSections()
         {
             _ = FileManager.SaveFile();
@@ -81,6 +116,9 @@ namespace Finite_Element_Analysis_Explorer
             frameDisplay.Navigate(typeof(DisplaySection));
         }
 
+        /// <summary>
+        /// Shows the section page.
+        /// </summary>
         public void ShowSection()
         {
             _ = FileManager.SaveFile();
@@ -90,24 +128,36 @@ namespace Finite_Element_Analysis_Explorer
             frameDisplay.Navigate(typeof(DisplaySection));
         }
 
+        /// <summary>
+        /// Shows the color settings page.
+        /// </summary>
         public void ShowSettingsColors()
         {
             frameDetails.Width = 300;
             frameDetails.Navigate(typeof(PanelSettingsColors));
         }
 
+        /// <summary>
+        /// Shows the solver settings page.
+        /// </summary>
         public void ShowSettingsSolver()
         {
             frameDetails.Width = 300;
             frameDetails.Navigate(typeof(PanelSettingsSolver));
         }
 
+        /// <summary>
+        /// Shows the general settings page.
+        /// </summary>
         public void ShowSettingsGeneral()
         {
             frameDetails.Width = 300;
             frameDetails.Navigate(typeof(PanelSettingsGeneral));
         }
 
+        /// <summary>
+        /// Shows the drawing page.
+        /// </summary>
         public void ShowDrawing()
         {
             if (Model.Members.CurrentMember == null)
@@ -126,6 +176,9 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
+        /// <summary>
+        /// Customizes the title bar.
+        /// </summary>
         private void CustomizeTitleBar()
         {
             // customize title area

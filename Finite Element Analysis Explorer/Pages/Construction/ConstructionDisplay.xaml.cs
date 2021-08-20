@@ -17,42 +17,53 @@ using Windows.UI.Xaml.Media;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// ConstructionDisplay page.
+    /// </summary>
     public sealed partial class ConstructionDisplay : Page
     {
         #region Properties
 
         #region Operations
 
-        internal static ConstructionDisplay Current;
+        /// <summary>
+        /// Gets or sets the current construction display page.
+        /// </summary>
+        internal static ConstructionDisplay Current { get; set; }
+
+        private static float counterGridChanges = 0;
+
         private SelectionState currentSelectionState = SelectionState.Ready;
         private Vector2 firstNodePosition;
         private bool isPageLoaded = false;
 
+        private byte originalMinorGridAlpha;
+        private byte originalNormalGridAlpha;
+        private byte originalMajorGridAlpha;
+        private float minorGridAlphaChange;
+        private float normalGridAlphaChange;
+        private float majorGridAlphaChange;
+        private float totalGridChanges = 40;
+        
         #endregion
 
         #region Colors
 
         private Color colorBackground = Options.ColorBackground;
-
         private Color colorForce = Options.ColorForce;
         private Color colorReaction = Options.ColorReaction;
-
         private Color colorGridNormal = Options.ColorGridNormal;
         private Color colorGridMajor = Options.ColorGridMajor;
         private Color colorGridMinor = Options.ColorGridMinor;
-
         private Color colorGridMajorFont = Options.ColorGridMajorFont;
-
         private Color colorSelectedElement = Options.ColorSelectedElement;
         private Color colorSelectedNode = Options.ColorSelectedNode;
-
         private Color colorShearForceSelected = Options.ColorShearForceSelected;
         private Color colorMomentForceSelected = Options.ColorMomentForceSelected;
         private Color colorShearForce = Options.ColorShearForce;
         private Color colorMomentForce = Options.ColorMomentForce;
         private Color colorDistributedForce = Options.ColorDistributedForce;
         private Color colorDistributedForceSelected = Options.ColorDistributedForceSelected;
-
         private Color colorNodeFree = Options.ColorNodeFree;
         private Color colorNodeFixed = Options.ColorNodeFixed;
         private Color colorNodePin = Options.ColorNodePin;
@@ -61,7 +72,6 @@ namespace Finite_Element_Analysis_Explorer
         private Color colorNodeOther = Options.ColorNodeFree;
         private Color colorLabel = Color.FromArgb(255, 205, 205, 205);
         private Color colorHeaderLabel = Color.FromArgb(255, 255, 255, 255);
-
         private Brush brushBackground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 
         #endregion
@@ -105,17 +115,14 @@ namespace Finite_Element_Analysis_Explorer
         private CanvasBitmap bitMapNodeRollerTop;
         private CanvasBitmap bitMapNodeFixedTop;
         private CanvasBitmap bitMapNodeTrackTop;
-
         private CanvasBitmap bitMapNodePinnedBottom;
         private CanvasBitmap bitMapNodeRollerBottom;
         private CanvasBitmap bitMapNodeFixedBottom;
         private CanvasBitmap bitMapNodeTrackBottom;
-
         private CanvasBitmap bitMapNodePinnedLeft;
         private CanvasBitmap bitMapNodeRollerLeft;
         private CanvasBitmap bitMapNodeFixedLeft;
         private CanvasBitmap bitMapNodeTrackLeft;
-
         private CanvasBitmap bitMapNodePinnedRight;
         private CanvasBitmap bitMapNodeRollerRight;
         private CanvasBitmap bitMapNodeFixedRight;
@@ -132,21 +139,15 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        private byte originalMinorGridAlpha;
-        private byte originalNormalGridAlpha;
-        private byte originalMajorGridAlpha;
-
-        private float minorGridAlphaChange;
-        private float normalGridAlphaChange;
-        private float majorGridAlphaChange;
-
-        private float totalGridChanges = 40;
-        private static float counterGridChanges = 0;
+        
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConstructionDisplay"/> class.
+        /// </summary>
         public ConstructionDisplay()
         {
             this.InitializeComponent();
@@ -180,7 +181,7 @@ namespace Finite_Element_Analysis_Explorer
             transforms.Children.Add(previousTransform);
             transforms.Children.Add(deltaTransform);
 
-            // Set the render transform on the rect
+            // Set the render transform on the rect.
             canvas.RenderTransform = transforms;
         }
 
@@ -203,13 +204,9 @@ namespace Finite_Element_Analysis_Explorer
         {
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
-
             labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-
-            // Dots = new CanvasStrokeStyle() { LineJoin = CanvasLineJoin.Round, DashStyle = CanvasDashStyle.Dot };
         }
 
         private async Task CreateResourcesAsync(CanvasAnimatedControl sender)
@@ -218,24 +215,18 @@ namespace Finite_Element_Analysis_Explorer
             bitMapNodeRollerTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerTop.png");
             bitMapNodeFixedTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedTop.png");
             bitMapNodeTrackTop = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackTop.png");
-
             bitMapNodePinnedBottom = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodePinnedBottom.png");
             bitMapNodeRollerBottom = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerBottom.png");
             bitMapNodeFixedBottom = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedBottom.png");
             bitMapNodeTrackBottom = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackBottom.png");
-
             bitMapNodePinnedLeft = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodePinnedLeft.png");
             bitMapNodeRollerLeft = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerLeft.png");
             bitMapNodeFixedLeft = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedLeft.png");
             bitMapNodeTrackLeft = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackLeft.png");
-
             bitMapNodePinnedRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodePinnedRight.png");
             bitMapNodeRollerRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerRight.png");
             bitMapNodeFixedRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedRight.png");
             bitMapNodeTrackRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackRight.png");
-
-            // ReloadColors();
-            // AlphaFade = ColorGridMinor.A;
         }
 
         #endregion

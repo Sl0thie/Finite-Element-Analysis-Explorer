@@ -3,16 +3,25 @@ using System.Diagnostics;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Model static class to manage the structural model.
+    /// </summary>
     internal static class Model
     {
         #region Properties
 
         #region Collections
 
-        internal static volatile int TotalMembers;
+        /// <summary>
+        /// Gets or sets the total number of members.
+        /// </summary>
+        internal static int TotalMembers { get; set; }
 
         private static MemberCollection members = new MemberCollection();
 
+        /// <summary>
+        /// Gets the members collection.
+        /// </summary>
         internal static MemberCollection Members
         {
             get
@@ -23,6 +32,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static NodeConcurrentCollection nodes = new NodeConcurrentCollection();
 
+        /// <summary>
+        /// Gets the nodes collection.
+        /// </summary>
         internal static NodeConcurrentCollection Nodes
         {
             get
@@ -33,6 +45,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static SectionCollection sections = new SectionCollection();
 
+        /// <summary>
+        /// Gets the sections collection.
+        /// </summary>
         internal static SectionCollection Sections
         {
             get
@@ -43,6 +58,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static MaterialCollection materials = new MaterialCollection();
 
+        /// <summary>
+        /// Gets the materials collection.
+        /// </summary>
         internal static MaterialCollection Materials
         {
             get
@@ -53,6 +71,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static SectionProfileCollection sectionProfiles = new SectionProfileCollection();
 
+        /// <summary>
+        /// Gets the section profiles collection.
+        /// </summary>
         internal static SectionProfileCollection SectionProfiles
         {
             get
@@ -63,10 +84,18 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
-        internal static ConcurrentBag<Segment> SegmentsWithLinearLoad = new ConcurrentBag<Segment>();
+        private static ConcurrentBag<Segment> segmentsWithLinearLoad = new ConcurrentBag<Segment>();
+
+        /// <summary>
+        /// Gets or sets the segments with load concurrent bag.
+        /// </summary>
+        internal static ConcurrentBag<Segment> SegmentsWithLinearLoad { get => segmentsWithLinearLoad; set => segmentsWithLinearLoad = value; }
 
         private static decimal largestLinear;
 
+        /// <summary>
+        /// Gets or sets the largest linear load.
+        /// </summary>
         internal static decimal LargestLinear
         {
             get { return largestLinear; }
@@ -77,6 +106,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal forceX;
 
+        /// <summary>
+        /// Gets or sets the force X.
+        /// </summary>
         public static decimal ForceX
         {
             get { return forceX; }
@@ -85,14 +117,20 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal reactionX;
 
+        /// <summary>
+        /// Gets or sets the reaction X.
+        /// </summary>
         public static decimal ReactionX
         {
             get { return reactionX; }
             set { reactionX = value; }
         }
-
+        
         private static decimal forceY;
 
+        /// <summary>
+        /// Gets or sets the force Y.
+        /// </summary>
         public static decimal ForceY
         {
             get { return forceY; }
@@ -101,6 +139,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal reactionY;
 
+        /// <summary>
+        /// Gets or sets the reaction Y.
+        /// </summary>
         public static decimal ReactionY
         {
             get { return reactionY; }
@@ -109,6 +150,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal forceM;
 
+        /// <summary>
+        /// Gets or sets the force M.
+        /// </summary>
         public static decimal ForceM
         {
             get { return forceM; }
@@ -117,6 +161,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal reactionM;
 
+        /// <summary>
+        /// Gets or sets the reaction M.
+        /// </summary>
         public static decimal ReactionM
         {
             get { return reactionM; }
@@ -129,6 +176,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal totalCost;
 
+        /// <summary>
+        /// Gets or sets the total cost.
+        /// </summary>
         public static decimal TotalCost
         {
             get { return totalCost; }
@@ -137,6 +187,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal materialCost;
 
+        /// <summary>
+        /// Gets or sets the material cost.
+        /// </summary>
         public static decimal MaterialCost
         {
             get { return materialCost; }
@@ -145,6 +198,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal nodeCost;
 
+        /// <summary>
+        /// Gets or sets the node cost.
+        /// </summary>
         public static decimal NodeCost
         {
             get { return nodeCost; }
@@ -153,6 +209,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal transportCost;
 
+        /// <summary>
+        /// Gets or sets the transport cost.
+        /// </summary>
         public static decimal TransportCost
         {
             get { return transportCost; }
@@ -161,6 +220,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private static decimal elevationCost;
 
+        /// <summary>
+        /// Gets or sets the elevation cost.
+        /// </summary>
         public static decimal ElevationCost
         {
             get { return elevationCost; }
@@ -173,6 +235,9 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Methods
 
+        /// <summary>
+        /// Updates the panel page.
+        /// </summary>
         internal static void UpdatePanelPage()
         {
             switch (App.CurrentPageState)
@@ -219,6 +284,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Update the colors.
+        /// </summary>
         internal static void UpdateColors()
         {
             switch (App.CurrentPageState)
@@ -269,6 +337,9 @@ namespace Finite_Element_Analysis_Explorer
         {
         }
 
+        /// <summary>
+        /// Outputs the model to debug console.
+        /// </summary>
         internal static void Output()
         {
             Debug.WriteLine("Model Totals:");
@@ -296,11 +367,12 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
+        #region Shrink Model
+
         /// <summary>
         /// Shrink the model to reduce the indexes. and find lost nodes.
         /// </summary>
-        #region Shrink Model
-
+        /// <returns>True if successful.</returns>
         public static bool Shrink()
         {
             // Search for unassigned nodes.

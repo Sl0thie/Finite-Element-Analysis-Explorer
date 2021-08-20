@@ -6,15 +6,22 @@ using System.Numerics;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// MemberCollection class.
+    /// </summary>
     internal class MemberCollection : ConcurrentDictionary<int, Member>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberCollection"/> class.
+        /// </summary>
         internal MemberCollection()
         {
             Reset();
         }
 
-        private Member currentMember;
-
+        /// <summary>
+        /// Gets or sets current member.
+        /// </summary>
         internal Member CurrentMember
         {
             get
@@ -32,8 +39,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private int nextIndex = 1;
-
+        /// <summary>
+        /// Gets or sets the next index.
+        /// </summary>
         internal int NextIndex
         {
             get
@@ -48,18 +56,40 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        public ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>> MemberTiles = new ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>>();
-        public ConcurrentDictionary<int, Member> MembersWithLinearLoads = new ConcurrentDictionary<int, Member>();
-
-        public float GridSize = Options.SelectGridSize;
-
-        private int total;
-
+        /// <summary>
+        /// Gets the total.
+        /// </summary>
         public int Total
         {
             get { return total; }
         }
 
+        /// <summary>
+        /// Gets or sets the Member tiles.
+        /// </summary>
+        internal ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>> MemberTiles { get => memberTiles; set => memberTiles = value; }
+
+        /// <summary>
+        /// Gets or sets the Members with linear loads.
+        /// </summary>
+        internal ConcurrentDictionary<int, Member> MembersWithLinearLoads { get => membersWithLinearLoads; set => membersWithLinearLoads = value; }
+
+        /// <summary>
+        /// Gets or sets the grid size.
+        /// </summary>
+        internal float GridSize { get => gridSize; set => gridSize = value; }
+
+        private Member currentMember;
+        private int nextIndex = 1;
+        private int total;
+        private ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>> memberTiles = new ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>>();
+        private ConcurrentDictionary<int, Member> membersWithLinearLoads = new ConcurrentDictionary<int, Member>();
+        private float gridSize = Options.SelectGridSize;
+
+        /// <summary>
+        /// Removes a member from the collection.
+        /// </summary>
+        /// <param name="indexToRemove">The index of the member.</param>
         internal void RemoveMember(int indexToRemove)
         {
             if (this.ContainsKey(indexToRemove))
@@ -93,6 +123,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Resets the member collection.
+        /// </summary>
         internal void Reset()
         {
             Model.TotalMembers = 0;
@@ -118,6 +151,11 @@ namespace Finite_Element_Analysis_Explorer
             return;
         }
 
+        /// <summary>
+        /// Finds the nearest element.
+        /// </summary>
+        /// <param name="position">The position to find the closest member.</param>
+        /// <returns>The index of element that is nearest to the position.</returns>
         public int FindNearestElement(Vector2 position)
         {
             int dimX = Convert.ToInt32(position.X / GridSize);
@@ -167,6 +205,11 @@ namespace Finite_Element_Analysis_Explorer
             return closestMember;
         }
 
+        /// <summary>
+        /// Adds a new element to the tiles.
+        /// </summary>
+        /// <param name="elementNumber">The index number of the element.</param>
+        /// <param name="position">The position of the element.</param>
         public void AddNewElementToTiles(int elementNumber, Vector2 position)
         {
             foreach (var item in Model.Members[elementNumber].Segments)
@@ -191,6 +234,11 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Removes an element from the tiles.
+        /// </summary>
+        /// <param name="elementNumber">The index of the element.</param>
+        /// <param name="position">The position of the element.</param>
         public void RemoveElementFromTiles(int elementNumber, Vector2 position)
         {
             foreach (var item in Model.Members[elementNumber].Segments)

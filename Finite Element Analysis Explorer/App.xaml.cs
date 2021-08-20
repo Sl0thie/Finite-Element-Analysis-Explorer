@@ -38,8 +38,9 @@
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            // Load the options from the data store.
             Options.LoadOptions();
-            // Debug.WriteLine("Path " + FileManager.LocalFolder.Path);
         }
 
         /// <summary>
@@ -111,12 +112,11 @@
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            WService.ReportSession();
-
             var deferral = e.SuspendingOperation.GetDeferral();
             Options.SaveOptions();
             FileManager.SaveSectionsAsync();
             FileManager.SaveLastFile();
+            WService.ReportSession();
             deferral.Complete();
         }
     }

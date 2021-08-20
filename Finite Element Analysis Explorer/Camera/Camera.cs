@@ -288,7 +288,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <summary>
         /// The trim for the translation.
         /// </summary>
-        internal static float TranslationTrim = 0.5f;
+        private static float translationTrim = 0.5f;
 
         // Line Bounds
         private static float upperBound;
@@ -336,7 +336,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <param name="cameraMovement">The movement vector.</param>
         internal static void MoveCamera(Vector2 cameraMovement)
         {
-            Position += new Vector2(cameraMovement.X * LineUnit * TranslationTrim, -cameraMovement.Y * LineUnit * TranslationTrim);
+            Position += new Vector2(cameraMovement.X * LineUnit * translationTrim, -cameraMovement.Y * LineUnit * translationTrim);
             UpdateBounds();
         }
 

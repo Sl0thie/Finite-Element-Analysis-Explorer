@@ -122,7 +122,7 @@ namespace Finite_Element_Analysis_Explorer
                     Solver.Current.StartSolver();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }

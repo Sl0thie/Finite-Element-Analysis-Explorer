@@ -1,16 +1,18 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
+    /// <summary>
+    /// WService class provides web service methods.
+    /// </summary>
     internal static class WService
     {
         private static DateTime sessionStart;
 
+        /// <summary>
+        /// Reports when a session starts.
+        /// </summary>
         public static void ReportSessionStart()
         {
             sessionStart = DateTime.UtcNow;
@@ -27,8 +29,13 @@
             }
         }
 
+        /// <summary>
+        /// Report a session when it finishes.
+        /// </summary>
         public static void ReportSession()
         {
+            Debug.WriteLine("WService.ReportSession");
+
             FEAE.FEAESoapClient soap = new FEAE.FEAESoapClient();
 
             try
@@ -41,6 +48,10 @@
             }
         }
 
+        /// <summary>
+        /// Reports exceptions.
+        /// </summary>
+        /// <param name="exception">The exception that was raised.</param>
         public static void ReportException(Exception exception)
         {
             FEAE.FEAESoapClient soap = new FEAE.FEAESoapClient();

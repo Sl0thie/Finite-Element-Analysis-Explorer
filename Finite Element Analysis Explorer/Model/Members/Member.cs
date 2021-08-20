@@ -519,7 +519,7 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryAdd(index, this);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     WService.ReportException(ex);
                 }
@@ -534,7 +534,7 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryRemove(index, out tmpMember);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     WService.ReportException(ex);
                 }

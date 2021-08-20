@@ -695,7 +695,7 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
 
-                if(await LocalFolder.TryGetItemAsync("Sections.Data") == null)
+                if (await LocalFolder.TryGetItemAsync("Sections.Data") == null)
                 {
                     StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
 
@@ -808,7 +808,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Failed to load sections. " + ex.Message);
             }

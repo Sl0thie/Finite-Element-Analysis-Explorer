@@ -191,7 +191,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialYoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -204,7 +204,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialShearModulus.SetTheValue(selectedMaterial.ModulusOfRigidity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -217,7 +217,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBulkModulus.SetTheValue(selectedMaterial.Bulk_Modulus);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -230,7 +230,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialPoissonRatio.SetTheValue(selectedMaterial.Poission_Ratio);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -243,7 +243,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialLiquidDensity.SetTheValue(selectedMaterial.Liquid_Density);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -256,7 +256,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMohsHardness.SetTheValue(selectedMaterial.Mohs_Hardness);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -269,7 +269,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBrinellHardness.SetTheValue(selectedMaterial.Brinell_Hardness);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -282,7 +282,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialVickersHardness.SetTheValue(selectedMaterial.Vickers_Hardness);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -295,7 +295,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalExpansion.SetTheValue(selectedMaterial.Thermal_Expansion);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -308,7 +308,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalConductivity.SetTheValue(selectedMaterial.Thermal_Conductivity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -321,7 +321,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialSoundSpeed.SetTheValue(selectedMaterial.Sound_Speed);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -334,7 +334,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
@@ -347,7 +347,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
