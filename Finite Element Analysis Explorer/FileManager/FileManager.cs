@@ -148,10 +148,9 @@ namespace Finite_Element_Analysis_Explorer
                     IList<string> lines = new List<string>();
                     lines = await FileIO.ReadLinesAsync(workingFile);
 
-                    Debug.WriteLine("WorkingFileDisplayName " + workingFilePath);
-                    Debug.WriteLine("WorkingFilePath " + workingFilePath);
-                    Debug.WriteLine("WorkingFile.FileType " + workingFile.FileType);
-
+                    // Debug.WriteLine("WorkingFileDisplayName " + workingFilePath);
+                    // Debug.WriteLine("WorkingFilePath " + workingFilePath);
+                    // Debug.WriteLine("WorkingFile.FileType " + workingFile.FileType);
                     if (workingFile.FileType == ".struct")
                     {
                         foreach (string line in lines)
@@ -718,10 +717,6 @@ namespace Finite_Element_Analysis_Explorer
                     tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
 
                     await FileIO.WriteTextAsync(tempFile, tempString);
-                }
-                else
-                {
-                    Debug.WriteLine("HERE");
                 }
 
                 sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");

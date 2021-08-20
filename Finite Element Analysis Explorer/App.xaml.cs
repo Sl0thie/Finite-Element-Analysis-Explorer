@@ -39,7 +39,7 @@
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             Options.LoadOptions();
-            Debug.WriteLine("Path " + FileManager.LocalFolder.Path);
+            // Debug.WriteLine("Path " + FileManager.LocalFolder.Path);
         }
 
         /// <summary>

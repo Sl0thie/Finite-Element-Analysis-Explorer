@@ -2440,8 +2440,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["MomentFactor"];
-                momentFactor = (float)tmpDouble;
+                momentFactor = Convert.ToSingle(FileManager.LocalSettings.Values["MomentFactor"]);
             }
             catch
             {
@@ -2451,8 +2450,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["ShearFactor"];
-                shearFactor = (float)tmpDouble;
+                shearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ShearFactor"]);
             }
             catch
             {
@@ -2463,8 +2461,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["LinearFactor"];
-                linearFactor = (float)tmpDouble;
+                linearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["LinearFactor"]);
             }
             catch
             {
@@ -2475,8 +2472,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["ForcesFactor"];
-                forcesFactor = (float)tmpDouble;
+                forcesFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ForcesFactor"]);
             }
             catch
             {
@@ -2487,8 +2483,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["ReactionsFactor"];
-                reactionsFactor = (float)tmpDouble;
+                reactionsFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ReactionsFactor"]);
             }
             catch
             {
@@ -2499,8 +2494,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpDouble = (float)FileManager.LocalSettings.Values["DisplacementFactor"];
-                displacementFactor = (float)tmpDouble;
+                displacementFactor = Convert.ToSingle(FileManager.LocalSettings.Values["DisplacementFactor"]);
             }
             catch
             {
@@ -2511,12 +2505,11 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpSingle = (float)FileManager.LocalSettings.Values["CameraZoomTrim"];
-                CameraZoomTrim = (float)tmpSingle;
+                CameraZoomTrim = Convert.ToSingle(FileManager.LocalSettings.Values["CameraZoomTrim"]);
             }
-            catch
+            catch(Exception ex)
             {
-                Debug.WriteLine("Error Loading ZoomTrim");
+                Debug.WriteLine("Error Loading CameraZoomTrim " + ex.Message);
                 FileManager.LocalSettings.Values["CameraZoomTrim"] = 500f;
                 CameraZoomTrim = 500f;
             }
@@ -2525,8 +2518,10 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                float tmpSingle = (float)FileManager.LocalSettings.Values["SelectGridSize"];
-                SelectGridSize = (float)tmpSingle;
+                //double tmpSingle = (double)FileManager.LocalSettings.Values["SelectGridSize"];
+                //SelectGridSize = (float)tmpSingle;
+
+                SelectGridSize = Convert.ToSingle(FileManager.LocalSettings.Values["SelectGridSize"]);
             }
             catch
             {
@@ -2538,6 +2533,8 @@ namespace Finite_Element_Analysis_Explorer
 
         internal static void SaveOptions()
         {
+            FileManager.LocalSettings.Values["FirstRun"] = (bool)FirstRun;
+
             FileManager.LocalSettings.Values["CameraZoomTrim"] = (float)CameraZoomTrim;
             FileManager.LocalSettings.Values["SelectGridSize"] = (float)SelectGridSize;
             FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
