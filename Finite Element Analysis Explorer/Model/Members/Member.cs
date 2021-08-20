@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Member class.
+    /// </summary>
     internal class Member
     {
         #region Constructor
 
         private object thisLock = new object();
 
+        /// <summary>
+        /// Outputs the member to the debug console.
+        /// </summary>
         internal void Output()
         {
             Debug.WriteLine("MEMBER " + index);
@@ -23,10 +29,23 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  totalSegments:" + totalSegments + "  LDLNear X:" + LDLNear + "  LDLFar:" + LDLFar);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Member"/> class.
+        /// </summary>
         internal Member()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Member"/> class.
+        /// </summary>
+        /// <param name="index">The index of the member.</param>
+        /// <param name="nodeNear">The near node of the member.</param>
+        /// <param name="nodeFar">The far node of the member.</param>
+        /// <param name="section">The section of the member.</param>
+        /// <param name="totalSegments">The number of sections in the member.</param>
+        /// <param name="lDLNear">The IDL of the near side.</param>
+        /// <param name="lDLFar">The IDL of the far side.</param>
         internal Member(int index, Node nodeNear, Node nodeFar, Section section, int totalSegments, decimal lDLNear, decimal lDLFar)
         {
             // Check if the member is already in the collection.
@@ -70,6 +89,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private int index;
 
+        /// <summary>
+        /// Gets the index of the member.
+        /// </summary>
         internal int Index
         {
             get
@@ -80,6 +102,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Node nodeNear;
 
+        /// <summary>
+        /// Gets the near node of the member.
+        /// </summary>
         internal Node NodeNear
         {
             get
@@ -90,6 +115,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Node nodeFar;
 
+        /// <summary>
+        /// Gets the far node of th member.
+        /// </summary>
         internal Node NodeFar
         {
             get
@@ -100,6 +128,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Segment segmentNear;
 
+        /// <summary>
+        /// Gets or sets the near segment.
+        /// </summary>
         public Segment SegmentNear
         {
             get { return segmentNear; }
@@ -108,6 +139,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Segment segmentFar;
 
+        /// <summary>
+        /// Gets or sets the far segment.
+        /// </summary>
         public Segment SegmentFar
         {
             get { return segmentFar; }
@@ -116,6 +150,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Section section;
 
+        /// <summary>
+        /// Gets or sets the section.
+        /// </summary>
         internal Section Section
         {
             get
@@ -132,6 +169,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private ConcurrentDictionary<int, Segment> segments = new ConcurrentDictionary<int, Segment>();
 
+        /// <summary>
+        /// Gets the segments dictionary.
+        /// </summary>
         internal ConcurrentDictionary<int, Segment> Segments
         {
             get
@@ -145,6 +185,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private bool dataReady = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the data is ready.
+        /// </summary>
         public bool DataReady
         {
             get { return dataReady; }
@@ -157,6 +200,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal length;
 
+        /// <summary>
+        /// Gets the length.
+        /// </summary>
         internal decimal Length
         {
             get
@@ -167,6 +213,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthXAxis;
 
+        /// <summary>
+        /// Gets the length of the X axis.
+        /// </summary>
         internal decimal LengthXAxis
         {
             get
@@ -177,6 +226,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthYAxis;
 
+        /// <summary>
+        /// Gets the length of the Y axis.
+        /// </summary>
         internal decimal LengthYAxis
         {
             get
@@ -188,6 +240,9 @@ namespace Finite_Element_Analysis_Explorer
         private int angleMultiplyer = 0; // Needs better fix.
         private decimal angle;
 
+        /// <summary>
+        /// Gets the angle of the member.
+        /// </summary>
         internal decimal Angle
         {
             get
@@ -198,6 +253,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private int totalSegments;
 
+        /// <summary>
+        /// Gets or sets the number of segments within the member.
+        /// </summary>
         internal int TotalSegments
         {
             get
@@ -214,6 +272,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lDLNear;
 
+        /// <summary>
+        /// Gets or sets the near LDL.
+        /// </summary>
         internal decimal LDLNear
         {
             get
@@ -231,6 +292,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lDLFar;
 
+        /// <summary>
+        /// Gets or sets the far LDL.
+        /// </summary>
         internal decimal LDLFar
         {
             get
@@ -249,6 +313,9 @@ namespace Finite_Element_Analysis_Explorer
         // Should be replaced with segments later.
         private Vector2 centerPoint;
 
+        /// <summary>
+        /// Gets or sets the center point of the member.
+        /// </summary>
         public Vector2 CenterPoint
         {
             get { return centerPoint; }
@@ -261,6 +328,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplaced;
 
+        /// <summary>
+        /// Gets the length of displacement.
+        /// </summary>
         public decimal LengthDisplaced
         {
             get { return lengthDisplaced; }
@@ -268,6 +338,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplacedXAxis;
 
+        /// <summary>
+        /// Gets the length of displacement on the X axis.
+        /// </summary>
         internal decimal LengthDisplacedXAxis
         {
             get
@@ -278,6 +351,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplacedYAxis;
 
+        /// <summary>
+        /// Gets the length of displacement on the Y axis.
+        /// </summary>
         internal decimal LengthDisplacedYAxis
         {
             get
@@ -288,6 +364,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal angleDisplaced;
 
+        /// <summary>
+        /// Gets the angle of displacement.
+        /// </summary>
         public decimal AngleDisplaced
         {
             get { return angleDisplaced; }
@@ -295,6 +374,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifference;
 
+        /// <summary>
+        /// Gets the difference in length.
+        /// </summary>
         public decimal LengthDifference
         {
             get { return lengthDifference; }
@@ -302,6 +384,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifferenceXAxis;
 
+        /// <summary>
+        /// Gets the difference in length on the X axis.
+        /// </summary>
         internal decimal LengthDifferenceXAxis
         {
             get
@@ -312,6 +397,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifferenceYAxis;
 
+        /// <summary>
+        /// Gets the difference in length on the Y axis.
+        /// </summary>
         internal decimal LengthDifferenceYAxis
         {
             get
@@ -322,6 +410,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal angleDifference;
 
+        /// <summary>
+        /// Gets the angle of difference.
+        /// </summary>
         public decimal AngleDifference
         {
             get { return angleDifference; }
@@ -329,6 +420,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthRatio;
 
+        /// <summary>
+        /// Gets or sets the length ratio.
+        /// </summary>
         public decimal LengthRatio
         {
             get { return lengthRatio; }
@@ -341,6 +435,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal memberCost;
 
+        /// <summary>
+        /// Gets or sets the cost of the member.
+        /// </summary>
         public decimal MemberCost
         {
             get { return memberCost; }
@@ -349,6 +446,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal materialCost;
 
+        /// <summary>
+        /// Gets or sets the cost of materials for the member.
+        /// </summary>
         public decimal MaterialCost
         {
             get { return materialCost; }
@@ -357,6 +457,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal nodeCost;
 
+        /// <summary>
+        /// Gets or sets the cost of the nodes for the member.
+        /// </summary>
         public decimal NodeCost
         {
             get { return nodeCost; }
@@ -369,6 +472,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal normalStress;
 
+        /// <summary>
+        /// Gets or sets the normal stress for the member.
+        /// </summary>
         public decimal NormalStress
         {
             get { return normalStress; }
@@ -629,6 +735,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Updates the properties from the matrix.
+        /// </summary>
         internal void UpdatePropertiesFromMatrix()
         {
             lengthDisplacedXAxis = Math.Abs(nodeFar.PositionDisplaced.X - nodeNear.PositionDisplaced.X);

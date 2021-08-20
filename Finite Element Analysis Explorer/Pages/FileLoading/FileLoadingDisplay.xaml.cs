@@ -3,11 +3,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// FileLoadingDisplay page.
+    /// </summary>
     public sealed partial class FileLoadingDisplay : Page
     {
-        internal static FileLoadingDisplay Current;
+        /// <summary>
+        /// Gets or sets the current file loading display page.
+        /// </summary>
+        internal static FileLoadingDisplay Current { get; set; }
 
-        // private bool IsLoaded = false;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileLoadingDisplay"/> class.
+        /// </summary>
         public FileLoadingDisplay()
         {
             this.InitializeComponent();
@@ -25,6 +33,12 @@ namespace Finite_Element_Analysis_Explorer
             // IsLoaded = false;
         }
 
+        /// <summary>
+        /// Adds a message to the page.
+        /// </summary>
+        /// <param name="total">The total loading time.</param>
+        /// <param name="step">The time for this step.</param>
+        /// <param name="message">The message.</param>
         public void AddMessage(long total, long step, string message)
         {
             SolverMessage nextMessage = new SolverMessage

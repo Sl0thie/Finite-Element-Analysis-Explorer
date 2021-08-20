@@ -3,19 +3,36 @@ using System.Collections.Concurrent;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// NodeConcurrentCollection class.
+    /// </summary>
     internal class NodeConcurrentCollection : ConcurrentDictionary<Tuple<decimal, decimal>, Node>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NodeConcurrentCollection"/> class.
+        /// </summary>
         internal NodeConcurrentCollection()
         {
         }
 
         /// <summary>
-        /// Dictionaries.
+        /// Gets or sets the nodes with loads dictionary.
         /// </summary>
-        internal ConcurrentDictionary<int, Node> NodesWithNodalLoads = new ConcurrentDictionary<int, Node>();
-        internal ConcurrentDictionary<int, Node> NodesWithConstraints = new ConcurrentDictionary<int, Node>();
-        internal ConcurrentDictionary<int, Node> NodesWithReactions = new ConcurrentDictionary<int, Node>();
+        internal ConcurrentDictionary<int, Node> NodesWithNodalLoads { get; set; } = new ConcurrentDictionary<int, Node>();
 
+        /// <summary>
+        /// Gets or sets the nodes with constrains dictionary.
+        /// </summary>
+        internal ConcurrentDictionary<int, Node> NodesWithConstraints { get; set; } = new ConcurrentDictionary<int, Node>();
+
+        /// <summary>
+        /// Gets or sets the nodes with reactions dictionary.
+        /// </summary>
+        internal ConcurrentDictionary<int, Node> NodesWithReactions { get; set; } = new ConcurrentDictionary<int, Node>();
+
+        /// <summary>
+        /// Resets the collection.
+        /// </summary>
         internal void Reset()
         {
             this.Clear();
@@ -24,6 +41,12 @@ namespace Finite_Element_Analysis_Explorer
             NodesWithReactions.Clear();
         }
 
+        /// <summary>
+        /// Gets a node from a position.
+        /// </summary>
+        /// <param name="x">The X co-ordinate.</param>
+        /// <param name="y">The Y co-ordinate.</param>
+        /// <returns>The node at the position.</returns>
         internal Node GetFromPosition(decimal x, decimal y)
         {
             foreach (var item in this)
@@ -37,6 +60,11 @@ namespace Finite_Element_Analysis_Explorer
             return null;
         }
 
+        /// <summary>
+        /// Gets a node from the index.
+        /// </summary>
+        /// <param name="index">The index of the node.</param>
+        /// <returns>The node at that index.</returns>
         internal Node GetFromIndex(int index)
         {
             foreach (var item in this)
@@ -50,6 +78,10 @@ namespace Finite_Element_Analysis_Explorer
             return null;
         }
 
+        /// <summary>
+        /// Removes a node from the dictionary.
+        /// </summary>
+        /// <param name="nodeToRemove">The node to remove.</param>
         internal void RemoveNode(Node nodeToRemove)
         {
             if (this.ContainsKey(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y)))

@@ -142,14 +142,12 @@
     <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\LcdD.ttf" />
     <Content Include="Assets\HANDGOTL.ttf" />
-    <None Include="Class Diagrams\Model Overview.cd" />
     <None Include="Connected Services\FEAE\FEAE.wsdl" />
     <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportErrorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />
     <None Include="Others\General.cd" />
-    <None Include="Overview.cd" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

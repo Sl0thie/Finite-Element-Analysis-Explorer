@@ -27,24 +27,19 @@
         #region Operations
 
         /// <summary>
-        /// Clayton's singleton.
+        /// Gets or sets the current results display page.
         /// </summary>
-        internal static ResultsDisplay Current;
-
-        private SelectionState currentSelectionState = SelectionState.Ready;
-
-        internal bool IsPageLoaded = false;
+        internal static ResultsDisplay Current { get; set; }
 
         private static float counterGridChanges = 0;
+        private readonly float totalGridChanges = 40;
+        private SelectionState currentSelectionState = SelectionState.Ready;
         private byte originalMinorGridAlpha;
         private byte originalNormalGridAlpha;
         private byte originalMajorGridAlpha;
-
         private float minorGridAlphaChange;
         private float normalGridAlphaChange;
         private float majorGridAlphaChange;
-
-        private float totalGridChanges = 40;
 
         #endregion
 
@@ -158,6 +153,9 @@
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResultsDisplay"/> class.
+        /// </summary>
         public ResultsDisplay()
         {
             this.InitializeComponent();
@@ -596,7 +594,7 @@
 
             try
             {
-                if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
+                if (Model.Members.CurrentMember is object)
                 {
                     // Draw Shear
                     if (Options.ShowShear)
@@ -958,6 +956,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Updates the colors.
+        /// </summary>
         public void UpdateColors()
         {
             colorBackground = Options.ColorBackground;

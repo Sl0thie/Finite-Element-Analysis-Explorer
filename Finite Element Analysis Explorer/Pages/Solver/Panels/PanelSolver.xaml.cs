@@ -4,12 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// PanelSolver page.
+    /// </summary>
     public sealed partial class PanelSolver : Page
     {
         /// <summary>
-        /// Clayton's singleton.
+        /// Gets or sets the current solver panel page.
         /// </summary>
-        internal static PanelSolver Current;
+        internal static PanelSolver Current { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PanelSolver"/> class.
@@ -27,12 +30,18 @@ namespace Finite_Element_Analysis_Explorer
             CheckBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
         }
 
+        /// <summary>
+        /// Processes the solver has started.
+        /// </summary>
         public void SolverHasStarted()
         {
             ComboBox_Solver.IsEnabled = false;
             Button_StartSolver.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Shows the results button.
+        /// </summary>
         public void ShowResultsButton()
         {
             Button_Construction.Visibility = Visibility.Collapsed;

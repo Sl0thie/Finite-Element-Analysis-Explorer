@@ -7,19 +7,32 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Results page.
+    /// </summary>
     public sealed partial class Results : Page
     {
-        internal static Results Current;
+        /// <summary>
+        /// Gets or sets the current results page.
+        /// </summary>
+        internal static Results Current { get; set; }
+
         private bool isPageLoaded = false;
 
         private bool detailsIsOpen = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the details are open.
+        /// </summary>
         public bool DetailsIsOpen
         {
             get { return detailsIsOpen; }
             set { detailsIsOpen = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Results"/> class.
+        /// </summary>
         public Results()
         {
             this.InitializeComponent();
@@ -28,6 +41,9 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Show
 
+        /// <summary>
+        /// Shows the member.
+        /// </summary>
         public void ShowMember()
         {
             if (isPageLoaded)
@@ -36,6 +52,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Shows the model.
+        /// </summary>
         public void ShowModel()
         {
             if (isPageLoaded)
@@ -44,6 +63,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Shows the report.
+        /// </summary>
         public void ShowReport()
         {
             frameDetails.Width = 220;
@@ -51,27 +73,42 @@ namespace Finite_Element_Analysis_Explorer
             frameDisplay.Navigate(typeof(ResultsReport));
         }
 
+        /// <summary>
+        /// Shows the color settings.
+        /// </summary>
         public void ShowSettingsColors()
         {
             frameDetails.Navigate(typeof(PanelSettingsColors));
         }
 
+        /// <summary>
+        /// Shows the solver settings.
+        /// </summary>
         public void ShowSettingsSolver()
         {
             frameDetails.Navigate(typeof(PanelSettingsSolver));
         }
 
+        /// <summary>
+        /// Shows the general settings.
+        /// </summary>
         public void ShowSettingsGeneral()
         {
             frameDetails.Navigate(typeof(PanelSettingsGeneral));
         }
 
+        /// <summary>
+        /// Shows the external help.
+        /// </summary>
         public async void ShowHelpAsync()
         {
             var uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
 
+        /// <summary>
+        /// Shows the drawing.
+        /// </summary>
         public void ShowDrawing()
         {
             if (Model.Members.CurrentMember == null)
@@ -90,6 +127,10 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
+        /// <summary>
+        /// Sets the title.
+        /// </summary>
+        /// <param name="newTitle">The title to display.</param>
         public void SetTitle(string newTitle)
         {
             TextBlock_Title.Text = newTitle;

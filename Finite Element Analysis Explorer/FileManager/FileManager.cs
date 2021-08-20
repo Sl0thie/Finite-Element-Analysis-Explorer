@@ -16,12 +16,32 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// FileManager class.
+    /// </summary>
     internal static class FileManager
     {
         #region Properties
 
-        internal static ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
-        internal static StorageFolder LocalFolder = ApplicationData.Current.LocalFolder;
+        /// <summary>
+        /// Gets or sets the local settings application data container.
+        /// </summary>
+        internal static ApplicationDataContainer LocalSettings { get; set; } = ApplicationData.Current.LocalSettings;
+
+        /// <summary>
+        /// Gets or sets the local folder.
+        /// </summary>
+        internal static StorageFolder LocalFolder { get; set; } = ApplicationData.Current.LocalFolder;
+
+        /// <summary>
+        /// Gets the file title.
+        /// </summary>
+        public static string FileTitle
+        {
+            get { return fileTitle; }
+        }
+
+        private static string fileTitle;
 
         // Files
         private static StorageFile workingFile;
@@ -29,16 +49,19 @@ namespace Finite_Element_Analysis_Explorer
         private static StorageFile sectionsFile;
         private static StorageFile nextFile;
 
+        // File properties.
         private static string workingFilePath = string.Empty;
         private static string workingFileDisplayName = string.Empty;
         private static string workingFileMruToken = string.Empty;
         private static string workingFileListToken = string.Empty;
 
+        // Loading stats.
         private static int statsLoadingTotalItems = 0;
         private static int statsLoadingTotalMembers = 0;
         private static int statsLoadingTotalNodes = 0;
         private static int statsLoadingTotalSections = 0;
 
+        // Other stats.
         private static int statsLastSolverUsed = 0;
         private static long statsTimeCreated = 0;
         private static long statsTimeLastOpened = 0;
@@ -48,15 +71,11 @@ namespace Finite_Element_Analysis_Explorer
         private static long statsTimeTotalSolving = 0;
         private static long statsTotalSolving = 0;
 
-        private static string fileTitle;
-
-        public static string FileTitle
-        {
-            get { return fileTitle; }
-        }
-
         #endregion
 
+        /// <summary>
+        /// Creates a new file.
+        /// </summary>
         public static async void NewFile()
         {
             if (await PickFileToSave())
@@ -96,6 +115,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Load the file.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         internal static async Task<bool> LoadFile()
         {
             // Reset the Model first.
@@ -378,6 +401,9 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Loads the last file.
+        /// </summary>
         internal static async void LoadLastFileAsync()
         {
             try
@@ -401,20 +427,14 @@ namespace Finite_Element_Analysis_Explorer
             }
             catch (Exception ex)
             {
-                //if (Options.FirstRun)
-                //{
-                //    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
-                //    var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-                //    Options.FirstRun = false;
-                //}
-
                 Debug.WriteLine("ERROR LoadLastFileAsync " + ex.Message + " " + ex.Data.ToString() + " " + ex.StackTrace);
-                //NewFile();
-                //Frame rootFrame = Window.Current.Content as Frame;
-                //rootFrame.Navigate(typeof(Construction));
             }
         }
 
+        /// <summary>
+        /// Save a file to disk.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         internal static async Task<bool> SaveFile()
         {
             if (workingFile != null)
@@ -531,6 +551,9 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Save the last file.
+        /// </summary>
         internal static async void SaveLastFile()
         {
             if (workingFile is object)
@@ -571,10 +594,9 @@ namespace Finite_Element_Analysis_Explorer
             return Model.Materials.Count;
         }
 
-        internal static void SaveMaterialsAsyncsec()
-        {
-        }
-
+        /// <summary>
+        /// Save the materials to disk.
+        /// </summary>
         internal static async void SaveMaterialsAsync()
         {
             materialsFile = await LocalFolder.GetFileAsync("Materials.Data");
@@ -690,15 +712,17 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Sections
 
+        /// <summary>
+        /// Loads the sections from disk.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         internal static async Task<int> LoadSectionsAsync()
         {
             try
             {
-
                 if (await LocalFolder.TryGetItemAsync("Sections.Data") == null)
                 {
                     StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
-
                     string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
                     tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
                     tempString += "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
@@ -715,7 +739,6 @@ namespace Finite_Element_Analysis_Explorer
                     tempString += "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
                     tempString += "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
                     tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-
                     await FileIO.WriteTextAsync(tempFile, tempString);
                 }
 
@@ -857,6 +880,9 @@ namespace Finite_Element_Analysis_Explorer
             return Model.Sections.Count;
         }
 
+        /// <summary>
+        /// Save the sections to disk.
+        /// </summary>
         internal static async void SaveSectionsAsync()
         {
             sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
@@ -916,6 +942,10 @@ namespace Finite_Element_Analysis_Explorer
 
         #endregion
 
+        /// <summary>
+        /// Pick the file to load.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         public static async Task<bool> PickFileToLoad()
         {
             FileOpenPicker openPicker = new FileOpenPicker
@@ -955,6 +985,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Pick the file to save to.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         public static async Task<bool> PickFileToSave()
         {
             FileSavePicker savePicker = new FileSavePicker

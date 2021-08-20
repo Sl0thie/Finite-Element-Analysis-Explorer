@@ -3,15 +3,27 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// PanelSections page.
+    /// </summary>
     public sealed partial class PanelSections : Page
     {
-        internal static PanelSections Current;
+        /// <summary>
+        /// Gets or sets the current panel sections page.
+        /// </summary>
+        internal static PanelSections Current { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelSections"/> class.
+        /// </summary>
         public PanelSections()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Hide new section name.
+        /// </summary>
         public void HideNewSectionName()
         {
             Construction.Current.ShowSection();
@@ -76,7 +88,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }

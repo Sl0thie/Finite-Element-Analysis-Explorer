@@ -367,7 +367,7 @@
             {
                 WService.ReportException(ex);
             }
-            
+
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 

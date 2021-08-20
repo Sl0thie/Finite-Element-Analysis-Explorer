@@ -5,8 +5,14 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DisplaySection2 page.
+    /// </summary>
     public sealed partial class DisplaySection2 : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DisplaySection2"/> class.
+        /// </summary>
         public DisplaySection2()
         {
             this.InitializeComponent();

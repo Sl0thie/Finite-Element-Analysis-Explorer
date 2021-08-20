@@ -125,7 +125,7 @@ namespace Finite_Element_Analysis_Explorer
             get { return reactionX; }
             set { reactionX = value; }
         }
-        
+
         private static decimal forceY;
 
         /// <summary>

@@ -6,11 +6,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// FileLoading page.
+    /// </summary>
     public sealed partial class FileLoading : Page
     {
-        internal static FileLoading Current;
+        /// <summary>
+        /// Gets or sets the current file loading page.
+        /// </summary>
+        internal static FileLoading Current { get; set; }
 
-        // private bool IsLoaded = false;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileLoading"/> class.
+        /// </summary>
         public FileLoading()
         {
             this.InitializeComponent();

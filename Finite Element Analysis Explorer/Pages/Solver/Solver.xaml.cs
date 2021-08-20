@@ -8,25 +8,42 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Solver page.
+    /// </summary>
     public sealed partial class Solver : Page
     {
-        internal static Solver Current;
+        /// <summary>
+        /// Gets or sets the current solver page.
+        /// </summary>
+        internal static Solver Current { get; set; }
+
         private bool isPageLoaded = false;
         private ISolver currentSolver;
+
         private bool detailsIsOpen = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the details are open.
+        /// </summary>
         public bool DetailsIsOpen
         {
             get { return detailsIsOpen; }
             set { detailsIsOpen = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Solver"/> class.
+        /// </summary>
         public Solver()
         {
             this.InitializeComponent();
             CustomizeTitleBar();
         }
 
+        /// <summary>
+        /// Show the construction page.
+        /// </summary>
         public void ShowConstruction()
         {
             if (isPageLoaded)
@@ -36,6 +53,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Start the solver.
+        /// </summary>
         public void StartSolver()
         {
             PanelSolver.Current.SolverHasStarted();
@@ -64,6 +84,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Show the results page.
+        /// </summary>
         public void ShowResults()
         {
             if (isPageLoaded)
@@ -71,11 +94,6 @@ namespace Finite_Element_Analysis_Explorer
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Results));
             }
-        }
-
-        public void OpenSplit()
-        {
-            // SplitViewMain.IsPaneOpen = true;
         }
 
         private void CustomizeTitleBar()

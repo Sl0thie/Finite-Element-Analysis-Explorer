@@ -2,6 +2,9 @@
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DMatrix class.
+    /// </summary>
     internal class DMatrix
     {
         // static matrix methods - consider placing in a class.

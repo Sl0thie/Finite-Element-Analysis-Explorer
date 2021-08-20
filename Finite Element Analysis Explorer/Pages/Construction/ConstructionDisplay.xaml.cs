@@ -44,7 +44,7 @@ namespace Finite_Element_Analysis_Explorer
         private float normalGridAlphaChange;
         private float majorGridAlphaChange;
         private float totalGridChanges = 40;
-        
+
         #endregion
 
         #region Colors
@@ -138,8 +138,6 @@ namespace Finite_Element_Analysis_Explorer
         private bool forceManipulationsToEnd;
 
         #endregion
-
-        
 
         #endregion
 
@@ -837,6 +835,9 @@ namespace Finite_Element_Analysis_Explorer
             Camera.ViewportSize = new Vector2((int)this.ActualWidth, (int)this.ActualHeight);
         }
 
+        /// <summary>
+        /// Updates the colors.
+        /// </summary>
         public void UpdateColors()
         {
             colorBackground = Options.ColorBackground;

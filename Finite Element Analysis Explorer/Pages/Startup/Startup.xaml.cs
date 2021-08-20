@@ -6,10 +6,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Startup page.
+    /// </summary>
     public sealed partial class Startup : Page
     {
-        internal static Startup Current;
+        /// <summary>
+        /// Gets or sets the current startup page.
+        /// </summary>
+        internal static Startup Current { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
         public Startup()
         {
             this.InitializeComponent();

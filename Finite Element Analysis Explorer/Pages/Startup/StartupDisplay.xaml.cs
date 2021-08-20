@@ -7,11 +7,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// StartupDisplay page.
+    /// </summary>
     public sealed partial class StartupDisplay : Page
     {
-        internal static StartupDisplay Current;
+        /// <summary>
+        /// Gets or sets the current startup display page.
+        /// </summary>
+        internal static StartupDisplay Current { get; set; }
 
-        // private bool IsLoaded = false;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StartupDisplay"/> class.
+        /// </summary>
         public StartupDisplay()
         {
             this.InitializeComponent();
@@ -91,6 +99,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Adds a message to the page.
+        /// </summary>
+        /// <param name="message">The message to add to the page.</param>
         public async void AddItem(string message)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
