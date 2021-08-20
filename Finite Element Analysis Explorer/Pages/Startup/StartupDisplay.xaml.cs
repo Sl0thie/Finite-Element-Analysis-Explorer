@@ -87,6 +87,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("StartupDisplay Error: " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 

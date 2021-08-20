@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.intacomputers.com/Services/FEAE/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.intacomputers.com/Services/FEAE/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.intacomputers.com/Services/FEAE/">
+      <s:element name="ReportError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="stackTrace" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetSite" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="source" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReportSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="start" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="finish" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportSessionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReportSessionStart">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReportSessionStartResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReportErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportError" />
+  </wsdl:message>
+  <wsdl:message name="ReportErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportSession" />
+  </wsdl:message>
+  <wsdl:message name="ReportSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportSessionStartSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportSessionStart" />
+  </wsdl:message>
+  <wsdl:message name="ReportSessionStartSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportSessionStartResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FEAESoap">
+    <wsdl:operation name="ReportError">
+      <wsdl:input message="tns:ReportErrorSoapIn" />
+      <wsdl:output message="tns:ReportErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession">
+      <wsdl:input message="tns:ReportSessionSoapIn" />
+      <wsdl:output message="tns:ReportSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportSessionStart">
+      <wsdl:input message="tns:ReportSessionStartSoapIn" />
+      <wsdl:output message="tns:ReportSessionStartSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FEAESoap" type="tns:FEAESoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReportError">
+      <soap:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession">
+      <soap:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSessionStart">
+      <soap:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSessionStart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FEAESoap12" type="tns:FEAESoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReportError">
+      <soap12:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession">
+      <soap12:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSessionStart">
+      <soap12:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSessionStart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FEAE">
+    <wsdl:port name="FEAESoap" binding="tns:FEAESoap">
+      <soap:address location="http://www.intacomputers.com/Services/FEAE.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FEAESoap12" binding="tns:FEAESoap12">
+      <soap12:address location="http://www.intacomputers.com/Services/FEAE.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

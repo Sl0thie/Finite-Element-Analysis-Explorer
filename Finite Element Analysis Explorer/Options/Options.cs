@@ -1247,200 +1247,220 @@ namespace Finite_Element_Analysis_Explorer
             {
                 force = (ForceType)FileManager.LocalSettings.Values["UnitForce"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitForce"] = (int)ForceType.Newton;
                 force = ForceType.Newton;
+                WService.ReportException(ex);
             }
 
             try
             {
                 forcePerLength = (ForcePerLengthType)FileManager.LocalSettings.Values["UnitForcePerLength"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitForcePerLength"] = (int)ForcePerLengthType.NewtonPerMeter;
                 forcePerLength = ForcePerLengthType.NewtonPerMeter;
+                WService.ReportException(ex);
             }
 
             try
             {
                 Length = (LengthType)FileManager.LocalSettings.Values["UnitLength"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitLength"] = (int)LengthType.Meter;
                 Length = LengthType.Meter;
+                WService.ReportException(ex);
             }
 
             try
             {
                 mass = (MassType)FileManager.LocalSettings.Values["UnitMass"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMass"] = (int)MassType.Kilogram;
                 mass = MassType.Kilogram;
+                WService.ReportException(ex);
             }
 
             try
             {
                 moment = (MomentType)FileManager.LocalSettings.Values["UnitMoment"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMoment"] = (int)MomentType.NewtonMetre;
                 moment = MomentType.NewtonMetre;
+                WService.ReportException(ex);
             }
 
             try
             {
                 momentOfInertia = (MomentOfInertiaType)FileManager.LocalSettings.Values["UnitMomentOfInertia"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitMomentOfInertia"] = (int)MomentOfInertiaType.QuadMeter;
                 momentOfInertia = MomentOfInertiaType.QuadMeter;
+                WService.ReportException(ex);
             }
 
             try
             {
                 pressure = (PressureType)FileManager.LocalSettings.Values["UnitPressure"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitPressure"] = (int)PressureType.Pascal;
                 pressure = PressureType.Pascal;
+                WService.ReportException(ex);
             }
 
             try
             {
                 volume = (VolumeType)FileManager.LocalSettings.Values["UnitVolume"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["UnitVolume"] = (int)VolumeType.CubicMetre;
                 volume = VolumeType.CubicMetre;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showMoment = (bool)FileManager.LocalSettings.Values["ShowMoment"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowMoment"] = true;
                 showMoment = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showShear = (bool)FileManager.LocalSettings.Values["ShowShear"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowShear"] = true;
                 showShear = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showForce = (bool)FileManager.LocalSettings.Values["ShowForce"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowForce"] = true;
                 showForce = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showLinear = (bool)FileManager.LocalSettings.Values["ShowLinear"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowLinear"] = true;
                 showLinear = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showAxial = (bool)FileManager.LocalSettings.Values["ShowAxial"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowAxial"] = true;
                 showAxial = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 showReactions = (bool)FileManager.LocalSettings.Values["ShowReactions"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ShowReactions"] = true;
                 showReactions = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 memberDisplay = (int)FileManager.LocalSettings.Values["MemberDisplay"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["MemberDisplay"] = 0;
                 memberDisplay = 0;
+                WService.ReportException(ex);
             }
 
             try
             {
                 autoStartSolver = (bool)FileManager.LocalSettings.Values["AutoStartSolver"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["AutoStartSolver"] = true;
                 autoStartSolver = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 autoFinishSolver = (bool)FileManager.LocalSettings.Values["AutoFinishSolver"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 currentSolver = (int)FileManager.LocalSettings.Values["CurrentSolver"];
             }
-            catch
+            catch(Exception ex)
             {
                 currentSolver = 0;
                 FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
+                WService.ReportException(ex);
             }
 
             try
             {
                 lockNumericalInput = (bool)FileManager.LocalSettings.Values["LockNumericalInput"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["LockNumericalInput"] = false;
                 lockNumericalInput = false;
+                WService.ReportException(ex);
             }
 
             try
             {
                 loadLastFileOnStartup = (bool)FileManager.LocalSettings.Values["LoadLastFileOnStartup"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = true;
                 loadLastFileOnStartup = true;
+                WService.ReportException(ex);
             }
 
             try
@@ -1451,30 +1471,33 @@ namespace Finite_Element_Analysis_Explorer
                     defaultNumberOfSegments = 1;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
+                WService.ReportException(ex);
             }
 
             try
             {
                 resetExistingMembers = (bool)FileManager.LocalSettings.Values["ResetExistingMembers"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ResetExistingMembers"] = true;
                 resetExistingMembers = true;
+                WService.ReportException(ex);
             }
 
             try
             {
                 lastCurrentSectionName = (string)FileManager.LocalSettings.Values["lastCurrentSection"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["lastCurrentSection"] = "Default";
                 lastCurrentSectionName = "Default";
+                WService.ReportException(ex);
             }
 
             if (lastCurrentSectionName is null)
@@ -1496,12 +1519,13 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorBackground = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)ColorBackground.A;
                 FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)ColorBackground.R;
                 FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)ColorBackground.G;
                 FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)ColorBackground.B;
+                WService.ReportException(ex);
             }
 
             try
@@ -1513,12 +1537,13 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorGridMajorFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)ColorGridMajorFont.A;
                 FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)ColorGridMajorFont.R;
                 FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)ColorGridMajorFont.G;
                 FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)ColorGridMajorFont.B;
+                WService.ReportException(ex);
             }
 
             try
@@ -1530,12 +1555,13 @@ namespace Finite_Element_Analysis_Explorer
 
                 ColorLabel = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorLabelA"] = (int)ColorLabel.A;
                 FileManager.LocalSettings.Values["ColorLabelR"] = (int)ColorLabel.R;
                 FileManager.LocalSettings.Values["ColorLabelG"] = (int)ColorLabel.G;
                 FileManager.LocalSettings.Values["ColorLabelB"] = (int)ColorLabel.B;
+                WService.ReportException(ex);
             }
 
             try
@@ -1556,7 +1582,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridNormal.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalStartCap"];
                 LineGridNormalWeight = (float)FileManager.LocalSettings.Values["LineGridNormalWeight"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)ColorGridNormal.A;
                 FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)ColorGridNormal.R;
@@ -1581,6 +1607,7 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)LineGridNormal.MiterLimit;
                 FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)LineGridNormal.StartCap;
                 FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)LineGridNormalWeight;
+                WService.ReportException(ex);
             }
 
             try
@@ -1601,7 +1628,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMinor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMinorStartCap"];
                 LineGridMinorWeight = (float)FileManager.LocalSettings.Values["LineGridMinorWeight"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)ColorGridMinor.A;
                 FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)ColorGridMinor.R;
@@ -1626,6 +1653,7 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)LineGridMinor.MiterLimit;
                 FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)LineGridMinor.StartCap;
                 FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)LineGridMinorWeight;
+                WService.ReportException(ex);
             }
 
             try
@@ -1646,7 +1674,7 @@ namespace Finite_Element_Analysis_Explorer
                 LineGridMajor.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridMajorStartCap"];
                 LineGridMajorWeight = (float)FileManager.LocalSettings.Values["LineGridMajorWeight"];
             }
-            catch
+            catch(Exception ex)
             {
                 FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)ColorGridMajor.A;
                 FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)ColorGridMajor.R;
@@ -1671,6 +1699,7 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)LineGridMajor.MiterLimit;
                 FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)LineGridMajor.StartCap;
                 FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)LineGridMajorWeight;
+                WService.ReportException(ex);
             }
 
             try

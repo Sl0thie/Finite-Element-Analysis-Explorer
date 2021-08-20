@@ -88,6 +88,8 @@
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            WService.ReportSessionStart();
         }
 
         /// <summary>
@@ -109,6 +111,8 @@
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            WService.ReportSession();
+
             var deferral = e.SuspendingOperation.GetDeferral();
             Options.SaveOptions();
             FileManager.SaveSectionsAsync();

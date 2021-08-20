@@ -191,8 +191,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialYoungsModulus.SetTheValue(selectedMaterial.ModulusOfElasticity);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialShearModulus.DisplayOnly = true;
@@ -203,8 +204,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialShearModulus.SetTheValue(selectedMaterial.ModulusOfRigidity);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialBulkModulus.DisplayOnly = true;
@@ -215,8 +217,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBulkModulus.SetTheValue(selectedMaterial.Bulk_Modulus);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialPoissonRatio.DisplayOnly = true;
@@ -227,8 +230,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialPoissonRatio.SetTheValue(selectedMaterial.Poission_Ratio);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialLiquidDensity.DisplayOnly = true;
@@ -239,8 +243,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialLiquidDensity.SetTheValue(selectedMaterial.Liquid_Density);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialMohsHardness.DisplayOnly = true;
@@ -251,8 +256,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMohsHardness.SetTheValue(selectedMaterial.Mohs_Hardness);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialBrinellHardness.DisplayOnly = true;
@@ -263,8 +269,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialBrinellHardness.SetTheValue(selectedMaterial.Brinell_Hardness);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialVickersHardness.DisplayOnly = true;
@@ -275,8 +282,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialVickersHardness.SetTheValue(selectedMaterial.Vickers_Hardness);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialThermalExpansion.DisplayOnly = true;
@@ -287,8 +295,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalExpansion.SetTheValue(selectedMaterial.Thermal_Expansion);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialThermalConductivity.DisplayOnly = true;
@@ -299,8 +308,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialThermalConductivity.SetTheValue(selectedMaterial.Thermal_Conductivity);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialSoundSpeed.DisplayOnly = true;
@@ -311,8 +321,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialSoundSpeed.SetTheValue(selectedMaterial.Sound_Speed);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialMolarVolume.DisplayOnly = true;
@@ -323,8 +334,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             SingleValue_MaterialMolarVolume.DisplayOnly = true;
@@ -335,8 +347,9 @@ namespace Finite_Element_Analysis_Explorer
             {
                 SingleValue_MaterialMolarVolume.SetTheValue(selectedMaterial.Molar_Volume);
             }
-            catch
+            catch(Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             // Thermo

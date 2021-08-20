@@ -73,7 +73,7 @@ namespace Finite_Element_Analysis_Explorer
             set { largestLinear = value; }
         }
 
-        #region Equlibrim Properties
+        #region Equilibrium Properties
 
         private static decimal forceX;
 

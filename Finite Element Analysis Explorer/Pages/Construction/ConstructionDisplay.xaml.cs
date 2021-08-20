@@ -615,6 +615,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -626,6 +627,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -663,6 +665,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -710,6 +713,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -753,6 +757,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -781,6 +786,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -831,6 +837,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error Adding Member " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 

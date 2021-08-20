@@ -143,15 +143,25 @@
     <Content Include="Assets\LcdD.ttf" />
     <Content Include="Assets\HANDGOTL.ttf" />
     <None Include="Class Diagrams\Model Overview.cd" />
+    <None Include="Connected Services\FEAE\FEAE.wsdl" />
+    <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />
     <None Include="Others\General.cd" />
     <None Include="Overview.cd" />
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Camera\Camera.cs" />
+    <Compile Include="Connected Services\FEAE\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ColorSelector.xaml.cs">
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
@@ -328,6 +338,7 @@
       <DependentUpon>TextInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Solvers\SolverFunctions.cs" />
+    <Compile Include="WService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Blue ball.png" />
@@ -425,6 +436,13 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <None Include="Package.xml" />
     <None Include="Package.StoreAssociation.xml" />
+    <None Include="Connected Services\FEAE\FEAE.disco" />
+    <None Include="Connected Services\FEAE\configuration91.svcinfo" />
+    <None Include="Connected Services\FEAE\configuration.svcinfo" />
+    <None Include="Connected Services\FEAE\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -640,6 +658,12 @@
     <Folder Include="Admin\" />
     <Folder Include="Model\Construction\Elements\" />
     <Folder Include="Pages\Report\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FEAE\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -58,6 +58,7 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("Error Member Construction " + ex.Message);
+                WService.ReportException(ex);
             }
         }
 
@@ -518,8 +519,9 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryAdd(index, this);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
+                    WService.ReportException(ex);
                 }
             }
             else
@@ -532,8 +534,9 @@ namespace Finite_Element_Analysis_Explorer
                         Model.Members.MembersWithLinearLoads.TryRemove(index, out tmpMember);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
+                    WService.ReportException(ex);
                 }
             }
         }
