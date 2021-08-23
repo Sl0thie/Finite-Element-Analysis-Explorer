@@ -2,8 +2,17 @@
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DoubleMatrix class.
+    /// </summary>
     internal class DoubleMatrix
     {
+        /// <summary>
+        /// Create a matrix.
+        /// </summary>
+        /// <param name="rows">rows.</param>
+        /// <param name="cols">columns.</param>
+        /// <returns>a matrix.</returns>
         internal static double[][] MatrixCreate(int rows, int cols)
         {
             // allocates/creates a matrix initialized to all 0.0. assume rows and cols > 0
@@ -17,6 +26,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Creates a vector.
+        /// </summary>
+        /// <param name="rows">rows.</param>
+        /// <returns>A vector.</returns>
         internal static double[] VectorCreate(int rows)
         {
             // allocates/creates a matrix initialized to all 0.0. assume rows and cols > 0
@@ -26,6 +40,15 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Creates a random matrix.
+        /// </summary>
+        /// <param name="rows">rows.</param>
+        /// <param name="cols">cols.</param>
+        /// <param name="minVal">minVal.</param>
+        /// <param name="maxVal">maxVal.</param>
+        /// <param name="seed">seed.</param>
+        /// <returns>A matrix.</returns>
         internal static double[][] MatrixRandom(int rows, int cols, double minVal, double maxVal, int seed)
         {
             // return a matrix with random values
@@ -42,6 +65,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Get the matrix identity.
+        /// </summary>
+        /// <param name="n">n.</param>
+        /// <returns>Result.</returns>
         internal static double[][] MatrixIdentity(int n)
         {
             // return an n x n Identity matrix
@@ -54,6 +82,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Convert matrix to string.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static string MatrixAsString(double[][] matrix)
         {
             string s = string.Empty;
@@ -70,6 +103,13 @@ namespace Finite_Element_Analysis_Explorer
             return s;
         }
 
+        /// <summary>
+        /// Compares two matrices.
+        /// </summary>
+        /// <param name="matrixA">matrixA.</param>
+        /// <param name="matrixB">matrixB.</param>
+        /// <param name="epsilon">epsilon.</param>
+        /// <returns>Result.</returns>
         internal static bool MatrixAreEqual(double[][] matrixA, double[][] matrixB, double epsilon)
         {
             // true if all values in matrixA == corresponding values in matrixB
@@ -97,6 +137,12 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Calculate a matrix product.
+        /// </summary>
+        /// <param name="matrixA">matrixA.</param>
+        /// <param name="matrixB">matrixB.</param>
+        /// <returns>Result.</returns>
         internal static double[][] MatrixProduct(double[][] matrixA, double[][] matrixB)
         {
             int aRows = matrixA.Length;
@@ -124,6 +170,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Matrix Vector Product.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <param name="vector">vector.</param>
+        /// <returns>Result.</returns>
         internal static double[] MatrixVectorProduct(double[][] matrix, double[] vector)
         {
             // result of multiplying an n x m matrix by a m x 1 column vector (yielding an n x 1 column vector)
@@ -147,6 +199,13 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        ///  .
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <param name="perm">perm.</param>
+        /// <param name="toggle">toggle.</param>
+        /// <returns>Result.</returns>
         internal static double[][] MatrixDecompose(double[][] matrix, out int[] perm, out int toggle)
         {
             // Doolittle LUP decomposition with partial pivoting.
@@ -214,6 +273,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         } // MatrixDecompose
 
+        /// <summary>
+        /// Matrix Inverse.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static double[][] MatrixInverse(double[][] matrix)
         {
             int n = matrix.Length;
@@ -253,6 +317,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Matrix Determinant.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static double MatrixDeterminant(double[][] matrix)
         {
             int[] perm;
@@ -272,6 +341,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Helper Solve.
+        /// </summary>
+        /// <param name="luMatrix">luMatrix.</param>
+        /// <param name="b">b.</param>
+        /// <returns>Result.</returns>
         internal static double[] HelperSolve(double[][] luMatrix, double[] b) // helper
         {
             // before calling this helper, permute b using the perm array from MatrixDecompose that generated luMatrix
@@ -305,6 +380,12 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         }
 
+        /// <summary>
+        /// System Solve.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">b.</param>
+        /// <returns>Result.</returns>
         internal static double[] SystemSolve(double[][] a, double[] b)
         {
             // Solve Ax = b
@@ -331,6 +412,11 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         } // SystemSolve
 
+        /// <summary>
+        /// Matrix Duplicate.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static double[][] MatrixDuplicate(double[][] matrix)
         {
             // allocates/creates a duplicate of a matrix. assumes matrix is not null.
@@ -346,6 +432,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Extract Lower.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static double[][] ExtractLower(double[][] matrix)
         {
             // lower part of a Doolittle decomposition (1.0s on diagonal, 0.0s in upper)
@@ -370,6 +461,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Extract Upper.
+        /// </summary>
+        /// <param name="matrix">matrix.</param>
+        /// <returns>Result.</returns>
         internal static double[][] ExtractUpper(double[][] matrix)
         {
             // upper part of a Doolittle decomposition (0.0s in the strictly lower part)
@@ -390,6 +486,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Perm Array To Matrix.
+        /// </summary>
+        /// <param name="perm">perm.</param>
+        /// <returns>Result.</returns>
         internal static double[][] PermArrayToMatrix(int[] perm)
         {
             // convert Doolittle perm array to corresponding perm matrix
@@ -403,6 +504,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// UnPermute.
+        /// </summary>
+        /// <param name="luProduct">luProduct.</param>
+        /// <param name="perm">perm.</param>
+        /// <returns>Result.</returns>
         internal static double[][] UnPermute(double[][] luProduct, int[] perm)
         {
             // unpermute product of Doolittle lower * upper matrix according to perm[]
@@ -423,6 +530,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         } // UnPermute
 
+        /// <summary>
+        /// Vector As String.
+        /// </summary>
+        /// <param name="vector">vector.</param>
+        /// <returns>Result.</returns>
         internal static string VectorAsString(double[] vector)
         {
             string s = string.Empty;
@@ -435,6 +547,11 @@ namespace Finite_Element_Analysis_Explorer
             return s;
         }
 
+        /// <summary>
+        /// Vector As String.
+        /// </summary>
+        /// <param name="vector">vector.</param>
+        /// <returns>Result.</returns>
         internal static string VectorAsString(int[] vector)
         {
             string s = string.Empty;

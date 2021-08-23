@@ -57,19 +57,6 @@ namespace Finite_Element_Analysis_Explorer
 
         // Loading stats.
         private static int statsLoadingTotalItems = 0;
-        private static int statsLoadingTotalMembers = 0;
-        private static int statsLoadingTotalNodes = 0;
-        private static int statsLoadingTotalSections = 0;
-
-        // Other stats.
-        private static int statsLastSolverUsed = 0;
-        private static long statsTimeCreated = 0;
-        private static long statsTimeLastOpened = 0;
-        private static long statsTimeLastClosed = 0;
-        private static long statsTimeTotalOpened = 0;
-        private static long statsTotalOpened = 0;
-        private static long statsTimeTotalSolving = 0;
-        private static long statsTotalSolving = 0;
 
         #endregion
 
@@ -171,9 +158,6 @@ namespace Finite_Element_Analysis_Explorer
                     IList<string> lines = new List<string>();
                     lines = await FileIO.ReadLinesAsync(workingFile);
 
-                    // Debug.WriteLine("WorkingFileDisplayName " + workingFilePath);
-                    // Debug.WriteLine("WorkingFilePath " + workingFilePath);
-                    // Debug.WriteLine("WorkingFile.FileType " + workingFile.FileType);
                     if (workingFile.FileType == ".struct")
                     {
                         foreach (string line in lines)
@@ -196,20 +180,6 @@ namespace Finite_Element_Analysis_Explorer
                                         catch
                                         {
                                         }
-
-                                        statsLoadingTotalMembers = Convert.ToInt32(words[2]);
-                                        statsLoadingTotalNodes = Convert.ToInt32(words[3]);
-                                        statsLoadingTotalSections = Convert.ToInt32(words[4]);
-
-                                        // Other Stats
-                                        statsLastSolverUsed = Convert.ToInt32(words[5]);
-                                        statsTimeCreated = Convert.ToInt32(words[6]);
-                                        statsTimeLastOpened = Convert.ToInt32(words[7]);
-                                        statsTimeLastClosed = Convert.ToInt32(words[8]);
-                                        statsTimeTotalOpened = Convert.ToInt32(words[9]);
-                                        statsTotalOpened = Convert.ToInt32(words[10]);
-                                        statsTimeTotalSolving = Convert.ToInt32(words[11]);
-                                        statsTotalSolving = Convert.ToInt32(words[12]);
 
                                         // Load Camera Settings
                                         Camera.SetupFromFile(Convert.ToSingle(words[13]), new Vector2(Convert.ToSingle(words[14]), Convert.ToSingle(words[15])));
@@ -296,20 +266,6 @@ namespace Finite_Element_Analysis_Explorer
                                         catch
                                         {
                                         }
-
-                                        statsLoadingTotalMembers = Convert.ToInt32(words[2]);
-                                        statsLoadingTotalNodes = Convert.ToInt32(words[3]);
-                                        statsLoadingTotalSections = Convert.ToInt32(words[4]);
-
-                                        // Other Stats
-                                        statsLastSolverUsed = Convert.ToInt32(words[5]);
-                                        statsTimeCreated = Convert.ToInt32(words[6]);
-                                        statsTimeLastOpened = Convert.ToInt32(words[7]);
-                                        statsTimeLastClosed = Convert.ToInt32(words[8]);
-                                        statsTimeTotalOpened = Convert.ToInt32(words[9]);
-                                        statsTotalOpened = Convert.ToInt32(words[10]);
-                                        statsTimeTotalSolving = Convert.ToInt32(words[11]);
-                                        statsTotalSolving = Convert.ToInt32(words[12]);
 
                                         // Load Camera Settings
                                         Camera.SetupFromFile(Convert.ToSingle(words[13]), new Vector2(Convert.ToSingle(words[14]), Convert.ToSingle(words[15])));

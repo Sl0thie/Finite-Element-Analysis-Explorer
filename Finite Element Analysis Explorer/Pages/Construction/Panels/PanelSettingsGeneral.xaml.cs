@@ -9,15 +9,14 @@ namespace Finite_Element_Analysis_Explorer
     /// </summary>
     public sealed partial class PanelSettingsGeneral : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelSettingsGeneral"/> class.
+        /// </summary>
         public PanelSettingsGeneral()
         {
             this.InitializeComponent();
         }
 
-        // private void Button_Model_Click(object sender, RoutedEventArgs e)
-        // {
-        //    Construction.Current.ShowDrawing();
-        // }
         #region Common Menus
 
         #region Help Menu

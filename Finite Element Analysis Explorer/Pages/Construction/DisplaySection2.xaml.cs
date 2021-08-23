@@ -347,7 +347,7 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialMolarVolume.DisplayOnly = true;
             SingleValue_MaterialMolarVolume.Title = "MolarVolume";
-            SingleValue_MaterialMolarVolume.UnitType = UnitType.Temprature;
+            SingleValue_MaterialMolarVolume.UnitType = UnitType.Temperature;
             SingleValue_MaterialMolarVolume.SetNull();
             try
             {
@@ -361,13 +361,13 @@ namespace Finite_Element_Analysis_Explorer
             // Thermo
             SingleValue_MaterialAbsoluteBoilingPoint.DisplayOnly = true;
             SingleValue_MaterialAbsoluteBoilingPoint.Title = "Absolute Boiling Point";
-            SingleValue_MaterialAbsoluteBoilingPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialAbsoluteBoilingPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialAbsoluteBoilingPoint.SetNull();
             SingleValue_MaterialAbsoluteBoilingPoint.SetTheValue(selectedMaterial.Absolute_Boiling_Point);
 
             SingleValue_MaterialAbsoluteMeltingPoint.DisplayOnly = true;
             SingleValue_MaterialAbsoluteMeltingPoint.Title = "Absolute Melting Point";
-            SingleValue_MaterialAbsoluteMeltingPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialAbsoluteMeltingPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialAbsoluteMeltingPoint.SetNull();
             SingleValue_MaterialAbsoluteMeltingPoint.SetTheValue(selectedMaterial.Absolute_Melting_Point);
 
@@ -379,7 +379,7 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialBoilingPoint.DisplayOnly = true;
             SingleValue_MaterialBoilingPoint.Title = "Boiling Point";
-            SingleValue_MaterialBoilingPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialBoilingPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialBoilingPoint.SetNull();
             SingleValue_MaterialBoilingPoint.SetTheValue(selectedMaterial.Boiling_Point);
 
@@ -391,13 +391,13 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialCriticalTemperature.DisplayOnly = true;
             SingleValue_MaterialCriticalTemperature.Title = "Critical Temperature";
-            SingleValue_MaterialCriticalTemperature.UnitType = UnitType.Temprature;
+            SingleValue_MaterialCriticalTemperature.UnitType = UnitType.Temperature;
             SingleValue_MaterialCriticalTemperature.SetNull();
             SingleValue_MaterialCriticalTemperature.SetTheValue(selectedMaterial.Critical_Temperature);
 
             SingleValue_MaterialCuriePoint.DisplayOnly = true;
             SingleValue_MaterialCuriePoint.Title = "Curie Point";
-            SingleValue_MaterialCuriePoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialCuriePoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialCuriePoint.SetNull();
             SingleValue_MaterialCuriePoint.SetTheValue(selectedMaterial.Curie_Point);
 
@@ -409,13 +409,13 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialMeltingPoint.DisplayOnly = true;
             SingleValue_MaterialMeltingPoint.Title = "Melting Point";
-            SingleValue_MaterialMeltingPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialMeltingPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialMeltingPoint.SetNull();
             SingleValue_MaterialMeltingPoint.SetTheValue(selectedMaterial.Melting_Point);
 
             SingleValue_MaterialNeelPoint.DisplayOnly = true;
             SingleValue_MaterialNeelPoint.Title = "Neel Point";
-            SingleValue_MaterialNeelPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialNeelPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialNeelPoint.SetNull();
             SingleValue_MaterialNeelPoint.SetTheValue(selectedMaterial.Neel_Point);
 
@@ -427,7 +427,7 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialSuperconductingPoint.DisplayOnly = true;
             SingleValue_MaterialSuperconductingPoint.Title = "Superconducting Point";
-            SingleValue_MaterialSuperconductingPoint.UnitType = UnitType.Temprature;
+            SingleValue_MaterialSuperconductingPoint.UnitType = UnitType.Temperature;
             SingleValue_MaterialSuperconductingPoint.SetNull();
             SingleValue_MaterialSuperconductingPoint.SetTheValue(selectedMaterial.Superconducting_Point);
 
@@ -458,7 +458,7 @@ namespace Finite_Element_Analysis_Explorer
 
             SingleValue_MaterialResistivity.DisplayOnly = true;
             SingleValue_MaterialResistivity.Title = "Resistivity";
-            SingleValue_MaterialResistivity.UnitType = UnitType.Temprature;
+            SingleValue_MaterialResistivity.UnitType = UnitType.Temperature;
             SingleValue_MaterialResistivity.SetNull();
             SingleValue_MaterialResistivity.SetTheValue(Convert.ToDecimal(selectedMaterial.Resistivity.ToString()));
 

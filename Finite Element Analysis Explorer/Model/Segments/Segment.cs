@@ -5,10 +5,16 @@ using Windows.UI;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Segment class.
+    /// </summary>
     internal class Segment
     {
         #region Constructor
 
+        /// <summary>
+        /// Outputs the segment to the debug output.
+        /// </summary>
         internal void Output()
         {
             Debug.WriteLine("\nSEGMENT index: " + index + "  parent:" + parent.Index + "  nodeNear X:" + nodeNear.Index + "  nodeFar:" + nodeFar.Index + "  section:" + section.Name);
@@ -19,6 +25,17 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  nearLDLLine:" + nearLDLLine + "  farLDLLine:" + farLDLLine);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Segment"/> class.
+        /// </summary>
+        /// <param name="index">index.</param>
+        /// <param name="parent">parent.</param>
+        /// <param name="nodeNear">nodeNear.</param>
+        /// <param name="nodeFar">nodeFar.</param>
+        /// <param name="section">section.</param>
+        /// <param name="lDLNear">lDLNear.</param>
+        /// <param name="lDLFar">lDLFar.</param>
+        /// <param name="previousSegment">previousSegment.</param>
         internal Segment(int index, Member parent, Node nodeNear, Node nodeFar, Section section, decimal lDLNear, decimal lDLFar, int previousSegment)
         {
             try
@@ -59,6 +76,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private int index;
 
+        /// <summary>
+        /// Gets the index of the segment.
+        /// </summary>
         internal int Index
         {
             get
@@ -69,6 +89,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Member parent;
 
+        /// <summary>
+        /// Gets or sets the parent member.
+        /// </summary>
         public Member Parent
         {
             get { return parent; }
@@ -77,6 +100,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private int previousSegment;
 
+        /// <summary>
+        /// Gets or sets the previous segment.
+        /// </summary>
         public int PreviousSegment
         {
             get { return previousSegment; }
@@ -85,6 +111,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Node nodeNear;
 
+        /// <summary>
+        /// Gets the near node.
+        /// </summary>
         internal Node NodeNear
         {
             get
@@ -95,6 +124,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Node nodeFar;
 
+        /// <summary>
+        /// Gets the far node.
+        /// </summary>
         internal Node NodeFar
         {
             get
@@ -105,6 +137,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Section section;
 
+        /// <summary>
+        /// Gets or sets the section.
+        /// </summary>
         internal Section Section
         {
             get
@@ -120,6 +155,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private DecimalMatrix kMatrix = new DecimalMatrix(6, 6);
 
+        /// <summary>
+        /// Gets the K matrix.
+        /// </summary>
         internal DecimalMatrix KMatrix
         {
             get { return kMatrix; }
@@ -131,6 +169,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal length;
 
+        /// <summary>
+        /// Gets the length.
+        /// </summary>
         internal decimal Length
         {
             get
@@ -141,6 +182,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthXAxis;
 
+        /// <summary>
+        /// Gets the length of the X axis.
+        /// </summary>
         internal decimal LengthXAxis
         {
             get
@@ -151,6 +195,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthYAxis;
 
+        /// <summary>
+        /// Gets the length of the Y axis.
+        /// </summary>
         internal decimal LengthYAxis
         {
             get
@@ -162,6 +209,9 @@ namespace Finite_Element_Analysis_Explorer
         private int angleMultiplyer = 0;
         private decimal angle;
 
+        /// <summary>
+        /// Gets the angle.
+        /// </summary>
         internal decimal Angle
         {
             get
@@ -172,6 +222,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lDLNear;
 
+        /// <summary>
+        /// Gets or sets the near LDL.
+        /// </summary>
         internal decimal LDLNear
         {
             get
@@ -187,6 +240,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lDLFar;
 
+        /// <summary>
+        /// Gets or sets the far LDL.
+        /// </summary>
         internal decimal LDLFar
         {
             get
@@ -206,6 +262,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad internalLoadNearLocal;
 
+        /// <summary>
+        /// Gets or sets the internal load local.
+        /// </summary>
         internal NodalLoad InternalLoadNearLocal
         {
             get { return internalLoadNearLocal; }
@@ -214,6 +273,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad internalLoadFarLocal;
 
+        /// <summary>
+        /// Gets or sets the internal load far local.
+        /// </summary>
         internal NodalLoad InternalLoadFarLocal
         {
             get { return internalLoadFarLocal; }
@@ -222,6 +284,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad internalLoadNearGlobal;
 
+        /// <summary>
+        /// Gets or sets the internal load neat global.
+        /// </summary>
         internal NodalLoad InternalLoadNearGlobal
         {
             get { return internalLoadNearGlobal; }
@@ -230,6 +295,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad internalLoadFarGlobal;
 
+        /// <summary>
+        /// Gets or sets the internal load far global.
+        /// </summary>
         internal NodalLoad InternalLoadFarGlobal
         {
             get { return internalLoadFarGlobal; }
@@ -242,6 +310,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad nearSuperGlobal;
 
+        /// <summary>
+        /// Gets or sets the near super global.
+        /// </summary>
         internal NodalLoad NearSuperGlobal
         {
             get { return nearSuperGlobal; }
@@ -250,6 +321,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad farSuperGlobal;
 
+        /// <summary>
+        /// Gets or sets the far super global.
+        /// </summary>
         internal NodalLoad FarSuperGlobal
         {
             get { return farSuperGlobal; }
@@ -266,6 +340,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 centerPointDisplaced;
 
+        /// <summary>
+        /// Gets or sets the displaced center point.
+        /// </summary>
         internal Vector2 CenterPointDisplaced
         {
             get
@@ -281,6 +358,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplaced;
 
+        /// <summary>
+        /// Gets the displaced length.
+        /// </summary>
         internal decimal LengthDisplaced
         {
             get { return lengthDisplaced; }
@@ -288,6 +368,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplacedXAxis;
 
+        /// <summary>
+        /// Gets the displaced X axis length.
+        /// </summary>
         internal decimal LengthDisplacedXAxis
         {
             get
@@ -298,6 +381,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDisplacedYAxis;
 
+        /// <summary>
+        /// Gets the displaced Y axis length.
+        /// </summary>
         internal decimal LengthDisplacedYAxis
         {
             get
@@ -308,6 +394,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal angleDisplaced;
 
+        /// <summary>
+        /// Gets the displaced angle.
+        /// </summary>
         public decimal AngleDisplaced
         {
             get { return angleDisplaced; }
@@ -315,6 +404,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifference;
 
+        /// <summary>
+        /// Gets the length difference.
+        /// </summary>
         public decimal LengthDifference
         {
             get { return lengthDifference; }
@@ -322,6 +414,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifferenceXAxis;
 
+        /// <summary>
+        /// Gets the length difference X axis.
+        /// </summary>
         internal decimal LengthDifferenceXAxis
         {
             get
@@ -332,6 +427,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthDifferenceYAxis;
 
+        /// <summary>
+        /// Gets the length difference Y axis.
+        /// </summary>
         internal decimal LengthDifferenceYAxis
         {
             get
@@ -342,6 +440,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal angleDifference;
 
+        /// <summary>
+        /// Gets the angle difference.
+        /// </summary>
         public decimal AngleDifference
         {
             get { return angleDifference; }
@@ -349,6 +450,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal lengthRatio;
 
+        /// <summary>
+        /// Gets or sets the length ratio.
+        /// </summary>
         internal decimal LengthRatio
         {
             get { return lengthRatio; }
@@ -361,6 +465,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color lengthRatioColor;
 
+        /// <summary>
+        /// Gets or sets the ratio length color.
+        /// </summary>
         internal Color LengthRatioColor
         {
             get { return lengthRatioColor; }
@@ -369,6 +476,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color axialRatioColor;
 
+        /// <summary>
+        /// Gets or sets the axial ratio color.
+        /// </summary>
         public Color AxialRatioColor
         {
             get { return axialRatioColor; }
@@ -377,6 +487,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color normalStressColor;
 
+        /// <summary>
+        /// Gets or sets the normal stress color.
+        /// </summary>
         public Color NormalStressColor
         {
             get { return normalStressColor; }
@@ -385,6 +498,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color currentColor;
 
+        /// <summary>
+        /// Gets or sets the current color.
+        /// </summary>
         public Color CurrentColor
         {
             get { return currentColor; }
@@ -397,6 +513,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 nearVector = new Vector2(0, 0);
 
+        /// <summary>
+        /// Gets the near vector.
+        /// </summary>
         internal Vector2 NearVector
         {
             get { return nearVector; }
@@ -404,6 +523,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 farVector = new Vector2(0, 0);
 
+        /// <summary>
+        /// Gets the far vector.
+        /// </summary>
         internal Vector2 FarVector
         {
             get { return farVector; }
@@ -411,6 +533,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 nearVectorDisplaced = new Vector2(0, 0);
 
+        /// <summary>
+        /// Gets the displaced near vector.
+        /// </summary>
         internal Vector2 NearVectorDisplaced
         {
             get { return nearVectorDisplaced; }
@@ -418,6 +543,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 farVectorDisplaced = new Vector2(0, 0);
 
+        /// <summary>
+        /// Gets the displaced far vector.
+        /// </summary>
         internal Vector2 FarVectorDisplaced
         {
             get { return farVectorDisplaced; }
@@ -425,6 +553,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 shearNear;
 
+        /// <summary>
+        /// Gets or sets the near shear.
+        /// </summary>
         public Vector2 ShearNear
         {
             get { return shearNear; }
@@ -433,6 +564,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 shearFar;
 
+        /// <summary>
+        /// Gets or sets the far shear.
+        /// </summary>
         public Vector2 ShearFar
         {
             get { return shearFar; }
@@ -441,6 +575,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 momentNear;
 
+        /// <summary>
+        /// Gets or sets the near moment.
+        /// </summary>
         public Vector2 MomentNear
         {
             get { return momentNear; }
@@ -449,6 +586,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 momentFar;
 
+        /// <summary>
+        /// Gets or sets the far moment.
+        /// </summary>
         public Vector2 MomentFar
         {
             get { return momentFar; }
@@ -457,6 +597,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 lDLUnit;
 
+        /// <summary>
+        /// Gets or sets the LDL Unit.
+        /// </summary>
         internal Vector2 LDLUnit
         {
             get { return lDLUnit; }
@@ -465,6 +608,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 lDLUnitRight;
 
+        /// <summary>
+        /// Gets or sets the right LDL unit.
+        /// </summary>
         internal Vector2 LDLUnitRight
         {
             get { return lDLUnitRight; }
@@ -473,6 +619,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 lDLUnitLeft;
 
+        /// <summary>
+        /// Gets or sets the left LDL unit.
+        /// </summary>
         internal Vector2 LDLUnitLeft
         {
             get { return lDLUnitLeft; }
@@ -481,6 +630,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 nearLDLLine;
 
+        /// <summary>
+        /// Gets or sets the near LDL line.
+        /// </summary>
         public Vector2 NearLDLLine
         {
             get { return nearLDLLine; }
@@ -489,6 +641,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 farLDLLine;
 
+        /// <summary>
+        /// Gets or sets the far LDL line.
+        /// </summary>
         public Vector2 FarLDLLine
         {
             get { return farLDLLine; }
@@ -501,6 +656,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal normalStress;
 
+        /// <summary>
+        /// Gets or sets the normal stress.
+        /// </summary>
         public decimal NormalStress
         {
             get { return normalStress; }
@@ -737,6 +895,9 @@ namespace Finite_Element_Analysis_Explorer
             return tt;
         }
 
+        /// <summary>
+        /// Updates the color.
+        /// </summary>
         internal void UpdateColor()
         {
             switch (Options.MemberDisplay)
@@ -899,6 +1060,9 @@ namespace Finite_Element_Analysis_Explorer
             UpdateGraphicsProperties();
         }
 
+        /// <summary>
+        /// Updates graphics properties.
+        /// </summary>
         internal void UpdateGraphicsProperties()
         {
             nearVectorDisplaced = new Vector2((float)(nodeNear.Position.X + (nodeNear.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeNear.Position.Y + (nodeNear.Displacement.Y * (decimal)Options.DisplacementFactor)));

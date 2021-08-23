@@ -5,12 +5,21 @@ using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// SliderExpValue UserControl is a custom slider.
+    /// </summary>
     public sealed partial class SliderExpValue : UserControl
     {
+        /// <summary>
+        /// ValueChanged event is raised when the value of the control is changed.
+        /// </summary>
         public event EventHandler ValueChanged;
 
         private string title;
 
+        /// <summary>
+        /// Gets or sets the title that is displayed on the control.
+        /// </summary>
         public string Title
         {
             get { return title; }
@@ -19,6 +28,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string displayValue;
 
+        /// <summary>
+        /// Gets or sets the value that is displayed on the control.
+        /// </summary>
         public string DisplayValue
         {
             get
@@ -35,6 +47,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private double minValue;
 
+        /// <summary>
+        /// Gets or sets the minimum value that can be set.
+        /// </summary>
         public double MinValue
         {
             get
@@ -51,6 +66,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private double maxValue;
 
+        /// <summary>
+        /// Gets or sets the maximum value that can be set.
+        /// </summary>
         public double MaxValue
         {
             get
@@ -67,6 +85,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private double newValue;
 
+        /// <summary>
+        /// Gets or sets the new value to be displayed.
+        /// </summary>
         public double NewValue
         {
             get { return newValue; }
@@ -75,6 +96,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private double oldValue;
 
+        /// <summary>
+        /// Gets or sets the old value of the control.
+        /// </summary>
         public double OldValue
         {
             get
@@ -88,15 +112,14 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SliderExpValue"/> class.
+        /// </summary>
         public SliderExpValue()
         {
             this.InitializeComponent();
         }
 
-        // public void SetSliderValue(int newValue)
-        // {
-        //    Slider_Primary.Value = newValue;
-        // }
         private void Slider_Primary_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             newValue = Slider_Primary.Value;
@@ -105,7 +128,6 @@ namespace Finite_Element_Analysis_Explorer
             }
             else
             {
-                // Debug.WriteLine("Firing Event " + Slider_Primary.Value);
                 oldValue = newValue;
                 ValueChanged?.Invoke(this, new EventArgs());
             }

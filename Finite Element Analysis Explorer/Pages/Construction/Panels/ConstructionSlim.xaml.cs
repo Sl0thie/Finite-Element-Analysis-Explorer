@@ -3,8 +3,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// ConstructionSlim page.
+    /// </summary>
     public sealed partial class ConstructionSlim : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConstructionSlim"/> class.
+        /// </summary>
         public ConstructionSlim()
         {
             this.InitializeComponent();
@@ -17,5 +23,44 @@ namespace Finite_Element_Analysis_Explorer
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
         }
+
+        #region File Menu
+
+        private void MenuFlyout_New_Click(object sender, RoutedEventArgs e)
+        {
+            // New File.
+            FileManager.NewFile();
+        }
+
+        private async void MenuFlyout_Open_Click(object sender, RoutedEventArgs e)
+        {
+            // Open file.
+            if (await FileManager.PickFileToLoad())
+            {
+                await FileManager.LoadFile();
+            }
+        }
+
+        private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
+        {
+            // Save File.
+            await FileManager.SaveFile();
+        }
+
+        private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            // Save file as.
+            if (await FileManager.PickFileToSave())
+            {
+                await FileManager.SaveFile();
+            }
+        }
+
+        private void MenuFlyout_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        #endregion
     }
 }

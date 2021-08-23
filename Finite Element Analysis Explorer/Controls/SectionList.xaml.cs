@@ -4,8 +4,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// SectionList UserControl provides a list of sections for the user to choose.
+    /// </summary>
     public sealed partial class SectionList : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SectionList"/> class.
+        /// </summary>
         public SectionList()
         {
             this.InitializeComponent();

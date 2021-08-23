@@ -3,8 +3,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// PanelSettingsSolver Page.
+    /// </summary>
     public sealed partial class PanelSettingsSolver : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelSettingsSolver"/> class.
+        /// </summary>
         public PanelSettingsSolver()
         {
             this.InitializeComponent();

@@ -32,7 +32,7 @@ namespace Finite_Element_Analysis_Explorer
             set
             {
                 currentMember = value;
-                if (!object.ReferenceEquals(null, currentMember))
+                if (currentMember is object)
                 {
                     Model.Sections.CurrentSection = currentMember.Section;
                 }

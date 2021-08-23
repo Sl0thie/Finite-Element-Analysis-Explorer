@@ -8,6 +8,9 @@ namespace Finite_Element_Analysis_Explorer.Pages.Construction
     /// </summary>
     public sealed partial class Settings : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Settings"/> class.
+        /// </summary>
         public Settings()
         {
             this.InitializeComponent();

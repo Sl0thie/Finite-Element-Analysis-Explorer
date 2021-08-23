@@ -1,15 +1,120 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Material class.
+    /// </summary>
     public class Material
     {
-        public void Output()
-        {
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Material"/> class.
+        /// </summary>
         public Material()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Material"/> class.
+        /// </summary>
+        /// <param name="name">name.</param>
+        /// <param name="description">description.</param>
+        /// <param name="cost">cost.</param>
+        /// <param name="density">density.</param>
+        /// <param name="ultimateStrengthTension">ultimateStrengthTension.</param>
+        /// <param name="ultimateStrengthCompression">ultimateStrengthCompression.</param>
+        /// <param name="ultimateStrengthShear">ultimateStrengthShear.</param>
+        /// <param name="yieldStrengthTension">yieldStrengthTension.</param>
+        /// <param name="yieldStrengthShear">yieldStrengthShear.</param>
+        /// <param name="modulusOfElasticity">modulusOfElasticity.</param>
+        /// <param name="modulusOfRigidity">modulusOfRigidity.</param>
+        /// <param name="coefficientOfThermalExpansion">coefficientOfThermalExpansion.</param>
+        /// <param name="ductility">ductility.</param>
+        /// <param name="atomic_Number">atomic_Number.</param>
+        /// <param name="symbol">symbol.</param>
+        /// <param name="atomic_Mass">atomic_Mass.</param>
+        /// <param name="allotrope_Names">allotrope_Names.</param>
+        /// <param name="alternate_Names">alternate_Names.</param>
+        /// <param name="cAS_Number">cAS_Number.</param>
+        /// <param name="icon_Color">icon_Color.</param>
+        /// <param name="block">block.</param>
+        /// <param name="group">group.</param>
+        /// <param name="period">period.</param>
+        /// <param name="series">series.</param>
+        /// <param name="atomic_Weight">atomic_Weight.</param>
+        /// <param name="brinell_Hardness">brinell_Hardness.</param>
+        /// <param name="bulk_Modulus">bulk_Modulus.</param>
+        /// <param name="liquid_Density">liquid_Density.</param>
+        /// <param name="mohs_Hardness">mohs_Hardness.</param>
+        /// <param name="molar_Volume">molar_Volume.</param>
+        /// <param name="poission_Ratio">poission_Ratio.</param>
+        /// <param name="shear_Modulus">shear_Modulus.</param>
+        /// <param name="sound_Speed">sound_Speed.</param>
+        /// <param name="thermal_Conductivity">thermal_Conductivity.</param>
+        /// <param name="thermal_Expansion">thermal_Expansion.</param>
+        /// <param name="vickers_Hardness">vickers_Hardness.</param>
+        /// <param name="young_Modulus">young_Modulus.</param>
+        /// <param name="absolute_Boiling_Point">absolute_Boiling_Point.</param>
+        /// <param name="absolute_Melting_Point">absolute_Melting_Point.</param>
+        /// <param name="adiabatic_Index">adiabatic_Index.</param>
+        /// <param name="boiling_Point">boiling_Point.</param>
+        /// <param name="critical_Pressure">critical_Pressure.</param>
+        /// <param name="critical_Temperature">critical_Temperature.</param>
+        /// <param name="curie_Point">curie_Point.</param>
+        /// <param name="fusion_Heat">fusion_Heat.</param>
+        /// <param name="melting_Point">melting_Point.</param>
+        /// <param name="neel_Point">neel_Point.</param>
+        /// <param name="phase">phase.</param>
+        /// <param name="specific_Heat">specific_Heat.</param>
+        /// <param name="superconducting_Point">superconducting_Point.</param>
+        /// <param name="vaporization_Heat">vaporization_Heat.</param>
+        /// <param name="color">color.</param>
+        /// <param name="electrical_Conductivity">electrical_Conductivity.</param>
+        /// <param name="electrical_Type">electrical_Type.</param>
+        /// <param name="magnetic_Type">magnetic_Type.</param>
+        /// <param name="mass_Magnetic_Susceptibility">mass_Magnetic_Susceptibility.</param>
+        /// <param name="molar_Magnetic_Susceptibility">molar_Magnetic_Susceptibility.</param>
+        /// <param name="refractive_Index">refractive_Index.</param>
+        /// <param name="resistivity">resistivity.</param>
+        /// <param name="volume_Magnetic_Susceptibility">volume_Magnetic_Susceptibility.</param>
+        /// <param name="allotropic_Multiplicities">allotropic_Multiplicities.</param>
+        /// <param name="electron_Affinity">electron_Affinity.</param>
+        /// <param name="electronegativity">electro-negativity.</param>
+        /// <param name="gas_Atomic_Multiplicities">gas_Atomic_Multiplicities.</param>
+        /// <param name="valence">valence.</param>
+        /// <param name="crystal_Structure">crystal_Structure.</param>
+        /// <param name="lattice_Angles">lattice_Angles.</param>
+        /// <param name="lattice_Constants">lattice_Constants.</param>
+        /// <param name="space_Group_Number">space_Group_Number.</param>
+        /// <param name="space_Group_Name">space_Group_Name.</param>
+        /// <param name="atomic_Radius">atomic_Radius.</param>
+        /// <param name="covalent_Radius">covalent_Radius.</param>
+        /// <param name="electron_Configuration">electron_Configuration.</param>
+        /// <param name="electron_Configuration_String">electron_Configuration_String.</param>
+        /// <param name="electron_Shell_Configuration">electron_Shell_Configuration.</param>
+        /// <param name="ionization_Energies">ionization_Energies.</param>
+        /// <param name="quantum_Numbers">quantum_Numbers.</param>
+        /// <param name="van_Der_Waals_Radius">van_Der_Waals_Radius.</param>
+        /// <param name="decay_Mode">decay_Mode.</param>
+        /// <param name="halfLife">halfLife.</param>
+        /// <param name="isotope_Abundances">isotope_Abundances.</param>
+        /// <param name="known_Isotopes">known_Isotopes.</param>
+        /// <param name="lifetime">lifetime.</param>
+        /// <param name="neutron_Cross_Section">neutron_Cross_Section.</param>
+        /// <param name="neutron_Mass_Absorption">neutron_Mass_Absorption.</param>
+        /// <param name="radioactive">radioactive.</param>
+        /// <param name="stable_Isotopes">stable_Isotopes.</param>
+        /// <param name="crust_Abundance">crust_Abundance.</param>
+        /// <param name="human_Abundance">human_Abundance.</param>
+        /// <param name="meteorite_Abundance">meteorite_Abundance.</param>
+        /// <param name="ocean_Abundance">ocean_Abundance.</param>
+        /// <param name="solar_Abundance">solar_Abundance.</param>
+        /// <param name="universe_Abundance">universe_Abundance.</param>
+        /// <param name="radius_Empirical">radius_Empirical.</param>
+        /// <param name="radius_Calculated">radius_Calculated.</param>
+        /// <param name="radius_Van_Der_Waals">radius_Van_Der_Waals.</param>
+        /// <param name="radius_Covalent_Single_Bond">radius_Covalent_Single_Bond.</param>
+        /// <param name="radius_Covalent_Triple_Bond">radius_Covalent_Triple_Bond.</param>
+        /// <param name="radius_Metallic">radius_Metallic.</param>
+        /// <param name="materialType">materialType.</param>
         public Material(
             string name,
             string description,
@@ -218,6 +323,9 @@
 
         private string name;
 
+        /// <summary>
+        /// Gets or sets the name of the material.
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -226,6 +334,9 @@
 
         private string description = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the description of the material.
+        /// </summary>
         public string Description
         {
             get { return description; }
@@ -234,6 +345,9 @@
 
         private decimal cost = 0;
 
+        /// <summary>
+        /// Gets or sets the cost of the material.
+        /// </summary>
         public decimal Cost
         {
             get { return cost; }
@@ -242,6 +356,9 @@
 
         private decimal density = 0;
 
+        /// <summary>
+        /// Gets or sets the density of the material.
+        /// </summary>
         public decimal Density
         {
             get { return density; }
@@ -250,6 +367,9 @@
 
         private decimal ultimateStrengthTension = 0;
 
+        /// <summary>
+        /// Gets or sets the ultimate strength tension.
+        /// </summary>
         public decimal UltimateStrengthTension
         {
             get { return ultimateStrengthTension; }
@@ -258,6 +378,9 @@
 
         private decimal ultimateStrengthCompression = 0;
 
+        /// <summary>
+        /// Gets or sets the ultimate strength compression.
+        /// </summary>
         public decimal UltimateStrengthCompression
         {
             get { return ultimateStrengthCompression; }
@@ -266,6 +389,9 @@
 
         private decimal ultimateStrengthShear = 0;
 
+        /// <summary>
+        /// Gets or sets the ultimate strength shear.
+        /// </summary>
         public decimal UltimateStrengthShear
         {
             get { return ultimateStrengthShear; }
@@ -274,6 +400,9 @@
 
         private decimal yieldStrengthTension = 0;
 
+        /// <summary>
+        /// Gets or sets the yield strength tension.
+        /// </summary>
         public decimal YieldStrengthTension
         {
             get { return yieldStrengthTension; }
@@ -282,6 +411,9 @@
 
         private decimal yieldStrengthShear = 0;
 
+        /// <summary>
+        /// Gets or sets the yield strength shear.
+        /// </summary>
         public decimal YieldStrengthShear
         {
             get
@@ -294,45 +426,40 @@
             }
         }
 
-        /// <summary>
-        /// Modulus of Elasticity (E) or Young's Modulus.
-        ///
-        /// </summary>
         private decimal modulusOfElasticity = 0;
 
+        /// <summary>
+        /// Gets or sets the Modulus of Elasticity (E) or Young's Modulus.
+        /// </summary>
         public decimal ModulusOfElasticity
         {
             get { return modulusOfElasticity; }
             set { modulusOfElasticity = value; }
         }
 
-        /// <summary>
-        /// Modulus of Rigidity (G).
-        ///
-        ///
-        ///  G = E/2(1+v).
-        ///  E = 2G(1+v).
-        ///
-        /// </summary>
         private decimal modulusOfRigidity = 0;
 
+        /// <summary>
+        /// Gets or sets the Modulus of Rigidity (G).
+        /// .
+        /// G = E/2(1+v).
+        /// E = 2G(1+v).
+        /// </summary>
         public decimal ModulusOfRigidity
         {
             get { return modulusOfRigidity; }
             set { modulusOfRigidity = value; }
         }
 
+        private decimal bulkModulus = 0;
+
         /// <summary>
-        /// Bulk Modulus (K)
+        /// Gets or sets the Bulk Modulus (K).
         /// Ability to resist compression.
         ///
         /// Relation Equation E = 3K(1-2v).
         ///                   K = E/3(1-2v).
-        ///
-        ///
         /// </summary>
-        private decimal bulkModulus = 0;
-
         internal decimal Bulk_Modulus
         {
             get { return bulkModulus; }
@@ -341,6 +468,9 @@
 
         private decimal coefficientOfThermalExpansion = 0;
 
+        /// <summary>
+        /// Gets or sets the co-efficient of thermal expansion.
+        /// </summary>
         public decimal CoefficientOfThermalExpansion
         {
             get { return coefficientOfThermalExpansion; }
@@ -349,6 +479,9 @@
 
         private decimal ductility = 0;
 
+        /// <summary>
+        /// Gets or sets the ductility.
+        /// </summary>
         public decimal Ductility
         {
             get { return ductility; }
@@ -359,6 +492,9 @@
 
         private int atomicNumber = 0;
 
+        /// <summary>
+        /// Gets or sets the atomic number.
+        /// </summary>
         internal int Atomic_Number
         {
             get { return atomicNumber; }
@@ -367,6 +503,9 @@
 
         private string symbol = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the symbol.
+        /// </summary>
         internal string Symbol
         {
             get { return symbol; }
@@ -375,6 +514,9 @@
 
         private decimal atomicMass = 0;
 
+        /// <summary>
+        /// Gets or sets the atomic mass.
+        /// </summary>
         internal decimal Atomic_Mass
         {
             get { return atomicMass; }
@@ -383,6 +525,9 @@
 
         private string allotropeNames = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the allotrope names.
+        /// </summary>
         internal string Allotrope_Names
         {
             get { return allotropeNames; }
@@ -391,6 +536,9 @@
 
         private string alternateNames = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the alternate names.
+        /// </summary>
         internal string Alternate_Names
         {
             get { return alternateNames; }
@@ -399,6 +547,9 @@
 
         private string cASNumber = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the CAS number.
+        /// </summary>
         internal string CAS_Number
         {
             get { return cASNumber; }
@@ -407,6 +558,9 @@
 
         private string iconColor = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the icon color.
+        /// </summary>
         internal string Icon_Color
         {
             get { return iconColor; }
@@ -415,6 +569,9 @@
 
         private string block = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the block.
+        /// </summary>
         internal string Block
         {
             get { return block; }
@@ -423,6 +580,9 @@
 
         private string group = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the group.
+        /// </summary>
         internal string Group
         {
             get { return group; }
@@ -431,6 +591,9 @@
 
         private string period = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the period.
+        /// </summary>
         internal string Period
         {
             get { return period; }
@@ -439,6 +602,9 @@
 
         private string series = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the series.
+        /// </summary>
         internal string Series
         {
             get { return series; }
@@ -447,6 +613,9 @@
 
         private decimal atomicWeight = 0;
 
+        /// <summary>
+        /// Gets or sets the atomic weight.
+        /// </summary>
         internal decimal Atomic_Weight
         {
             get { return atomicWeight; }
@@ -455,6 +624,9 @@
 
         private decimal brinellHardness = 0;
 
+        /// <summary>
+        /// Gets or sets the Brinell hardness.
+        /// </summary>
         internal decimal Brinell_Hardness
         {
             get { return brinellHardness; }
@@ -463,6 +635,9 @@
 
         private decimal liquidDensity = 0;
 
+        /// <summary>
+        /// Gets or sets the liquid density.
+        /// </summary>
         internal decimal Liquid_Density
         {
             get { return liquidDensity; }
@@ -471,6 +646,9 @@
 
         private decimal mohsHardness = 0;
 
+        /// <summary>
+        /// Gets or sets the Mohs hardness.
+        /// </summary>
         internal decimal Mohs_Hardness
         {
             get { return mohsHardness; }
@@ -479,6 +657,9 @@
 
         private decimal molarVolume = 0;
 
+        /// <summary>
+        /// Gets or sets the molar volume.
+        /// </summary>
         internal decimal Molar_Volume
         {
             get { return molarVolume; }
@@ -487,6 +668,9 @@
 
         private decimal poissionRatio = 0;
 
+        /// <summary>
+        /// Gets or sets the Poission ration.
+        /// </summary>
         internal decimal Poission_Ratio
         {
             get { return poissionRatio; }
@@ -495,6 +679,9 @@
 
         private decimal soundSpeed = 0;
 
+        /// <summary>
+        /// Gets or sets the sound speed.
+        /// </summary>
         internal decimal Sound_Speed
         {
             get { return soundSpeed; }
@@ -503,6 +690,9 @@
 
         private decimal thermalConductivity = 0;
 
+        /// <summary>
+        /// Gets or sets the thermal conductivity.
+        /// </summary>
         internal decimal Thermal_Conductivity
         {
             get { return thermalConductivity; }
@@ -511,6 +701,9 @@
 
         private decimal thermalExpansion = 0;
 
+        /// <summary>
+        /// Gets or sets the thermal expansion.
+        /// </summary>
         internal decimal Thermal_Expansion
         {
             get { return thermalExpansion; }
@@ -519,6 +712,9 @@
 
         private decimal vickersHardness = 0;
 
+        /// <summary>
+        /// Gets or sets the Vickers hardness.
+        /// </summary>
         internal decimal Vickers_Hardness
         {
             get { return vickersHardness; }
@@ -527,6 +723,9 @@
 
         private decimal absoluteBoilingPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the absolute boiling point.
+        /// </summary>
         internal decimal Absolute_Boiling_Point
         {
             get { return absoluteBoilingPoint; }
@@ -535,6 +734,9 @@
 
         private decimal absoluteMeltingPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the absolute melting point.
+        /// </summary>
         internal decimal Absolute_Melting_Point
         {
             get { return absoluteMeltingPoint; }
@@ -543,6 +745,9 @@
 
         private decimal adiabaticIndex = 0;
 
+        /// <summary>
+        /// Gets or sets the adiabatic index.
+        /// </summary>
         internal decimal Adiabatic_Index
         {
             get { return adiabaticIndex; }
@@ -551,6 +756,9 @@
 
         private decimal boilingPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the boiling point.
+        /// </summary>
         internal decimal Boiling_Point
         {
             get { return boilingPoint; }
@@ -559,6 +767,9 @@
 
         private decimal criticalPressure = 0;
 
+        /// <summary>
+        /// Gets or sets the critical pressure.
+        /// </summary>
         internal decimal Critical_Pressure
         {
             get { return criticalPressure; }
@@ -567,6 +778,9 @@
 
         private decimal criticalTemperature = 0;
 
+        /// <summary>
+        /// Gets or sets the critical temperature.
+        /// </summary>
         internal decimal Critical_Temperature
         {
             get { return criticalTemperature; }
@@ -575,6 +789,9 @@
 
         private decimal curiePoint = 0;
 
+        /// <summary>
+        /// Gets or sets the Curie point.
+        /// </summary>
         internal decimal Curie_Point
         {
             get { return curiePoint; }
@@ -583,6 +800,9 @@
 
         private decimal fusionHeat = 0;
 
+        /// <summary>
+        /// Gets or sets the fusion heat.
+        /// </summary>
         internal decimal Fusion_Heat
         {
             get { return fusionHeat; }
@@ -591,6 +811,9 @@
 
         private decimal meltingPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the melting point.
+        /// </summary>
         internal decimal Melting_Point
         {
             get { return meltingPoint; }
@@ -599,6 +822,9 @@
 
         private decimal neelPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the neel point.
+        /// </summary>
         internal decimal Neel_Point
         {
             get { return neelPoint; }
@@ -607,6 +833,9 @@
 
         private string phase = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the phase.
+        /// </summary>
         internal string Phase
         {
             get { return phase; }
@@ -615,6 +844,9 @@
 
         private decimal specificHeat = 0;
 
+        /// <summary>
+        /// Gets or sets the specific heat.
+        /// </summary>
         internal decimal Specific_Heat
         {
             get { return specificHeat; }
@@ -623,6 +855,9 @@
 
         private decimal superconductingPoint = 0;
 
+        /// <summary>
+        /// Gets or sets the superconducting point.
+        /// </summary>
         internal decimal Superconducting_Point
         {
             get { return superconductingPoint; }
@@ -631,6 +866,9 @@
 
         private decimal vaporizationHeat = 0;
 
+        /// <summary>
+        /// Gets or sets the vaporization heat.
+        /// </summary>
         internal decimal Vaporization_Heat
         {
             get { return vaporizationHeat; }
@@ -639,6 +877,9 @@
 
         private string color = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the color.
+        /// </summary>
         internal string Color
         {
             get { return color; }
@@ -647,6 +888,9 @@
 
         private decimal electricalConductivity = 0;
 
+        /// <summary>
+        /// Gets or sets the electrical conductivity.
+        /// </summary>
         internal decimal Electrical_Conductivity
         {
             get { return electricalConductivity; }
@@ -655,6 +899,9 @@
 
         private string electricalType = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the electrical type.
+        /// </summary>
         internal string Electrical_Type
         {
             get { return electricalType; }
@@ -663,6 +910,9 @@
 
         private string magneticType = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the magnetic type.
+        /// </summary>
         internal string Magnetic_Type
         {
             get { return magneticType; }
@@ -671,6 +921,9 @@
 
         private decimal massMagneticSusceptibility = 0;
 
+        /// <summary>
+        /// Gets or sets mass magnetic susceptibility.
+        /// </summary>
         internal decimal Mass_Magnetic_Susceptibility
         {
             get { return massMagneticSusceptibility; }
@@ -679,6 +932,9 @@
 
         private decimal molarMagneticSusceptibility = 0;
 
+        /// <summary>
+        /// Gets or sets the Molor magnetic susceptibility.
+        /// </summary>
         internal decimal Molar_Magnetic_Susceptibility
         {
             get { return molarMagneticSusceptibility; }
@@ -687,6 +943,9 @@
 
         private decimal refractiveIndex = 0;
 
+        /// <summary>
+        /// Gets or sets the refractive index.
+        /// </summary>
         internal decimal Refractive_Index
         {
             get { return refractiveIndex; }
@@ -695,6 +954,9 @@
 
         private decimal resistivity = 0;
 
+        /// <summary>
+        /// Gets or sets the resistivity.
+        /// </summary>
         internal decimal Resistivity
         {
             get { return resistivity; }
@@ -703,6 +965,9 @@
 
         private decimal volumeMagneticSusceptibility = 0;
 
+        /// <summary>
+        /// Gets or sets the volume magnetic susceptibility.
+        /// </summary>
         internal decimal Volume_Magnetic_Susceptibility
         {
             get { return volumeMagneticSusceptibility; }
@@ -711,6 +976,9 @@
 
         private string allotropicMultiplicities = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the allotropic multiplicities.
+        /// </summary>
         internal string Allotropic_Multiplicities
         {
             get { return allotropicMultiplicities; }
@@ -719,6 +987,9 @@
 
         private string electronAffinity = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the electron affinity.
+        /// </summary>
         internal string Electron_Affinity
         {
             get { return electronAffinity; }
@@ -727,6 +998,9 @@
 
         private string electronegativity = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the elctronegativity.
+        /// </summary>
         internal string Electronegativity
         {
             get { return electronegativity; }
@@ -735,6 +1009,9 @@
 
         private string gasAtomicMultiplicities = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the gas atomic multiplicities.
+        /// </summary>
         internal string Gas_Atomic_Multiplicities
         {
             get { return gasAtomicMultiplicities; }
@@ -743,6 +1020,9 @@
 
         private string valence = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the valence.
+        /// </summary>
         internal string Valence
         {
             get { return valence; }
@@ -751,6 +1031,9 @@
 
         private string crystalStructure = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the crystal structure.
+        /// </summary>
         internal string Crystal_Structure
         {
             get { return crystalStructure; }
@@ -759,6 +1042,9 @@
 
         private string latticeAngles = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the lattice angles.
+        /// </summary>
         internal string Lattice_Angles
         {
             get { return latticeAngles; }
@@ -767,6 +1053,9 @@
 
         private string latticeConstants = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the lattice constants.
+        /// </summary>
         internal string Lattice_Constants
         {
             get { return latticeConstants; }
@@ -775,6 +1064,9 @@
 
         private string spaceGroupNumber = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the space group number.
+        /// </summary>
         internal string Space_Group_Number
         {
             get { return spaceGroupNumber; }
@@ -783,6 +1075,9 @@
 
         private string spaceGroupName = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the space group name.
+        /// </summary>
         internal string Space_Group_Name
         {
             get { return spaceGroupName; }
@@ -791,6 +1086,9 @@
 
         private string atomicRadius = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the atomic radius.
+        /// </summary>
         internal string Atomic_Radius
         {
             get { return atomicRadius; }
@@ -799,6 +1097,9 @@
 
         private string covalentRadius = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the covalent radius.
+        /// </summary>
         internal string Covalent_Radius
         {
             get { return covalentRadius; }
@@ -807,6 +1108,9 @@
 
         private string electronConfiguration = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the electron configuration.
+        /// </summary>
         internal string Electron_Configuration
         {
             get { return electronConfiguration; }
@@ -815,6 +1119,9 @@
 
         private string electronConfigurationString = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the electron configuration string.
+        /// </summary>
         internal string Electron_Configuration_String
         {
             get { return electronConfigurationString; }
@@ -823,6 +1130,9 @@
 
         private string electronShellConfiguration = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the electron shell configuration.
+        /// </summary>
         internal string Electron_Shell_Configuration
         {
             get { return electronShellConfiguration; }
@@ -831,6 +1141,9 @@
 
         private string ionizationEnergies = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the ionization energies.
+        /// </summary>
         internal string Ionization_Energies
         {
             get { return ionizationEnergies; }
@@ -839,6 +1152,9 @@
 
         private string quantumNumbers = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the quantum numbers.
+        /// </summary>
         internal string Quantum_Numbers
         {
             get { return quantumNumbers; }
@@ -847,6 +1163,9 @@
 
         private string vanDerWaalsRadius = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the van der walls radius.
+        /// </summary>
         internal string Van_Der_Waals_Radius
         {
             get { return vanDerWaalsRadius; }
@@ -855,6 +1174,9 @@
 
         private string decayMode = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the decay mode.
+        /// </summary>
         internal string Decay_Mode
         {
             get { return decayMode; }
@@ -863,6 +1185,9 @@
 
         private string halfLife = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the half-life.
+        /// </summary>
         internal string HalfLife
         {
             get { return halfLife; }
@@ -871,6 +1196,9 @@
 
         private string isotopeAbundances = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the isotope abundance.
+        /// </summary>
         internal string Isotope_Abundances
         {
             get { return isotopeAbundances; }
@@ -879,6 +1207,9 @@
 
         private string knownIsotopes = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the known isotopes.
+        /// </summary>
         internal string Known_Isotopes
         {
             get { return knownIsotopes; }
@@ -887,6 +1218,9 @@
 
         private string lifetime = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the lifetime.
+        /// </summary>
         internal string Lifetime
         {
             get { return lifetime; }
@@ -895,6 +1229,9 @@
 
         private string neutronCrossSection = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the neutron mass absorption.
+        /// </summary>
         internal string Neutron_Cross_Section
         {
             get { return neutronCrossSection; }
@@ -903,6 +1240,9 @@
 
         private string neutronMassAbsorption = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the neutron mass absorption.
+        /// </summary>
         internal string Neutron_Mass_Absorption
         {
             get { return neutronMassAbsorption; }
@@ -911,6 +1251,9 @@
 
         private string radioactive = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radioactive.
+        /// </summary>
         internal string Radioactive
         {
             get { return radioactive; }
@@ -919,6 +1262,9 @@
 
         private string stableIsotopes = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the stable isotopes.
+        /// </summary>
         internal string Stable_Isotopes
         {
             get { return stableIsotopes; }
@@ -927,6 +1273,9 @@
 
         private decimal crustAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the crust abundance.
+        /// </summary>
         internal decimal Crust_Abundance
         {
             get { return crustAbundance; }
@@ -935,6 +1284,9 @@
 
         private decimal humanAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the human abundance.
+        /// </summary>
         internal decimal Human_Abundance
         {
             get { return humanAbundance; }
@@ -943,6 +1295,9 @@
 
         private decimal meteoriteAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the meteorite abundance.
+        /// </summary>
         internal decimal Meteorite_Abundance
         {
             get { return meteoriteAbundance; }
@@ -951,6 +1306,9 @@
 
         private decimal oceanAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the ocean abundance.
+        /// </summary>
         internal decimal Ocean_Abundance
         {
             get { return oceanAbundance; }
@@ -959,6 +1317,9 @@
 
         private decimal solarAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the solar abundance.
+        /// </summary>
         internal decimal Solar_Abundance
         {
             get { return solarAbundance; }
@@ -967,6 +1328,9 @@
 
         private decimal universeAbundance = 0;
 
+        /// <summary>
+        /// Gets or sets the universe abundance.
+        /// </summary>
         internal decimal Universe_Abundance
         {
             get { return universeAbundance; }
@@ -975,6 +1339,9 @@
 
         private string radiusEmpirical = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius empirical.
+        /// </summary>
         internal string Radius_Empirical
         {
             get { return radiusEmpirical; }
@@ -983,6 +1350,9 @@
 
         private string radiusCalculated = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius calculated.
+        /// </summary>
         internal string Radius_Calculated
         {
             get { return radiusCalculated; }
@@ -991,6 +1361,9 @@
 
         private string radiusVanDerWaals = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius van der waals.
+        /// </summary>
         internal string Radius_Van_Der_Waals
         {
             get { return radiusVanDerWaals; }
@@ -999,6 +1372,9 @@
 
         private string radiusCovalentSingleBond = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius covalent single bind.
+        /// </summary>
         internal string Radius_Covalent_Single_Bond
         {
             get { return radiusCovalentSingleBond; }
@@ -1007,6 +1383,9 @@
 
         private string radiusCovalentTripleBond = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius covalent triple bond.
+        /// </summary>
         internal string Radius_Covalent_Triple_Bond
         {
             get { return radiusCovalentTripleBond; }
@@ -1015,6 +1394,9 @@
 
         private string radiusMetallic = string.Empty;
 
+        /// <summary>
+        /// Gets or sets the radius metallic.
+        /// </summary>
         internal string Radius_Metallic
         {
             get { return radiusMetallic; }
@@ -1023,6 +1405,9 @@
 
         private string materialType;
 
+        /// <summary>
+        /// Gets or sets the material type.
+        /// </summary>
         public string MaterialType
         {
             get { return materialType; }

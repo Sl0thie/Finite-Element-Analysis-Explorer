@@ -8,6 +8,9 @@ namespace Finite_Element_Analysis_Explorer
     /// </summary>
     public sealed partial class PanelSettingsColors : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelSettingsColors"/> class.
+        /// </summary>
         public PanelSettingsColors()
         {
             this.InitializeComponent();

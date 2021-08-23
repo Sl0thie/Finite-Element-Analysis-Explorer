@@ -1,7 +1,13 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// MaterialsList class.
+    /// </summary>
     internal static class MaterialsList
     {
+        /// <summary>
+        /// Load the list of materials.
+        /// </summary>
         internal static void LoadList()
         {
             Material anMaterial = new Material()
@@ -15,63 +21,6 @@
             };
             Model.Materials.Add(anMaterial.Name, anMaterial);
 
-            // AnMaterial = new Material()
-            // {
-            //    Atomic_Number = -1,
-            //    Name = "Steel 250N",
-            //    Cost = 8000m,
-            //    ModulusOfElasticity = 24000000000m,
-            //    Density = 2400m,
-            //    Poission_Ratio = 0.2m,
-            //    MaterialType = "Compound"
-            // };
-            // Model.Materials.Add(AnMaterial.Name, AnMaterial);
-
-            // AnMaterial = new Material()
-            // {
-            //    Atomic_Number = -1,
-            //    Name = "Steel 300E",
-            //    Cost = 8000m,
-            //    Density = 2400m,
-            //    Poission_Ratio = 0.2m,
-            //    ModulusOfElasticity = 24000000000m,
-            //    MaterialType = "Compound"
-            // };
-            // Model.Materials.Add(AnMaterial.Name, AnMaterial);
-
-            // AnMaterial = new Material()
-            // {
-            //    Atomic_Number = -1,
-            //    Name = "Steel 500L",
-            //    Cost = 8000m,
-            //    Density = 2400m,
-            //    ModulusOfElasticity = 24000000000m,
-            //    Poission_Ratio = 0.2m,
-            //    MaterialType = "Compound"
-            // };
-            // Model.Materials.Add(AnMaterial.Name, AnMaterial);
-
-            // AnMaterial = new Material()
-            // {
-            //    Atomic_Number = -1,
-            //    Name = "Steel 500N",
-            //    Cost = 8000m,
-            //    Density = 2400m,
-            //    Poission_Ratio = 0.2m,
-            //    ModulusOfElasticity = 24000000000m,
-            //    MaterialType = "Compound"
-            // };
-            // Model.Materials.Add(AnMaterial.Name, AnMaterial);
-
-            // AnMaterial = new Material();
-            // AnMaterial.Atomic_Number = -1;
-            // AnMaterial.Name = "Steel 500E";
-            // AnMaterial.Cost = 8000m;
-            // AnMaterial.Density = 2400m;
-            // AnMaterial.Poission_Ratio = 0.2m;
-            // AnMaterial.ModulusOfElasticity = 24000000000m;
-            // AnMaterial.MaterialType = "Compound";
-            // Model.Materials.Add(AnMaterial.Name, AnMaterial);
             anMaterial = new Material
             {
                 Name = "Concrete 20MPa",

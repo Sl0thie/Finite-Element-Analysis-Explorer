@@ -887,7 +887,7 @@ namespace Finite_Element_Analysis_Explorer
 
                     break;
 
-                case UnitType.Temprature:
+                case UnitType.Temperature:
 
                     break;
 

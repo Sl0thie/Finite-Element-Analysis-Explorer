@@ -71,8 +71,6 @@ namespace Finite_Element_Analysis_Explorer
                 LDLFar = lDLFar;
 
                 Task.Run(() => ProcessProperties(this.nodeNear.Position.X, this.nodeNear.Position.Y, this.nodeFar.Position.X, this.nodeFar.Position.Y));
-
-                // Output();
             }
             catch (Exception ex)
             {
@@ -686,7 +684,7 @@ namespace Finite_Element_Analysis_Explorer
                     Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, nextNode, section, lastW, lastW + wSeg, previousSegmentIndex);
                     segments.TryAdd(nextSegment.Index, nextSegment);
 
-                    if (ReferenceEquals(null, firstSegment))
+                    if (firstSegment is null)
                     {
                         firstSegment = nextSegment;
                     }
@@ -702,7 +700,7 @@ namespace Finite_Element_Analysis_Explorer
                 segments.TryAdd(lastSegment.Index, lastSegment);
                 segmentIndex++;
 
-                if (ReferenceEquals(null, firstSegment))
+                if (firstSegment is null)
                 {
                     firstSegment = lastSegment;
                 }
@@ -723,8 +721,10 @@ namespace Finite_Element_Analysis_Explorer
                     }
                     else
                     {
-                        List<Tuple<int, int>> newList = new List<Tuple<int, int>>();
-                        newList.Add(new Tuple<int, int>(index, item.Value.Index));
+                        List<Tuple<int, int>> newList = new List<Tuple<int, int>>
+                        {
+                            new Tuple<int, int>(index, item.Value.Index),
+                        };
 
                         if (!Model.Members.MemberTiles.TryAdd(position, newList))
                         {

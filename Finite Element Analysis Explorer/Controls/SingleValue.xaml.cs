@@ -5,14 +5,23 @@
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;
 
+    /// <summary>
+    /// SingleValue UserControl provides a UI that manages a single value.
+    /// </summary>
     public sealed partial class SingleValue : UserControl
     {
+        /// <summary>
+        /// ValueChanged event is raised when the value of the control is changed.
+        /// </summary>
         public event EventHandler ValueChanged;
 
         private decimal multiplicationFactor = 1;
 
         private string title;
 
+        /// <summary>
+        /// Gets or sets the title displayed on the control.
+        /// </summary>
         public string Title
         {
             get
@@ -29,6 +38,9 @@
 
         private bool displayOnly;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the control will respond to user input.
+        /// </summary>
         public bool DisplayOnly
         {
             get
@@ -43,8 +55,22 @@
             }
         }
 
+        private decimal newValue;
+
+        /// <summary>
+        /// Gets or sets the new value for the control.
+        /// </summary>
+        public decimal NewValue
+        {
+            get { return newValue; }
+            set { newValue = value; }
+        }
+
         private UnitType unitType = UnitType.Unitless;
 
+        /// <summary>
+        /// Gets or sets the unit type of the control.
+        /// </summary>
         internal UnitType UnitType
         {
             get
@@ -324,7 +350,7 @@
                         }
 
                         break;
-                    case UnitType.Temprature:
+                    case UnitType.Temperature:
                         multiplicationFactor = 1;
                         TextBlock_UnitType.Text = "k";
                         break;
@@ -372,16 +398,26 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleValue"/> class.
+        /// </summary>
         public SingleValue()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets the value to null.
+        /// </summary>
         internal void SetNull()
         {
             NumericInput_Value.SetNull();
         }
 
+        /// <summary>
+        /// Sets a new value for the control.
+        /// </summary>
+        /// <param name="setNewValue">The new value to set.</param>
         internal void SetTheValue(decimal setNewValue)
         {
             // TODO: Multiply by unit type factor then pass.
@@ -395,14 +431,6 @@
                 NumericInput_Value.SetValue(setNewValue * multiplicationFactor);
                 newValue = setNewValue * multiplicationFactor;
             }
-        }
-
-        private decimal newValue;
-
-        public decimal NewValue
-        {
-            get { return newValue; }
-            set { newValue = value; }
         }
 
         private void NumericInput_Value_ValueChanged(object sender, EventArgs e)
@@ -784,7 +812,7 @@
 
                     break;
 
-                case UnitType.Temprature:
+                case UnitType.Temperature:
 
                     break;
 

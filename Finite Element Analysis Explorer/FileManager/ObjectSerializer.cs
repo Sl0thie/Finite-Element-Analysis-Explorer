@@ -5,9 +5,17 @@ using System.Xml.Serialization;
 
 namespace CSWindowsStoreAppSaveCollection
 {
+    /// <summary>
+    /// ObjectSerializer class.
+    /// </summary>
+    /// <typeparam name="T">The generic type.</typeparam>
     internal static class ObjectSerializer<T>
     {
-        // Serialize to xml
+        /// <summary>
+        /// Serialize to XML.
+        /// </summary>
+        /// <param name="value">The object to convert.</param>
+        /// <returns>The serialized object.</returns>
         public static string ToXml(T value)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));

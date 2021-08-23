@@ -1,7 +1,13 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// SectionProfilesList class.
+    /// </summary>
     internal static class SectionProfilesList
     {
+        /// <summary>
+        /// Loads the section profiles list.
+        /// </summary>
         internal static void LoadList()
         {
             SectionProfile tmpSectionProfile = new SectionProfile("I Beam")

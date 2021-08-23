@@ -6,12 +6,24 @@
     using Windows.UI.Xaml.Controls.Primitives;
     using Windows.UI.Xaml.Input;
 
+    /// <summary>
+    /// LogSlider UserControl is a custom slider that increases in value logarithmically.
+    /// </summary>
     public sealed partial class LogSlider : UserControl
     {
+        /// <summary>
+        /// ValueChanged event is fired when the control's value has changed.
+        /// </summary>
         public event EventHandler ValueChanged;
 
+        /// <summary>
+        /// Checked event is fired when the checkbox has changed to checked.
+        /// </summary>
         public event EventHandler Checked;
 
+        /// <summary>
+        /// Unchecked event is fired when the checkbox is unchecked.
+        /// </summary>
         public event EventHandler Unchecked;
 
         /// <summary>
@@ -24,6 +36,9 @@
 
         private string title;
 
+        /// <summary>
+        /// Gets or sets the Title that is displayed on the control.
+        /// </summary>
         public string Title
         {
             get
@@ -40,6 +55,9 @@
 
         private string displayValue;
 
+        /// <summary>
+        /// Gets or sets the value that is displayed on the control.
+        /// </summary>
         public string DisplayValue
         {
             get
@@ -56,6 +74,41 @@
 
         private bool blockUpdate = false;
 
+        private float theValue;
+
+        /// <summary>
+        /// Gets or sets the value for the control.
+        /// </summary>
+        public float TheValue
+        {
+            get { return theValue; }
+
+            set { theValue = value; }
+        }
+
+        private bool isChecked;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the control is checked.
+        /// </summary>
+        public bool IsChecked
+        {
+            get
+            {
+                return isChecked;
+            }
+
+            set
+            {
+                isChecked = value;
+                TextBlock_Title.IsChecked = value;
+            }
+        }
+
+        /// <summary>
+        /// Sets a new value on the control.
+        /// </summary>
+        /// <param name="newValue">The value to display.</param>
         internal void SetNewValue(float newValue)
         {
             blockUpdate = true;
@@ -962,406 +1015,6 @@
             }
 
             blockUpdate = false;
-        }
-
-        internal void SetNewValue_old(float newValue)
-        {
-            blockUpdate = true;
-            if (newValue <= 0.00001f)
-            {
-                slider_Value.Value = 1;
-            }
-            else if (newValue <= 0.00002f)
-            {
-                slider_Value.Value = 2;
-            }
-            else if (newValue <= 0.00003f)
-            {
-                slider_Value.Value = 3;
-            }
-            else if (newValue <= 0.00004f)
-            {
-                slider_Value.Value = 4;
-            }
-            else if (newValue <= 0.00005f)
-            {
-                slider_Value.Value = 5;
-            }
-            else if (newValue <= 0.00006f)
-            {
-                slider_Value.Value = 6;
-            }
-            else if (newValue <= 0.00007f)
-            {
-                slider_Value.Value = 7;
-            }
-            else if (newValue <= 0.00008f)
-            {
-                slider_Value.Value = 8;
-            }
-            else if (newValue <= 0.00009f)
-            {
-                slider_Value.Value = 9;
-            }
-            else if (newValue <= 0.0001f)
-            {
-                slider_Value.Value = 10;
-            }
-            else if (newValue <= 0.0002f)
-            {
-                slider_Value.Value = 11;
-            }
-            else if (newValue <= 0.0003f)
-            {
-                slider_Value.Value = 12;
-            }
-            else if (newValue <= 0.0004f)
-            {
-                slider_Value.Value = 13;
-            }
-            else if (newValue <= 0.0005f)
-            {
-                slider_Value.Value = 14;
-            }
-            else if (newValue <= 0.0006f)
-            {
-                slider_Value.Value = 15;
-            }
-            else if (newValue <= 0.0007f)
-            {
-                slider_Value.Value = 16;
-            }
-            else if (newValue <= 0.0008f)
-            {
-                slider_Value.Value = 17;
-            }
-            else if (newValue <= 0.0009f)
-            {
-                slider_Value.Value = 18;
-            }
-            else if (newValue <= 0.001f)
-            {
-                slider_Value.Value = 19;
-            }
-            else if (newValue <= 0.002f)
-            {
-                slider_Value.Value = 20;
-            }
-            else if (newValue <= 0.003f)
-            {
-                slider_Value.Value = 21;
-            }
-            else if (newValue <= 0.004f)
-            {
-                slider_Value.Value = 22;
-            }
-            else if (newValue <= 0.005f)
-            {
-                slider_Value.Value = 23;
-            }
-            else if (newValue <= 0.006f)
-            {
-                slider_Value.Value = 24;
-            }
-            else if (newValue <= 0.007f)
-            {
-                slider_Value.Value = 25;
-            }
-            else if (newValue <= 0.008f)
-            {
-                slider_Value.Value = 26;
-            }
-            else if (newValue <= 0.009f)
-            {
-                slider_Value.Value = 27;
-            }
-            else if (newValue <= 0.01f)
-            {
-                slider_Value.Value = 28;
-            }
-            else if (newValue <= 0.02f)
-            {
-                slider_Value.Value = 29;
-            }
-            else if (newValue <= 0.03f)
-            {
-                slider_Value.Value = 30;
-            }
-            else if (newValue <= 0.04f)
-            {
-                slider_Value.Value = 31;
-            }
-            else if (newValue <= 0.05f)
-            {
-                slider_Value.Value = 32;
-            }
-            else if (newValue <= 0.06f)
-            {
-                slider_Value.Value = 33;
-            }
-            else if (newValue <= 0.07f)
-            {
-                slider_Value.Value = 34;
-            }
-            else if (newValue <= 0.08f)
-            {
-                slider_Value.Value = 35;
-            }
-            else if (newValue <= 0.09f)
-            {
-                slider_Value.Value = 36;
-            }
-            else if (newValue <= 0.1f)
-            {
-                slider_Value.Value = 37;
-            }
-            else if (newValue <= 0.2f)
-            {
-                slider_Value.Value = 38;
-            }
-            else if (newValue <= 0.3f)
-            {
-                slider_Value.Value = 39;
-            }
-            else if (newValue <= 0.4f)
-            {
-                slider_Value.Value = 40;
-            }
-            else if (newValue <= 0.5f)
-            {
-                slider_Value.Value = 41;
-            }
-            else if (newValue <= 0.6f)
-            {
-                slider_Value.Value = 42;
-            }
-            else if (newValue <= 0.7f)
-            {
-                slider_Value.Value = 43;
-            }
-            else if (newValue <= 0.7f)
-            {
-                slider_Value.Value = 44;
-            }
-            else if (newValue <= 0.8f)
-            {
-                slider_Value.Value = 45;
-            }
-            else if (newValue <= 0.9f)
-            {
-                slider_Value.Value = 46;
-            }
-            else if (newValue <= 1f)
-            {
-                slider_Value.Value = 47;
-            }
-            else if (newValue <= 2f)
-            {
-                slider_Value.Value = 48;
-            }
-            else if (newValue <= 3f)
-            {
-                slider_Value.Value = 49;
-            }
-            else if (newValue <= 4f)
-            {
-                slider_Value.Value = 50;
-            }
-            else if (newValue <= 5f)
-            {
-                slider_Value.Value = 51;
-            }
-            else if (newValue <= 6f)
-            {
-                slider_Value.Value = 52;
-            }
-            else if (newValue <= 7f)
-            {
-                slider_Value.Value = 53;
-            }
-            else if (newValue <= 8f)
-            {
-                slider_Value.Value = 54;
-            }
-            else if (newValue <= 9f)
-            {
-                slider_Value.Value = 55;
-            }
-            else if (newValue <= 10f)
-            {
-                slider_Value.Value = 56;
-            }
-            else if (newValue <= 20f)
-            {
-                slider_Value.Value = 57;
-            }
-            else if (newValue <= 30f)
-            {
-                slider_Value.Value = 58;
-            }
-            else if (newValue <= 40f)
-            {
-                slider_Value.Value = 59;
-            }
-            else if (newValue <= 50f)
-            {
-                slider_Value.Value = 60;
-            }
-            else if (newValue <= 60f)
-            {
-                slider_Value.Value = 61;
-            }
-            else if (newValue <= 70f)
-            {
-                slider_Value.Value = 62;
-            }
-            else if (newValue <= 80f)
-            {
-                slider_Value.Value = 63;
-            }
-            else if (newValue <= 90f)
-            {
-                slider_Value.Value = 64;
-            }
-            else if (newValue <= 100f)
-            {
-                slider_Value.Value = 65;
-            }
-            else if (newValue <= 200f)
-            {
-                slider_Value.Value = 66;
-            }
-            else if (newValue <= 300f)
-            {
-                slider_Value.Value = 67;
-            }
-            else if (newValue <= 400f)
-            {
-                slider_Value.Value = 68;
-            }
-            else if (newValue <= 500f)
-            {
-                slider_Value.Value = 69;
-            }
-            else if (newValue <= 600f)
-            {
-                slider_Value.Value = 70;
-            }
-            else if (newValue <= 700f)
-            {
-                slider_Value.Value = 71;
-            }
-            else if (newValue <= 800f)
-            {
-                slider_Value.Value = 72;
-            }
-            else if (newValue <= 900f)
-            {
-                slider_Value.Value = 73;
-            }
-            else if (newValue <= 1000f)
-            {
-                slider_Value.Value = 74;
-            }
-            else if (newValue <= 2000f)
-            {
-                slider_Value.Value = 75;
-            }
-            else if (newValue <= 3000f)
-            {
-                slider_Value.Value = 76;
-            }
-            else if (newValue <= 4000f)
-            {
-                slider_Value.Value = 77;
-            }
-            else if (newValue <= 5000f)
-            {
-                slider_Value.Value = 78;
-            }
-            else if (newValue <= 6000f)
-            {
-                slider_Value.Value = 79;
-            }
-            else if (newValue <= 7000f)
-            {
-                slider_Value.Value = 80;
-            }
-            else if (newValue <= 8000f)
-            {
-                slider_Value.Value = 81;
-            }
-            else if (newValue <= 9000f)
-            {
-                slider_Value.Value = 82;
-            }
-            else if (newValue <= 10000f)
-            {
-                slider_Value.Value = 83;
-            }
-            else if (newValue <= 20000f)
-            {
-                slider_Value.Value = 84;
-            }
-            else if (newValue <= 30000f)
-            {
-                slider_Value.Value = 85;
-            }
-            else if (newValue <= 40000f)
-            {
-                slider_Value.Value = 86;
-            }
-            else if (newValue <= 50000f)
-            {
-                slider_Value.Value = 87;
-            }
-            else if (newValue <= 60000f)
-            {
-                slider_Value.Value = 88;
-            }
-            else if (newValue <= 70000f)
-            {
-                slider_Value.Value = 89;
-            }
-            else if (newValue <= 80000f)
-            {
-                slider_Value.Value = 90;
-            }
-            else if (newValue <= 90000f)
-            {
-                slider_Value.Value = 91;
-            }
-            else if (newValue <= 100000f)
-            {
-                slider_Value.Value = 92;
-            }
-
-            blockUpdate = false;
-        }
-
-        private float theValue;
-
-        public float TheValue
-        {
-            get { return theValue; }
-
-            set { theValue = value; }
-        }
-
-        private bool isChecked;
-
-        public bool IsChecked
-        {
-            get
-            {
-                return isChecked;
-            }
-
-            set
-            {
-                isChecked = value;
-                TextBlock_Title.IsChecked = value;
-            }
         }
 
         private void Slider_Value_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

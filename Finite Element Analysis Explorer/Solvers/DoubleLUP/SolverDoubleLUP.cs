@@ -3,6 +3,9 @@
     using System.Threading.Tasks;
     using Windows.UI.Xaml.Controls;
 
+    /// <summary>
+    /// SolverDoubleLUP ISolver.
+    /// </summary>
     public class SolverDoubleLUP : ISolver
     {
         #region Properties
@@ -11,6 +14,9 @@
 
         private Page parent;
 
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
         public Page Parent
         {
             get
@@ -26,6 +32,9 @@
 
         private bool hasErrors;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether there are errors.
+        /// </summary>
         public bool HasErrors
         {
             get { return hasErrors; }
@@ -53,6 +62,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Solves the model.
+        /// </summary>
         public void SolveModel()
         {
             SolverFunctions.ResetDisplayAndShowWelcomeMessage();

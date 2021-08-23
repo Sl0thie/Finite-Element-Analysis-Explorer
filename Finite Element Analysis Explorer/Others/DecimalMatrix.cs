@@ -3,11 +3,17 @@ using System.Diagnostics;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DecimalMatrix class.
+    /// </summary>
     internal class DecimalMatrix
     {
         private decimal[,] mInnerMatrix;
         private int mRowCount = 0;
 
+        /// <summary>
+        /// Gets the row count.
+        /// </summary>
         internal int RowCount
         {
             get { return mRowCount; }
@@ -15,15 +21,26 @@ namespace Finite_Element_Analysis_Explorer
 
         private int mColumnCount = 0;
 
+        /// <summary>
+        /// Gets the column count.
+        /// </summary>
         internal int ColumnCount
         {
             get { return mColumnCount; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DecimalMatrix"/> class.
+        /// </summary>
         internal DecimalMatrix()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DecimalMatrix"/> class.
+        /// </summary>
+        /// <param name="rowCount">rowCount.</param>
+        /// <param name="columnCount">columnCount.</param>
         internal DecimalMatrix(int rowCount, int columnCount)
         {
             mRowCount = rowCount;
@@ -31,6 +48,12 @@ namespace Finite_Element_Analysis_Explorer
             mInnerMatrix = new decimal[rowCount, columnCount];
         }
 
+        /// <summary>
+        /// this.
+        /// </summary>
+        /// <param name="rowNumber">rowNumber.</param>
+        /// <param name="columnNumber">columnNumber.</param>
+        /// <returns>Result.</returns>
         internal decimal this[int rowNumber, int columnNumber]
         {
             get
@@ -44,6 +67,11 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Gets a row.
+        /// </summary>
+        /// <param name="rowIndex">rowIndex.</param>
+        /// <returns>Result.</returns>
         internal decimal[] GetRow(int rowIndex)
         {
             decimal[] rowValues = new decimal[mColumnCount];
@@ -55,6 +83,11 @@ namespace Finite_Element_Analysis_Explorer
             return rowValues;
         }
 
+        /// <summary>
+        /// Sets a row.
+        /// </summary>
+        /// <param name="rowIndex">rowIndex.</param>
+        /// <param name="value">value.</param>
         internal void SetRow(int rowIndex, decimal[] value)
         {
             if (value.Length != mColumnCount)
@@ -68,6 +101,11 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Gets a column.
+        /// </summary>
+        /// <param name="columnIndex">columnIndex.</param>
+        /// <returns>Result.</returns>
         internal decimal[] GetColumn(int columnIndex)
         {
             decimal[] columnValues = new decimal[mRowCount];
@@ -79,6 +117,11 @@ namespace Finite_Element_Analysis_Explorer
             return columnValues;
         }
 
+        /// <summary>
+        /// Sets a column.
+        /// </summary>
+        /// <param name="columnIndex">columnIndex.</param>
+        /// <param name="value">value.</param>
         internal void SetColumn(int columnIndex, decimal[] value)
         {
             if (value.Length != mRowCount)
@@ -92,6 +135,12 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Plus operator.
+        /// </summary>
+        /// <param name="pMatrix1">pMatrix1.</param>
+        /// <param name="pMatrix2">pMatrix2.</param>
+        /// <returns>Result.</returns>
         public static DecimalMatrix operator +(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
@@ -111,6 +160,12 @@ namespace Finite_Element_Analysis_Explorer
             return returnMartix;
         }
 
+        /// <summary>
+        /// Multiplication operator.
+        /// </summary>
+        /// <param name="scalarValue">scalarValue.</param>
+        /// <param name="pMatrix">pMatrix.</param>
+        /// <returns>Result.</returns>
         public static DecimalMatrix operator *(decimal scalarValue, DecimalMatrix pMatrix)
         {
             DecimalMatrix returnMartix = new DecimalMatrix(pMatrix.RowCount, pMatrix.RowCount);
@@ -125,6 +180,12 @@ namespace Finite_Element_Analysis_Explorer
             return returnMartix;
         }
 
+        /// <summary>
+        /// Minus operator.
+        /// </summary>
+        /// <param name="pMatrix1">pMatrix1.</param>
+        /// <param name="pMatrix2">pMatrix2.</param>
+        /// <returns>Result.</returns>
         public static DecimalMatrix operator -(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
@@ -135,6 +196,12 @@ namespace Finite_Element_Analysis_Explorer
             return pMatrix1 + (-1 * pMatrix2);
         }
 
+        /// <summary>
+        /// Equals operator.
+        /// </summary>
+        /// <param name="pMatrix1">pMatrix1.</param>
+        /// <param name="pMatrix2">pMatrix2.</param>
+        /// <returns>Result.</returns>
         public static bool operator ==(DecimalMatrix pMatrix1, DecimalMatrix pMatrix2)
         {
             if (!(pMatrix1.RowCount == pMatrix2.RowCount && pMatrix1.ColumnCount == pMatrix2.ColumnCount))
@@ -219,6 +286,10 @@ namespace Finite_Element_Analysis_Explorer
             return returnMatrix;
         }
 
+        /// <summary>
+        /// Transposes the matrix.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal DecimalMatrix Transpose()
         {
             DecimalMatrix mReturnMartix = new DecimalMatrix(ColumnCount, RowCount);
@@ -233,16 +304,29 @@ namespace Finite_Element_Analysis_Explorer
             return mReturnMartix;
         }
 
+        /// <summary>
+        /// Are the objects equal?.
+        /// </summary>
+        /// <param name="obj">obj.</param>
+        /// <returns>Result.</returns>
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
 
+        /// <summary>
+        /// Gets the hash code.
+        /// </summary>
+        /// <returns>Result.</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Is zero matrix.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsZeroMatrix()
         {
             for (int i = 0; i < this.RowCount; i++)
@@ -259,11 +343,19 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Is the matrix square.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsSquareMatrix()
         {
             return this.RowCount == this.ColumnCount;
         }
 
+        /// <summary>
+        /// Is the lower triangle.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsLowerTriangle()
         {
             if (!this.IsSquareMatrix())
@@ -285,6 +377,10 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Is upper triangle.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsUpperTriangle()
         {
             if (!this.IsSquareMatrix())
@@ -306,6 +402,10 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Is diagonal matrix.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsDiagonalMatrix()
         {
             if (!this.IsSquareMatrix())
@@ -327,6 +427,10 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Is identity matrix.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsIdentityMatrix()
         {
             if (!this.IsSquareMatrix())
@@ -354,6 +458,10 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Is symmetric matrix.
+        /// </summary>
+        /// <returns>Result.</returns>
         internal bool IsSymetricMatrix()
         {
             if (!this.IsSquareMatrix())
@@ -372,6 +480,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Write to the debug output.
+        /// </summary>
+        /// <param name="titleText">titleText.</param>
         internal void WriteToDebug(string titleText)
         {
             Debug.WriteLine(titleText + "Matrix Content");

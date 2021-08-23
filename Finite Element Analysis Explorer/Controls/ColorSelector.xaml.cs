@@ -7,6 +7,11 @@ using Windows.UI.Xaml.Media;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// ColorSelector UserControl.
+    /// Provides a UI for users to pick colors.
+    /// TODO Check the shadow cast as it seems over-sized.
+    /// </summary>
     public sealed partial class ColorSelector : UserControl
     {
         /// <summary>
@@ -66,6 +71,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Updates the control when changes are made.
+        /// </summary>
         private void UpdateColor()
         {
             Color tmpColor = Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue);

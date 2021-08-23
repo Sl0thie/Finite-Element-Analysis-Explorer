@@ -1,7 +1,16 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Constraints struct.
+    /// </summary>
     internal struct Constraints
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Constraints"/> struct.
+        /// </summary>
+        /// <param name="x">The X value.</param>
+        /// <param name="y">The Y value.</param>
+        /// <param name="m">The M value.</param>
         internal Constraints(bool x, bool y, bool m)
         {
             this.x = x;
@@ -60,6 +69,10 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Constraints"/> struct.
+        /// </summary>
+        /// <param name="constraints">A constraints struct.</param>
         internal Constraints(Constraints constraints)
         {
             x = constraints.x;
@@ -118,6 +131,10 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Constraints"/> struct.
+        /// </summary>
+        /// <param name="constraintType">The constraint type.</param>
         internal Constraints(ConstraintType constraintType)
         {
             this.constraintType = constraintType;
@@ -223,6 +240,9 @@
 
         private bool x;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the X axis is constrained.
+        /// </summary>
         public bool X
         {
             get { return x; }
@@ -231,6 +251,9 @@
 
         private bool y;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the Y axis is constrained.
+        /// </summary>
         public bool Y
         {
             get { return y; }
@@ -239,6 +262,9 @@
 
         private bool m;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the M axis is constrained.
+        /// </summary>
         public bool M
         {
             get { return m; }
@@ -247,6 +273,9 @@
 
         private ConstraintType constraintType;
 
+        /// <summary>
+        /// Gets or sets the constraint type.
+        /// </summary>
         public ConstraintType ConstraintType
         {
             get { return constraintType; }

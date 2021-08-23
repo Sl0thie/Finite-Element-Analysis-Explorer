@@ -37,6 +37,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal newValue;
 
+        /// <summary>
+        /// Gets or sets the new value for the control.
+        /// </summary>
         public decimal NewValue
         {
             get
@@ -52,6 +55,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private bool displayOnly = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the control processes input or just displays values and ignores input.
+        /// </summary>
         public bool DisplayOnly
         {
             get
@@ -67,6 +73,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private bool isInteger;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the input is an integer.
+        /// </summary>
         public bool IsInteger
         {
             get
@@ -80,6 +89,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NumericInput"/> class.
+        /// </summary>
         public NumericInput()
         {
             this.InitializeComponent();
@@ -98,6 +110,9 @@ namespace Finite_Element_Analysis_Explorer
             TextBlock_EOne.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Sets the control to null.
+        /// </summary>
         public void SetNull()
         {
             TextBlock_Sign.Text = string.Empty;
@@ -114,6 +129,10 @@ namespace Finite_Element_Analysis_Explorer
             TextBlock_EOne.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Sets the value of the control.
+        /// </summary>
+        /// <param name="newValue">The value to set.</param>
         internal void SetValue(decimal newValue)
         {
             theValue = newValue;

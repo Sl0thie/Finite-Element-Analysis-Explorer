@@ -3,10 +3,21 @@ using System.Diagnostics;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// DMath class.
+    /// </summary>
     internal static class DMath
     {
+        /// <summary>
+        /// Pi.
+        /// </summary>
         public const decimal PI = 3.1415926535897932384626433833m;
 
+        /// <summary>
+        /// Return the absolute.
+        /// </summary>
+        /// <param name="x">x.</param>
+        /// <returns>Result.</returns>
         internal static decimal Abs(decimal x)
         {
             if (x < 0)
@@ -17,6 +28,12 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         }
 
+        /// <summary>
+        /// Sqrt.
+        /// </summary>
+        /// <param name="x">x.</param>
+        /// <param name="epsilon">epsilon.</param>
+        /// <returns>Result.</returns>
         public static decimal Sqrt(decimal x, decimal epsilon = 0.0M)
         {
             if (x < 0)

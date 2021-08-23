@@ -12,16 +12,16 @@
             <Button x:Name="SaveButton" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="6,6,2,6">
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="New"/>
-                        <MenuFlyoutItem Text="Open"/>
-                        <MenuFlyoutItem Text="Save"/>
-                        <MenuFlyoutItem Text="SaveAs"/>
-                        <MenuFlyoutItem Text="Exit"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_New" Text="New" Click="MenuFlyout_New_Click"/>
+                        <MenuFlyoutItem x:Name="menuFlyout_Open" Text="Open" Click="MenuFlyout_Open_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Save" Text="Save" Click="MenuFlyout_Save_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_SaveAs" Text="Save As" Click="MenuFlyout_SaveAs_Click" />
+                        <MenuFlyoutItem x:Name="menuFlyout_Exit" Text="Exit" Click="MenuFlyout_Exit_Click" />
                     </MenuFlyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Save" Foreground="White"/>
             </Button>
-            <Button x:Name="UpButtontemp" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="6,6,2,6">
+            <!--<Button x:Name="UpButtontemp" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="6,6,2,6">
                 <SymbolIcon Symbol="Add" Foreground="White"/>
             </Button>
             <Button x:Name="UpButton" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="6,6,2,6">
@@ -30,10 +30,7 @@
             <Slider Height="64" Orientation="Vertical" Margin="-3,0,0,0" />
             <Button x:Name="DownButton" Background="Transparent" Foreground="White" Padding="0" BorderThickness="0" Margin="6,2,6,6">
                 <SymbolIcon Symbol="Remove" Foreground="White"/>
-            </Button>
-
-            
-            
+            </Button>-->
         </StackPanel>
     </ScrollViewer>
 </Page>

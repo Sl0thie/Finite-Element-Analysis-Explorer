@@ -51,28 +51,17 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color colorBackground = Options.ColorBackground;
         private Color colorForce = Options.ColorForce;
-        private Color colorReaction = Options.ColorReaction;
         private Color colorGridNormal = Options.ColorGridNormal;
         private Color colorGridMajor = Options.ColorGridMajor;
         private Color colorGridMinor = Options.ColorGridMinor;
         private Color colorGridMajorFont = Options.ColorGridMajorFont;
         private Color colorSelectedElement = Options.ColorSelectedElement;
         private Color colorSelectedNode = Options.ColorSelectedNode;
-        private Color colorShearForceSelected = Options.ColorShearForceSelected;
-        private Color colorMomentForceSelected = Options.ColorMomentForceSelected;
-        private Color colorShearForce = Options.ColorShearForce;
-        private Color colorMomentForce = Options.ColorMomentForce;
         private Color colorDistributedForce = Options.ColorDistributedForce;
-        private Color colorDistributedForceSelected = Options.ColorDistributedForceSelected;
-        private Color colorNodeFree = Options.ColorNodeFree;
         private Color colorNodeFixed = Options.ColorNodeFixed;
         private Color colorNodePin = Options.ColorNodePin;
         private Color colorNodeRollerX = Options.ColorNodeRollerX;
         private Color colorNodeRollerY = Options.ColorNodeRollerY;
-        private Color colorNodeOther = Options.ColorNodeFree;
-        private Color colorLabel = Color.FromArgb(255, 205, 205, 205);
-        private Color colorHeaderLabel = Color.FromArgb(255, 255, 255, 255);
-        private Brush brushBackground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 
         #endregion
 
@@ -82,20 +71,7 @@ namespace Finite_Element_Analysis_Explorer
         private CanvasStrokeStyle lineGridMinor = Options.LineGridMinor;
         private CanvasStrokeStyle lineGridMajor = Options.LineGridMajor;
         private CanvasStrokeStyle lineForce = Options.LineForce;
-        private CanvasStrokeStyle lineReaction = Options.LineReaction;
-        private CanvasStrokeStyle lineSelectedElement = Options.LineSelectedElement;
-        private CanvasStrokeStyle lineShearForceSelected = Options.LineShearForceSelected;
-        private CanvasStrokeStyle lineMomentForceSelected = Options.LineMomentForceSelected;
-        private CanvasStrokeStyle lineShearForce = Options.LineShearForce;
-        private CanvasStrokeStyle lineMomentForce = Options.LineMomentForce;
         private CanvasStrokeStyle lineDistributedForce = Options.LineDistributedForce;
-        private CanvasStrokeStyle lineDistributedForceSelected = Options.LineDistributedForceSelected;
-        private CanvasStrokeStyle lineNodeFree = Options.LineNodeFree;
-        private CanvasStrokeStyle lineNodeFixed = Options.LineNodeFixed;
-        private CanvasStrokeStyle lineNodePin = Options.LineNodePin;
-        private CanvasStrokeStyle lineNodeRollerX = Options.LineNodeRollerX;
-        private CanvasStrokeStyle lineNodeRollerY = Options.LineNodeRollerY;
-        private CanvasStrokeStyle lineNodeOther = Options.LineNodeOther;
 
         #endregion
 
@@ -832,7 +808,7 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Camera.ViewportSize = new Vector2((int)this.ActualWidth, (int)this.ActualHeight);
+            Camera.ViewportSize = new Vector2((int)ActualWidth, (int)ActualHeight);
         }
 
         /// <summary>
@@ -842,44 +818,23 @@ namespace Finite_Element_Analysis_Explorer
         {
             colorBackground = Options.ColorBackground;
             colorForce = Options.ColorForce;
-            colorReaction = Options.ColorReaction;
             colorGridNormal = Options.ColorGridNormal;
             colorGridMajor = Options.ColorGridMajor;
             colorGridMinor = Options.ColorGridMinor;
             colorGridMajorFont = Options.ColorGridMajorFont;
             colorSelectedElement = Options.ColorSelectedElement;
             colorSelectedNode = Options.ColorSelectedNode;
-            colorShearForceSelected = Options.ColorShearForceSelected;
-            colorMomentForceSelected = Options.ColorMomentForceSelected;
-            colorShearForce = Options.ColorShearForce;
-            colorMomentForce = Options.ColorMomentForce;
             colorDistributedForce = Options.ColorDistributedForce;
-            colorDistributedForceSelected = Options.ColorDistributedForceSelected;
-            colorNodeFree = Options.ColorNodeFree;
             colorNodeFixed = Options.ColorNodeFixed;
             colorNodePin = Options.ColorNodePin;
             colorNodeRollerX = Options.ColorNodeRollerX;
             colorNodeRollerY = Options.ColorNodeRollerY;
-            colorNodeOther = Options.ColorNodeFree;
 
             lineGridNormal = Options.LineGridNormal;
             lineGridMinor = Options.LineGridMinor;
             lineGridMajor = Options.LineGridMajor;
             lineForce = Options.LineForce;
-            lineReaction = Options.LineReaction;
-            lineSelectedElement = Options.LineSelectedElement;
-            lineShearForceSelected = Options.LineShearForceSelected;
-            lineMomentForceSelected = Options.LineMomentForceSelected;
-            lineShearForce = Options.LineShearForce;
-            lineMomentForce = Options.LineMomentForce;
             lineDistributedForce = Options.LineDistributedForce;
-            lineDistributedForceSelected = Options.LineDistributedForceSelected;
-            lineNodeFree = Options.LineNodeFree;
-            lineNodeFixed = Options.LineNodeFixed;
-            lineNodePin = Options.LineNodePin;
-            lineNodeRollerX = Options.LineNodeRollerX;
-            lineNodeRollerY = Options.LineNodeRollerY;
-            lineNodeFree = Options.LineNodeFree;
 
             originalMinorGridAlpha = colorGridMinor.A;
             originalNormalGridAlpha = colorGridNormal.A;

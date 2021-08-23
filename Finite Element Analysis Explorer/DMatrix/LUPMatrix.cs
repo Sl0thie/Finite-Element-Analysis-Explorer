@@ -2,9 +2,17 @@
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// LUPMatrix class.
+    /// </summary>
     internal class LUPMatrix
     {
-        // static matrix methods - consider placing in a class.
+        /// <summary>
+        /// static matrix methods - consider placing in a class.
+        /// </summary>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="cols">Number of columns.</param>
+        /// <returns>Returns an array of the specified.</returns>
         internal static decimal[][] MatrixCreate(int rows, int cols)
         {
             // allocates/creates a matrix initialized to all 0.0. assume rows and cols > 0
@@ -21,6 +29,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Creates a vector.
+        /// </summary>
+        /// <param name="rows">The number of rows.</param>
+        /// <returns>An array of the specified size.</returns>
         internal static decimal[] VectorCreate(int rows)
         {
             // allocates/creates a matrix initialized to all 0.0. assume rows and cols > 0
@@ -30,6 +43,15 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Create random matrix.
+        /// </summary>
+        /// <param name="rows">The number of rows.</param>
+        /// <param name="cols">The number of columns.</param>
+        /// <param name="minVal">The minimum value.</param>
+        /// <param name="maxVal">The maximum value.</param>
+        /// <param name="seed">Seed for the random number generator.</param>
+        /// <returns>A two dimensional array that represents the matrix.</returns>
         internal static decimal[][] MatrixRandom(int rows, int cols, decimal minVal, decimal maxVal, int seed)
         {
             // return a matrix with random values
@@ -46,6 +68,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Get matrix identity.
+        /// </summary>
+        /// <param name="n">n.</param>
+        /// <returns>A two dimensional array that represents the matrix.</returns>
         internal static decimal[][] MatrixIdentity(int n)
         {
             // return an n x n Identity matrix
@@ -58,6 +85,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Convert matrix to string for output.
+        /// </summary>
+        /// <param name="matrix">The matrix to convert.</param>
+        /// <returns>A string of the matrix.</returns>
         internal static string MatrixAsString(decimal[][] matrix)
         {
             string s = string.Empty;
@@ -74,6 +106,13 @@ namespace Finite_Element_Analysis_Explorer
             return s;
         }
 
+        /// <summary>
+        /// Compare if matrices are equal.
+        /// </summary>
+        /// <param name="matrixA">The first matrix.</param>
+        /// <param name="matrixB">The second matrix.</param>
+        /// <param name="epsilon">The epsilon.</param>
+        /// <returns>True if the matrices are equal.</returns>
         internal static bool MatrixAreEqual(decimal[][] matrixA, decimal[][] matrixB, decimal epsilon)
         {
             // true if all values in matrixA == corresponding values in matrixB
@@ -90,7 +129,6 @@ namespace Finite_Element_Analysis_Explorer
             {
                 for (int j = 0; j < aCols; ++j)
                 {
-                    // if (matrixA[i][j] != matrixB[i][j])
                     if (Math.Abs(matrixA[i][j] - matrixB[i][j]) > epsilon)
                     {
                         return false;
@@ -101,6 +139,12 @@ namespace Finite_Element_Analysis_Explorer
             return true;
         }
 
+        /// <summary>
+        /// Multiply two matrices.
+        /// </summary>
+        /// <param name="matrixA">The first matrix.</param>
+        /// <param name="matrixB">The second matrix.</param>
+        /// <returns>The product of the two matrices.</returns>
         internal static decimal[][] MatrixProduct(decimal[][] matrixA, decimal[][] matrixB)
         {
             int aRows = matrixA.Length;
@@ -128,6 +172,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Calculate the vector product.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <param name="vector">The vector.</param>
+        /// <returns>The product of the two.</returns>
         internal static decimal[] MatrixVectorProduct(decimal[][] matrix, decimal[] vector)
         {
             // result of multiplying an n x m matrix by a m x 1 column vector (yielding an n x 1 column vector)
@@ -151,15 +201,22 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Decompose matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <param name="perm">The perm.</param>
+        /// <param name="toggle">The toggle.</param>
+        /// <returns>The decomposed matrix.</returns>
         internal static decimal[][] MatrixDecompose(decimal[][] matrix, out int[] perm, out int toggle)
         {
             // Doolittle LUP decomposition with partial pivoting.
-            // rerturns: result is L (with 1s on diagonal) and U; perm holds row permutations; toggle is +1 or -1 (even or odd)
+            // returns: result is L (with 1s on diagonal) and U; perm holds row permutations; toggle is +1 or -1 (even or odd)
             int rows = matrix.Length;
             int cols = matrix[0].Length; // assume all rows have the same number of columns so just use row [0].
             if (rows != cols)
             {
-                throw new Exception("Attempt to MatrixDecompose a non-square mattrix");
+                throw new Exception("Attempt to MatrixDecompose a non-square matrix");
             }
 
             int n = rows; // convenience
@@ -218,6 +275,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         } // MatrixDecompose
 
+        /// <summary>
+        /// Calculate the matrix inverse.
+        /// </summary>
+        /// <param name="matrix">The original matrix.</param>
+        /// <returns>The inverse of the matrix.</returns>
         internal static decimal[][] MatrixInverse(decimal[][] matrix)
         {
             int n = matrix.Length;
@@ -257,6 +319,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Find the matrix determinant.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <returns>The determinant.</returns>
         internal static decimal MatrixDeterminant(decimal[][] matrix)
         {
             int[] perm;
@@ -276,6 +343,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Solve helper.
+        /// </summary>
+        /// <param name="luMatrix">The lu.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>The result.</returns>
         internal static decimal[] HelperSolve(decimal[][] luMatrix, decimal[] b) // helper
         {
             // before calling this helper, permute b using the perm array from MatrixDecompose that generated luMatrix
@@ -309,6 +382,12 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         }
 
+        /// <summary>
+        /// System solver.
+        /// </summary>
+        /// <param name="a">The a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>The result.</returns>
         internal static decimal[] SystemSolve(decimal[][] a, decimal[] b)
         {
             // Solve Ax = b
@@ -335,6 +414,11 @@ namespace Finite_Element_Analysis_Explorer
             return x;
         } // SystemSolve
 
+        /// <summary>
+        /// Duplicate the matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <returns>The duplicate.</returns>
         internal static decimal[][] MatrixDuplicate(decimal[][] matrix)
         {
             // allocates/creates a duplicate of a matrix. assumes matrix is not null.
@@ -350,6 +434,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Extract lower.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <returns>The lower.</returns>
         internal static decimal[][] ExtractLower(decimal[][] matrix)
         {
             // lower part of a Doolittle decomposition (1.0s on diagonal, 0.0s in upper)
@@ -374,6 +463,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Extract upper.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <returns>The upper.</returns>
         internal static decimal[][] ExtractUpper(decimal[][] matrix)
         {
             // upper part of a Doolittle decomposition (0.0s in the strictly lower part)
@@ -394,6 +488,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Perm array to matrix.
+        /// </summary>
+        /// <param name="perm">The perm.</param>
+        /// <returns>The matrix.</returns>
         internal static decimal[][] PermArrayToMatrix(int[] perm)
         {
             // convert Doolittle perm array to corresponding perm matrix
@@ -407,6 +506,12 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         }
 
+        /// <summary>
+        /// Un-permute.
+        /// </summary>
+        /// <param name="luProduct">The lu.</param>
+        /// <param name="perm">The perm.</param>
+        /// <returns>The results.</returns>
         internal static decimal[][] UnPermute(decimal[][] luProduct, int[] perm)
         {
             // unpermute product of Doolittle lower * upper matrix according to perm[]
@@ -427,6 +532,11 @@ namespace Finite_Element_Analysis_Explorer
             return result;
         } // UnPermute
 
+        /// <summary>
+        /// Converts a vector to a string.
+        /// </summary>
+        /// <param name="vector">The vector.</param>
+        /// <returns>The string of the vector.</returns>
         internal static string VectorAsString(decimal[] vector)
         {
             string s = string.Empty;
@@ -439,6 +549,11 @@ namespace Finite_Element_Analysis_Explorer
             return s;
         }
 
+        /// <summary>
+        /// Converts a vector to a string.
+        /// </summary>
+        /// <param name="vector">The vector.</param>
+        /// <returns>The string of the vector.</returns>
         internal static string VectorAsString(int[] vector)
         {
             string s = string.Empty;

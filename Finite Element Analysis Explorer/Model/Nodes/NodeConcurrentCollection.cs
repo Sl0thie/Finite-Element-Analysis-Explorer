@@ -35,7 +35,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         internal void Reset()
         {
-            this.Clear();
+            Clear();
             NodesWithNodalLoads.Clear();
             NodesWithConstraints.Clear();
             NodesWithReactions.Clear();
@@ -49,11 +49,11 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>The node at the position.</returns>
         internal Node GetFromPosition(decimal x, decimal y)
         {
-            foreach (var item in this)
+            foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> item in this)
             {
                 if ((item.Value.Position.X == x) && (item.Value.Position.Y == y))
                 {
-                    return (Node)item.Value;
+                    return item.Value;
                 }
             }
 
@@ -67,11 +67,11 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>The node at that index.</returns>
         internal Node GetFromIndex(int index)
         {
-            foreach (var item in this)
+            foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> item in this)
             {
                 if (item.Value.Index == index)
                 {
-                    return (Node)item.Value;
+                    return item.Value;
                 }
             }
 
@@ -84,27 +84,27 @@ namespace Finite_Element_Analysis_Explorer
         /// <param name="nodeToRemove">The node to remove.</param>
         internal void RemoveNode(Node nodeToRemove)
         {
-            if (this.ContainsKey(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y)))
+            if (ContainsKey(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y)))
             {
-                if (this.NodesWithConstraints.ContainsKey(nodeToRemove.Index))
+                if (NodesWithConstraints.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithConstraints.TryRemove(nodeToRemove.Index, out tempNode);
+                    NodesWithConstraints.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                if (this.NodesWithNodalLoads.ContainsKey(nodeToRemove.Index))
+                if (NodesWithNodalLoads.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithNodalLoads.TryRemove(nodeToRemove.Index, out tempNode);
+                    NodesWithNodalLoads.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                if (this.NodesWithReactions.ContainsKey(nodeToRemove.Index))
+                if (NodesWithReactions.ContainsKey(nodeToRemove.Index))
                 {
                     Node tempNode = new Node();
-                    this.NodesWithReactions.TryRemove(nodeToRemove.Index, out tempNode);
+                    NodesWithReactions.TryRemove(nodeToRemove.Index, out tempNode);
                 }
 
-                this.TryRemove(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y), out nodeToRemove);
+                TryRemove(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y), out nodeToRemove);
             }
         }
     }

@@ -4,10 +4,16 @@ using Windows.UI.Xaml.Input;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// StackPanelHeader UserControl provides a header UI for the side panel that collapses the pair stack panel when clicked.
+    /// </summary>
     public sealed partial class StackPanelHeader : UserControl
     {
         private StackPanel pairedStankPanel;
 
+        /// <summary>
+        /// Gets or sets the paired stack panel.
+        /// </summary>
         internal StackPanel PairedStackPanel
         {
             get { return pairedStankPanel; }
@@ -16,6 +22,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string titleIcon;
 
+        /// <summary>
+        /// Gets or sets the icon to display.
+        /// </summary>
         public string TitleIcon
         {
             get
@@ -32,6 +41,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string title;
 
+        /// <summary>
+        /// Gets or sets the title to display on the control.
+        /// </summary>
         internal string Title
         {
             get
@@ -46,6 +58,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StackPanelHeader"/> class.
+        /// </summary>
         public StackPanelHeader()
         {
             this.InitializeComponent();

@@ -4,10 +4,16 @@ using System.Numerics;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Node class.
+    /// </summary>
     internal class Node
     {
         #region Constructor
 
+        /// <summary>
+        /// Outputs the object to the debug output.
+        /// </summary>
         internal void Output()
         {
             Debug.WriteLine("NODE " + index + " " + isPrimary);
@@ -18,10 +24,22 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  Super Position X:" + superPosition.X + "  Y:" + superPosition.Y + "  M:" + superPosition.M);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Node"/> class.
+        /// </summary>
         internal Node()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Node"/> class.
+        /// </summary>
+        /// <param name="index">The index of the node.</param>
+        /// <param name="position">The position of the node.</param>
+        /// <param name="codes">The codes of the node.</param>
+        /// <param name="constraints">The constraints of the node.</param>
+        /// <param name="newLoad">The load of the node.</param>
+        /// <param name="isPrimary">True if a primary node.</param>
         internal Node(int index, Point position, Codes codes, Constraints constraints, NodalLoad newLoad, bool isPrimary)
         {
             this.index = index;
@@ -42,6 +60,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private int index;
 
+        /// <summary>
+        /// Gets the index of the node.
+        /// </summary>
         internal int Index
         {
             get { return index; }
@@ -49,6 +70,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private bool isPrimary = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the node is primary.
+        /// </summary>
         internal bool IsPrimary
         {
             get { return isPrimary; }
@@ -57,6 +81,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private bool isValid = false;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the node is valid.
+        /// </summary>
         internal bool IsValid
         {
             get { return isValid; }
@@ -65,6 +92,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Codes codes;
 
+        /// <summary>
+        /// Gets or sets the codes of the node.
+        /// </summary>
         internal Codes Codes
         {
             get { return codes; }
@@ -77,6 +107,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Constraints constraints;
 
+        /// <summary>
+        /// Gets or sets the constraints or the node.
+        /// </summary>
         internal Constraints Constraints
         {
             get
@@ -97,6 +130,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Point position;
 
+        /// <summary>
+        /// Gets or sets the position of the node.
+        /// </summary>
         internal Point Position
         {
             get
@@ -113,6 +149,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 location;
 
+        /// <summary>
+        /// Gets or sets the location of the node.
+        /// </summary>
         public Vector2 Location
         {
             get { return location; }
@@ -125,6 +164,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad load;
 
+        /// <summary>
+        /// Gets or sets the nodal load on the node.
+        /// </summary>
         internal NodalLoad Load
         {
             get
@@ -144,6 +186,9 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         private NodalLoad jointLoad;
 
+        /// <summary>
+        /// Gets or sets the joint load of the node.
+        /// </summary>
         internal NodalLoad JointLoad
         {
             get
@@ -159,6 +204,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad loadReaction;
 
+        /// <summary>
+        /// Gets or sets the load reaction of the node.
+        /// </summary>
         internal NodalLoad LoadReaction
         {
             get
@@ -175,6 +223,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad loadOriginal;
 
+        /// <summary>
+        /// Gets or sets the original load of the node.
+        /// </summary>
         public NodalLoad LoadOriginal
         {
             get { return loadOriginal; }
@@ -187,6 +238,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Point displacement = new Point(0, 0, 0);
 
+        /// <summary>
+        /// Gets or sets the displacement of the node.
+        /// </summary>
         internal Point Displacement
         {
             get
@@ -202,6 +256,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Point positionDisplaced = new Point(0, 0, 0);
 
+        /// <summary>
+        /// Gets or sets the displaced position of the node.
+        /// </summary>
         internal Point PositionDisplaced
         {
             get { return positionDisplaced; }
@@ -214,6 +271,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private NodalLoad superPosition;
 
+        /// <summary>
+        /// Gets or sets the super position of the node.
+        /// </summary>
         internal NodalLoad SuperPosition
         {
             get
@@ -233,6 +293,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 forceUnit;
 
+        /// <summary>
+        /// Gets or sets the force unit.
+        /// </summary>
         internal Vector2 ForceUnit
         {
             get { return forceUnit; }
@@ -241,6 +304,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 forceUnitRight;
 
+        /// <summary>
+        /// Gets or sets the force unit right.
+        /// </summary>
         internal Vector2 ForceUnitRight
         {
             get { return forceUnitRight; }
@@ -249,6 +315,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 forceUnitLeft;
 
+        /// <summary>
+        /// Gets or sets the force unit left.
+        /// </summary>
         internal Vector2 ForceUnitLeft
         {
             get { return forceUnitLeft; }
@@ -257,6 +326,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 forceLine;
 
+        /// <summary>
+        /// Gets or sets the force line.
+        /// </summary>
         public Vector2 ForceLine
         {
             get { return forceLine; }
@@ -265,6 +337,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 reactionUnit;
 
+        /// <summary>
+        /// Gets or sets the reaction unit.
+        /// </summary>
         internal Vector2 ReactionUnit
         {
             get { return reactionUnit; }
@@ -273,6 +348,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 reactionUnitRight;
 
+        /// <summary>
+        /// Gets or sets the reaction unit right.
+        /// </summary>
         internal Vector2 ReactionUnitRight
         {
             get { return reactionUnitRight; }
@@ -281,6 +359,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 reactionUnitLeft;
 
+        /// <summary>
+        /// Gets or sets the reaction unit left.
+        /// </summary>
         internal Vector2 ReactionUnitLeft
         {
             get { return reactionUnitLeft; }
@@ -289,6 +370,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Vector2 reactionLine;
 
+        /// <summary>
+        /// Gets or sets the reaction line.
+        /// </summary>
         public Vector2 ReactionLine
         {
             get { return reactionLine; }
@@ -304,12 +388,18 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Methods
 
+        /// <summary>
+        /// Updates the displacement.
+        /// </summary>
         internal void UpdateDisplacement()
         {
             positionDisplaced = new Point(position.X + (displacement.X * (decimal)Options.DisplacementFactor), position.Y + (displacement.Y * (decimal)Options.DisplacementFactor), position.M + (displacement.M * (decimal)Options.DisplacementFactor));
             location = new Vector2((float)positionDisplaced.X, (float)positionDisplaced.Y);
         }
 
+        /// <summary>
+        /// Updates the constraints.
+        /// </summary>
         internal void UpdateConstraints()
         {
             if (constraints.ConstraintType == ConstraintType.Free)
@@ -329,6 +419,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Updates the nodal forces.
+        /// </summary>
         internal void UpdateNodalForces()
         {
             if (Math.Abs(load.X) + Math.Abs(load.Y) == 0)
@@ -380,6 +473,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Updates the node graphics.
+        /// </summary>
         internal void UpdateNodeGraphics()
         {
             reactionLine = reactionUnit * reactionMagnitude * (float)Options.ReactionsFactor;

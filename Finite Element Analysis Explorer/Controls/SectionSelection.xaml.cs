@@ -7,6 +7,9 @@
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Media;
 
+    /// <summary>
+    /// SectionSelection UserControl provides a UI for users to choose a section for a member as well as customize the section.
+    /// </summary>
     public sealed partial class SectionSelection : UserControl
     {
         private bool dataLock = true;

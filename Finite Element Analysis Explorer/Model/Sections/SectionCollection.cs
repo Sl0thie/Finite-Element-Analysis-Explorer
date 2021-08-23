@@ -3,10 +3,16 @@ using Microsoft.Graphics.Canvas.Geometry;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// SectionCollection class.
+    /// </summary>
     internal class SectionCollection : Dictionary<string, Section>
     {
         private Section currentSection;
 
+        /// <summary>
+        /// Gets or sets the current section.
+        /// </summary>
         internal Section CurrentSection
         {
             get
@@ -20,6 +26,10 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Loads the last current section.
+        /// </summary>
+        /// <returns>The section last loaded.</returns>
         internal Section LoadLastCurrentSectionSection()
         {
             if (ContainsKey(Options.LastCurrentSectionName))
@@ -50,6 +60,47 @@ namespace Finite_Element_Analysis_Explorer
             return currentSection;
         }
 
+        /// <summary>
+        /// Adds a new section.
+        /// </summary>
+        /// <param name="name">name.</param>
+        /// <param name="e">e.</param>
+        /// <param name="i">i.</param>
+        /// <param name="area">area.</param>
+        /// <param name="density">density.</param>
+        /// <param name="costPerLength">costPerLength.</param>
+        /// <param name="alpha">alpha.</param>
+        /// <param name="red">red.</param>
+        /// <param name="green">green.</param>
+        /// <param name="blue">blue.</param>
+        /// <param name="linetype">line type.</param>
+        /// <param name="lineweight">lineWeight.</param>
+        /// <param name="nearCapStyle">nearCapStyle.</param>
+        /// <param name="farCapStyle">farCapStyle.</param>
+        /// <param name="costHorizontalTransport">costHorizontalTransport.</param>
+        /// <param name="costVerticalTransport">costVerticalTransport.</param>
+        /// <param name="costNodeFixed">costNodeFixed.</param>
+        /// <param name="costNodeFree">costNodeFree.</param>
+        /// <param name="costNodePinned">costNodePinned.</param>
+        /// <param name="costNodeRoller">costNodeRoller.</param>
+        /// <param name="costNodeTRack">costNodeTrack.</param>
+        /// <param name="sectionProfile">sectionProfile.</param>
+        /// <param name="sectionProfileProperty1">sectionProfileProperty1.</param>
+        /// <param name="sectionProfileProperty2">sectionProfileProperty2.</param>
+        /// <param name="sectionProfileProperty3">sectionProfileProperty3.</param>
+        /// <param name="sectionProfileProperty4">sectionProfileProperty4.</param>
+        /// <param name="sectionProfileProperty5">sectionProfileProperty5.</param>
+        /// <param name="sectionProfileProperty6">sectionProfileProperty6.</param>
+        /// <param name="sectionProfileProperty7">sectionProfileProperty7.</param>
+        /// <param name="material">material.</param>
+        /// <param name="maintenancePerLength">maintenancePerLength.</param>
+        /// <param name="maintenanceNodeFree">maintenanceNodeFree.</param>
+        /// <param name="maintenanceFixed">maintenanceFixed.</param>
+        /// <param name="maintenancePinned">maintenancePinned.</param>
+        /// <param name="maintenanceRoller">maintenanceRoller.</param>
+        /// <param name="maintenanceTrack">maintenanceTrack.</param>
+        /// <param name="factorVerticalTransport">factorVerticalTransport.</param>
+        /// <param name="factorHorizontalTransport">factorHorizontalTransport.</param>
         internal void AddNewSection(
             string name,
             decimal e,
@@ -176,6 +227,9 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
+        /// <summary>
+        /// Resets the dictionary.
+        /// </summary>
         internal void Reset()
         {
             this.Clear();

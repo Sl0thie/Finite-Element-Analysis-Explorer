@@ -46,30 +46,22 @@
         #region Colors
 
         private Color colorBackground = Options.ColorBackground;
-
         private Color colorForce = Options.ColorForce;
         private Color colorReaction = Options.ColorReaction;
-
         private Color colorGridNormal = Options.ColorGridNormal;
         private Color colorGridMajor = Options.ColorGridMajor;
         private Color colorGridMinor = Options.ColorGridMinor;
-
         private Color colorGridMajorFont = Options.ColorGridMajorFont;
-
         private Color colorSelectedElement = Options.ColorSelectedElement;
         private Color colorSelectedNode = Options.ColorSelectedNode;
-
         private Color colorShearForceSelected = Options.ColorShearForceSelected;
         private Color colorMomentForceSelected = Options.ColorMomentForceSelected;
-
         private Color colorShearForceFont = Options.ColorShearForceFont;
         private Color colorMomentForceFont = Options.ColorMomentForceFont;
-
         private Color colorShearForce = Options.ColorShearForce;
         private Color colorMomentForce = Options.ColorMomentForce;
         private Color colorDistributedForce = Options.ColorDistributedForce;
         private Color colorDistributedForceSelected = Options.ColorDistributedForceSelected;
-
         private Color colorNodeFree = Options.ColorNodeFree;
         private Color colorNodeFixed = Options.ColorNodeFixed;
         private Color colorNodePin = Options.ColorNodePin;
@@ -78,7 +70,6 @@
         private Color colorNodeOther = Options.ColorNodeFree;
         private Color colorLabel = Color.FromArgb(255, 205, 205, 205);
         private Color colorHeaderLabel = Color.FromArgb(255, 255, 255, 255);
-
         private Brush brushBackground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 
         #endregion

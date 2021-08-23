@@ -243,7 +243,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <summary>
         /// Gets or sets background color.
         /// </summary>
-        internal static Color ColorBackground { get; set; } = Color.FromArgb(255, 8, 28, 88);
+        internal static Color ColorBackground { get; set; } = Color.FromArgb(255, 0, 12, 24);
 
         /// <summary>
         /// Gets or sets the label color.
@@ -765,7 +765,7 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Factors
 
-        private static float momentFactor = 0.0001f;
+        private static float momentFactor = 0.001f;
 
         /// <summary>
         /// Gets or sets the moment factor.
@@ -784,7 +784,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private static float shearFactor = 0.0001f;
+        private static float shearFactor = 0.001f;
 
         /// <summary>
         /// Gets or sets the shear factor.
@@ -803,7 +803,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private static float linearFactor = 0.0001f;
+        private static float linearFactor = 0.001f;
 
         /// <summary>
         /// Gets or sets the linear factor.
@@ -822,7 +822,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private static float forcesFactor = 0.0001f;
+        private static float forcesFactor = 0.001f;
 
         /// <summary>
         /// Gets or sets the force factor.
@@ -841,7 +841,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private static float reactionsFactor = 0.0001f;
+        private static float reactionsFactor = 0.001f;
 
         /// <summary>
         /// Gets or sets the reactions factor.
@@ -1499,16 +1499,16 @@ namespace Finite_Element_Analysis_Explorer
                 FileManager.LocalSettings.Values["LineNodeOtherStartCap"] = (int)LineNodeOther.StartCap;
                 FileManager.LocalSettings.Values["LineNodeOtherWeight"] = (float)LineNodeOtherWeight;
 
-                FileManager.LocalSettings.Values["MomentFactor"] = 0.0001f;
-                momentFactor = 0.0001f;
-                FileManager.LocalSettings.Values["ShearFactor"] = 0.0001f;
-                shearFactor = 0.0001f;
-                FileManager.LocalSettings.Values["LinearFactor"] = 0.0001f;
-                linearFactor = 0.0001f;
-                FileManager.LocalSettings.Values["ForcesFactor"] = 0.0001f;
-                forcesFactor = 0.0001f;
-                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.0001f;
-                reactionsFactor = 0.0001f;
+                FileManager.LocalSettings.Values["MomentFactor"] = 0.001f;
+                momentFactor = 0.001f;
+                FileManager.LocalSettings.Values["ShearFactor"] = 0.001f;
+                shearFactor = 0.001f;
+                FileManager.LocalSettings.Values["LinearFactor"] = 0.001f;
+                linearFactor = 0.001f;
+                FileManager.LocalSettings.Values["ForcesFactor"] = 0.001f;
+                forcesFactor = 0.001f;
+                FileManager.LocalSettings.Values["ReactionsFactor"] = 0.001f;
+                reactionsFactor = 0.001f;
                 FileManager.LocalSettings.Values["DisplacementFactor"] = 1f;
                 displacementFactor = 1f;
                 FileManager.LocalSettings.Values["CameraZoomTrim"] = 500f;

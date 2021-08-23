@@ -1,13 +1,13 @@
-﻿using System;
-using System.Globalization;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Globalization;
+    using Windows.UI;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+
     /// <summary>
     /// TextInput UserControl provides a simple text input.
     /// </summary>
@@ -18,7 +18,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public event EventHandler ValueChanged;
 
-        private int roundingFactor = 6;
+        private readonly int roundingFactor = 6;
         private string numberString = string.Empty;
         private string exponentString = string.Empty;
         private string oldString = string.Empty;
@@ -38,7 +38,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public TextInput()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -162,7 +162,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            // Debug.WriteLine("Here 4376");
             if (Options.LockNumericalInput)
             {
                 fontIcon_Lock.Glyph = "🔒";
@@ -405,28 +404,12 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_SignUp_Click(object sender, RoutedEventArgs e)
         {
-            // if (TextBlock_Sign.Text == "+")
-            // {
-            //    TextBlock_Sign.Text = "-";
-            // }
-            // else
-            // {
-            //    TextBlock_Sign.Text = "+";
-            // }
             TextBlock_Sign.Text = "+";
             ParseDisplay();
         }
 
         private void Button_SignDown_Click(object sender, RoutedEventArgs e)
         {
-            // if (TextBlock_Sign.Text == "+")
-            // {
-            //    TextBlock_Sign.Text = "-";
-            // }
-            // else
-            // {
-            //    TextBlock_Sign.Text = "+";
-            // }
             TextBlock_Sign.Text = "-";
             ParseDisplay();
         }
@@ -438,81 +421,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_HundredUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(100);
-
-            // switch (TextBlock_Hundred.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Hundred.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_Hundred.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_Hundred.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_Hundred.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_Hundred.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_Hundred.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_Hundred.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_Hundred.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_Hundred.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_Hundred.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_HundredDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-100);
-
-            // switch (TextBlock_Hundred.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Hundred.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_Hundred.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_Hundred.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_Hundred.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_Hundred.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_Hundred.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_Hundred.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_Hundred.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_Hundred.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_Hundred.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -522,81 +435,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_TenUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(10);
-
-            // switch (TextBlock_Ten.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Ten.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_Ten.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_Ten.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_Ten.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_Ten.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_Ten.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_Ten.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_Ten.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_Ten.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_Ten.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_TenDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-10);
-
-            // switch (TextBlock_Ten.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Ten.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_Ten.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_Ten.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_Ten.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_Ten.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_Ten.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_Ten.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_Ten.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_Ten.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_Ten.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -606,81 +449,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_OneUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(1);
-
-            // switch (TextBlock_One.Text)
-            // {
-            //    case "0":
-            //        TextBlock_One.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_One.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_One.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_One.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_One.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_One.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_One.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_One.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_One.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_One.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_OneDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-1);
-
-            // switch (TextBlock_One.Text)
-            // {
-            //    case "0":
-            //        TextBlock_One.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_One.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_One.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_One.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_One.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_One.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_One.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_One.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_One.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_One.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -690,81 +463,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_TenthUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(0.1m);
-
-            // switch (TextBlock_Tenth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Tenth.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_Tenth.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_Tenth.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_Tenth.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_Tenth.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_Tenth.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_Tenth.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_Tenth.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_Tenth.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_Tenth.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_TenthDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-0.1m);
-
-            // switch (TextBlock_Tenth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Tenth.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_Tenth.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_Tenth.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_Tenth.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_Tenth.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_Tenth.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_Tenth.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_Tenth.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_Tenth.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_Tenth.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -774,81 +477,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_HundredthUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(0.01m);
-
-            // switch (TextBlock_Hundredth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Hundredth.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_Hundredth.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_Hundredth.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_Hundredth.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_Hundredth.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_Hundredth.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_Hundredth.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_Hundredth.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_Hundredth.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_Hundredth.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_HundredthDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-0.01m);
-
-            // switch (TextBlock_Hundredth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Hundredth.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_Hundredth.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_Hundredth.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_Hundredth.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_Hundredth.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_Hundredth.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_Hundredth.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_Hundredth.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_Hundredth.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_Hundredth.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -858,81 +491,11 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_ThousandthUp_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(0.001m);
-
-            // switch (TextBlock_Thousandth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Thousandth.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_Thousandth.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_Thousandth.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_Thousandth.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_Thousandth.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_Thousandth.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_Thousandth.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_Thousandth.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_Thousandth.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_Thousandth.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         private void Button_ThousandthDown_Click(object sender, RoutedEventArgs e)
         {
             AdjustValue(-0.001m);
-
-            // switch (TextBlock_Thousandth.Text)
-            // {
-            //    case "0":
-            //        TextBlock_Thousandth.Text = "9";
-            //        break;
-            //    case "1":
-            //        TextBlock_Thousandth.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_Thousandth.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_Thousandth.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_Thousandth.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_Thousandth.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_Thousandth.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_Thousandth.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_Thousandth.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_Thousandth.Text = "8";
-            //        break;
-            // }
-            // ParseDisplay();
         }
 
         #endregion
@@ -941,28 +504,12 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_ExponentSignUp_Click(object sender, RoutedEventArgs e)
         {
-            // if (TextBlock_ExponentSign.Text == "+")
-            // {
-            //    TextBlock_ExponentSign.Text = "-";
-            // }
-            // else
-            // {
-            //    TextBlock_ExponentSign.Text = "+";
-            // }
             TextBlock_ExponentSign.Text = "+";
             ParseDisplay();
         }
 
         private void Button_SignExponentSignDown_Click(object sender, RoutedEventArgs e)
         {
-            // if (TextBlock_ExponentSign.Text == "+")
-            // {
-            //    TextBlock_ExponentSign.Text = "-";
-            // }
-            // else
-            // {
-            //    TextBlock_ExponentSign.Text = "+";
-            // }
             TextBlock_ExponentSign.Text = "-";
             ParseDisplay();
         }
@@ -973,38 +520,12 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_ExpTenUp_Click(object sender, RoutedEventArgs e)
         {
-            // switch (TextBlock_ExpTen.Text)
-            // {
-            //    case "0":
-            //        TextBlock_ExpTen.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_ExpTen.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_ExpTen.Text = "0";
-            //        break;
-            // }
-            // ParseDisplay();
             newValue *= 10000000000;
             ShowValue(newValue);
         }
 
         private void Button_ExpTenDown_Click(object sender, RoutedEventArgs e)
         {
-            // switch (TextBlock_ExpTen.Text)
-            // {
-            //    case "0":
-            //        TextBlock_ExpTen.Text = "2";
-            //        break;
-            //    case "1":
-            //        TextBlock_ExpTen.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_ExpTen.Text = "1";
-            //        break;
-            // }
-            // ParseDisplay();
             newValue /= 10000000000;
             ShowValue(newValue);
         }
@@ -1015,120 +536,14 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Button_ExpOneUp_Click(object sender, RoutedEventArgs e)
         {
-            // switch (TextBlock_ExpOne.Text)
-            // {
-            //    case "0":
-            //        TextBlock_ExpOne.Text = "1";
-            //        break;
-            //    case "1":
-            //        TextBlock_ExpOne.Text = "2";
-            //        break;
-            //    case "2":
-            //        TextBlock_ExpOne.Text = "3";
-            //        break;
-            //    case "3":
-            //        TextBlock_ExpOne.Text = "4";
-            //        break;
-            //    case "4":
-            //        TextBlock_ExpOne.Text = "5";
-            //        break;
-            //    case "5":
-            //        TextBlock_ExpOne.Text = "6";
-            //        break;
-            //    case "6":
-            //        TextBlock_ExpOne.Text = "7";
-            //        break;
-            //    case "7":
-            //        TextBlock_ExpOne.Text = "8";
-            //        break;
-            //    case "8":
-            //        TextBlock_ExpOne.Text = "9";
-            //        break;
-            //    case "9":
-            //        TextBlock_ExpOne.Text = "0";
-            //        switch (TextBlock_ExpTen.Text)
-            //        {
-            //            case "0":
-            //                TextBlock_ExpTen.Text = "1";
-            //                break;
-
-            // case "1":
-            //                TextBlock_ExpTen.Text = "2";
-            //                break;
-
-            // case "2":
-            //                ShowValue(0);
-            //                break;
-
-            // default:
-            //                ShowValue(0);
-            //                break;
-            //        }
-            //        break;
-            // }
             newValue *= 10;
             ShowValue(newValue);
-
-            // ParseDisplay();
         }
 
         private void Button_ExpOneDown_Click(object sender, RoutedEventArgs e)
         {
-            // switch (TextBlock_ExpOne.Text)
-            // {
-            //    case "0":
-            //        TextBlock_ExpOne.Text = "9";
-            //        switch (TextBlock_ExpTen.Text)
-            //        {
-            //            case "0":
-            //                TextBlock_ExpTen.Text = "0";
-            //                break;
-
-            // case "1":
-            //                TextBlock_ExpTen.Text = "0";
-            //                break;
-
-            // case "2":
-            //                TextBlock_ExpTen.Text = "1";
-            //                break;
-
-            // default:
-            //                ShowValue(0);
-            //                break;
-            //        }
-            //        break;
-            //    case "1":
-            //        TextBlock_ExpOne.Text = "0";
-            //        break;
-            //    case "2":
-            //        TextBlock_ExpOne.Text = "1";
-            //        break;
-            //    case "3":
-            //        TextBlock_ExpOne.Text = "2";
-            //        break;
-            //    case "4":
-            //        TextBlock_ExpOne.Text = "3";
-            //        break;
-            //    case "5":
-            //        TextBlock_ExpOne.Text = "4";
-            //        break;
-            //    case "6":
-            //        TextBlock_ExpOne.Text = "5";
-            //        break;
-            //    case "7":
-            //        TextBlock_ExpOne.Text = "6";
-            //        break;
-            //    case "8":
-            //        TextBlock_ExpOne.Text = "7";
-            //        break;
-            //    case "9":
-            //        TextBlock_ExpOne.Text = "8";
-            //        break;
-            // }
             newValue /= 10;
             ShowValue(newValue);
-
-            // ParseDisplay();
         }
 
         #endregion

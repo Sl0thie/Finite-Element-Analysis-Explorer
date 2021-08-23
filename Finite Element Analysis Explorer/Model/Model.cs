@@ -243,7 +243,7 @@ namespace Finite_Element_Analysis_Explorer
             switch (App.CurrentPageState)
             {
                 case PageState.Construction:
-                    if (ReferenceEquals(null, Model.members.CurrentMember))
+                    if (members.CurrentMember is null)
                     {
                         Construction.Current.ShowModel();
                     }
@@ -263,7 +263,7 @@ namespace Finite_Element_Analysis_Explorer
                     break;
 
                 case PageState.Results:
-                    if (ReferenceEquals(null, Model.members.CurrentMember))
+                    if (members.CurrentMember is null)
                     {
                         Results.Current.ShowModel();
                     }

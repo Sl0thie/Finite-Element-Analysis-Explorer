@@ -4,8 +4,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// PanelHelp Page.
+    /// </summary>
     public sealed partial class PanelHelp : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PanelHelp"/> class.
+        /// </summary>
         public PanelHelp()
         {
             this.InitializeComponent();

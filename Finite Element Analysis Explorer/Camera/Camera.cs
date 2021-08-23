@@ -10,6 +10,7 @@ namespace Finite_Element_Analysis_Explorer
     {
         /// <summary>
         /// Gets or sets the LengthUnitString.
+        /// This is the postfix for length measurements such as mm, cm, m, km.
         /// </summary>
         public static string LengthUnitString
         {
@@ -19,6 +20,7 @@ namespace Finite_Element_Analysis_Explorer
 
         /// <summary>
         /// Gets or sets the LengthUnitFactor.
+        /// Example, millimeters per meter (1000) or inch per meter.
         /// </summary>
         public static float LengthUnitFactor
         {
@@ -63,6 +65,7 @@ namespace Finite_Element_Analysis_Explorer
 
         /// <summary>
         /// Gets or sets the ZoomTrim.
+        /// Can be used to set screen measurements to match actual measurements.
         /// </summary>
         internal static float ZoomTrim
         {
@@ -288,7 +291,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <summary>
         /// The trim for the translation.
         /// </summary>
-        private static float translationTrim = 0.5f;
+        private static readonly float TranslationTrim = 0.5f;
 
         // Line Bounds
         private static float upperBound;
@@ -336,7 +339,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <param name="cameraMovement">The movement vector.</param>
         internal static void MoveCamera(Vector2 cameraMovement)
         {
-            Position += new Vector2(cameraMovement.X * LineUnit * translationTrim, -cameraMovement.Y * LineUnit * translationTrim);
+            Position += new Vector2(cameraMovement.X * LineUnit * TranslationTrim, -cameraMovement.Y * LineUnit * TranslationTrim);
             UpdateBounds();
         }
 
@@ -357,8 +360,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>The converted world position.</returns>
         internal static Vector2 ScreenToWorld(Vector2 screenPosition)
         {
-            Matrix3x2 tm;
-            bool rv = Matrix3x2.Invert(TranslationMatrix, out tm);
+            _ = Matrix3x2.Invert(TranslationMatrix, out Matrix3x2 tm);
             return Vector2.Transform(screenPosition, tm);
         }
 

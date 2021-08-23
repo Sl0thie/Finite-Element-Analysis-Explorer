@@ -27,7 +27,7 @@ namespace Finite_Element_Analysis_Explorer
         {
             Current = this;
 
-            if (!ReferenceEquals(null, Model.Members.CurrentMember))
+            if (Model.Members.CurrentMember is object)
             {
                 TextBlock_Title.Text = "MEMBER " + Model.Members.CurrentMember.Index;
 

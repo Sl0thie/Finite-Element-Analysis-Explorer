@@ -3,8 +3,52 @@ using Windows.UI;
 
 namespace Finite_Element_Analysis_Explorer
 {
+    /// <summary>
+    /// Section class.
+    /// </summary>
     internal class Section
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Section"/> class.
+        /// </summary>
+        /// <param name="name">name.</param>
+        /// <param name="e">e.</param>
+        /// <param name="i">i.</param>
+        /// <param name="area">area.</param>
+        /// <param name="density">density.</param>
+        /// <param name="costPerLength">costPerLength.</param>
+        /// <param name="alpha">alpha.</param>
+        /// <param name="red">red.</param>
+        /// <param name="green">green.</param>
+        /// <param name="blue">blue.</param>
+        /// <param name="linetype">line type.</param>
+        /// <param name="lineWeight">lineWeight.</param>
+        /// <param name="nearCapStyle">nearCapStyle.</param>
+        /// <param name="farCapStyle">farCapStyle.</param>
+        /// <param name="costVerticalTransport">costVerticalTransport.</param>
+        /// <param name="costHorizontalTransport">costHorizontalTransport.</param>
+        /// <param name="costNodeFree">costNodeFree.</param>
+        /// <param name="costNodeFixed">costNodeFixed.</param>
+        /// <param name="costNodePinned">costNodePinned.</param>
+        /// <param name="costNodeRoller">costNodeRoller.</param>
+        /// <param name="costNodeTrack">costNodeTrack.</param>
+        /// <param name="sectionProfile">sectionProfile.</param>
+        /// <param name="sectionProfileProperty1">sectionProfileProperty1.</param>
+        /// <param name="sectionProfileProperty2">sectionProfileProperty2.</param>
+        /// <param name="sectionProfileProperty3">sectionProfileProperty3.</param>
+        /// <param name="sectionProfileProperty4">sectionProfileProperty4.</param>
+        /// <param name="sectionProfileProperty5">sectionProfileProperty5.</param>
+        /// <param name="sectionProfileProperty6">sectionProfileProperty6.</param>
+        /// <param name="sectionProfileProperty7">sectionProfileProperty7.</param>
+        /// <param name="material">material.</param>
+        /// <param name="maintenancePerLength">maintenancePerLength.</param>
+        /// <param name="maintenanceNodeFree">maintenanceNodeFree.</param>
+        /// <param name="maintenanceFixed">maintenanceFixed.</param>
+        /// <param name="maintenancePinned">maintenancePinned.</param>
+        /// <param name="maintenanceRoller">maintenanceRoller.</param>
+        /// <param name="maintenanceTrack">maintenanceTrack.</param>
+        /// <param name="factorVerticalTransport">factorVerticalTransport.</param>
+        /// <param name="factorHorizontalTransport">factorHorizontalTransport.</param>
         internal Section(
             string name,
             decimal e,
@@ -93,6 +137,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string name;
 
+        /// <summary>
+        /// Gets or sets the section name.
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -101,6 +148,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal e;
 
+        /// <summary>
+        /// Gets or sets the E.
+        /// </summary>
         internal decimal E
         {
             get { return e; }
@@ -109,6 +159,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal i;
 
+        /// <summary>
+        /// Gets or sets the I.
+        /// </summary>
         internal decimal I
         {
             get { return i; }
@@ -117,6 +170,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal area;
 
+        /// <summary>
+        /// Gets or sets the area.
+        /// </summary>
         internal decimal Area
         {
             get { return area; }
@@ -125,6 +181,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal density;
 
+        /// <summary>
+        /// Gets or sets the density.
+        /// </summary>
         internal decimal Density
         {
             get { return density; }
@@ -133,6 +192,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private byte alpha;
 
+        /// <summary>
+        /// Gets or sets the alpha.
+        /// </summary>
         internal byte Alpha
         {
             get { return alpha; }
@@ -141,6 +203,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private byte red;
 
+        /// <summary>
+        /// Gets or sets the red.
+        /// </summary>
         internal byte Red
         {
             get { return red; }
@@ -149,6 +214,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private byte green;
 
+        /// <summary>
+        /// Gets or sets the green.
+        /// </summary>
         internal byte Green
         {
             get { return green; }
@@ -157,6 +225,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private byte blue;
 
+        /// <summary>
+        /// Gets or sets the blue.
+        /// </summary>
         internal byte Blue
         {
             get
@@ -173,6 +244,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private Color color;
 
+        /// <summary>
+        /// Gets or sets the color.
+        /// </summary>
         internal Color Color
         {
             get { return color; }
@@ -181,6 +255,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private CanvasDashStyle line = CanvasDashStyle.Solid;
 
+        /// <summary>
+        /// Gets or sets the line.
+        /// </summary>
         internal CanvasDashStyle Line
         {
             get { return line; }
@@ -189,6 +266,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private CanvasCapStyle nearCapStyle = CanvasCapStyle.Round;
 
+        /// <summary>
+        /// Gets or sets the near cap style.
+        /// </summary>
         internal CanvasCapStyle NearCapStyle
         {
             get { return nearCapStyle; }
@@ -197,6 +277,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private CanvasCapStyle farCapStyle = CanvasCapStyle.Round;
 
+        /// <summary>
+        /// Gets or sets the far cap style.
+        /// </summary>
         internal CanvasCapStyle FarCapStyle
         {
             get { return farCapStyle; }
@@ -205,6 +288,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private float lineWeight = 1.5f;
 
+        /// <summary>
+        /// Gets or sets the line weight.
+        /// </summary>
         internal float LineWeight
         {
             get { return lineWeight; }
@@ -213,6 +299,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costPerLength = 0;
 
+        /// <summary>
+        /// Gets or sets the cost per length.
+        /// </summary>
         internal decimal CostPerLength
         {
             get { return costPerLength; }
@@ -221,6 +310,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costVerticalTransport = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for vertical transport.
+        /// </summary>
         public decimal CostVerticalTransport
         {
             get { return costVerticalTransport; }
@@ -229,6 +321,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costHorizontalTransport = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for horizontal transport.
+        /// </summary>
         public decimal CostHorizontalTransport
         {
             get { return costHorizontalTransport; }
@@ -237,6 +332,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costNodeFree = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for a free node.
+        /// </summary>
         public decimal CostNodeFree
         {
             get { return costNodeFree; }
@@ -245,6 +343,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costNodeFixed = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for a fixed node.
+        /// </summary>
         public decimal CostNodeFixed
         {
             get { return costNodeFixed; }
@@ -253,6 +354,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costNodePinned = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for a pinned node.
+        /// </summary>
         public decimal CostNodePinned
         {
             get { return costNodePinned; }
@@ -261,6 +365,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costNodeRoller = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for a roller node.
+        /// </summary>
         public decimal CostNodeRoller
         {
             get { return costNodeRoller; }
@@ -269,6 +376,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal costNodeTrack = 0;
 
+        /// <summary>
+        /// Gets or sets the cost for an track node.
+        /// </summary>
         public decimal CostNodeTrack
         {
             get { return costNodeTrack; }
@@ -277,6 +387,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string sectionProfile = "Solid Rectangle";
 
+        /// <summary>
+        /// Gets or sets the section profile.
+        /// </summary>
         public string SectionProfile
         {
             get { return sectionProfile; }
@@ -285,6 +398,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty1 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 1.
+        /// </summary>
         public decimal SectionProfileProperty1
         {
             get { return sectionProfileProperty1; }
@@ -293,6 +409,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty2 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 2.
+        /// </summary>
         public decimal SectionProfileProperty2
         {
             get { return sectionProfileProperty2; }
@@ -301,6 +420,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty3 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 3.
+        /// </summary>
         public decimal SectionProfileProperty3
         {
             get { return sectionProfileProperty3; }
@@ -309,6 +431,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty4 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 4.
+        /// </summary>
         public decimal SectionProfileProperty4
         {
             get { return sectionProfileProperty4; }
@@ -317,6 +442,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty5 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 5.
+        /// </summary>
         public decimal SectionProfileProperty5
         {
             get { return sectionProfileProperty5; }
@@ -325,6 +453,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty6 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 6.
+        /// </summary>
         public decimal SectionProfileProperty6
         {
             get { return sectionProfileProperty6; }
@@ -333,6 +464,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal sectionProfileProperty7 = 0m;
 
+        /// <summary>
+        /// Gets or sets the section profile property 7.
+        /// </summary>
         public decimal SectionProfileProperty7
         {
             get { return sectionProfileProperty7; }
@@ -341,6 +475,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private string material = "Default";
 
+        /// <summary>
+        /// Gets or sets the material.
+        /// </summary>
         public string Material
         {
             get { return material; }
@@ -349,6 +486,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private float miterLimit;
 
+        /// <summary>
+        /// Gets or sets the miter limit.
+        /// </summary>
         public float MiterLimit
         {
             get { return miterLimit; }
@@ -357,6 +497,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private float dashOffset;
 
+        /// <summary>
+        /// Gets or sets the dash offset.
+        /// </summary>
         public float DashOffset
         {
             get { return dashOffset; }
@@ -365,6 +508,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private CanvasLineJoin lineJoin = CanvasLineJoin.Round;
 
+        /// <summary>
+        /// Gets or sets the line join.
+        /// </summary>
         public CanvasLineJoin LineJoin
         {
             get { return lineJoin; }
@@ -373,6 +519,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private CanvasStrokeStyle lineStyle = new CanvasStrokeStyle();
 
+        /// <summary>
+        /// Gets or sets the line style.
+        /// </summary>
         public CanvasStrokeStyle LineStyle
         {
             get { return lineStyle; }
@@ -381,6 +530,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenancePerLength;
 
+        /// <summary>
+        /// Gets or sets the maintenance per length.
+        /// </summary>
         public decimal MaintenancePerLength
         {
             get { return maintenancePerLength; }
@@ -389,6 +541,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenanceNodeFree;
 
+        /// <summary>
+        /// Gets or sets the maintenance node free cost.
+        /// </summary>
         public decimal MaintenanceNodeFree
         {
             get { return maintenanceNodeFree; }
@@ -397,6 +552,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenanceFixed;
 
+        /// <summary>
+        /// Gets or sets the maintenance node fixed cost.
+        /// </summary>
         public decimal MaintenanceFixed
         {
             get { return maintenanceFixed; }
@@ -405,6 +563,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenancePinned;
 
+        /// <summary>
+        /// Gets or sets the maintenance node pinned cost.
+        /// </summary>
         public decimal MaintenancePinned
         {
             get { return maintenancePinned; }
@@ -413,6 +574,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenanceRoller;
 
+        /// <summary>
+        /// Gets or sets the maintenance node roller cost.
+        /// </summary>
         public decimal MaintenanceRoller
         {
             get { return maintenanceRoller; }
@@ -421,6 +585,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal maintenanceTrack;
 
+        /// <summary>
+        /// Gets or sets the maintenance node track cost.
+        /// </summary>
         public decimal MaintenanceTrack
         {
             get { return maintenanceTrack; }
@@ -429,6 +596,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal factorVerticalTransport;
 
+        /// <summary>
+        /// Gets or sets the factor vertical transport.
+        /// </summary>
         public decimal FactorVerticalTransport
         {
             get { return factorVerticalTransport; }
@@ -437,6 +607,9 @@ namespace Finite_Element_Analysis_Explorer
 
         private decimal factorHorizontalTransport;
 
+        /// <summary>
+        /// Gets or sets the factor horizontal transport.
+        /// </summary>
         public decimal FactorHorizontalTransport
         {
             get { return factorHorizontalTransport; }
@@ -459,6 +632,9 @@ namespace Finite_Element_Analysis_Explorer
             color = Color.FromArgb(alpha, red, green, blue);
         }
 
+        /// <summary>
+        /// Disposes the section.
+        /// </summary>
         public void Dispose()
         {
             lineStyle.Dispose();
