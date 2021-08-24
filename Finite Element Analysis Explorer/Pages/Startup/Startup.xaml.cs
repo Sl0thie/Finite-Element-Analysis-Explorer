@@ -1,11 +1,11 @@
-﻿using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.ApplicationModel.Core;
+    using Windows.UI;
+    using Windows.UI.ViewManagement;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Startup page.
     /// </summary>
@@ -21,7 +21,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public Startup()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             CustomizeTitleBar();
         }
 

@@ -1,9 +1,9 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// StackPanelHeader UserControl provides a header UI for the side panel that collapses the pair stack panel when clicked.
     /// </summary>
@@ -63,7 +63,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public StackPanelHeader()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void FontIcon_IconOpen_Tapped(object sender, TappedRoutedEventArgs e)

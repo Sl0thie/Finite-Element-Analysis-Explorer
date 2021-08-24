@@ -54,6 +54,9 @@
         /// <param name="exception">The exception that was raised.</param>
         public static void ReportException(Exception exception)
         {
+            StackTrace st = new StackTrace();
+            StackFrame sf = st.GetFrame(1);
+
             FEAE.FEAESoapClient soap = new FEAE.FEAESoapClient();
 
             Debug.WriteLine("Exception");
@@ -63,9 +66,11 @@
             Debug.WriteLine($"TargetSite: {exception.TargetSite.Name.ToString()}");
             Debug.WriteLine($"Source: {exception.Source}");
 
+            string source = exception.Source + "," + sf.GetMethod().DeclaringType + "," + sf.GetMethod().Name;
+
             try
             {
-                soap.ReportErrorAsync(exception.HResult, exception.Message, exception.StackTrace, exception.TargetSite.Name.ToString(), exception.Source);
+                soap.ReportErrorAsync(exception.HResult, exception.Message, exception.StackTrace, exception.TargetSite.Name.ToString(), source);
             }
             catch (Exception ex)
             {

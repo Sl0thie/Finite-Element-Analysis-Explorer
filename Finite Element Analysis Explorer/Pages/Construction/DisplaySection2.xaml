@@ -12,7 +12,7 @@
 
     <Grid Background="Black">
         <ScrollViewer>
-            <Grid>
+            <Grid Width="1440" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="226"/>
                     <ColumnDefinition Width="300"/>

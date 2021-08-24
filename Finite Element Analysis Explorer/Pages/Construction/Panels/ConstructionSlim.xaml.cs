@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// ConstructionSlim page.
     /// </summary>

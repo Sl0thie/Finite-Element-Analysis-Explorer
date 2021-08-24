@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+
     /// <summary>
     /// DecimalMatrix class.
     /// </summary>
@@ -329,9 +329,9 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsZeroMatrix()
         {
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = 0; j < this.ColumnCount; j++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
                     if (mInnerMatrix[i, j] != 0)
                     {
@@ -349,7 +349,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsSquareMatrix()
         {
-            return this.RowCount == this.ColumnCount;
+            return RowCount == ColumnCount;
         }
 
         /// <summary>
@@ -358,14 +358,14 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsLowerTriangle()
         {
-            if (!this.IsSquareMatrix())
+            if (!IsSquareMatrix())
             {
                 return false;
             }
 
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = i + 1; j < this.ColumnCount; j++)
+                for (int j = i + 1; j < ColumnCount; j++)
                 {
                     if (mInnerMatrix[i, j] != 0)
                     {
@@ -383,12 +383,12 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsUpperTriangle()
         {
-            if (!this.IsSquareMatrix())
+            if (!IsSquareMatrix())
             {
                 return false;
             }
 
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
                 for (int j = 0; j < i; j++)
                 {
@@ -408,14 +408,14 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsDiagonalMatrix()
         {
-            if (!this.IsSquareMatrix())
+            if (!IsSquareMatrix())
             {
                 return false;
             }
 
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = 0; j < this.ColumnCount; j++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
                     if (i != j && mInnerMatrix[i, j] != 0)
                     {
@@ -433,14 +433,14 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsIdentityMatrix()
         {
-            if (!this.IsSquareMatrix())
+            if (!IsSquareMatrix())
             {
                 return false;
             }
 
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = 0; j < this.ColumnCount; j++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
                     decimal checkValue = 0;
                     if (i == j)
@@ -464,12 +464,12 @@ namespace Finite_Element_Analysis_Explorer
         /// <returns>Result.</returns>
         internal bool IsSymetricMatrix()
         {
-            if (!this.IsSquareMatrix())
+            if (!IsSquareMatrix())
             {
                 return false;
             }
 
-            DecimalMatrix transposeMatrix = this.Transpose();
+            DecimalMatrix transposeMatrix = Transpose();
             if (this == transposeMatrix)
             {
                 return true;
@@ -487,9 +487,9 @@ namespace Finite_Element_Analysis_Explorer
         internal void WriteToDebug(string titleText)
         {
             Debug.WriteLine(titleText + "Matrix Content");
-            for (int i = 0; i < this.RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = 0; j < this.ColumnCount; j++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
                     Debug.Write(mInnerMatrix[i, j].ToString() + "  ");
                 }

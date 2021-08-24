@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using System.Numerics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using System.Numerics;
+
     /// <summary>
     /// Node class.
     /// </summary>

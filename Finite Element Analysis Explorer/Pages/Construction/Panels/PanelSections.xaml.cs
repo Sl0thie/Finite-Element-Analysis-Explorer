@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelSections page.
     /// </summary>
@@ -18,7 +18,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelSections()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Finite_Element_Analysis_Explorer
         private void ListView_Sections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Section selectedSection = (Section)ListView_Sections.SelectedItem;
-            if (!object.ReferenceEquals(null, selectedSection))
+            if (selectedSection is object)
             {
                 Model.Sections.CurrentSection = Model.Sections[selectedSection.Name];
                 Construction.Current.ShowSection();

@@ -1,22 +1,22 @@
-﻿using System;
-using System.Diagnostics;
-using System.Numerics;
-using System.Threading.Tasks;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Geometry;
-using Microsoft.Graphics.Canvas.Text;
-using Microsoft.Graphics.Canvas.UI.Xaml;
-using Windows.Foundation;
-using Windows.UI;
-using Windows.UI.Input;
-using Windows.UI.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using System.Numerics;
+    using System.Threading.Tasks;
+    using Microsoft.Graphics.Canvas;
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Microsoft.Graphics.Canvas.Text;
+    using Microsoft.Graphics.Canvas.UI.Xaml;
+    using Windows.Foundation;
+    using Windows.UI;
+    using Windows.UI.Input;
+    using Windows.UI.Text;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+
     /// <summary>
     /// ConstructionDisplay page.
     /// </summary>
@@ -124,7 +124,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public ConstructionDisplay()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             forceManipulationsToEnd = false;
             InitManipulationTransforms();
 
@@ -174,7 +174,7 @@ namespace Finite_Element_Analysis_Explorer
             }
         }
 
-        private void Canvas_CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+        private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
@@ -207,11 +207,11 @@ namespace Finite_Element_Analysis_Explorer
 
         #region Draw Loop
 
-        private void Canvas_DrawAnimated(ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
+        private void Canvas_DrawAnimated(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Clear(colorBackground);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
-            args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
+            args.DrawingSession.Antialiasing = CanvasAntialiasing.Aliased;
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
             int lineCountX = 0;
@@ -285,7 +285,7 @@ namespace Finite_Element_Analysis_Explorer
             {
             }
 
-            args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
+            args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
 
             if (Options.ShowLinear)
             {
@@ -486,7 +486,7 @@ namespace Finite_Element_Analysis_Explorer
 
             try
             {
-                if (!object.ReferenceEquals(null, Model.Members.CurrentMember))
+                if (Model.Members.CurrentMember is object)
                 {
                     foreach (var nextItem in Model.Members.CurrentMember.Segments)
                     {
@@ -563,7 +563,7 @@ namespace Finite_Element_Analysis_Explorer
             try
             {
                 counterGridChanges = 0;
-                PointerPoint mousePosition = e.GetCurrentPoint(ConstructionDisplay.Current);
+                PointerPoint mousePosition = e.GetCurrentPoint(Current);
                 int delta = mousePosition.Properties.MouseWheelDelta;
                 switch (delta)
                 {
@@ -804,6 +804,9 @@ namespace Finite_Element_Analysis_Explorer
                 Debug.WriteLine("Error Adding Member " + ex.Message);
                 WService.ReportException(ex);
             }
+
+            // Update primary node count.
+            Model.Nodes.UpdateNoOfPrimaryNodes();
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+
     /// <summary>
     /// DMath class.
     /// </summary>

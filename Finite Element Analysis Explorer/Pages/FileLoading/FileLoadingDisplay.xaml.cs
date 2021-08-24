@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// FileLoadingDisplay page.
     /// </summary>
@@ -18,7 +18,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public FileLoadingDisplay()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

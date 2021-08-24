@@ -20,7 +20,7 @@
         /// </summary>
         public LineSelector()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

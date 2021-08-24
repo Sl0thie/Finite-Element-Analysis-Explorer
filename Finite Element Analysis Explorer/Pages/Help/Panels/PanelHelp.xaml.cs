@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelHelp Page.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelHelp()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -29,8 +29,8 @@ namespace Finite_Element_Analysis_Explorer
 
         private async void Button_Help_Click(object sender, RoutedEventArgs e)
         {
-            var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
+            Uri uriHelpGeneral = new Uri(@"http://www.bing.com");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
         }
 
         #endregion

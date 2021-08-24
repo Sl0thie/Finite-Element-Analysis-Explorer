@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-using System.Threading.Tasks;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Numerics;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Member class.
     /// </summary>
@@ -525,8 +525,8 @@ namespace Finite_Element_Analysis_Explorer
             memberCost = 0;
             materialCost = 0;
             nodeCost = 0;
-            materialCost = this.section.CostPerLength * length;
-            memberCost = this.section.CostPerLength * length;
+            materialCost = section.CostPerLength * length;
+            memberCost = section.CostPerLength * length;
             switch (nodeNear.Constraints.ConstraintType)
             {
                 case ConstraintType.Fixed:
@@ -534,20 +534,20 @@ namespace Finite_Element_Analysis_Explorer
                 case ConstraintType.FixedLeft:
                 case ConstraintType.FixedRight:
                 case ConstraintType.FixedTop:
-                    memberCost += this.section.CostNodeFixed;
-                    nodeCost += this.section.CostNodeFixed;
+                    memberCost += section.CostNodeFixed;
+                    nodeCost += section.CostNodeFixed;
                     break;
                 case ConstraintType.Free:
-                    memberCost += this.section.CostNodeFree;
-                    nodeCost += this.section.CostNodeFree;
+                    memberCost += section.CostNodeFree;
+                    nodeCost += section.CostNodeFree;
                     break;
                 case ConstraintType.Pinned:
                 case ConstraintType.PinnedBottom:
                 case ConstraintType.PinnedLeft:
                 case ConstraintType.PinnedRight:
                 case ConstraintType.PinnedTop:
-                    memberCost += this.section.CostNodePinned;
-                    nodeCost += this.section.CostNodePinned;
+                    memberCost += section.CostNodePinned;
+                    nodeCost += section.CostNodePinned;
                     break;
                 case ConstraintType.RollerBottom:
                 case ConstraintType.RollerLeft:
@@ -555,15 +555,15 @@ namespace Finite_Element_Analysis_Explorer
                 case ConstraintType.RollerTop:
                 case ConstraintType.RollerX:
                 case ConstraintType.RollerY:
-                    memberCost += this.section.CostNodeRoller;
-                    nodeCost += this.section.CostNodeRoller;
+                    memberCost += section.CostNodeRoller;
+                    nodeCost += section.CostNodeRoller;
                     break;
                 case ConstraintType.TrackBottom:
                 case ConstraintType.TrackLeft:
                 case ConstraintType.TrackRight:
                 case ConstraintType.TrackTop:
-                    memberCost += this.section.CostNodeTrack;
-                    nodeCost += this.section.CostNodeTrack;
+                    memberCost += section.CostNodeTrack;
+                    nodeCost += section.CostNodeTrack;
                     break;
                 case ConstraintType.Unknown:
                     break;
@@ -576,20 +576,20 @@ namespace Finite_Element_Analysis_Explorer
                 case ConstraintType.FixedLeft:
                 case ConstraintType.FixedRight:
                 case ConstraintType.FixedTop:
-                    memberCost += this.section.CostNodeFixed;
-                    nodeCost += this.section.CostNodeFixed;
+                    memberCost += section.CostNodeFixed;
+                    nodeCost += section.CostNodeFixed;
                     break;
                 case ConstraintType.Free:
-                    memberCost += this.section.CostNodeFree;
-                    nodeCost += this.section.CostNodeFree;
+                    memberCost += section.CostNodeFree;
+                    nodeCost += section.CostNodeFree;
                     break;
                 case ConstraintType.Pinned:
                 case ConstraintType.PinnedBottom:
                 case ConstraintType.PinnedLeft:
                 case ConstraintType.PinnedRight:
                 case ConstraintType.PinnedTop:
-                    memberCost += this.section.CostNodePinned;
-                    nodeCost += this.section.CostNodePinned;
+                    memberCost += section.CostNodePinned;
+                    nodeCost += section.CostNodePinned;
                     break;
                 case ConstraintType.RollerBottom:
                 case ConstraintType.RollerLeft:
@@ -597,15 +597,15 @@ namespace Finite_Element_Analysis_Explorer
                 case ConstraintType.RollerTop:
                 case ConstraintType.RollerX:
                 case ConstraintType.RollerY:
-                    memberCost += this.section.CostNodeRoller;
-                    nodeCost += this.section.CostNodeRoller;
+                    memberCost += section.CostNodeRoller;
+                    nodeCost += section.CostNodeRoller;
                     break;
                 case ConstraintType.TrackBottom:
                 case ConstraintType.TrackLeft:
                 case ConstraintType.TrackRight:
                 case ConstraintType.TrackTop:
-                    memberCost += this.section.CostNodeTrack;
-                    nodeCost += this.section.CostNodeTrack;
+                    memberCost += section.CostNodeTrack;
+                    nodeCost += section.CostNodeTrack;
                     break;
                 case ConstraintType.Unknown:
                     break;
@@ -679,7 +679,7 @@ namespace Finite_Element_Analysis_Explorer
                     Node nextNode = null;
                     decimal posX = lastNodeFar.Position.X + xDiv;
                     decimal posY = lastNodeFar.Position.Y + yDiv;
-                    nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Finite_Element_Analysis_Explorer.Point(posX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
+                    nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Point(posX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
                     nextNodeIndex++;
                     Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, nextNode, section, lastW, lastW + wSeg, previousSegmentIndex);
                     segments.TryAdd(nextSegment.Index, nextSegment);
@@ -709,7 +709,7 @@ namespace Finite_Element_Analysis_Explorer
                 segmentFar = lastSegment;
 
                 // Add segment to member tiles
-                foreach (var item in Model.Members[index].Segments)
+                foreach (KeyValuePair<int, Segment> item in Model.Members[index].Segments)
                 {
                     Tuple<int, int> position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / Model.Members.GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / Model.Members.GridSize));
                     List<Tuple<int, int>> iTmp = null;

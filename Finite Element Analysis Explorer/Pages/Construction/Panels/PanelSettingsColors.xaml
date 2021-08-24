@@ -18,8 +18,10 @@
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="MinHeight" Value="640"/>
-                    <Setter Property="MinWidth" Value="840"/>
+                    <Setter Property="MinHeight" Value="400"/>
+                    <Setter Property="MinWidth" Value="320"/>
+                    <Setter Property="MaxHeight" Value="420"/>
+                    <Setter Property="MaxWidth" Value="340"/>
                 </Style>
             </Flyout.FlyoutPresenterStyle>
             <StackPanel>
@@ -31,11 +33,15 @@
                 <Style TargetType="FlyoutPresenter">
                     <Setter Property="Margin" Value="150,100,0,0"/>
                     <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="MinHeight" Value="640"/>
-                    <Setter Property="MinWidth" Value="840"/>
+                    <Setter Property="MinHeight" Value="440"/>
+                    <Setter Property="MinWidth" Value="600"/>
+                    <Setter Property="MaxHeight" Value="460"/>
+                    <Setter Property="MaxWidth" Value="620"/>
                 </Style>
             </Flyout.FlyoutPresenterStyle>
             <StackPanel>

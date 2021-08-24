@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// SliderValue UserControl provides a sider input.
     /// </summary>
@@ -133,7 +133,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public SliderValue()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Slider_Primary_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

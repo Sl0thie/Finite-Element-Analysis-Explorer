@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// StartupStackPanelItem UserControl.
     /// </summary>
@@ -32,7 +32,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <param name="description">description.</param>
         public StartupStackPanelItem(string description)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.description = description;
             TextBlockDescription.Text = this.description;
         }

@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelSettingsSolver Page.
     /// </summary>
@@ -13,7 +13,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelSettingsSolver()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

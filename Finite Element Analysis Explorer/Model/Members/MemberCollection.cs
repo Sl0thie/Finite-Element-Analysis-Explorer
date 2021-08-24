@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Numerics;
+
     /// <summary>
     /// MemberCollection class.
     /// </summary>
@@ -92,7 +92,7 @@ namespace Finite_Element_Analysis_Explorer
         /// <param name="indexToRemove">The index of the member.</param>
         internal void RemoveMember(int indexToRemove)
         {
-            if (this.ContainsKey(indexToRemove))
+            if (ContainsKey(indexToRemove))
             {
                 foreach (var item in Model.Members[indexToRemove].Segments)
                 {
@@ -107,7 +107,7 @@ namespace Finite_Element_Analysis_Explorer
                     }
                 }
 
-                if (this.MembersWithLinearLoads.ContainsKey(indexToRemove))
+                if (MembersWithLinearLoads.ContainsKey(indexToRemove))
                 {
                     Member tmpMember = new Member();
                     MembersWithLinearLoads.TryRemove(indexToRemove, out tmpMember);
@@ -115,7 +115,7 @@ namespace Finite_Element_Analysis_Explorer
 
                 RemoveElementFromTiles(indexToRemove, Model.Members[indexToRemove].CenterPoint);
 
-                this.TryRemove(indexToRemove, out currentMember);
+                TryRemove(indexToRemove, out currentMember);
                 currentMember = null;
                 FindNextIndex();
                 Model.Shrink();
@@ -129,8 +129,8 @@ namespace Finite_Element_Analysis_Explorer
         internal void Reset()
         {
             Model.TotalMembers = 0;
-            this.currentMember = null;
-            this.Clear();
+            currentMember = null;
+            Clear();
             nextIndex = 1;
             MemberTiles.Clear();
             MembersWithLinearLoads.Clear();

@@ -1,10 +1,10 @@
-﻿using Microsoft.Graphics.Canvas.Geometry;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// NewSectionName UserControl.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public NewSectionName()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

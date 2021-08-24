@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelSettingsGeneral()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #region Common Menus

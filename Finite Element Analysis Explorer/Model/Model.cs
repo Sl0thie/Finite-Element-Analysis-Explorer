@@ -1,8 +1,8 @@
-﻿using System.Collections.Concurrent;
-using System.Diagnostics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Collections.Concurrent;
+    using System.Diagnostics;
+
     /// <summary>
     /// Model static class to manage the structural model.
     /// </summary>
@@ -349,7 +349,7 @@ namespace Finite_Element_Analysis_Explorer
             Debug.WriteLine("  " + materials.Count + " materials");
             Debug.WriteLine(string.Empty);
 
-            foreach (var item in Model.Members)
+            foreach (var item in Members)
             {
                 item.Value.Output();
 
@@ -359,7 +359,7 @@ namespace Finite_Element_Analysis_Explorer
                 }
             }
 
-            foreach (var item in Model.Nodes)
+            foreach (var item in Nodes)
             {
                 item.Value.Output();
             }
@@ -394,7 +394,7 @@ namespace Finite_Element_Analysis_Explorer
             {
                 if (node.Value.IsValid == false)
                 {
-                    Model.nodes.RemoveNode(node.Value);
+                    nodes.RemoveNode(node.Value);
                 }
             }
 

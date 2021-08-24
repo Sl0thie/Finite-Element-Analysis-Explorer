@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelReport Page.
     /// </summary>
@@ -13,7 +13,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelReport()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Button_Save_Click(object sender, RoutedEventArgs e)

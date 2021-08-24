@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Collections.Generic;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// SectionList UserControl provides a list of sections for the user to choose.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public SectionList()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

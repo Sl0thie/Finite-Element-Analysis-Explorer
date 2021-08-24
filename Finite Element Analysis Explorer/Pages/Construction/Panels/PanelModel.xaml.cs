@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelModel Page.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelModel()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace Finite_Element_Analysis_Explorer
             Single_TotalNodes.Title = "Nodes";
             Single_TotalNodes.UnitType = UnitType.UnitlessInteger;
             Single_TotalNodes.DisplayOnly = true;
-            Single_TotalNodes.SetTheValue(Model.Nodes.Count);
+            Single_TotalNodes.SetTheValue(Model.Nodes.NoOfPrimaryNodes);
 
             Single_TotalDOF.Title = "Degrees of Freedom";
             Single_TotalDOF.UnitType = UnitType.UnitlessInteger;
@@ -94,8 +94,6 @@ namespace Finite_Element_Analysis_Explorer
         private void Button_Help_ClickAsync(object sender, RoutedEventArgs e)
         {
             Construction.Current.ShowHelpAsync();
-
-            // dummy comment.
         }
 
         #endregion
@@ -132,7 +130,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }

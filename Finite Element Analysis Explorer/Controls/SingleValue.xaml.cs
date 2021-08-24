@@ -1,4 +1,8 @@
-﻿namespace Finite_Element_Analysis_Explorer
+﻿// <copyright file="SingleValue.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Finite_Element_Analysis_Explorer
 {
     using System;
     using Windows.UI.Xaml;

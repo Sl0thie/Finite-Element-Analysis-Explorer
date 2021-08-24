@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Graphics.Canvas.Geometry;
-using Windows.Storage;
-using Windows.Storage.AccessCache;
-using Windows.Storage.Pickers;
-using Windows.Storage.Provider;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Numerics;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.Storage;
+    using Windows.Storage.AccessCache;
+    using Windows.Storage.Pickers;
+    using Windows.Storage.Provider;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// FileManager class.
     /// </summary>
@@ -75,7 +75,6 @@ namespace Finite_Element_Analysis_Explorer
                 }
                 else
                 {
-                    // Model.Reset();
                     Camera.Zoom = 0.5f;
                     Camera.CenterOn(new Vector2(0, 0));
 
@@ -330,6 +329,9 @@ namespace Finite_Element_Analysis_Explorer
                             }
                         }
                     }
+
+                    // Update the number of primary nodes.
+                    Model.Nodes.UpdateNoOfPrimaryNodes();
                 }
                 catch
                 {
@@ -384,6 +386,9 @@ namespace Finite_Element_Analysis_Explorer
             catch (Exception ex)
             {
                 Debug.WriteLine("ERROR LoadLastFileAsync " + ex.Message + " " + ex.Data.ToString() + " " + ex.StackTrace);
+                NewFile();
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -965,9 +970,9 @@ namespace Finite_Element_Analysis_Explorer
                 // Picked ok.
                 workingFile = nextFile;
 
-                var mru = Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList;
+                var mru = StorageApplicationPermissions.MostRecentlyUsedList;
                 string mruToken = mru.Add(workingFile, workingFile.Path);
-                var listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(workingFile);
+                var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
                 workingFileDisplayName = workingFile.DisplayName;
                 workingFilePath = workingFile.Path;

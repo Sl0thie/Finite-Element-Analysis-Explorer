@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Help Page provides a means to display help.
     /// </summary>
@@ -16,7 +16,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public Help()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

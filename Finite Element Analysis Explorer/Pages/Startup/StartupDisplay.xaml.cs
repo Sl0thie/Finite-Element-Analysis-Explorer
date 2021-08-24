@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// StartupDisplay page.
     /// </summary>
@@ -22,7 +22,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public StartupDisplay()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -110,7 +110,7 @@ namespace Finite_Element_Analysis_Explorer
                 () =>
                     {
                         StartupStackPanelItem tempItem = new StartupStackPanelItem(message);
-                        StartupDisplay.Current.StackPanelStartup.Children.Add(tempItem);
+                        Current.StackPanelStartup.Children.Add(tempItem);
                     });
         }
     }

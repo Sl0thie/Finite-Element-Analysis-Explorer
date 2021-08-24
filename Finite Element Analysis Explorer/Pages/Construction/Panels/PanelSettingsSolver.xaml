@@ -142,8 +142,8 @@
                     </ComboBox>
                     <CheckBox x:Name="checkBox_AutoStart" Content="Start Solver Automatically" IsChecked="False" Style="{StaticResource CheckBoxStyleDark}" Checked="CheckBox_AutoStart_Checked" Unchecked="CheckBox_AutoStart_Unchecked" />
                     <CheckBox x:Name="checkBox_AutoFinish" Content="Show Results if there are no errors" Style="{StaticResource CheckBoxStyleDark}" Checked="CheckBox_AutoFinish_Checked" Unchecked="CheckBox_AutoFinish_Unchecked" />
-                    <CheckBox x:Name="checkBox_DisplayMatrix" Content="Display Matrix Image" Style="{StaticResource CheckBoxStyleDark}" IsEnabled="False" />
-                    <CheckBox x:Name="checkBox_GenerateReport" Content="Generate Report" Style="{StaticResource CheckBoxStyleDark}" IsEnabled="False" />
+                    <!--<CheckBox x:Name="checkBox_DisplayMatrix" Content="Display Matrix Image" Style="{StaticResource CheckBoxStyleDark}" IsEnabled="False" />
+                    <CheckBox x:Name="checkBox_GenerateReport" Content="Generate Report" Style="{StaticResource CheckBoxStyleDark}" IsEnabled="False" />-->
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

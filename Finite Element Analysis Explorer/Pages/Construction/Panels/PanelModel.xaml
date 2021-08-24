@@ -17,9 +17,6 @@
                     <Setter Property="BorderThickness" Value="0"/>
                     <Setter Property="MinHeight" Value="800"/>
                     <Setter Property="MinWidth" Value="1200"/>
-                    
-                    <!-- dummy comment-->                   
-                    
                 </Style>
             </Flyout.FlyoutPresenterStyle>
             <StackPanel>
@@ -70,11 +67,13 @@
             
             <Button x:Name="Button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Solve_Click">
                 <SymbolIcon Symbol="Sync" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
-                <ToolTipService.ToolTip>Solve - Solve the current model.</ToolTipService.ToolTip>
+                <ToolTipService.ToolTip>Solver - Solve the current model.</ToolTipService.ToolTip>
             </Button>
+            
             <Button x:Name="Button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Construction_Click">
                 <SymbolIcon Symbol="Edit" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
+            
             <Button x:Name="Button_Results"  Grid.Column="4" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Results_Click">
                 <SymbolIcon Symbol="Flag" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
@@ -83,6 +82,7 @@
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Visible"/>
                 <ToolTipService.ToolTip>Sections - Create new sections or edit existing ones.</ToolTipService.ToolTip>
             </Button>
+            
             <Button x:Name="Button_Reports"  Grid.Column="5" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" Click="Button_Reports_Click">
                 <SymbolIcon Symbol="Crop" Foreground="White" Width="32" Height="32" Margin="0,0,0,0" Visibility="Visible"/>
             </Button>
@@ -100,8 +100,9 @@
                              
             <Button x:Name="Button_Help"  Grid.Column="6" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Click="Button_Help_Click">
                 <SymbolIcon Symbol="Help" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
-                <ToolTipService.ToolTip>Help - Display the online help.</ToolTipService.ToolTip>
+                <ToolTipService.ToolTip>Help - Display the on-line help.</ToolTipService.ToolTip>
             </Button>
+            
             <Button x:Name="Button_Options"  Grid.Column="7" Grid.Row="0"   Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32">
                 <Button.Flyout>
                     <MenuFlyout>
@@ -128,17 +129,12 @@
                     <FontIcon  x:Name="fontIcon_TitleIconTotals" Grid.Column="2" Grid.Row="0" Width="36" Height="36" Glyph="" FontFamily="Segoe UI Symbol" FontSize="28" Foreground="#FF606060"/>
                 </Grid>
 
-
-
                 <local:SingleValue x:Name="Single_TotalMembers"/>
                 <local:SingleValue x:Name="Single_TotalNodes"/>
                 <local:SingleValue x:Name="Single_TotalDOF"/>
 
-
                 <local:SingleValue x:Name="Single_NoOfSegments" Margin="0,40,0,0" ValueChanged="Single_NoOfSegments_ValueChanged"/>
                 <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="CheckBox_ResetExisting" Margin="6,3,0,3" Content="Reset Existing Members" FontSize="12" Foreground="Gray" Padding="8,7,0,0" Style="{StaticResource CheckBoxStyleDark}" Checked="CheckBox_ResetExisting_Checked" Unchecked="CheckBox_ResetExisting_Unchecked" IsChecked="True"  />
-
-
 
                 <Grid Margin="0,0,0,-5">
                     <Grid.ColumnDefinitions>

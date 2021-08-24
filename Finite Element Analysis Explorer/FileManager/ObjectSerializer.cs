@@ -1,10 +1,10 @@
-﻿using System.IO;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-
-namespace CSWindowsStoreAppSaveCollection
+﻿namespace CSWindowsStoreAppSaveCollection
 {
+    using System.IO;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
+
     /// <summary>
     /// ObjectSerializer class.
     /// </summary>

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Numerics;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Numerics;
+
     /// <summary>
     /// Camera class provides a camera object to provide methods to manage the 2D display.
     /// </summary>

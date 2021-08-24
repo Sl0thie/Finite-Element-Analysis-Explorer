@@ -38,7 +38,7 @@
                 <SymbolIcon Symbol="Setting" Foreground="White"/>
             </Button>
             <!-- Title (non-clickable layer) -->
-            <TextBlock Grid.Column="1" Text="Finite Element Analysis Explorer - Solver"  Foreground="White" VerticalAlignment="Center" Margin="6,0,6,0"/>
+            <TextBlock x:Name="TextBlock_Title" Grid.Column="1" Text="Finite Element Analysis Explorer - Solver"  Foreground="White" VerticalAlignment="Center" Margin="6,0,6,0"/>
 
             <!-- title bar area (Middle layer) Trick: set this as custom title bar-->
             <Grid x:Name="trickyTitleBar" Grid.Column="2" Background="Transparent"/>

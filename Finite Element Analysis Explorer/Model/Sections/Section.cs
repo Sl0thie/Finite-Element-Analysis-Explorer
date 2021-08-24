@@ -1,8 +1,8 @@
-﻿using Microsoft.Graphics.Canvas.Geometry;
-using Windows.UI;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.UI;
+
     /// <summary>
     /// Section class.
     /// </summary>

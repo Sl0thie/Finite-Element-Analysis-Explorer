@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Collections.Concurrent;
+
     /// <summary>
     /// NodeConcurrentCollection class.
     /// </summary>
@@ -31,14 +31,35 @@ namespace Finite_Element_Analysis_Explorer
         internal ConcurrentDictionary<int, Node> NodesWithReactions { get; set; } = new ConcurrentDictionary<int, Node>();
 
         /// <summary>
+        /// Gets or sets the total no of primary nodes.
+        /// </summary>
+        public int NoOfPrimaryNodes { get; set; }
+
+        /// <summary>
         /// Resets the collection.
         /// </summary>
         internal void Reset()
         {
             Clear();
+            NoOfPrimaryNodes = 0;
             NodesWithNodalLoads.Clear();
             NodesWithConstraints.Clear();
             NodesWithReactions.Clear();
+        }
+
+        /// <summary>
+        /// Updates the total no of primary nodes.
+        /// </summary>
+        internal void UpdateNoOfPrimaryNodes()
+        {
+            NoOfPrimaryNodes = 0;
+            foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> item in this)
+            {
+                if (item.Value.IsPrimary)
+                {
+                    NoOfPrimaryNodes++;
+                }
+            }
         }
 
         /// <summary>

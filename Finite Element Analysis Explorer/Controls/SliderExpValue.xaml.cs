@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// SliderExpValue UserControl is a custom slider.
     /// </summary>
@@ -117,7 +117,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public SliderExpValue()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Slider_Primary_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

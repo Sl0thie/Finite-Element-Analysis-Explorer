@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// PanelResultsModel Page.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelResultsModel()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -59,12 +59,7 @@ namespace Finite_Element_Analysis_Explorer
             single_TotalNodes.Title = "Total Nodes";
             single_TotalNodes.DisplayOnly = true;
             single_TotalNodes.UnitType = UnitType.UnitlessInteger;
-            single_TotalNodes.SetTheValue(Model.Nodes.Count);
-
-            single_TotalSegments.Title = "Total Segments";
-            single_TotalSegments.DisplayOnly = true;
-            single_TotalSegments.UnitType = UnitType.UnitlessInteger;
-            single_TotalSegments.SetTheValue(0);
+            single_TotalNodes.SetTheValue(Model.Nodes.NoOfPrimaryNodes);
 
             SingleValue_XForce.Title = "X axis Forces";
             SingleValue_XReaction.Title = "X axis Reactions";
@@ -90,17 +85,35 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_MReaction.UnitType = UnitType.Moment;
             SingleValue_MTotal.UnitType = UnitType.Moment;
 
+            decimal sum = Model.ForceX + Model.ReactionX;
+            if (sum < 0.000000001m)
+            {
+                sum = 0;
+            }
+
             SingleValue_XForce.SetTheValue(Model.ForceX);
             SingleValue_XReaction.SetTheValue(Model.ReactionX);
-            SingleValue_XTotal.SetTheValue(Model.ForceX + Model.ReactionX);
+            SingleValue_XTotal.SetTheValue(sum);
+
+            sum = Model.ForceY + Model.ReactionY;
+            if (sum < 0.000000001m)
+            {
+                sum = 0;
+            }
 
             SingleValue_YForce.SetTheValue(Model.ForceY);
             SingleValue_YReaction.SetTheValue(Model.ReactionY);
-            SingleValue_YTotal.SetTheValue(Model.ForceY + Model.ReactionY);
+            SingleValue_YTotal.SetTheValue(sum);
+
+            sum = Model.ForceM + Model.ReactionM;
+            if (sum < 0.000000001m)
+            {
+                sum = 0;
+            }
 
             SingleValue_MForce.SetTheValue(Model.ForceM);
             SingleValue_MReaction.SetTheValue(Model.ReactionM);
-            SingleValue_MTotal.SetTheValue(Model.ForceM + Model.ReactionM);
+            SingleValue_MTotal.SetTheValue(sum);
 
             SingleValue_MaterialCost.UnitType = UnitType.Money;
             SingleValue_MaterialCost.Title = "Material Cost";
@@ -240,7 +253,6 @@ namespace Finite_Element_Analysis_Explorer
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                // Debug.WriteLine("File Picked, Now loading");
                 await FileManager.LoadFile();
             }
         }

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Threading.Tasks;
+    using Windows.ApplicationModel.Core;
+    using Windows.UI;
+    using Windows.UI.ViewManagement;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Solver page.
     /// </summary>
@@ -51,6 +51,15 @@ namespace Finite_Element_Analysis_Explorer
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(Construction));
             }
+        }
+
+        /// <summary>
+        /// Sets the page title.
+        /// </summary>
+        /// <param name="newTitle">The title to set.</param>
+        public void SetTitle(string newTitle)
+        {
+            TextBlock_Title.Text = newTitle;
         }
 
         /// <summary>
@@ -137,13 +146,15 @@ namespace Finite_Element_Analysis_Explorer
                 if (Options.AutoStartSolver)
                 {
                     await Task.Delay(TimeSpan.FromMilliseconds(500));
-                    Solver.Current.StartSolver();
+                    Current.StartSolver();
                 }
             }
             catch (Exception ex)
             {
                 WService.ReportException(ex);
             }
+
+            SetTitle("Finite Element Analysis Explorer - Solver - " + FileManager.FileTitle);
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

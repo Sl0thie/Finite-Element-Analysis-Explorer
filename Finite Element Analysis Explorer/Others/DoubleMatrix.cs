@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+
     /// <summary>
     /// DoubleMatrix class.
     /// </summary>

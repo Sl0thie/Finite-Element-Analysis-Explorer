@@ -19,7 +19,7 @@
         /// </summary>
         public SectionSelection()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             ListView_Sections.ItemsSource = Model.Sections;
         }
 

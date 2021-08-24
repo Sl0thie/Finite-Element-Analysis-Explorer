@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// PanelMember page.
     /// </summary>
@@ -20,7 +20,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public PanelMember()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -124,6 +124,10 @@ namespace Finite_Element_Analysis_Explorer
                 valueDisplay_CostPerLength.UnitType = UnitType.Money;
                 valueDisplay_CostPerLength.SetTheValue(Model.Members.CurrentMember.MemberCost);
             }
+            else
+            {
+                Results.Current.ShowModel();
+            }
         }
 
         /// <summary>
@@ -142,64 +146,67 @@ namespace Finite_Element_Analysis_Explorer
             // CurrentSelectionState = SelectionState.Ready;
             Model.Members.CurrentMember = null;
             Construction.Current.ShowModel();
+
+            // Update number of primary nodes.
+            Model.Nodes.UpdateNoOfPrimaryNodes();
         }
 
         private void DoubleValue_LoadsX_NearValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(doubleValue_LoadsX.NearValue, Model.Members.CurrentMember.NodeNear.Load.Y, Model.Members.CurrentMember.NodeNear.Load.M);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(doubleValue_LoadsX.NearValue, Model.Members.CurrentMember.NodeNear.Load.Y, Model.Members.CurrentMember.NodeNear.Load.M);
             doubleValue_LoadsX.SetValue(doubleValue_LoadsX.NearValue, doubleValue_LoadsX.FarValue);
         }
 
         private void DoubleValue_LoadsX_FarValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(doubleValue_LoadsX.FarValue, Model.Members.CurrentMember.NodeFar.Load.Y, Model.Members.CurrentMember.NodeFar.Load.M);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(doubleValue_LoadsX.FarValue, Model.Members.CurrentMember.NodeFar.Load.Y, Model.Members.CurrentMember.NodeFar.Load.M);
             doubleValue_LoadsX.SetValue(doubleValue_LoadsX.NearValue, doubleValue_LoadsX.FarValue);
         }
 
         private void DoubleValue_LoadsX_ValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(doubleValue_LoadsX.NearValue, Model.Members.CurrentMember.NodeNear.Load.Y, Model.Members.CurrentMember.NodeNear.Load.M);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(doubleValue_LoadsX.NearValue, Model.Members.CurrentMember.NodeNear.Load.Y, Model.Members.CurrentMember.NodeNear.Load.M);
             doubleValue_LoadsX.SetValue(doubleValue_LoadsX.NearValue, doubleValue_LoadsX.FarValue);
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(doubleValue_LoadsX.FarValue, Model.Members.CurrentMember.NodeFar.Load.Y, Model.Members.CurrentMember.NodeFar.Load.M);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(doubleValue_LoadsX.FarValue, Model.Members.CurrentMember.NodeFar.Load.Y, Model.Members.CurrentMember.NodeFar.Load.M);
             doubleValue_LoadsX.SetValue(doubleValue_LoadsX.NearValue, doubleValue_LoadsX.FarValue);
         }
 
         private void DoubleValue_LoadsY_NearValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, doubleValue_LoadsY.NearValue, Model.Members.CurrentMember.NodeNear.Load.M);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, doubleValue_LoadsY.NearValue, Model.Members.CurrentMember.NodeNear.Load.M);
             doubleValue_LoadsY.SetValue(doubleValue_LoadsY.NearValue, doubleValue_LoadsY.FarValue);
         }
 
         private void DoubleValue_LoadsY_FarValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, doubleValue_LoadsY.FarValue, Model.Members.CurrentMember.NodeFar.Load.M);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, doubleValue_LoadsY.FarValue, Model.Members.CurrentMember.NodeFar.Load.M);
             doubleValue_LoadsY.SetValue(doubleValue_LoadsY.NearValue, doubleValue_LoadsY.FarValue);
         }
 
         private void DoubleValue_LoadsY_ValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, doubleValue_LoadsY.NearValue, Model.Members.CurrentMember.NodeNear.Load.M);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, doubleValue_LoadsY.NearValue, Model.Members.CurrentMember.NodeNear.Load.M);
             doubleValue_LoadsY.SetValue(doubleValue_LoadsY.NearValue, doubleValue_LoadsY.FarValue);
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, doubleValue_LoadsY.FarValue, Model.Members.CurrentMember.NodeFar.Load.M);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, doubleValue_LoadsY.FarValue, Model.Members.CurrentMember.NodeFar.Load.M);
             doubleValue_LoadsY.SetValue(doubleValue_LoadsY.NearValue, doubleValue_LoadsY.FarValue);
         }
 
         private void DoubleValue_LoadsM_NearValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, Model.Members.CurrentMember.NodeNear.Load.Y, -doubleValue_LoadsM.NearValue);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, Model.Members.CurrentMember.NodeNear.Load.Y, -doubleValue_LoadsM.NearValue);
             doubleValue_LoadsM.SetValue(-doubleValue_LoadsM.NearValue, doubleValue_LoadsM.FarValue);
         }
 
         private void DoubleValue_LoadsM_FarValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, Model.Members.CurrentMember.NodeFar.Load.Y, doubleValue_LoadsM.FarValue);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, Model.Members.CurrentMember.NodeFar.Load.Y, doubleValue_LoadsM.FarValue);
             doubleValue_LoadsM.SetValue(doubleValue_LoadsM.NearValue, doubleValue_LoadsM.FarValue);
         }
 
         private void DoubleValue_LoadsM_ValueChanged(object sender, EventArgs e)
         {
-            Model.Members.CurrentMember.NodeNear.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, Model.Members.CurrentMember.NodeNear.Load.Y, doubleValue_LoadsM.NearValue);
-            Model.Members.CurrentMember.NodeFar.Load = new Finite_Element_Analysis_Explorer.NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, Model.Members.CurrentMember.NodeFar.Load.Y, doubleValue_LoadsM.FarValue);
+            Model.Members.CurrentMember.NodeNear.Load = new NodalLoad(Model.Members.CurrentMember.NodeNear.Load.X, Model.Members.CurrentMember.NodeNear.Load.Y, doubleValue_LoadsM.NearValue);
+            Model.Members.CurrentMember.NodeFar.Load = new NodalLoad(Model.Members.CurrentMember.NodeFar.Load.X, Model.Members.CurrentMember.NodeFar.Load.Y, doubleValue_LoadsM.FarValue);
 
             doubleValue_LoadsM.SetValue(doubleValue_LoadsM.NearValue, doubleValue_LoadsM.FarValue);
             doubleValue_LoadsM.SetValue(doubleValue_LoadsM.NearValue, doubleValue_LoadsM.FarValue);

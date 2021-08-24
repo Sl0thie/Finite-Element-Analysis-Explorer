@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.Numerics;
-using Windows.UI;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using System.Numerics;
+    using Windows.UI;
+
     /// <summary>
     /// Segment class.
     /// </summary>
@@ -681,7 +681,7 @@ namespace Finite_Element_Analysis_Explorer
 
             if (length == 0)
             {
-                Debug.WriteLine("Zero Length Segment " + this.index);
+                Debug.WriteLine("Zero Length Segment " + index);
             }
 
             if (farY > nearY)
@@ -950,32 +950,32 @@ namespace Finite_Element_Analysis_Explorer
                     // Subtract superposition from constrained dofs.
                     if (nodeNear.Constraints.X)
                     {
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
                     }
 
                     if (nodeNear.Constraints.Y)
                     {
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
                     }
 
                     if (nodeNear.Constraints.M)
                     {
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
                     }
 
                     if (nodeFar.Constraints.X)
                     {
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
                     }
 
                     if (nodeFar.Constraints.Y)
                     {
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
                     }
 
                     if (nodeFar.Constraints.M)
                     {
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
                     }
 
                     break;
@@ -983,13 +983,13 @@ namespace Finite_Element_Analysis_Explorer
                 case 1: // Process only Fully Fixed nodes.
                     if (nodeNear.Constraints.ConstraintType == ConstraintType.Fixed)
                     {
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
 
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
                     }
                     else
                     {
@@ -1000,13 +1000,13 @@ namespace Finite_Element_Analysis_Explorer
                 case 2: // Reverse of case 1.
                     if (nodeNear.Constraints.ConstraintType != ConstraintType.Fixed)
                     {
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
-                        nodeNear.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X - nodeNear.SuperPosition.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y - nodeNear.SuperPosition.Y, nodeNear.LoadReaction.M);
+                        nodeNear.LoadReaction = new NodalLoad(nodeNear.LoadReaction.X, nodeNear.LoadReaction.Y, nodeNear.LoadReaction.M - nodeNear.SuperPosition.M);
 
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
-                        nodeFar.LoadReaction = new Finite_Element_Analysis_Explorer.NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X - nodeFar.SuperPosition.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y - nodeFar.SuperPosition.Y, nodeFar.LoadReaction.M);
+                        nodeFar.LoadReaction = new NodalLoad(nodeFar.LoadReaction.X, nodeFar.LoadReaction.Y, nodeFar.LoadReaction.M - nodeFar.SuperPosition.M);
                     }
                     else
                     {
@@ -1050,7 +1050,7 @@ namespace Finite_Element_Analysis_Explorer
                 Camera.LargestAxialRatio = Math.Abs(internalLoadNearLocal.X);
             }
 
-            normalStress = internalLoadNearLocal.X / this.section.Area;
+            normalStress = internalLoadNearLocal.X / section.Area;
 
             if (Math.Abs(normalStress) > Camera.LargestNormalStress)
             {
@@ -1225,22 +1225,22 @@ namespace Finite_Element_Analysis_Explorer
             DecimalMatrix tt = CreateForceTransformationMatrix();
             superposition_global = tt * superposition_local;
 
-            nearSuperGlobal = new Finite_Element_Analysis_Explorer.NodalLoad(
+            nearSuperGlobal = new NodalLoad(
                 superposition_global[0, 0],
                 superposition_global[1, 0],
                 superposition_global[2, 0]);
 
-            farSuperGlobal = new Finite_Element_Analysis_Explorer.NodalLoad(
+            farSuperGlobal = new NodalLoad(
                 superposition_global[3, 0],
                 superposition_global[4, 0],
                 superposition_global[5, 0]);
 
-            nearSuperLocal = new Finite_Element_Analysis_Explorer.NodalLoad(
+            nearSuperLocal = new NodalLoad(
                 superposition_local[0, 0],
                 superposition_local[1, 0],
                 superposition_local[2, 0]);
 
-            farSuperLocal = new Finite_Element_Analysis_Explorer.NodalLoad(
+            farSuperLocal = new NodalLoad(
                 superposition_local[3, 0],
                 superposition_local[4, 0],
                 superposition_local[5, 0]);

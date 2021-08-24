@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.Graphics.Canvas.Geometry;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Collections.Generic;
+    using Microsoft.Graphics.Canvas.Geometry;
+
     /// <summary>
     /// SectionCollection class.
     /// </summary>
@@ -232,7 +232,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         internal void Reset()
         {
-            this.Clear();
+            Clear();
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.Graphics.Canvas.Geometry;
-using Windows.UI;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using Microsoft.Graphics.Canvas.Geometry;
+    using Windows.UI;
+
     /// <summary>
     /// Options static class manages the options for the application.
     /// </summary>

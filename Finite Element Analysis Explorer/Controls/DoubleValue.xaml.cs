@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+
     /// <summary>
     /// DoubleValue UserControl provides two inputs. One for each node.
     /// </summary>
@@ -460,7 +460,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public DoubleValue()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

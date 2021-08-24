@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// MaterialCollection class.
     /// </summary>

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using System.Diagnostics;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media.Imaging;
+
     /// <summary>
     /// DisplaySection page.
     /// </summary>
@@ -16,7 +16,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public DisplaySection()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

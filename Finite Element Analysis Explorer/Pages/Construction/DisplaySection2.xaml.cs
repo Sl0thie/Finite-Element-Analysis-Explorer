@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media.Imaging;
+
     /// <summary>
     /// DisplaySection2 page.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public DisplaySection2()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace Finite_Element_Analysis_Explorer
             SingleValue_Property6.Visibility = Visibility.Collapsed;
             SingleValue_Property7.Visibility = Visibility.Collapsed;
 
-            if (!object.ReferenceEquals(null, Model.Sections.CurrentSection))
+            if (Model.Sections.CurrentSection is object)
             {
                 TextBlock_Section_Title.Text = "SECTION : " + Model.Sections.CurrentSection.Name;
 

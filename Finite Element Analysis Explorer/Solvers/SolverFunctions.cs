@@ -135,6 +135,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -175,6 +176,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Started with " + previousNodeCount + " nodes.", 1);
@@ -258,6 +260,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + unrestrainedDOF + ".", 1);
@@ -278,8 +281,8 @@
             {
                 foreach (var node in Model.Nodes)
                 {
-                    node.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
-                    node.Value.SuperPosition = new Finite_Element_Analysis_Explorer.NodalLoad(0, 0, 0);
+                    node.Value.SuperPosition = new NodalLoad(0, 0, 0);
+                    node.Value.SuperPosition = new NodalLoad(0, 0, 0);
                 }
 
                 foreach (var member in Model.Members)
@@ -303,6 +306,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -357,6 +361,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             try
@@ -420,6 +425,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -458,15 +464,17 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    Dk " + dk.ColumnCount + " " + dk.RowCount, 1);
             }
             catch (Exception ex)
             {
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
-            AddMessage(-1, -1, "    Dk " + dk.ColumnCount + " " + dk.RowCount, 1);
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -517,6 +525,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
@@ -569,6 +578,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
@@ -661,6 +671,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -690,6 +701,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
@@ -718,6 +730,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -765,6 +778,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
@@ -803,15 +817,17 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
-            AddMessage(-1, -1, "    [Qu] vector length " + qu.RowCount.ToString("#,###"), 1);
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -853,6 +869,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
@@ -896,6 +913,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
@@ -930,6 +948,7 @@
                 hasErrors = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -1016,6 +1035,7 @@
                 hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -1102,6 +1122,7 @@
                 hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -1188,6 +1209,7 @@
                 hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -1223,6 +1245,7 @@
                 hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
@@ -1265,6 +1288,7 @@
                 hasWarning = true;
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
                 AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
             }
 
             AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);

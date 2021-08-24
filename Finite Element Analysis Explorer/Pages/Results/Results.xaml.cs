@@ -1,12 +1,12 @@
-﻿using System;
-using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+    using Windows.ApplicationModel.Core;
+    using Windows.UI;
+    using Windows.UI.ViewManagement;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Results page.
     /// </summary>
@@ -35,7 +35,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public Results()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             CustomizeTitleBar();
         }
 
@@ -172,15 +172,15 @@ namespace Finite_Element_Analysis_Explorer
             frameDetails.Navigate(typeof(PanelResultsModel));
             frameDisplay.Navigate(typeof(ResultsDisplay));
 
-            SetTitle("Finite Element Analysis Explorer - " + FileManager.FileTitle);
+            SetTitle("Finite Element Analysis Explorer - Results - " + FileManager.FileTitle);
 
             isPageLoaded = true;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            frameDisplay.Width = this.ActualWidth;
-            frameDisplay.Height = this.ActualHeight - Constants.HeightTitleBar;
+            frameDisplay.Width = ActualWidth;
+            frameDisplay.Height = ActualHeight - Constants.HeightTitleBar;
 
             if (detailsIsOpen)
             {
@@ -191,7 +191,7 @@ namespace Finite_Element_Analysis_Explorer
                 frameDetails.Width = Constants.WidthDetailsSlim;
             }
 
-            frameDetails.Height = this.ActualHeight - Constants.HeightTitleBar;
+            frameDetails.Height = ActualHeight - Constants.HeightTitleBar;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Slim Page.
     /// </summary>
@@ -12,7 +12,7 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public Slim()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

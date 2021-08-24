@@ -149,7 +149,7 @@
         /// </summary>
         public ResultsDisplay()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             forceManipulationsToEnd = false;
             InitManipulationTransforms();
 
@@ -199,7 +199,7 @@
             Camera.ViewportSize = new Vector2((int)canvas.ActualWidth, (int)canvas.ActualHeight);
         }
 
-        private void Canvas_CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+        private void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
@@ -237,11 +237,11 @@
 
         #region Draw Loop
 
-        private void Canvas_DrawAnimated(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
+        private void Canvas_DrawAnimated(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Clear(colorBackground);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
-            args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Aliased;
+            args.DrawingSession.Antialiasing = CanvasAntialiasing.Aliased;
 
             float iX = Camera.TopLeftMinor.X;
             float iY = Camera.TopLeftMinor.Y;
@@ -316,7 +316,7 @@
             {
             }
 
-            args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
+            args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
 
             if (Options.ShowLinear)
             {
@@ -942,7 +942,7 @@
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Camera.ViewportSize = new Vector2((int)this.ActualWidth, (int)this.ActualHeight);
+            Camera.ViewportSize = new Vector2((int)ActualWidth, (int)ActualHeight);
         }
 
         #endregion
