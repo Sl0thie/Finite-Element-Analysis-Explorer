@@ -13,7 +13,7 @@
     /// </summary>
     internal static class SolverFunctions
     {
-        private static readonly Stopwatch MainTimer = new Stopwatch();
+        private static Stopwatch mainTimer = new Stopwatch();
         private static bool hasErrors = false;
         private static bool hasWarning = false;
         private static long stageStart;
@@ -67,7 +67,8 @@
         /// </summary>
         internal static async void ResetDisplayAndShowWelcomeMessage()
         {
-            MainTimer.Start();
+            mainTimer = new Stopwatch();
+            mainTimer.Start();
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
                 () =>
@@ -75,8 +76,8 @@
                         SolverDisplay.Current.ClearMessages();
                     });
 
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Starting solver DoubleLUP.", 0);
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Local matrices for elements and nodes have been created during construction stage.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Starting solver DoubleLUP.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "    Local matrices for elements and nodes have been created during construction stage.", 0);
         }
 
         /// <summary>
@@ -86,7 +87,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Reset solver properties.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Reset solver properties.", 0);
 
             try
             {
@@ -133,12 +134,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -159,8 +160,8 @@
         /// </summary>
         internal static void ShrinkModel()
         {
-            stageStart = MainTimer.ElapsedMilliseconds;
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Shrinking Model. (searching for orphan nodes)", 0);
+            stageStart = mainTimer.ElapsedMilliseconds;
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Shrinking Model. (searching for orphan nodes)", 0);
 
             int previousNodeCount = 0;
             int postNodeCount = 0;
@@ -174,16 +175,16 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds - stageStart, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds - stageStart, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Started with " + previousNodeCount + " nodes.", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Ended with " + postNodeCount + " nodes.", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "    Removed " + (previousNodeCount - postNodeCount) + " nodes.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "    Started with " + previousNodeCount + " nodes.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "    Ended with " + postNodeCount + " nodes.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "    Removed " + (previousNodeCount - postNodeCount) + " nodes.", 1);
 
-            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
         /// <summary>
@@ -191,10 +192,10 @@
         /// </summary>
         internal static async void SaveFile()
         {
-            stageStart = MainTimer.ElapsedMilliseconds;
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Saving File.", 0);
+            stageStart = mainTimer.ElapsedMilliseconds;
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Saving File.", 0);
             await FileManager.SaveFile();
-            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
         #endregion
@@ -206,7 +207,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Assigning code numbers to the degrees of freedom.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Assigning code numbers to the degrees of freedom.", 0);
             AddMessage(-1, -1, "    Each node has three degrees of freedom.", 1);
 
             try
@@ -258,14 +259,14 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + unrestrainedDOF + ".", 1);
             AddMessage(-1, -1, "    Total restrained degrees of freedom " + restrainedDOF + ".", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -275,7 +276,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Superposition Stage One.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Superposition Stage One.", 0);
 
             try
             {
@@ -304,12 +305,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #region Transfer from Nodes.
@@ -321,7 +322,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Qk] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Get [Qk] vector from model data.", 0);
 
             try
             {
@@ -359,8 +360,8 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
@@ -373,7 +374,7 @@
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -383,7 +384,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Qu] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Get [Qu] vector from model data.", 0);
 
             try
             {
@@ -423,12 +424,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -438,7 +439,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Dk] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Get [Dk] vector from model data.", 0);
 
             try
             {
@@ -470,12 +471,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -485,7 +486,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Get [Du] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Get [Du] vector from model data.", 0);
 
             try
             {
@@ -523,13 +524,13 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
@@ -543,7 +544,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Assembling global stiffness matrix. {K}", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Assembling global stiffness matrix. {K}", 0);
 
             try
             {
@@ -576,14 +577,14 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
             AddMessage(-1, -1, "    Total number of elements within matrix is " + (totalDOF * totalDOF).ToString("#,###") + ".", 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -593,7 +594,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Divide K matrix into four matrices {K11}, {K12}, {K21}, {K22}.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Divide K matrix into four matrices {K11}, {K12}, {K21}, {K22}.", 0);
 
             try
             {
@@ -669,12 +670,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
@@ -689,7 +690,7 @@
             // Solve for the displacements.
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Solve For Du", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Solve For Du", 0);
 
             try
             {
@@ -699,15 +700,15 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
             AddMessage(-1, -1, "    Qk " + qk.ColumnCount + " " + qk.RowCount, 1);
             AddMessage(-1, -1, "    K11 " + k11.ColumnCount + " " + k11.RowCount, 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -718,7 +719,7 @@
             // Solve for the reactions.
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Solve For Qu", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Solve For Qu", 0);
 
             try
             {
@@ -728,12 +729,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
@@ -747,7 +748,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Qk] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Set [Qk] vector from model data.", 0);
 
             try
             {
@@ -776,13 +777,13 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -792,7 +793,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Qu] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Set [Qu] vector from model data.", 0);
 
             try
             {
@@ -823,12 +824,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -838,7 +839,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Dk] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Set [Dk] vector from model data.", 0);
 
             try
             {
@@ -867,13 +868,13 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -883,7 +884,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Set [Du] vector from model data.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Set [Du] vector from model data.", 0);
 
             try
             {
@@ -911,13 +912,13 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
             AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         #endregion
@@ -929,7 +930,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Update Members and Segments from Matrix.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Update Members and Segments from Matrix.", 0);
 
             try
             {
@@ -946,12 +947,12 @@
             catch (Exception ex)
             {
                 hasErrors = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -961,7 +962,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Length Ratios.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Calculate Length Ratios.", 0);
 
             try
             {
@@ -1033,12 +1034,12 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -1048,7 +1049,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
 
             try
             {
@@ -1120,12 +1121,12 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -1135,7 +1136,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Calculate Axial Ratios.", 0);
 
             try
             {
@@ -1207,12 +1208,12 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -1222,7 +1223,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
 
             try
             {
@@ -1243,12 +1244,12 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -1272,7 +1273,7 @@
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
-            AddMessage(MainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Calculate Equilibrium Values.", 0);
 
             try
             {
@@ -1286,12 +1287,12 @@
             catch (Exception ex)
             {
                 hasWarning = true;
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
-                AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
                 WService.ReportException(ex);
             }
 
-            AddMessage(MainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
         /// <summary>
@@ -1300,7 +1301,7 @@
         internal static async void DisplayEndMessages()
         {
             AddMessage(-1, -1, "    ", 0);
-            AddMessage(MainTimer.ElapsedMilliseconds, MainTimer.ElapsedMilliseconds, "    Finished.", 0);
+            AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds, "    Finished.", 0);
 
             if (!hasErrors)
             {

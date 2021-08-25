@@ -24,21 +24,21 @@
         private bool detailsIsOpen = true;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the details are open.
-        /// </summary>
-        public bool DetailsIsOpen
-        {
-            get { return detailsIsOpen; }
-            set { detailsIsOpen = value; }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Solver"/> class.
         /// </summary>
         public Solver()
         {
             this.InitializeComponent();
             CustomizeTitleBar();
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the details are open.
+        /// </summary>
+        public bool DetailsIsOpen
+        {
+            get { return detailsIsOpen; }
+            set { detailsIsOpen = value; }
         }
 
         /// <summary>

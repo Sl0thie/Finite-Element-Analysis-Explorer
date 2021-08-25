@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Finite Element Analysis Explorer")]
 [assembly: AssemblyDescription("Graphical view of static analysis calculations")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dallas Adams")]
+[assembly: AssemblyCompany("Inta Computers")]
 [assembly: AssemblyProduct("Finite Element Analysis Explorer")]
-[assembly: AssemblyCopyright("Dallas Adams")]
+[assembly: AssemblyCopyright("Inta Computers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

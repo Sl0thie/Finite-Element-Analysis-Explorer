@@ -12,7 +12,7 @@
         /// </summary>
         public PopupMemberLoads()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

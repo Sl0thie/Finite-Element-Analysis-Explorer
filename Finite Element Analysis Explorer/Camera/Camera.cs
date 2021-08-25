@@ -9,10 +9,63 @@
     internal static class Camera
     {
         /// <summary>
+        /// The trim for the translation.
+        /// </summary>
+        private static readonly float TranslationTrim = 0.5f;
+        private static string lengthUnitString = string.Empty;
+        private static float lengthUnitFactor;
+
+        private static float zoomTrim = 216f;
+        private static float zoomTrimmed;
+        private static float zoom;
+
+        private static decimal largestLengthRatio;
+        private static decimal largestAxialRatio;
+        private static decimal largestNormalStress;
+
+        /// <summary>
+        /// Gets or sets the camera's grid.
+        /// </summary>
+        internal static Grid Grid { get; set; } = new Grid();
+
+        /// <summary>
+        /// Gets or sets the camera's view-port.
+        /// </summary>
+        internal static Viewport Viewport { get; set; } = new Viewport();
+
+        /// <summary>
+        /// Gets or sets the camera's line properties.
+        /// </summary>
+        internal static Line Line { get; set; } = new Line();
+
+        /// <summary>
+        /// Gets or sets the upper bound.
+        /// </summary>
+        internal static float UpperBound { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lower bound.
+        /// </summary>
+        internal static float LowerBound { get; set; }
+
+        /// <summary>
+        /// Gets a matrix after calculating the translation, scale and centering.
+        /// </summary>
+        internal static Matrix3x2 TranslationMatrix
+        {
+            get
+            {
+                return Matrix3x2.CreateTranslation(Position)
+                    * Matrix3x2.CreateScale(zoomTrimmed, -zoomTrimmed)
+                    * Matrix3x2.CreateTranslation(Viewport.Center);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the LengthUnitString.
         /// This is the postfix for length measurements such as mm, cm, m, km.
         /// </summary>
-        public static string LengthUnitString
+        internal static string LengthUnitString
         {
             get { return lengthUnitString; }
             set { lengthUnitString = value; }
@@ -22,7 +75,7 @@
         /// Gets or sets the LengthUnitFactor.
         /// Example, millimeters per meter (1000) or inch per meter.
         /// </summary>
-        public static float LengthUnitFactor
+        internal static float LengthUnitFactor
         {
             get { return lengthUnitFactor; }
             set { lengthUnitFactor = value; }
@@ -32,36 +85,6 @@
         /// Gets the Position. The centered position of the Camera in pixels.
         /// </summary>
         internal static Vector2 Position { get; private set; }
-
-        #region Grid
-
-        /// <summary>
-        /// Gets the grid size for normal lines.
-        /// </summary>
-        internal static float GridSizeNormal
-        {
-            get { return gridSizeNormal; }
-        }
-
-        /// <summary>
-        /// Gets the grid size for the minor grid.
-        /// </summary>
-        internal static float GridSizeMinor
-        {
-            get { return gridSizeMinor; }
-        }
-
-        /// <summary>
-        /// Gets the grid size for the major grid.
-        /// </summary>
-        internal static float GridSizeMajor
-        {
-            get { return gridSizeMajor; }
-        }
-
-        #endregion
-
-        #region Zoom
 
         /// <summary>
         /// Gets or sets the ZoomTrim.
@@ -95,7 +118,7 @@
             {
                 zoomTrimmed = value;
                 zoom = zoomTrimmed / zoomTrim;
-                LineUnit = 1 / zoomTrimmed;
+                Line.Unit = 1 / zoomTrimmed;
                 UpdateBounds();
             }
         }
@@ -114,157 +137,15 @@
             {
                 zoom = value;
                 zoomTrimmed = zoom * zoomTrim;
-                LineUnit = 1 / zoomTrimmed;
+                Line.Unit = 1 / zoomTrimmed;
                 UpdateBounds();
             }
         }
-
-        #endregion
-
-        #region View-port
-
-        /// <summary>
-        /// Gets the ViewPortCenter. Co-ordinates of the center of the view port.
-        /// </summary>
-        internal static Vector2 ViewportCenter
-        {
-            get { return viewportCenter; }
-        }
-
-        /// <summary>
-        /// Gets or sets the view port size.
-        /// </summary>
-        internal static Vector2 ViewportSize
-        {
-            get
-            {
-                return viewportSize;
-            }
-
-            set
-            {
-                viewportSize = value;
-                viewportCenter = new Vector2((int)(viewportSize.X * 0.5f), (int)(viewportSize.Y * 0.5f));
-                ViewportWidth = (int)viewportSize.X;
-                ViewportHeight = (int)viewportSize.Y;
-                UpdateBounds();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the view port width. Width of the view port window which we need to adjust any time the player resizes the application window.
-        /// </summary>
-        internal static int ViewportWidth { get; set; }
-
-        /// <summary>
-        /// Gets or sets the view port height. Height of the view port window which we need to adjust any time the player resizes the application window.
-        /// </summary>
-        internal static int ViewportHeight { get; set; }
-
-        /// <summary>
-        /// Gets the top left normal.
-        /// </summary>
-        internal static Vector2 TopLeftNormal
-        {
-            get { return topLeftNormal; }
-        }
-
-        /// <summary>
-        /// Gets the top left minor.
-        /// </summary>
-        internal static Vector2 TopLeftMinor
-        {
-            get { return topLeftMinor; }
-        }
-
-        /// <summary>
-        /// Gets the top left major.
-        /// </summary>
-        internal static Vector2 TopLeftMajor
-        {
-            get { return topLeftMajor; }
-        }
-
-        /// <summary>
-        /// Gets the bottom right.
-        /// </summary>
-        internal static Vector2 BottomRight
-        {
-            get { return bottomRight; }
-        }
-
-        #endregion
-
-        #region Line Widths and Lengths
-
-        /// <summary>
-        /// Gets or sets the line unit.
-        /// </summary>
-        internal static float LineUnit
-        {
-            get
-            {
-                return lineUnit;
-            }
-
-            set
-            {
-                lineUnit = value;
-                constraintWidth = lineUnit * 2;
-                constraintRadius = lineUnit * 5;
-                lineLengthLDLArrow = lineUnit * 8;
-                lineLengthForceArrow = lineUnit * 15;
-
-                if (lineUnit < lowerBound)
-                {
-                    UpdateLengthType();
-                }
-
-                if (lineUnit > upperBound)
-                {
-                    UpdateLengthType();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the constrain radius.
-        /// </summary>
-        public static float ConstraintRadius
-        {
-            get { return constraintRadius; }
-        }
-
-        /// <summary>
-        /// Gets the line length of the DLArrow.
-        /// </summary>
-        public static float LineLengthLDLArrow
-        {
-            get { return lineLengthLDLArrow; }
-        }
-
-        /// <summary>
-        /// Gets the line length of the Force Arrow.
-        /// </summary>
-        public static float LineLengthForceArrow
-        {
-            get { return lineLengthForceArrow; }
-        }
-
-        /// <summary>
-        /// Gets the constrain width.
-        /// </summary>
-        public static float ConstraintWidth
-        {
-            get { return constraintWidth; }
-        }
-
-        #endregion
 
         /// <summary>
         /// Gets or sets the largest length ratio.
         /// </summary>
-        public static decimal LargestLengthRatio
+        internal static decimal LargestLengthRatio
         {
             get { return largestLengthRatio; }
             set { largestLengthRatio = value; }
@@ -273,7 +154,7 @@
         /// <summary>
         /// Gets or sets the largest axial ratio.
         /// </summary>
-        public static decimal LargestAxialRatio
+        internal static decimal LargestAxialRatio
         {
             get { return largestAxialRatio; }
             set { largestAxialRatio = value; }
@@ -282,55 +163,10 @@
         /// <summary>
         /// Gets or sets the largest normal stress.
         /// </summary>
-        public static decimal LargestNormalStress
+        internal static decimal LargestNormalStress
         {
             get { return largestNormalStress; }
             set { largestNormalStress = value; }
-        }
-
-        /// <summary>
-        /// The trim for the translation.
-        /// </summary>
-        private static readonly float TranslationTrim = 0.5f;
-
-        // Line Bounds
-        private static float upperBound;
-        private static float lowerBound;
-        private static string lengthUnitString = string.Empty;
-        private static float lengthUnitFactor;
-        private static float gridSizeNormal = 1f;
-        private static float gridSizeMinor = 0.1f;
-        private static float gridSizeMajor = 10f;
-        private static float zoomTrim = 216f;
-        private static float zoomTrimmed;
-        private static float zoom;
-        private static Vector2 viewportCenter;
-        private static Vector2 viewportSize;
-        private static Vector2 topLeftNormal;
-        private static Vector2 topLeftMinor;
-        private static Vector2 topLeftMajor;
-        private static Vector2 bottomRight;
-        private static Vector2 viewportCenterWorld;
-        private static float lineUnit;
-        private static float constraintRadius;
-        private static float lineLengthLDLArrow;
-        private static float lineLengthForceArrow;
-        private static float constraintWidth;
-        private static decimal largestLengthRatio;
-        private static decimal largestAxialRatio;
-        private static decimal largestNormalStress;
-
-        /// <summary>
-        /// Gets a matrix after calculating the translation, scale and centering.
-        /// </summary>
-        internal static Matrix3x2 TranslationMatrix
-        {
-            get
-            {
-                return Matrix3x2.CreateTranslation(Position)
-                    * Matrix3x2.CreateScale(zoomTrimmed, -zoomTrimmed)
-                    * Matrix3x2.CreateTranslation(ViewportCenter);
-            }
         }
 
         /// <summary>
@@ -339,7 +175,7 @@
         /// <param name="cameraMovement">The movement vector.</param>
         internal static void MoveCamera(Vector2 cameraMovement)
         {
-            Position += new Vector2(cameraMovement.X * LineUnit * TranslationTrim, -cameraMovement.Y * LineUnit * TranslationTrim);
+            Position += new Vector2(cameraMovement.X * Line.Unit * TranslationTrim, -cameraMovement.Y * Line.Unit * TranslationTrim);
             UpdateBounds();
         }
 
@@ -372,14 +208,14 @@
         internal static void ScaleDeltaScrollWheel(float delta, Vector2 scalePoint)
         {
             Vector2 scalePointWorld = ScreenToWorld(scalePoint);
-            Vector2 oldCenterWorld = ScreenToWorld(viewportCenter);
+            Vector2 oldCenterWorld = ScreenToWorld(Viewport.Center);
             Vector2 oldDistanceWorld = scalePointWorld - oldCenterWorld;
             float oldZoom = zoom;
             float scaleChange = 1 - (zoom * delta / oldZoom);
             Position = new Vector2(Position.X + (oldDistanceWorld.X * scaleChange), Position.Y + (oldDistanceWorld.Y * scaleChange));
             Zoom = zoom * delta;
             UpdateBounds();
-            oldCenterWorld = ScreenToWorld(viewportCenter);
+            oldCenterWorld = ScreenToWorld(Viewport.Center);
         }
 
         #region Snap
@@ -433,19 +269,19 @@
         /// <summary>
         /// Updates the bounds. These are used to limit the calculations to only the screen size.
         /// </summary>
-        private static void UpdateBounds()
+        internal static void UpdateBounds()
         {
-            viewportCenterWorld = viewportCenter / -zoomTrimmed;
-            bottomRight = new Vector2(-Position.X - viewportCenterWorld.X, -Position.Y - viewportCenterWorld.Y);
-            topLeftMinor = new Vector2(
-                Snap(-Position.X + viewportCenterWorld.X - gridSizeMinor, gridSizeMinor),
-                Snap(-Position.Y + viewportCenterWorld.Y - gridSizeMinor, gridSizeMinor));
-            topLeftNormal = new Vector2(
-                Snap(-Position.X + viewportCenterWorld.X - gridSizeNormal, gridSizeNormal),
-                Snap(-Position.Y + viewportCenterWorld.Y - gridSizeNormal, gridSizeNormal));
-            topLeftMajor = new Vector2(
-                Snap(-Position.X + viewportCenterWorld.X - gridSizeMajor, gridSizeMajor),
-                Snap(-Position.Y + viewportCenterWorld.Y - gridSizeMajor, gridSizeMajor));
+            Viewport.CenterWorld = Viewport.Center / -zoomTrimmed;
+            Viewport.BottomRight = new Vector2(-Position.X - Viewport.CenterWorld.X, -Position.Y - Viewport.CenterWorld.Y);
+            Viewport.TopLeftMinor = new Vector2(
+                Snap(-Position.X + Viewport.CenterWorld.X - Grid.SizeMinor, Grid.SizeMinor),
+                Snap(-Position.Y + Viewport.CenterWorld.Y - Grid.SizeMinor, Grid.SizeMinor));
+            Viewport.TopLeftNormal = new Vector2(
+                Snap(-Position.X + Viewport.CenterWorld.X - Grid.SizeNormal, Grid.SizeNormal),
+                Snap(-Position.Y + Viewport.CenterWorld.Y - Grid.SizeNormal, Grid.SizeNormal));
+            Viewport.TopLeftMajor = new Vector2(
+                Snap(-Position.X + Viewport.CenterWorld.X - Grid.SizeMajor, Grid.SizeMajor),
+                Snap(-Position.Y + Viewport.CenterWorld.Y - Grid.SizeMajor, Grid.SizeMajor));
         }
 
         /// <summary>
@@ -460,83 +296,83 @@
                     lengthUnitString = " mm";
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1000m);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1000m);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 100m);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 100m);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10m);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10m);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1m);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1m);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
 
                     break;
@@ -545,83 +381,83 @@
                     lengthUnitString = " cm";
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1000m);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1000m);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 100m);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 100m);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10m);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10m);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1m);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1m);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
 
                     break;
@@ -630,83 +466,83 @@
                     lengthUnitString = " m";
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1000m);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1000m);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 100m);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 100m);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10m);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10m);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1m);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1m);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
 
                     break;
@@ -715,83 +551,83 @@
                     lengthUnitString = " km";
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10000m);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10000m);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1000m);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1000m);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 100m);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 100m);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1000m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 10m);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1000m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 10m);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 100m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 1m);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 100m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 1m);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 10m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 10m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.1m);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeMajor = (float)(Constants.MeterPerMeter * 1m);
-                        gridSizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
-                        gridSizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeMajor = (float)(Constants.MeterPerMeter * 1m);
+                        Grid.SizeNormal = (float)(Constants.MeterPerMeter * 0.1m);
+                        Grid.SizeMinor = (float)(Constants.MeterPerMeter * 0.01m);
                     }
 
                     break;
@@ -799,83 +635,83 @@
                 case LengthType.Inch:
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeNormal = (float)Constants.MeterPerInch;
-                        gridSizeMajor = (float)(Constants.MeterPerInch * 12);
-                        gridSizeMinor = (float)(Constants.MeterPerInch / 16);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeNormal = (float)Constants.MeterPerInch;
+                        Grid.SizeMajor = (float)(Constants.MeterPerInch * 12);
+                        Grid.SizeMinor = (float)(Constants.MeterPerInch / 16);
                     }
 
                     break;
@@ -883,83 +719,83 @@
                 case LengthType.Foot:
                     if (zoom < 0.00001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 0.0001)
                     {
-                        lowerBound = 0.00001f;
-                        upperBound = 0.0001f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.00001f;
+                        UpperBound = 0.0001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 0.001)
                     {
-                        lowerBound = 0.0001f;
-                        upperBound = 0.001f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.0001f;
+                        UpperBound = 0.001f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 0.01)
                     {
-                        lowerBound = 0.001f;
-                        upperBound = 0.01f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.001f;
+                        UpperBound = 0.01f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 0.1)
                     {
-                        lowerBound = 0.01f;
-                        upperBound = 0.1f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.01f;
+                        UpperBound = 0.1f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 1)
                     {
-                        lowerBound = 0.1f;
-                        upperBound = 1f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 0.1f;
+                        UpperBound = 1f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 10)
                     {
-                        lowerBound = 1f;
-                        upperBound = 10f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 1f;
+                        UpperBound = 10f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 100)
                     {
-                        lowerBound = 10f;
-                        upperBound = 100f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 10f;
+                        UpperBound = 100f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 1000)
                     {
-                        lowerBound = 100f;
-                        upperBound = 1000f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 100f;
+                        UpperBound = 1000f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
                     else if (zoom < 10000)
                     {
-                        lowerBound = 1000f;
-                        upperBound = 10000f;
-                        gridSizeNormal = (float)Constants.MeterPerFoot;
-                        gridSizeMajor = (float)(Constants.MeterPerFoot * 3);
-                        gridSizeMinor = (float)(Constants.MeterPerFoot / 12);
+                        LowerBound = 1000f;
+                        UpperBound = 10000f;
+                        Grid.SizeNormal = (float)Constants.MeterPerFoot;
+                        Grid.SizeMajor = (float)(Constants.MeterPerFoot * 3);
+                        Grid.SizeMinor = (float)(Constants.MeterPerFoot / 12);
                     }
 
                     break;
@@ -994,7 +830,7 @@
         internal static void Reset()
         {
             Zoom = 0.5f;
-            CenterOn(new Vector2(-viewportCenter.X, -viewportCenter.Y));
+            CenterOn(new Vector2(-Viewport.Center.X, -Viewport.Center.Y));
         }
 
         /// <summary>
