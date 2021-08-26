@@ -12,15 +12,6 @@
     /// </summary>
     public sealed partial class ConstraintsDisplay : UserControl
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether to only display a value or also process input.
-        /// </summary>
-        public bool DisplayOnly
-        {
-            get { return displayOnly; }
-            set { displayOnly = value; }
-        }
-
         private bool displayOnly = false;
 
         /// <summary>
@@ -28,7 +19,16 @@
         /// </summary>
         public ConstraintsDisplay()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to only display a value or also process input.
+        /// </summary>
+        public bool DisplayOnly
+        {
+            get { return displayOnly; }
+            set { displayOnly = value; }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

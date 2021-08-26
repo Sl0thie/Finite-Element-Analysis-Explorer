@@ -27,6 +27,7 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <StyleCopTreatErrorsAsWarnings>True</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,7 +93,7 @@
     <Optimize>false</Optimize>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\..\..\StyleCopAnalyzersDefault.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DocumentationFile>
@@ -113,7 +114,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
@@ -197,7 +198,6 @@
     <Compile Include="Pages\Construction\DisplaySection.xaml.cs">
       <DependentUpon>DisplaySection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DMatrix\LUPMatrix.cs" />
     <Compile Include="Controls\NumericInput.xaml.cs">
       <DependentUpon>NumericInput.xaml</DependentUpon>
     </Compile>
@@ -208,7 +208,6 @@
       <DependentUpon>LineSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Others\DMath.cs" />
-    <Compile Include="DMatrix\DMatrix.cs" />
     <Compile Include="Model\Nodes\NodalLoad\NodalLoad.cs" />
     <Compile Include="Pages\Construction\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -709,7 +708,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Analysis%29|x64'">
     <OutputPath>bin\x64\Release %28Analysis%29\</OutputPath>
     <DefineConstants>CODE_ANALYSIS;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <NoStdLib>true</NoStdLib>

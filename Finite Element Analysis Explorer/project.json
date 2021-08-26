@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
     "MathNet.Numerics": "3.20.2",
+    "Microsoft.CodeAnalysis": "3.11.0",
     "Microsoft.CodeAnalysis.CSharp": "3.11.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.12",
-    "StyleCop.Analyzers": "1.1.118",
     "Win2D.uwp": "1.26.0"
   },
   "frameworks": {

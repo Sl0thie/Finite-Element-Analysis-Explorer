@@ -10,6 +10,19 @@
     /// </summary>
     public sealed partial class DoubleValue : UserControl
     {
+        private decimal multiplicationFactor = 1;
+        private int axis;
+        private bool displayOnly;
+        private UnitType unitType = UnitType.Unitless;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoubleValue"/> class.
+        /// </summary>
+        public DoubleValue()
+        {
+            this.InitializeComponent();
+        }
+
         /// <summary>
         /// Event for when the value has changed.
         /// </summary>
@@ -25,30 +38,15 @@
         /// </summary>
         public event EventHandler FarValueChanged;
 
-        private decimal multiplicationFactor = 1;
-        private decimal nearValue;
-        private decimal farValue;
-        private int axis;
-        private bool displayOnly;
-        private UnitType unitType = UnitType.Unitless;
-
         /// <summary>
         /// Gets or sets the near value.
         /// </summary>
-        public decimal NearValue
-        {
-            get { return nearValue; }
-            set { nearValue = value; }
-        }
+        public decimal NearValue { get; set; }
 
         /// <summary>
         /// Gets or sets the far value.
         /// </summary>
-        public decimal FarValue
-        {
-            get { return farValue; }
-            set { farValue = value; }
-        }
+        public decimal FarValue { get; set; }
 
         /// <summary>
         /// Gets or sets the axis.
@@ -456,14 +454,6 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoubleValue"/> class.
-        /// </summary>
-        public DoubleValue()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
         /// Sets values to null.
         /// </summary>
         internal void SetNull()
@@ -480,8 +470,8 @@
         internal void SetValue(decimal newNearValue, decimal newFarValue)
         {
             // TODO: Multiply by unit type factor then pass
-            nearValue = newNearValue;
-            farValue = newFarValue;
+            NearValue = newNearValue;
+            FarValue = newFarValue;
 
             if (multiplicationFactor == 1)
             {
@@ -504,13 +494,13 @@
 
         private void NumericInput_NearValue_ValueChanged(object sender, EventArgs e)
         {
-            nearValue = NumericInput_NearValue.NewValue;
+            NearValue = NumericInput_NearValue.NewValue;
             NearValueChanged?.Invoke(this, new EventArgs());
         }
 
         private void NumericInput_FarValue_ValueChanged(object sender, EventArgs e)
         {
-            farValue = NumericInput_FarValue.NewValue;
+            FarValue = NumericInput_FarValue.NewValue;
             FarValueChanged?.Invoke(this, new EventArgs());
         }
 
@@ -1324,8 +1314,8 @@
 
         private void TextBox_Input_ValueChanged(object sender, EventArgs e)
         {
-            nearValue = TextBox_Input.NewValue;
-            farValue = TextBox_Input.NewValue;
+            NearValue = TextBox_Input.NewValue;
+            FarValue = TextBox_Input.NewValue;
             flyOut_Shared.Hide();
             ValueChanged?.Invoke(this, new EventArgs());
         }

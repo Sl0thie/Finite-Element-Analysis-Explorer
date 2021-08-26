@@ -21,7 +21,25 @@
     /// </summary>
     internal static class FileManager
     {
+        private static string fileTitle;
+
+        // Files
+        private static StorageFile workingFile;
+        private static StorageFile materialsFile;
+        private static StorageFile sectionsFile;
+        private static StorageFile nextFile;
+
+        // File properties.
+        private static string workingFilePath = string.Empty;
+        private static string workingFileDisplayName = string.Empty;
+        private static string workingFileMruToken = string.Empty;
+        private static string workingFileListToken = string.Empty;
+
+        // Loading stats.
+        private static int statsLoadingTotalItems = 0;
+
         #region Properties
+
 
         /// <summary>
         /// Gets or sets the local settings application data container.
@@ -41,22 +59,7 @@
             get { return fileTitle; }
         }
 
-        private static string fileTitle;
-
-        // Files
-        private static StorageFile workingFile;
-        private static StorageFile materialsFile;
-        private static StorageFile sectionsFile;
-        private static StorageFile nextFile;
-
-        // File properties.
-        private static string workingFilePath = string.Empty;
-        private static string workingFileDisplayName = string.Empty;
-        private static string workingFileMruToken = string.Empty;
-        private static string workingFileListToken = string.Empty;
-
-        // Loading stats.
-        private static int statsLoadingTotalItems = 0;
+        
 
         #endregion
 
