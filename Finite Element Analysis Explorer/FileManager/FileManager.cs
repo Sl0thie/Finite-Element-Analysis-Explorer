@@ -13,6 +13,7 @@
     using Windows.Storage.Pickers;
     using Windows.Storage.Provider;
     using Windows.UI.Core;
+    using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -71,13 +72,9 @@
             if (await PickFileToSave())
             {
                 Model.Reset();
-                if (nextFile is null)
+                if (nextFile is object)
                 {
-                    // Open File Picker Failed.
-                    return;
-                }
-                else
-                {
+                    Options.FirstRun = false;
                     Camera.Zoom = 0.5f;
                     Camera.CenterOn(new Vector2(0, 0));
 
@@ -101,6 +98,14 @@
                     await LoadFile();
                     return;
                 }
+            }
+
+            // Picking new file failed.
+            if (Options.FirstRun)
+            {
+                var dialog = new MessageDialog("You must specify a file to save the drawing data too for the application to work with. No file chosen, exiting application.");
+                await dialog.ShowAsync();
+                Application.Current.Exit();
             }
         }
 
@@ -373,7 +378,7 @@
                 {
                     var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
                     var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-                    Options.FirstRun = false;
+                    // Options.FirstRun = false;
                     NewFile();
                     Frame rootFrame = Window.Current.Content as Frame;
                     rootFrame.Navigate(typeof(Construction));
