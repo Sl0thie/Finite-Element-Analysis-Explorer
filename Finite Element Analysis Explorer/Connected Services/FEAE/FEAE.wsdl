@@ -27,6 +27,18 @@
       <s:element name="ReportSessionResponse">
         <s:complexType />
       </s:element>
+      <s:element name="ReportSession2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="start" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="finish" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDebug" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportSession2Response">
+        <s:complexType />
+      </s:element>
       <s:element name="ReportSessionStart">
         <s:complexType />
       </s:element>
@@ -47,6 +59,12 @@
   <wsdl:message name="ReportSessionSoapOut">
     <wsdl:part name="parameters" element="tns:ReportSessionResponse" />
   </wsdl:message>
+  <wsdl:message name="ReportSession2SoapIn">
+    <wsdl:part name="parameters" element="tns:ReportSession2" />
+  </wsdl:message>
+  <wsdl:message name="ReportSession2SoapOut">
+    <wsdl:part name="parameters" element="tns:ReportSession2Response" />
+  </wsdl:message>
   <wsdl:message name="ReportSessionStartSoapIn">
     <wsdl:part name="parameters" element="tns:ReportSessionStart" />
   </wsdl:message>
@@ -61,6 +79,10 @@
     <wsdl:operation name="ReportSession">
       <wsdl:input message="tns:ReportSessionSoapIn" />
       <wsdl:output message="tns:ReportSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession2">
+      <wsdl:input message="tns:ReportSession2SoapIn" />
+      <wsdl:output message="tns:ReportSession2SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ReportSessionStart">
       <wsdl:input message="tns:ReportSessionStartSoapIn" />
@@ -80,6 +102,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReportSession">
       <soap:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession2">
+      <soap:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -110,6 +141,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReportSession">
       <soap12:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSession2">
+      <soap12:operation soapAction="http://www.intacomputers.com/Services/FEAE/ReportSession2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

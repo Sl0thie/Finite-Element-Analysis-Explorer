@@ -40,7 +40,14 @@
 
             try
             {
-                soap.ReportSessionAsync(sessionStart, DateTime.UtcNow);
+                if (Debugger.IsAttached)
+                {
+                    soap.ReportSession2Async(sessionStart, DateTime.UtcNow, true);
+                }
+                else
+                {
+                    soap.ReportSession2Async(sessionStart, DateTime.UtcNow, false);
+                }  
             }
             catch (Exception ex)
             {

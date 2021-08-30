@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8334ced1-a506-4326-950c-adde2c57eb55" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d5af1e80-9645-4f43-8f59-4df3bb174efa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -24,8 +24,8 @@
     <MetadataSource Address="http://www.intacomputers.com/Services/FEAE.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FEAE.disco" MetadataType="Disco" ID="bf6582e7-a540-4fcc-bac9-07ad187ba8fa" SourceId="1" SourceUrl="http://www.intacomputers.com/Services/FEAE.asmx?disco" />
-    <MetadataFile FileName="FEAE.wsdl" MetadataType="Wsdl" ID="76246844-3f88-4df0-8aa5-099aef5778f0" SourceId="1" SourceUrl="http://www.intacomputers.com/Services/FEAE.asmx?wsdl" />
+    <MetadataFile FileName="FEAE.disco" MetadataType="Disco" ID="804e56f6-c67f-4034-a971-427997858d56" SourceId="1" SourceUrl="http://www.intacomputers.com/Services/FEAE.asmx?disco" />
+    <MetadataFile FileName="FEAE.wsdl" MetadataType="Wsdl" ID="543a867b-4531-42ab-b77d-01db28254d96" SourceId="1" SourceUrl="http://www.intacomputers.com/Services/FEAE.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
