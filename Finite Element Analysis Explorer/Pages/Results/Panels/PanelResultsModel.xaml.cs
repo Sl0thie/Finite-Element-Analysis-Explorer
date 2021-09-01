@@ -308,7 +308,8 @@
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
-            Results.Current.ShowReport();
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(Report));
         }
 
         #endregion

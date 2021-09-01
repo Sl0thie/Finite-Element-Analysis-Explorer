@@ -215,7 +215,7 @@
     <Compile Include="Pages\Help\Panels\PanelHelp.xaml.cs">
       <DependentUpon>PanelHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Results\Panels\PanelReport.xaml.cs">
+    <Compile Include="Pages\Report\Panels\PanelReport.xaml.cs">
       <DependentUpon>PanelReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Results\Panels\PanelResultsModel.xaml.cs">
@@ -263,6 +263,12 @@
     <Compile Include="Others\DoubleMatrix.cs" />
     <Compile Include="Controls\PopupMemberLoads.xaml.cs">
       <DependentUpon>PopupMemberLoads.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Report\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Report\ReportDisplay.xaml.cs">
+      <DependentUpon>ReportDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Solvers\DoubleLUP\SolverDoubleLUP.cs" />
     <Compile Include="Solvers\ISolver.cs" />
@@ -342,6 +348,7 @@
     <Compile Include="Controls\TextInput.xaml.cs">
       <DependentUpon>TextInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Solvers\ReportBasic.cs" />
     <Compile Include="Solvers\SolverFunctions.cs" />
     <Compile Include="Others\WService.cs" />
   </ItemGroup>
@@ -521,7 +528,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Results\Panels\PanelReport.xaml">
+    <Page Include="Pages\Report\Panels\PanelReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -649,6 +656,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Report\Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Report\ReportDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -662,7 +677,6 @@
   <ItemGroup>
     <Folder Include="Admin\" />
     <Folder Include="Model\Construction\Elements\" />
-    <Folder Include="Pages\Report\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

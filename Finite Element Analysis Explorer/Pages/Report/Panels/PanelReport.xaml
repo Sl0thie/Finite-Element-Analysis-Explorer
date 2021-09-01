@@ -22,25 +22,31 @@
         <Grid x:Name="Headers" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Button x:Name="Button_Save" Grid.Column="0" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White" Width="32" Height="32" Visibility="Visible" Click="Button_Save_Click">
-
-                <SymbolIcon Symbol="Back" Foreground="White" Width="32" Height="32"/>
+                <SymbolIcon Symbol="Save" Foreground="White" Width="32" Height="32"/>
+                <ToolTipService.ToolTip>Export the report to a file. This file is not updated once the report has been exported.</ToolTipService.ToolTip>
             </Button>
 
+            <Button x:Name="Button_Report"  Grid.Column="1" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Visible" Click="Button_Report_Click" >
+                <SymbolIcon Symbol="Back" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
+                <ToolTipService.ToolTip>Return to the Results display.</ToolTipService.ToolTip>
+            </Button>
+            
             <Button x:Name="Button_Solve"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
                 <SymbolIcon Symbol="Sync" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>
+            
             <Button x:Name="Button_Construction"  Grid.Column="4" Grid.Row="0" Padding="0" BorderThickness="0" Margin="4,4,4,4" Background="Transparent" Foreground="White"  Width="32" Height="32" Visibility="Collapsed" >
                 <SymbolIcon Symbol="Edit" Foreground="White" Width="32" Height="32" Margin="0,0,0,0"/>
             </Button>

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using MathNet.Numerics.LinearAlgebra;
     using Windows.UI;
     using Windows.UI.Core;
@@ -1282,6 +1283,41 @@
                     Model.TotalCost += member.Value.MemberCost;
                     Model.MaterialCost += member.Value.MaterialCost;
                     Model.NodeCost += member.Value.NodeCost;
+                }
+            }
+            catch (Exception ex)
+            {
+                hasWarning = true;
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 3);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 3);
+                WService.ReportException(ex);
+            }
+
+            AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+        }
+
+        /// <summary>
+        /// Checks to see if the user wants a report generated.
+        /// </summary>
+        internal static async void CreateReportAsync()
+        {
+            Model.IsReportBasic = false;
+            Stopwatch taskTimer = new Stopwatch();
+            taskTimer.Start();
+            AddMessage(mainTimer.ElapsedMilliseconds, -1, "Generate Report.", 0);
+
+            try
+            {
+                if (Options.GenerateReport)
+                {
+                    ReportBasic report = new ReportBasic();
+                    await report.CreateReportAsync();
+                }
+                else
+                {
+                    ReportBasic report = new ReportBasic();
+                    await report.CreateReportAsync();
+                    AddMessage(mainTimer.ElapsedMilliseconds, -1, "Report not required.", 0);
                 }
             }
             catch (Exception ex)
