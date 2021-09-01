@@ -231,6 +231,12 @@
 
         #endregion
 
+        #region Reports
+
+        public static bool IsReportBasic { get; set; }
+
+        #endregion
+
         #endregion
 
         #region Methods

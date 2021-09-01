@@ -92,6 +92,7 @@
             SolverFunctions.CalculateMaterials();
             SolverFunctions.CalculateLabour();
             SolverFunctions.CalculateCost();
+            SolverFunctions.CreateReportAsync();
             SolverFunctions.DisplayEndMessages();
         }
     }

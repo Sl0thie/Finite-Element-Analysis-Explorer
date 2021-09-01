@@ -149,7 +149,8 @@
         private decimal e;
 
         /// <summary>
-        /// Gets or sets the E.
+        /// Gets or sets the E. Young’s modulus/Modulus of elasticity.
+        /// https://en.wikipedia.org/wiki/Young%27s_modulus
         /// </summary>
         internal decimal E
         {
@@ -160,7 +161,8 @@
         private decimal i;
 
         /// <summary>
-        /// Gets or sets the I.
+        /// Gets or sets the I. Second moment of area.
+        /// https://en.wikipedia.org/wiki/Second_moment_of_area
         /// </summary>
         internal decimal I
         {
@@ -183,6 +185,7 @@
 
         /// <summary>
         /// Gets or sets the density.
+        /// https://en.wikipedia.org/wiki/Density
         /// </summary>
         internal decimal Density
         {

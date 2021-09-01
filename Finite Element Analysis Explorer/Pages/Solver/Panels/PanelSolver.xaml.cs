@@ -28,6 +28,7 @@
             ComboBox_Solver.SelectedIndex = Options.CurrentSolver;
             CheckBox_AutoStart.IsChecked = Options.AutoStartSolver;
             CheckBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
+            CheckBox_GenerateReport.IsChecked = Options.GenerateReport;
         }
 
         /// <summary>
@@ -76,6 +77,16 @@
         private void CheckBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.AutoFinishSolver = false;
+        }
+
+        private void CheckBox_GenerateReport_Checked(object sender, RoutedEventArgs e)
+        {
+            Options.GenerateReport = true;
+        }
+
+        private void CheckBox_GenerateReport_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Options.GenerateReport = false;
         }
 
         #region Common Menus

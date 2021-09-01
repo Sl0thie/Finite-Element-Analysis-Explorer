@@ -24,6 +24,7 @@
             checkBox_AutoStart.IsChecked = Options.AutoStartSolver;
             checkBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
             comboBox_Solver.SelectedIndex = Options.CurrentSolver;
+            checkBox_GenerateReport.IsChecked = Options.GenerateReport;
         }
 
         private void CheckBox_AutoStart_Checked(object sender, RoutedEventArgs e)
@@ -44,6 +45,16 @@
         private void CheckBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
         {
             Options.AutoFinishSolver = false;
+        }
+
+        private void CheckBox_GenerateReport_Checked(object sender, RoutedEventArgs e)
+        {
+            Options.GenerateReport = true;
+        }
+
+        private void CheckBox_GenerateReport_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Options.GenerateReport = false;
         }
 
         private void ComboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -155,6 +166,5 @@
         #endregion
 
         #endregion
-
     }
 }

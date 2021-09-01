@@ -1,5 +1,6 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System.Diagnostics;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -323,11 +324,12 @@
 
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(Report));
         }
 
         #endregion
 
         #endregion
-
     }
 }

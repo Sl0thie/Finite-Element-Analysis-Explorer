@@ -919,6 +919,24 @@
             }
         }
 
+        private static bool generateReport = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to generate a report on success.
+        /// </summary>
+        internal static bool GenerateReport
+        {
+            get
+            {
+                return generateReport;
+            }
+
+            set
+            {
+                generateReport = value;
+            }
+        }
+
         private static int currentSolver = 0;
 
         /// <summary>
@@ -991,6 +1009,8 @@
                 autoStartSolver = true;
                 FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
+                FileManager.LocalSettings.Values["GenerateReport"] = false;
+                generateReport = false;
                 currentSolver = 0;
                 FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
                 FileManager.LocalSettings.Values["LockNumericalInput"] = false;
@@ -1731,6 +1751,17 @@
             {
                 FileManager.LocalSettings.Values["AutoFinishSolver"] = true;
                 autoFinishSolver = true;
+                WService.ReportException(ex);
+            }
+
+            try
+            {
+                generateReport = (bool)FileManager.LocalSettings.Values["GenerateReport"];
+            }
+            catch (Exception ex)
+            {
+                FileManager.LocalSettings.Values["GenerateReport"] = false;
+                generateReport = false;
                 WService.ReportException(ex);
             }
 
@@ -3140,6 +3171,7 @@
             FileManager.LocalSettings.Values["MemberDisplay"] = (int)memberDisplay;
             FileManager.LocalSettings.Values["AutoStartSolver"] = (bool)autoStartSolver;
             FileManager.LocalSettings.Values["AutoFinishSolver"] = (bool)autoFinishSolver;
+            FileManager.LocalSettings.Values["GenerateReport"] = (bool)generateReport;
             FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
             FileManager.LocalSettings.Values["LockNumericalInput"] = lockNumericalInput;
             FileManager.LocalSettings.Values["LoadLastFileOnStartup"] = loadLastFileOnStartup;
