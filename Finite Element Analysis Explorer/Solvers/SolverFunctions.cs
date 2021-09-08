@@ -203,7 +203,7 @@
         /// <summary>
         /// Assigns code numbers to degrees or freedoms on nodes.
         /// </summary>
-        internal static void AssignCodeNumbersToDegreesOfFreedom()
+        internal static bool AssignCodeNumbersToDegreesOfFreedom()
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
@@ -255,6 +255,17 @@
                         restrainedDOF++;
                     }
                 }
+
+                if(restrainedDOF <= 2)
+                {
+                    hasErrors = true;
+                    AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                    AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    The Model requires at least three retrained degrees of freedom.", 2);
+                    AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + unrestrainedDOF + ".", 1);
+                    AddMessage(-1, -1, "    Total restrained degrees of freedom " + restrainedDOF + ".", 1);
+                    AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -262,11 +273,13 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
+                return false;
             }
 
             AddMessage(-1, -1, "    Total unrestrained degrees of freedom " + unrestrainedDOF + ".", 1);
             AddMessage(-1, -1, "    Total restrained degrees of freedom " + restrainedDOF + ".", 1);
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            return true;
         }
 
         /// <summary>
@@ -520,6 +533,8 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
             }
             catch (Exception ex)
             {
@@ -528,8 +543,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-
-            AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
+            
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -540,11 +554,21 @@
         /// <summary>
         /// Assembles the stiffness matrix.
         /// </summary>
-        internal static void AssembleStiffnessMatrix()
+        internal static bool AssembleStiffnessMatrix()
         {
             Stopwatch taskTimer = new Stopwatch();
             taskTimer.Start();
             AddMessage(mainTimer.ElapsedMilliseconds, -1, "Assembling global stiffness matrix. {K}", 0);
+
+            // Check if model contains any nodes first.
+            if (Model.Nodes.Count == 0)
+            {
+                hasErrors = true;
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Model has no Nodes. Return to Construction phase and complete the Model before solving the Model.", 2);
+                AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+                return false;
+            }
 
             try
             {
@@ -573,6 +597,9 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
+                AddMessage(-1, -1, "    Total number of elements within matrix is " + (totalDOF * totalDOF).ToString("#,###") + ".", 1);
             }
             catch (Exception ex)
             {
@@ -580,11 +607,11 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
+                return false;
             }
-
-            AddMessage(-1, -1, "    Matrix size is " + totalDOF.ToString("#,###") + " x " + totalDOF.ToString("#,###") + ".", 1);
-            AddMessage(-1, -1, "    Total number of elements within matrix is " + (totalDOF * totalDOF).ToString("#,###") + ".", 1);
+            
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
+            return true;
         }
 
         /// <summary>
@@ -696,6 +723,9 @@
             {
                 du = k11.Inverse() * qk;
                 ddu = DoubleMatrix.SystemSolve(sdk11, dqk);
+                AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
+                AddMessage(-1, -1, "    Qk " + qk.ColumnCount + " " + qk.RowCount, 1);
+                AddMessage(-1, -1, "    K11 " + k11.ColumnCount + " " + k11.RowCount, 1);
             }
             catch (Exception ex)
             {
@@ -704,10 +734,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-
-            AddMessage(-1, -1, "    Du " + du.ColumnCount + " " + du.RowCount, 1);
-            AddMessage(-1, -1, "    Qk " + qk.ColumnCount + " " + qk.RowCount, 1);
-            AddMessage(-1, -1, "    K11 " + k11.ColumnCount + " " + k11.RowCount, 1);
+            
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -773,6 +800,8 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
@@ -781,8 +810,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-
-            AddMessage(-1, -1, "    [Qk] vector length " + qk.RowCount.ToString("#,###"), 1);
+            
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -864,6 +892,8 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
@@ -872,8 +902,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-
-            AddMessage(-1, -1, "    [Dk] vector length " + dk.RowCount.ToString("#,###"), 1);
+            
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -908,6 +937,8 @@
                         }
                     }
                 }
+
+                AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
             }
             catch (Exception ex)
             {
@@ -917,7 +948,6 @@
                 WService.ReportException(ex);
             }
 
-            AddMessage(-1, -1, "    [Du] vector length " + du.RowCount.ToString("#,###"), 1);
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 

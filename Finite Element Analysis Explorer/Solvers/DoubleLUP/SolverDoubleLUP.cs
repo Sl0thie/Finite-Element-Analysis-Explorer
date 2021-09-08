@@ -71,9 +71,19 @@
             SolverFunctions.ResetPropertiesForSolver();
             SolverFunctions.ShrinkModel();
             SolverFunctions.SaveFile();
-            SolverFunctions.AssignCodeNumbersToDegreesOfFreedom();
+
+            if (!SolverFunctions.AssignCodeNumbersToDegreesOfFreedom())
+            {
+                return;
+            }
+
             SolverFunctions.CreateSuperpositionValuesFromSegmentsToNodes();
-            SolverFunctions.AssembleStiffnessMatrix();
+
+            if(!SolverFunctions.AssembleStiffnessMatrix())
+            {
+                return;
+            }
+
             SolverFunctions.AssembleKMatrices();
             SolverFunctions.GetQkFromSubNodes();
             SolverFunctions.GetQuFromSubNodes();

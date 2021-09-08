@@ -1,5 +1,6 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
     using System.Diagnostics;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
@@ -113,10 +114,19 @@
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            Options.SaveOptions();
-            FileManager.SaveSectionsAsync();
-            FileManager.SaveLastFile();
-            WService.ReportSession();
+
+            try
+            {
+                Options.SaveOptions();
+                FileManager.SaveSectionsAsync();
+                FileManager.SaveLastFile();
+                WService.ReportSession();
+            }
+            catch (Exception ex)
+            {
+                WService.ReportException(ex);
+            }
+            
             deferral.Complete();
         }
     }
