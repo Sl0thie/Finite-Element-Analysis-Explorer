@@ -150,7 +150,16 @@
     <Content Include="Assets\LcdD.ttf" />
     <Content Include="Assets\HANDGOTL.ttf" />
     <None Include="Connected Services\FEAE\FEAE.wsdl" />
+    <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportError2Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportSession3Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Response.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />

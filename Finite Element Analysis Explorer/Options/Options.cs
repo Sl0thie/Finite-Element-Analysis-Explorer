@@ -15,6 +15,12 @@
         /// </summary>
         internal static bool FirstRun { get; set; } = true;
 
+        #region Id
+
+        internal static string Id { get; set; }
+
+        #endregion
+
         #region Camera
 
         /// <summary>
@@ -969,6 +975,9 @@
 
             if (FirstRun)
             {
+                Id = Guid.NewGuid().ToString();
+                FileManager.LocalSettings.Values["Id"] = Id;
+
                 FileManager.LocalSettings.Values["UnitAngle"] = (int)AngleType.Degrees;
                 angle = AngleType.Degrees;
                 FileManager.LocalSettings.Values["UnitArea"] = (int)AreaType.SquareMetre;
@@ -1536,6 +1545,12 @@
                 FileManager.LocalSettings.Values["SelectGridSize"] = 1f;
                 SelectGridSize = 1f;
             }
+
+            if(FileManager.LocalSettings.Values["Id"] is object)
+            {
+                Id = (string)FileManager.LocalSettings.Values["Id"];
+            }
+
 
             if (FileManager.LocalSettings.Values["UnitAngle"] is object)
             {
@@ -2898,6 +2913,8 @@
         internal static void SaveOptions()
         {
             FileManager.LocalSettings.Values["FirstRun"] = (bool)FirstRun;
+
+            FileManager.LocalSettings.Values["Id"] = (string)Id;
 
             FileManager.LocalSettings.Values["CameraZoomTrim"] = (float)CameraZoomTrim;
             FileManager.LocalSettings.Values["SelectGridSize"] = (float)SelectGridSize;

@@ -55,6 +55,10 @@
             }
         }
 
+        /// <summary>
+        /// Shows the value on the control display.
+        /// </summary>
+        /// <param name="valueToShow"></param>
         private void ShowValue(decimal valueToShow)
         {
             newValue = valueToShow;
@@ -88,14 +92,11 @@
             TextBlock_ExpTen.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
             TextBlock_ExpOne.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 148, 255));
 
+            // If the value is less than zero display the negative sign.
             if (valueToShow < 0)
             {
                 TextBlock_Sign.Text = "-";
                 valueToShow = Math.Abs(valueToShow);
-            }
-            else
-            {
-                // TextBlock_Sign.Visibility = Visibility.Collapsed;
             }
 
             ConvertToEngineeringNotation(valueToShow);

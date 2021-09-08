@@ -21,14 +21,23 @@ namespace Finite_Element_Analysis_Explorer.FEAE {
         [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportError", ReplyAction="*")]
         System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportErrorResponse> ReportErrorAsync(Finite_Element_Analysis_Explorer.FEAE.ReportErrorRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportError2", ReplyAction="*")]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportError2Response> ReportError2Async(Finite_Element_Analysis_Explorer.FEAE.ReportError2Request request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportSession", ReplyAction="*")]
         System.Threading.Tasks.Task ReportSessionAsync(System.DateTime start, System.DateTime finish);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportSession2", ReplyAction="*")]
         System.Threading.Tasks.Task ReportSession2Async(System.DateTime start, System.DateTime finish, bool isDebug);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportSession3", ReplyAction="*")]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSession3Response> ReportSession3Async(Finite_Element_Analysis_Explorer.FEAE.ReportSession3Request request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportSessionStart", ReplyAction="*")]
         System.Threading.Tasks.Task ReportSessionStartAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.intacomputers.com/Services/FEAE/ReportSessionStart2", ReplyAction="*")]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Response> ReportSessionStart2Async(Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Request request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -108,6 +117,221 @@ namespace Finite_Element_Analysis_Explorer.FEAE {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportError2Request {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportError2", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportError2RequestBody Body;
+        
+        public ReportError2Request() {
+        }
+        
+        public ReportError2Request(Finite_Element_Analysis_Explorer.FEAE.ReportError2RequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.intacomputers.com/Services/FEAE/")]
+    public partial class ReportError2RequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int hResult;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string message;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string stackTrace;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string targetSite;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string source;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string Id;
+        
+        public ReportError2RequestBody() {
+        }
+        
+        public ReportError2RequestBody(int hResult, string message, string stackTrace, string targetSite, string source, string Id) {
+            this.hResult = hResult;
+            this.message = message;
+            this.stackTrace = stackTrace;
+            this.targetSite = targetSite;
+            this.source = source;
+            this.Id = Id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportError2Response {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportError2Response", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportError2ResponseBody Body;
+        
+        public ReportError2Response() {
+        }
+        
+        public ReportError2Response(Finite_Element_Analysis_Explorer.FEAE.ReportError2ResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ReportError2ResponseBody {
+        
+        public ReportError2ResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportSession3Request {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportSession3", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportSession3RequestBody Body;
+        
+        public ReportSession3Request() {
+        }
+        
+        public ReportSession3Request(Finite_Element_Analysis_Explorer.FEAE.ReportSession3RequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.intacomputers.com/Services/FEAE/")]
+    public partial class ReportSession3RequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public System.DateTime start;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public System.DateTime finish;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public bool isDebug;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string Id;
+        
+        public ReportSession3RequestBody() {
+        }
+        
+        public ReportSession3RequestBody(System.DateTime start, System.DateTime finish, bool isDebug, string Id) {
+            this.start = start;
+            this.finish = finish;
+            this.isDebug = isDebug;
+            this.Id = Id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportSession3Response {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportSession3Response", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportSession3ResponseBody Body;
+        
+        public ReportSession3Response() {
+        }
+        
+        public ReportSession3Response(Finite_Element_Analysis_Explorer.FEAE.ReportSession3ResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ReportSession3ResponseBody {
+        
+        public ReportSession3ResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportSessionStart2Request {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportSessionStart2", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2RequestBody Body;
+        
+        public ReportSessionStart2Request() {
+        }
+        
+        public ReportSessionStart2Request(Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2RequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://www.intacomputers.com/Services/FEAE/")]
+    public partial class ReportSessionStart2RequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string Id;
+        
+        public ReportSessionStart2RequestBody() {
+        }
+        
+        public ReportSessionStart2RequestBody(string Id) {
+            this.Id = Id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ReportSessionStart2Response {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ReportSessionStart2Response", Namespace="http://www.intacomputers.com/Services/FEAE/", Order=0)]
+        public Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2ResponseBody Body;
+        
+        public ReportSessionStart2Response() {
+        }
+        
+        public ReportSessionStart2Response(Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2ResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ReportSessionStart2ResponseBody {
+        
+        public ReportSessionStart2ResponseBody() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface FEAESoapChannel : Finite_Element_Analysis_Explorer.FEAE.FEAESoap, System.ServiceModel.IClientChannel {
     }
@@ -167,6 +391,23 @@ namespace Finite_Element_Analysis_Explorer.FEAE {
             return ((Finite_Element_Analysis_Explorer.FEAE.FEAESoap)(this)).ReportErrorAsync(inValue);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportError2Response> Finite_Element_Analysis_Explorer.FEAE.FEAESoap.ReportError2Async(Finite_Element_Analysis_Explorer.FEAE.ReportError2Request request) {
+            return base.Channel.ReportError2Async(request);
+        }
+        
+        public System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportError2Response> ReportError2Async(int hResult, string message, string stackTrace, string targetSite, string source, string Id) {
+            Finite_Element_Analysis_Explorer.FEAE.ReportError2Request inValue = new Finite_Element_Analysis_Explorer.FEAE.ReportError2Request();
+            inValue.Body = new Finite_Element_Analysis_Explorer.FEAE.ReportError2RequestBody();
+            inValue.Body.hResult = hResult;
+            inValue.Body.message = message;
+            inValue.Body.stackTrace = stackTrace;
+            inValue.Body.targetSite = targetSite;
+            inValue.Body.source = source;
+            inValue.Body.Id = Id;
+            return ((Finite_Element_Analysis_Explorer.FEAE.FEAESoap)(this)).ReportError2Async(inValue);
+        }
+        
         public System.Threading.Tasks.Task ReportSessionAsync(System.DateTime start, System.DateTime finish) {
             return base.Channel.ReportSessionAsync(start, finish);
         }
@@ -175,8 +416,35 @@ namespace Finite_Element_Analysis_Explorer.FEAE {
             return base.Channel.ReportSession2Async(start, finish, isDebug);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSession3Response> Finite_Element_Analysis_Explorer.FEAE.FEAESoap.ReportSession3Async(Finite_Element_Analysis_Explorer.FEAE.ReportSession3Request request) {
+            return base.Channel.ReportSession3Async(request);
+        }
+        
+        public System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSession3Response> ReportSession3Async(System.DateTime start, System.DateTime finish, bool isDebug, string Id) {
+            Finite_Element_Analysis_Explorer.FEAE.ReportSession3Request inValue = new Finite_Element_Analysis_Explorer.FEAE.ReportSession3Request();
+            inValue.Body = new Finite_Element_Analysis_Explorer.FEAE.ReportSession3RequestBody();
+            inValue.Body.start = start;
+            inValue.Body.finish = finish;
+            inValue.Body.isDebug = isDebug;
+            inValue.Body.Id = Id;
+            return ((Finite_Element_Analysis_Explorer.FEAE.FEAESoap)(this)).ReportSession3Async(inValue);
+        }
+        
         public System.Threading.Tasks.Task ReportSessionStartAsync() {
             return base.Channel.ReportSessionStartAsync();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Response> Finite_Element_Analysis_Explorer.FEAE.FEAESoap.ReportSessionStart2Async(Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Request request) {
+            return base.Channel.ReportSessionStart2Async(request);
+        }
+        
+        public System.Threading.Tasks.Task<Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Response> ReportSessionStart2Async(string Id) {
+            Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Request inValue = new Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Request();
+            inValue.Body = new Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2RequestBody();
+            inValue.Body.Id = Id;
+            return ((Finite_Element_Analysis_Explorer.FEAE.FEAESoap)(this)).ReportSessionStart2Async(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

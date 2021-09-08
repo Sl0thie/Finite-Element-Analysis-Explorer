@@ -21,7 +21,7 @@
 
             try
             {
-                soap.ReportSessionStartAsync();
+                soap.ReportSessionStart2Async(Options.Id);
             }
             catch (Exception ex)
             {
@@ -42,11 +42,11 @@
             {
                 if (Debugger.IsAttached)
                 {
-                    soap.ReportSession2Async(sessionStart, DateTime.UtcNow, true);
+                    soap.ReportSession3Async(sessionStart, DateTime.UtcNow, true, Options.Id);
                 }
                 else
                 {
-                    soap.ReportSession2Async(sessionStart, DateTime.UtcNow, false);
+                    soap.ReportSession3Async(sessionStart, DateTime.UtcNow, false, Options.Id);
                 }  
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@
 
             try
             {
-                soap.ReportErrorAsync(exception.HResult, exception.Message, exception.StackTrace, exception.TargetSite.Name.ToString(), source);
+                soap.ReportError2Async(exception.HResult, exception.Message, exception.StackTrace, exception.TargetSite.Name.ToString(), source, Options.Id);
             }
             catch (Exception ex)
             {

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Diagnostics;
-    using System.Threading.Tasks;
     using MathNet.Numerics.LinearAlgebra;
     using Windows.UI;
     using Windows.UI.Core;
