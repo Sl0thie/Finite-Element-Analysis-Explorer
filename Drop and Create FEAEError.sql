@@ -24,6 +24,7 @@ CREATE TABLE [dbo].[FEAEError](
 	[StackTrace] [nvarchar](max) NULL,
 	[TargetSite] [nvarchar](1024) NULL,
 	[Source] [nvarchar](1024) NULL,
+	[Processed] [int] NOT NULL DEFAULT 0,
  CONSTRAINT [PK_FEAEError] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

@@ -19,6 +19,7 @@ CREATE TABLE [dbo].[FEAESessionStart](
 	[UserHostAddress] [nvarchar](255) NULL,
 	[UserHostName] [nvarchar](255) NULL,
 	[UserAgent] [nvarchar](1024) NULL,
+	[Processed] [int] NOT NULL DEFAULT 0,
  CONSTRAINT [PK_FEAESessionStart] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
