@@ -363,6 +363,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Blue ball.png" />
+    <Content Include="Assets\Nodes\MomentForceAntiClockwise.png" />
+    <Content Include="Assets\Nodes\MomentForceClockwise.png" />
+    <Content Include="Assets\Nodes\MomentReactionAntiClockwise.png" />
+    <Content Include="Assets\Nodes\MomentReactionClockwise.png" />
     <Content Include="Assets\Nodes\NodeFixedBottom.png" />
     <Content Include="Assets\Nodes\NodeFixedBottomBlue.png" />
     <Content Include="Assets\Nodes\NodeFixedLeft.png" />

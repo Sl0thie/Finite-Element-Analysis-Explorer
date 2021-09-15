@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[FEAESession](
 	[UserHostName] [nvarchar](255) NULL,
 	[UserAgent] [nvarchar](1024) NULL,
 	[Processed] [int] NOT NULL DEFAULT 0,
+	[IsDebug] [bit] NOT NULL DEFAULT 0,
  CONSTRAINT [PK_FEAESession] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
