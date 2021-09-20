@@ -424,8 +424,10 @@
         /// </summary>
         internal void UpdateNodalForces()
         {
+            // Check if the node has any loads.
             if (Math.Abs(load.X) + Math.Abs(load.Y) == 0)
             {
+                // If no load then try and remove from the NodesWithLodalLoads collection.
                 if (Model.Nodes.NodesWithNodalLoads.ContainsKey(index))
                 {
                     Node tmpNode;
@@ -434,6 +436,7 @@
             }
             else
             {
+                // Otherwise try and add the node to the NodesWithLodalLoads collection and calculate the properties.
                 forceUnit = Vector2.Normalize(new Vector2(-(float)load.X, -(float)load.Y));
                 forceUnitRight = Vector2.TransformNormal(forceUnit, Matrix3x2.CreateRotation((float)Math.PI / 4));
                 forceUnitLeft = Vector2.TransformNormal(forceUnit, Matrix3x2.CreateRotation(-(float)Math.PI / 4));
@@ -452,6 +455,23 @@
                 UpdateNodeGraphics();
             }
 
+            if (Math.Abs(load.M) == 0)
+            {
+                if (Model.Nodes.NodesWithMomentForces.ContainsKey(index))
+                {
+                    Node tmpNode;
+                    Model.Nodes.NodesWithMomentForces.TryRemove(index, out tmpNode);
+                }
+            }
+            else
+            {
+                if (!Model.Nodes.NodesWithMomentForces.ContainsKey(index))
+                {
+                    Node tmpNode = Model.Nodes.NodesWithMomentForces.GetOrAdd(index, this);
+                }
+            }
+
+            // Also check if the node has any reactions.
             if (Math.Abs(loadReaction.X) + Math.Abs(loadReaction.Y) == 0)
             {
                 if (Model.Nodes.NodesWithReactions.ContainsKey(index))
@@ -471,6 +491,26 @@
                     Node tmpNode = Model.Nodes.NodesWithReactions.GetOrAdd(index, this);
                 }
             }
+
+            if (Math.Abs(loadReaction.M) == 0)
+            {
+                if (Model.Nodes.NodesWithMomentReactions.ContainsKey(index))
+                {
+                    Node tmpNode;
+                    Model.Nodes.NodesWithMomentReactions.TryRemove(index, out tmpNode);
+                }
+            }
+            else
+            {
+                if (!Model.Nodes.NodesWithMomentReactions.ContainsKey(index))
+                {
+                    Node tmpNode = Model.Nodes.NodesWithMomentReactions.GetOrAdd(index, this);
+                }
+            }
+
+            
+
+
         }
 
         /// <summary>

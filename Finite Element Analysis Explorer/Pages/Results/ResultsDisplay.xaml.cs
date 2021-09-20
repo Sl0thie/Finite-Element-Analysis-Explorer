@@ -129,6 +129,11 @@
         private CanvasBitmap bitMapNodeFixedRight;
         private CanvasBitmap bitMapNodeTrackRight;
 
+        private CanvasBitmap bitMapMomentForceAntiClockwise;
+        private CanvasBitmap bitMapMomentForceClockwise;
+        private CanvasBitmap bitMapMomentReactionAntiClockwise;
+        private CanvasBitmap bitMapMomentReactionClockwise;
+
         #endregion
 
         #region Transforms
@@ -231,6 +236,12 @@
             bitMapNodeRollerRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerRight.png");
             bitMapNodeFixedRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedRight.png");
             bitMapNodeTrackRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackRight.png");
+
+            bitMapMomentForceAntiClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentForceAntiClockwise.png");
+            bitMapMomentForceClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentForceClockwise.png");
+            bitMapMomentReactionAntiClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentReactionAntiClockwise.png");
+            bitMapMomentReactionClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentReactionClockwise.png");
+
         }
 
         #endregion
@@ -501,6 +512,50 @@
             catch
             {
             }
+
+            try
+            {
+                if (Options.ShowReactions)
+                {
+                    foreach (var item in Model.Nodes.NodesWithMomentReactions)
+                    {
+                        if(item.Value.LoadReaction.M > 0)
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentReactionClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentReactionAntiClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                if (Options.ShowForce)
+                {
+                    foreach (var item in Model.Nodes.NodesWithMomentForces)
+                    {
+                        if (item.Value.LoadReaction.M > 0)
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentForceClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentForceAntiClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+
 
             try
             {

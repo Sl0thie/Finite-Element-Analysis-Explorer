@@ -31,6 +31,16 @@
         internal ConcurrentDictionary<int, Node> NodesWithReactions { get; set; } = new ConcurrentDictionary<int, Node>();
 
         /// <summary>
+        /// Gets or sets the nodes with moment reactions dictionary.
+        /// </summary>
+        internal ConcurrentDictionary<int, Node> NodesWithMomentReactions { get; set; } = new ConcurrentDictionary<int, Node>();
+
+        /// <summary>
+        /// Gets or sets the nodes with moment forces dictionary.
+        /// </summary>
+        internal ConcurrentDictionary<int, Node> NodesWithMomentForces { get; set; } = new ConcurrentDictionary<int, Node>();
+
+        /// <summary>
         /// Gets or sets the total no of primary nodes.
         /// </summary>
         public int NoOfPrimaryNodes { get; set; }

@@ -104,6 +104,9 @@
         private CanvasBitmap bitMapNodeFixedRight;
         private CanvasBitmap bitMapNodeTrackRight;
 
+        private CanvasBitmap bitMapMomentForceAntiClockwise;
+        private CanvasBitmap bitMapMomentForceClockwise;
+
         #endregion
 
         #region Transforms
@@ -201,6 +204,9 @@
             bitMapNodeRollerRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeRollerRight.png");
             bitMapNodeFixedRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeFixedRight.png");
             bitMapNodeTrackRight = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\NodeTrackRight.png");
+
+            bitMapMomentForceAntiClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentForceAntiClockwise.png");
+            bitMapMomentForceClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentForceClockwise.png");
         }
 
         #endregion
@@ -319,6 +325,27 @@
                     foreach (var nextItem in item.Value.Segments)
                     {
                         args.DrawingSession.DrawLine(nextItem.Value.NearVector, nextItem.Value.FarVector, nextItem.Value.CurrentColor, Camera.Line.Unit * item.Value.Section.LineWeight, item.Value.Section.LineStyle);
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                if (Options.ShowForce)
+                {
+                    foreach (var item in Model.Nodes.NodesWithMomentForces)
+                    {
+                        if (item.Value.LoadReaction.M > 0)
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentForceClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawImage(bitMapMomentForceAntiClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
+                        }
                     }
                 }
             }
