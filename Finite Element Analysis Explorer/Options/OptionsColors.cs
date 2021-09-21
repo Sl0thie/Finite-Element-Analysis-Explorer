@@ -5,107 +5,346 @@
 
     internal class OptionsColors
     {
+        private Color background = Color.FromArgb(255, 0, 12, 24);
+        private Color label = Color.FromArgb(255, 255, 255, 255);
+        private Color force = Color.FromArgb(255, 255, 255, 0);
+        private Color reaction = Color.FromArgb(255, 255, 0, 0);
+        private Color gridNormal = Color.FromArgb(192, 48, 48, 96);
+        private Color gridMinor = Color.FromArgb(192, 48, 48, 48);
+        private Color gridMajor = Color.FromArgb(192, 48, 96, 48);
+        private Color gridMajorFont = Color.FromArgb(255, 48, 48, 156);
+        private Color selectedNode = Color.FromArgb(255, 64, 64, 255);
+        private Color selectedElement = Color.FromArgb(255, 255, 0, 255);
+        private Color shearForceSelected = Color.FromArgb(255, 64, 64, 255);
+        private Color momentForceSelected = Color.FromArgb(255, 0, 255, 0);
+        private Color distributedForceSelected = Color.FromArgb(255, 255, 255, 64);
+        private Color shearForceFont = Color.FromArgb(255, 128, 128, 255);
+        private Color momentForceFont = Color.FromArgb(255, 64, 255, 64);
+        private Color shearForce = Color.FromArgb(128, 0, 0, 255);
+        private Color momentForce = Color.FromArgb(128, 0, 255, 0);
+        private Color distributedForce = Color.FromArgb(128, 255, 255, 0);
+        private string colorToEdit;
+
         /// <summary>
         /// Gets or sets background color.
         /// </summary>
-        internal Color Background { get; set; } = Color.FromArgb(255, 0, 12, 24);
+        internal Color Background
+        {
+            get => background;
+
+            set
+            {
+                background = value;
+                FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)background.A;
+                FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)background.R;
+                FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)background.G;
+                FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)background.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the label color.
         /// </summary>
-        internal Color Label { get; set; } = Color.FromArgb(255, 255, 255, 255);
+        internal Color Label
+        {
+            get => label;
+
+            set
+            {
+                label = value;
+                FileManager.LocalSettings.Values["ColorLabelA"] = (int)label.A;
+                FileManager.LocalSettings.Values["ColorLabelR"] = (int)label.R;
+                FileManager.LocalSettings.Values["ColorLabelG"] = (int)label.G;
+                FileManager.LocalSettings.Values["ColorLabelB"] = (int)label.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the force color.
         /// </summary>
-        internal Color Force { get; set; } = Color.FromArgb(255, 255, 255, 0);
+        internal Color Force
+        {
+            get => force;
+
+            set
+            {
+                force = value;
+                FileManager.LocalSettings.Values["ColorForceA"] = (int)force.A;
+                FileManager.LocalSettings.Values["ColorForceR"] = (int)force.R;
+                FileManager.LocalSettings.Values["ColorForceG"] = (int)force.G;
+                FileManager.LocalSettings.Values["ColorForceB"] = (int)force.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the reaction color.
         /// </summary>
-        internal Color Reaction { get; set; } = Color.FromArgb(255, 255, 0, 0);
+        internal Color Reaction
+        {
+            get => reaction;
+
+            set
+            {
+                reaction = value;
+                FileManager.LocalSettings.Values["ColorReactionA"] = (int)reaction.A;
+                FileManager.LocalSettings.Values["ColorReactionR"] = (int)reaction.R;
+                FileManager.LocalSettings.Values["ColorReactionG"] = (int)reaction.G;
+                FileManager.LocalSettings.Values["ColorReactionB"] = (int)reaction.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the normal grid color.
         /// </summary>
-        internal Color GridNormal { get; set; } = Color.FromArgb(192, 48, 48, 96);
+        internal Color GridNormal
+        {
+            get => gridNormal;
+
+            set
+            {
+                gridNormal = value;
+                FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)gridNormal.A;
+                FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)gridNormal.R;
+                FileManager.LocalSettings.Values["ColorGridNormalG"] = (int)gridNormal.G;
+                FileManager.LocalSettings.Values["ColorGridNormalB"] = (int)gridNormal.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the minor grid color.
         /// </summary>
-        internal Color GridMinor { get; set; } = Color.FromArgb(192, 48, 48, 48);
+        internal Color GridMinor
+        {
+            get => gridMinor;
+
+            set
+            {
+                gridMinor = value;
+                FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)gridMinor.A;
+                FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)gridMinor.R;
+                FileManager.LocalSettings.Values["ColorGridMinorG"] = (int)gridMinor.G;
+                FileManager.LocalSettings.Values["ColorGridMinorB"] = (int)gridMinor.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the major grid color.
         /// </summary>
-        internal Color GridMajor { get; set; } = Color.FromArgb(192, 48, 96, 48);
+        internal Color GridMajor
+        {
+            get => gridMajor;
+
+            set
+            {
+                gridMajor = value;
+                FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)gridMajor.A;
+                FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)gridMajor.R;
+                FileManager.LocalSettings.Values["ColorGridMajorG"] = (int)gridMajor.G;
+                FileManager.LocalSettings.Values["ColorGridMajorB"] = (int)gridMajor.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the major grid font.
         /// </summary>
-        internal Color GridMajorFont { get; set; } = Color.FromArgb(255, 48, 48, 156);
+        internal Color GridMajorFont
+        {
+            get => gridMajorFont;
+
+            set
+            {
+                gridMajorFont = value;
+                FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)gridMajorFont.A;
+                FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)gridMajorFont.R;
+                FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)gridMajorFont.G;
+                FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)gridMajorFont.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected node color.
         /// </summary>
-        internal Color SelectedNode { get; set; } = Color.FromArgb(255, 64, 64, 255);
+        internal Color SelectedNode
+        {
+            get => selectedNode;
+
+            set
+            {
+                selectedNode = value;
+                FileManager.LocalSettings.Values["ColorSelectedNodeA"] = (int)selectedNode.A;
+                FileManager.LocalSettings.Values["ColorSelectedNodeR"] = (int)selectedNode.R;
+                FileManager.LocalSettings.Values["ColorSelectedNodeG"] = (int)selectedNode.G;
+                FileManager.LocalSettings.Values["ColorSelectedNodeB"] = (int)selectedNode.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected element color.
         /// </summary>
-        internal Color SelectedElement { get; set; } = Color.FromArgb(255, 255, 0, 255);
+        internal Color SelectedElement
+        {
+            get => selectedElement;
+
+            set
+            {
+                selectedElement = value;
+                FileManager.LocalSettings.Values["ColorSelectedElementA"] = (int)selectedElement.A;
+                FileManager.LocalSettings.Values["ColorSelectedElementR"] = (int)selectedElement.R;
+                FileManager.LocalSettings.Values["ColorSelectedElementG"] = (int)selectedElement.G;
+                FileManager.LocalSettings.Values["ColorSelectedElementB"] = (int)selectedElement.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected shear force color.
         /// </summary>
-        internal Color ShearForceSelected { get; set; } = Color.FromArgb(255, 64, 64, 255);
+        internal Color ShearForceSelected
+        {
+            get => shearForceSelected;
+
+            set
+            {
+                shearForceSelected = value;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedA"] = (int)shearForceSelected.A;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedR"] = (int)shearForceSelected.R;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedG"] = (int)shearForceSelected.G;
+                FileManager.LocalSettings.Values["ColorShearForceSelectedB"] = (int)shearForceSelected.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected moment force color.
         /// </summary>
-        internal Color MomentForceSelected { get; set; } = Color.FromArgb(255, 0, 255, 0);
+        internal Color MomentForceSelected
+        {
+            get => momentForceSelected;
+
+            set
+            {
+                momentForceSelected = value;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedA"] = (int)momentForceSelected.A;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedR"] = (int)momentForceSelected.R;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedG"] = (int)momentForceSelected.G;
+                FileManager.LocalSettings.Values["ColorMomentForceSelectedB"] = (int)momentForceSelected.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected distributed force color.
         /// </summary>
-        internal Color DistributedForceSelected { get; set; } = Color.FromArgb(255, 255, 255, 64);
+        internal Color DistributedForceSelected
+        {
+            get => distributedForceSelected;
+
+            set
+            {
+                distributedForceSelected = value;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"] = (int)distributedForceSelected.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"] = (int)distributedForceSelected.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"] = (int)distributedForceSelected.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"] = (int)distributedForceSelected.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the shear force font.
         /// </summary>
-        internal Color ShearForceFont { get; set; } = Color.FromArgb(255, 128, 128, 255);
+        internal Color ShearForceFont
+        {
+            get => shearForceFont;
+
+            set
+            {
+                shearForceFont = value;
+                FileManager.LocalSettings.Values["ColorShearForceFontA"] = (int)shearForceFont.A;
+                FileManager.LocalSettings.Values["ColorShearForceFontR"] = (int)shearForceFont.R;
+                FileManager.LocalSettings.Values["ColorShearForceFontG"] = (int)shearForceFont.G;
+                FileManager.LocalSettings.Values["ColorShearForceFontB"] = (int)shearForceFont.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the moment force font.
         /// </summary>
-        internal Color MomentForceFont { get; set; } = Color.FromArgb(255, 64, 255, 64);
+        internal Color MomentForceFont
+        {
+            get => momentForceFont;
+
+            set
+            {
+                momentForceFont = value;
+                FileManager.LocalSettings.Values["ColorMomentForceFontA"] = (int)momentForceFont.A;
+                FileManager.LocalSettings.Values["ColorMomentForceFontR"] = (int)momentForceFont.R;
+                FileManager.LocalSettings.Values["ColorMomentForceFontG"] = (int)momentForceFont.G;
+                FileManager.LocalSettings.Values["ColorMomentForceFontB"] = (int)momentForceFont.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the shear force color.
         /// </summary>
-        internal Color ShearForce { get; set; } = Color.FromArgb(128, 0, 0, 255);
+        internal Color ShearForce
+        {
+            get => shearForce;
+
+            set
+            {
+                shearForce = value;
+                FileManager.LocalSettings.Values["ColorShearForceA"] = (int)shearForce.A;
+                FileManager.LocalSettings.Values["ColorShearForceR"] = (int)shearForce.R;
+                FileManager.LocalSettings.Values["ColorShearForceG"] = (int)shearForce.G;
+                FileManager.LocalSettings.Values["ColorShearForceB"] = (int)shearForce.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the moment force color.
         /// </summary>
-        internal Color MomentForce { get; set; } = Color.FromArgb(128, 0, 255, 0);
+        internal Color MomentForce
+        {
+            get => momentForce;
+
+            set
+            {
+                momentForce = value;
+                FileManager.LocalSettings.Values["ColorMomentForceA"] = (int)momentForce.A;
+                FileManager.LocalSettings.Values["ColorMomentForceR"] = (int)momentForce.R;
+                FileManager.LocalSettings.Values["ColorMomentForceG"] = (int)momentForce.G;
+                FileManager.LocalSettings.Values["ColorMomentForceB"] = (int)momentForce.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the distributed force color.
         /// </summary>
-        internal Color DistributedForce { get; set; } = Color.FromArgb(128, 255, 255, 0);
+        internal Color DistributedForce
+        {
+            get => distributedForce;
+
+            set
+            {
+                distributedForce = value;
+                FileManager.LocalSettings.Values["ColorDistributedForceA"] = (int)distributedForce.A;
+                FileManager.LocalSettings.Values["ColorDistributedForceR"] = (int)distributedForce.R;
+                FileManager.LocalSettings.Values["ColorDistributedForceG"] = (int)distributedForce.G;
+                FileManager.LocalSettings.Values["ColorDistributedForceB"] = (int)distributedForce.B;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the color to edit.
         /// </summary>
-        internal string ColorToEdit { get; set; }
-
-        internal OptionsColors()
+        internal string ColorToEdit
         {
-            Load();
+            get => colorToEdit;
+
+            set
+            {
+                colorToEdit = value;
+            }
         }
 
-        private void Load()
+        internal OptionsColors()
         {
             try
             {
@@ -344,99 +583,6 @@
             {
                 WService.ReportException(ex);
             }
-        }
-
-        internal void Save()
-        {
-            FileManager.LocalSettings.Values["ColorBackgroundA"] = (int)Background.A;
-            FileManager.LocalSettings.Values["ColorBackgroundR"] = (int)Background.R;
-            FileManager.LocalSettings.Values["ColorBackgroundG"] = (int)Background.G;
-            FileManager.LocalSettings.Values["ColorBackgroundB"] = (int)Background.B;
-
-            FileManager.LocalSettings.Values["ColorLabelA"] = (int)Label.A;
-            FileManager.LocalSettings.Values["ColorLabelR"] = (int)Label.R;
-            FileManager.LocalSettings.Values["ColorLabelG"] = (int)Label.G;
-            FileManager.LocalSettings.Values["ColorLabelB"] = (int)Label.B;
-
-            FileManager.LocalSettings.Values["ColorForceA"] = (int)Force.A;
-            FileManager.LocalSettings.Values["ColorForceR"] = (int)Force.R;
-            FileManager.LocalSettings.Values["ColorForceG"] = (int)Force.G;
-            FileManager.LocalSettings.Values["ColorForceB"] = (int)Force.B;
-
-            FileManager.LocalSettings.Values["ColorReactionA"] = (int)Reaction.A;
-            FileManager.LocalSettings.Values["ColorReactionR"] = (int)Reaction.R;
-            FileManager.LocalSettings.Values["ColorReactionG"] = (int)Reaction.G;
-            FileManager.LocalSettings.Values["ColorReactionB"] = (int)Reaction.B;
-
-            FileManager.LocalSettings.Values["ColorGridNormalA"] = (int)GridNormal.A;
-            FileManager.LocalSettings.Values["ColorGridNormalR"] = (int)GridNormal.R;
-            FileManager.LocalSettings.Values["ColorGridNormalG"] = (int)GridNormal.G;
-            FileManager.LocalSettings.Values["ColorGridNormalB"] = (int)GridNormal.B;
-
-            FileManager.LocalSettings.Values["ColorGridMinorA"] = (int)GridMinor.A;
-            FileManager.LocalSettings.Values["ColorGridMinorR"] = (int)GridMinor.R;
-            FileManager.LocalSettings.Values["ColorGridMinorG"] = (int)GridMinor.G;
-            FileManager.LocalSettings.Values["ColorGridMinorB"] = (int)GridMinor.B;
-
-            FileManager.LocalSettings.Values["ColorGridMajorA"] = (int)GridMajor.A;
-            FileManager.LocalSettings.Values["ColorGridMajorR"] = (int)GridMajor.R;
-            FileManager.LocalSettings.Values["ColorGridMajorG"] = (int)GridMajor.G;
-            FileManager.LocalSettings.Values["ColorGridMajorB"] = (int)GridMajor.B;
-
-            FileManager.LocalSettings.Values["ColorGridMajorFontA"] = (int)GridMajorFont.A;
-            FileManager.LocalSettings.Values["ColorGridMajorFontR"] = (int)GridMajorFont.R;
-            FileManager.LocalSettings.Values["ColorGridMajorFontG"] = (int)GridMajorFont.G;
-            FileManager.LocalSettings.Values["ColorGridMajorFontB"] = (int)GridMajorFont.B;
-
-            FileManager.LocalSettings.Values["ColorSelectedNodeA"] = (int)SelectedNode.A;
-            FileManager.LocalSettings.Values["ColorSelectedNodeR"] = (int)SelectedNode.R;
-            FileManager.LocalSettings.Values["ColorSelectedNodeG"] = (int)SelectedNode.G;
-            FileManager.LocalSettings.Values["ColorSelectedNodeB"] = (int)SelectedNode.B;
-
-            FileManager.LocalSettings.Values["ColorSelectedElementA"] = (int)SelectedElement.A;
-            FileManager.LocalSettings.Values["ColorSelectedElementR"] = (int)SelectedElement.R;
-            FileManager.LocalSettings.Values["ColorSelectedElementG"] = (int)SelectedElement.G;
-            FileManager.LocalSettings.Values["ColorSelectedElementB"] = (int)SelectedElement.B;
-
-            FileManager.LocalSettings.Values["ColorShearForceSelectedA"] = (int)ShearForceSelected.A;
-            FileManager.LocalSettings.Values["ColorShearForceSelectedR"] = (int)ShearForceSelected.R;
-            FileManager.LocalSettings.Values["ColorShearForceSelectedG"] = (int)ShearForceSelected.G;
-            FileManager.LocalSettings.Values["ColorShearForceSelectedB"] = (int)ShearForceSelected.B;
-
-            FileManager.LocalSettings.Values["ColorMomentForceSelectedA"] = (int)MomentForceSelected.A;
-            FileManager.LocalSettings.Values["ColorMomentForceSelectedR"] = (int)MomentForceSelected.R;
-            FileManager.LocalSettings.Values["ColorMomentForceSelectedG"] = (int)MomentForceSelected.G;
-            FileManager.LocalSettings.Values["ColorMomentForceSelectedB"] = (int)MomentForceSelected.B;
-
-            FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"] = (int)DistributedForceSelected.A;
-            FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"] = (int)DistributedForceSelected.R;
-            FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"] = (int)DistributedForceSelected.G;
-            FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"] = (int)DistributedForceSelected.B;
-
-            FileManager.LocalSettings.Values["ColorShearForceFontA"] = (int)ShearForceFont.A;
-            FileManager.LocalSettings.Values["ColorShearForceFontR"] = (int)ShearForceFont.R;
-            FileManager.LocalSettings.Values["ColorShearForceFontG"] = (int)ShearForceFont.G;
-            FileManager.LocalSettings.Values["ColorShearForceFontB"] = (int)ShearForceFont.B;
-
-            FileManager.LocalSettings.Values["ColorMomentForceFontA"] = (int)MomentForceFont.A;
-            FileManager.LocalSettings.Values["ColorMomentForceFontR"] = (int)MomentForceFont.R;
-            FileManager.LocalSettings.Values["ColorMomentForceFontG"] = (int)MomentForceFont.G;
-            FileManager.LocalSettings.Values["ColorMomentForceFontB"] = (int)MomentForceFont.B;
-
-            FileManager.LocalSettings.Values["ColorShearForceA"] = (int)ShearForce.A;
-            FileManager.LocalSettings.Values["ColorShearForceR"] = (int)ShearForce.R;
-            FileManager.LocalSettings.Values["ColorShearForceG"] = (int)ShearForce.G;
-            FileManager.LocalSettings.Values["ColorShearForceB"] = (int)ShearForce.B;
-
-            FileManager.LocalSettings.Values["ColorMomentForceA"] = (int)MomentForce.A;
-            FileManager.LocalSettings.Values["ColorMomentForceR"] = (int)MomentForce.R;
-            FileManager.LocalSettings.Values["ColorMomentForceG"] = (int)MomentForce.G;
-            FileManager.LocalSettings.Values["ColorMomentForceB"] = (int)MomentForce.B;
-
-            FileManager.LocalSettings.Values["ColorDistributedForceA"] = (int)DistributedForce.A;
-            FileManager.LocalSettings.Values["ColorDistributedForceR"] = (int)DistributedForce.R;
-            FileManager.LocalSettings.Values["ColorDistributedForceG"] = (int)DistributedForce.G;
-            FileManager.LocalSettings.Values["ColorDistributedForceB"] = (int)DistributedForce.B;
         }
     }
 }

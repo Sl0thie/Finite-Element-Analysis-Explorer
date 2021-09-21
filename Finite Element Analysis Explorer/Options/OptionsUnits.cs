@@ -16,6 +16,9 @@
         private MassType mass = MassType.Kilogram;
         private AngleType angle = AngleType.Degrees;
 
+        /// <summary>
+        /// Gets or sets the type of angle unit.
+        /// </summary>
         internal AngleType Angle
         {
             get => angle;
@@ -27,6 +30,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of mass unit.
+        /// </summary>
         internal MassType Mass
         {
             get => mass;
@@ -39,7 +45,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the length type.
+        /// Gets or sets the type of length unit.
         /// </summary>
         internal LengthType Length
         {
@@ -84,6 +90,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of volume unit.
+        /// </summary>
         internal VolumeType Volume
         {
             get => volume;
@@ -95,6 +104,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of moment unit.
+        /// </summary>
         internal MomentType Moment
         {
             get => moment;
@@ -106,6 +118,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of pressure unit.
+        /// </summary>
         internal PressureType Pressure
         {
             get => pressure;
@@ -117,6 +132,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of moment of inertia unit.
+        /// </summary>
         internal MomentOfInertiaType MomentOfInertia
         {
             get => momentOfInertia;
@@ -128,6 +146,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of area unit.
+        /// </summary>
         internal AreaType Area
         {
             get => area;
@@ -139,6 +160,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of density unit.
+        /// </summary>
         internal DensityType Density
         {
             get => density;
@@ -150,6 +174,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of force unit.
+        /// </summary>
         internal ForceType Force
         {
             get => force;
@@ -161,6 +188,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the type of force per length units.
+        /// </summary>
         internal ForcePerLengthType ForcePerLength
         {
             get => forcePerLength;

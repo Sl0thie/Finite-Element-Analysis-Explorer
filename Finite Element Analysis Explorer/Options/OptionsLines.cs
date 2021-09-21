@@ -5,145 +5,510 @@
 
     internal class OptionsLines
     {
+        private float gridNormalWeight = 1f;
+        private CanvasStrokeStyle gridNormal = new CanvasStrokeStyle();
+        private float gridMinorWeight = 1f;
+        private CanvasStrokeStyle gridMinor = new CanvasStrokeStyle();
+        private float gridMajorWeight = 1f;
+        private CanvasStrokeStyle gridMajor = new CanvasStrokeStyle();
+        private float forceWeight = 5f;
+        private CanvasStrokeStyle force = new CanvasStrokeStyle();
+        private float reactionWeight = 5f;
+        private CanvasStrokeStyle reaction = new CanvasStrokeStyle();
+        private float selectedElementWeight = 2.8f;
+        private CanvasStrokeStyle selectedElement = new CanvasStrokeStyle();
+        private float shearForceSelectedWeight = 2.8f;
+        private CanvasStrokeStyle shearForceSelected = new CanvasStrokeStyle();
+        private float momentForceSelectedWeight = 2.8f;
+        private CanvasStrokeStyle momentForceSelected = new CanvasStrokeStyle();
+        private float shearForceFontWeight = 2.8f;
+        private CanvasStrokeStyle shearForceFont = new CanvasStrokeStyle();
+        private float momentForceFontWeight = 2.8f;
+        private CanvasStrokeStyle momentForceFont = new CanvasStrokeStyle();
+        private float shearForceWeight = 1.5f;
+        private CanvasStrokeStyle shearForce = new CanvasStrokeStyle();
+        private float momentForceWeight = 1.5f;
+        private CanvasStrokeStyle momentForce = new CanvasStrokeStyle();
+        private float distributedForceWeight = 1.5f;
+        private CanvasStrokeStyle distributedForce = new CanvasStrokeStyle();
+        private float distributedForceSelectedWeight = 1.8f;
+        private CanvasStrokeStyle distributedForceSelected = new CanvasStrokeStyle();
+
         /// <summary>
         /// Gets or sets the line grid normal weight.
         /// </summary>
-        internal float GridNormalWeight { get; set; } = 1f;
+        internal float GridNormalWeight
+        {
+            get => gridNormalWeight;
+
+            set
+            {
+                gridNormalWeight = value;
+                FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)gridNormalWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line grid normal canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle GridNormal { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle GridNormal
+        {
+            get => gridNormal;
+
+            set
+            {
+                gridNormal = value;
+                FileManager.LocalSettings.Values["LineGridNormalDashCap"] = (int)gridNormal.DashCap;
+                FileManager.LocalSettings.Values["LineGridNormalDashOffset"] = (float)gridNormal.DashOffset;
+                FileManager.LocalSettings.Values["LineGridNormalDashStyle"] = (int)gridNormal.DashStyle;
+                FileManager.LocalSettings.Values["LineGridNormalEndCap"] = (int)gridNormal.EndCap;
+                FileManager.LocalSettings.Values["LineGridNormalLineJoin"] = (int)gridNormal.LineJoin;
+                FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)gridNormal.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)gridNormal.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line grid minor weight.
         /// </summary>
-        internal float GridMinorWeight { get; set; } = 1f;
+        internal float GridMinorWeight
+        {
+            get => gridMinorWeight;
+
+            set
+            {
+                gridMinorWeight = value;
+                FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)gridMinorWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line grid minor canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle GridMinor { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle GridMinor
+        {
+            get => gridMinor;
+
+            set
+            {
+                gridMinor = value;
+                FileManager.LocalSettings.Values["LineGridMinorDashCap"] = (int)gridMinor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMinorDashOffset"] = (float)gridMinor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMinorDashStyle"] = (int)gridMinor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMinorEndCap"] = (int)gridMinor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMinorLineJoin"] = (int)gridMinor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)gridMinor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)gridMinor.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line grid major weight.
         /// </summary>
-        internal float GridMajorWeight { get; set; } = 1f;
+        internal float GridMajorWeight
+        {
+            get => gridMajorWeight;
+
+            set
+            {
+                gridMajorWeight = value;
+                FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)gridMajorWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line grid major canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle GridMajor { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle GridMajor
+        {
+            get => gridMajor;
+
+            set
+            {
+                gridMajor = value;
+                FileManager.LocalSettings.Values["LineGridMajorDashCap"] = (int)gridMajor.DashCap;
+                FileManager.LocalSettings.Values["LineGridMajorDashOffset"] = (float)gridMajor.DashOffset;
+                FileManager.LocalSettings.Values["LineGridMajorDashStyle"] = (int)gridMajor.DashStyle;
+                FileManager.LocalSettings.Values["LineGridMajorEndCap"] = (int)gridMajor.EndCap;
+                FileManager.LocalSettings.Values["LineGridMajorLineJoin"] = (int)gridMajor.LineJoin;
+                FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)gridMajor.MiterLimit;
+                FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)gridMajor.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line force weight.
         /// </summary>
-        internal float ForceWeight { get; set; } = 5f;
+        internal float ForceWeight
+        {
+            get => forceWeight;
+
+            set
+            {
+                forceWeight = value;
+                FileManager.LocalSettings.Values["LineForceWeight"] = (float)forceWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line force canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle Force { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle Force
+        {
+            get => force;
+
+            set
+            {
+                force = value;
+                FileManager.LocalSettings.Values["LineForceDashCap"] = (int)force.DashCap;
+                FileManager.LocalSettings.Values["LineForceDashOffset"] = (float)force.DashOffset;
+                FileManager.LocalSettings.Values["LineForceDashStyle"] = (int)force.DashStyle;
+                FileManager.LocalSettings.Values["LineForceEndCap"] = (int)force.EndCap;
+                FileManager.LocalSettings.Values["LineForceLineJoin"] = (int)force.LineJoin;
+                FileManager.LocalSettings.Values["LineForceMiterLimit"] = (float)force.MiterLimit;
+                FileManager.LocalSettings.Values["LineForceStartCap"] = (int)force.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line reaction weight.
         /// </summary>
-        internal float ReactionWeight { get; set; } = 5f;
+        internal float ReactionWeight
+        {
+            get => reactionWeight;
+
+            set
+            {
+                reactionWeight = value;
+                FileManager.LocalSettings.Values["LineReactionWeight"] = (float)reactionWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line reaction canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle Reaction { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle Reaction
+        {
+            get => reaction;
+
+            set
+            {
+                reaction = value;
+                FileManager.LocalSettings.Values["LineReactionDashCap"] = (int)reaction.DashCap;
+                FileManager.LocalSettings.Values["LineReactionDashOffset"] = (float)reaction.DashOffset;
+                FileManager.LocalSettings.Values["LineReactionDashStyle"] = (int)reaction.DashStyle;
+                FileManager.LocalSettings.Values["LineReactionEndCap"] = (int)reaction.EndCap;
+                FileManager.LocalSettings.Values["LineReactionLineJoin"] = (int)reaction.LineJoin;
+                FileManager.LocalSettings.Values["LineReactionMiterLimit"] = (float)reaction.MiterLimit;
+                FileManager.LocalSettings.Values["LineReactionStartCap"] = (int)reaction.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line selected element weight.
         /// </summary>
-        internal float SelectedElementWeight { get; set; } = 2.8f;
+        internal float SelectedElementWeight
+        {
+            get => selectedElementWeight;
+
+            set
+            {
+                selectedElementWeight = value;
+                FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)selectedElementWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line selected element canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle SelectedElement { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle SelectedElement
+        {
+            get => selectedElement;
+
+            set
+            {
+                selectedElement = value;
+                FileManager.LocalSettings.Values["LineSelectedElementDashCap"] = (int)selectedElement.DashCap;
+                FileManager.LocalSettings.Values["LineSelectedElementDashOffset"] = (float)selectedElement.DashOffset;
+                FileManager.LocalSettings.Values["LineSelectedElementDashStyle"] = (int)selectedElement.DashStyle;
+                FileManager.LocalSettings.Values["LineSelectedElementEndCap"] = (int)selectedElement.EndCap;
+                FileManager.LocalSettings.Values["LineSelectedElementLineJoin"] = (int)selectedElement.LineJoin;
+                FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"] = (float)selectedElement.MiterLimit;
+                FileManager.LocalSettings.Values["LineSelectedElementStartCap"] = (int)selectedElement.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force selected weight.
         /// </summary>
-        internal float ShearForceSelectedWeight { get; set; } = 2.8f;
+        internal float ShearForceSelectedWeight
+        {
+            get => shearForceSelectedWeight;
+
+            set
+            {
+                shearForceSelectedWeight = value;
+                FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)shearForceSelectedWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force selected canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle ShearForceSelected { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle ShearForceSelected
+        {
+            get => shearForceSelected;
+
+            set
+            {
+                shearForceSelected = value;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"] = (int)shearForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"] = (float)shearForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"] = (int)shearForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"] = (int)shearForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"] = (int)shearForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"] = (float)shearForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"] = (int)shearForceSelected.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force selected weight.
         /// </summary>
-        internal float MomentForceSelectedWeight { get; set; } = 2.8f;
+        internal float MomentForceSelectedWeight
+        {
+            get => momentForceSelectedWeight;
+
+            set
+            {
+                momentForceSelectedWeight = value;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)momentForceSelectedWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force selected canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle MomentForceSelected { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle MomentForceSelected
+        {
+            get => momentForceSelected;
+
+            set
+            {
+                momentForceSelected = value;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"] = (int)momentForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"] = (float)momentForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"] = (int)momentForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"] = (int)momentForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"] = (int)momentForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)momentForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"] = (int)momentForceSelected.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force font weight.
         /// </summary>
-        internal float ShearForceFontWeight { get; set; } = 2.8f;
+        internal float ShearForceFontWeight
+        {
+            get => shearForceFontWeight;
+
+            set
+            {
+                shearForceFontWeight = value;
+                FileManager.LocalSettings.Values["LineShearForceFontWeight"] = (float)shearForceFontWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force font canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle ShearForceFont { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle ShearForceFont
+        {
+            get => shearForceFont;
+
+            set
+            {
+                shearForceFont = value;
+                FileManager.LocalSettings.Values["LineShearForceFontDashCap"] = (int)shearForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceFontDashOffset"] = (float)shearForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceFontDashStyle"] = (int)shearForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceFontEndCap"] = (int)shearForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceFontLineJoin"] = (int)shearForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceFontMiterLimit"] = (float)shearForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceFontStartCap"] = (int)shearForceFont.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force font weight.
         /// </summary>
-        internal float MomentForceFontWeight { get; set; } = 2.8f;
+        internal float MomentForceFontWeight
+        {
+            get => momentForceFontWeight;
+
+            set
+            {
+                momentForceFontWeight = value;
+                FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = (float)momentForceFontWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force font canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle MomentForceFont { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle MomentForceFont
+        {
+            get => momentForceFont;
+
+            set
+            {
+                momentForceFont = value;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashCap"] = (int)momentForceFont.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashOffset"] = (float)momentForceFont.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceFontDashStyle"] = (int)momentForceFont.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceFontEndCap"] = (int)momentForceFont.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceFontLineJoin"] = (int)momentForceFont.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceFontMiterLimit"] = (float)momentForceFont.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceFontStartCap"] = (int)momentForceFont.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force weight.
         /// </summary>
-        internal float ShearForceWeight { get; set; } = 1.5f;
+        internal float ShearForceWeight
+        {
+            get => shearForceWeight;
+
+            set
+            {
+                shearForceWeight = value;
+                FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)shearForceWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line shear force canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle ShearForce { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle ShearForce
+        {
+            get => shearForce;
+
+            set
+            {
+                shearForce = value;
+                FileManager.LocalSettings.Values["LineShearForceDashCap"] = (int)shearForce.DashCap;
+                FileManager.LocalSettings.Values["LineShearForceDashOffset"] = (float)shearForce.DashOffset;
+                FileManager.LocalSettings.Values["LineShearForceDashStyle"] = (int)shearForce.DashStyle;
+                FileManager.LocalSettings.Values["LineShearForceEndCap"] = (int)shearForce.EndCap;
+                FileManager.LocalSettings.Values["LineShearForceLineJoin"] = (int)shearForce.LineJoin;
+                FileManager.LocalSettings.Values["LineShearForceMiterLimit"] = (float)shearForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineShearForceStartCap"] = (int)shearForce.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force weight.
         /// </summary>
-        internal float MomentForceWeight { get; set; } = 1.5f;
+        internal float MomentForceWeight
+        {
+            get => momentForceWeight;
+
+            set
+            {
+                momentForceWeight = value;
+                FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)momentForceWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line moment force canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle MomentForce { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle MomentForce
+        {
+            get => momentForce;
+
+            set
+            {
+                momentForce = value;
+                FileManager.LocalSettings.Values["LineMomentForceDashCap"] = (int)momentForce.DashCap;
+                FileManager.LocalSettings.Values["LineMomentForceDashOffset"] = (float)momentForce.DashOffset;
+                FileManager.LocalSettings.Values["LineMomentForceDashStyle"] = (int)momentForce.DashStyle;
+                FileManager.LocalSettings.Values["LineMomentForceEndCap"] = (int)momentForce.EndCap;
+                FileManager.LocalSettings.Values["LineMomentForceLineJoin"] = (int)momentForce.LineJoin;
+                FileManager.LocalSettings.Values["LineMomentForceMiterLimit"] = (float)momentForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineMomentForceStartCap"] = (int)momentForce.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line distributed force weight.
         /// </summary>
-        internal float DistributedForceWeight { get; set; } = 1.5f;
+        internal float DistributedForceWeight
+        {
+            get => distributedForceWeight;
+
+            set
+            {
+                distributedForceWeight = value;
+                FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)distributedForceWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line distributed force canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle DistributedForce { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle DistributedForce
+        {
+            get => distributedForce;
+
+            set
+            {
+                distributedForce = value;
+                FileManager.LocalSettings.Values["LineDistributedForceDashCap"] = (int)distributedForce.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceDashOffset"] = (float)distributedForce.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceDashStyle"] = (int)distributedForce.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceEndCap"] = (int)distributedForce.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceLineJoin"] = (int)distributedForce.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"] = (float)distributedForce.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceStartCap"] = (int)distributedForce.StartCap;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line distributed force selected weight.
         /// </summary>
-        internal float DistributedForceSelectedWeight { get; set; } = 1.8f;
+        internal float DistributedForceSelectedWeight
+        {
+            get => distributedForceSelectedWeight;
+
+            set
+            {
+                distributedForceSelectedWeight = value;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)distributedForceSelectedWeight;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the line distributed force selected canvas stroke style.
         /// </summary>
-        internal CanvasStrokeStyle DistributedForceSelected { get; set; } = new CanvasStrokeStyle();
+        internal CanvasStrokeStyle DistributedForceSelected
+        {
+            get => distributedForceSelected;
+
+            set
+            {
+                distributedForceSelected = value;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"] = (int)distributedForceSelected.DashCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)distributedForceSelected.DashOffset;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)distributedForceSelected.DashStyle;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"] = (int)distributedForceSelected.EndCap;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)distributedForceSelected.LineJoin;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)distributedForceSelected.MiterLimit;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"] = (int)distributedForceSelected.StartCap;
+            }
+        }
 
         internal OptionsLines()
         {
@@ -273,11 +638,6 @@
             DistributedForceSelected.StartCap = CanvasCapStyle.Flat;
             DistributedForceSelectedWeight = 1.5f;
 
-            Load();
-        }
-
-        private void Load()
-        {
             try
             {
                 GridNormal.DashCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalDashCap"];
@@ -413,136 +773,6 @@
             {
                 WService.ReportException(ex);
             }
-        }
-
-        internal void Save()
-        {
-            FileManager.LocalSettings.Values["LineGridNormalDashCap"] = (int)GridNormal.DashCap;
-            FileManager.LocalSettings.Values["LineGridNormalDashOffset"] = (float)GridNormal.DashOffset;
-            FileManager.LocalSettings.Values["LineGridNormalDashStyle"] = (int)GridNormal.DashStyle;
-            FileManager.LocalSettings.Values["LineGridNormalEndCap"] = (int)GridNormal.EndCap;
-            FileManager.LocalSettings.Values["LineGridNormalLineJoin"] = (int)GridNormal.LineJoin;
-            FileManager.LocalSettings.Values["LineGridNormalMiterLimit"] = (float)GridNormal.MiterLimit;
-            FileManager.LocalSettings.Values["LineGridNormalStartCap"] = (int)GridNormal.StartCap;
-            FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)GridNormalWeight;
-
-            FileManager.LocalSettings.Values["LineGridMinorDashCap"] = (int)GridMinor.DashCap;
-            FileManager.LocalSettings.Values["LineGridMinorDashOffset"] = (float)GridMinor.DashOffset;
-            FileManager.LocalSettings.Values["LineGridMinorDashStyle"] = (int)GridMinor.DashStyle;
-            FileManager.LocalSettings.Values["LineGridMinorEndCap"] = (int)GridMinor.EndCap;
-            FileManager.LocalSettings.Values["LineGridMinorLineJoin"] = (int)GridMinor.LineJoin;
-            FileManager.LocalSettings.Values["LineGridMinorMiterLimit"] = (float)GridMinor.MiterLimit;
-            FileManager.LocalSettings.Values["LineGridMinorStartCap"] = (int)GridMinor.StartCap;
-            FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)GridMinorWeight;
-
-            FileManager.LocalSettings.Values["LineGridMajorDashCap"] = (int)GridMajor.DashCap;
-            FileManager.LocalSettings.Values["LineGridMajorDashOffset"] = (float)GridMajor.DashOffset;
-            FileManager.LocalSettings.Values["LineGridMajorDashStyle"] = (int)GridMajor.DashStyle;
-            FileManager.LocalSettings.Values["LineGridMajorEndCap"] = (int)GridMajor.EndCap;
-            FileManager.LocalSettings.Values["LineGridMajorLineJoin"] = (int)GridMajor.LineJoin;
-            FileManager.LocalSettings.Values["LineGridMajorMiterLimit"] = (float)GridMajor.MiterLimit;
-            FileManager.LocalSettings.Values["LineGridMajorStartCap"] = (int)GridMajor.StartCap;
-            FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)GridMajorWeight;
-
-            FileManager.LocalSettings.Values["LineForceDashCap"] = (int)Force.DashCap;
-            FileManager.LocalSettings.Values["LineForceDashOffset"] = (float)Force.DashOffset;
-            FileManager.LocalSettings.Values["LineForceDashStyle"] = (int)Force.DashStyle;
-            FileManager.LocalSettings.Values["LineForceEndCap"] = (int)Force.EndCap;
-            FileManager.LocalSettings.Values["LineForceLineJoin"] = (int)Force.LineJoin;
-            FileManager.LocalSettings.Values["LineForceMiterLimit"] = (float)Force.MiterLimit;
-            FileManager.LocalSettings.Values["LineForceStartCap"] = (int)Force.StartCap;
-            FileManager.LocalSettings.Values["LineForceWeight"] = (float)ForceWeight;
-
-            FileManager.LocalSettings.Values["LineReactionDashCap"] = (int)Reaction.DashCap;
-            FileManager.LocalSettings.Values["LineReactionDashOffset"] = (float)Reaction.DashOffset;
-            FileManager.LocalSettings.Values["LineReactionDashStyle"] = (int)Reaction.DashStyle;
-            FileManager.LocalSettings.Values["LineReactionEndCap"] = (int)Reaction.EndCap;
-            FileManager.LocalSettings.Values["LineReactionLineJoin"] = (int)Reaction.LineJoin;
-            FileManager.LocalSettings.Values["LineReactionMiterLimit"] = (float)Reaction.MiterLimit;
-            FileManager.LocalSettings.Values["LineReactionStartCap"] = (int)Reaction.StartCap;
-            FileManager.LocalSettings.Values["LineReactionWeight"] = (float)ReactionWeight;
-
-            FileManager.LocalSettings.Values["LineSelectedElementDashCap"] = (int)SelectedElement.DashCap;
-            FileManager.LocalSettings.Values["LineSelectedElementDashOffset"] = (float)SelectedElement.DashOffset;
-            FileManager.LocalSettings.Values["LineSelectedElementDashStyle"] = (int)SelectedElement.DashStyle;
-            FileManager.LocalSettings.Values["LineSelectedElementEndCap"] = (int)SelectedElement.EndCap;
-            FileManager.LocalSettings.Values["LineSelectedElementLineJoin"] = (int)SelectedElement.LineJoin;
-            FileManager.LocalSettings.Values["LineSelectedElementMiterLimit"] = (float)SelectedElement.MiterLimit;
-            FileManager.LocalSettings.Values["LineSelectedElementStartCap"] = (int)SelectedElement.StartCap;
-            FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)SelectedElementWeight;
-
-            FileManager.LocalSettings.Values["LineShearForceSelectedDashCap"] = (int)ShearForceSelected.DashCap;
-            FileManager.LocalSettings.Values["LineShearForceSelectedDashOffset"] = (float)ShearForceSelected.DashOffset;
-            FileManager.LocalSettings.Values["LineShearForceSelectedDashStyle"] = (int)ShearForceSelected.DashStyle;
-            FileManager.LocalSettings.Values["LineShearForceSelectedEndCap"] = (int)ShearForceSelected.EndCap;
-            FileManager.LocalSettings.Values["LineShearForceSelectedLineJoin"] = (int)ShearForceSelected.LineJoin;
-            FileManager.LocalSettings.Values["LineShearForceSelectedMiterLimit"] = (float)ShearForceSelected.MiterLimit;
-            FileManager.LocalSettings.Values["LineShearForceSelectedStartCap"] = (int)ShearForceSelected.StartCap;
-            FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)ShearForceSelectedWeight;
-
-            FileManager.LocalSettings.Values["LineMomentForceSelectedDashCap"] = (int)MomentForceSelected.DashCap;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedDashOffset"] = (float)MomentForceSelected.DashOffset;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedDashStyle"] = (int)MomentForceSelected.DashStyle;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedEndCap"] = (int)MomentForceSelected.EndCap;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedLineJoin"] = (int)MomentForceSelected.LineJoin;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedMiterLimit"] = (float)MomentForceSelected.MiterLimit;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedStartCap"] = (int)MomentForceSelected.StartCap;
-            FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)MomentForceSelectedWeight;
-
-            FileManager.LocalSettings.Values["LineShearForceFontDashCap"] = (int)ShearForceFont.DashCap;
-            FileManager.LocalSettings.Values["LineShearForceFontDashOffset"] = (float)ShearForceFont.DashOffset;
-            FileManager.LocalSettings.Values["LineShearForceFontDashStyle"] = (int)ShearForceFont.DashStyle;
-            FileManager.LocalSettings.Values["LineShearForceFontEndCap"] = (int)ShearForceFont.EndCap;
-            FileManager.LocalSettings.Values["LineShearForceFontLineJoin"] = (int)ShearForceFont.LineJoin;
-            FileManager.LocalSettings.Values["LineShearForceFontMiterLimit"] = (float)ShearForceFont.MiterLimit;
-            FileManager.LocalSettings.Values["LineShearForceFontStartCap"] = (int)ShearForceFont.StartCap;
-            FileManager.LocalSettings.Values["LineShearForceFontWeight"] = (float)ShearForceFontWeight;
-
-            FileManager.LocalSettings.Values["LineMomentForceFontDashCap"] = (int)MomentForceFont.DashCap;
-            FileManager.LocalSettings.Values["LineMomentForceFontDashOffset"] = (float)MomentForceFont.DashOffset;
-            FileManager.LocalSettings.Values["LineMomentForceFontDashStyle"] = (int)MomentForceFont.DashStyle;
-            FileManager.LocalSettings.Values["LineMomentForceFontEndCap"] = (int)MomentForceFont.EndCap;
-            FileManager.LocalSettings.Values["LineMomentForceFontLineJoin"] = (int)MomentForceFont.LineJoin;
-            FileManager.LocalSettings.Values["LineMomentForceFontMiterLimit"] = (float)MomentForceFont.MiterLimit;
-            FileManager.LocalSettings.Values["LineMomentForceFontStartCap"] = (int)MomentForceFont.StartCap;
-            FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = (float)MomentForceFontWeight;
-
-            FileManager.LocalSettings.Values["LineShearForceDashCap"] = (int)ShearForce.DashCap;
-            FileManager.LocalSettings.Values["LineShearForceDashOffset"] = (float)ShearForce.DashOffset;
-            FileManager.LocalSettings.Values["LineShearForceDashStyle"] = (int)ShearForce.DashStyle;
-            FileManager.LocalSettings.Values["LineShearForceEndCap"] = (int)ShearForce.EndCap;
-            FileManager.LocalSettings.Values["LineShearForceLineJoin"] = (int)ShearForce.LineJoin;
-            FileManager.LocalSettings.Values["LineShearForceMiterLimit"] = (float)ShearForce.MiterLimit;
-            FileManager.LocalSettings.Values["LineShearForceStartCap"] = (int)ShearForce.StartCap;
-            FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)ShearForceWeight;
-
-            FileManager.LocalSettings.Values["LineMomentForceDashCap"] = (int)MomentForce.DashCap;
-            FileManager.LocalSettings.Values["LineMomentForceDashOffset"] = (float)MomentForce.DashOffset;
-            FileManager.LocalSettings.Values["LineMomentForceDashStyle"] = (int)MomentForce.DashStyle;
-            FileManager.LocalSettings.Values["LineMomentForceEndCap"] = (int)MomentForce.EndCap;
-            FileManager.LocalSettings.Values["LineMomentForceLineJoin"] = (int)MomentForce.LineJoin;
-            FileManager.LocalSettings.Values["LineMomentForceMiterLimit"] = (float)MomentForce.MiterLimit;
-            FileManager.LocalSettings.Values["LineMomentForceStartCap"] = (int)MomentForce.StartCap;
-            FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)MomentForceWeight;
-
-            FileManager.LocalSettings.Values["LineDistributedForceDashCap"] = (int)DistributedForce.DashCap;
-            FileManager.LocalSettings.Values["LineDistributedForceDashOffset"] = (float)DistributedForce.DashOffset;
-            FileManager.LocalSettings.Values["LineDistributedForceDashStyle"] = (int)DistributedForce.DashStyle;
-            FileManager.LocalSettings.Values["LineDistributedForceEndCap"] = (int)DistributedForce.EndCap;
-            FileManager.LocalSettings.Values["LineDistributedForceLineJoin"] = (int)DistributedForce.LineJoin;
-            FileManager.LocalSettings.Values["LineDistributedForceMiterLimit"] = (float)DistributedForce.MiterLimit;
-            FileManager.LocalSettings.Values["LineDistributedForceStartCap"] = (int)DistributedForce.StartCap;
-            FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)DistributedForceWeight;
-
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashCap"] = (int)DistributedForceSelected.DashCap;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashOffset"] = (float)DistributedForceSelected.DashOffset;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedDashStyle"] = (int)DistributedForceSelected.DashStyle;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedEndCap"] = (int)DistributedForceSelected.EndCap;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedLineJoin"] = (int)DistributedForceSelected.LineJoin;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedMiterLimit"] = (float)DistributedForceSelected.MiterLimit;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"] = (int)DistributedForceSelected.StartCap;
-            FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)DistributedForceSelectedWeight;
-
         }
     }
 }

@@ -69,7 +69,7 @@
         {
             PanelSolver.Current.SolverHasStarted();
 
-            switch (Options.CurrentSolver)
+            switch (Options.Solvers.CurrentSolver)
             {
                 case 0:
                     currentSolver = new SolverDoubleLUP(this);

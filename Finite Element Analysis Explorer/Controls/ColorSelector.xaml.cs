@@ -96,9 +96,6 @@
             SingleValue_ColorRed.SetTheValue(tmpColor.R);
             SingleValue_ColorGreen.SetTheValue(tmpColor.G);
             SingleValue_ColorBlue.SetTheValue(tmpColor.B);
-
-            //Model.UpdateColors();
-            Options.Colors.Save();
         }
 
         private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)

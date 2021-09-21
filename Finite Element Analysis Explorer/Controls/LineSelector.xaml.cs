@@ -577,8 +577,6 @@
                 SingleValue_ColorRed.SetTheValue(tmpColor.R);
                 SingleValue_ColorGreen.SetTheValue(tmpColor.G);
                 SingleValue_ColorBlue.SetTheValue(tmpColor.B);
-                
-                Options.Colors.Save();
             }
         }
 
