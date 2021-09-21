@@ -21,45 +21,45 @@
             Model.Members.CurrentMember = null;
             Model.Sections.CurrentSection = null;
 
-            checkBox_AutoStart.IsChecked = Options.AutoStartSolver;
-            checkBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
-            comboBox_Solver.SelectedIndex = Options.CurrentSolver;
-            checkBox_GenerateReport.IsChecked = Options.GenerateReport;
+            checkBox_AutoStart.IsChecked = Options.Solvers.AutoStartSolver;
+            checkBox_AutoFinish.IsChecked = Options.Solvers.AutoFinishSolver;
+            comboBox_Solver.SelectedIndex = Options.Solvers.CurrentSolver;
+            checkBox_GenerateReport.IsChecked = Options.Solvers.GenerateReport;
         }
 
         private void CheckBox_AutoStart_Checked(object sender, RoutedEventArgs e)
         {
-            Options.AutoStartSolver = true;
+            Options.Solvers.AutoStartSolver = true;
         }
 
         private void CheckBox_AutoStart_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.AutoStartSolver = false;
+            Options.Solvers.AutoStartSolver = false;
         }
 
         private void CheckBox_AutoFinish_Checked(object sender, RoutedEventArgs e)
         {
-            Options.AutoFinishSolver = true;
+            Options.Solvers.AutoFinishSolver = true;
         }
 
         private void CheckBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.AutoFinishSolver = false;
+            Options.Solvers.AutoFinishSolver = false;
         }
 
         private void CheckBox_GenerateReport_Checked(object sender, RoutedEventArgs e)
         {
-            Options.GenerateReport = true;
+            Options.Solvers.GenerateReport = true;
         }
 
         private void CheckBox_GenerateReport_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.GenerateReport = false;
+            Options.Solvers.GenerateReport = false;
         }
 
         private void ComboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Options.CurrentSolver = comboBox_Solver.SelectedIndex;
+            Options.Solvers.CurrentSolver = comboBox_Solver.SelectedIndex;
         }
 
         #region Common Menus

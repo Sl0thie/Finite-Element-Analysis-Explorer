@@ -393,7 +393,7 @@
         /// </summary>
         internal void UpdateDisplacement()
         {
-            positionDisplaced = new Point(position.X + (displacement.X * (decimal)Options.DisplacementFactor), position.Y + (displacement.Y * (decimal)Options.DisplacementFactor), position.M + (displacement.M * (decimal)Options.DisplacementFactor));
+            positionDisplaced = new Point(position.X + (displacement.X * (decimal)Options.Display.DisplacementFactor), position.Y + (displacement.Y * (decimal)Options.Display.DisplacementFactor), position.M + (displacement.M * (decimal)Options.Display.DisplacementFactor));
             location = new Vector2((float)positionDisplaced.X, (float)positionDisplaced.Y);
         }
 
@@ -518,8 +518,8 @@
         /// </summary>
         internal void UpdateNodeGraphics()
         {
-            reactionLine = reactionUnit * reactionMagnitude * (float)Options.ReactionsFactor;
-            forceLine = forceUnit * forceMagnitude * (float)Options.ForcesFactor;
+            reactionLine = reactionUnit * reactionMagnitude * (float)Options.Display.ReactionsFactor;
+            forceLine = forceUnit * forceMagnitude * (float)Options.Display.ForcesFactor;
         }
 
         #endregion

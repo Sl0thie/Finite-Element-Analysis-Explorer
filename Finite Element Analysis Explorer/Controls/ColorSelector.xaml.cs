@@ -34,39 +34,39 @@
             SingleValue_ColorGreen.UnitType = UnitType.UnitlessInteger;
             SingleValue_ColorBlue.UnitType = UnitType.UnitlessInteger;
 
-            switch (Options.ColorToEdit)
+            switch (Options.Colors.ColorToEdit)
             {
                 case "ColorBackground":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorBackground.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorBackground.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorBackground.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorBackground.B);
-                    slider_A.Value = Options.ColorBackground.A;
-                    slider_R.Value = Options.ColorBackground.R;
-                    slider_G.Value = Options.ColorBackground.G;
-                    slider_B.Value = Options.ColorBackground.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Background.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Background.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Background.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Background.B);
+                    slider_A.Value = Options.Colors.Background.A;
+                    slider_R.Value = Options.Colors.Background.R;
+                    slider_G.Value = Options.Colors.Background.G;
+                    slider_B.Value = Options.Colors.Background.B;
                     break;
 
                 case "ColorForce":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorForce.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorForce.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorForce.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorForce.B);
-                    slider_A.Value = Options.ColorForce.A;
-                    slider_R.Value = Options.ColorForce.R;
-                    slider_G.Value = Options.ColorForce.G;
-                    slider_B.Value = Options.ColorForce.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Force.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Force.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Force.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Force.B);
+                    slider_A.Value = Options.Colors.Force.A;
+                    slider_R.Value = Options.Colors.Force.R;
+                    slider_G.Value = Options.Colors.Force.G;
+                    slider_B.Value = Options.Colors.Force.B;
                     break;
 
                 case "ColorReaction":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorReaction.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorReaction.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorReaction.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorReaction.B);
-                    slider_A.Value = Options.ColorReaction.A;
-                    slider_R.Value = Options.ColorReaction.R;
-                    slider_G.Value = Options.ColorReaction.G;
-                    slider_B.Value = Options.ColorReaction.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Reaction.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Reaction.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Reaction.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Reaction.B);
+                    slider_A.Value = Options.Colors.Reaction.A;
+                    slider_R.Value = Options.Colors.Reaction.R;
+                    slider_G.Value = Options.Colors.Reaction.G;
+                    slider_B.Value = Options.Colors.Reaction.B;
                     break;
             }
         }
@@ -78,16 +78,16 @@
         {
             Color tmpColor = Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue);
 
-            switch (Options.ColorToEdit)
+            switch (Options.Colors.ColorToEdit)
             {
                 case "ColorBackground":
-                    Options.ColorBackground = tmpColor;
+                    Options.Colors.Background = tmpColor;
                     break;
                 case "ColorForce":
-                    Options.ColorForce = tmpColor;
+                    Options.Colors.Force = tmpColor;
                     break;
                 case "ColorReaction":
-                    Options.ColorReaction = tmpColor;
+                    Options.Colors.Reaction = tmpColor;
                     break;
             }
 
@@ -97,7 +97,8 @@
             SingleValue_ColorGreen.SetTheValue(tmpColor.G);
             SingleValue_ColorBlue.SetTheValue(tmpColor.B);
 
-            Model.UpdateColors();
+            //Model.UpdateColors();
+            Options.Colors.Save();
         }
 
         private void SingleValue_ColorAlpha_ValueChanged(object sender, EventArgs e)

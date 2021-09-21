@@ -44,418 +44,322 @@
             SingleValue_MiterLimit.Title = "Miter Limit";
             SingleValue_MiterLimit.UnitType = UnitType.Unitless;
 
-            switch (Options.ColorToEdit)
+            switch (Options.Colors.ColorToEdit)
             {
                 case "ColorBackground":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorBackground.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorBackground.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorBackground.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorBackground.B);
-                    Slider_A.Value = Options.ColorBackground.A;
-                    Slider_R.Value = Options.ColorBackground.R;
-                    Slider_G.Value = Options.ColorBackground.G;
-                    Slider_B.Value = Options.ColorBackground.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Background.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Background.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Background.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Background.B);
+                    Slider_A.Value = Options.Colors.Background.A;
+                    Slider_R.Value = Options.Colors.Background.R;
+                    Slider_G.Value = Options.Colors.Background.G;
+                    Slider_B.Value = Options.Colors.Background.B;
 
                     break;
 
                 case "LineGridNormal":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorGridNormal.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorGridNormal.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorGridNormal.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorGridNormal.B);
-                    Slider_A.Value = Options.ColorGridNormal.A;
-                    Slider_R.Value = Options.ColorGridNormal.R;
-                    Slider_G.Value = Options.ColorGridNormal.G;
-                    Slider_B.Value = Options.ColorGridNormal.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.GridNormal.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.GridNormal.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.GridNormal.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.GridNormal.B);
+                    Slider_A.Value = Options.Colors.GridNormal.A;
+                    Slider_R.Value = Options.Colors.GridNormal.R;
+                    Slider_G.Value = Options.Colors.GridNormal.G;
+                    Slider_B.Value = Options.Colors.GridNormal.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridNormal.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridNormal.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridNormalWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridNormal.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridNormal.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridNormalWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineGridNormal.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineGridNormal.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineGridNormal.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineGridNormal.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.GridNormal.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.GridNormal.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.GridNormal.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.GridNormal.LineJoin;
                     break;
 
                 case "LineGridMinor":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorGridMinor.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorGridMinor.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorGridMinor.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorGridMinor.B);
-                    Slider_A.Value = Options.ColorGridMinor.A;
-                    Slider_R.Value = Options.ColorGridMinor.R;
-                    Slider_G.Value = Options.ColorGridMinor.G;
-                    Slider_B.Value = Options.ColorGridMinor.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.GridMinor.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.GridMinor.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.GridMinor.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.GridMinor.B);
+                    Slider_A.Value = Options.Colors.GridMinor.A;
+                    Slider_R.Value = Options.Colors.GridMinor.R;
+                    Slider_G.Value = Options.Colors.GridMinor.G;
+                    Slider_B.Value = Options.Colors.GridMinor.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridMinor.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridMinor.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridMinorWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridMinor.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridMinor.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridMinorWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineGridMinor.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineGridMinor.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineGridMinor.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineGridMinor.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.GridMinor.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.GridMinor.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.GridMinor.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.GridMinor.LineJoin;
                     break;
 
                 case "LineGridMajor":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorGridMajor.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorGridMajor.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorGridMajor.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorGridMajor.B);
-                    Slider_A.Value = Options.ColorGridMajor.A;
-                    Slider_R.Value = Options.ColorGridMajor.R;
-                    Slider_G.Value = Options.ColorGridMajor.G;
-                    Slider_B.Value = Options.ColorGridMajor.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.GridMajor.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.GridMajor.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.GridMajor.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.GridMajor.B);
+                    Slider_A.Value = Options.Colors.GridMajor.A;
+                    Slider_R.Value = Options.Colors.GridMajor.R;
+                    Slider_G.Value = Options.Colors.GridMajor.G;
+                    Slider_B.Value = Options.Colors.GridMajor.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridMajor.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridMajor.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridMajorWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridMajor.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridMajor.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridMajorWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineGridMajor.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineGridMajor.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineGridMajor.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineGridMajor.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.GridMajor.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.GridMajor.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.GridMajor.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.GridMajor.LineJoin;
                     break;
 
                 case "LineForce":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorForce.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorForce.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorForce.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorForce.B);
-                    Slider_A.Value = Options.ColorForce.A;
-                    Slider_R.Value = Options.ColorForce.R;
-                    Slider_G.Value = Options.ColorForce.G;
-                    Slider_B.Value = Options.ColorForce.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Force.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Force.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Force.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Force.B);
+                    Slider_A.Value = Options.Colors.Force.A;
+                    Slider_R.Value = Options.Colors.Force.R;
+                    Slider_G.Value = Options.Colors.Force.G;
+                    Slider_B.Value = Options.Colors.Force.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineForce.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineForce.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineForceWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.Force.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.Force.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ForceWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineForce.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineForce.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineForce.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineForce.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.Force.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.Force.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.Force.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.Force.LineJoin;
                     break;
 
                 case "LineReaction":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorReaction.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorReaction.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorReaction.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorReaction.B);
-                    Slider_A.Value = Options.ColorReaction.A;
-                    Slider_R.Value = Options.ColorReaction.R;
-                    Slider_G.Value = Options.ColorReaction.G;
-                    Slider_B.Value = Options.ColorReaction.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.Reaction.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.Reaction.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.Reaction.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.Reaction.B);
+                    Slider_A.Value = Options.Colors.Reaction.A;
+                    Slider_R.Value = Options.Colors.Reaction.R;
+                    Slider_G.Value = Options.Colors.Reaction.G;
+                    Slider_B.Value = Options.Colors.Reaction.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineReaction.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineReaction.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineReactionWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.Reaction.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.Reaction.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ReactionWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineReaction.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineReaction.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineReaction.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineReaction.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.Reaction.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.Reaction.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.Reaction.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.Reaction.LineJoin;
                     break;
 
                 case "LineSelectedElement":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorSelectedElement.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorSelectedElement.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorSelectedElement.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorSelectedElement.B);
-                    Slider_A.Value = Options.ColorSelectedElement.A;
-                    Slider_R.Value = Options.ColorSelectedElement.R;
-                    Slider_G.Value = Options.ColorSelectedElement.G;
-                    Slider_B.Value = Options.ColorSelectedElement.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.SelectedElement.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.SelectedElement.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.SelectedElement.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.SelectedElement.B);
+                    Slider_A.Value = Options.Colors.SelectedElement.A;
+                    Slider_R.Value = Options.Colors.SelectedElement.R;
+                    Slider_G.Value = Options.Colors.SelectedElement.G;
+                    Slider_B.Value = Options.Colors.SelectedElement.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineSelectedElement.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineSelectedElement.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineSelectedElementWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.SelectedElement.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.SelectedElement.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.SelectedElementWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineSelectedElement.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineSelectedElement.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineSelectedElement.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineSelectedElement.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.SelectedElement.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.SelectedElement.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.SelectedElement.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.SelectedElement.LineJoin;
                     break;
 
                 case "LineShearForceSelected":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorShearForceSelected.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorShearForceSelected.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorShearForceSelected.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorShearForceSelected.B);
-                    Slider_A.Value = Options.ColorShearForceSelected.A;
-                    Slider_R.Value = Options.ColorShearForceSelected.R;
-                    Slider_G.Value = Options.ColorShearForceSelected.G;
-                    Slider_B.Value = Options.ColorShearForceSelected.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.ShearForceSelected.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.ShearForceSelected.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.ShearForceSelected.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.ShearForceSelected.B);
+                    Slider_A.Value = Options.Colors.ShearForceSelected.A;
+                    Slider_R.Value = Options.Colors.ShearForceSelected.R;
+                    Slider_G.Value = Options.Colors.ShearForceSelected.G;
+                    Slider_B.Value = Options.Colors.ShearForceSelected.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineShearForceSelected.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineShearForceSelected.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineShearForceSelectedWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.ShearForceSelected.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.ShearForceSelected.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ShearForceSelectedWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineShearForceSelected.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineShearForceSelected.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineShearForceSelected.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineShearForceSelected.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.ShearForceSelected.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.ShearForceSelected.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.ShearForceSelected.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.ShearForceSelected.LineJoin;
                     break;
 
                 case "LineShearForceFont":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorShearForceFont.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorShearForceFont.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorShearForceFont.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorShearForceFont.B);
-                    Slider_A.Value = Options.ColorShearForceFont.A;
-                    Slider_R.Value = Options.ColorShearForceFont.R;
-                    Slider_G.Value = Options.ColorShearForceFont.G;
-                    Slider_B.Value = Options.ColorShearForceFont.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.ShearForceFont.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.ShearForceFont.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.ShearForceFont.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.ShearForceFont.B);
+                    Slider_A.Value = Options.Colors.ShearForceFont.A;
+                    Slider_R.Value = Options.Colors.ShearForceFont.R;
+                    Slider_G.Value = Options.Colors.ShearForceFont.G;
+                    Slider_B.Value = Options.Colors.ShearForceFont.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineShearForceFont.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineShearForceFont.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineShearForceFontWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.ShearForceFont.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.ShearForceFont.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ShearForceFontWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineShearForceFont.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineShearForceFont.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineShearForceFont.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineShearForceFont.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.ShearForceFont.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.ShearForceFont.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.ShearForceFont.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.ShearForceFont.LineJoin;
                     break;
 
                 case "LineMomentForceSelected":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorMomentForceSelected.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorMomentForceSelected.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorMomentForceSelected.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorMomentForceSelected.B);
-                    Slider_A.Value = Options.ColorMomentForceSelected.A;
-                    Slider_R.Value = Options.ColorMomentForceSelected.R;
-                    Slider_G.Value = Options.ColorMomentForceSelected.G;
-                    Slider_B.Value = Options.ColorMomentForceSelected.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.MomentForceSelected.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.MomentForceSelected.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.MomentForceSelected.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.MomentForceSelected.B);
+                    Slider_A.Value = Options.Colors.MomentForceSelected.A;
+                    Slider_R.Value = Options.Colors.MomentForceSelected.R;
+                    Slider_G.Value = Options.Colors.MomentForceSelected.G;
+                    Slider_B.Value = Options.Colors.MomentForceSelected.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineMomentForceSelected.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineMomentForceSelected.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineMomentForceSelectedWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.MomentForceSelected.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.MomentForceSelected.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.MomentForceSelectedWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineMomentForceSelected.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineMomentForceSelected.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineMomentForceSelected.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineMomentForceSelected.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.MomentForceSelected.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.MomentForceSelected.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.MomentForceSelected.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.MomentForceSelected.LineJoin;
                     break;
 
                 case "LineMomentForceFont":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorMomentForceFont.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorMomentForceFont.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorMomentForceFont.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorMomentForceFont.B);
-                    Slider_A.Value = Options.ColorMomentForceFont.A;
-                    Slider_R.Value = Options.ColorMomentForceFont.R;
-                    Slider_G.Value = Options.ColorMomentForceFont.G;
-                    Slider_B.Value = Options.ColorMomentForceFont.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.MomentForceFont.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.MomentForceFont.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.MomentForceFont.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.MomentForceFont.B);
+                    Slider_A.Value = Options.Colors.MomentForceFont.A;
+                    Slider_R.Value = Options.Colors.MomentForceFont.R;
+                    Slider_G.Value = Options.Colors.MomentForceFont.G;
+                    Slider_B.Value = Options.Colors.MomentForceFont.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineMomentForceFont.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineMomentForceFont.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineMomentForceFontWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.MomentForceFont.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.MomentForceFont.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.MomentForceFontWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineMomentForceFont.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineMomentForceFont.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineMomentForceFont.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineMomentForceFont.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.MomentForceFont.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.MomentForceFont.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.MomentForceFont.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.MomentForceFont.LineJoin;
                     break;
 
                 case "LineMomentForce":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorMomentForce.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorMomentForce.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorMomentForce.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorMomentForce.B);
-                    Slider_A.Value = Options.ColorMomentForce.A;
-                    Slider_R.Value = Options.ColorMomentForce.R;
-                    Slider_G.Value = Options.ColorMomentForce.G;
-                    Slider_B.Value = Options.ColorMomentForce.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.MomentForce.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.MomentForce.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.MomentForce.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.MomentForce.B);
+                    Slider_A.Value = Options.Colors.MomentForce.A;
+                    Slider_R.Value = Options.Colors.MomentForce.R;
+                    Slider_G.Value = Options.Colors.MomentForce.G;
+                    Slider_B.Value = Options.Colors.MomentForce.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineMomentForce.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineMomentForce.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineMomentForceWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.MomentForce.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.MomentForce.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.MomentForceWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineMomentForce.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineMomentForce.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineMomentForce.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineMomentForce.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.MomentForce.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.MomentForce.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.MomentForce.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.MomentForce.LineJoin;
                     break;
 
                 case "LineShearForce":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorShearForce.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorShearForce.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorShearForce.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorShearForce.B);
-                    Slider_A.Value = Options.ColorShearForce.A;
-                    Slider_R.Value = Options.ColorShearForce.R;
-                    Slider_G.Value = Options.ColorShearForce.G;
-                    Slider_B.Value = Options.ColorShearForce.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.ShearForce.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.ShearForce.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.ShearForce.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.ShearForce.B);
+                    Slider_A.Value = Options.Colors.ShearForce.A;
+                    Slider_R.Value = Options.Colors.ShearForce.R;
+                    Slider_G.Value = Options.Colors.ShearForce.G;
+                    Slider_B.Value = Options.Colors.ShearForce.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineShearForce.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineShearForce.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineShearForceWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.ShearForce.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.ShearForce.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ShearForceWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineShearForce.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineShearForce.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineShearForce.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineShearForce.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.ShearForce.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.ShearForce.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.ShearForce.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.ShearForce.LineJoin;
                     break;
 
                 case "LineDistributedForceSelected":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorDistributedForceSelected.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorDistributedForceSelected.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorDistributedForceSelected.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorDistributedForceSelected.B);
-                    Slider_A.Value = Options.ColorDistributedForceSelected.A;
-                    Slider_R.Value = Options.ColorDistributedForceSelected.R;
-                    Slider_G.Value = Options.ColorDistributedForceSelected.G;
-                    Slider_B.Value = Options.ColorDistributedForceSelected.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.DistributedForceSelected.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.DistributedForceSelected.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.DistributedForceSelected.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.DistributedForceSelected.B);
+                    Slider_A.Value = Options.Colors.DistributedForceSelected.A;
+                    Slider_R.Value = Options.Colors.DistributedForceSelected.R;
+                    Slider_G.Value = Options.Colors.DistributedForceSelected.G;
+                    Slider_B.Value = Options.Colors.DistributedForceSelected.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineDistributedForceSelected.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineDistributedForceSelected.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineDistributedForceSelectedWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.DistributedForceSelected.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.DistributedForceSelected.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.DistributedForceSelectedWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineDistributedForceSelected.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineDistributedForceSelected.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineDistributedForceSelected.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineDistributedForceSelected.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.DistributedForceSelected.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.DistributedForceSelected.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.DistributedForceSelected.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.DistributedForceSelected.LineJoin;
                     break;
 
                 case "LineDistributedForce":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorDistributedForce.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorDistributedForce.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorDistributedForce.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorDistributedForce.B);
-                    Slider_A.Value = Options.ColorDistributedForce.A;
-                    Slider_R.Value = Options.ColorDistributedForce.R;
-                    Slider_G.Value = Options.ColorDistributedForce.G;
-                    Slider_B.Value = Options.ColorDistributedForce.B;
+                    SingleValue_ColorAlpha.SetTheValue(Options.Colors.DistributedForce.A);
+                    SingleValue_ColorRed.SetTheValue(Options.Colors.DistributedForce.R);
+                    SingleValue_ColorGreen.SetTheValue(Options.Colors.DistributedForce.G);
+                    SingleValue_ColorBlue.SetTheValue(Options.Colors.DistributedForce.B);
+                    Slider_A.Value = Options.Colors.DistributedForce.A;
+                    Slider_R.Value = Options.Colors.DistributedForce.R;
+                    Slider_G.Value = Options.Colors.DistributedForce.G;
+                    Slider_B.Value = Options.Colors.DistributedForce.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineDistributedForce.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineDistributedForce.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineDistributedForceWeight);
+                    SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.DistributedForce.DashOffset);
+                    SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.DistributedForce.MiterLimit);
+                    SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.DistributedForceWeight);
 
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineDistributedForce.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineDistributedForce.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineDistributedForce.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineDistributedForce.LineJoin;
+                    ComboBox_LineStyle.SelectedIndex = (int)Options.Lines.DistributedForce.DashStyle;
+                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.Lines.DistributedForce.StartCap;
+                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.Lines.DistributedForce.EndCap;
+                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.Lines.DistributedForce.LineJoin;
                     break;
 
                 case "LineNodeFree":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodeFree.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodeFree.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodeFree.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodeFree.B);
-                    Slider_A.Value = Options.ColorNodeFree.A;
-                    Slider_R.Value = Options.ColorNodeFree.R;
-                    Slider_G.Value = Options.ColorNodeFree.G;
-                    Slider_B.Value = Options.ColorNodeFree.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeFree.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeFree.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeFreeWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodeFree.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodeFree.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeFree.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeFree.LineJoin;
                     break;
 
                 case "LineNodeFixed":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodeFixed.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodeFixed.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodeFixed.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodeFixed.B);
-                    Slider_A.Value = Options.ColorNodeFixed.A;
-                    Slider_R.Value = Options.ColorNodeFixed.R;
-                    Slider_G.Value = Options.ColorNodeFixed.G;
-                    Slider_B.Value = Options.ColorNodeFixed.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeFixed.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeFixed.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeFixedWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodeFixed.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodeFixed.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeFixed.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeFixed.LineJoin;
                     break;
 
                 case "LineNodePin":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodePin.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodePin.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodePin.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodePin.B);
-                    Slider_A.Value = Options.ColorNodePin.A;
-                    Slider_R.Value = Options.ColorNodePin.R;
-                    Slider_G.Value = Options.ColorNodePin.G;
-                    Slider_B.Value = Options.ColorNodePin.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodePin.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodePin.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodePinWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodePin.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodePin.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodePin.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodePin.LineJoin;
                     break;
 
                 case "LineNodeRollerX":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodeRollerX.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodeRollerX.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodeRollerX.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodeRollerX.B);
-                    Slider_A.Value = Options.ColorNodeRollerX.A;
-                    Slider_R.Value = Options.ColorNodeRollerX.R;
-                    Slider_G.Value = Options.ColorNodeRollerX.G;
-                    Slider_B.Value = Options.ColorNodeRollerX.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeRollerX.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeRollerX.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeRollerXWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodeRollerX.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodeRollerX.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeRollerX.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeRollerX.LineJoin;
                     break;
 
                 case "LineNodeRollerY":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodeRollerY.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodeRollerY.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodeRollerY.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodeRollerY.B);
-                    Slider_A.Value = Options.ColorNodeRollerY.A;
-                    Slider_R.Value = Options.ColorNodeRollerY.R;
-                    Slider_G.Value = Options.ColorNodeRollerY.G;
-                    Slider_B.Value = Options.ColorNodeRollerY.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeRollerY.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeRollerY.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeRollerYWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodeRollerY.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodeRollerY.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeRollerY.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeRollerY.LineJoin;
                     break;
 
                 case "LineNodeOther":
-                    SingleValue_ColorAlpha.SetTheValue(Options.ColorNodeOther.A);
-                    SingleValue_ColorRed.SetTheValue(Options.ColorNodeOther.R);
-                    SingleValue_ColorGreen.SetTheValue(Options.ColorNodeOther.G);
-                    SingleValue_ColorBlue.SetTheValue(Options.ColorNodeOther.B);
-                    Slider_A.Value = Options.ColorNodeOther.A;
-                    Slider_R.Value = Options.ColorNodeOther.R;
-                    Slider_G.Value = Options.ColorNodeOther.G;
-                    Slider_B.Value = Options.ColorNodeOther.B;
 
-                    SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeOther.DashOffset);
-                    SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeOther.MiterLimit);
-                    SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeOtherWeight);
-
-                    ComboBox_LineStyle.SelectedIndex = (int)Options.LineNodeOther.DashStyle;
-                    ComboBox_NearCapStyle.SelectedIndex = (int)Options.LineNodeOther.StartCap;
-                    ComboBox_FarCapStyle.SelectedIndex = (int)Options.LineNodeOther.EndCap;
-                    ComboBox_LineJoinStyle.SelectedIndex = (int)Options.LineNodeOther.LineJoin;
                     break;
             }
 
@@ -469,262 +373,202 @@
             if (isControlLoaded)
             {
                 Color tmpColor = Color.FromArgb((byte)SingleValue_ColorAlpha.NewValue, (byte)SingleValue_ColorRed.NewValue, (byte)SingleValue_ColorGreen.NewValue, (byte)SingleValue_ColorBlue.NewValue);
-                switch (Options.ColorToEdit)
+                switch (Options.Colors.ColorToEdit)
                 {
                     case "ColorBackground":
-                        Options.ColorBackground = tmpColor;
+                        Options.Colors.Background = tmpColor;
                         break;
 
                     case "LineGridNormal":
-                        Options.ColorGridNormal = tmpColor;
-                        Options.LineGridNormal.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineGridNormal.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineGridNormal.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineGridNormal.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineGridNormal.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineGridNormal.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineGridNormalWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridNormal.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridNormal.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridNormalWeight);
+                        Options.Colors.GridNormal = tmpColor;
+                        Options.Lines.GridNormal.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.GridNormal.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.GridNormal.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.GridNormal.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.GridNormal.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.GridNormal.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.GridNormalWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridNormal.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridNormal.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridNormalWeight);
                         break;
 
                     case "LineGridMinor":
-                        Options.ColorGridMinor = tmpColor;
-                        Options.LineGridMinor.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineGridMinor.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineGridMinor.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineGridMinor.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineGridMinor.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineGridMinor.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineGridMinorWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridMinor.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridMinor.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridMinorWeight);
+                        Options.Colors.GridMinor = tmpColor;
+                        Options.Lines.GridMinor.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.GridMinor.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.GridMinor.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.GridMinor.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.GridMinor.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.GridMinor.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.GridMinorWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridMinor.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridMinor.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridMinorWeight);
                         break;
 
                     case "LineGridMajor":
-                        Options.ColorGridMajor = tmpColor;
-                        Options.LineGridMajor.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineGridMajor.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineGridMajor.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineGridMajor.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineGridMajor.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineGridMajor.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineGridMajorWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineGridMajor.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineGridMajor.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineGridMajorWeight);
+                        Options.Colors.GridMajor = tmpColor;
+                        Options.Lines.GridMajor.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.GridMajor.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.GridMajor.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.GridMajor.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.GridMajor.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.GridMajor.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.GridMajorWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.GridMajor.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.GridMajor.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.GridMajorWeight);
                         break;
 
                     case "LineForce":
-                        Options.ColorForce = tmpColor;
-                        Options.LineForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineForceWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineForce.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineForce.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineForceWeight);
+                        Options.Colors.Force = tmpColor;
+                        Options.Lines.Force.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.Force.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.Force.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.Force.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.Force.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.Force.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.ForceWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.Force.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.Force.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ForceWeight);
                         break;
 
                     case "LineReaction":
-                        Options.ColorReaction = tmpColor;
-                        Options.LineReaction.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineReaction.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineReaction.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineReaction.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineReaction.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineReaction.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineReactionWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineReaction.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineReaction.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineReactionWeight);
+                        Options.Colors.Reaction = tmpColor;
+                        Options.Lines.Reaction.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.Reaction.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.Reaction.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.Reaction.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.Reaction.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.Reaction.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.ReactionWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.Reaction.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.Reaction.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ReactionWeight);
                         break;
 
                     case "LineSelectedElement":
-                        Options.ColorSelectedElement = tmpColor;
-                        Options.LineSelectedElement.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineSelectedElement.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineSelectedElement.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineSelectedElement.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineSelectedElement.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineSelectedElement.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineSelectedElementWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineSelectedElement.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineSelectedElement.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineSelectedElementWeight);
+                        Options.Colors.SelectedElement = tmpColor;
+                        Options.Lines.SelectedElement.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.SelectedElement.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.SelectedElement.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.SelectedElement.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.SelectedElement.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.SelectedElement.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.SelectedElementWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.SelectedElement.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.SelectedElement.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.SelectedElementWeight);
                         break;
 
                     case "LineShearForceSelected":
-                        Options.ColorShearForceSelected = tmpColor;
-                        Options.LineShearForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineShearForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineShearForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineShearForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineShearForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineShearForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineShearForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineShearForceSelected.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineShearForceSelected.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineShearForceSelectedWeight);
+                        Options.Colors.ShearForceSelected = tmpColor;
+                        Options.Lines.ShearForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.ShearForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.ShearForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.ShearForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.ShearForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.ShearForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.ShearForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.ShearForceSelected.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.ShearForceSelected.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ShearForceSelectedWeight);
                         break;
 
                     case "LineMomentForceSelected":
-                        Options.ColorMomentForceSelected = tmpColor;
-                        Options.LineMomentForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineMomentForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineMomentForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineMomentForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineMomentForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineMomentForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineMomentForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineMomentForceSelected.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineMomentForceSelected.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineMomentForceSelectedWeight);
+                        Options.Colors.MomentForceSelected = tmpColor;
+                        Options.Lines.MomentForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.MomentForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.MomentForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.MomentForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.MomentForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.MomentForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.MomentForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.MomentForceSelected.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.MomentForceSelected.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.MomentForceSelectedWeight);
                         break;
 
                     case "LineDistributedForceSelected":
-                        Options.ColorDistributedForceSelected = tmpColor;
-                        Options.LineDistributedForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineDistributedForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineDistributedForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineDistributedForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineDistributedForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineDistributedForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineDistributedForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineDistributedForceSelected.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineDistributedForceSelected.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineDistributedForceSelectedWeight);
+                        Options.Colors.DistributedForceSelected = tmpColor;
+                        Options.Lines.DistributedForceSelected.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.DistributedForceSelected.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.DistributedForceSelected.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.DistributedForceSelected.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.DistributedForceSelected.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.DistributedForceSelected.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.DistributedForceSelectedWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.DistributedForceSelected.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.DistributedForceSelected.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.DistributedForceSelectedWeight);
                         break;
 
                     case "LineShearForce":
-                        Options.ColorShearForce = tmpColor;
-                        Options.LineShearForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineShearForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineShearForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineShearForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineShearForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineShearForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineShearForceWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineShearForce.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineShearForce.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineShearForceWeight);
+                        Options.Colors.ShearForce = tmpColor;
+                        Options.Lines.ShearForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.ShearForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.ShearForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.ShearForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.ShearForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.ShearForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.ShearForceWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.ShearForce.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.ShearForce.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.ShearForceWeight);
                         break;
 
                     case "LineMomentForce":
-                        Options.ColorMomentForce = tmpColor;
-                        Options.LineMomentForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineMomentForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineMomentForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineMomentForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineMomentForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineMomentForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineMomentForceWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineMomentForce.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineMomentForce.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineMomentForceWeight);
+                        Options.Colors.MomentForce = tmpColor;
+                        Options.Lines.MomentForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.MomentForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.MomentForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.MomentForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.MomentForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.MomentForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.MomentForceWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.MomentForce.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.MomentForce.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.MomentForceWeight);
                         break;
 
                     case "LineDistributedForce":
-                        Options.ColorDistributedForce = tmpColor;
-                        Options.LineDistributedForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineDistributedForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineDistributedForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineDistributedForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineDistributedForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineDistributedForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineDistributedForceWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineDistributedForce.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineDistributedForce.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineDistributedForceWeight);
+                        Options.Colors.DistributedForce = tmpColor;
+                        Options.Lines.DistributedForce.DashOffset = (float)SingleValue_DashOffset.NewValue;
+                        Options.Lines.DistributedForce.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
+                        Options.Lines.DistributedForce.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
+                        Options.Lines.DistributedForce.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
+                        Options.Lines.DistributedForce.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
+                        Options.Lines.DistributedForce.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
+                        Options.Lines.DistributedForceWeight = (float)SingleValue_LineWeight.NewValue;
+                        SingleValue_DashOffset.SetTheValue((decimal)Options.Lines.DistributedForce.DashOffset);
+                        SingleValue_MiterLimit.SetTheValue((decimal)Options.Lines.DistributedForce.MiterLimit);
+                        SingleValue_LineWeight.SetTheValue((decimal)Options.Lines.DistributedForceWeight);
                         break;
 
                     case "LineNodeFree":
-                        Options.ColorNodeFree = tmpColor;
-                        Options.LineNodeFree.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodeFree.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodeFree.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodeFree.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodeFree.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodeFree.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodeFreeWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeFree.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeFree.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeFreeWeight);
+
                         break;
 
                     case "LineNodeFixed":
-                        Options.ColorNodeFixed = tmpColor;
-                        Options.LineNodeFixed.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodeFixed.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodeFixed.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodeFixed.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodeFixed.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodeFixed.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodeFixedWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeFixed.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeFixed.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeFixedWeight);
+
                         break;
 
                     case "LineNodePin":
-                        Options.ColorNodePin = tmpColor;
-                        Options.LineNodePin.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodePin.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodePin.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodePin.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodePin.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodePin.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodePinWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodePin.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodePin.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodePinWeight);
+
                         break;
 
                     case "LineNodeRollerX":
-                        Options.ColorNodeRollerX = tmpColor;
-                        Options.LineNodeRollerX.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodeRollerX.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodeRollerX.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodeRollerX.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodeRollerX.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodeRollerX.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodeRollerXWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeRollerX.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeRollerX.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeRollerXWeight);
+
                         break;
 
                     case "LineNodeRollerY":
-                        Options.ColorNodeRollerY = tmpColor;
-                        Options.LineNodeRollerY.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodeRollerY.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodeRollerY.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodeRollerY.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodeRollerY.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodeRollerY.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodeRollerYWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeRollerY.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeRollerY.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeRollerYWeight);
+
                         break;
 
                     case "LineNodeOther":
-                        Options.ColorNodeOther = tmpColor;
-                        Options.LineNodeOther.DashOffset = (float)SingleValue_DashOffset.NewValue;
-                        Options.LineNodeOther.DashStyle = (CanvasDashStyle)ComboBox_LineStyle.SelectedIndex;
-                        Options.LineNodeOther.EndCap = (CanvasCapStyle)ComboBox_FarCapStyle.SelectedIndex;
-                        Options.LineNodeOther.LineJoin = (CanvasLineJoin)ComboBox_LineJoinStyle.SelectedIndex;
-                        Options.LineNodeOther.MiterLimit = (float)SingleValue_MiterLimit.NewValue;
-                        Options.LineNodeOther.StartCap = (CanvasCapStyle)ComboBox_NearCapStyle.SelectedIndex;
-                        Options.LineNodeOtherWeight = (float)SingleValue_LineWeight.NewValue;
-                        SingleValue_DashOffset.SetTheValue((decimal)Options.LineNodeOther.DashOffset);
-                        SingleValue_MiterLimit.SetTheValue((decimal)Options.LineNodeOther.MiterLimit);
-                        SingleValue_LineWeight.SetTheValue((decimal)Options.LineNodeOtherWeight);
+
                         break;
                 }
 
@@ -733,7 +577,8 @@
                 SingleValue_ColorRed.SetTheValue(tmpColor.R);
                 SingleValue_ColorGreen.SetTheValue(tmpColor.G);
                 SingleValue_ColorBlue.SetTheValue(tmpColor.B);
-                Model.UpdateColors();
+                
+                Options.Colors.Save();
             }
         }
 

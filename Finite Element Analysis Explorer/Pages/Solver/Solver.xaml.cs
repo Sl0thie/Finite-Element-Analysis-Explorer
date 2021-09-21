@@ -143,7 +143,7 @@
 
             try
             {
-                if (Options.AutoStartSolver)
+                if (Options.Solvers.AutoStartSolver)
                 {
                     await Task.Delay(TimeSpan.FromMilliseconds(500));
                     Current.StartSolver();

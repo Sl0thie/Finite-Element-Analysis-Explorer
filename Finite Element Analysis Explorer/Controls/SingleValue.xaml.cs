@@ -1,8 +1,4 @@
-﻿// <copyright file="SingleValue.xaml.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-namespace Finite_Element_Analysis_Explorer
+﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
     using Windows.UI.Xaml;
@@ -90,7 +86,7 @@ namespace Finite_Element_Analysis_Explorer
                 switch (unitType)
                 {
                     case UnitType.Angle:
-                        switch (Options.Angle)
+                        switch (Options.Units.Angle)
                         {
                             case AngleType.Degrees:
                                 multiplicationFactor = Constants.DegreePerRadian;
@@ -106,7 +102,7 @@ namespace Finite_Element_Analysis_Explorer
                         break;
                     case UnitType.Area:
 
-                        switch (Options.Area)
+                        switch (Options.Units.Area)
                         {
                             case AreaType.SquareMetre:
                                 multiplicationFactor = 1;
@@ -136,7 +132,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.Density:
-                        switch (Options.Density)
+                        switch (Options.Units.Density)
                         {
                             case DensityType.KilogramPerCubicMetre:
                                 multiplicationFactor = 1;
@@ -151,7 +147,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.Force:
-                        switch (Options.Force)
+                        switch (Options.Units.Force)
                         {
                             case ForceType.Dyne:
                                 multiplicationFactor = Constants.DynePerNewton;
@@ -196,7 +192,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.Length:
-                        switch (Options.Length)
+                        switch (Options.Units.Length)
                         {
                             case LengthType.Meter:
                                 multiplicationFactor = Constants.MeterPerMeter;
@@ -226,7 +222,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.Mass:
-                        switch (Options.Mass)
+                        switch (Options.Units.Mass)
                         {
                             case MassType.Kilogram:
                                 multiplicationFactor = 1;
@@ -240,7 +236,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.MomentOfInertia:
-                        switch (Options.MomentOfInertia)
+                        switch (Options.Units.MomentOfInertia)
                         {
                             case MomentOfInertiaType.QuadMeter:
                                 multiplicationFactor = 1;
@@ -270,7 +266,7 @@ namespace Finite_Element_Analysis_Explorer
 
                         break;
                     case UnitType.Moment:
-                        switch (Options.Moment)
+                        switch (Options.Units.Moment)
                         {
                             case MomentType.NewtonMetre:
                                 multiplicationFactor = 1;
@@ -309,7 +305,7 @@ namespace Finite_Element_Analysis_Explorer
                         TextBlock_UnitType.Text = "%";
                         break;
                     case UnitType.Pressure:
-                        switch (Options.Pressure)
+                        switch (Options.Units.Pressure)
                         {
                             case PressureType.Pascal:
                                 multiplicationFactor = 1;
@@ -359,7 +355,7 @@ namespace Finite_Element_Analysis_Explorer
                         TextBlock_UnitType.Text = "k";
                         break;
                     case UnitType.Volume:
-                        switch (Options.Volume)
+                        switch (Options.Units.Volume)
                         {
                             case VolumeType.CubicMetre:
                                 multiplicationFactor = 1;
@@ -878,31 +874,31 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemCubicInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Volume = VolumeType.CubicInch;
+            Options.Units.Volume = VolumeType.CubicInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemCubicFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Volume = VolumeType.CubicFoot;
+            Options.Units.Volume = VolumeType.CubicFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemCubicMillimeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Volume = VolumeType.CubicMillimeter;
+            Options.Units.Volume = VolumeType.CubicMillimeter;
             Model.UpdatePanelPage();
         }
 
         private void ItemCubicCentimeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Volume = VolumeType.CubicCentimeter;
+            Options.Units.Volume = VolumeType.CubicCentimeter;
             Model.UpdatePanelPage();
         }
 
         private void ItemCubicMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Volume = VolumeType.CubicMetre;
+            Options.Units.Volume = VolumeType.CubicMetre;
             Model.UpdatePanelPage();
         }
 
@@ -911,61 +907,61 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemPoundPerSquareFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.PoundPerSqareFoot;
+            Options.Units.Pressure = PressureType.PoundPerSqareFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemMegaPoundPerSquareInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.MegapoundPerSquareInch;
+            Options.Units.Pressure = PressureType.MegapoundPerSquareInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemKilopoundPerSquareInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.KilopoundPerSquareInch;
+            Options.Units.Pressure = PressureType.KilopoundPerSquareInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemPoundPerSquareInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.PoundPerSquareInch;
+            Options.Units.Pressure = PressureType.PoundPerSquareInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemGigaPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Gigapascal;
+            Options.Units.Pressure = PressureType.Gigapascal;
             Model.UpdatePanelPage();
         }
 
         private void ItemMegaPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Megapascal;
+            Options.Units.Pressure = PressureType.Megapascal;
             Model.UpdatePanelPage();
         }
 
         private void ItemKiloPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Kilopascal;
+            Options.Units.Pressure = PressureType.Kilopascal;
             Model.UpdatePanelPage();
         }
 
         private void ItemHectoPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Hectopascal;
+            Options.Units.Pressure = PressureType.Hectopascal;
             Model.UpdatePanelPage();
         }
 
         private void ItemMilliPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Millipascal;
+            Options.Units.Pressure = PressureType.Millipascal;
             Model.UpdatePanelPage();
         }
 
         private void ItemPascal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Pressure = PressureType.Pascal;
+            Options.Units.Pressure = PressureType.Pascal;
             Model.UpdatePanelPage();
         }
 
@@ -974,31 +970,31 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemQuadFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.MomentOfInertia = MomentOfInertiaType.QuadFoot;
+            Options.Units.MomentOfInertia = MomentOfInertiaType.QuadFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemQuadInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.MomentOfInertia = MomentOfInertiaType.QuadInch;
+            Options.Units.MomentOfInertia = MomentOfInertiaType.QuadInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemQuadCentimeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.MomentOfInertia = MomentOfInertiaType.QuadCentmeter;
+            Options.Units.MomentOfInertia = MomentOfInertiaType.QuadCentmeter;
             Model.UpdatePanelPage();
         }
 
         private void ItemQuadMillimeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.MomentOfInertia = MomentOfInertiaType.QuadMillimeter;
+            Options.Units.MomentOfInertia = MomentOfInertiaType.QuadMillimeter;
             Model.UpdatePanelPage();
         }
 
         private void ItemQuadMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.MomentOfInertia = MomentOfInertiaType.QuadMeter;
+            Options.Units.MomentOfInertia = MomentOfInertiaType.QuadMeter;
             Model.UpdatePanelPage();
         }
 
@@ -1007,31 +1003,31 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemOunceFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Moment = MomentType.OunceFoot;
+            Options.Units.Moment = MomentType.OunceFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemOunceInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Moment = MomentType.OunceInch;
+            Options.Units.Moment = MomentType.OunceInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemPoundInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Moment = MomentType.PoundInch;
+            Options.Units.Moment = MomentType.PoundInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemPoundFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Moment = MomentType.PoundFoot;
+            Options.Units.Moment = MomentType.PoundFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemNewtonMetre_Click(object sender, RoutedEventArgs e)
         {
-            Options.Moment = MomentType.NewtonMetre;
+            Options.Units.Moment = MomentType.NewtonMetre;
             Model.UpdatePanelPage();
         }
 
@@ -1040,25 +1036,25 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemTon_Click(object sender, RoutedEventArgs e)
         {
-            Options.Mass = MassType.Ton;
+            Options.Units.Mass = MassType.Ton;
             Model.UpdatePanelPage();
         }
 
         private void ItemGram_Click(object sender, RoutedEventArgs e)
         {
-            Options.Mass = MassType.Gram;
+            Options.Units.Mass = MassType.Gram;
             Model.UpdatePanelPage();
         }
 
         private void ItemKilogram_Click(object sender, RoutedEventArgs e)
         {
-            Options.Mass = MassType.Kilogram;
+            Options.Units.Mass = MassType.Kilogram;
             Model.UpdatePanelPage();
         }
 
         private void ItemPound_Click(object sender, RoutedEventArgs e)
         {
-            Options.Mass = MassType.Pound;
+            Options.Units.Mass = MassType.Pound;
             Model.UpdatePanelPage();
         }
 
@@ -1067,13 +1063,13 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemPoundPerFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.ForcePerLength = ForcePerLengthType.PoundPerFoot;
+            Options.Units.ForcePerLength = ForcePerLengthType.PoundPerFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemNewtonPerMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.ForcePerLength = ForcePerLengthType.NewtonPerMeter;
+            Options.Units.ForcePerLength = ForcePerLengthType.NewtonPerMeter;
             Model.UpdatePanelPage();
         }
 
@@ -1082,49 +1078,49 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemPoundal_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.Poundal;
+            Options.Units.Force = ForceType.Poundal;
             Model.UpdatePanelPage();
         }
 
         private void ItemPoundForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.PoundForce;
+            Options.Units.Force = ForceType.PoundForce;
             Model.UpdatePanelPage();
         }
 
         private void ItemKilogramForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.KilogramForce;
+            Options.Units.Force = ForceType.KilogramForce;
             Model.UpdatePanelPage();
         }
 
         private void ItemDyne_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.Dyne;
+            Options.Units.Force = ForceType.Dyne;
             Model.UpdatePanelPage();
         }
 
         private void ItemGigaNewton_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.GigaNewton;
+            Options.Units.Force = ForceType.GigaNewton;
             Model.UpdatePanelPage();
         }
 
         private void ItemMegaNewton_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.MegaNewton;
+            Options.Units.Force = ForceType.MegaNewton;
             Model.UpdatePanelPage();
         }
 
         private void ItemKiloNewton_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.KiloNewton;
+            Options.Units.Force = ForceType.KiloNewton;
             Model.UpdatePanelPage();
         }
 
         private void ItemNewton_Click(object sender, RoutedEventArgs e)
         {
-            Options.Force = ForceType.Newton;
+            Options.Units.Force = ForceType.Newton;
             Model.UpdatePanelPage();
         }
 
@@ -1133,13 +1129,13 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemPoundPerCubicFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Density = DensityType.PoundPerCubicFoot;
+            Options.Units.Density = DensityType.PoundPerCubicFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemKilogramPerCubicMetre_Click(object sender, RoutedEventArgs e)
         {
-            Options.Density = DensityType.KilogramPerCubicMetre;
+            Options.Units.Density = DensityType.KilogramPerCubicMetre;
             Model.UpdatePanelPage();
         }
 
@@ -1148,13 +1144,13 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemDegrees_Click(object sender, RoutedEventArgs e)
         {
-            Options.Angle = AngleType.Degrees;
+            Options.Units.Angle = AngleType.Degrees;
             Model.UpdatePanelPage();
         }
 
         private void ItemRadians_Click(object sender, RoutedEventArgs e)
         {
-            Options.Angle = AngleType.Radians;
+            Options.Units.Angle = AngleType.Radians;
             Model.UpdatePanelPage();
         }
 
@@ -1163,42 +1159,42 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.Foot;
+            Options.Units.Length = LengthType.Foot;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
 
         private void ItemInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.Inch;
+            Options.Units.Length = LengthType.Inch;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
 
         private void ItemKiloMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.KiloMeter;
+            Options.Units.Length = LengthType.KiloMeter;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
 
         private void ItemMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.Meter;
+            Options.Units.Length = LengthType.Meter;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
 
         private void ItemCentiMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.CentiMeter;
+            Options.Units.Length = LengthType.CentiMeter;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
 
         private void ItemMilliMeter_Click(object sender, RoutedEventArgs e)
         {
-            Options.Length = LengthType.Millimeter;
+            Options.Units.Length = LengthType.Millimeter;
             Camera.UpdateLengthType();
             Model.UpdatePanelPage();
         }
@@ -1208,31 +1204,31 @@ namespace Finite_Element_Analysis_Explorer
 
         private void ItemSquareInch_Click(object sender, RoutedEventArgs e)
         {
-            Options.Area = AreaType.SquareInch;
+            Options.Units.Area = AreaType.SquareInch;
             Model.UpdatePanelPage();
         }
 
         private void ItemSquareFoot_Click(object sender, RoutedEventArgs e)
         {
-            Options.Area = AreaType.SquareFoot;
+            Options.Units.Area = AreaType.SquareFoot;
             Model.UpdatePanelPage();
         }
 
         private void ItemSquareMilliMetre_Click(object sender, RoutedEventArgs e)
         {
-            Options.Area = AreaType.SquareMilliMetre;
+            Options.Units.Area = AreaType.SquareMilliMetre;
             Model.UpdatePanelPage();
         }
 
         private void ItemSquareCentiMetre_Click(object sender, RoutedEventArgs e)
         {
-            Options.Area = AreaType.SquareCentiMetre;
+            Options.Units.Area = AreaType.SquareCentiMetre;
             Model.UpdatePanelPage();
         }
 
         private void ItemSquareMetre_Click(object sender, RoutedEventArgs e)
         {
-            Options.Area = AreaType.SquareMetre;
+            Options.Units.Area = AreaType.SquareMetre;
             Model.UpdatePanelPage();
         }
 

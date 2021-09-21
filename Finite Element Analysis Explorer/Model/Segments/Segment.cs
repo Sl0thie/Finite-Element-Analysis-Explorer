@@ -900,7 +900,7 @@
         /// </summary>
         internal void UpdateColor()
         {
-            switch (Options.MemberDisplay)
+            switch (Options.Display.MemberDisplayType)
             {
                 case 0:
                     currentColor = section.Color;
@@ -1065,8 +1065,8 @@
         /// </summary>
         internal void UpdateGraphicsProperties()
         {
-            nearVectorDisplaced = new Vector2((float)(nodeNear.Position.X + (nodeNear.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeNear.Position.Y + (nodeNear.Displacement.Y * (decimal)Options.DisplacementFactor)));
-            farVectorDisplaced = new Vector2((float)(nodeFar.Position.X + (nodeFar.Displacement.X * (decimal)Options.DisplacementFactor)), (float)(nodeFar.Position.Y + (nodeFar.Displacement.Y * (decimal)Options.DisplacementFactor)));
+            nearVectorDisplaced = new Vector2((float)(nodeNear.Position.X + (nodeNear.Displacement.X * (decimal)Options.Display.DisplacementFactor)), (float)(nodeNear.Position.Y + (nodeNear.Displacement.Y * (decimal)Options.Display.DisplacementFactor)));
+            farVectorDisplaced = new Vector2((float)(nodeFar.Position.X + (nodeFar.Displacement.X * (decimal)Options.Display.DisplacementFactor)), (float)(nodeFar.Position.Y + (nodeFar.Displacement.Y * (decimal)Options.Display.DisplacementFactor)));
 
             // Unit Vectors.
             LDLUnit = Vector2.Normalize(new Vector2(farVectorDisplaced.X - nearVectorDisplaced.X, farVectorDisplaced.Y - nearVectorDisplaced.Y));
@@ -1085,20 +1085,20 @@
 
             if (previousSegment != -1)
             {
-                shearNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.Y * (float)Options.ShearFactor));
-                shearFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.Y * (float)Options.ShearFactor));
+                shearNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.Y * (float)Options.Display.ShearFactor));
+                shearFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.Y * (float)Options.Display.ShearFactor));
                 Vector2 tmpVector = (shearNear + parent.Segments[previousSegment].ShearFar) / 2;
                 shearNear = tmpVector;
                 parent.Segments[previousSegment].ShearFar = tmpVector;
 
-                momentNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.M * (float)Options.MomentFactor));
-                momentFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.M * (float)Options.MomentFactor));
+                momentNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.M * (float)Options.Display.MomentFactor));
+                momentFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.M * (float)Options.Display.MomentFactor));
                 tmpVector = (momentNear + parent.Segments[previousSegment].MomentFar) / 2;
                 momentNear = tmpVector;
                 parent.Segments[previousSegment].MomentFar = tmpVector;
 
-                nearLDLLine = NearVectorDisplaced + (LDLUnit * (-(float)lDLNear * (float)Options.LinearFactor));
-                farLDLLine = FarVectorDisplaced + (LDLUnit * (-(float)lDLFar * (float)Options.LinearFactor));
+                nearLDLLine = NearVectorDisplaced + (LDLUnit * (-(float)lDLNear * (float)Options.Display.LinearFactor));
+                farLDLLine = FarVectorDisplaced + (LDLUnit * (-(float)lDLFar * (float)Options.Display.LinearFactor));
 
                 tmpVector = (nearLDLLine + parent.Segments[previousSegment].FarLDLLine) / 2;
                 nearLDLLine = tmpVector;
@@ -1106,14 +1106,14 @@
             }
             else
             {
-                shearNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.Y * (float)Options.ShearFactor));
-                shearFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.Y * (float)Options.ShearFactor));
+                shearNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.Y * (float)Options.Display.ShearFactor));
+                shearFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.Y * (float)Options.Display.ShearFactor));
 
-                momentNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.M * (float)Options.MomentFactor));
-                momentFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.M * (float)Options.MomentFactor));
+                momentNear = NearVectorDisplaced + (LDLUnit * ((float)internalLoadNearLocal.M * (float)Options.Display.MomentFactor));
+                momentFar = FarVectorDisplaced + (LDLUnit * (-(float)internalLoadFarLocal.M * (float)Options.Display.MomentFactor));
 
-                nearLDLLine = NearVectorDisplaced + (LDLUnit * (-(float)lDLNear * (float)Options.LinearFactor));
-                farLDLLine = FarVectorDisplaced + (LDLUnit * (-(float)lDLFar * (float)Options.LinearFactor));
+                nearLDLLine = NearVectorDisplaced + (LDLUnit * (-(float)lDLNear * (float)Options.Display.LinearFactor));
+                farLDLLine = FarVectorDisplaced + (LDLUnit * (-(float)lDLFar * (float)Options.Display.LinearFactor));
             }
         }
 

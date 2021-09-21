@@ -15,7 +15,7 @@
         private static string lengthUnitString = string.Empty;
         private static float lengthUnitFactor;
 
-        private static float zoomTrim = 216f;
+        //private static float zoomTrim = 216f;
         private static float zoomTrimmed;
         private static float zoom;
 
@@ -86,23 +86,23 @@
         /// </summary>
         internal static Vector2 Position { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the ZoomTrim.
-        /// Can be used to set screen measurements to match actual measurements.
-        /// </summary>
-        internal static float ZoomTrim
-        {
-            get
-            {
-                return zoomTrim;
-            }
+        ///// <summary>
+        ///// Gets or sets the ZoomTrim.
+        ///// Can be used to set screen measurements to match actual measurements.
+        ///// </summary>
+        //internal static float ZoomTrim
+        //{
+        //    get
+        //    {
+        //        return zoomTrim;
+        //    }
 
-            set
-            {
-                zoomTrim = value;
-                Options.CameraZoomTrim = zoomTrim;
-            }
-        }
+        //    set
+        //    {
+        //        zoomTrim = value;
+        //        Options.CameraZoomTrim = zoomTrim;
+        //    }
+        //}
 
         /// <summary>
         /// Gets or sets the ZoomTrimmed.
@@ -117,7 +117,7 @@
             set
             {
                 zoomTrimmed = value;
-                zoom = zoomTrimmed / zoomTrim;
+                zoom = zoomTrimmed / Options.Display.CameraZoomTrim;
                 Line.Unit = 1 / zoomTrimmed;
                 UpdateBounds();
             }
@@ -136,7 +136,7 @@
             set
             {
                 zoom = value;
-                zoomTrimmed = zoom * zoomTrim;
+                zoomTrimmed = zoom * Options.Display.CameraZoomTrim;
                 Line.Unit = 1 / zoomTrimmed;
                 UpdateBounds();
             }
@@ -290,7 +290,7 @@
         internal static void UpdateLengthType()
         {
             // Find the Smallest bound to suit the selected length type.
-            switch (Options.Length)
+            switch (Options.Units.Length)
             {
                 case LengthType.Millimeter:
                     lengthUnitString = " mm";

@@ -25,10 +25,10 @@
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            ComboBox_Solver.SelectedIndex = Options.CurrentSolver;
-            CheckBox_AutoStart.IsChecked = Options.AutoStartSolver;
-            CheckBox_AutoFinish.IsChecked = Options.AutoFinishSolver;
-            CheckBox_GenerateReport.IsChecked = Options.GenerateReport;
+            ComboBox_Solver.SelectedIndex = Options.Solvers.CurrentSolver;
+            CheckBox_AutoStart.IsChecked = Options.Solvers.AutoStartSolver;
+            CheckBox_AutoFinish.IsChecked = Options.Solvers.AutoFinishSolver;
+            CheckBox_GenerateReport.IsChecked = Options.Solvers.GenerateReport;
         }
 
         /// <summary>
@@ -56,37 +56,37 @@
 
         private void ComboBox_Solver_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Options.CurrentSolver = ComboBox_Solver.SelectedIndex;
+            Options.Solvers.CurrentSolver = ComboBox_Solver.SelectedIndex;
         }
 
         private void CheckBox_AutoStart_Checked(object sender, RoutedEventArgs e)
         {
-            Options.AutoStartSolver = true;
+            Options.Solvers.AutoStartSolver = true;
         }
 
         private void CheckBox_AutoStart_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.AutoStartSolver = false;
+            Options.Solvers.AutoStartSolver = false;
         }
 
         private void CheckBox_AutoFinish_Checked(object sender, RoutedEventArgs e)
         {
-            Options.AutoFinishSolver = true;
+            Options.Solvers.AutoFinishSolver = true;
         }
 
         private void CheckBox_AutoFinish_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.AutoFinishSolver = false;
+            Options.Solvers.AutoFinishSolver = false;
         }
 
         private void CheckBox_GenerateReport_Checked(object sender, RoutedEventArgs e)
         {
-            Options.GenerateReport = true;
+            Options.Solvers.GenerateReport = true;
         }
 
         private void CheckBox_GenerateReport_Unchecked(object sender, RoutedEventArgs e)
         {
-            Options.GenerateReport = false;
+            Options.Solvers.GenerateReport = false;
         }
 
         #region Common Menus

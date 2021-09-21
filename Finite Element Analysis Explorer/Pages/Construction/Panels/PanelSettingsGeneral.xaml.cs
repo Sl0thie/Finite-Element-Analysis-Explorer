@@ -129,7 +129,8 @@
 
             SingleValue_ZoomTrim.Title = "Scale Trim";
             SingleValue_ZoomTrim.UnitType = UnitType.Unitless;
-            SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+            //SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+            SingleValue_ZoomTrim.SetTheValue((decimal)Options.Display.CameraZoomTrim);
 
             SingleValue_SelectGridSize.Title = "Touch Grid Size";
             SingleValue_SelectGridSize.UnitType = UnitType.Unitless;
@@ -138,8 +139,11 @@
 
         private void SingleValue_ZoomTrim_ValueChanged(object sender, EventArgs e)
         {
-            Camera.ZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
-            SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+            //Camera.ZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
+            //SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
+
+            Options.Display.CameraZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
+            SingleValue_ZoomTrim.SetTheValue((decimal)Options.Display.CameraZoomTrim);
         }
 
         private void SingleValue_SelectGridSize_ValueChanged(object sender, EventArgs e)

@@ -1337,7 +1337,7 @@
 
             try
             {
-                if (Options.GenerateReport)
+                if (Options.Solvers.GenerateReport)
                 {
                     ReportBasic report = new ReportBasic();
                     await report.CreateReportAsync();
@@ -1370,7 +1370,8 @@
 
             if (!hasErrors)
             {
-                if (Options.AutoFinishSolver)
+                if (Options.Solvers.
+                    AutoFinishSolver)
                 {
                     if (!hasWarning)
                     {

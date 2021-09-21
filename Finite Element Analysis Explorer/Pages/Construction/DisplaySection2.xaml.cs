@@ -815,7 +815,7 @@
                         SingleValue_RadiusOfGyration.SetTheValue(DMath.Sqrt(Model.Sections.CurrentSection.I / Model.Sections.CurrentSection.Area));
                         SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (height / 2));
 
-                        switch (Options.Length)
+                        switch (Options.Units.Length)
                         {
                             case LengthType.Meter:
                                 SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);

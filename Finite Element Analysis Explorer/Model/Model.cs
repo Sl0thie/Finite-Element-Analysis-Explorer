@@ -291,35 +291,6 @@
         }
 
         /// <summary>
-        /// Update the colors.
-        /// </summary>
-        internal static void UpdateColors()
-        {
-            switch (App.CurrentPageState)
-            {
-                case PageState.Construction:
-                    ConstructionDisplay.Current.UpdateColors();
-                    break;
-
-                case PageState.FileLoading:
-
-                    break;
-
-                case PageState.Results:
-                    ResultsDisplay.Current.UpdateColors();
-                    break;
-
-                case PageState.Solver:
-
-                    break;
-
-                case PageState.Unknown:
-
-                    break;
-            }
-        }
-
-        /// <summary>
         /// Reset the Model. Exclude the Materials Collection to reduce the workload.
         /// </summary>
         internal static void Reset()

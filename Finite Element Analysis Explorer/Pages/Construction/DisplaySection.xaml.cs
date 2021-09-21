@@ -216,7 +216,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (height / 2));
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -283,7 +283,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (height / 2));
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -353,7 +353,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -417,7 +417,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -486,7 +486,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / radius);
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -549,7 +549,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty1 / 2));
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);
@@ -618,7 +618,7 @@
                             SingleValue_SectionModulus.SetTheValue(Model.Sections.CurrentSection.I / (Model.Sections.CurrentSection.SectionProfileProperty2 / 2));
 
                             Model.Sections.CurrentSection.CostPerLength = Model.Sections.CurrentSection.Area * Model.Materials[Model.Sections.CurrentSection.Material].Cost;
-                            switch (Options.Length)
+                            switch (Options.Units.Length)
                             {
                                 case LengthType.Meter:
                                     SingleValue_VolumePerLength.SetTheValue(Model.Sections.CurrentSection.Area / Constants.MeterPerMeter);

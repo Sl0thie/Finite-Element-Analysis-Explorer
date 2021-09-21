@@ -24,127 +24,127 @@
 
         private void Button_ColorBackground_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "ColorBackground";
+            Options.Colors.ColorToEdit = "ColorBackground";
             flyOut_SelectColor.ShowAt(Button_Save);
         }
 
         private void Button_ColorForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineForce";
+            Options.Colors.ColorToEdit = "LineForce";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_ColorReaction_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineReaction";
+            Options.Colors.ColorToEdit = "LineReaction";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineGridNormal_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineGridNormal";
+            Options.Colors.ColorToEdit = "LineGridNormal";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineGridMinor_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineGridMinor";
+            Options.Colors.ColorToEdit = "LineGridMinor";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineGridMajor_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineGridMajor";
+            Options.Colors.ColorToEdit = "LineGridMajor";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_ColorSelected_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineSelectedElement";
+            Options.Colors.ColorToEdit = "LineSelectedElement";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineShearForceSelected_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineShearForceSelected";
+            Options.Colors.ColorToEdit = "LineShearForceSelected";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineShearForceFont_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineShearForceFont";
+            Options.Colors.ColorToEdit = "LineShearForceFont";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineMomentForceFont_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineMomentForceFont";
+            Options.Colors.ColorToEdit = "LineMomentForceFont";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineMomentForceSelected_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineMomentForceSelected";
+            Options.Colors.ColorToEdit = "LineMomentForceSelected";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineDistributedForceSelected_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineDistributedForceSelected";
+            Options.Colors.ColorToEdit = "LineDistributedForceSelected";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineShearForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineShearForce";
+            Options.Colors.ColorToEdit = "LineShearForce";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineMomentForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineMomentForce";
+            Options.Colors.ColorToEdit = "LineMomentForce";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineDistributedForce_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineDistributedForce";
+            Options.Colors.ColorToEdit = "LineDistributedForce";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodeFree_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodeFree";
+            Options.Colors.ColorToEdit = "LineNodeFree";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodeFixed_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodeFixed";
+            Options.Colors.ColorToEdit = "LineNodeFixed";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodePin_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodePin";
+            Options.Colors.ColorToEdit = "LineNodePin";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodeRollerX_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodeRollerX";
+            Options.Colors.ColorToEdit = "LineNodeRollerX";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodeRollerY_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodeRollerY";
+            Options.Colors.ColorToEdit = "LineNodeRollerY";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 
         private void Button_LineNodeOther_Click(object sender, RoutedEventArgs e)
         {
-            Options.ColorToEdit = "LineNodeOther";
+            Options.Colors.ColorToEdit = "LineNodeOther";
             flyOut_SelectColorAndLine.ShowAt(Button_Save);
         }
 

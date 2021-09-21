@@ -191,6 +191,11 @@
     <Compile Include="Controls\LineSelectorBox.xaml.cs">
       <DependentUpon>LineSelectorBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Options\OptionsDisplay.cs" />
+    <Compile Include="Options\OptionsSolvers.cs" />
+    <Compile Include="Options\OptionsLines.cs" />
+    <Compile Include="Options\OptionsUnits.cs" />
+    <Compile Include="Options\OptionsColors.cs" />
     <Compile Include="Pages\Construction\DisplaySection2.xaml.cs">
       <DependentUpon>DisplaySection2.xaml</DependentUpon>
     </Compile>
@@ -308,7 +313,6 @@
     <Compile Include="Model\Nodes\Constraints\Constraints.cs" />
     <Compile Include="Others\DecimalMatrix.cs" />
     <Compile Include="FileManager\FileManager.cs" />
-    <Compile Include="Others\LineStyle.cs" />
     <Compile Include="Model\Materials\Material.cs" />
     <Compile Include="Model\Materials\MaterialCollection.cs" />
     <Compile Include="Model\Members\Member.cs" />

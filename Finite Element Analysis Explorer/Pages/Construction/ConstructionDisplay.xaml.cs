@@ -47,31 +47,13 @@
 
         #endregion
 
-        #region Colors
-
-        private Color colorBackground = Options.ColorBackground;
-        private Color colorForce = Options.ColorForce;
-        private Color colorGridNormal = Options.ColorGridNormal;
-        private Color colorGridMajor = Options.ColorGridMajor;
-        private Color colorGridMinor = Options.ColorGridMinor;
-        private Color colorGridMajorFont = Options.ColorGridMajorFont;
-        private Color colorSelectedElement = Options.ColorSelectedElement;
-        private Color colorSelectedNode = Options.ColorSelectedNode;
-        private Color colorDistributedForce = Options.ColorDistributedForce;
-        private Color colorNodeFixed = Options.ColorNodeFixed;
-        private Color colorNodePin = Options.ColorNodePin;
-        private Color colorNodeRollerX = Options.ColorNodeRollerX;
-        private Color colorNodeRollerY = Options.ColorNodeRollerY;
-
-        #endregion
-
         #region Lines
 
-        private CanvasStrokeStyle lineGridNormal = Options.LineGridNormal;
-        private CanvasStrokeStyle lineGridMinor = Options.LineGridMinor;
-        private CanvasStrokeStyle lineGridMajor = Options.LineGridMajor;
-        private CanvasStrokeStyle lineForce = Options.LineForce;
-        private CanvasStrokeStyle lineDistributedForce = Options.LineDistributedForce;
+        //private CanvasStrokeStyle lineGridNormal = Options.Lines.GridNormal;
+        //private CanvasStrokeStyle lineGridMinor = Options.Lines.GridMinor;
+        //private CanvasStrokeStyle lineGridMajor = Options.LineGridMajor;
+        private CanvasStrokeStyle lineForce = Options.Lines.Force;
+        //private CanvasStrokeStyle lineDistributedForce = Options.Lines.DistributedForce;
 
         #endregion
 
@@ -215,7 +197,7 @@
 
         private void Canvas_DrawAnimated(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            args.DrawingSession.Clear(colorBackground);
+            args.DrawingSession.Clear(Options.Colors.Background);
             args.DrawingSession.Transform = Camera.TranslationMatrix;
             args.DrawingSession.Antialiasing = CanvasAntialiasing.Aliased;
             float iX = Camera.Viewport.TopLeftMinor.X;
@@ -228,14 +210,14 @@
                 if (counterGridChanges < totalGridChanges)
                 {
                     counterGridChanges += 1;
-                    colorGridMinor = Color.FromArgb(Convert.ToByte(minorGridAlphaChange * counterGridChanges), colorGridMinor.R, colorGridMinor.G, colorGridMinor.B);
-                    colorGridNormal = Color.FromArgb(Convert.ToByte(normalGridAlphaChange * counterGridChanges), colorGridNormal.R, colorGridNormal.G, colorGridNormal.B);
-                    colorGridMajor = Color.FromArgb(Convert.ToByte(majorGridAlphaChange * counterGridChanges), colorGridMajor.R, colorGridMajor.G, colorGridMajor.B);
+                    Options.Colors.GridMinor = Color.FromArgb(Convert.ToByte(minorGridAlphaChange * counterGridChanges), Options.Colors.GridMinor.R, Options.Colors.GridMinor.G, Options.Colors.GridMinor.B);
+                    Options.Colors.GridNormal = Color.FromArgb(Convert.ToByte(normalGridAlphaChange * counterGridChanges), Options.Colors.GridNormal.R, Options.Colors.GridNormal.G, Options.Colors.GridNormal.B);
+                    Options.Colors.GridMajor = Color.FromArgb(Convert.ToByte(majorGridAlphaChange * counterGridChanges), Options.Colors.GridMajor.R, Options.Colors.GridMajor.G, Options.Colors.GridMajor.B);
                 }
 
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, colorGridMinor, Camera.Line.Unit, lineGridMinor);
+                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, Options.Colors.GridMinor, Camera.Line.Unit, Options.Lines.GridMinor);
                     iX += Camera.Grid.SizeMinor;
                     lineCountX++;
                 }
@@ -243,7 +225,7 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, colorGridMinor, Camera.Line.Unit, lineGridMinor);
+                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, Options.Colors.GridMinor, Camera.Line.Unit, Options.Lines.GridMinor);
                     iY += Camera.Grid.SizeMinor;
                     lineCountY++;
                 }
@@ -252,8 +234,8 @@
                 iY = Camera.Viewport.TopLeftNormal.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, colorBackground, Camera.Line.Unit, lineGridNormal);
-                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, colorGridNormal, Camera.Line.Unit, lineGridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, Options.Colors.Background, Camera.Line.Unit, Options.Lines.GridNormal);
+                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, Options.Colors.GridNormal, Camera.Line.Unit, Options.Lines.GridNormal);
                     iX += Camera.Grid.SizeNormal;
                     lineCountX++;
                 }
@@ -261,8 +243,8 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, colorBackground, Camera.Line.Unit, lineGridNormal);
-                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, colorGridNormal, Camera.Line.Unit, lineGridNormal);
+                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, Options.Colors.Background, Camera.Line.Unit, Options.Lines.GridNormal);
+                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, Options.Colors.GridNormal, Camera.Line.Unit, Options.Lines.GridNormal);
                     iY += Camera.Grid.SizeNormal;
                     lineCountY++;
                 }
@@ -271,8 +253,8 @@
                 iY = Camera.Viewport.TopLeftMajor.Y;
                 do
                 {
-                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, colorBackground, Camera.Line.Unit, lineGridMajor);
-                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, colorGridMajor, Camera.Line.Unit, lineGridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, Options.Colors.Background, Camera.Line.Unit, Options.Lines.GridMajor);
+                    args.DrawingSession.DrawLine(iX, Camera.Viewport.TopLeftNormal.Y, iX, Camera.Viewport.BottomRight.Y, Options.Colors.GridMajor, Camera.Line.Unit, Options.Lines.GridMajor);
                     iX += Camera.Grid.SizeMajor;
                     lineCountX++;
                 }
@@ -280,8 +262,8 @@
 
                 do
                 {
-                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, colorBackground, Camera.Line.Unit, lineGridMajor);
-                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, colorGridMajor, Camera.Line.Unit, lineGridMajor);
+                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, Options.Colors.Background, Camera.Line.Unit, Options.Lines.GridMajor);
+                    args.DrawingSession.DrawLine(Camera.Viewport.TopLeftNormal.X, iY, Camera.Viewport.BottomRight.X, iY, Options.Colors.GridMajor, Camera.Line.Unit, Options.Lines.GridMajor);
                     iY += Camera.Grid.SizeMajor;
                     lineCountY++;
                 }
@@ -293,7 +275,7 @@
 
             args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
 
-            if (Options.ShowLinear)
+            if (Options.Display.ShowLinear)
             {
                 try
                 {
@@ -301,15 +283,15 @@
                     {
                         foreach (var nextSegment in item.Value.Segments)
                         {
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearLDLLine, nextSegment.Value.FarLDLLine, colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearLDLLine, nextSegment.Value.FarLDLLine, Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
 
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.Line.LengthLDLArrow), colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.Line.LengthLDLArrow), colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.Line.LengthLDLArrow), Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.Line.LengthLDLArrow), Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
 
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.Line.LengthLDLArrow), colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
-                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.Line.LengthLDLArrow), colorDistributedForce, Camera.Line.Unit * Options.LineDistributedForceWeight, lineDistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitRight * Camera.Line.LengthLDLArrow), Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
+                            args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarVectorDisplaced + (nextSegment.Value.LDLUnitLeft * Camera.Line.LengthLDLArrow), Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
                         }
                     }
                 }
@@ -334,7 +316,7 @@
 
             try
             {
-                if (Options.ShowForce)
+                if (Options.Display.ShowForce)
                 {
                     foreach (var item in Model.Nodes.NodesWithMomentForces)
                     {
@@ -421,90 +403,9 @@
             {
                 foreach (var item in Model.Nodes.NodesWithNodalLoads)
                 {
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, colorForce, Camera.Line.Unit * Options.LineForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.Line.LengthForceArrow), colorForce, Camera.Line.Unit * Options.LineForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.Line.LengthForceArrow), colorForce, Camera.Line.Unit * Options.LineForceWeight, lineForce);
-                }
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                foreach (var item in Model.Nodes.NodesWithConstraints)
-                {
-                    switch (item.Value.Constraints.ConstraintType)
-                    {
-                        case ConstraintType.FixedBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeFixed, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.FixedTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeFixed, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.FixedLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeFixed, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.FixedRight:
-                            args.DrawingSession.DrawImage(bitMapNodeFixedRight, new Rect(item.Value.Location.X, item.Value.Location.Y - (16 * Camera.Line.Unit), 33 * Camera.Line.Unit, 33 * Camera.Line.Unit));
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeFixed, Camera.Line.ConstraintWidth);
-                            break;
-
-                        case ConstraintType.PinnedBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.PinnedTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.PinnedLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.PinnedRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-
-                        case ConstraintType.RollerBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeRollerX, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.RollerTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeRollerX, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.RollerLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeRollerY, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.RollerRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodeRollerY, Camera.Line.ConstraintWidth);
-                            break;
-
-                        case ConstraintType.TrackBottom:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.TrackTop:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.TrackLeft:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                        case ConstraintType.TrackRight:
-                            args.DrawingSession.FillCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                            args.DrawingSession.DrawCircle(item.Value.Location.X, item.Value.Location.Y, Camera.Line.ConstraintRadius, colorNodePin, Camera.Line.ConstraintWidth);
-                            break;
-                    }
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
                 }
             }
             catch
@@ -517,13 +418,13 @@
                 {
                     foreach (var nextItem in Model.Members.CurrentMember.Segments)
                     {
-                        args.DrawingSession.DrawLine(nextItem.Value.NearVector, nextItem.Value.FarVector, colorSelectedElement, Camera.Line.Unit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
+                        args.DrawingSession.DrawLine(nextItem.Value.NearVector, nextItem.Value.FarVector, Options.Colors.SelectedElement, Camera.Line.Unit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
                     }
 
-                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.Line.ConstraintRadius, colorSelectedElement, Camera.Line.ConstraintWidth);
-                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.Line.ConstraintRadius, colorBackground);
-                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.Line.ConstraintRadius, colorSelectedElement, Camera.Line.ConstraintWidth);
+                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.Line.ConstraintRadius, Options.Colors.Background);
+                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeNear.Location.X, Model.Members.CurrentMember.NodeNear.Location.Y, Camera.Line.ConstraintRadius, Options.Colors.SelectedElement, Camera.Line.ConstraintWidth);
+                    args.DrawingSession.FillCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.Line.ConstraintRadius, Options.Colors.Background);
+                    args.DrawingSession.DrawCircle(Model.Members.CurrentMember.NodeFar.Location.X, Model.Members.CurrentMember.NodeFar.Location.Y, Camera.Line.ConstraintRadius, Options.Colors.SelectedElement, Camera.Line.ConstraintWidth);
                 }
             }
             catch (Exception ex)
@@ -541,7 +442,7 @@
 
                     case SelectionState.FirstNode:
                         // create member and continue.
-                        args.DrawingSession.FillCircle(firstNodePosition, 4 * Camera.Line.Unit, colorSelectedNode);
+                        args.DrawingSession.FillCircle(firstNodePosition, 4 * Camera.Line.Unit, Options.Colors.SelectedNode);
                         break;
 
                     case SelectionState.SecondNode:
@@ -563,7 +464,7 @@
 
                 do
                 {
-                    args.DrawingSession.DrawText(Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.Viewport.Center.X + (iX * Camera.ZoomTrimmed), Camera.Viewport.Size.Y + 2, colorGridMajorFont, labelGridX);
+                    args.DrawingSession.DrawText(Math.Round(iX * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, (Camera.Position.X * Camera.ZoomTrimmed) + Camera.Viewport.Center.X + (iX * Camera.ZoomTrimmed), Camera.Viewport.Size.Y + 2, Options.Colors.GridMajorFont, labelGridX);
 
                     iX += Camera.Grid.SizeMinor;
                 }
@@ -571,7 +472,7 @@
 
                 do
                 {
-                    args.DrawingSession.DrawText(Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.Viewport.Size.X - 15, (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.Viewport.Center.Y - (iY * Camera.ZoomTrimmed), colorGridMajorFont, labelGridY);
+                    args.DrawingSession.DrawText(Math.Round(iY * Camera.LengthUnitFactor, 3).ToString() + Camera.LengthUnitString, Camera.Viewport.Size.X - 15, (-Camera.Position.Y * Camera.ZoomTrimmed) + Camera.Viewport.Center.Y - (iY * Camera.ZoomTrimmed), Options.Colors.GridMajorFont, labelGridY);
                     iY += Camera.Grid.SizeMinor;
                 }
                 while (iY < Camera.Viewport.BottomRight.Y);
@@ -846,29 +747,29 @@
         /// </summary>
         public void UpdateColors()
         {
-            colorBackground = Options.ColorBackground;
-            colorForce = Options.ColorForce;
-            colorGridNormal = Options.ColorGridNormal;
-            colorGridMajor = Options.ColorGridMajor;
-            colorGridMinor = Options.ColorGridMinor;
-            colorGridMajorFont = Options.ColorGridMajorFont;
-            colorSelectedElement = Options.ColorSelectedElement;
-            colorSelectedNode = Options.ColorSelectedNode;
-            colorDistributedForce = Options.ColorDistributedForce;
-            colorNodeFixed = Options.ColorNodeFixed;
-            colorNodePin = Options.ColorNodePin;
-            colorNodeRollerX = Options.ColorNodeRollerX;
-            colorNodeRollerY = Options.ColorNodeRollerY;
+            //colorBackground = Options.Colors.Background;
+            //colorForce = Options.Colors.Force;
+            //colorGridNormal = Options.Colors.GridNormal;
+            //colorGridMajor = Options.Colors.GridMajor;
+            //colorGridMinor = Options.Colors.GridMinor;
+            //colorGridMajorFont = Options.Colors.GridMajorFont;
+            //colorSelectedElement = Options.Colors.SelectedElement;
+            //colorSelectedNode = Options.Colors.SelectedNode;
+            //colorDistributedForce = Options.ColorDistributedForce;
+            //colorNodeFixed = Options.ColorNodeFixed;
+            //colorNodePin = Options.ColorNodePin;
+            //colorNodeRollerX = Options.ColorNodeRollerX;
+            //colorNodeRollerY = Options.ColorNodeRollerY;
 
-            lineGridNormal = Options.LineGridNormal;
-            lineGridMinor = Options.LineGridMinor;
-            lineGridMajor = Options.LineGridMajor;
-            lineForce = Options.LineForce;
-            lineDistributedForce = Options.LineDistributedForce;
+            //lineGridNormal = Options.LineGridNormal;
+            //lineGridMinor = Options.Lines.GridMinor;
+            //lineGridMajor = Options.LineGridMajor;
+            lineForce = Options.Lines.Force;
+            //lineDistributedForce = Options.LineDistributedForce;
 
-            originalMinorGridAlpha = colorGridMinor.A;
-            originalNormalGridAlpha = colorGridNormal.A;
-            originalMajorGridAlpha = colorGridMajor.A;
+            originalMinorGridAlpha = Options.Colors.GridMinor.A;
+            originalNormalGridAlpha = Options.Colors.GridNormal.A;
+            originalMajorGridAlpha = Options.Colors.GridMajor.A;
 
             minorGridAlphaChange = originalMinorGridAlpha / totalGridChanges;
             normalGridAlphaChange = originalNormalGridAlpha / totalGridChanges;

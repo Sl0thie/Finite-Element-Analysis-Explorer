@@ -40,11 +40,11 @@
             Single_NoOfSegments.DisplayOnly = false;
             Single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
 
-            LogSlider_ForcesFactor.IsChecked = Options.ShowForce;
-            LogSlider_LinearFactor.IsChecked = Options.ShowLinear;
-            LogSlider_MomentFactor.IsChecked = Options.ShowMoment;
-            LogSlider_ReactionsFactor.IsChecked = Options.ShowReactions;
-            LogSlider_ShearFactor.IsChecked = Options.ShowShear;
+            LogSlider_ForcesFactor.IsChecked = Options.Display.ShowForce;
+            LogSlider_LinearFactor.IsChecked = Options.Display.ShowLinear;
+            LogSlider_MomentFactor.IsChecked = Options.Display.ShowMoment;
+            LogSlider_ReactionsFactor.IsChecked = Options.Display.ShowReactions;
+            LogSlider_ShearFactor.IsChecked = Options.Display.ShowShear;
 
             LogSlider_DisplacementFactor.Title = "Displacement Factor";
             LogSlider_ForcesFactor.Title = "Force Factor";
@@ -53,12 +53,12 @@
             LogSlider_ReactionsFactor.Title = "Reaction Factor";
             LogSlider_ShearFactor.Title = "Shear Factor";
 
-            LogSlider_DisplacementFactor.SetNewValue(Options.DisplacementFactor);
-            LogSlider_ForcesFactor.SetNewValue(Options.ForcesFactor);
-            LogSlider_LinearFactor.SetNewValue(Options.LinearFactor);
-            LogSlider_MomentFactor.SetNewValue(Options.MomentFactor);
-            LogSlider_ReactionsFactor.SetNewValue(Options.ReactionsFactor);
-            LogSlider_ShearFactor.SetNewValue(Options.ShearFactor);
+            LogSlider_DisplacementFactor.SetNewValue(Options.Display.DisplacementFactor);
+            LogSlider_ForcesFactor.SetNewValue(Options.Display.ForcesFactor);
+            LogSlider_LinearFactor.SetNewValue(Options.Display.LinearFactor);
+            LogSlider_MomentFactor.SetNewValue(Options.Display.MomentFactor);
+            LogSlider_ReactionsFactor.SetNewValue(Options.Display.ReactionsFactor);
+            LogSlider_ShearFactor.SetNewValue(Options.Display.ShearFactor);
 
             CheckBox_ResetExisting.IsChecked = Options.ResetExistingMembers;
         }
@@ -193,83 +193,83 @@
 
         private void LogSlider_MomentFactor_Checked(object sender, EventArgs e)
         {
-            Options.ShowMoment = true;
+            Options.Display.ShowMoment = true;
         }
 
         private void LogSlider_MomentFactor_Unchecked(object sender, EventArgs e)
         {
-            Options.ShowMoment = false;
+            Options.Display.ShowMoment = false;
         }
 
         private void LogSlider_ShearFactor_Checked(object sender, EventArgs e)
         {
-            Options.ShowShear = true;
+            Options.Display.ShowShear = true;
         }
 
         private void LogSlider_ShearFactor_Unchecked(object sender, EventArgs e)
         {
-            Options.ShowShear = false;
+            Options.Display.ShowShear = false;
         }
 
         private void LogSlider_LinearFactor_Checked(object sender, EventArgs e)
         {
-            Options.ShowLinear = true;
+            Options.Display.ShowLinear = true;
         }
 
         private void LogSlider_LinearFactor_Unchecked(object sender, EventArgs e)
         {
-            Options.ShowLinear = false;
+            Options.Display.ShowLinear = false;
         }
 
         private void LogSlider_ForcesFactor_Checked(object sender, EventArgs e)
         {
-            Options.ShowForce = true;
+            Options.Display.ShowForce = true;
         }
 
         private void LogSlider_ForcesFactor_Unchecked(object sender, EventArgs e)
         {
-            Options.ShowForce = false;
+            Options.Display.ShowForce = false;
         }
 
         private void LogSlider_ReactionsFactor_Checked(object sender, EventArgs e)
         {
-            Options.ShowReactions = true;
+            Options.Display.ShowReactions = true;
         }
 
         private void LogSlider_ReactionsFactor_Unchecked(object sender, EventArgs e)
         {
-            Options.ShowReactions = false;
+            Options.Display.ShowReactions = false;
         }
 
         private void LogSlider_MomentFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.MomentFactor = LogSlider_MomentFactor.TheValue;
+            Options.Display.MomentFactor = LogSlider_MomentFactor.TheValue;
         }
 
         private void LogSlider_ShearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ShearFactor = LogSlider_ShearFactor.TheValue;
+            Options.Display.ShearFactor = LogSlider_ShearFactor.TheValue;
         }
 
         private void LogSlider_LinearFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.LinearFactor = LogSlider_LinearFactor.TheValue;
+            Options.Display.LinearFactor = LogSlider_LinearFactor.TheValue;
         }
 
         private void LogSlider_ReactionsFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ReactionsFactor = LogSlider_ReactionsFactor.TheValue;
+            Options.Display.ReactionsFactor = LogSlider_ReactionsFactor.TheValue;
         }
 
         private void LogSlider_ForcesFactor_ValueChanged(object sender, EventArgs e)
         {
-            Options.ForcesFactor = LogSlider_ForcesFactor.TheValue;
+            Options.Display.ForcesFactor = LogSlider_ForcesFactor.TheValue;
         }
 
         private void LogSlider_DisplacementFactor_ValueChanged(object sender, EventArgs e)
         {
             Debug.WriteLine("LogSlider_DisplacementFactor_ValueChanged");
-            Options.DisplacementFactor = LogSlider_DisplacementFactor.TheValue;
+            Options.Display.DisplacementFactor = LogSlider_DisplacementFactor.TheValue;
         }
 
         private void Button_Help_Click(object sender, RoutedEventArgs e)

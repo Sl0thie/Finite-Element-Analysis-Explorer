@@ -78,15 +78,18 @@
                 CoreDispatcherPriority.High,
                 () =>
                 {
-                    if (Options.LoadLastFileOnStartup)
-                    {
-                        FileManager.LoadLastFileAsync();
-                    }
-                    else
-                    {
-                        Frame rootFrame2 = Window.Current.Content as Frame;
-                        rootFrame2.Navigate(typeof(Construction));
-                    }
+                    // Removed option. Loading last file by default now.
+                    //if (Options.LoadLastFileOnStartup)
+                    //{
+                    //    FileManager.LoadLastFileAsync();
+                    //}
+                    //else
+                    //{
+                    //    Frame rootFrame2 = Window.Current.Content as Frame;
+                    //    rootFrame2.Navigate(typeof(Construction));
+                    //}
+
+                    FileManager.LoadLastFileAsync();
                 });
 
             try
