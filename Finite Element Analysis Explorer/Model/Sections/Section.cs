@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using Microsoft.Graphics.Canvas.Geometry;
+    using System;
     using Windows.UI;
 
     /// <summary>
@@ -621,13 +622,20 @@
 
         private void UpdateCanvasStrokeStyle()
         {
-            LineStyle.DashCap = CanvasCapStyle.Round;
-            LineStyle.DashOffset = dashOffset;
-            LineStyle.DashStyle = line;
-            LineStyle.EndCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineGridNormalEndCap"];
-            LineStyle.LineJoin = lineJoin;
-            LineStyle.MiterLimit = miterLimit;
-            LineStyle.StartCap = nearCapStyle;
+            try
+            {
+                LineStyle.DashCap = CanvasCapStyle.Round;
+                LineStyle.DashOffset = dashOffset;
+                LineStyle.DashStyle = line;
+                LineStyle.EndCap = CanvasCapStyle.Round;
+                LineStyle.LineJoin = lineJoin;
+                LineStyle.MiterLimit = miterLimit;
+                LineStyle.StartCap = nearCapStyle;
+            }
+            catch (Exception ex)
+            {
+                WService.ReportException(ex);
+            }
         }
 
         private void UpdateColor()

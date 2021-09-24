@@ -74,7 +74,7 @@
 
         #region Objects
 
-        private int index;
+        private readonly int index;
 
         /// <summary>
         /// Gets the index of the segment.
@@ -109,7 +109,7 @@
             set { previousSegment = value; }
         }
 
-        private Node nodeNear;
+        private readonly Node nodeNear;
 
         /// <summary>
         /// Gets the near node.
@@ -122,7 +122,7 @@
             }
         }
 
-        private Node nodeFar;
+        private readonly Node nodeFar;
 
         /// <summary>
         /// Gets the far node.

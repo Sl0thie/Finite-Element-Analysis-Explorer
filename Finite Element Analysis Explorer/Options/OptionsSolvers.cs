@@ -82,10 +82,25 @@
         {
             try
             {
-                autoStartSolver = (bool)FileManager.LocalSettings.Values["AutoStartSolver"];
-                autoFinishSolver = (bool)FileManager.LocalSettings.Values["AutoFinishSolver"];
-                generateReport = (bool)FileManager.LocalSettings.Values["GenerateReport"];
-                currentSolver = (int)FileManager.LocalSettings.Values["CurrentSolver"];
+                if (FileManager.LocalSettings.Values.ContainsKey("AutoStartSolver"))
+                {
+                    autoStartSolver = (bool)FileManager.LocalSettings.Values["AutoStartSolver"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("AutoFinishSolver"))
+                {
+                    autoFinishSolver = (bool)FileManager.LocalSettings.Values["AutoFinishSolver"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("GenerateReport"))
+                {
+                    generateReport = (bool)FileManager.LocalSettings.Values["GenerateReport"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("CurrentSolver"))
+                {
+                    currentSolver = (int)FileManager.LocalSettings.Values["CurrentSolver"];
+                }
             }
             catch (Exception ex)
             {

@@ -5,7 +5,6 @@
     using System.Numerics;
     using System.Threading.Tasks;
     using Microsoft.Graphics.Canvas;
-    using Microsoft.Graphics.Canvas.Geometry;
     using Microsoft.Graphics.Canvas.Text;
     using Microsoft.Graphics.Canvas.UI.Xaml;
     using Windows.Foundation;
@@ -35,7 +34,7 @@
 
         private SelectionState currentSelectionState = SelectionState.Ready;
         private Vector2 firstNodePosition;
-        private bool isPageLoaded = false;
+        private bool pageIsLoaded = false;
 
         private byte originalMinorGridAlpha;
         private byte originalNormalGridAlpha;
@@ -47,23 +46,13 @@
 
         #endregion
 
-        #region Lines
-
-        //private CanvasStrokeStyle lineGridNormal = Options.Lines.GridNormal;
-        //private CanvasStrokeStyle lineGridMinor = Options.Lines.GridMinor;
-        //private CanvasStrokeStyle lineGridMajor = Options.LineGridMajor;
-        private CanvasStrokeStyle lineForce = Options.Lines.Force;
-        //private CanvasStrokeStyle lineDistributedForce = Options.Lines.DistributedForce;
-
-        #endregion
-
         #region Fonts
 
         // Font setup is in the create resources method.
         private CanvasTextFormat labelGridX;
         private CanvasTextFormat labelGridY;
-        private CanvasTextFormat labelFormat;
-        private CanvasTextFormat labelHeaderFormat;
+        //private CanvasTextFormat labelFormat;
+        //private CanvasTextFormat labelHeaderFormat;
 
         #endregion
 
@@ -85,7 +74,6 @@
         private CanvasBitmap bitMapNodeRollerRight;
         private CanvasBitmap bitMapNodeFixedRight;
         private CanvasBitmap bitMapNodeTrackRight;
-
         private CanvasBitmap bitMapMomentForceAntiClockwise;
         private CanvasBitmap bitMapMomentForceClockwise;
 
@@ -153,7 +141,7 @@
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (isPageLoaded)
+            if (pageIsLoaded)
             {
                 Camera.Viewport.Size = new Vector2((int)canvas.ActualWidth, (int)canvas.ActualHeight);
             }
@@ -163,8 +151,8 @@
         {
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
-            labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-            labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            //labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            //labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }
 
@@ -403,9 +391,9 @@
             {
                 foreach (var item in Model.Nodes.NodesWithNodalLoads)
                 {
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
-                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, lineForce);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, Options.Lines.Force);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, Options.Lines.Force);
+                    args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitRight * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, Options.Lines.Force);
                 }
             }
             catch
@@ -747,26 +735,6 @@
         /// </summary>
         public void UpdateColors()
         {
-            //colorBackground = Options.Colors.Background;
-            //colorForce = Options.Colors.Force;
-            //colorGridNormal = Options.Colors.GridNormal;
-            //colorGridMajor = Options.Colors.GridMajor;
-            //colorGridMinor = Options.Colors.GridMinor;
-            //colorGridMajorFont = Options.Colors.GridMajorFont;
-            //colorSelectedElement = Options.Colors.SelectedElement;
-            //colorSelectedNode = Options.Colors.SelectedNode;
-            //colorDistributedForce = Options.ColorDistributedForce;
-            //colorNodeFixed = Options.ColorNodeFixed;
-            //colorNodePin = Options.ColorNodePin;
-            //colorNodeRollerX = Options.ColorNodeRollerX;
-            //colorNodeRollerY = Options.ColorNodeRollerY;
-
-            //lineGridNormal = Options.LineGridNormal;
-            //lineGridMinor = Options.Lines.GridMinor;
-            //lineGridMajor = Options.LineGridMajor;
-            lineForce = Options.Lines.Force;
-            //lineDistributedForce = Options.LineDistributedForce;
-
             originalMinorGridAlpha = Options.Colors.GridMinor.A;
             originalNormalGridAlpha = Options.Colors.GridNormal.A;
             originalMajorGridAlpha = Options.Colors.GridMajor.A;

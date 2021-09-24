@@ -246,20 +246,75 @@
         {
             try
             {
-                showMoment = (bool)FileManager.LocalSettings.Values["ShowMoment"];
-                showShear = (bool)FileManager.LocalSettings.Values["ShowShear"];
-                showForce = (bool)FileManager.LocalSettings.Values["ShowForce"];
-                ShowLinear = (bool)FileManager.LocalSettings.Values["ShowLinear"];
-                showAxial = (bool)FileManager.LocalSettings.Values["ShowAxial"];
-                showReactions = (bool)FileManager.LocalSettings.Values["ShowReactions"];
-                memberDisplayType = (int)FileManager.LocalSettings.Values["MemberDisplayType"];
-                cameraZoomTrim = Convert.ToSingle(FileManager.LocalSettings.Values["CameraZoomTrim"]);
-                momentFactor = Convert.ToSingle(FileManager.LocalSettings.Values["MomentFactor"]);
-                shearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ShearFactor"]);
-                linearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["LinearFactor"]);
-                forcesFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ForcesFactor"]);
-                reactionsFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ReactionsFactor"]);
-                displacementFactor = Convert.ToSingle(FileManager.LocalSettings.Values["DisplacementFactor"]);
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowMoment"))
+                {
+                    showMoment = (bool)FileManager.LocalSettings.Values["ShowMoment"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowShear"))
+                {
+                    showShear = (bool)FileManager.LocalSettings.Values["ShowShear"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowForce"))
+                {
+                    showForce = (bool)FileManager.LocalSettings.Values["ShowForce"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowLinear"))
+                {
+                    ShowLinear = (bool)FileManager.LocalSettings.Values["ShowLinear"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowAxial"))
+                {
+                    showAxial = (bool)FileManager.LocalSettings.Values["ShowAxial"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShowReactions"))
+                {
+                    showReactions = (bool)FileManager.LocalSettings.Values["ShowReactions"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("MemberDisplayType"))
+                {
+                    memberDisplayType = (int)FileManager.LocalSettings.Values["MemberDisplayType"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("CameraZoomTrim"))
+                {
+                    cameraZoomTrim = Convert.ToSingle(FileManager.LocalSettings.Values["CameraZoomTrim"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("MomentFactor"))
+                {
+                    momentFactor = Convert.ToSingle(FileManager.LocalSettings.Values["MomentFactor"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ShearFactor"))
+                {
+                    shearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ShearFactor"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("LinearFactor"))
+                {
+                    linearFactor = Convert.ToSingle(FileManager.LocalSettings.Values["LinearFactor"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ForcesFactor"))
+                {
+                    forcesFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ForcesFactor"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("ReactionsFactor"))
+                {
+                    reactionsFactor = Convert.ToSingle(FileManager.LocalSettings.Values["ReactionsFactor"]);
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("DisplacementFactor"))
+                {
+                    displacementFactor = Convert.ToSingle(FileManager.LocalSettings.Values["DisplacementFactor"]);
+                }
             }
             catch (Exception ex)
             {

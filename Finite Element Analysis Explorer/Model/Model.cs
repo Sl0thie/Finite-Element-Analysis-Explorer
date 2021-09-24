@@ -17,7 +17,7 @@
         /// </summary>
         internal static int TotalMembers { get; set; }
 
-        private static MemberCollection members = new MemberCollection();
+        private static readonly MemberCollection members = new MemberCollection();
 
         /// <summary>
         /// Gets the members collection.
@@ -30,7 +30,7 @@
             }
         }
 
-        private static NodeConcurrentCollection nodes = new NodeConcurrentCollection();
+        private static readonly NodeConcurrentCollection nodes = new NodeConcurrentCollection();
 
         /// <summary>
         /// Gets the nodes collection.
@@ -43,7 +43,7 @@
             }
         }
 
-        private static SectionCollection sections = new SectionCollection();
+        private static readonly SectionCollection sections = new SectionCollection();
 
         /// <summary>
         /// Gets the sections collection.
@@ -56,7 +56,7 @@
             }
         }
 
-        private static MaterialCollection materials = new MaterialCollection();
+        private static readonly MaterialCollection materials = new MaterialCollection();
 
         /// <summary>
         /// Gets the materials collection.
@@ -69,7 +69,7 @@
             }
         }
 
-        private static SectionProfileCollection sectionProfiles = new SectionProfileCollection();
+        private static readonly SectionProfileCollection sectionProfiles = new SectionProfileCollection();
 
         /// <summary>
         /// Gets the section profiles collection.

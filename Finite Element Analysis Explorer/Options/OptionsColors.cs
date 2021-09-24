@@ -348,12 +348,14 @@
         {
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorBackgroundA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorBackgroundR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorBackgroundG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorBackgroundB"];
-
-                Background = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if(FileManager.LocalSettings.Values.ContainsKey("ColorBackgroundA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorBackgroundA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorBackgroundR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorBackgroundG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorBackgroundB"];
+                    Background = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -362,12 +364,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorLabelA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorLabelR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorLabelG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorLabelB"];
-
-                Label = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorLabelA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorLabelA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorLabelR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorLabelG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorLabelB"];
+                    Label = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -376,12 +380,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorForceA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorForceR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorForceG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorForceB"];
-
-                Force = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorForceA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorForceA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorForceR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorForceG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorForceB"];
+                    Force = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -390,12 +396,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorReactionA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorReactionR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorReactionG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorReactionB"];
-
-                Reaction = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorReactionA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorReactionA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorReactionR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorReactionG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorReactionB"];
+                    Reaction = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -404,12 +412,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorGridNormalA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorGridNormalR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorGridNormalG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorGridNormalB"];
-
-                GridNormal = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorGridNormalA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorGridNormalA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorGridNormalR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorGridNormalG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorGridNormalB"];
+                    GridNormal = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -418,12 +428,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorGridMinorA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorGridMinorR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorGridMinorG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorGridMinorB"];
-
-                GridMinor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorGridMinorA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorGridMinorA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorGridMinorR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorGridMinorG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorGridMinorB"];
+                    GridMinor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -432,12 +444,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorGridMajorA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorGridMajorR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorGridMajorG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorGridMajorB"];
-
-                GridMajor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorGridMajorA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorGridMajorA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorGridMajorR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorGridMajorG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorGridMajorB"];
+                    GridMajor = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -446,12 +460,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorGridMajorFontA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorGridMajorFontR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorGridMajorFontG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorGridMajorFontB"];
-
-                GridMajorFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorGridMajorFontA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorGridMajorFontA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorGridMajorFontR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorGridMajorFontG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorGridMajorFontB"];
+                    GridMajorFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -460,12 +476,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
-                int g = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
-                int b = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
-
-                SelectedNode = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorSelectedNodeA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorSelectedNodeA"];
+                    SelectedNode = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -474,12 +492,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorSelectedElementA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorSelectedElementR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorSelectedElementG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorSelectedElementB"];
-
-                SelectedElement = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorSelectedElementA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorSelectedElementA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorSelectedElementR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorSelectedElementG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorSelectedElementB"];
+                    SelectedElement = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -488,12 +508,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedB"];
-
-                ShearForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorShearForceSelectedA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorShearForceSelectedB"];
+                    ShearForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -502,12 +524,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedB"];
-
-                MomentForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorMomentForceSelectedA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorMomentForceSelectedB"];
+                    MomentForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -516,12 +540,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"];
-
-                DistributedForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorDistributedForceSelectedA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceSelectedB"];
+                    DistributedForceSelected = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -530,12 +556,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorShearForceFontA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorShearForceFontR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorShearForceFontG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorShearForceFontB"];
-
-                ShearForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorShearForceFontA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorShearForceFontA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorShearForceFontR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorShearForceFontG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorShearForceFontB"];
+                    ShearForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -544,12 +572,14 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceFontA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceFontR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceFontG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceFontB"];
-
-                MomentForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorMomentForceFontA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorMomentForceFontA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorMomentForceFontR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorMomentForceFontG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorMomentForceFontB"];
+                    MomentForceFont = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -558,12 +588,15 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorMomentForceA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorMomentForceR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorMomentForceG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorMomentForceB"];
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorMomentForceA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorMomentForceA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorMomentForceR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorMomentForceG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorMomentForceB"];
 
-                MomentForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                    MomentForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {
@@ -572,12 +605,15 @@
 
             try
             {
-                int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceA"];
-                int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceR"];
-                int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceG"];
-                int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceB"];
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorDistributedForceA"))
+                {
+                    int a = (int)FileManager.LocalSettings.Values["ColorDistributedForceA"];
+                    int r = (int)FileManager.LocalSettings.Values["ColorDistributedForceR"];
+                    int g = (int)FileManager.LocalSettings.Values["ColorDistributedForceG"];
+                    int b = (int)FileManager.LocalSettings.Values["ColorDistributedForceB"];
 
-                DistributedForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                    DistributedForce = Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b);
+                }
             }
             catch (Exception ex)
             {

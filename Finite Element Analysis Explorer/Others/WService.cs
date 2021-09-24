@@ -70,7 +70,7 @@
             Debug.WriteLine($"HResult: {exception.HResult}");
             Debug.WriteLine($"Message: {exception.Message}");
             Debug.WriteLine($"StackTrace: {exception.StackTrace}");
-            Debug.WriteLine($"TargetSite: {exception.TargetSite.Name.ToString()}");
+            Debug.WriteLine($"TargetSite: {exception.TargetSite.Name}");
             Debug.WriteLine($"Source: {exception.Source}");
 
             string source = exception.Source + "," + sf.GetMethod().DeclaringType + "," + sf.GetMethod().Name;

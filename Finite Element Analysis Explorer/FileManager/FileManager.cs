@@ -803,6 +803,7 @@
             catch (Exception ex)
             {
                 Debug.WriteLine("Failed to load sections. " + ex.Message);
+                WService.ReportException(ex);
             }
 
             Section tempSection = Model.Sections.LoadLastCurrentSectionSection();

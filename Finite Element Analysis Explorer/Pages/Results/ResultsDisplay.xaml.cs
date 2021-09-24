@@ -49,7 +49,7 @@
         private CanvasTextFormat labelGridX;
         private CanvasTextFormat labelGridY;
         private CanvasTextFormat labelFormat;
-        private CanvasTextFormat labelHeaderFormat;
+        //private CanvasTextFormat labelHeaderFormat;
 
         #endregion
 
@@ -154,9 +154,8 @@
         {
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
-
             labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-            labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
+            //labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
 
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }

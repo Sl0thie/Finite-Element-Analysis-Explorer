@@ -206,17 +206,60 @@
         {
             try
             {
-                Angle = (AngleType)FileManager.LocalSettings.Values["UnitAngle"];
-                Mass = (MassType)FileManager.LocalSettings.Values["UnitMass"];
-                Length = (LengthType)FileManager.LocalSettings.Values["UnitLength"];
-                Volume = (VolumeType)FileManager.LocalSettings.Values["UnitVolume"];
-                Moment = (MomentType)FileManager.LocalSettings.Values["UnitMoment"];
-                Pressure = (PressureType)FileManager.LocalSettings.Values["UnitPressure"];
-                MomentOfInertia = (MomentOfInertiaType)FileManager.LocalSettings.Values["UnitMomentOfInertia"];
-                Area = (AreaType)FileManager.LocalSettings.Values["UnitArea"];
-                Density = (DensityType)FileManager.LocalSettings.Values["UnitDensity"];
-                Force = (ForceType)FileManager.LocalSettings.Values["UnitForce"];
-                ForcePerLength = (ForcePerLengthType)FileManager.LocalSettings.Values["UnitForcePerLength"];
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitAngle"))
+                {
+                    angle = (AngleType)FileManager.LocalSettings.Values["UnitAngle"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitMass"))
+                {
+                    mass = (MassType)FileManager.LocalSettings.Values["UnitMass"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitLength"))
+                {
+                    length = (LengthType)FileManager.LocalSettings.Values["UnitLength"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitVolume"))
+                {
+                    volume = (VolumeType)FileManager.LocalSettings.Values["UnitVolume"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitMoment"))
+                {
+                    moment = (MomentType)FileManager.LocalSettings.Values["UnitMoment"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitPressure"))
+                {
+                    pressure = (PressureType)FileManager.LocalSettings.Values["UnitPressure"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitMomentOfInertia"))
+                {
+                    momentOfInertia = (MomentOfInertiaType)FileManager.LocalSettings.Values["UnitMomentOfInertia"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitArea"))
+                {
+                    area = (AreaType)FileManager.LocalSettings.Values["UnitArea"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitDensity"))
+                {
+                    density = (DensityType)FileManager.LocalSettings.Values["UnitDensity"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitForce"))
+                {
+                    force = (ForceType)FileManager.LocalSettings.Values["UnitForce"];
+                }
+
+                if (FileManager.LocalSettings.Values.ContainsKey("UnitForcePerLength"))
+                {
+                    forcePerLength = (ForcePerLengthType)FileManager.LocalSettings.Values["UnitForcePerLength"];
+                }
             }
             catch (Exception ex)
             {
