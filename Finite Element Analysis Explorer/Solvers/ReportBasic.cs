@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using Windows.Storage;
@@ -66,13 +65,13 @@
 
             foreach (var item in Model.Members)
             {
-                if(!sections.Contains(item.Value.Section))
+                if (!sections.Contains(item.Value.Section))
                 {
                     sections.Add(item.Value.Section);
                 }
             }
 
-            if(sections.Count == 1)
+            if (sections.Count == 1)
             {
                 sb.AppendLine("<div id=\"divsections\">");
                 sb.AppendLine("<h2>Member Section</h2>");
@@ -142,7 +141,7 @@
                 sb.AppendLine("<h2>Member Sections</h2>");
                 sb.AppendLine("<table style\"width:100%;\">");
 
-                for (int i = 0;i < sections.Count; i++)
+                for (int i = 0; i < sections.Count; i++)
                 {
                     sb.AppendLine("<tr>");
                     sb.AppendLine("<td style=\"width:300px;\">");
@@ -325,7 +324,7 @@
         }
 
         private void FinalizeHTML()
-        { 
+        {
             sb.AppendLine("</div>");
             sb.AppendLine("</body>");
             sb.AppendLine("</html>");

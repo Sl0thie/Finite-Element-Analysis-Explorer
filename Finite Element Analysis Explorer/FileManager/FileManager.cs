@@ -1,13 +1,12 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Microsoft.Graphics.Canvas.Geometry;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Numerics;
-    using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Graphics.Canvas.Geometry;
     using Windows.Storage;
     using Windows.Storage.AccessCache;
     using Windows.Storage.Pickers;
@@ -60,7 +59,7 @@
             get { return fileTitle; }
         }
 
-        
+
 
         #endregion
 

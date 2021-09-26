@@ -348,7 +348,7 @@
         {
             try
             {
-                if(FileManager.LocalSettings.Values.ContainsKey("ColorBackgroundA"))
+                if (FileManager.LocalSettings.Values.ContainsKey("ColorBackgroundA"))
                 {
                     int a = (int)FileManager.LocalSettings.Values["ColorBackgroundA"];
                     int r = (int)FileManager.LocalSettings.Values["ColorBackgroundR"];

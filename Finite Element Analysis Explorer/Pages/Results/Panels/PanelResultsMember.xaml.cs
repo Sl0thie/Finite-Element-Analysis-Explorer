@@ -1,6 +1,5 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using System.Diagnostics;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 

@@ -86,24 +86,6 @@
         /// </summary>
         internal static Vector2 Position { get; private set; }
 
-        ///// <summary>
-        ///// Gets or sets the ZoomTrim.
-        ///// Can be used to set screen measurements to match actual measurements.
-        ///// </summary>
-        //internal static float ZoomTrim
-        //{
-        //    get
-        //    {
-        //        return zoomTrim;
-        //    }
-
-        //    set
-        //    {
-        //        zoomTrim = value;
-        //        Options.CameraZoomTrim = zoomTrim;
-        //    }
-        //}
-
         /// <summary>
         /// Gets or sets the ZoomTrimmed.
         /// </summary>

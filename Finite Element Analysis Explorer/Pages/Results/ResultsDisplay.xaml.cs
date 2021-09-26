@@ -1,13 +1,12 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Microsoft.Graphics.Canvas;
+    using Microsoft.Graphics.Canvas.Text;
+    using Microsoft.Graphics.Canvas.UI.Xaml;
     using System;
     using System.Diagnostics;
     using System.Numerics;
     using System.Threading.Tasks;
-    using Microsoft.Graphics.Canvas;
-    using Microsoft.Graphics.Canvas.Geometry;
-    using Microsoft.Graphics.Canvas.Text;
-    using Microsoft.Graphics.Canvas.UI.Xaml;
     using Windows.Foundation;
     using Windows.UI;
     using Windows.UI.Input;
@@ -464,7 +463,7 @@
                 {
                     foreach (var item in Model.Nodes.NodesWithMomentReactions)
                     {
-                        if(item.Value.LoadReaction.M > 0)
+                        if (item.Value.LoadReaction.M > 0)
                         {
                             args.DrawingSession.DrawImage(bitMapMomentReactionClockwise, new Rect(item.Value.Location.X - (32 * Camera.Line.Unit), item.Value.Location.Y - (32 * Camera.Line.Unit), 65 * Camera.Line.Unit, 65 * Camera.Line.Unit));
                         }

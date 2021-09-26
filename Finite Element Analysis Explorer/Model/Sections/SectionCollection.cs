@@ -1,7 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using System.Collections.Generic;
     using Microsoft.Graphics.Canvas.Geometry;
+    using System.Collections.Generic;
 
     /// <summary>
     /// SectionCollection class.

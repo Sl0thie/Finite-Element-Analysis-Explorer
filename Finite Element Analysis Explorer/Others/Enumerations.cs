@@ -1,7 +1,5 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using System;
-
     #region Constraints
 
     /// <summary>

@@ -1,12 +1,12 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using Microsoft.Graphics.Canvas;
+    using Microsoft.Graphics.Canvas.Text;
+    using Microsoft.Graphics.Canvas.UI.Xaml;
     using System;
     using System.Diagnostics;
     using System.Numerics;
     using System.Threading.Tasks;
-    using Microsoft.Graphics.Canvas;
-    using Microsoft.Graphics.Canvas.Text;
-    using Microsoft.Graphics.Canvas.UI.Xaml;
     using Windows.Foundation;
     using Windows.UI;
     using Windows.UI.Input;

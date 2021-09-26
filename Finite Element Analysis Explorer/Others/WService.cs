@@ -47,7 +47,7 @@
                 else
                 {
                     soap.ReportSession3Async(sessionStart, DateTime.UtcNow, false, Options.Id);
-                }  
+                }
             }
             catch (Exception ex)
             {

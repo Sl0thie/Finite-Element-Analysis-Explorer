@@ -1,8 +1,8 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using MathNet.Numerics.LinearAlgebra;
     using System;
     using System.Diagnostics;
-    using MathNet.Numerics.LinearAlgebra;
     using Windows.UI;
     using Windows.UI.Core;
     using Windows.UI.Xaml;
@@ -256,7 +256,7 @@
                     }
                 }
 
-                if(restrainedDOF <= 2)
+                if (restrainedDOF <= 2)
                 {
                     hasErrors = true;
                     AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    ERROR!", 2);
@@ -543,7 +543,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-            
+
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -609,7 +609,7 @@
                 WService.ReportException(ex);
                 return false;
             }
-            
+
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
             return true;
         }
@@ -734,7 +734,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-            
+
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -810,7 +810,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-            
+
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 
@@ -902,7 +902,7 @@
                 AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    " + ex.Message, 2);
                 WService.ReportException(ex);
             }
-            
+
             AddMessage(mainTimer.ElapsedMilliseconds, taskTimer.ElapsedMilliseconds, "    Finished.", 1);
         }
 

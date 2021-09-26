@@ -144,7 +144,7 @@
                 SelectGridSize = 1f;
             }
 
-            if(FileManager.LocalSettings.Values["Id"] is object)
+            if (FileManager.LocalSettings.Values["Id"] is object)
             {
                 Id = (string)FileManager.LocalSettings.Values["Id"];
             }

@@ -79,7 +79,7 @@
 
             SolverFunctions.CreateSuperpositionValuesFromSegmentsToNodes();
 
-            if(!SolverFunctions.AssembleStiffnessMatrix())
+            if (!SolverFunctions.AssembleStiffnessMatrix())
             {
                 return;
             }

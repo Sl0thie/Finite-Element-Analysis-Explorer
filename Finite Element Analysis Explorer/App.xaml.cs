@@ -126,7 +126,7 @@
             {
                 WService.ReportException(ex);
             }
-            
+
             deferral.Complete();
         }
     }
