@@ -35,7 +35,7 @@ namespace Finite_Element_Analysis_Explorer
 
         public Report()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

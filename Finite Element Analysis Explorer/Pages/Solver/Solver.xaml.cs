@@ -29,7 +29,7 @@
         /// </summary>
         public Solver()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             CustomizeTitleBar();
         }
 

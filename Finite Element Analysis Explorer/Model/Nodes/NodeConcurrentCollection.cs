@@ -119,23 +119,20 @@
             {
                 if (NodesWithConstraints.ContainsKey(nodeToRemove.Index))
                 {
-                    Node tempNode = new Node();
-                    _ = NodesWithConstraints.TryRemove(nodeToRemove.Index, out tempNode);
+                    _ = NodesWithConstraints.TryRemove(nodeToRemove.Index, out _);
                 }
 
                 if (NodesWithNodalLoads.ContainsKey(nodeToRemove.Index))
                 {
-                    Node tempNode = new Node();
-                    _ = NodesWithNodalLoads.TryRemove(nodeToRemove.Index, out tempNode);
+                    _ = NodesWithNodalLoads.TryRemove(nodeToRemove.Index, out _);
                 }
 
                 if (NodesWithReactions.ContainsKey(nodeToRemove.Index))
                 {
-                    Node tempNode = new Node();
-                    _ = NodesWithReactions.TryRemove(nodeToRemove.Index, out tempNode);
+                    _ = NodesWithReactions.TryRemove(nodeToRemove.Index, out _);
                 }
 
-                _ = TryRemove(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y), out nodeToRemove);
+                _ = TryRemove(new Tuple<decimal, decimal>(nodeToRemove.Position.X, nodeToRemove.Position.Y), out _);
             }
         }
     }

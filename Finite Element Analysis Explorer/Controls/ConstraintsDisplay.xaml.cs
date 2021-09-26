@@ -20,7 +20,7 @@
         /// </summary>
         public ConstraintsDisplay()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

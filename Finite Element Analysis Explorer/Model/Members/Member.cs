@@ -712,11 +712,9 @@
                 foreach (KeyValuePair<int, Segment> item in Model.Members[index].Segments)
                 {
                     Tuple<int, int> position = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / Model.Members.GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / Model.Members.GridSize));
-                    List<Tuple<int, int>> iTmp = null;
-
                     if (Model.Members.MemberTiles.ContainsKey(position))
                     {
-                        iTmp = Model.Members.MemberTiles[position];
+                        List<Tuple<int, int>> iTmp = Model.Members.MemberTiles[position];
                         iTmp.Add(new Tuple<int, int>(index, item.Value.Index));
                     }
                     else

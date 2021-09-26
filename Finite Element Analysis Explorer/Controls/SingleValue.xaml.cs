@@ -404,7 +404,7 @@
         /// </summary>
         public SingleValue()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

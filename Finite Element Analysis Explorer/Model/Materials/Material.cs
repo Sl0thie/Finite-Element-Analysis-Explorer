@@ -332,7 +332,11 @@
             {
                 return name;
             }
-            set { name = value; }
+
+            set
+            {
+                name = value;
+            }
         }
 
         private string description = string.Empty;

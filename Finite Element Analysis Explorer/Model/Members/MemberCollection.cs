@@ -142,11 +142,10 @@
 
                 if (MembersWithLinearLoads.ContainsKey(indexToRemove))
                 {
-                    Member tmpMember = new Member();
                     _ = MembersWithLinearLoads.TryRemove(indexToRemove, out _);
                 }
 
-                RemoveElementFromTiles(indexToRemove, Model.Members[indexToRemove].CenterPoint);
+                RemoveElementFromTiles(indexToRemove);
 
                 _ = TryRemove(indexToRemove, out currentMember);
                 currentMember = null;
@@ -207,7 +206,7 @@
                 new Tuple<int, int>(dimX + 1, dimY),
                 new Tuple<int, int>(dimX - 1, dimY + 1),
                 new Tuple<int, int>(dimX, dimY + 1),
-                new Tuple<int, int>(dimX + 1, dimY + 1)
+                new Tuple<int, int>(dimX + 1, dimY + 1),
             };
 
             foreach (Tuple<int, int> grid in grids)
@@ -244,24 +243,21 @@
         /// Adds a new element to the tiles.
         /// </summary>
         /// <param name="elementNumber">The index number of the element.</param>
-        /// <param name="position">The position of the element.</param>
-        public void AddNewElementToTiles(int elementNumber, Vector2 position)
+        public void AddNewElementToTiles(int elementNumber)
         {
             foreach (KeyValuePair<int, Segment> item in Model.Members[elementNumber].Segments)
             {
                 Tuple<int, int> position2D = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
-                List<Tuple<int, int>> iTmp = null;
-
                 if (MemberTiles.ContainsKey(position2D))
                 {
-                    iTmp = MemberTiles[position2D];
+                    List<Tuple<int, int>> iTmp = MemberTiles[position2D];
                     iTmp.Add(new Tuple<int, int>(elementNumber, item.Value.Index));
                 }
                 else
                 {
                     List<Tuple<int, int>> newList = new List<Tuple<int, int>>
                     {
-                        new Tuple<int, int>(elementNumber, item.Value.Index)
+                        new Tuple<int, int>(elementNumber, item.Value.Index),
                     };
                     if (!MemberTiles.TryAdd(position2D, newList))
                     {
@@ -275,8 +271,7 @@
         /// Removes an element from the tiles.
         /// </summary>
         /// <param name="elementNumber">The index of the element.</param>
-        /// <param name="position">The position of the element.</param>
-        public void RemoveElementFromTiles(int elementNumber, Vector2 position)
+        public void RemoveElementFromTiles(int elementNumber)
         {
             foreach (KeyValuePair<int, Segment> item in Model.Members[elementNumber].Segments)
             {

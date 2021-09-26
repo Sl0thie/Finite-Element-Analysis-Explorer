@@ -95,7 +95,7 @@
         /// </summary>
         public NumericInput()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             TextBlock_Sign.Text = string.Empty;
             TextBlock_Hundred.Text = string.Empty;

@@ -32,7 +32,7 @@
         /// </summary>
         public LogSlider()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private string title;

@@ -15,13 +15,15 @@
         private int axis;
         private bool displayOnly;
         private UnitType unitType = UnitType.Unitless;
+        private decimal nearValue;
+        private decimal farValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DoubleValue"/> class.
         /// </summary>
         public DoubleValue()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -42,12 +44,34 @@
         /// <summary>
         /// Gets or sets the near value.
         /// </summary>
-        public decimal NearValue { get; set; }
+        public decimal NearValue
+        {
+            get
+            {
+                return nearValue;
+            }
+
+            set
+            {
+                nearValue = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the far value.
         /// </summary>
-        public decimal FarValue { get; set; }
+        public decimal FarValue
+        {
+            get
+            {
+                return farValue;
+            }
+
+            set
+            {
+                farValue = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the axis.

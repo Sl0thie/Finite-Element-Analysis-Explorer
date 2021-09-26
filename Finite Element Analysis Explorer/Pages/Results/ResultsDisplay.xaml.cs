@@ -23,17 +23,28 @@
     /// </summary>
     public sealed partial class ResultsDisplay : Page
     {
-        #region Properties
-
-        #region Operations
+        private static float counterGridChanges = 0;
+        private static ResultsDisplay current;
 
         /// <summary>
         /// Gets or sets the current results display page.
         /// </summary>
-        internal static ResultsDisplay Current { get; set; }
+        internal static ResultsDisplay Current
+        {
+            get
+            {
+                return current;
+            }
 
-        private static float counterGridChanges = 0;
+            set
+            {
+                current = value;
+            }
+        }
+
+        private readonly bool forceManipulationsToEnd;
         private readonly float totalGridChanges = 40;
+
         private SelectionState currentSelectionState = SelectionState.Ready;
         private byte originalMinorGridAlpha;
         private byte originalNormalGridAlpha;
@@ -42,18 +53,9 @@
         private float normalGridAlphaChange;
         private float majorGridAlphaChange;
 
-        #endregion
-
-        #region Fonts
-
-        // Font setup is in the create resources method.
         private CanvasTextFormat labelGridX;
         private CanvasTextFormat labelGridY;
         private CanvasTextFormat labelFormat;
-
-        #endregion
-
-        #region CanvasBitmaps
 
         private CanvasBitmap bitMapNodePinnedTop;
         private CanvasBitmap bitMapNodeRollerTop;
@@ -80,18 +82,9 @@
         private CanvasBitmap bitMapMomentReactionAntiClockwise;
         private CanvasBitmap bitMapMomentReactionClockwise;
 
-        #endregion
-
-        #region Transforms
-
         private TransformGroup transforms;
         private MatrixTransform previousTransform;
         private CompositeTransform deltaTransform;
-        private readonly bool forceManipulationsToEnd;
-
-        #endregion
-
-        #endregion
 
         #region Constructor
 

@@ -454,7 +454,7 @@
 
                     await FileIO.WriteLinesAsync(workingFile, lines);
                     CachedFileManager.DeferUpdates(workingFile);
-                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(workingFile);
+                    _ = await CachedFileManager.CompleteUpdatesAsync(workingFile);
                 }
                 else
                 {
@@ -505,7 +505,7 @@
 
                     await FileIO.WriteLinesAsync(workingFile, lines);
                     CachedFileManager.DeferUpdates(workingFile);
-                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(workingFile);
+                    _ = await CachedFileManager.CompleteUpdatesAsync(workingFile);
                 }
             }
             else
@@ -673,7 +673,7 @@
 
             await FileIO.WriteLinesAsync(materialsFile, lines);
             CachedFileManager.DeferUpdates(materialsFile);
-            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(materialsFile);
+            _ = await CachedFileManager.CompleteUpdatesAsync(materialsFile);
         }
 
         #region Sections
@@ -904,7 +904,7 @@
 
             await FileIO.WriteLinesAsync(sectionsFile, lines);
             CachedFileManager.DeferUpdates(sectionsFile);
-            FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
+            _ = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
         }
 
         #endregion

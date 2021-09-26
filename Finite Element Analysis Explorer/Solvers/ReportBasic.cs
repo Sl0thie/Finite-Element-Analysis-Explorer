@@ -8,11 +8,18 @@
 
     using Windows.Storage;
 
+    /// <summary>
+    /// ReportBasic class.
+    /// </summary>
     internal class ReportBasic
     {
-        private StorageFile tempFile = null;
         private readonly StringBuilder sb = new StringBuilder();
+        private StorageFile tempFile = null;
 
+        /// <summary>
+        /// CreateReportAsync creates a basic report asynchronously.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
         internal async Task CreateReportAsync()
         {
             await CreateSimpleHTMLAsync();

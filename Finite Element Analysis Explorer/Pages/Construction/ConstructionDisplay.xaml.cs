@@ -23,20 +23,15 @@
     /// </summary>
     public sealed partial class ConstructionDisplay : Page
     {
-        #region Properties
-
-        #region Operations
-
-        /// <summary>
-        /// Gets or sets the current construction display page.
-        /// </summary>
-        internal static ConstructionDisplay Current { get; set; }
-
+        private static ConstructionDisplay current;
         private static float counterGridChanges = 0;
+
+        private readonly bool pageIsLoaded = false;
+        private readonly float totalGridChanges = 40;
+        private readonly bool forceManipulationsToEnd;
 
         private SelectionState currentSelectionState = SelectionState.Ready;
         private Vector2 firstNodePosition;
-        private readonly bool pageIsLoaded = false;
 
         private byte originalMinorGridAlpha;
         private byte originalNormalGridAlpha;
@@ -44,19 +39,9 @@
         private float minorGridAlphaChange;
         private float normalGridAlphaChange;
         private float majorGridAlphaChange;
-        private readonly float totalGridChanges = 40;
 
-        #endregion
-
-        #region Fonts
-
-        // Font setup is in the create resources method.
         private CanvasTextFormat labelGridX;
         private CanvasTextFormat labelGridY;
-
-        #endregion
-
-        #region CanvasBitmaps
 
         private CanvasBitmap bitMapNodePinnedTop;
         private CanvasBitmap bitMapNodeRollerTop;
@@ -77,18 +62,25 @@
         private CanvasBitmap bitMapMomentForceAntiClockwise;
         private CanvasBitmap bitMapMomentForceClockwise;
 
-        #endregion
-
-        #region Transforms
-
         private TransformGroup transforms;
         private MatrixTransform previousTransform;
         private CompositeTransform deltaTransform;
-        private readonly bool forceManipulationsToEnd;
 
-        #endregion
+        /// <summary>
+        /// Gets or sets the current construction display page.
+        /// </summary>
+        internal static ConstructionDisplay Current
+        {
+            get
+            {
+                return current;
+            }
 
-        #endregion
+            set
+            {
+                current = value;
+            }
+        }
 
         #region Constructor
 
