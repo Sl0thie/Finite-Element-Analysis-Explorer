@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// OptionsDisplay class manages display options.
+    /// </summary>
     internal class OptionsDisplay
     {
         private float momentFactor = 0.001f;
@@ -264,6 +267,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsDisplay"/> class.
+        /// </summary>
         internal OptionsDisplay()
         {
             try

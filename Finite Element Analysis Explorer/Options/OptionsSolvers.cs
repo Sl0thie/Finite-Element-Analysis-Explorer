@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// OptionsSolvers class manages solver options.
+    /// </summary>
     internal class OptionsSolvers
     {
         private bool autoStartSolver = true;
@@ -77,6 +80,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsSolvers"/> class.
+        /// </summary>
         internal OptionsSolvers()
         {
             try

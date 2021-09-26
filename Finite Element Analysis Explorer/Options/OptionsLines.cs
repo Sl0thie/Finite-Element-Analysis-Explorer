@@ -4,6 +4,9 @@
 
     using Microsoft.Graphics.Canvas.Geometry;
 
+    /// <summary>
+    /// OptionsLines class manages line options.
+    /// </summary>
     internal class OptionsLines
     {
         private float gridNormalWeight = 1f;
@@ -595,6 +598,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsLines"/> class.
+        /// </summary>
         internal OptionsLines()
         {
             gridNormal.DashCap = CanvasCapStyle.Round;

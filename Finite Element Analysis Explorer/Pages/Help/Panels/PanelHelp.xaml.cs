@@ -26,16 +26,6 @@
 
         #region Common Menus
 
-        #region Help Menu
-
-        private async void Button_Help_Click(object sender, RoutedEventArgs e)
-        {
-            Uri uriHelpGeneral = new Uri(@"http://www.bing.com");
-            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
-        }
-
-        #endregion
-
         #region Settings Menu
 
         private void MenuFlyout_SettingsGeneral_Click(object sender, RoutedEventArgs e)

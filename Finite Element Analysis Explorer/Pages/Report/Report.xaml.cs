@@ -33,6 +33,9 @@ namespace Finite_Element_Analysis_Explorer
             set { detailsIsOpen = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Report"/> class.
+        /// </summary>
         public Report()
         {
             InitializeComponent();
@@ -132,6 +135,9 @@ namespace Finite_Element_Analysis_Explorer
             frameDetails.Height = ActualHeight - Constants.HeightTitleBar;
         }
 
+        /// <summary>
+        /// Displays the report page.
+        /// </summary>
         public void ShowReport()
         {
             if (isPageLoaded)

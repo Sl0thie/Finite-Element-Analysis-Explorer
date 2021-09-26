@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// OptionsUnits class manages unit options.
+    /// </summary>
     internal class OptionsUnits
     {
         private LengthType length = LengthType.Meter;
@@ -232,6 +235,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsUnits"/> class.
+        /// </summary>
         internal OptionsUnits()
         {
             try

@@ -6,6 +6,10 @@
     internal class Line
     {
         private float unit;
+        private float constraintRadius;
+        private float constraintWidth;
+        private float lengthLDLArrow;
+        private float lengthForceArrow;
 
         /// <summary>
         /// Gets or sets the line unit.
@@ -40,21 +44,65 @@
         /// <summary>
         /// Gets the constrain radius.
         /// </summary>
-        internal float ConstraintRadius { get; private set; }
+        internal float ConstraintRadius
+        {
+            get
+            {
+                return constraintRadius;
+            }
+
+            private set
+            {
+                constraintRadius = value;
+            }
+        }
 
         /// <summary>
         /// Gets the constrain width.
         /// </summary>
-        internal float ConstraintWidth { get; private set; }
+        internal float ConstraintWidth
+        {
+            get
+            {
+                return constraintWidth;
+            }
+
+            private set
+            {
+                constraintWidth = value;
+            }
+        }
 
         /// <summary>
         /// Gets the line length of the DLArrow.
         /// </summary>
-        internal float LengthLDLArrow { get; private set; }
+        internal float LengthLDLArrow
+        {
+            get
+            {
+                return lengthLDLArrow;
+            }
+
+            private set
+            {
+                lengthLDLArrow = value;
+            }
+        }
 
         /// <summary>
         /// Gets the line length of the Force Arrow.
         /// </summary>
-        internal float LengthForceArrow { get; private set; }
+        internal float LengthForceArrow
+        {
+            get
+            {
+                return lengthForceArrow;
+            }
+
+            private set
+            {
+                lengthForceArrow = value;
+            }
+        }
     }
 }

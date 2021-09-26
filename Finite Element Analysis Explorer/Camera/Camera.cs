@@ -19,31 +19,92 @@
         private static decimal largestLengthRatio;
         private static decimal largestAxialRatio;
         private static decimal largestNormalStress;
+        private static Vector2 position;
+        private static float lowerBound;
+        private static Grid grid = new Grid();
+        private static Viewport viewport = new Viewport();
+        private static Line line = new Line();
+        private static float upperBound;
 
         /// <summary>
         /// Gets or sets the camera's grid.
         /// </summary>
-        internal static Grid Grid { get; set; } = new Grid();
+        internal static Grid Grid
+        {
+            get
+            {
+                return grid;
+            }
+
+            set
+            {
+                grid = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the camera's view-port.
         /// </summary>
-        internal static Viewport Viewport { get; set; } = new Viewport();
+        internal static Viewport Viewport
+        {
+            get
+            {
+                return viewport;
+            }
+
+            set
+            {
+                viewport = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the camera's line properties.
         /// </summary>
-        internal static Line Line { get; set; } = new Line();
+        internal static Line Line
+        {
+            get
+            {
+                return line;
+            }
+
+            set
+            {
+                line = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the upper bound.
         /// </summary>
-        internal static float UpperBound { get; set; }
+        internal static float UpperBound
+        {
+            get
+            {
+                return upperBound;
+            }
+
+            set
+            {
+                upperBound = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the lower bound.
         /// </summary>
-        internal static float LowerBound { get; set; }
+        internal static float LowerBound
+        {
+            get
+            {
+                return lowerBound;
+            }
+
+            set
+            {
+                lowerBound = value;
+            }
+        }
 
         /// <summary>
         /// Gets a matrix after calculating the translation, scale and centering.
@@ -64,8 +125,15 @@
         /// </summary>
         internal static string LengthUnitString
         {
-            get { return lengthUnitString; }
-            set { lengthUnitString = value; }
+            get
+            {
+                return lengthUnitString;
+            }
+
+            set
+            {
+                lengthUnitString = value;
+            }
         }
 
         /// <summary>
@@ -74,14 +142,32 @@
         /// </summary>
         internal static float LengthUnitFactor
         {
-            get { return lengthUnitFactor; }
-            set { lengthUnitFactor = value; }
+            get
+            {
+                return lengthUnitFactor;
+            }
+
+            set
+            {
+                lengthUnitFactor = value;
+            }
         }
 
         /// <summary>
         /// Gets the Position. The centered position of the Camera in pixels.
         /// </summary>
-        internal static Vector2 Position { get; private set; }
+        internal static Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+
+            private set
+            {
+                position = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the ZoomTrimmed.
@@ -126,8 +212,15 @@
         /// </summary>
         internal static decimal LargestLengthRatio
         {
-            get { return largestLengthRatio; }
-            set { largestLengthRatio = value; }
+            get
+            {
+                return largestLengthRatio;
+            }
+
+            set
+            {
+                largestLengthRatio = value;
+            }
         }
 
         /// <summary>
@@ -135,8 +228,15 @@
         /// </summary>
         internal static decimal LargestAxialRatio
         {
-            get { return largestAxialRatio; }
-            set { largestAxialRatio = value; }
+            get
+            {
+                return largestAxialRatio;
+            }
+
+            set
+            {
+                largestAxialRatio = value;
+            }
         }
 
         /// <summary>
@@ -144,8 +244,15 @@
         /// </summary>
         internal static decimal LargestNormalStress
         {
-            get { return largestNormalStress; }
-            set { largestNormalStress = value; }
+            get
+            {
+                return largestNormalStress;
+            }
+
+            set
+            {
+                largestNormalStress = value;
+            }
         }
 
         /// <summary>
@@ -197,8 +304,6 @@
             oldCenterWorld = ScreenToWorld(Viewport.Center);
         }
 
-        #region Snap
-
         /// <summary>
         /// Snaps the distance to a snap point.
         /// </summary>
@@ -230,8 +335,6 @@
                 }
             }
         }
-
-        #endregion
 
         /// <summary>
         /// Setup the camera from properties provided by a file.

@@ -4,6 +4,9 @@
 
     using Windows.UI;
 
+    /// <summary>
+    /// OptionsColors class manages color options.
+    /// </summary>
     internal class OptionsColors
     {
         private Color background = Color.FromArgb(255, 0, 12, 24);
@@ -402,6 +405,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsColors"/> class.
+        /// </summary>
         internal OptionsColors()
         {
             try

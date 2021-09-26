@@ -679,7 +679,7 @@
                     Node nextNode = null;
                     decimal posX = lastNodeFar.Position.X + xDiv;
                     decimal posY = lastNodeFar.Position.Y + yDiv;
-                    nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Point(posX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
+                    nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Point(posX, posY, 0), default(Codes), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
                     nextNodeIndex++;
                     Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, nextNode, section, lastW, lastW + wSeg, previousSegmentIndex);
                     _ = segments.TryAdd(nextSegment.Index, nextSegment);

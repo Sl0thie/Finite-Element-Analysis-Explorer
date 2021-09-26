@@ -12,6 +12,9 @@ namespace Finite_Element_Analysis_Explorer
     /// </summary>
     public sealed partial class ReportDisplay : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportDisplay"/> class.
+        /// </summary>
         public ReportDisplay()
         {
             InitializeComponent();

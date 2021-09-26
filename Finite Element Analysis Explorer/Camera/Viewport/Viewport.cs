@@ -14,15 +14,23 @@
         private Vector2 topLeftMajor;
         private Vector2 bottomRight;
         private Vector2 centerWorld;
+        private int width;
+        private int height;
 
         /// <summary>
         /// Gets or sets the viewPort center. Co-ordinates of the center of the view port.
         /// </summary>
         internal Vector2 Center
         {
-            get { return center; }
+            get
+            {
+                return center;
+            }
 
-            set { center = value; }
+            set
+            {
+                center = value;
+            }
         }
 
         /// <summary>
@@ -30,9 +38,15 @@
         /// </summary>
         internal Vector2 CenterWorld
         {
-            get { return centerWorld; }
+            get
+            {
+                return centerWorld;
+            }
 
-            set { centerWorld = value; }
+            set
+            {
+                centerWorld = value;
+            }
         }
 
         /// <summary>
@@ -58,21 +72,49 @@
         /// <summary>
         /// Gets or sets the view port width. Width of the view port window which we need to adjust any time the player resizes the application window.
         /// </summary>
-        internal int Width { get; set; }
+        internal int Width
+        {
+            get
+            {
+                return width;
+            }
+
+            set
+            {
+                width = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the view port height. Height of the view port window which we need to adjust any time the player resizes the application window.
         /// </summary>
-        internal int Height { get; set; }
+        internal int Height
+        {
+            get
+            {
+                return height;
+            }
+
+            set
+            {
+                height = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the top left normal.
         /// </summary>
         internal Vector2 TopLeftNormal
         {
-            get { return topLeftNormal; }
+            get
+            {
+                return topLeftNormal;
+            }
 
-            set { topLeftNormal = value; }
+            set
+            {
+                topLeftNormal = value;
+            }
         }
 
         /// <summary>
@@ -80,9 +122,15 @@
         /// </summary>
         internal Vector2 TopLeftMinor
         {
-            get { return topLeftMinor; }
+            get
+            {
+                return topLeftMinor;
+            }
 
-            set { topLeftMinor = value; }
+            set
+            {
+                topLeftMinor = value;
+            }
         }
 
         /// <summary>
@@ -90,9 +138,15 @@
         /// </summary>
         internal Vector2 TopLeftMajor
         {
-            get { return topLeftMajor; }
+            get
+            {
+                return topLeftMajor;
+            }
 
-            set { topLeftMajor = value; }
+            set
+            {
+                topLeftMajor = value;
+            }
         }
 
         /// <summary>
@@ -100,9 +154,15 @@
         /// </summary>
         internal Vector2 BottomRight
         {
-            get { return bottomRight; }
+            get
+            {
+                return bottomRight;
+            }
 
-            set { bottomRight = value; }
+            set
+            {
+                bottomRight = value;
+            }
         }
     }
 }

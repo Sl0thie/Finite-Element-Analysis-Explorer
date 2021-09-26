@@ -5,19 +5,56 @@
     /// </summary>
     internal class Grid
     {
+        private float sizeNormal = 1f;
+        private float sizeMinor = 0.1f;
+        private float sizeMajor = 10f;
+
         /// <summary>
         /// Gets or sets the grid size for normal lines.
         /// </summary>
-        internal float SizeNormal { get; set; } = 1f;
+        internal float SizeNormal
+        {
+            get
+            {
+                return sizeNormal;
+            }
+
+            set
+            {
+                sizeNormal = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the grid size for the minor grid.
         /// </summary>
-        internal float SizeMinor { get; set; } = 0.1f;
+        internal float SizeMinor
+        {
+            get
+            {
+                return sizeMinor;
+            }
+
+            set
+            {
+                sizeMinor = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the grid size for the major grid.
         /// </summary>
-        internal float SizeMajor { get; set; } = 10f;
+        internal float SizeMajor
+        {
+            get
+            {
+                return sizeMajor;
+            }
+
+            set
+            {
+                sizeMajor = value;
+            }
+        }
     }
 }

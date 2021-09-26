@@ -8,16 +8,42 @@
     /// </summary>
     internal static class Model
     {
-        #region Properties
-
-        #region Collections
+        private static int totalMembers;
+        private static MemberCollection members = new MemberCollection();
+        private static NodeConcurrentCollection nodes = new NodeConcurrentCollection();
+        private static SectionCollection sections = new SectionCollection();
+        private static MaterialCollection materials = new MaterialCollection();
+        private static SectionProfileCollection sectionProfiles = new SectionProfileCollection();
+        private static ConcurrentBag<Segment> segmentsWithLinearLoad = new ConcurrentBag<Segment>();
+        private static decimal largestLinear;
+        private static decimal forceX;
+        private static decimal reactionX;
+        private static decimal forceY;
+        private static decimal reactionY;
+        private static decimal forceM;
+        private static decimal reactionM;
+        private static decimal totalCost;
+        private static decimal materialCost;
+        private static decimal nodeCost;
+        private static decimal transportCost;
+        private static decimal elevationCost;
+        private static bool isReportBasic;
 
         /// <summary>
         /// Gets or sets the total number of members.
         /// </summary>
-        internal static int TotalMembers { get; set; }
+        internal static int TotalMembers
+        {
+            get
+            {
+                return totalMembers;
+            }
 
-        private static readonly MemberCollection members = new MemberCollection();
+            set
+            {
+                totalMembers = value;
+            }
+        }
 
         /// <summary>
         /// Gets the members collection.
@@ -30,8 +56,6 @@
             }
         }
 
-        private static readonly NodeConcurrentCollection nodes = new NodeConcurrentCollection();
-
         /// <summary>
         /// Gets the nodes collection.
         /// </summary>
@@ -42,8 +66,6 @@
                 return nodes;
             }
         }
-
-        private static readonly SectionCollection sections = new SectionCollection();
 
         /// <summary>
         /// Gets the sections collection.
@@ -56,8 +78,6 @@
             }
         }
 
-        private static readonly MaterialCollection materials = new MaterialCollection();
-
         /// <summary>
         /// Gets the materials collection.
         /// </summary>
@@ -69,8 +89,6 @@
             }
         }
 
-        private static readonly SectionProfileCollection sectionProfiles = new SectionProfileCollection();
-
         /// <summary>
         /// Gets the section profiles collection.
         /// </summary>
@@ -81,10 +99,6 @@
                 return sectionProfiles;
             }
         }
-
-        #endregion
-
-        private static ConcurrentBag<Segment> segmentsWithLinearLoad = new ConcurrentBag<Segment>();
 
         /// <summary>
         /// Gets or sets the segments with load concurrent bag.
@@ -102,8 +116,6 @@
             }
         }
 
-        private static decimal largestLinear;
-
         /// <summary>
         /// Gets or sets the largest linear load.
         /// </summary>
@@ -115,8 +127,6 @@
 
         #region Equilibrium Properties
 
-        private static decimal forceX;
-
         /// <summary>
         /// Gets or sets the force X.
         /// </summary>
@@ -125,8 +135,6 @@
             get { return forceX; }
             set { forceX = value; }
         }
-
-        private static decimal reactionX;
 
         /// <summary>
         /// Gets or sets the reaction X.
@@ -137,8 +145,6 @@
             set { reactionX = value; }
         }
 
-        private static decimal forceY;
-
         /// <summary>
         /// Gets or sets the force Y.
         /// </summary>
@@ -147,8 +153,6 @@
             get { return forceY; }
             set { forceY = value; }
         }
-
-        private static decimal reactionY;
 
         /// <summary>
         /// Gets or sets the reaction Y.
@@ -159,8 +163,6 @@
             set { reactionY = value; }
         }
 
-        private static decimal forceM;
-
         /// <summary>
         /// Gets or sets the force M.
         /// </summary>
@@ -169,8 +171,6 @@
             get { return forceM; }
             set { forceM = value; }
         }
-
-        private static decimal reactionM;
 
         /// <summary>
         /// Gets or sets the reaction M.
@@ -185,8 +185,6 @@
 
         #region Cost
 
-        private static decimal totalCost;
-
         /// <summary>
         /// Gets or sets the total cost.
         /// </summary>
@@ -195,8 +193,6 @@
             get { return totalCost; }
             set { totalCost = value; }
         }
-
-        private static decimal materialCost;
 
         /// <summary>
         /// Gets or sets the material cost.
@@ -207,8 +203,6 @@
             set { materialCost = value; }
         }
 
-        private static decimal nodeCost;
-
         /// <summary>
         /// Gets or sets the node cost.
         /// </summary>
@@ -218,8 +212,6 @@
             set { nodeCost = value; }
         }
 
-        private static decimal transportCost;
-
         /// <summary>
         /// Gets or sets the transport cost.
         /// </summary>
@@ -228,8 +220,6 @@
             get { return transportCost; }
             set { transportCost = value; }
         }
-
-        private static decimal elevationCost;
 
         /// <summary>
         /// Gets or sets the elevation cost.
@@ -244,9 +234,21 @@
 
         #region Reports
 
-        public static bool IsReportBasic { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the report is basic.
+        /// </summary>
+        public static bool IsReportBasic
+        {
+            get
+            {
+                return isReportBasic;
+            }
 
-        #endregion
+            set
+            {
+                isReportBasic = value;
+            }
+        }
 
         #endregion
 
