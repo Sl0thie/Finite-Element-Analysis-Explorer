@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Windows.Storage;
     using Windows.Storage.Pickers;
     using Windows.UI.Xaml;
@@ -22,7 +23,6 @@
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private async void Button_Save_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@
         private void Button_Report_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(Results));
+            _ = rootFrame.Navigate(typeof(Results));
         }
     }
 }

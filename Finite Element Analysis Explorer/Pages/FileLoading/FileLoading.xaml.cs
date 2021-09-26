@@ -59,7 +59,7 @@
             Current = this;
 
             // IsLoaded = true;
-            frameFileLoadingDisplay.Navigate(typeof(FileLoadingDisplay));
+            _ = frameFileLoadingDisplay.Navigate(typeof(FileLoadingDisplay));
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

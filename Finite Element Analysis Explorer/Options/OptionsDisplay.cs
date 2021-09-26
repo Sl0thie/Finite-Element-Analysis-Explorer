@@ -24,7 +24,10 @@
         /// </summary>
         internal bool ShowMoment
         {
-            get => showMoment;
+            get
+            {
+                return showMoment;
+            }
 
             set
             {
@@ -38,7 +41,11 @@
         /// </summary>
         internal bool ShowShear
         {
-            get => showShear;
+            get
+            {
+                return showShear;
+            }
+
             set
             {
                 showShear = value;
@@ -51,7 +58,10 @@
         /// </summary>
         internal bool ShowForce
         {
-            get => showForce;
+            get
+            {
+                return showForce;
+            }
 
             set
             {
@@ -65,7 +75,10 @@
         /// </summary>
         internal bool ShowLinear
         {
-            get => showLinear;
+            get
+            {
+                return showLinear;
+            }
 
             set
             {
@@ -74,13 +87,16 @@
             }
         }
 
-        //TODO Check if still in use.
         /// <summary>
         /// Gets or sets a value indicating whether to show axial.
+        /// TODO Check if still in use.
         /// </summary>
         internal bool ShowAxial
         {
-            get => showAxial;
+            get
+            {
+                return showAxial;
+            }
 
             set
             {
@@ -94,7 +110,10 @@
         /// </summary>
         internal bool ShowReactions
         {
-            get => showReactions;
+            get
+            {
+                return showReactions;
+            }
 
             set
             {
@@ -108,25 +127,32 @@
         /// </summary>
         internal int MemberDisplayType
         {
-            get => memberDisplayType;
+            get
+            {
+                return memberDisplayType;
+            }
 
             set
             {
                 memberDisplayType = value;
-                FileManager.LocalSettings.Values["MemberDisplay"] = (int)memberDisplayType;
+                FileManager.LocalSettings.Values["MemberDisplay"] = memberDisplayType;
             }
         }
+
         /// <summary>
         /// Gets or sets the camera zoom trim.
         /// </summary>
         internal float CameraZoomTrim
         {
-            get => cameraZoomTrim;
+            get
+            {
+                return cameraZoomTrim;
+            }
 
             set
             {
                 cameraZoomTrim = value;
-                FileManager.LocalSettings.Values["CameraZoomTrim"] = (float)cameraZoomTrim;
+                FileManager.LocalSettings.Values["CameraZoomTrim"] = cameraZoomTrim;
             }
         }
 

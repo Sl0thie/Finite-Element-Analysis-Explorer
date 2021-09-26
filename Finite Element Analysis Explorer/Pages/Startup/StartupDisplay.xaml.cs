@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Threading.Tasks;
+
     using Windows.UI.Core;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -31,7 +32,7 @@
             Current = this;
 
             // IsLoaded = true;
-            Task.Run(() => ProcessAsync());
+            _ = Task.Run(() => ProcessAsync());
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -78,17 +79,6 @@
                 CoreDispatcherPriority.High,
                 () =>
                 {
-                    // Removed option. Loading last file by default now.
-                    //if (Options.LoadLastFileOnStartup)
-                    //{
-                    //    FileManager.LoadLastFileAsync();
-                    //}
-                    //else
-                    //{
-                    //    Frame rootFrame2 = Window.Current.Content as Frame;
-                    //    rootFrame2.Navigate(typeof(Construction));
-                    //}
-
                     FileManager.LoadLastFileAsync();
                 });
 

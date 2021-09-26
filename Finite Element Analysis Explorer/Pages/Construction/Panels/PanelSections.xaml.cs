@@ -88,14 +88,14 @@
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                await FileManager.LoadFile();
+                _ = await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             // Save File.
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
@@ -103,7 +103,7 @@
             // Save file as.
             if (await FileManager.PickFileToSave())
             {
-                await FileManager.SaveFile();
+                _ = await FileManager.SaveFile();
             }
         }
 

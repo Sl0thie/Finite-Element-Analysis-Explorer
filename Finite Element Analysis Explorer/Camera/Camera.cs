@@ -14,11 +14,8 @@
         private static readonly float TranslationTrim = 0.5f;
         private static string lengthUnitString = string.Empty;
         private static float lengthUnitFactor;
-
-        //private static float zoomTrim = 216f;
         private static float zoomTrimmed;
         private static float zoom;
-
         private static decimal largestLengthRatio;
         private static decimal largestAxialRatio;
         private static decimal largestNormalStress;
@@ -791,15 +788,15 @@
         /// </summary>
         internal static void UpdateAllGraphics()
         {
-            foreach (var node in Model.Nodes)
+            foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
             {
                 node.Value.UpdateDisplacement();
                 node.Value.UpdateNodeGraphics();
             }
 
-            foreach (var member in Model.Members)
+            foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
             {
-                foreach (var segment in member.Value.Segments)
+                foreach (System.Collections.Generic.KeyValuePair<int, Segment> segment in member.Value.Segments)
                 {
                     segment.Value.UpdateGraphicsProperties();
                 }
@@ -824,9 +821,9 @@
             switch (colorMode)
             {
                 case 0:
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.CurrentColor = member.Value.Section.Color;
                         }
@@ -835,9 +832,9 @@
                     break;
 
                 case 1:
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.CurrentColor = nextSegment.Value.LengthRatioColor;
                         }
@@ -846,9 +843,9 @@
                     break;
 
                 case 2:
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.CurrentColor = nextSegment.Value.AxialRatioColor;
                         }
@@ -857,9 +854,9 @@
                     break;
 
                 case 3:
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.CurrentColor = nextSegment.Value.NormalStressColor;
                         }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+
     using Windows.UI;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -58,7 +59,7 @@
         /// <summary>
         /// Shows the value on the control display.
         /// </summary>
-        /// <param name="valueToShow"></param>
+        /// <param name="valueToShow">The value to display on the control.</param>
         private void ShowValue(decimal valueToShow)
         {
             newValue = valueToShow;
@@ -173,7 +174,7 @@
                 fontIcon_Lock.Glyph = "🔓";
             }
 
-            TextBox_TextInput.Focus(FocusState.Keyboard);
+            _ = TextBox_TextInput.Focus(FocusState.Keyboard);
         }
 
         private void ConvertToEngineeringNotation(decimal d)

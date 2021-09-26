@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.ViewManagement;
@@ -49,7 +50,7 @@
             if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Construction));
+                _ = rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -101,7 +102,7 @@
             if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Results));
+                _ = rootFrame.Navigate(typeof(Results));
             }
         }
 
@@ -138,8 +139,8 @@
             App.CurrentPageState = PageState.Solver;
             Current = this;
             isPageLoaded = true;
-            frameDetails.Navigate(typeof(PanelSolver));
-            frameDisplay.Navigate(typeof(SolverDisplay));
+            _ = frameDetails.Navigate(typeof(PanelSolver));
+            _ = frameDisplay.Navigate(typeof(SolverDisplay));
 
             try
             {

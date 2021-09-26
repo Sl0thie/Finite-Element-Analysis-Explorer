@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.ViewManagement;
@@ -48,7 +49,7 @@
         {
             if (isPageLoaded)
             {
-                frameDetails.Navigate(typeof(PanelResultsMember));
+                _ = frameDetails.Navigate(typeof(PanelResultsMember));
             }
         }
 
@@ -59,7 +60,7 @@
         {
             if (isPageLoaded)
             {
-                frameDetails.Navigate(typeof(PanelResultsModel));
+                _ = frameDetails.Navigate(typeof(PanelResultsModel));
             }
         }
 
@@ -69,8 +70,8 @@
         public void ShowReport()
         {
             frameDetails.Width = 220;
-            frameDetails.Navigate(typeof(PanelReport));
-            frameDisplay.Navigate(typeof(ResultsReport));
+            _ = frameDetails.Navigate(typeof(PanelReport));
+            _ = frameDisplay.Navigate(typeof(ResultsReport));
         }
 
         /// <summary>
@@ -78,7 +79,7 @@
         /// </summary>
         public void ShowSettingsColors()
         {
-            frameDetails.Navigate(typeof(PanelSettingsColors));
+            _ = frameDetails.Navigate(typeof(PanelSettingsColors));
         }
 
         /// <summary>
@@ -86,7 +87,7 @@
         /// </summary>
         public void ShowSettingsSolver()
         {
-            frameDetails.Navigate(typeof(PanelSettingsSolver));
+            _ = frameDetails.Navigate(typeof(PanelSettingsSolver));
         }
 
         /// <summary>
@@ -94,7 +95,7 @@
         /// </summary>
         public void ShowSettingsGeneral()
         {
-            frameDetails.Navigate(typeof(PanelSettingsGeneral));
+            _ = frameDetails.Navigate(typeof(PanelSettingsGeneral));
         }
 
         /// <summary>
@@ -102,8 +103,8 @@
         /// </summary>
         public async void ShowHelpAsync()
         {
-            var uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
+            Uri uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
 
         /// <summary>
@@ -114,15 +115,15 @@
             if (Model.Members.CurrentMember == null)
             {
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelResultsModel));
+                _ = frameDetails.Navigate(typeof(PanelResultsModel));
             }
             else
             {
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelResultsMember));
+                _ = frameDetails.Navigate(typeof(PanelResultsMember));
             }
 
-            frameDisplay.Navigate(typeof(ResultsDisplay));
+            _ = frameDisplay.Navigate(typeof(ResultsDisplay));
         }
 
         #endregion
@@ -169,8 +170,8 @@
             App.CurrentPageState = PageState.Results;
             Current = this;
             isPageLoaded = true;
-            frameDetails.Navigate(typeof(PanelResultsModel));
-            frameDisplay.Navigate(typeof(ResultsDisplay));
+            _ = frameDetails.Navigate(typeof(PanelResultsModel));
+            _ = frameDisplay.Navigate(typeof(ResultsDisplay));
 
             SetTitle("Finite Element Analysis Explorer - Results - " + FileManager.FileTitle);
 
@@ -205,13 +206,13 @@
             {
                 detailsIsOpen = false;
                 frameDetails.Width = Constants.WidthDetailsSlim;
-                frameDetails.Navigate(typeof(ConstructionSlim));
+                _ = frameDetails.Navigate(typeof(ConstructionSlim));
             }
             else
             {
                 detailsIsOpen = true;
                 frameDetails.Width = Constants.WidthDetailsNormal;
-                frameDetails.Navigate(typeof(PanelModel));
+                _ = frameDetails.Navigate(typeof(PanelModel));
             }
         }
 

@@ -89,7 +89,18 @@
         /// <summary>
         /// Gets or sets the segments with load concurrent bag.
         /// </summary>
-        internal static ConcurrentBag<Segment> SegmentsWithLinearLoad { get => segmentsWithLinearLoad; set => segmentsWithLinearLoad = value; }
+        internal static ConcurrentBag<Segment> SegmentsWithLinearLoad
+        {
+            get
+            {
+                return segmentsWithLinearLoad;
+            }
+
+            set
+            {
+                segmentsWithLinearLoad = value;
+            }
+        }
 
         private static decimal largestLinear;
 
@@ -326,17 +337,17 @@
             Debug.WriteLine("  " + materials.Count + " materials");
             Debug.WriteLine(string.Empty);
 
-            foreach (var item in Members)
+            foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Members)
             {
                 item.Value.Output();
 
-                foreach (var nextItem in item.Value.Segments)
+                foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in item.Value.Segments)
                 {
                     nextItem.Value.Output();
                 }
             }
 
-            foreach (var item in Nodes)
+            foreach (System.Collections.Generic.KeyValuePair<System.Tuple<decimal, decimal>, Node> item in Nodes)
             {
                 item.Value.Output();
             }
@@ -353,21 +364,21 @@
         public static bool Shrink()
         {
             // Search for unassigned nodes.
-            foreach (var node in nodes)
+            foreach (System.Collections.Generic.KeyValuePair<System.Tuple<decimal, decimal>, Node> node in nodes)
             {
                 node.Value.IsValid = false;
             }
 
-            foreach (var member in members)
+            foreach (System.Collections.Generic.KeyValuePair<int, Member> member in members)
             {
-                foreach (var segment in member.Value.Segments)
+                foreach (System.Collections.Generic.KeyValuePair<int, Segment> segment in member.Value.Segments)
                 {
                     segment.Value.NodeNear.IsValid = true;
                     segment.Value.NodeFar.IsValid = true;
                 }
             }
 
-            foreach (var node in nodes)
+            foreach (System.Collections.Generic.KeyValuePair<System.Tuple<decimal, decimal>, Node> node in nodes)
             {
                 if (node.Value.IsValid == false)
                 {

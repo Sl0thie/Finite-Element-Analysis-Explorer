@@ -1,12 +1,14 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using Microsoft.Graphics.Canvas;
-    using Microsoft.Graphics.Canvas.Text;
-    using Microsoft.Graphics.Canvas.UI.Xaml;
     using System;
     using System.Diagnostics;
     using System.Numerics;
     using System.Threading.Tasks;
+
+    using Microsoft.Graphics.Canvas;
+    using Microsoft.Graphics.Canvas.Text;
+    using Microsoft.Graphics.Canvas.UI.Xaml;
+
     using Windows.Foundation;
     using Windows.UI;
     using Windows.UI.Input;
@@ -48,7 +50,6 @@
         private CanvasTextFormat labelGridX;
         private CanvasTextFormat labelGridY;
         private CanvasTextFormat labelFormat;
-        //private CanvasTextFormat labelHeaderFormat;
 
         #endregion
 
@@ -86,7 +87,7 @@
         private TransformGroup transforms;
         private MatrixTransform previousTransform;
         private CompositeTransform deltaTransform;
-        private bool forceManipulationsToEnd;
+        private readonly bool forceManipulationsToEnd;
 
         #endregion
 
@@ -154,8 +155,6 @@
             labelGridX = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
             labelGridY = new CanvasTextFormat() { FontSize = 12, FontWeight = FontWeights.Normal, HorizontalAlignment = CanvasHorizontalAlignment.Right, FontFamily = "Segoe UI" };
             labelFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-            //labelHeaderFormat = new CanvasTextFormat() { FontSize = 14, FontWeight = FontWeights.Normal, FontFamily = "Segoe UI" };
-
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }
 
@@ -185,7 +184,6 @@
             bitMapMomentForceClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentForceClockwise.png");
             bitMapMomentReactionAntiClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentReactionAntiClockwise.png");
             bitMapMomentReactionClockwise = await CanvasBitmap.LoadAsync(sender, @"Assets\Nodes\MomentReactionClockwise.png");
-
         }
 
         #endregion
@@ -277,9 +275,9 @@
             {
                 try
                 {
-                    foreach (var item in Model.Members.MembersWithLinearLoads)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members.MembersWithLinearLoads)
                     {
-                        foreach (var nextSegment in item.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in item.Value.Segments)
                         {
                             args.DrawingSession.DrawLine(nextSegment.Value.NearVectorDisplaced, nextSegment.Value.NearLDLLine, Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
                             args.DrawingSession.DrawLine(nextSegment.Value.FarVectorDisplaced, nextSegment.Value.FarLDLLine, Options.Colors.DistributedForce, Camera.Line.Unit * Options.Lines.DistributedForceWeight, Options.Lines.DistributedForce);
@@ -302,9 +300,9 @@
             {
                 try
                 {
-                    foreach (var item in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members)
                     {
-                        foreach (var nextItem in item.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in item.Value.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
@@ -328,9 +326,9 @@
             {
                 try
                 {
-                    foreach (var item in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members)
                     {
-                        foreach (var nextItem in item.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in item.Value.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
@@ -352,9 +350,9 @@
 
             try
             {
-                foreach (var item in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members)
                 {
-                    foreach (var nextItem in item.Value.Segments)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in item.Value.Segments)
                     {
                         args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.FarVectorDisplaced, nextItem.Value.CurrentColor, Camera.Line.Unit * item.Value.Section.LineWeight, item.Value.Section.LineStyle);
                     }
@@ -366,7 +364,7 @@
 
             try
             {
-                foreach (var item in Model.Nodes.NodesWithConstraints)
+                foreach (System.Collections.Generic.KeyValuePair<int, Node> item in Model.Nodes.NodesWithConstraints)
                 {
                     switch (item.Value.Constraints.ConstraintType)
                     {
@@ -430,7 +428,7 @@
 
             try
             {
-                foreach (var item in Model.Nodes.NodesWithNodalLoads)
+                foreach (System.Collections.Generic.KeyValuePair<int, Node> item in Model.Nodes.NodesWithNodalLoads)
                 {
                     args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ForceLine, Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, Options.Lines.Force);
                     args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ForceUnitLeft * Camera.Line.LengthForceArrow), Options.Colors.Force, Camera.Line.Unit * Options.Lines.ForceWeight, Options.Lines.Force);
@@ -445,7 +443,7 @@
             {
                 if (Options.Display.ShowReactions)
                 {
-                    foreach (var item in Model.Nodes.NodesWithReactions)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Node> item in Model.Nodes.NodesWithReactions)
                     {
                         args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + item.Value.ReactionLine, Options.Colors.Reaction, Camera.Line.Unit * Options.Lines.ReactionWeight, Options.Lines.Force);
                         args.DrawingSession.DrawLine(item.Value.Location, item.Value.Location + (item.Value.ReactionUnitLeft * Camera.Line.LengthForceArrow), Options.Colors.Reaction, Camera.Line.Unit * Options.Lines.ReactionWeight, Options.Lines.Reaction);
@@ -461,7 +459,7 @@
             {
                 if (Options.Display.ShowReactions)
                 {
-                    foreach (var item in Model.Nodes.NodesWithMomentReactions)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Node> item in Model.Nodes.NodesWithMomentReactions)
                     {
                         if (item.Value.LoadReaction.M > 0)
                         {
@@ -482,7 +480,7 @@
             {
                 if (Options.Display.ShowForce)
                 {
-                    foreach (var item in Model.Nodes.NodesWithMomentForces)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Node> item in Model.Nodes.NodesWithMomentForces)
                     {
                         if (item.Value.LoadReaction.M > 0)
                         {
@@ -506,7 +504,7 @@
                     // Draw Shear
                     if (Options.Display.ShowShear)
                     {
-                        foreach (var nextItem in Model.Members.CurrentMember.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in Model.Members.CurrentMember.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
@@ -524,7 +522,7 @@
                     // Draw Moment
                     if (Options.Display.ShowMoment)
                     {
-                        foreach (var nextItem in Model.Members.CurrentMember.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in Model.Members.CurrentMember.Segments)
                         {
                             if (nextItem.Value.NodeNear.IsPrimary)
                             {
@@ -539,7 +537,7 @@
                         }
                     }
 
-                    foreach (var nextItem in Model.Members.CurrentMember.Segments)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextItem in Model.Members.CurrentMember.Segments)
                     {
                         // Draw Member
                         args.DrawingSession.DrawLine(nextItem.Value.NearVectorDisplaced, nextItem.Value.FarVectorDisplaced, Options.Colors.SelectedElement, Camera.Line.Unit * (Model.Members.CurrentMember.Section.LineWeight + 2), nextItem.Value.Section.LineStyle);
@@ -752,7 +750,7 @@
 
                 if (e.Delta.Scale != 1)
                 {
-                    Camera.ScaleDeltaScrollWheel((float)e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
+                    Camera.ScaleDeltaScrollWheel(e.Delta.Scale, new Vector2((float)center.X, (float)center.Y));
                 }
 
                 if ((e.Delta.Translation.X != 0) | e.Delta.Translation.Y != 0)

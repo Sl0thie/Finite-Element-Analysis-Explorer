@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Numerics;
+
     using Windows.UI;
 
     /// <summary>

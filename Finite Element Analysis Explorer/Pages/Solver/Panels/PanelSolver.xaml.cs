@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -95,8 +96,8 @@
 
         private async void Button_Help_Click(object sender, RoutedEventArgs e)
         {
-            var uriHelpGeneral = new Uri(@"http://www.bing.com");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
+            Uri uriHelpGeneral = new Uri(@"http://www.bing.com");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = true });
         }
 
         #endregion
@@ -133,14 +134,14 @@
             // file.
             if (await FileManager.PickFileToLoad())
             {
-                await FileManager.LoadFile();
+                _ = await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             // Save File.
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
@@ -148,7 +149,7 @@
             // Save file as.
             if (await FileManager.PickFileToSave())
             {
-                await FileManager.SaveFile();
+                _ = await FileManager.SaveFile();
             }
         }
 

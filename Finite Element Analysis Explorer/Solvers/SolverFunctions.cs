@@ -1,8 +1,10 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using MathNet.Numerics.LinearAlgebra;
     using System;
     using System.Diagnostics;
+
+    using MathNet.Numerics.LinearAlgebra;
+
     using Windows.UI;
     using Windows.UI.Core;
     using Windows.UI.Xaml;
@@ -169,7 +171,7 @@
             try
             {
                 previousNodeCount = Model.Nodes.Count;
-                Model.Shrink();
+                _ = Model.Shrink();
                 postNodeCount = Model.Nodes.Count;
             }
             catch (Exception ex)
@@ -194,7 +196,7 @@
         {
             stageStart = mainTimer.ElapsedMilliseconds;
             AddMessage(mainTimer.ElapsedMilliseconds, -1, "Saving File.", 0);
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
             AddMessage(mainTimer.ElapsedMilliseconds, mainTimer.ElapsedMilliseconds - stageStart, "    Finished.", 1);
         }
 
@@ -203,6 +205,7 @@
         /// <summary>
         /// Assigns code numbers to degrees or freedoms on nodes.
         /// </summary>
+        /// <returns>True if successful.</returns>
         internal static bool AssignCodeNumbersToDegreesOfFreedom()
         {
             Stopwatch taskTimer = new Stopwatch();
@@ -213,7 +216,7 @@
             try
             {
                 // Assign code numbers to the unrestrained first.
-                foreach (var node in Model.Nodes)
+                foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                 {
                     if (node.Value.Constraints.X == false)
                     {
@@ -235,7 +238,7 @@
                 }
 
                 // Then assign code number to the remaining.
-                foreach (var node in Model.Nodes)
+                foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                 {
                     if (node.Value.Constraints.X == true)
                     {
@@ -293,15 +296,15 @@
 
             try
             {
-                foreach (var node in Model.Nodes)
+                foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                 {
                     node.Value.SuperPosition = new NodalLoad(0, 0, 0);
                     node.Value.SuperPosition = new NodalLoad(0, 0, 0);
                 }
 
-                foreach (var member in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                 {
-                    foreach (var nextSegment in member.Value.Segments)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                     {
                         nextSegment.Value.NodeNear.SuperPosition = new NodalLoad(
                             nextSegment.Value.NodeNear.SuperPosition.X + nextSegment.Value.NearSuperGlobal.X,
@@ -345,7 +348,7 @@
                 qk = Matrix<double>.Build.Dense(unrestrainedDOF, 1);
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j)
                         {
@@ -407,7 +410,7 @@
                 qu = Matrix<double>.Build.Dense(restrainedDOF, 1);
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
@@ -460,7 +463,7 @@
                 dk = Matrix<double>.Build.Dense(restrainedDOF, 1);
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
@@ -509,7 +512,7 @@
                 du = Matrix<double>.Build.Dense(unrestrainedDOF, 1, 0);
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j)
                         {
@@ -554,6 +557,7 @@
         /// <summary>
         /// Assembles the stiffness matrix.
         /// </summary>
+        /// <returns>True is successful.</returns>
         internal static bool AssembleStiffnessMatrix()
         {
             Stopwatch taskTimer = new Stopwatch();
@@ -579,9 +583,9 @@
                 int x = 0;
                 int y = 0;
 
-                foreach (var member in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                 {
-                    foreach (var segment in member.Value.Segments)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Segment> segment in member.Value.Segments)
                     {
                         int[] enf = { segment.Value.NodeNear.Codes.X, segment.Value.NodeNear.Codes.Y, segment.Value.NodeNear.Codes.M, segment.Value.NodeFar.Codes.X, segment.Value.NodeFar.Codes.Y, segment.Value.NodeFar.Codes.M };
                         for (int i = 0; i < 6; i++)
@@ -675,7 +679,7 @@
                 {
                     for (int i = 0; i < sdk11[1].Length; i++)
                     {
-                        sdk11[j][i] = (double)k[j, i];
+                        sdk11[j][i] = k[j, i];
                     }
                 }
 
@@ -684,7 +688,7 @@
                 {
                     for (int i = 0; i < sdk21[1].Length; i++)
                     {
-                        sdk21[j][i] = (double)k[j, i];
+                        sdk21[j][i] = k[j, i];
                     }
                 }
 
@@ -782,7 +786,7 @@
                 // Set the Qk matrix.
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j)
                         {
@@ -828,7 +832,7 @@
                 // Set the Qu matrix.
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
@@ -874,7 +878,7 @@
                 // Set the Dk matrix. These should be zeros as the fixed dof's are fixed.
                 for (int j = 0; j < restrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j + unrestrainedDOF)
                         {
@@ -919,7 +923,7 @@
             {
                 for (int j = 0; j < unrestrainedDOF; j++)
                 {
-                    foreach (var node in Model.Nodes)
+                    foreach (System.Collections.Generic.KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.Codes.X == j)
                         {
@@ -964,9 +968,9 @@
 
             try
             {
-                foreach (var segment in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> segment in Model.Members)
                 {
-                    foreach (var nextSegment in segment.Value.Segments)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in segment.Value.Segments)
                     {
                         nextSegment.Value.UpdatePropertiesFromMatrix();
                     }
@@ -998,9 +1002,9 @@
             {
                 if (Camera.LargestLengthRatio == 0)
                 {
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.LengthRatioColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -1013,9 +1017,9 @@
                     decimal tension_ratio = 255 / Camera.LargestLengthRatio;
                     byte ratioByte;
 
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.LengthRatio > 0)
                             {
@@ -1085,9 +1089,9 @@
             {
                 if (Camera.LargestAxialRatio == 0)
                 {
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.AxialRatioColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -1100,9 +1104,9 @@
                     decimal tension_ratio = 255 / Camera.LargestAxialRatio;
                     byte ratioByte;
 
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.InternalLoadNearLocal.X < 0)
                             {
@@ -1172,9 +1176,9 @@
             {
                 if (Camera.LargestNormalStress == 0)
                 {
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             nextSegment.Value.NormalStressColor = Color.FromArgb(255, 255, 255, 255);
                             nextSegment.Value.UpdateColor();
@@ -1188,9 +1192,9 @@
 
                     byte ratioByte;
 
-                    foreach (var member in Model.Members)
+                    foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                     {
-                        foreach (var nextSegment in member.Value.Segments)
+                        foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in member.Value.Segments)
                         {
                             if (nextSegment.Value.NormalStress < 0)
                             {
@@ -1257,14 +1261,14 @@
 
             try
             {
-                foreach (var nodalLoad in Model.Nodes.NodesWithNodalLoads)
+                foreach (System.Collections.Generic.KeyValuePair<int, Node> nodalLoad in Model.Nodes.NodesWithNodalLoads)
                 {
                     Model.ForceX += nodalLoad.Value.Load.X;
                     Model.ForceY += nodalLoad.Value.Load.Y;
                     Model.ForceM += nodalLoad.Value.Load.M;
                 }
 
-                foreach (var nodeWithReaction in Model.Nodes.NodesWithReactions)
+                foreach (System.Collections.Generic.KeyValuePair<int, Node> nodeWithReaction in Model.Nodes.NodesWithReactions)
                 {
                     Model.ReactionX += nodeWithReaction.Value.LoadReaction.X;
                     Model.ReactionY += nodeWithReaction.Value.LoadReaction.Y;
@@ -1307,7 +1311,7 @@
 
             try
             {
-                foreach (var member in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> member in Model.Members)
                 {
                     Model.TotalCost += member.Value.MemberCost;
                     Model.MaterialCost += member.Value.MaterialCost;
@@ -1380,7 +1384,7 @@
                             () =>
                        {
                            Frame rootFrame = Window.Current.Content as Frame;
-                           rootFrame.Navigate(typeof(Results));
+                           _ = rootFrame.Navigate(typeof(Results));
                        });
                     }
                     else

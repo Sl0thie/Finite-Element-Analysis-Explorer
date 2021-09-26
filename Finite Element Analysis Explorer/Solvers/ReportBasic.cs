@@ -5,12 +5,13 @@
     using System.Diagnostics;
     using System.Text;
     using System.Threading.Tasks;
+
     using Windows.Storage;
 
     internal class ReportBasic
     {
-        StorageFile tempFile = null;
-        StringBuilder sb = new StringBuilder();
+        private StorageFile tempFile = null;
+        private readonly StringBuilder sb = new StringBuilder();
 
         internal async Task CreateReportAsync()
         {
@@ -21,8 +22,6 @@
 
         private async Task CreateSimpleHTMLAsync()
         {
-            // Debug.WriteLine(FileManager.LocalFolder.Path);
-
             await CreateFolderAndFileAsync();
             CreateHTML();
             AddPrimaryTitle();
@@ -63,7 +62,7 @@
         {
             List<Section> sections = new List<Section>();
 
-            foreach (var item in Model.Members)
+            foreach (KeyValuePair<int, Member> item in Model.Members)
             {
                 if (!sections.Contains(item.Value.Section))
                 {
@@ -73,261 +72,253 @@
 
             if (sections.Count == 1)
             {
-                sb.AppendLine("<div id=\"divsections\">");
-                sb.AppendLine("<h2>Member Section</h2>");
-                sb.AppendLine("<table style\"width:100%;\">");
+                _ = sb.AppendLine("<div id=\"divsections\">");
+                _ = sb.AppendLine("<h2>Member Section</h2>");
+                _ = sb.AppendLine("<table style\"width:100%;\">");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td style=\"width:300px;\">");
-                sb.AppendLine("Name");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{sections[0].Name}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td style=\"width:300px;\">");
+                _ = sb.AppendLine("Name");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{sections[0].Name}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Young’s modulus (E)");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].E)}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Young’s modulus (E)");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].E)}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Second moment of area (I)");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].I)} m<sup>4</sup>");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Second moment of area (I)");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].I)} m<sup>4</sup>");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Area");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].Area)} m<sup>2</sup>");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Area");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].Area)} m<sup>2</sup>");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Density");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].Density)} kg/m<sup>3</sup>");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Density");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[0].Density)} kg/m<sup>3</sup>");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Material");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{sections[0].Material}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Material");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{sections[0].Material}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("</table>");
+                _ = sb.AppendLine("</table>");
 
-                sb.AppendLine("<div>");
+                _ = sb.AppendLine("<div>");
             }
             else
             {
-                sb.AppendLine("<div id=\"divsections\">");
-                sb.AppendLine("<h2>Member Sections</h2>");
-                sb.AppendLine("<table style\"width:100%;\">");
+                _ = sb.AppendLine("<div id=\"divsections\">");
+                _ = sb.AppendLine("<h2>Member Sections</h2>");
+                _ = sb.AppendLine("<table style\"width:100%;\">");
 
                 for (int i = 0; i < sections.Count; i++)
                 {
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td style=\"width:300px;\">");
-                    sb.AppendLine("Name");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{sections[i].Name}");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td style=\"width:300px;\">");
+                    _ = sb.AppendLine("Name");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{sections[i].Name}");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("Young’s modulus (E)");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].E)}");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("Young’s modulus (E)");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].E)}");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("Second moment of area (I)");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].I)} m<sup>4</sup>");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("Second moment of area (I)");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].I)} m<sup>4</sup>");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("Area");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].Area)} m<sup>2</sup>");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("Area");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].Area)} m<sup>2</sup>");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("Density");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].Density)} kg/m<sup>3</sup>");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("Density");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{ConvertToEngineeringNotation(sections[i].Density)} kg/m<sup>3</sup>");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("Material");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine($"{sections[i].Material}");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("Material");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine($"{sections[i].Material}");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
 
-                    sb.AppendLine("<tr>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("&nbsp;");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("<td>");
-                    sb.AppendLine("&nbsp;");
-                    sb.AppendLine("</td>");
-                    sb.AppendLine("</tr>");
+                    _ = sb.AppendLine("<tr>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("&nbsp;");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("<td>");
+                    _ = sb.AppendLine("&nbsp;");
+                    _ = sb.AppendLine("</td>");
+                    _ = sb.AppendLine("</tr>");
                 }
 
-                sb.AppendLine("</table>");
-                sb.AppendLine("<div>");
-
+                _ = sb.AppendLine("</table>");
+                _ = sb.AppendLine("<div>");
             }
         }
 
         private void AddMembers()
         {
-            sb.AppendLine("<div id=\"divmembers\">");
-            sb.AppendLine("<h2>Members</h2>");
-            sb.AppendLine("<table style\"width:100%;\">");
+            _ = sb.AppendLine("<div id=\"divmembers\">");
+            _ = sb.AppendLine("<h2>Members</h2>");
+            _ = sb.AppendLine("<table style\"width:100%;\">");
 
             for (int i = 1; i < Model.Members.Count + 1; i++)
             {
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td style=\"width:300px;\">");
-                sb.AppendLine("Name");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"Member {Model.Members[i].Index}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td style=\"width:300px;\">");
+                _ = sb.AppendLine("Name");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"Member {Model.Members[i].Index}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Section");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{Model.Members[i].Section.Name}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Section");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{Model.Members[i].Section.Name}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Material");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{Model.Members[i].Section.Material}");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Material");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{Model.Members[i].Section.Material}");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Length");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(Model.Members[i].Length)} m");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Length");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(Model.Members[i].Length)} m");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Angle");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"{ConvertToEngineeringNotation(Model.Members[i].Angle)} <sup>o</sup>");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Angle");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"{ConvertToEngineeringNotation(Model.Members[i].Angle)} <sup>o</sup>");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("Location");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine($"[{ConvertToEngineeringNotation(Model.Members[i].NodeNear.Position.X)},{ConvertToEngineeringNotation(Model.Members[i].NodeNear.Position.Y)}] - [{ConvertToEngineeringNotation(Model.Members[i].NodeFar.Position.X)},{ConvertToEngineeringNotation(Model.Members[i].NodeFar.Position.Y)}]");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("Location");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine($"[{ConvertToEngineeringNotation(Model.Members[i].NodeNear.Position.X)},{ConvertToEngineeringNotation(Model.Members[i].NodeNear.Position.Y)}] - [{ConvertToEngineeringNotation(Model.Members[i].NodeFar.Position.X)},{ConvertToEngineeringNotation(Model.Members[i].NodeFar.Position.Y)}]");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
 
-                sb.AppendLine("<tr>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("&nbsp;");
-                sb.AppendLine("</td>");
-                sb.AppendLine("<td>");
-                sb.AppendLine("&nbsp;");
-                sb.AppendLine("</td>");
-                sb.AppendLine("</tr>");
+                _ = sb.AppendLine("<tr>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("&nbsp;");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("<td>");
+                _ = sb.AppendLine("&nbsp;");
+                _ = sb.AppendLine("</td>");
+                _ = sb.AppendLine("</tr>");
             }
 
-            //Model.Members[i].
-
-            sb.AppendLine("</table>");
-            sb.AppendLine("<div>");
+            _ = sb.AppendLine("</table>");
+            _ = sb.AppendLine("<div>");
         }
 
         private void AddPrimaryTitle()
         {
-            sb.AppendLine("<div>");
-            sb.AppendLine($"<h1>Report for {FileManager.FileTitle}</h1>");
-            sb.AppendLine($"<p>Created: {DateTime.Now}</p>");
-            sb.AppendLine("</div>");
-            sb.AppendLine("");
-            sb.AppendLine("");
-            sb.AppendLine("");
-            sb.AppendLine("");
-            sb.AppendLine("");
+            _ = sb.AppendLine("<div>");
+            _ = sb.AppendLine($"<h1>Report for {FileManager.FileTitle}</h1>");
+            _ = sb.AppendLine($"<p>Created: {DateTime.Now}</p>");
+            _ = sb.AppendLine("</div>");
         }
 
         private void CreateHTML()
         {
-            sb.AppendLine("<!DOCTYPE html>");
-            sb.AppendLine("<html>");
-            sb.AppendLine("<head>");
-            sb.AppendLine($"<title>Report for {FileManager.FileTitle}</title>");
-            sb.AppendLine("<style>");
-            sb.AppendLine("body {background-color: #FFFFFF; font-family:'Segoe UI'; font-size:14px;}");
-            sb.AppendLine("h1   {color: #222222; font-family:Tahoma; font-size:28px;}");
-            sb.AppendLine("p    {color: #000000;}");
+            _ = sb.AppendLine("<!DOCTYPE html>");
+            _ = sb.AppendLine("<html>");
+            _ = sb.AppendLine("<head>");
+            _ = sb.AppendLine($"<title>Report for {FileManager.FileTitle}</title>");
+            _ = sb.AppendLine("<style>");
+            _ = sb.AppendLine("body {background-color: #FFFFFF; font-family:'Segoe UI'; font-size:14px;}");
+            _ = sb.AppendLine("h1   {color: #222222; font-family:Tahoma; font-size:28px;}");
+            _ = sb.AppendLine("p    {color: #000000;}");
 
-            sb.AppendLine("#divreport    {max-width: 960px;margin-left: auto;margin-right: auto;}");
+            _ = sb.AppendLine("#divreport    {max-width: 960px;margin-left: auto;margin-right: auto;}");
 
-            sb.AppendLine("</style>");
-            sb.AppendLine("</head>");
-            sb.AppendLine("<body>");
-            sb.AppendLine("<div id=\"divreport\">");
+            _ = sb.AppendLine("</style>");
+            _ = sb.AppendLine("</head>");
+            _ = sb.AppendLine("<body>");
+            _ = sb.AppendLine("<div id=\"divreport\">");
         }
 
         private void FinalizeHTML()
         {
-            sb.AppendLine("</div>");
-            sb.AppendLine("</body>");
-            sb.AppendLine("</html>");
+            _ = sb.AppendLine("</div>");
+            _ = sb.AppendLine("</body>");
+            _ = sb.AppendLine("</html>");
         }
 
         private string ConvertToEngineeringNotation(decimal d)

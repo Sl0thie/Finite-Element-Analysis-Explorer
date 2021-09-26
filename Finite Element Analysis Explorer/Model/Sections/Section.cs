@@ -1,7 +1,9 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using Microsoft.Graphics.Canvas.Geometry;
     using System;
+
+    using Microsoft.Graphics.Canvas.Geometry;
+
     using Windows.UI;
 
     /// <summary>
@@ -151,7 +153,7 @@
 
         /// <summary>
         /// Gets or sets the E. Young’s modulus/Modulus of elasticity.
-        /// https://en.wikipedia.org/wiki/Young%27s_modulus
+        /// https://en.wikipedia.org/wiki/Young%27s_modulus.
         /// </summary>
         internal decimal E
         {
@@ -163,7 +165,7 @@
 
         /// <summary>
         /// Gets or sets the I. Second moment of area.
-        /// https://en.wikipedia.org/wiki/Second_moment_of_area
+        /// https://en.wikipedia.org/wiki/Second_moment_of_area.
         /// </summary>
         internal decimal I
         {
@@ -186,7 +188,7 @@
 
         /// <summary>
         /// Gets or sets the density.
-        /// https://en.wikipedia.org/wiki/Density
+        /// https://en.wikipedia.org/wiki/Density.
         /// </summary>
         internal decimal Density
         {

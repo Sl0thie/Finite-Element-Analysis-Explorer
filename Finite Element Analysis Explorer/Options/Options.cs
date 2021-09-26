@@ -119,7 +119,7 @@
             }
             else
             {
-                FileManager.LocalSettings.Values["FirstRun"] = (bool)true;
+                FileManager.LocalSettings.Values["FirstRun"] = true;
                 FirstRun = true;
             }
 
@@ -131,7 +131,7 @@
                 FileManager.LocalSettings.Values["LockNumericalInput"] = false;
                 lockNumericalInput = false;
 
-                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
+                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
 
                 FileManager.LocalSettings.Values["ResetExistingMembers"] = true;
@@ -170,7 +170,7 @@
             }
             catch (Exception ex)
             {
-                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
+                FileManager.LocalSettings.Values["defaultNumberOfSegments"] = defaultNumberOfSegments;
                 defaultNumberOfSegments = 10;
                 WService.ReportException(ex);
             }
@@ -224,13 +224,13 @@
         /// </summary>
         internal static void SaveOptions()
         {
-            FileManager.LocalSettings.Values["FirstRun"] = (bool)FirstRun;
-            FileManager.LocalSettings.Values["Id"] = (string)Id;
+            FileManager.LocalSettings.Values["FirstRun"] = FirstRun;
+            FileManager.LocalSettings.Values["Id"] = Id;
             FileManager.LocalSettings.Values["SelectGridSize"] = (float)SelectGridSize;
             FileManager.LocalSettings.Values["LockNumericalInput"] = lockNumericalInput;
-            FileManager.LocalSettings.Values["defaultNumberOfSegments"] = (int)defaultNumberOfSegments;
-            FileManager.LocalSettings.Values["lastCurrentSection"] = (string)lastCurrentSectionName;
-            FileManager.LocalSettings.Values["ResetExistingMembers"] = (bool)resetExistingMembers;
+            FileManager.LocalSettings.Values["defaultNumberOfSegments"] = defaultNumberOfSegments;
+            FileManager.LocalSettings.Values["lastCurrentSection"] = lastCurrentSectionName;
+            FileManager.LocalSettings.Values["ResetExistingMembers"] = resetExistingMembers;
         }
     }
 }

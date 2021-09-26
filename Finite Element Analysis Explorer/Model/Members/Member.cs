@@ -14,7 +14,7 @@
     {
         #region Constructor
 
-        private object thisLock = new object();
+        private readonly object thisLock = new object();
 
         /// <summary>
         /// Outputs the member to the debug console.
@@ -56,7 +56,7 @@
             else
             {
                 // Add to the collection.
-                Model.Members.TryAdd(index, this);
+                _ = Model.Members.TryAdd(index, this);
             }
 
             try
@@ -70,7 +70,7 @@
                 LDLNear = lDLNear;
                 LDLFar = lDLFar;
 
-                Task.Run(() => ProcessProperties(this.nodeNear.Position.X, this.nodeNear.Position.Y, this.nodeFar.Position.X, this.nodeFar.Position.Y));
+                _ = Task.Run(() => ProcessProperties(this.nodeNear.Position.X, this.nodeNear.Position.Y, this.nodeFar.Position.X, this.nodeFar.Position.Y));
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@
 
         #region Objects
 
-        private int index;
+        private readonly int index;
 
         /// <summary>
         /// Gets the index of the member.
@@ -98,7 +98,7 @@
             }
         }
 
-        private Node nodeNear;
+        private readonly Node nodeNear;
 
         /// <summary>
         /// Gets the near node of the member.
@@ -111,7 +111,7 @@
             }
         }
 
-        private Node nodeFar;
+        private readonly Node nodeFar;
 
         /// <summary>
         /// Gets the far node of th member.
@@ -161,11 +161,11 @@
             set
             {
                 section = value;
-                Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
+                _ = Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
             }
         }
 
-        private ConcurrentDictionary<int, Segment> segments = new ConcurrentDictionary<int, Segment>();
+        private readonly ConcurrentDictionary<int, Segment> segments = new ConcurrentDictionary<int, Segment>();
 
         /// <summary>
         /// Gets the segments dictionary.
@@ -264,7 +264,7 @@
             set
             {
                 totalSegments = value;
-                Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
+                _ = Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
             }
         }
 
@@ -284,7 +284,7 @@
             {
                 lDLNear = value;
                 CheckLinearLoad();
-                Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
+                _ = Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
             }
         }
 
@@ -304,7 +304,7 @@
             {
                 lDLFar = value;
                 CheckLinearLoad();
-                Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
+                _ = Task.Run(() => ProcessProperties(nodeNear.Position.X, nodeNear.Position.Y, nodeFar.Position.X, nodeFar.Position.Y));
             }
         }
 
@@ -620,7 +620,7 @@
                 {
                     if (!Model.Members.MembersWithLinearLoads.ContainsKey(index))
                     {
-                        Model.Members.MembersWithLinearLoads.TryAdd(index, this);
+                        _ = Model.Members.MembersWithLinearLoads.TryAdd(index, this);
                     }
                 }
                 catch (Exception ex)
@@ -635,7 +635,7 @@
                     if (Model.Members.MembersWithLinearLoads.ContainsKey(index))
                     {
                         Member tmpMember = new Member();
-                        Model.Members.MembersWithLinearLoads.TryRemove(index, out tmpMember);
+                        _ = Model.Members.MembersWithLinearLoads.TryRemove(index, out tmpMember);
                     }
                 }
                 catch (Exception ex)
@@ -682,7 +682,7 @@
                     nextNode = Model.Nodes.GetOrAdd(new Tuple<decimal, decimal>(posX, posY), new Node(nextNodeIndex, new Point(posX, posY, 0), new Codes(), new Constraints(ConstraintType.Free), new NodalLoad(0, 0, 0), false));
                     nextNodeIndex++;
                     Segment nextSegment = new Segment(segmentIndex, this, lastNodeFar, nextNode, section, lastW, lastW + wSeg, previousSegmentIndex);
-                    segments.TryAdd(nextSegment.Index, nextSegment);
+                    _ = segments.TryAdd(nextSegment.Index, nextSegment);
 
                     if (firstSegment is null)
                     {
@@ -697,7 +697,7 @@
                 }
 
                 Segment lastSegment = new Segment(segmentIndex, this, lastNodeFar, NodeFar, section, lastW, lastW + wSeg, previousSegmentIndex);
-                segments.TryAdd(lastSegment.Index, lastSegment);
+                _ = segments.TryAdd(lastSegment.Index, lastSegment);
                 segmentIndex++;
 
                 if (firstSegment is null)

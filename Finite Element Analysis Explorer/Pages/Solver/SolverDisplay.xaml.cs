@@ -11,7 +11,18 @@
         /// <summary>
         /// Gets or sets Clayton's singleton.
         /// </summary>
-        internal static SolverDisplay Current { get => current; set => current = value; }
+        internal static SolverDisplay Current
+        {
+            get
+            {
+                return current;
+            }
+
+            set
+            {
+                current = value;
+            }
+        }
 
         private static SolverDisplay current;
 
@@ -67,7 +78,7 @@
             }
 
             scrollViewer_Console.UpdateLayout();
-            scrollViewer_Console.ChangeView(0.0f, double.MaxValue, 1.0f);
+            _ = scrollViewer_Console.ChangeView(0.0f, double.MaxValue, 1.0f);
         }
     }
 }

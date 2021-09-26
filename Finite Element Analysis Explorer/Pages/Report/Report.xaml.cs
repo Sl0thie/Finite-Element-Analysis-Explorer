@@ -3,6 +3,7 @@
 namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.ViewManagement;
@@ -42,8 +43,8 @@ namespace Finite_Element_Analysis_Explorer
             Current = this;
             isPageLoaded = true;
 
-            frameDetails.Navigate(typeof(PanelReport));
-            frameDisplay.Navigate(typeof(ReportDisplay));
+            _ = frameDetails.Navigate(typeof(PanelReport));
+            _ = frameDisplay.Navigate(typeof(ReportDisplay));
             App.CurrentPageState = PageState.Results;
             SetTitle("Finite Element Analysis Explorer - Report - " + FileManager.FileTitle);
         }
@@ -56,7 +57,7 @@ namespace Finite_Element_Analysis_Explorer
             if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Construction));
+                _ = rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -105,10 +106,9 @@ namespace Finite_Element_Analysis_Explorer
         /// </summary>
         public async void ShowHelpAsync()
         {
-            var uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
+            Uri uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
-
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -138,14 +138,13 @@ namespace Finite_Element_Analysis_Explorer
             {
                 App.CurrentPageState = PageState.Results;
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelReport));
-                frameDisplay.Navigate(typeof(ReportDisplay));
+                _ = frameDetails.Navigate(typeof(PanelReport));
+                _ = frameDisplay.Navigate(typeof(ReportDisplay));
             }
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void MenuFlyoutNew(object sender, RoutedEventArgs e)

@@ -1,7 +1,8 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using Microsoft.Graphics.Canvas.Geometry;
     using System;
+
+    using Microsoft.Graphics.Canvas.Geometry;
 
     internal class OptionsLines
     {
@@ -39,12 +40,15 @@
         /// </summary>
         internal float GridNormalWeight
         {
-            get => gridNormalWeight;
+            get
+            {
+                return gridNormalWeight;
+            }
 
             set
             {
                 gridNormalWeight = value;
-                FileManager.LocalSettings.Values["LineGridNormalWeight"] = (float)gridNormalWeight;
+                FileManager.LocalSettings.Values["LineGridNormalWeight"] = gridNormalWeight;
             }
         }
 
@@ -53,7 +57,10 @@
         /// </summary>
         internal CanvasStrokeStyle GridNormal
         {
-            get => gridNormal;
+            get
+            {
+                return gridNormal;
+            }
 
             set
             {
@@ -73,12 +80,15 @@
         /// </summary>
         internal float GridMinorWeight
         {
-            get => gridMinorWeight;
+            get
+            {
+                return gridMinorWeight;
+            }
 
             set
             {
                 gridMinorWeight = value;
-                FileManager.LocalSettings.Values["LineGridMinorWeight"] = (float)gridMinorWeight;
+                FileManager.LocalSettings.Values["LineGridMinorWeight"] = gridMinorWeight;
             }
         }
 
@@ -87,7 +97,10 @@
         /// </summary>
         internal CanvasStrokeStyle GridMinor
         {
-            get => gridMinor;
+            get
+            {
+                return gridMinor;
+            }
 
             set
             {
@@ -107,12 +120,15 @@
         /// </summary>
         internal float GridMajorWeight
         {
-            get => gridMajorWeight;
+            get
+            {
+                return gridMajorWeight;
+            }
 
             set
             {
                 gridMajorWeight = value;
-                FileManager.LocalSettings.Values["LineGridMajorWeight"] = (float)gridMajorWeight;
+                FileManager.LocalSettings.Values["LineGridMajorWeight"] = gridMajorWeight;
             }
         }
 
@@ -121,7 +137,10 @@
         /// </summary>
         internal CanvasStrokeStyle GridMajor
         {
-            get => gridMajor;
+            get
+            {
+                return gridMajor;
+            }
 
             set
             {
@@ -141,12 +160,15 @@
         /// </summary>
         internal float ForceWeight
         {
-            get => forceWeight;
+            get
+            {
+                return forceWeight;
+            }
 
             set
             {
                 forceWeight = value;
-                FileManager.LocalSettings.Values["LineForceWeight"] = (float)forceWeight;
+                FileManager.LocalSettings.Values["LineForceWeight"] = forceWeight;
             }
         }
 
@@ -155,7 +177,10 @@
         /// </summary>
         internal CanvasStrokeStyle Force
         {
-            get => force;
+            get
+            {
+                return force;
+            }
 
             set
             {
@@ -175,12 +200,15 @@
         /// </summary>
         internal float ReactionWeight
         {
-            get => reactionWeight;
+            get
+            {
+                return reactionWeight;
+            }
 
             set
             {
                 reactionWeight = value;
-                FileManager.LocalSettings.Values["LineReactionWeight"] = (float)reactionWeight;
+                FileManager.LocalSettings.Values["LineReactionWeight"] = reactionWeight;
             }
         }
 
@@ -189,7 +217,10 @@
         /// </summary>
         internal CanvasStrokeStyle Reaction
         {
-            get => reaction;
+            get
+            {
+                return reaction;
+            }
 
             set
             {
@@ -209,12 +240,15 @@
         /// </summary>
         internal float SelectedElementWeight
         {
-            get => selectedElementWeight;
+            get
+            {
+                return selectedElementWeight;
+            }
 
             set
             {
                 selectedElementWeight = value;
-                FileManager.LocalSettings.Values["LineSelectedElementWeight"] = (float)selectedElementWeight;
+                FileManager.LocalSettings.Values["LineSelectedElementWeight"] = selectedElementWeight;
             }
         }
 
@@ -223,7 +257,10 @@
         /// </summary>
         internal CanvasStrokeStyle SelectedElement
         {
-            get => selectedElement;
+            get
+            {
+                return selectedElement;
+            }
 
             set
             {
@@ -243,12 +280,15 @@
         /// </summary>
         internal float ShearForceSelectedWeight
         {
-            get => shearForceSelectedWeight;
+            get
+            {
+                return shearForceSelectedWeight;
+            }
 
             set
             {
                 shearForceSelectedWeight = value;
-                FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = (float)shearForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineShearForceSelectedWeight"] = shearForceSelectedWeight;
             }
         }
 
@@ -257,7 +297,10 @@
         /// </summary>
         internal CanvasStrokeStyle ShearForceSelected
         {
-            get => shearForceSelected;
+            get
+            {
+                return shearForceSelected;
+            }
 
             set
             {
@@ -277,12 +320,15 @@
         /// </summary>
         internal float MomentForceSelectedWeight
         {
-            get => momentForceSelectedWeight;
+            get
+            {
+                return momentForceSelectedWeight;
+            }
 
             set
             {
                 momentForceSelectedWeight = value;
-                FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = (float)momentForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineMomentForceSelectedWeight"] = momentForceSelectedWeight;
             }
         }
 
@@ -291,7 +337,10 @@
         /// </summary>
         internal CanvasStrokeStyle MomentForceSelected
         {
-            get => momentForceSelected;
+            get
+            {
+                return momentForceSelected;
+            }
 
             set
             {
@@ -311,12 +360,15 @@
         /// </summary>
         internal float ShearForceFontWeight
         {
-            get => shearForceFontWeight;
+            get
+            {
+                return shearForceFontWeight;
+            }
 
             set
             {
                 shearForceFontWeight = value;
-                FileManager.LocalSettings.Values["LineShearForceFontWeight"] = (float)shearForceFontWeight;
+                FileManager.LocalSettings.Values["LineShearForceFontWeight"] = shearForceFontWeight;
             }
         }
 
@@ -325,7 +377,10 @@
         /// </summary>
         internal CanvasStrokeStyle ShearForceFont
         {
-            get => shearForceFont;
+            get
+            {
+                return shearForceFont;
+            }
 
             set
             {
@@ -345,12 +400,15 @@
         /// </summary>
         internal float MomentForceFontWeight
         {
-            get => momentForceFontWeight;
+            get
+            {
+                return momentForceFontWeight;
+            }
 
             set
             {
                 momentForceFontWeight = value;
-                FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = (float)momentForceFontWeight;
+                FileManager.LocalSettings.Values["LineMomentForceFontWeight"] = momentForceFontWeight;
             }
         }
 
@@ -359,7 +417,10 @@
         /// </summary>
         internal CanvasStrokeStyle MomentForceFont
         {
-            get => momentForceFont;
+            get
+            {
+                return momentForceFont;
+            }
 
             set
             {
@@ -379,12 +440,15 @@
         /// </summary>
         internal float ShearForceWeight
         {
-            get => shearForceWeight;
+            get
+            {
+                return shearForceWeight;
+            }
 
             set
             {
                 shearForceWeight = value;
-                FileManager.LocalSettings.Values["LineShearForceWeight"] = (float)shearForceWeight;
+                FileManager.LocalSettings.Values["LineShearForceWeight"] = shearForceWeight;
             }
         }
 
@@ -393,7 +457,10 @@
         /// </summary>
         internal CanvasStrokeStyle ShearForce
         {
-            get => shearForce;
+            get
+            {
+                return shearForce;
+            }
 
             set
             {
@@ -413,12 +480,15 @@
         /// </summary>
         internal float MomentForceWeight
         {
-            get => momentForceWeight;
+            get
+            {
+                return momentForceWeight;
+            }
 
             set
             {
                 momentForceWeight = value;
-                FileManager.LocalSettings.Values["LineMomentForceWeight"] = (float)momentForceWeight;
+                FileManager.LocalSettings.Values["LineMomentForceWeight"] = momentForceWeight;
             }
         }
 
@@ -427,7 +497,10 @@
         /// </summary>
         internal CanvasStrokeStyle MomentForce
         {
-            get => momentForce;
+            get
+            {
+                return momentForce;
+            }
 
             set
             {
@@ -447,12 +520,15 @@
         /// </summary>
         internal float DistributedForceWeight
         {
-            get => distributedForceWeight;
+            get
+            {
+                return distributedForceWeight;
+            }
 
             set
             {
                 distributedForceWeight = value;
-                FileManager.LocalSettings.Values["LineDistributedForceWeight"] = (float)distributedForceWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceWeight"] = distributedForceWeight;
             }
         }
 
@@ -461,7 +537,10 @@
         /// </summary>
         internal CanvasStrokeStyle DistributedForce
         {
-            get => distributedForce;
+            get
+            {
+                return distributedForce;
+            }
 
             set
             {
@@ -481,12 +560,15 @@
         /// </summary>
         internal float DistributedForceSelectedWeight
         {
-            get => distributedForceSelectedWeight;
+            get
+            {
+                return distributedForceSelectedWeight;
+            }
 
             set
             {
                 distributedForceSelectedWeight = value;
-                FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = (float)distributedForceSelectedWeight;
+                FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"] = distributedForceSelectedWeight;
             }
         }
 
@@ -495,7 +577,10 @@
         /// </summary>
         internal CanvasStrokeStyle DistributedForceSelected
         {
-            get => distributedForceSelected;
+            get
+            {
+                return distributedForceSelected;
+            }
 
             set
             {
@@ -771,9 +856,6 @@
                     distributedForceSelected.StartCap = (CanvasCapStyle)FileManager.LocalSettings.Values["LineDistributedForceSelectedStartCap"];
                     distributedForceSelectedWeight = (float)FileManager.LocalSettings.Values["LineDistributedForceSelectedWeight"];
                 }
-
-
-
             }
             catch (Exception ex)
             {

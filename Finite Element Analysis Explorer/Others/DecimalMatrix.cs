@@ -8,8 +8,8 @@
     /// </summary>
     internal class DecimalMatrix
     {
-        private decimal[,] mInnerMatrix;
-        private int mRowCount = 0;
+        private readonly decimal[,] mInnerMatrix;
+        private readonly int mRowCount = 0;
 
         /// <summary>
         /// Gets the row count.
@@ -19,7 +19,7 @@
             get { return mRowCount; }
         }
 
-        private int mColumnCount = 0;
+        private readonly int mColumnCount = 0;
 
         /// <summary>
         /// Gets the column count.

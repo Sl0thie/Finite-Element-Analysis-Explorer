@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;
@@ -142,7 +143,7 @@
                     tmpSection.Green = (byte)SingleValue_ColorGreen.NewValue;
                     tmpSection.I = SingleValue_MomentOfInertia.NewValue;
                     tmpSection.LineWeight = (float)SingleValue_LineWeight.NewValue;
-                    tmpSection.Name = (string)textBox_SectionName.Text;
+                    tmpSection.Name = textBox_SectionName.Text;
                     tmpSection.Red = (byte)SingleValue_ColorRed.NewValue;
 
                     ShowSection(textBox_SectionName.Text.Trim());

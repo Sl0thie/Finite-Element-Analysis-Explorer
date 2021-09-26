@@ -328,7 +328,10 @@
         /// </summary>
         public string Name
         {
-            get { return name; }
+            get
+            {
+                return name;
+            }
             set { name = value; }
         }
 
@@ -423,6 +426,7 @@
 
             set
             {
+                yieldStrengthShear = value;
             }
         }
 
@@ -433,8 +437,15 @@
         /// </summary>
         public decimal ModulusOfElasticity
         {
-            get { return modulusOfElasticity; }
-            set { modulusOfElasticity = value; }
+            get
+            {
+                return modulusOfElasticity;
+            }
+
+            set
+            {
+                modulusOfElasticity = value;
+            }
         }
 
         private decimal modulusOfRigidity = 0;
@@ -447,8 +458,15 @@
         /// </summary>
         public decimal ModulusOfRigidity
         {
-            get { return modulusOfRigidity; }
-            set { modulusOfRigidity = value; }
+            get
+            {
+                return modulusOfRigidity;
+            }
+
+            set
+            {
+                modulusOfRigidity = value;
+            }
         }
 
         private decimal bulkModulus = 0;

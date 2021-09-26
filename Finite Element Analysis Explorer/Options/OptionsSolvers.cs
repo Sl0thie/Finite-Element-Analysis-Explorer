@@ -4,7 +4,6 @@
 
     internal class OptionsSolvers
     {
-
         private bool autoStartSolver = true;
         private bool autoFinishSolver = true;
         private bool generateReport = true;
@@ -23,7 +22,7 @@
             set
             {
                 autoStartSolver = value;
-                FileManager.LocalSettings.Values["AutoStartSolver"] = (bool)autoStartSolver;
+                FileManager.LocalSettings.Values["AutoStartSolver"] = autoStartSolver;
             }
         }
 
@@ -40,7 +39,7 @@
             set
             {
                 autoFinishSolver = value;
-                FileManager.LocalSettings.Values["AutoFinishSolver"] = (bool)autoFinishSolver;
+                FileManager.LocalSettings.Values["AutoFinishSolver"] = autoFinishSolver;
             }
         }
 
@@ -57,7 +56,7 @@
             set
             {
                 generateReport = value;
-                FileManager.LocalSettings.Values["GenerateReport"] = (bool)generateReport;
+                FileManager.LocalSettings.Values["GenerateReport"] = generateReport;
             }
         }
 
@@ -66,11 +65,15 @@
         /// </summary>
         public int CurrentSolver
         {
-            get { return currentSolver; }
+            get
+            {
+                return currentSolver;
+            }
+
             set
             {
                 currentSolver = value;
-                FileManager.LocalSettings.Values["CurrentSolver"] = (int)currentSolver;
+                FileManager.LocalSettings.Values["CurrentSolver"] = currentSolver;
             }
         }
 

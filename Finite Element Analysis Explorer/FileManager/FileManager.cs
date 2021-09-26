@@ -1,12 +1,14 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using Microsoft.Graphics.Canvas.Geometry;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Numerics;
     using System.Threading.Tasks;
+
+    using Microsoft.Graphics.Canvas.Geometry;
+
     using Windows.Storage;
     using Windows.Storage.AccessCache;
     using Windows.Storage.Pickers;
@@ -40,7 +42,6 @@
 
         #region Properties
 
-
         /// <summary>
         /// Gets or sets the local settings application data container.
         /// </summary>
@@ -58,8 +59,6 @@
         {
             get { return fileTitle; }
         }
-
-
 
         #endregion
 
@@ -79,9 +78,9 @@
 
                     // New File was picked.
                     workingFile = nextFile;
-                    var mru = StorageApplicationPermissions.MostRecentlyUsedList;
+                    StorageItemMostRecentlyUsedList mru = StorageApplicationPermissions.MostRecentlyUsedList;
                     string mruToken = mru.Add(workingFile, workingFile.Path);
-                    var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
+                    string listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
                     workingFileDisplayName = workingFile.DisplayName;
                     workingFilePath = workingFile.Path;
@@ -93,8 +92,8 @@
                     LocalSettings.Values["WorkingFileMruToken"] = workingFileMruToken;
                     LocalSettings.Values["WorkingFileListToken"] = workingFileListToken;
 
-                    await SaveFile();
-                    await LoadFile();
+                    _ = await SaveFile();
+                    _ = await LoadFile();
                     return;
                 }
             }
@@ -102,8 +101,8 @@
             // Picking new file failed.
             if (Options.FirstRun)
             {
-                var dialog = new MessageDialog("You must specify a file to save the drawing data too for the application to work with. No file chosen, exiting application.");
-                await dialog.ShowAsync();
+                MessageDialog dialog = new MessageDialog("You must specify a file to save the drawing data too for the application to work with. No file chosen, exiting application.");
+                _ = await dialog.ShowAsync();
                 Application.Current.Exit();
             }
         }
@@ -123,7 +122,7 @@
                    {
                        fileTitle = "Untitled";
                        Frame rootFrame = Window.Current.Content as Frame;
-                       rootFrame.Navigate(typeof(FileLoading));
+                       _ = rootFrame.Navigate(typeof(FileLoading));
                    });
 
             if (workingFile is object)
@@ -350,7 +349,7 @@
                 return false;
             }
 
-            var appView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            Windows.UI.ViewManagement.ApplicationView appView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             appView.Title = workingFileDisplayName;
 
             await Task.Delay(100);
@@ -360,7 +359,7 @@
                 () =>
                    {
                        Frame rootFrame = Window.Current.Content as Frame;
-                       rootFrame.Navigate(typeof(Construction));
+                       _ = rootFrame.Navigate(typeof(Construction));
                    });
 
             return true;
@@ -375,19 +374,18 @@
             {
                 if (Options.FirstRun)
                 {
-                    var uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
-                    var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
-                    // Options.FirstRun = false;
+                    Uri uriHelpGeneral = new Uri(@"http://intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/QuickStart.aspx");
+                    bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
                     NewFile();
                     Frame rootFrame = Window.Current.Content as Frame;
-                    rootFrame.Navigate(typeof(Construction));
+                    _ = rootFrame.Navigate(typeof(Construction));
                 }
                 else
                 {
                     workingFileMruToken = (string)LocalSettings.Values["WorkingFileMruToken"];
-                    var mru = StorageApplicationPermissions.MostRecentlyUsedList;
+                    StorageItemMostRecentlyUsedList mru = StorageApplicationPermissions.MostRecentlyUsedList;
                     workingFile = await mru.GetFileAsync(workingFileMruToken);
-                    await LoadFile();
+                    _ = await LoadFile();
                 }
             }
             catch (Exception ex)
@@ -395,7 +393,7 @@
                 Debug.WriteLine("ERROR LoadLastFileAsync " + ex.Message + " " + ex.Data.ToString() + " " + ex.StackTrace);
                 NewFile();
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Construction));
+                _ = rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -424,7 +422,7 @@
                     lines.Add(info);
 
                     long count = 0;
-                    foreach (var node in Model.Nodes)
+                    foreach (KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.IsPrimary)
                         {
@@ -441,7 +439,7 @@
                     }
 
                     count = 0;
-                    foreach (var member in Model.Members)
+                    foreach (KeyValuePair<int, Member> member in Model.Members)
                     {
                         string line = "M|" + member.Value.Index + "|";
                         line = line + member.Value.NodeNear.Index.ToString() + "|";
@@ -475,7 +473,7 @@
                     lines.Add(info);
 
                     long count = 0;
-                    foreach (var node in Model.Nodes)
+                    foreach (KeyValuePair<Tuple<decimal, decimal>, Node> node in Model.Nodes)
                     {
                         if (node.Value.IsPrimary)
                         {
@@ -492,7 +490,7 @@
                     }
 
                     count = 0;
-                    foreach (var member in Model.Members)
+                    foreach (KeyValuePair<int, Member> member in Model.Members)
                     {
                         string line = "M," + member.Value.Index + ",";
                         line = line + member.Value.NodeNear.Index.ToString() + ",";
@@ -526,7 +524,7 @@
         {
             if (workingFile is object)
             {
-                await SaveFile();
+                _ = await SaveFile();
             }
         }
 
@@ -570,7 +568,7 @@
             materialsFile = await LocalFolder.GetFileAsync("Materials.Data");
 
             IList<string> lines = new List<string>();
-            foreach (var material in Model.Materials)
+            foreach (KeyValuePair<string, Material> material in Model.Materials)
             {
                 string line = material.Value.Name.ToString() + "|";
                 line += material.Value.Description.ToString() + "|";
@@ -857,7 +855,7 @@
             sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
 
             IList<string> lines = new List<string>();
-            foreach (var section in Model.Sections)
+            foreach (KeyValuePair<string, Section> section in Model.Sections)
             {
                 string line = section.Value.Name.ToString() + "|";
                 line += section.Value.E.ToString() + "|";
@@ -936,9 +934,9 @@
             {
                 // New File was picked.
                 workingFile = nextFile;
-                var mru = StorageApplicationPermissions.MostRecentlyUsedList;
+                StorageItemMostRecentlyUsedList mru = StorageApplicationPermissions.MostRecentlyUsedList;
                 string mruToken = mru.Add(workingFile, workingFile.Path);
-                var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
+                string listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
                 workingFileDisplayName = workingFile.DisplayName;
                 workingFilePath = workingFile.Path;
@@ -978,9 +976,9 @@
                 // Picked ok.
                 workingFile = nextFile;
 
-                var mru = StorageApplicationPermissions.MostRecentlyUsedList;
+                StorageItemMostRecentlyUsedList mru = StorageApplicationPermissions.MostRecentlyUsedList;
                 string mruToken = mru.Add(workingFile, workingFile.Path);
-                var listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
+                string listToken = StorageApplicationPermissions.FutureAccessList.Add(workingFile);
 
                 workingFileDisplayName = workingFile.DisplayName;
                 workingFilePath = workingFile.Path;

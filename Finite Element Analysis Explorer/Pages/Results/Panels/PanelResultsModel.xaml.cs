@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -201,9 +202,9 @@
         private void ComboBox_MemberDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Options.Display.MemberDisplayType = comboBox_MemberDisplay.SelectedIndex;
-            foreach (var item in Model.Members)
+            foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members)
             {
-                foreach (var nextSegment in item.Value.Segments)
+                foreach (System.Collections.Generic.KeyValuePair<int, Segment> nextSegment in item.Value.Segments)
                 {
                     nextSegment.Value.UpdateColor();
                 }
@@ -253,14 +254,14 @@
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                await FileManager.LoadFile();
+                _ = await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             // Save File.
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
@@ -268,7 +269,7 @@
             // Save file as.
             if (await FileManager.PickFileToSave())
             {
-                await FileManager.SaveFile();
+                _ = await FileManager.SaveFile();
             }
         }
 
@@ -309,7 +310,7 @@
         private void Button_Reports_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(Report));
+            _ = rootFrame.Navigate(typeof(Report));
         }
 
         #endregion

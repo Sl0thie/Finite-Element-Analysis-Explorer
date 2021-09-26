@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.ApplicationModel.Core;
     using Windows.UI;
     using Windows.UI.ViewManagement;
@@ -47,7 +48,7 @@
             if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Construction));
+                _ = rootFrame.Navigate(typeof(Construction));
             }
         }
 
@@ -67,7 +68,7 @@
         /// </summary>
         public void ShowMember()
         {
-            frameDetails.Navigate(typeof(PanelMember));
+            _ = frameDetails.Navigate(typeof(PanelMember));
         }
 
         /// <summary>
@@ -78,7 +79,7 @@
             if (isPageLoaded)
             {
                 Frame rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(Solver));
+                _ = rootFrame.Navigate(typeof(Solver));
             }
         }
 
@@ -87,8 +88,8 @@
         /// </summary>
         public async void ShowHelpAsync()
         {
-            var uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
+            Uri uriHelpGeneral = new Uri(@"http://www.intacomputers.com/Software/FEA/FiniteElementAnalysisExplorer/Help/Default.aspx");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriHelpGeneral, new Windows.System.LauncherOptions() { DisplayApplicationPicker = false });
         }
 
         /// <summary>
@@ -100,7 +101,7 @@
             {
                 App.CurrentPageState = PageState.Construction;
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelModel));
+                _ = frameDetails.Navigate(typeof(PanelModel));
             }
         }
 
@@ -112,8 +113,8 @@
             _ = FileManager.SaveFile();
             App.CurrentPageState = PageState.Sections;
             frameDetails.Width = 220;
-            frameDetails.Navigate(typeof(PanelSections));
-            frameDisplay.Navigate(typeof(DisplaySection));
+            _ = frameDetails.Navigate(typeof(PanelSections));
+            _ = frameDisplay.Navigate(typeof(DisplaySection));
         }
 
         /// <summary>
@@ -124,8 +125,8 @@
             _ = FileManager.SaveFile();
             App.CurrentPageState = PageState.Sections;
             frameDetails.Width = 220;
-            frameDetails.Navigate(typeof(PanelSections));
-            frameDisplay.Navigate(typeof(DisplaySection));
+            _ = frameDetails.Navigate(typeof(PanelSections));
+            _ = frameDisplay.Navigate(typeof(DisplaySection));
         }
 
         /// <summary>
@@ -134,7 +135,7 @@
         public void ShowSettingsColors()
         {
             frameDetails.Width = 300;
-            frameDetails.Navigate(typeof(PanelSettingsColors));
+            _ = frameDetails.Navigate(typeof(PanelSettingsColors));
         }
 
         /// <summary>
@@ -143,7 +144,7 @@
         public void ShowSettingsSolver()
         {
             frameDetails.Width = 300;
-            frameDetails.Navigate(typeof(PanelSettingsSolver));
+            _ = frameDetails.Navigate(typeof(PanelSettingsSolver));
         }
 
         /// <summary>
@@ -152,7 +153,7 @@
         public void ShowSettingsGeneral()
         {
             frameDetails.Width = 300;
-            frameDetails.Navigate(typeof(PanelSettingsGeneral));
+            _ = frameDetails.Navigate(typeof(PanelSettingsGeneral));
         }
 
         /// <summary>
@@ -163,15 +164,15 @@
             if (Model.Members.CurrentMember == null)
             {
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelModel));
+                _ = frameDetails.Navigate(typeof(PanelModel));
             }
             else
             {
                 frameDetails.Width = 300;
-                frameDetails.Navigate(typeof(PanelMember));
+                _ = frameDetails.Navigate(typeof(PanelMember));
             }
 
-            frameDisplay.Navigate(typeof(ConstructionDisplay));
+            _ = frameDisplay.Navigate(typeof(ConstructionDisplay));
         }
 
         #endregion
@@ -214,14 +215,14 @@
             if (Model.Members.CurrentMember == null)
             {
                 Model.Sections.CurrentSection = Model.Sections["Default"];
-                frameDetails.Navigate(typeof(PanelModel));
+                _ = frameDetails.Navigate(typeof(PanelModel));
             }
             else
             {
-                frameDetails.Navigate(typeof(PanelMember));
+                _ = frameDetails.Navigate(typeof(PanelMember));
             }
 
-            frameDisplay.Navigate(typeof(ConstructionDisplay));
+            _ = frameDisplay.Navigate(typeof(ConstructionDisplay));
             App.CurrentPageState = PageState.Construction;
             SetTitle("Finite Element Analysis Explorer - Construction - " + FileManager.FileTitle);
         }
@@ -253,13 +254,13 @@
             {
                 detailsIsOpen = false;
                 frameDetails.Width = Constants.WidthDetailsSlim;
-                frameDetails.Navigate(typeof(ConstructionSlim));
+                _ = frameDetails.Navigate(typeof(ConstructionSlim));
             }
             else
             {
                 detailsIsOpen = true;
                 frameDetails.Width = Constants.WidthDetailsNormal;
-                frameDetails.Navigate(typeof(PanelModel));
+                _ = frameDetails.Navigate(typeof(PanelModel));
             }
         }
 

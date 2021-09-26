@@ -1,7 +1,9 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
-    using Microsoft.Graphics.Canvas.Geometry;
     using System;
+
+    using Microsoft.Graphics.Canvas.Geometry;
+
     using Windows.UI;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;

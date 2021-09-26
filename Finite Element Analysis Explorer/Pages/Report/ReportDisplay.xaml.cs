@@ -3,7 +3,7 @@
 namespace Finite_Element_Analysis_Explorer
 {
     using System;
-    using System.Diagnostics;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -19,11 +19,6 @@ namespace Finite_Element_Analysis_Explorer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("ReportDisplay.Page_Loaded");
-            //Web.Navigate(new Uri("ReportBasic.html"));
-
-            //Web.Navigate(new Uri("ms-appdata:///local/ReportBasic.html"));
-
             Web.Navigate(new Uri("ms-appdata:///local/Reports/ReportBasic.html"));
         }
     }

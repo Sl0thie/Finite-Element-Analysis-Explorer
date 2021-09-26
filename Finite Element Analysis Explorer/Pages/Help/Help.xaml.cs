@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -22,7 +23,18 @@
         /// <summary>
         /// Gets or sets current. The Clayton's singleton.
         /// </summary>
-        public static Help Current { get => current; set => current = value; }
+        public static Help Current
+        {
+            get
+            {
+                return current;
+            }
+
+            set
+            {
+                current = value;
+            }
+        }
 
         /// <summary>
         /// Show the help page.

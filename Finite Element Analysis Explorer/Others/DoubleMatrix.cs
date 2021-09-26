@@ -283,9 +283,7 @@
             int n = matrix.Length;
             double[][] result = MatrixDuplicate(matrix);
 
-            int[] perm;
-            int toggle;
-            double[][] lum = MatrixDecompose(matrix, out perm, out toggle);
+            double[][] lum = MatrixDecompose(matrix, out int[] perm, out int toggle);
             if (lum == null)
             {
                 throw new Exception("Unable to compute inverse");
@@ -324,9 +322,7 @@
         /// <returns>Result.</returns>
         internal static double MatrixDeterminant(double[][] matrix)
         {
-            int[] perm;
-            int toggle;
-            double[][] lum = MatrixDecompose(matrix, out perm, out toggle);
+            double[][] lum = MatrixDecompose(matrix, out int[] perm, out int toggle);
             if (lum == null)
             {
                 throw new Exception("Unable to compute MatrixDeterminant");
@@ -392,9 +388,7 @@
             int n = a.Length;
 
             // 1. decompose A
-            int[] perm;
-            int toggle;
-            double[][] luMatrix = MatrixDecompose(a, out perm, out toggle);
+            double[][] luMatrix = MatrixDecompose(a, out int[] perm, out int toggle);
             if (luMatrix == null)
             {
                 return null;

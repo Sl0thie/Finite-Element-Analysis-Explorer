@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
@@ -16,17 +17,50 @@
         /// <summary>
         /// Gets or sets the current construction mode.
         /// </summary>
-        internal static ConstructionMode CurrentConstructionMode { get => currentConstructionMode; set => currentConstructionMode = value; }
+        internal static ConstructionMode CurrentConstructionMode
+        {
+            get
+            {
+                return currentConstructionMode;
+            }
+
+            set
+            {
+                currentConstructionMode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the current solver state.
         /// </summary>
-        internal static SolveState CurrentSolverState { get => currentSolverState; set => currentSolverState = value; }
+        internal static SolveState CurrentSolverState
+        {
+            get
+            {
+                return currentSolverState;
+            }
+
+            set
+            {
+                currentSolverState = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the current page state.
         /// </summary>
-        internal static PageState CurrentPageState { get => currentPageState; set => currentPageState = value; }
+        internal static PageState CurrentPageState
+        {
+            get
+            {
+                return currentPageState;
+            }
+
+            set
+            {
+                currentPageState = value;
+            }
+        }
 
         private static ConstructionMode currentConstructionMode = ConstructionMode.Add;
         private static SolveState currentSolverState = SolveState.Unknown;
@@ -57,7 +91,7 @@
             }
 #endif
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            Frame rootFrame = (Frame)Window.Current.Content;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

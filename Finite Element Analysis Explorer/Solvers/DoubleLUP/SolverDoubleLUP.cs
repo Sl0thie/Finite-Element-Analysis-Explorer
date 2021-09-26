@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System.Threading.Tasks;
+
     using Windows.UI.Xaml.Controls;
 
     /// <summary>
@@ -57,7 +58,7 @@
             App.CurrentSolverState = SolveState.Solving;
             SolverDisplay.Current.ClearMessages();
 
-            Task.Run(() => SolveModel());
+            _ = Task.Run(() => SolveModel());
         }
 
         #endregion

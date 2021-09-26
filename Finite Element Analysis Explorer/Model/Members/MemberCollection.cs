@@ -67,17 +67,50 @@
         /// <summary>
         /// Gets or sets the Member tiles.
         /// </summary>
-        internal ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>> MemberTiles { get => memberTiles; set => memberTiles = value; }
+        internal ConcurrentDictionary<Tuple<int, int>, List<Tuple<int, int>>> MemberTiles
+        {
+            get
+            {
+                return memberTiles;
+            }
+
+            set
+            {
+                memberTiles = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Members with linear loads.
         /// </summary>
-        internal ConcurrentDictionary<int, Member> MembersWithLinearLoads { get => membersWithLinearLoads; set => membersWithLinearLoads = value; }
+        internal ConcurrentDictionary<int, Member> MembersWithLinearLoads
+        {
+            get
+            {
+                return membersWithLinearLoads;
+            }
+
+            set
+            {
+                membersWithLinearLoads = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the grid size.
         /// </summary>
-        internal float GridSize { get => gridSize; set => gridSize = value; }
+        internal float GridSize
+        {
+            get
+            {
+                return gridSize;
+            }
+
+            set
+            {
+                gridSize = value;
+            }
+        }
 
         private Member currentMember;
         private int nextIndex = 1;
@@ -94,7 +127,7 @@
         {
             if (ContainsKey(indexToRemove))
             {
-                foreach (var item in Model.Members[indexToRemove].Segments)
+                foreach (KeyValuePair<int, Segment> item in Model.Members[indexToRemove].Segments)
                 {
                     if (!item.Value.NodeNear.IsPrimary)
                     {
@@ -110,15 +143,15 @@
                 if (MembersWithLinearLoads.ContainsKey(indexToRemove))
                 {
                     Member tmpMember = new Member();
-                    MembersWithLinearLoads.TryRemove(indexToRemove, out tmpMember);
+                    _ = MembersWithLinearLoads.TryRemove(indexToRemove, out _);
                 }
 
                 RemoveElementFromTiles(indexToRemove, Model.Members[indexToRemove].CenterPoint);
 
-                TryRemove(indexToRemove, out currentMember);
+                _ = TryRemove(indexToRemove, out currentMember);
                 currentMember = null;
                 FindNextIndex();
-                Model.Shrink();
+                _ = Model.Shrink();
                 total--;
             }
         }
@@ -164,16 +197,18 @@
             double closestLength = double.MaxValue;
             int totalChecked = 0;
 
-            List<Tuple<int, int>> grids = new List<Tuple<int, int>>();
-            grids.Add(new Tuple<int, int>(dimX - 1, dimY - 1));
-            grids.Add(new Tuple<int, int>(dimX, dimY - 1));
-            grids.Add(new Tuple<int, int>(dimX + 1, dimY - 1));
-            grids.Add(new Tuple<int, int>(dimX - 1, dimY));
-            grids.Add(new Tuple<int, int>(dimX, dimY));
-            grids.Add(new Tuple<int, int>(dimX + 1, dimY));
-            grids.Add(new Tuple<int, int>(dimX - 1, dimY + 1));
-            grids.Add(new Tuple<int, int>(dimX, dimY + 1));
-            grids.Add(new Tuple<int, int>(dimX + 1, dimY + 1));
+            List<Tuple<int, int>> grids = new List<Tuple<int, int>>
+            {
+                new Tuple<int, int>(dimX - 1, dimY - 1),
+                new Tuple<int, int>(dimX, dimY - 1),
+                new Tuple<int, int>(dimX + 1, dimY - 1),
+                new Tuple<int, int>(dimX - 1, dimY),
+                new Tuple<int, int>(dimX, dimY),
+                new Tuple<int, int>(dimX + 1, dimY),
+                new Tuple<int, int>(dimX - 1, dimY + 1),
+                new Tuple<int, int>(dimX, dimY + 1),
+                new Tuple<int, int>(dimX + 1, dimY + 1)
+            };
 
             foreach (Tuple<int, int> grid in grids)
             {
@@ -212,7 +247,7 @@
         /// <param name="position">The position of the element.</param>
         public void AddNewElementToTiles(int elementNumber, Vector2 position)
         {
-            foreach (var item in Model.Members[elementNumber].Segments)
+            foreach (KeyValuePair<int, Segment> item in Model.Members[elementNumber].Segments)
             {
                 Tuple<int, int> position2D = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
                 List<Tuple<int, int>> iTmp = null;
@@ -224,8 +259,10 @@
                 }
                 else
                 {
-                    List<Tuple<int, int>> newList = new List<Tuple<int, int>>();
-                    newList.Add(new Tuple<int, int>(elementNumber, item.Value.Index));
+                    List<Tuple<int, int>> newList = new List<Tuple<int, int>>
+                    {
+                        new Tuple<int, int>(elementNumber, item.Value.Index)
+                    };
                     if (!MemberTiles.TryAdd(position2D, newList))
                     {
                         Debug.WriteLine("TryAdd Failed");
@@ -241,13 +278,13 @@
         /// <param name="position">The position of the element.</param>
         public void RemoveElementFromTiles(int elementNumber, Vector2 position)
         {
-            foreach (var item in Model.Members[elementNumber].Segments)
+            foreach (KeyValuePair<int, Segment> item in Model.Members[elementNumber].Segments)
             {
                 Tuple<int, int> position2D = new Tuple<int, int>(Convert.ToInt32(item.Value.CenterPointDisplaced.X / GridSize), Convert.ToInt32(item.Value.CenterPointDisplaced.Y / GridSize));
                 if (MemberTiles.ContainsKey(position2D))
                 {
                     List<Tuple<int, int>> iTmp = MemberTiles[position2D];
-                    iTmp.Remove(new Tuple<int, int>(elementNumber, item.Value.Index));
+                    _ = iTmp.Remove(new Tuple<int, int>(elementNumber, item.Value.Index));
                 }
             }
         }

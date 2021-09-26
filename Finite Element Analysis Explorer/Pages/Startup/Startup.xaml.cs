@@ -58,20 +58,20 @@
             if (LeftFrameColumn.Width == new GridLength(32))
             {
                 LeftFrameColumn.Width = new GridLength(320);
-                frameContentDetails.Navigate(typeof(Details));
+                _ = frameContentDetails.Navigate(typeof(Details));
             }
             else
             {
                 LeftFrameColumn.Width = new GridLength(32);
-                frameContentDetails.Navigate(typeof(Slim));
+                _ = frameContentDetails.Navigate(typeof(Slim));
             }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Current = this;
-            frameContentDetails.Navigate(typeof(Slim));
-            frameContentDisplay.Navigate(typeof(StartupDisplay));
+            _ = frameContentDetails.Navigate(typeof(Slim));
+            _ = frameContentDisplay.Navigate(typeof(StartupDisplay));
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

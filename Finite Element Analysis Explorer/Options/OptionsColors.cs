@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.UI;
 
     internal class OptionsColors
@@ -30,7 +31,10 @@
         /// </summary>
         internal Color Background
         {
-            get => background;
+            get
+            {
+                return background;
+            }
 
             set
             {
@@ -47,7 +51,10 @@
         /// </summary>
         internal Color Label
         {
-            get => label;
+            get
+            {
+                return label;
+            }
 
             set
             {
@@ -64,7 +71,10 @@
         /// </summary>
         internal Color Force
         {
-            get => force;
+            get
+            {
+                return force;
+            }
 
             set
             {
@@ -81,7 +91,10 @@
         /// </summary>
         internal Color Reaction
         {
-            get => reaction;
+            get
+            {
+                return reaction;
+            }
 
             set
             {
@@ -98,7 +111,10 @@
         /// </summary>
         internal Color GridNormal
         {
-            get => gridNormal;
+            get
+            {
+                return gridNormal;
+            }
 
             set
             {
@@ -115,7 +131,10 @@
         /// </summary>
         internal Color GridMinor
         {
-            get => gridMinor;
+            get
+            {
+                return gridMinor;
+            }
 
             set
             {
@@ -132,7 +151,10 @@
         /// </summary>
         internal Color GridMajor
         {
-            get => gridMajor;
+            get
+            {
+                return gridMajor;
+            }
 
             set
             {
@@ -149,7 +171,10 @@
         /// </summary>
         internal Color GridMajorFont
         {
-            get => gridMajorFont;
+            get
+            {
+                return gridMajorFont;
+            }
 
             set
             {
@@ -166,7 +191,10 @@
         /// </summary>
         internal Color SelectedNode
         {
-            get => selectedNode;
+            get
+            {
+                return selectedNode;
+            }
 
             set
             {
@@ -183,7 +211,10 @@
         /// </summary>
         internal Color SelectedElement
         {
-            get => selectedElement;
+            get
+            {
+                return selectedElement;
+            }
 
             set
             {
@@ -200,7 +231,10 @@
         /// </summary>
         internal Color ShearForceSelected
         {
-            get => shearForceSelected;
+            get
+            {
+                return shearForceSelected;
+            }
 
             set
             {
@@ -217,7 +251,10 @@
         /// </summary>
         internal Color MomentForceSelected
         {
-            get => momentForceSelected;
+            get
+            {
+                return momentForceSelected;
+            }
 
             set
             {
@@ -234,7 +271,10 @@
         /// </summary>
         internal Color DistributedForceSelected
         {
-            get => distributedForceSelected;
+            get
+            {
+                return distributedForceSelected;
+            }
 
             set
             {
@@ -251,7 +291,10 @@
         /// </summary>
         internal Color ShearForceFont
         {
-            get => shearForceFont;
+            get
+            {
+                return shearForceFont;
+            }
 
             set
             {
@@ -268,7 +311,10 @@
         /// </summary>
         internal Color MomentForceFont
         {
-            get => momentForceFont;
+            get
+            {
+                return momentForceFont;
+            }
 
             set
             {
@@ -285,7 +331,10 @@
         /// </summary>
         internal Color ShearForce
         {
-            get => shearForce;
+            get
+            {
+                return shearForce;
+            }
 
             set
             {
@@ -302,7 +351,10 @@
         /// </summary>
         internal Color MomentForce
         {
-            get => momentForce;
+            get
+            {
+                return momentForce;
+            }
 
             set
             {
@@ -319,7 +371,10 @@
         /// </summary>
         internal Color DistributedForce
         {
-            get => distributedForce;
+            get
+            {
+                return distributedForce;
+            }
 
             set
             {
@@ -336,7 +391,10 @@
         /// </summary>
         internal string ColorToEdit
         {
-            get => colorToEdit;
+            get
+            {
+                return colorToEdit;
+            }
 
             set
             {

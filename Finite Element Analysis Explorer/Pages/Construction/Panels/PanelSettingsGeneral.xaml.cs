@@ -1,6 +1,7 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -61,14 +62,14 @@
             if (await FileManager.PickFileToLoad())
             {
                 // Debug.WriteLine("File Picked, Now loading");
-                await FileManager.LoadFile();
+                _ = await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             // Save File.
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
@@ -76,7 +77,7 @@
             // Save file as.
             if (await FileManager.PickFileToSave())
             {
-                await FileManager.SaveFile();
+                _ = await FileManager.SaveFile();
             }
         }
 
@@ -129,7 +130,6 @@
 
             SingleValue_ZoomTrim.Title = "Scale Trim";
             SingleValue_ZoomTrim.UnitType = UnitType.Unitless;
-            //SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
             SingleValue_ZoomTrim.SetTheValue((decimal)Options.Display.CameraZoomTrim);
 
             SingleValue_SelectGridSize.Title = "Touch Grid Size";
@@ -139,9 +139,6 @@
 
         private void SingleValue_ZoomTrim_ValueChanged(object sender, EventArgs e)
         {
-            //Camera.ZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
-            //SingleValue_ZoomTrim.SetTheValue((decimal)Camera.ZoomTrim);
-
             Options.Display.CameraZoomTrim = (float)SingleValue_ZoomTrim.NewValue;
             SingleValue_ZoomTrim.SetTheValue((decimal)Options.Display.CameraZoomTrim);
         }

@@ -406,7 +406,7 @@
             {
                 if (Model.Nodes.NodesWithConstraints.ContainsKey(index))
                 {
-                    Model.Nodes.NodesWithConstraints.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithConstraints.TryRemove(index, out _);
                 }
             }
             else
@@ -429,7 +429,7 @@
                 // If no load then try and remove from the NodesWithLodalLoads collection.
                 if (Model.Nodes.NodesWithNodalLoads.ContainsKey(index))
                 {
-                    Model.Nodes.NodesWithNodalLoads.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithNodalLoads.TryRemove(index, out _);
                 }
             }
             else
@@ -445,7 +445,7 @@
                 }
                 else
                 {
-                    Model.Nodes.NodesWithNodalLoads.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithNodalLoads.TryRemove(index, out _);
                     _ = Model.Nodes.NodesWithNodalLoads.GetOrAdd(index, this);
                 }
 
@@ -456,7 +456,7 @@
             {
                 if (Model.Nodes.NodesWithMomentForces.ContainsKey(index))
                 {
-                    Model.Nodes.NodesWithMomentForces.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithMomentForces.TryRemove(index, out _);
                 }
             }
             else
@@ -472,7 +472,7 @@
             {
                 if (Model.Nodes.NodesWithReactions.ContainsKey(index))
                 {
-                    Model.Nodes.NodesWithReactions.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithReactions.TryRemove(index, out _);
                 }
             }
             else
@@ -491,7 +491,7 @@
             {
                 if (Model.Nodes.NodesWithMomentReactions.ContainsKey(index))
                 {
-                    Model.Nodes.NodesWithMomentReactions.TryRemove(index, out _);
+                    _ = Model.Nodes.NodesWithMomentReactions.TryRemove(index, out _);
                 }
             }
             else
@@ -501,10 +501,6 @@
                     _ = Model.Nodes.NodesWithMomentReactions.GetOrAdd(index, this);
                 }
             }
-
-
-
-
         }
 
         /// <summary>

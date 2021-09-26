@@ -21,7 +21,10 @@
         /// </summary>
         internal AngleType Angle
         {
-            get => angle;
+            get
+            {
+                return angle;
+            }
 
             set
             {
@@ -35,7 +38,10 @@
         /// </summary>
         internal MassType Mass
         {
-            get => mass;
+            get
+            {
+                return mass;
+            }
 
             set
             {
@@ -95,7 +101,10 @@
         /// </summary>
         internal VolumeType Volume
         {
-            get => volume;
+            get
+            {
+                return volume;
+            }
 
             set
             {
@@ -109,7 +118,10 @@
         /// </summary>
         internal MomentType Moment
         {
-            get => moment;
+            get
+            {
+                return moment;
+            }
 
             set
             {
@@ -123,7 +135,10 @@
         /// </summary>
         internal PressureType Pressure
         {
-            get => pressure;
+            get
+            {
+                return pressure;
+            }
 
             set
             {
@@ -137,7 +152,10 @@
         /// </summary>
         internal MomentOfInertiaType MomentOfInertia
         {
-            get => momentOfInertia;
+            get
+            {
+                return momentOfInertia;
+            }
 
             set
             {
@@ -151,7 +169,10 @@
         /// </summary>
         internal AreaType Area
         {
-            get => area;
+            get
+            {
+                return area;
+            }
 
             set
             {
@@ -165,7 +186,10 @@
         /// </summary>
         internal DensityType Density
         {
-            get => density;
+            get
+            {
+                return density;
+            }
 
             set
             {
@@ -179,7 +203,10 @@
         /// </summary>
         internal ForceType Force
         {
-            get => force;
+            get
+            {
+                return force;
+            }
 
             set
             {
@@ -193,7 +220,10 @@
         /// </summary>
         internal ForcePerLengthType ForcePerLength
         {
-            get => forcePerLength;
+            get
+            {
+                return forcePerLength;
+            }
 
             set
             {

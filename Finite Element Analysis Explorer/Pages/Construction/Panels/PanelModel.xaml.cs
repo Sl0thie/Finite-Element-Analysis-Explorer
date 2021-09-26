@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
@@ -70,7 +71,7 @@
             Single_NoOfSegments.SetTheValue(Options.DefaultNumberOfSegments);
             if (CheckBox_ResetExisting.IsChecked == true)
             {
-                foreach (var item in Model.Members)
+                foreach (System.Collections.Generic.KeyValuePair<int, Member> item in Model.Members)
                 {
                     item.Value.TotalSegments = Options.DefaultNumberOfSegments;
                 }
@@ -130,14 +131,14 @@
             // Open file.
             if (await FileManager.PickFileToLoad())
             {
-                await FileManager.LoadFile();
+                _ = await FileManager.LoadFile();
             }
         }
 
         private async void MenuFlyout_Save_Click(object sender, RoutedEventArgs e)
         {
             // Save File.
-            await FileManager.SaveFile();
+            _ = await FileManager.SaveFile();
         }
 
         private async void MenuFlyout_SaveAs_Click(object sender, RoutedEventArgs e)
@@ -145,7 +146,7 @@
             // Save file as.
             if (await FileManager.PickFileToSave())
             {
-                await FileManager.SaveFile();
+                _ = await FileManager.SaveFile();
             }
         }
 
