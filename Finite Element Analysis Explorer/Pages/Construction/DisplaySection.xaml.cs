@@ -154,6 +154,7 @@
             SingleValue_MaintenancePinned.SetTheValue(Model.Sections.CurrentSection.MaintenancePinned);
             SingleValue_MaintenanceRoller.SetTheValue(Model.Sections.CurrentSection.MaintenanceRoller);
             SingleValue_MaintenanceTrack.SetTheValue(Model.Sections.CurrentSection.MaintenanceTrack);
+
             if (Model.SectionProfiles.ContainsKey(Model.Sections.CurrentSection.SectionProfile))
             {
                 UpdateProfile(Model.SectionProfiles[Model.Sections.CurrentSection.SectionProfile]);

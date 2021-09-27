@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+using System.IO;
     using System.Linq;
     using System.Numerics;
     using System.Threading.Tasks;
@@ -12,7 +13,6 @@
     using Windows.Storage;
     using Windows.Storage.AccessCache;
     using Windows.Storage.Pickers;
-    using Windows.Storage.Provider;
     using Windows.UI.Core;
     using Windows.UI.Popups;
     using Windows.UI.Xaml;
@@ -550,11 +550,17 @@
         {
             try
             {
-                MaterialsList.LoadList();
-                SectionProfilesList.LoadList();
+                using (MaterialsList materials = new MaterialsList())
+                {
+                    materials.LoadList();
+                }
+
+                //MaterialsList.LoadList();
+                //SectionProfilesList.LoadList();
             }
-            catch
+            catch (Exception ex)
             {
+                WService.ReportException(ex);
             }
 
             return Model.Materials.Count;
@@ -562,6 +568,7 @@
 
         /// <summary>
         /// Save the materials to disk.
+        /// TODO re-implement material save.
         /// </summary>
         internal static async void SaveMaterialsAsync()
         {
@@ -821,8 +828,8 @@
                                                         tempSection.FarCapStyle,
                                                         tempSection.CostHorizontalTransport,
                                                         tempSection.CostVerticalTransport,
-                                                        tempSection.CostNodeFixed,
                                                         tempSection.CostNodeFree,
+                                                        tempSection.CostNodeFixed,
                                                         tempSection.CostNodePinned,
                                                         tempSection.CostNodeRoller,
                                                         tempSection.CostNodeTrack,

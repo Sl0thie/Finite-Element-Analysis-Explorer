@@ -3,6 +3,7 @@
     "MathNet.Numerics": "3.20.2",
     "Microsoft.CodeAnalysis.CSharp": "3.11.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.12",
+    "Newtonsoft.Json": "13.0.1",
     "StyleCop.Analyzers": "1.1.118",
     "Win2D.uwp": "1.26.0"
   },

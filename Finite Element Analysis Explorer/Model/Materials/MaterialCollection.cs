@@ -22,8 +22,15 @@
         /// </summary>
         internal Material CurrentMaterial
         {
-            get { return currentMaterial; }
-            set { currentMaterial = value; }
+            get
+            {
+                return currentMaterial;
+            }
+
+            set
+            {
+                currentMaterial = value;
+            }
         }
     }
 }

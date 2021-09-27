@@ -68,6 +68,8 @@
 
             int numberOfSections = await FileManager.LoadSectionsAsync();
 
+            Debug.WriteLine($"No of sections = {numberOfSections}");
+
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
                 () =>

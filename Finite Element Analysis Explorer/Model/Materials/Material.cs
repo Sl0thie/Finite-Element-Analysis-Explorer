@@ -346,8 +346,15 @@
         /// </summary>
         public string Description
         {
-            get { return description; }
-            set { description = value; }
+            get
+            {
+                return description;
+            }
+
+            set
+            {
+                description = value;
+            }
         }
 
         private decimal cost = 0;
@@ -357,8 +364,15 @@
         /// </summary>
         public decimal Cost
         {
-            get { return cost; }
-            set { cost = value; }
+            get
+            {
+                return cost;
+            }
+
+            set
+            {
+                cost = value;
+            }
         }
 
         private decimal density = 0;
@@ -368,8 +382,15 @@
         /// </summary>
         public decimal Density
         {
-            get { return density; }
-            set { density = value; }
+            get
+            {
+                return density;
+            }
+
+            set
+            {
+                density = value;
+            }
         }
 
         private decimal ultimateStrengthTension = 0;
@@ -379,8 +400,15 @@
         /// </summary>
         public decimal UltimateStrengthTension
         {
-            get { return ultimateStrengthTension; }
-            set { ultimateStrengthTension = value; }
+            get
+            {
+                return ultimateStrengthTension;
+            }
+
+            set
+            {
+                ultimateStrengthTension = value;
+            }
         }
 
         private decimal ultimateStrengthCompression = 0;
@@ -390,8 +418,15 @@
         /// </summary>
         public decimal UltimateStrengthCompression
         {
-            get { return ultimateStrengthCompression; }
-            set { ultimateStrengthCompression = value; }
+            get
+            {
+                return ultimateStrengthCompression;
+            }
+
+            set
+            {
+                ultimateStrengthCompression = value;
+            }
         }
 
         private decimal ultimateStrengthShear = 0;
@@ -401,8 +436,15 @@
         /// </summary>
         public decimal UltimateStrengthShear
         {
-            get { return ultimateStrengthShear; }
-            set { ultimateStrengthShear = value; }
+            get
+            {
+                return ultimateStrengthShear;
+            }
+
+            set
+            {
+                ultimateStrengthShear = value;
+            }
         }
 
         private decimal yieldStrengthTension = 0;
@@ -412,8 +454,15 @@
         /// </summary>
         public decimal YieldStrengthTension
         {
-            get { return yieldStrengthTension; }
-            set { yieldStrengthTension = value; }
+            get
+            {
+                return yieldStrengthTension;
+            }
+
+            set
+            {
+                yieldStrengthTension = value;
+            }
         }
 
         private decimal yieldStrengthShear = 0;
@@ -495,8 +544,15 @@
         /// </summary>
         public decimal CoefficientOfThermalExpansion
         {
-            get { return coefficientOfThermalExpansion; }
-            set { coefficientOfThermalExpansion = value; }
+            get
+            {
+                return coefficientOfThermalExpansion;
+            }
+
+            set
+            {
+                coefficientOfThermalExpansion = value;
+            }
         }
 
         private decimal ductility = 0;
@@ -506,8 +562,15 @@
         /// </summary>
         public decimal Ductility
         {
-            get { return ductility; }
-            set { ductility = value; }
+            get
+            {
+                return ductility;
+            }
+
+            set
+            {
+                ductility = value;
+            }
         }
 
         #endregion
@@ -519,8 +582,15 @@
         /// </summary>
         internal int Atomic_Number
         {
-            get { return atomicNumber; }
-            set { atomicNumber = value; }
+            get
+            {
+                return atomicNumber;
+            }
+
+            set
+            {
+                atomicNumber = value;
+            }
         }
 
         private string symbol = string.Empty;
@@ -530,8 +600,15 @@
         /// </summary>
         internal string Symbol
         {
-            get { return symbol; }
-            set { symbol = value; }
+            get
+            {
+                return symbol;
+            }
+
+            set
+            {
+                symbol = value;
+            }
         }
 
         private decimal atomicMass = 0;
@@ -541,8 +618,15 @@
         /// </summary>
         internal decimal Atomic_Mass
         {
-            get { return atomicMass; }
-            set { atomicMass = value; }
+            get
+            {
+                return atomicMass;
+            }
+
+            set
+            {
+                atomicMass = value;
+            }
         }
 
         private string allotropeNames = string.Empty;
@@ -552,8 +636,15 @@
         /// </summary>
         internal string Allotrope_Names
         {
-            get { return allotropeNames; }
-            set { allotropeNames = value; }
+            get
+            {
+                return allotropeNames;
+            }
+
+            set
+            {
+                allotropeNames = value;
+            }
         }
 
         private string alternateNames = string.Empty;
@@ -563,8 +654,15 @@
         /// </summary>
         internal string Alternate_Names
         {
-            get { return alternateNames; }
-            set { alternateNames = value; }
+            get
+            {
+                return alternateNames;
+            }
+
+            set
+            {
+                alternateNames = value;
+            }
         }
 
         private string cASNumber = string.Empty;
@@ -574,8 +672,15 @@
         /// </summary>
         internal string CAS_Number
         {
-            get { return cASNumber; }
-            set { cASNumber = value; }
+            get
+            {
+                return cASNumber;
+            }
+
+            set
+            {
+                cASNumber = value;
+            }
         }
 
         private string iconColor = string.Empty;
@@ -585,8 +690,15 @@
         /// </summary>
         internal string Icon_Color
         {
-            get { return iconColor; }
-            set { iconColor = value; }
+            get
+            {
+                return iconColor;
+            }
+
+            set
+            {
+                iconColor = value;
+            }
         }
 
         private string block = string.Empty;
@@ -596,8 +708,15 @@
         /// </summary>
         internal string Block
         {
-            get { return block; }
-            set { block = value; }
+            get
+            {
+                return block;
+            }
+
+            set
+            {
+                block = value;
+            }
         }
 
         private string group = string.Empty;
@@ -607,8 +726,15 @@
         /// </summary>
         internal string Group
         {
-            get { return group; }
-            set { group = value; }
+            get
+            {
+                return group;
+            }
+
+            set
+            {
+                group = value;
+            }
         }
 
         private string period = string.Empty;
@@ -618,8 +744,15 @@
         /// </summary>
         internal string Period
         {
-            get { return period; }
-            set { period = value; }
+            get
+            {
+                return period;
+            }
+
+            set
+            {
+                period = value;
+            }
         }
 
         private string series = string.Empty;
@@ -629,8 +762,15 @@
         /// </summary>
         internal string Series
         {
-            get { return series; }
-            set { series = value; }
+            get
+            {
+                return series;
+            }
+
+            set
+            {
+                series = value;
+            }
         }
 
         private decimal atomicWeight = 0;
@@ -640,8 +780,15 @@
         /// </summary>
         internal decimal Atomic_Weight
         {
-            get { return atomicWeight; }
-            set { atomicWeight = value; }
+            get
+            {
+                return atomicWeight;
+            }
+
+            set
+            {
+                atomicWeight = value;
+            }
         }
 
         private decimal brinellHardness = 0;
@@ -651,8 +798,15 @@
         /// </summary>
         internal decimal Brinell_Hardness
         {
-            get { return brinellHardness; }
-            set { brinellHardness = value; }
+            get
+            {
+                return brinellHardness;
+            }
+
+            set
+            {
+                brinellHardness = value;
+            }
         }
 
         private decimal liquidDensity = 0;
@@ -662,8 +816,15 @@
         /// </summary>
         internal decimal Liquid_Density
         {
-            get { return liquidDensity; }
-            set { liquidDensity = value; }
+            get
+            {
+                return liquidDensity;
+            }
+
+            set
+            {
+                liquidDensity = value;
+            }
         }
 
         private decimal mohsHardness = 0;
@@ -673,8 +834,15 @@
         /// </summary>
         internal decimal Mohs_Hardness
         {
-            get { return mohsHardness; }
-            set { mohsHardness = value; }
+            get
+            {
+                return mohsHardness;
+            }
+
+            set
+            {
+                mohsHardness = value;
+            }
         }
 
         private decimal molarVolume = 0;
@@ -684,8 +852,15 @@
         /// </summary>
         internal decimal Molar_Volume
         {
-            get { return molarVolume; }
-            set { molarVolume = value; }
+            get
+            {
+                return molarVolume;
+            }
+
+            set
+            {
+                molarVolume = value;
+            }
         }
 
         private decimal poissionRatio = 0;
@@ -695,8 +870,15 @@
         /// </summary>
         internal decimal Poission_Ratio
         {
-            get { return poissionRatio; }
-            set { poissionRatio = value; }
+            get
+            {
+                return poissionRatio;
+            }
+
+            set
+            {
+                poissionRatio = value;
+            }
         }
 
         private decimal soundSpeed = 0;
@@ -706,8 +888,15 @@
         /// </summary>
         internal decimal Sound_Speed
         {
-            get { return soundSpeed; }
-            set { soundSpeed = value; }
+            get
+            {
+                return soundSpeed;
+            }
+
+            set
+            {
+                soundSpeed = value;
+            }
         }
 
         private decimal thermalConductivity = 0;
@@ -717,8 +906,15 @@
         /// </summary>
         internal decimal Thermal_Conductivity
         {
-            get { return thermalConductivity; }
-            set { thermalConductivity = value; }
+            get
+            {
+                return thermalConductivity;
+            }
+
+            set
+            {
+                thermalConductivity = value;
+            }
         }
 
         private decimal thermalExpansion = 0;
@@ -728,8 +924,15 @@
         /// </summary>
         internal decimal Thermal_Expansion
         {
-            get { return thermalExpansion; }
-            set { thermalExpansion = value; }
+            get
+            {
+                return thermalExpansion;
+            }
+
+            set
+            {
+                thermalExpansion = value;
+            }
         }
 
         private decimal vickersHardness = 0;
@@ -739,8 +942,15 @@
         /// </summary>
         internal decimal Vickers_Hardness
         {
-            get { return vickersHardness; }
-            set { vickersHardness = value; }
+            get
+            {
+                return vickersHardness;
+            }
+
+            set
+            {
+                vickersHardness = value;
+            }
         }
 
         private decimal absoluteBoilingPoint = 0;
@@ -750,8 +960,15 @@
         /// </summary>
         internal decimal Absolute_Boiling_Point
         {
-            get { return absoluteBoilingPoint; }
-            set { absoluteBoilingPoint = value; }
+            get
+            {
+                return absoluteBoilingPoint;
+            }
+
+            set
+            {
+                absoluteBoilingPoint = value;
+            }
         }
 
         private decimal absoluteMeltingPoint = 0;
@@ -761,8 +978,15 @@
         /// </summary>
         internal decimal Absolute_Melting_Point
         {
-            get { return absoluteMeltingPoint; }
-            set { absoluteMeltingPoint = value; }
+            get
+            {
+                return absoluteMeltingPoint;
+            }
+
+            set
+            {
+                absoluteMeltingPoint = value;
+            }
         }
 
         private decimal adiabaticIndex = 0;
@@ -772,8 +996,15 @@
         /// </summary>
         internal decimal Adiabatic_Index
         {
-            get { return adiabaticIndex; }
-            set { adiabaticIndex = value; }
+            get
+            {
+                return adiabaticIndex;
+            }
+
+            set
+            {
+                adiabaticIndex = value;
+            }
         }
 
         private decimal boilingPoint = 0;
@@ -783,8 +1014,15 @@
         /// </summary>
         internal decimal Boiling_Point
         {
-            get { return boilingPoint; }
-            set { boilingPoint = value; }
+            get
+            {
+                return boilingPoint;
+            }
+
+            set
+            {
+                boilingPoint = value;
+            }
         }
 
         private decimal criticalPressure = 0;
@@ -794,8 +1032,15 @@
         /// </summary>
         internal decimal Critical_Pressure
         {
-            get { return criticalPressure; }
-            set { criticalPressure = value; }
+            get
+            {
+                return criticalPressure;
+            }
+
+            set
+            {
+                criticalPressure = value;
+            }
         }
 
         private decimal criticalTemperature = 0;
@@ -805,8 +1050,15 @@
         /// </summary>
         internal decimal Critical_Temperature
         {
-            get { return criticalTemperature; }
-            set { criticalTemperature = value; }
+            get
+            {
+                return criticalTemperature;
+            }
+
+            set
+            {
+                criticalTemperature = value;
+            }
         }
 
         private decimal curiePoint = 0;
@@ -816,8 +1068,15 @@
         /// </summary>
         internal decimal Curie_Point
         {
-            get { return curiePoint; }
-            set { curiePoint = value; }
+            get
+            {
+                return curiePoint;
+            }
+
+            set
+            {
+                curiePoint = value;
+            }
         }
 
         private decimal fusionHeat = 0;
@@ -827,8 +1086,15 @@
         /// </summary>
         internal decimal Fusion_Heat
         {
-            get { return fusionHeat; }
-            set { fusionHeat = value; }
+            get
+            {
+                return fusionHeat;
+            }
+
+            set
+            {
+                fusionHeat = value;
+            }
         }
 
         private decimal meltingPoint = 0;
@@ -838,8 +1104,15 @@
         /// </summary>
         internal decimal Melting_Point
         {
-            get { return meltingPoint; }
-            set { meltingPoint = value; }
+            get
+            {
+                return meltingPoint;
+            }
+
+            set
+            {
+                meltingPoint = value;
+            }
         }
 
         private decimal neelPoint = 0;
@@ -849,8 +1122,15 @@
         /// </summary>
         internal decimal Neel_Point
         {
-            get { return neelPoint; }
-            set { neelPoint = value; }
+            get
+            {
+                return neelPoint;
+            }
+
+            set
+            {
+                neelPoint = value;
+            }
         }
 
         private string phase = string.Empty;
@@ -860,8 +1140,15 @@
         /// </summary>
         internal string Phase
         {
-            get { return phase; }
-            set { phase = value; }
+            get
+            {
+                return phase;
+            }
+
+            set
+            {
+                phase = value;
+            }
         }
 
         private decimal specificHeat = 0;
@@ -871,8 +1158,15 @@
         /// </summary>
         internal decimal Specific_Heat
         {
-            get { return specificHeat; }
-            set { specificHeat = value; }
+            get
+            {
+                return specificHeat;
+            }
+
+            set
+            {
+                specificHeat = value;
+            }
         }
 
         private decimal superconductingPoint = 0;
@@ -882,8 +1176,15 @@
         /// </summary>
         internal decimal Superconducting_Point
         {
-            get { return superconductingPoint; }
-            set { superconductingPoint = value; }
+            get
+            {
+                return superconductingPoint;
+            }
+
+            set
+            {
+                superconductingPoint = value;
+            }
         }
 
         private decimal vaporizationHeat = 0;
@@ -893,8 +1194,15 @@
         /// </summary>
         internal decimal Vaporization_Heat
         {
-            get { return vaporizationHeat; }
-            set { vaporizationHeat = value; }
+            get
+            {
+                return vaporizationHeat;
+            }
+
+            set
+            {
+                vaporizationHeat = value;
+            }
         }
 
         private string color = string.Empty;
@@ -904,8 +1212,15 @@
         /// </summary>
         internal string Color
         {
-            get { return color; }
-            set { color = value; }
+            get
+            {
+                return color;
+            }
+
+            set
+            {
+                color = value;
+            }
         }
 
         private decimal electricalConductivity = 0;
@@ -915,8 +1230,15 @@
         /// </summary>
         internal decimal Electrical_Conductivity
         {
-            get { return electricalConductivity; }
-            set { electricalConductivity = value; }
+            get
+            {
+                return electricalConductivity;
+            }
+
+            set
+            {
+                electricalConductivity = value;
+            }
         }
 
         private string electricalType = string.Empty;
@@ -926,8 +1248,15 @@
         /// </summary>
         internal string Electrical_Type
         {
-            get { return electricalType; }
-            set { electricalType = value; }
+            get
+            {
+                return electricalType;
+            }
+
+            set
+            {
+                electricalType = value;
+            }
         }
 
         private string magneticType = string.Empty;
@@ -937,8 +1266,15 @@
         /// </summary>
         internal string Magnetic_Type
         {
-            get { return magneticType; }
-            set { magneticType = value; }
+            get
+            {
+                return magneticType;
+            }
+
+            set
+            {
+                magneticType = value;
+            }
         }
 
         private decimal massMagneticSusceptibility = 0;
@@ -948,8 +1284,15 @@
         /// </summary>
         internal decimal Mass_Magnetic_Susceptibility
         {
-            get { return massMagneticSusceptibility; }
-            set { massMagneticSusceptibility = value; }
+            get
+            {
+                return massMagneticSusceptibility;
+            }
+
+            set
+            {
+                massMagneticSusceptibility = value;
+            }
         }
 
         private decimal molarMagneticSusceptibility = 0;
@@ -959,8 +1302,15 @@
         /// </summary>
         internal decimal Molar_Magnetic_Susceptibility
         {
-            get { return molarMagneticSusceptibility; }
-            set { molarMagneticSusceptibility = value; }
+            get
+            {
+                return molarMagneticSusceptibility;
+            }
+
+            set
+            {
+                molarMagneticSusceptibility = value;
+            }
         }
 
         private decimal refractiveIndex = 0;
@@ -970,8 +1320,15 @@
         /// </summary>
         internal decimal Refractive_Index
         {
-            get { return refractiveIndex; }
-            set { refractiveIndex = value; }
+            get
+            {
+                return refractiveIndex;
+            }
+
+            set
+            {
+                refractiveIndex = value;
+            }
         }
 
         private decimal resistivity = 0;
@@ -981,8 +1338,15 @@
         /// </summary>
         internal decimal Resistivity
         {
-            get { return resistivity; }
-            set { resistivity = value; }
+            get
+            {
+                return resistivity;
+            }
+
+            set
+            {
+                resistivity = value;
+            }
         }
 
         private decimal volumeMagneticSusceptibility = 0;
@@ -992,8 +1356,15 @@
         /// </summary>
         internal decimal Volume_Magnetic_Susceptibility
         {
-            get { return volumeMagneticSusceptibility; }
-            set { volumeMagneticSusceptibility = value; }
+            get
+            {
+                return volumeMagneticSusceptibility;
+            }
+
+            set
+            {
+                volumeMagneticSusceptibility = value;
+            }
         }
 
         private string allotropicMultiplicities = string.Empty;
@@ -1003,8 +1374,15 @@
         /// </summary>
         internal string Allotropic_Multiplicities
         {
-            get { return allotropicMultiplicities; }
-            set { allotropicMultiplicities = value; }
+            get
+            {
+                return allotropicMultiplicities;
+            }
+
+            set
+            {
+                allotropicMultiplicities = value;
+            }
         }
 
         private string electronAffinity = string.Empty;
@@ -1014,8 +1392,15 @@
         /// </summary>
         internal string Electron_Affinity
         {
-            get { return electronAffinity; }
-            set { electronAffinity = value; }
+            get
+            {
+                return electronAffinity;
+            }
+
+            set
+            {
+                electronAffinity = value;
+            }
         }
 
         private string electronegativity = string.Empty;
@@ -1025,8 +1410,15 @@
         /// </summary>
         internal string Electronegativity
         {
-            get { return electronegativity; }
-            set { electronegativity = value; }
+            get
+            {
+                return electronegativity;
+            }
+
+            set
+            {
+                electronegativity = value;
+            }
         }
 
         private string gasAtomicMultiplicities = string.Empty;
@@ -1036,8 +1428,15 @@
         /// </summary>
         internal string Gas_Atomic_Multiplicities
         {
-            get { return gasAtomicMultiplicities; }
-            set { gasAtomicMultiplicities = value; }
+            get
+            {
+                return gasAtomicMultiplicities;
+            }
+
+            set
+            {
+                gasAtomicMultiplicities = value;
+            }
         }
 
         private string valence = string.Empty;
@@ -1047,8 +1446,15 @@
         /// </summary>
         internal string Valence
         {
-            get { return valence; }
-            set { valence = value; }
+            get
+            {
+                return valence;
+            }
+
+            set
+            {
+                valence = value;
+            }
         }
 
         private string crystalStructure = string.Empty;
@@ -1058,8 +1464,15 @@
         /// </summary>
         internal string Crystal_Structure
         {
-            get { return crystalStructure; }
-            set { crystalStructure = value; }
+            get
+            {
+                return crystalStructure;
+            }
+
+            set
+            {
+                crystalStructure = value;
+            }
         }
 
         private string latticeAngles = string.Empty;
@@ -1069,8 +1482,15 @@
         /// </summary>
         internal string Lattice_Angles
         {
-            get { return latticeAngles; }
-            set { latticeAngles = value; }
+            get
+            {
+                return latticeAngles;
+            }
+
+            set
+            {
+                latticeAngles = value;
+            }
         }
 
         private string latticeConstants = string.Empty;
@@ -1080,8 +1500,15 @@
         /// </summary>
         internal string Lattice_Constants
         {
-            get { return latticeConstants; }
-            set { latticeConstants = value; }
+            get
+            {
+                return latticeConstants;
+            }
+
+            set
+            {
+                latticeConstants = value;
+            }
         }
 
         private string spaceGroupNumber = string.Empty;
@@ -1091,8 +1518,15 @@
         /// </summary>
         internal string Space_Group_Number
         {
-            get { return spaceGroupNumber; }
-            set { spaceGroupNumber = value; }
+            get
+            {
+                return spaceGroupNumber;
+            }
+
+            set
+            {
+                spaceGroupNumber = value;
+            }
         }
 
         private string spaceGroupName = string.Empty;
@@ -1102,8 +1536,15 @@
         /// </summary>
         internal string Space_Group_Name
         {
-            get { return spaceGroupName; }
-            set { spaceGroupName = value; }
+            get
+            {
+                return spaceGroupName;
+            }
+
+            set
+            {
+                spaceGroupName = value;
+            }
         }
 
         private string atomicRadius = string.Empty;
@@ -1113,8 +1554,15 @@
         /// </summary>
         internal string Atomic_Radius
         {
-            get { return atomicRadius; }
-            set { atomicRadius = value; }
+            get
+            {
+                return atomicRadius;
+            }
+
+            set
+            {
+                atomicRadius = value;
+            }
         }
 
         private string covalentRadius = string.Empty;
@@ -1124,8 +1572,15 @@
         /// </summary>
         internal string Covalent_Radius
         {
-            get { return covalentRadius; }
-            set { covalentRadius = value; }
+            get
+            {
+                return covalentRadius;
+            }
+
+            set
+            {
+                covalentRadius = value;
+            }
         }
 
         private string electronConfiguration = string.Empty;
@@ -1135,8 +1590,15 @@
         /// </summary>
         internal string Electron_Configuration
         {
-            get { return electronConfiguration; }
-            set { electronConfiguration = value; }
+            get
+            {
+                return electronConfiguration;
+            }
+
+            set
+            {
+                electronConfiguration = value;
+            }
         }
 
         private string electronConfigurationString = string.Empty;
@@ -1146,8 +1608,15 @@
         /// </summary>
         internal string Electron_Configuration_String
         {
-            get { return electronConfigurationString; }
-            set { electronConfigurationString = value; }
+            get
+            {
+                return electronConfigurationString;
+            }
+
+            set
+            {
+                electronConfigurationString = value;
+            }
         }
 
         private string electronShellConfiguration = string.Empty;
@@ -1157,8 +1626,15 @@
         /// </summary>
         internal string Electron_Shell_Configuration
         {
-            get { return electronShellConfiguration; }
-            set { electronShellConfiguration = value; }
+            get
+            {
+                return electronShellConfiguration;
+            }
+
+            set
+            {
+                electronShellConfiguration = value;
+            }
         }
 
         private string ionizationEnergies = string.Empty;
@@ -1168,8 +1644,15 @@
         /// </summary>
         internal string Ionization_Energies
         {
-            get { return ionizationEnergies; }
-            set { ionizationEnergies = value; }
+            get
+            {
+                return ionizationEnergies;
+            }
+
+            set
+            {
+                ionizationEnergies = value;
+            }
         }
 
         private string quantumNumbers = string.Empty;
@@ -1179,8 +1662,15 @@
         /// </summary>
         internal string Quantum_Numbers
         {
-            get { return quantumNumbers; }
-            set { quantumNumbers = value; }
+            get
+            {
+                return quantumNumbers;
+            }
+
+            set
+            {
+                quantumNumbers = value;
+            }
         }
 
         private string vanDerWaalsRadius = string.Empty;
@@ -1190,8 +1680,15 @@
         /// </summary>
         internal string Van_Der_Waals_Radius
         {
-            get { return vanDerWaalsRadius; }
-            set { vanDerWaalsRadius = value; }
+            get
+            {
+                return vanDerWaalsRadius;
+            }
+
+            set
+            {
+                vanDerWaalsRadius = value;
+            }
         }
 
         private string decayMode = string.Empty;
@@ -1201,8 +1698,15 @@
         /// </summary>
         internal string Decay_Mode
         {
-            get { return decayMode; }
-            set { decayMode = value; }
+            get
+            {
+                return decayMode;
+            }
+
+            set
+            {
+                decayMode = value;
+            }
         }
 
         private string halfLife = string.Empty;
@@ -1212,8 +1716,15 @@
         /// </summary>
         internal string HalfLife
         {
-            get { return halfLife; }
-            set { halfLife = value; }
+            get
+            {
+                return halfLife;
+            }
+
+            set
+            {
+                halfLife = value;
+            }
         }
 
         private string isotopeAbundances = string.Empty;
@@ -1223,8 +1734,15 @@
         /// </summary>
         internal string Isotope_Abundances
         {
-            get { return isotopeAbundances; }
-            set { isotopeAbundances = value; }
+            get
+            {
+                return isotopeAbundances;
+            }
+
+            set
+            {
+                isotopeAbundances = value;
+            }
         }
 
         private string knownIsotopes = string.Empty;
@@ -1234,8 +1752,15 @@
         /// </summary>
         internal string Known_Isotopes
         {
-            get { return knownIsotopes; }
-            set { knownIsotopes = value; }
+            get
+            {
+                return knownIsotopes;
+            }
+
+            set
+            {
+                knownIsotopes = value;
+            }
         }
 
         private string lifetime = string.Empty;
@@ -1245,8 +1770,15 @@
         /// </summary>
         internal string Lifetime
         {
-            get { return lifetime; }
-            set { lifetime = value; }
+            get
+            {
+                return lifetime;
+            }
+
+            set
+            {
+                lifetime = value;
+            }
         }
 
         private string neutronCrossSection = string.Empty;
@@ -1256,8 +1788,15 @@
         /// </summary>
         internal string Neutron_Cross_Section
         {
-            get { return neutronCrossSection; }
-            set { neutronCrossSection = value; }
+            get
+            {
+                return neutronCrossSection;
+            }
+
+            set
+            {
+                neutronCrossSection = value;
+            }
         }
 
         private string neutronMassAbsorption = string.Empty;
@@ -1267,8 +1806,15 @@
         /// </summary>
         internal string Neutron_Mass_Absorption
         {
-            get { return neutronMassAbsorption; }
-            set { neutronMassAbsorption = value; }
+            get
+            {
+                return neutronMassAbsorption;
+            }
+
+            set
+            {
+                neutronMassAbsorption = value;
+            }
         }
 
         private string radioactive = string.Empty;
@@ -1278,8 +1824,15 @@
         /// </summary>
         internal string Radioactive
         {
-            get { return radioactive; }
-            set { radioactive = value; }
+            get
+            {
+                return radioactive;
+            }
+
+            set
+            {
+                radioactive = value;
+            }
         }
 
         private string stableIsotopes = string.Empty;
@@ -1289,8 +1842,15 @@
         /// </summary>
         internal string Stable_Isotopes
         {
-            get { return stableIsotopes; }
-            set { stableIsotopes = value; }
+            get
+            {
+                return stableIsotopes;
+            }
+
+            set
+            {
+                stableIsotopes = value;
+            }
         }
 
         private decimal crustAbundance = 0;
@@ -1300,8 +1860,15 @@
         /// </summary>
         internal decimal Crust_Abundance
         {
-            get { return crustAbundance; }
-            set { crustAbundance = value; }
+            get
+            {
+                return crustAbundance;
+            }
+
+            set
+            {
+                crustAbundance = value;
+            }
         }
 
         private decimal humanAbundance = 0;
@@ -1311,8 +1878,15 @@
         /// </summary>
         internal decimal Human_Abundance
         {
-            get { return humanAbundance; }
-            set { humanAbundance = value; }
+            get
+            {
+                return humanAbundance;
+            }
+
+            set
+            {
+                humanAbundance = value;
+            }
         }
 
         private decimal meteoriteAbundance = 0;
@@ -1322,8 +1896,15 @@
         /// </summary>
         internal decimal Meteorite_Abundance
         {
-            get { return meteoriteAbundance; }
-            set { meteoriteAbundance = value; }
+            get
+            {
+                return meteoriteAbundance;
+            }
+
+            set
+            {
+                meteoriteAbundance = value;
+            }
         }
 
         private decimal oceanAbundance = 0;
@@ -1333,8 +1914,15 @@
         /// </summary>
         internal decimal Ocean_Abundance
         {
-            get { return oceanAbundance; }
-            set { oceanAbundance = value; }
+            get
+            {
+                return oceanAbundance;
+            }
+
+            set
+            {
+                oceanAbundance = value;
+            }
         }
 
         private decimal solarAbundance = 0;
@@ -1344,8 +1932,15 @@
         /// </summary>
         internal decimal Solar_Abundance
         {
-            get { return solarAbundance; }
-            set { solarAbundance = value; }
+            get
+            {
+                return solarAbundance;
+            }
+
+            set
+            {
+                solarAbundance = value;
+            }
         }
 
         private decimal universeAbundance = 0;
@@ -1355,8 +1950,15 @@
         /// </summary>
         internal decimal Universe_Abundance
         {
-            get { return universeAbundance; }
-            set { universeAbundance = value; }
+            get
+            {
+                return universeAbundance;
+            }
+
+            set
+            {
+                universeAbundance = value;
+            }
         }
 
         private string radiusEmpirical = string.Empty;
@@ -1366,8 +1968,15 @@
         /// </summary>
         internal string Radius_Empirical
         {
-            get { return radiusEmpirical; }
-            set { radiusEmpirical = value; }
+            get
+            {
+                return radiusEmpirical;
+            }
+
+            set
+            {
+                radiusEmpirical = value;
+            }
         }
 
         private string radiusCalculated = string.Empty;
@@ -1377,8 +1986,15 @@
         /// </summary>
         internal string Radius_Calculated
         {
-            get { return radiusCalculated; }
-            set { radiusCalculated = value; }
+            get
+            {
+                return radiusCalculated;
+            }
+
+            set
+            {
+                radiusCalculated = value;
+            }
         }
 
         private string radiusVanDerWaals = string.Empty;
@@ -1388,8 +2004,15 @@
         /// </summary>
         internal string Radius_Van_Der_Waals
         {
-            get { return radiusVanDerWaals; }
-            set { radiusVanDerWaals = value; }
+            get
+            {
+                return radiusVanDerWaals;
+            }
+
+            set
+            {
+                radiusVanDerWaals = value;
+            }
         }
 
         private string radiusCovalentSingleBond = string.Empty;
@@ -1399,8 +2022,15 @@
         /// </summary>
         internal string Radius_Covalent_Single_Bond
         {
-            get { return radiusCovalentSingleBond; }
-            set { radiusCovalentSingleBond = value; }
+            get
+            {
+                return radiusCovalentSingleBond;
+            }
+
+            set
+            {
+                radiusCovalentSingleBond = value;
+            }
         }
 
         private string radiusCovalentTripleBond = string.Empty;
@@ -1410,8 +2040,15 @@
         /// </summary>
         internal string Radius_Covalent_Triple_Bond
         {
-            get { return radiusCovalentTripleBond; }
-            set { radiusCovalentTripleBond = value; }
+            get
+            {
+                return radiusCovalentTripleBond;
+            }
+
+            set
+            {
+                radiusCovalentTripleBond = value;
+            }
         }
 
         private string radiusMetallic = string.Empty;
@@ -1421,8 +2058,15 @@
         /// </summary>
         internal string Radius_Metallic
         {
-            get { return radiusMetallic; }
-            set { radiusMetallic = value; }
+            get
+            {
+                return radiusMetallic;
+            }
+
+            set
+            {
+                radiusMetallic = value;
+            }
         }
 
         private string materialType;
@@ -1432,8 +2076,15 @@
         /// </summary>
         public string MaterialType
         {
-            get { return materialType; }
-            set { materialType = value; }
+            get
+            {
+                return materialType;
+            }
+
+            set
+            {
+                materialType = value;
+            }
         }
     }
 }

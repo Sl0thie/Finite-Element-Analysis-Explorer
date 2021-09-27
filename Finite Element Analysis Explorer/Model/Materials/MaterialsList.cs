@@ -1,14 +1,20 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
+    using System;
+
     /// <summary>
     /// MaterialsList class.
     /// </summary>
-    internal static class MaterialsList
+    internal class MaterialsList : IDisposable
     {
+        public void Dispose()
+        {
+        }
+
         /// <summary>
         /// Load the list of materials.
         /// </summary>
-        internal static void LoadList()
+        internal void LoadList()
         {
             Material anMaterial = new Material()
             {

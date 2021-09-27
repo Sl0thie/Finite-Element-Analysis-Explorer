@@ -187,7 +187,6 @@
     <Compile Include="Controls\SliderExpValue.xaml.cs">
       <DependentUpon>SliderExpValue.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FileManager\ObjectSerializer.cs" />
     <Compile Include="Controls\LineSelectorBox.xaml.cs">
       <DependentUpon>LineSelectorBox.xaml</DependentUpon>
     </Compile>
@@ -198,9 +197,6 @@
     <Compile Include="Options\OptionsColors.cs" />
     <Compile Include="Pages\Construction\DisplaySection2.xaml.cs">
       <DependentUpon>DisplaySection2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Help\Help.xaml.cs">
-      <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Materials\MaterialsList.cs" />
     <Compile Include="Model\SectionProfiles\SectionProfile.cs" />
@@ -225,9 +221,6 @@
     <Compile Include="Model\Nodes\NodalLoad\NodalLoad.cs" />
     <Compile Include="Pages\Construction\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Help\Panels\PanelHelp.xaml.cs">
-      <DependentUpon>PanelHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Report\Panels\PanelReport.xaml.cs">
       <DependentUpon>PanelReport.xaml</DependentUpon>
@@ -513,10 +506,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Help\Help.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Construction\DisplaySection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -540,10 +529,6 @@
     <Page Include="Pages\Construction\ConstructionDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Help\Panels\PanelHelp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Report\Panels\PanelReport.xaml">
       <SubType>Designer</SubType>
@@ -693,7 +678,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
-    <Folder Include="Model\Construction\Elements\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
