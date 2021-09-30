@@ -87,6 +87,11 @@
             {
                 return materials;
             }
+
+            set
+            {
+                materials = value;
+            }
         }
 
         /// <summary>

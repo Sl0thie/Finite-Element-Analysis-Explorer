@@ -5,16 +5,12 @@
     /// <summary>
     /// MaterialsList class.
     /// </summary>
-    internal class MaterialsList : IDisposable
+    internal static class MaterialsList
     {
-        public void Dispose()
-        {
-        }
-
         /// <summary>
         /// Load the list of materials.
         /// </summary>
-        internal void LoadList()
+        internal static void LoadList()
         {
             Material anMaterial = new Material()
             {

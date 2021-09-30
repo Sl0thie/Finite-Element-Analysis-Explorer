@@ -87,7 +87,7 @@
                 SingleValue_LineWeight.Title = "Line Width";
                 SingleValue_LineWeight.UnitType = UnitType.Unitless;
                 SingleValue_LineWeight.SetTheValue((decimal)tmpSection.LineWeight);
-                rectangle_Color.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(tmpSection.Alpha, tmpSection.Red, tmpSection.Green, tmpSection.Blue));
+                rectangle_Color.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb((byte)tmpSection.Alpha, (byte)tmpSection.Red, (byte)tmpSection.Green, (byte)tmpSection.Blue));
                 comboBox_LineStyle.SelectedItem = tmpSection.Line;
                 ComboBox_FarCapStyle.SelectedValue = tmpSection.FarCapStyle;
                 comboBox_NearCapStyle.SelectedValue = tmpSection.NearCapStyle;

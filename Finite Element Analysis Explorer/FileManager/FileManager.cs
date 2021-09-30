@@ -18,6 +18,8 @@ using System.IO;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
+    using Newtonsoft.Json;
+
     /// <summary>
     /// FileManager class.
     /// </summary>
@@ -546,22 +548,142 @@ using System.IO;
         /// decimal = Ductility.
         /// </summary>
         /// <returns>The count of materials.</returns>
-        internal static int LoadMaterialsAsync()
+        internal static async Task<int> LoadMaterialsAsync()
         {
+            StorageFile materialsDataFile = null;
+
             try
             {
-                using (MaterialsList materials = new MaterialsList())
-                {
-                    materials.LoadList();
-                }
-
-                //MaterialsList.LoadList();
-                //SectionProfilesList.LoadList();
+                materialsDataFile = await LocalFolder.GetFileAsync("Materials.json");
             }
             catch (Exception ex)
             {
-                WService.ReportException(ex);
+                Debug.WriteLine("File Not Found: " + ex.Message);
             }
+
+            if (materialsDataFile == null)
+            {
+                // Copy the file from the install folder to the local folder
+                var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Data");
+                var file = await folder.GetFileAsync("Materials.json");
+                if (file != null)
+                {
+                    materialsDataFile = await file.CopyAsync(LocalFolder, "Materials.json", NameCollisionOption.FailIfExists);
+                }
+            }
+
+            string json = await Windows.Storage.FileIO.ReadTextAsync(materialsDataFile);
+            Debug.WriteLine(json);
+            Model.Materials.LoadMaterials(JsonConvert.DeserializeObject<Dictionary<string, Material>>(json));
+
+            SectionProfilesList.LoadList();
+
+            //try
+            //{
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine("ERROR: " + ex.Message);
+            //}
+
+            //try
+            //{
+            //    if (sectionsFile == null)
+            //    {
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine("ERROR: " + ex.Message);
+            //}
+
+            //Debug.WriteLine("Here");
+
+            //JsonConvert.DeserializeObject<Dictionary<int, Video>>(json);
+
+            //try
+            //{
+            //    if (sectionsFile == null)
+            //    {
+            //        // Copy the file from the install folder to the local folder
+            //        var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Data");
+            //        var file = await folder.GetFileAsync("Materials.json");
+            //        if (file != null)
+            //        {
+            //            materialsDataFile = await file.CopyAsync(LocalFolder, "Materials.json", NameCollisionOption.FailIfExists);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine("ERROR: " + ex.Message);
+            //}
+
+            //try
+            //{
+            //    //using (MaterialsList materials = new MaterialsList())
+            //    //{
+            //    //    materials.LoadList();
+            //    //}
+
+            //    //MaterialsList.LoadList();
+            //    SectionProfilesList.LoadList();
+
+            //    //string json = JsonConvert.SerializeObject(Model.Materials, Formatting.Indented);
+            //    //Debug.WriteLine($"json {json}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    WService.ReportException(ex);
+            //}
+
+            //try
+            //{
+            //    //IStorageItem materialsDataFile = await LocalFolder.TryGetItemAsync("Materials.json");
+            //    //StorageFile materialsDataFile = await LocalFolder.TryGetItemAsync("Materials.json");
+            //    StorageFile materialsDataFile = await LocalFolder.GetFileAsync("Materials.json");
+
+            //    if (sectionsFile == null)
+            //    {
+            //        // Copy the file from the install folder to the local folder
+            //        var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Data");
+            //        var file = await folder.GetFileAsync("Materials.json");
+            //        if (file != null)
+            //        {
+            //            materialsDataFile = await file.CopyAsync(LocalFolder, "Materials.json", NameCollisionOption.FailIfExists);
+            //        }
+            //    }
+
+            //    string json = await Windows.Storage.FileIO.ReadTextAsync(materialsDataFile);
+
+            //    Model.Materials.LoadMaterials(JsonConvert.DeserializeObject<Dictionary<string, Material>>(json));
+
+            //    //Model.Materials = JsonConvert.DeserializeObject<MaterialCollection<string, Material> < string, Material >> (json);
+            //}
+            //catch (Exception ex)
+            //{
+            //    WService.ReportException(ex);
+            //}
+
+            //try
+            //{
+            //    //using (MaterialsList materials = new MaterialsList())
+            //    //{
+            //    //    materials.LoadList();
+            //    //}
+
+            //    //MaterialsList.LoadList();
+            //    SectionProfilesList.LoadList();
+
+            //    //string json = JsonConvert.SerializeObject(Model.Materials, Formatting.Indented);
+            //    //Debug.WriteLine($"json {json}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    WService.ReportException(ex);
+            //}
 
             return Model.Materials.Count;
         }
@@ -572,115 +694,125 @@ using System.IO;
         /// </summary>
         internal static async void SaveMaterialsAsync()
         {
-            materialsFile = await LocalFolder.GetFileAsync("Materials.Data");
 
-            IList<string> lines = new List<string>();
-            foreach (KeyValuePair<string, Material> material in Model.Materials)
-            {
-                string line = material.Value.Name.ToString() + "|";
-                line += material.Value.Description.ToString() + "|";
-                line += material.Value.Cost.ToString() + "|";
-                line += material.Value.Density.ToString() + "|";
-                line += material.Value.UltimateStrengthTension.ToString() + "|";
-                line += material.Value.UltimateStrengthCompression.ToString() + "|";
-                line += material.Value.UltimateStrengthShear.ToString() + "|";
-                line += material.Value.YieldStrengthTension.ToString() + "|";
-                line += material.Value.YieldStrengthShear.ToString() + "|";
-                line += material.Value.ModulusOfElasticity.ToString() + "|";
-                line += material.Value.ModulusOfRigidity.ToString() + "|";
-                line += material.Value.CoefficientOfThermalExpansion.ToString() + "|";
-                line += material.Value.Ductility.ToString() + "|";
+            string json = JsonConvert.SerializeObject(Model.Materials, Formatting.Indented);
+            materialsFile = await LocalFolder.GetFileAsync("Materials.json");
 
-                line += material.Value.Atomic_Number.ToString() + "|";
-                line += material.Value.Symbol.ToString() + "|";
-                line += material.Value.Atomic_Mass.ToString() + "|";
-                line += material.Value.Allotrope_Names.ToString() + "|";
-                line += material.Value.Alternate_Names.ToString() + "|";
-                line += material.Value.CAS_Number.ToString() + "|";
-                line += material.Value.Icon_Color.ToString() + "|";
-                line += material.Value.Block.ToString() + "|";
-                line += material.Value.Group.ToString() + "|";
-                line += material.Value.Period.ToString() + "|";
-                line += material.Value.Series.ToString() + "|";
-                line += material.Value.Atomic_Weight.ToString() + "|";
-                line += material.Value.Brinell_Hardness.ToString() + "|";
-                line += material.Value.Bulk_Modulus.ToString() + "|";
-                line += material.Value.Liquid_Density.ToString() + "|";
-                line += material.Value.Mohs_Hardness.ToString() + "|";
-                line += material.Value.Molar_Volume.ToString() + "|";
-                line += material.Value.Poission_Ratio.ToString() + "|";
-                line += material.Value.ModulusOfRigidity.ToString() + "|";
-                line += material.Value.Sound_Speed.ToString() + "|";
-                line += material.Value.Thermal_Conductivity.ToString() + "|";
-                line += material.Value.Thermal_Expansion.ToString() + "|";
-                line += material.Value.Vickers_Hardness.ToString() + "|";
-                line += material.Value.ModulusOfElasticity.ToString() + "|";
-                line += material.Value.Absolute_Boiling_Point.ToString() + "|";
-                line += material.Value.Absolute_Melting_Point.ToString() + "|";
-                line += material.Value.Adiabatic_Index.ToString() + "|";
-                line += material.Value.Boiling_Point.ToString() + "|";
-                line += material.Value.Critical_Pressure.ToString() + "|";
-                line += material.Value.Critical_Temperature.ToString() + "|";
-                line += material.Value.Curie_Point.ToString() + "|";
-                line += material.Value.Fusion_Heat.ToString() + "|";
-                line += material.Value.Melting_Point.ToString() + "|";
-                line += material.Value.Neel_Point.ToString() + "|";
-                line += material.Value.Phase.ToString() + "|";
-                line += material.Value.Specific_Heat.ToString() + "|";
-                line += material.Value.Superconducting_Point.ToString() + "|";
-                line += material.Value.Vaporization_Heat.ToString() + "|";
-                line += material.Value.Color.ToString() + "|";
-                line += material.Value.Electrical_Conductivity.ToString() + "|";
-                line += material.Value.Electrical_Type.ToString() + "|";
-                line += material.Value.Magnetic_Type.ToString() + "|";
-                line += material.Value.Mass_Magnetic_Susceptibility.ToString() + "|";
-                line += material.Value.Molar_Magnetic_Susceptibility.ToString() + "|";
-                line += material.Value.Resistivity.ToString() + "|";
-                line += material.Value.Volume_Magnetic_Susceptibility.ToString() + "|";
-                line += material.Value.Allotropic_Multiplicities.ToString() + "|";
-                line += material.Value.Electron_Affinity.ToString() + "|";
-                line += material.Value.Gas_Atomic_Multiplicities.ToString() + "|";
-                line += material.Value.Valence.ToString() + "|";
-                line += material.Value.Crystal_Structure.ToString() + "|";
-                line += material.Value.Lattice_Angles.ToString() + "|";
-                line += material.Value.Lattice_Constants.ToString() + "|";
-                line += material.Value.Space_Group_Number.ToString() + "|";
-                line += material.Value.Space_Group_Name.ToString() + "|";
-                line += material.Value.Atomic_Radius.ToString() + "|";
-                line += material.Value.Covalent_Radius.ToString() + "|";
-                line += material.Value.Electron_Configuration.ToString() + "|";
-                line += material.Value.Electron_Configuration_String.ToString() + "|";
-                line += material.Value.Electron_Shell_Configuration.ToString() + "|";
-                line += material.Value.Ionization_Energies.ToString() + "|";
-                line += material.Value.Quantum_Numbers.ToString() + "|";
-                line += material.Value.Van_Der_Waals_Radius.ToString() + "|";
-                line += material.Value.Decay_Mode.ToString() + "|";
-                line += material.Value.HalfLife.ToString() + "|";
-                line += material.Value.Isotope_Abundances.ToString() + "|";
-                line += material.Value.Lifetime.ToString() + "|";
-                line += material.Value.Neutron_Cross_Section.ToString() + "|";
-                line += material.Value.Neutron_Mass_Absorption.ToString() + "|";
-                line += material.Value.Radioactive.ToString() + "|";
-                line += material.Value.Stable_Isotopes.ToString() + "|";
-                line += material.Value.Crust_Abundance.ToString() + "|";
-                line += material.Value.Human_Abundance.ToString() + "|";
-                line += material.Value.Meteorite_Abundance.ToString() + "|";
-                line += material.Value.Ocean_Abundance.ToString() + "|";
-                line += material.Value.Solar_Abundance.ToString() + "|";
-                line += material.Value.Universe_Abundance.ToString() + "|";
-                line += material.Value.Radius_Empirical.ToString() + "|";
-                line += material.Value.Radius_Calculated.ToString() + "|";
-                line += material.Value.Radius_Van_Der_Waals.ToString() + "|";
-                line += material.Value.Radius_Covalent_Single_Bond.ToString() + "|";
-                line += material.Value.Radius_Covalent_Triple_Bond.ToString() + "|";
-                line += material.Value.Radius_Metallic.ToString() + "||||||||||||";
+            await FileIO.WriteTextAsync(materialsFile, json);
 
-                lines.Add(line);
-            }
-
-            await FileIO.WriteLinesAsync(materialsFile, lines);
+            //await FileIO.WriteLinesAsync(materialsFile, json);
             CachedFileManager.DeferUpdates(materialsFile);
             _ = await CachedFileManager.CompleteUpdatesAsync(materialsFile);
+
+            //materialsFile = await LocalFolder.GetFileAsync("Materials.Data");
+
+            //IList<string> lines = new List<string>();
+            //foreach (KeyValuePair<string, Material> material in Model.Materials)
+            //{
+            //    string line = material.Value.Name.ToString() + "|";
+            //    line += material.Value.Description.ToString() + "|";
+            //    line += material.Value.Cost.ToString() + "|";
+            //    line += material.Value.Density.ToString() + "|";
+            //    line += material.Value.UltimateStrengthTension.ToString() + "|";
+            //    line += material.Value.UltimateStrengthCompression.ToString() + "|";
+            //    line += material.Value.UltimateStrengthShear.ToString() + "|";
+            //    line += material.Value.YieldStrengthTension.ToString() + "|";
+            //    line += material.Value.YieldStrengthShear.ToString() + "|";
+            //    line += material.Value.ModulusOfElasticity.ToString() + "|";
+            //    line += material.Value.ModulusOfRigidity.ToString() + "|";
+            //    line += material.Value.CoefficientOfThermalExpansion.ToString() + "|";
+            //    line += material.Value.Ductility.ToString() + "|";
+
+            //    line += material.Value.Atomic_Number.ToString() + "|";
+            //    line += material.Value.Symbol.ToString() + "|";
+            //    line += material.Value.Atomic_Mass.ToString() + "|";
+            //    line += material.Value.Allotrope_Names.ToString() + "|";
+            //    line += material.Value.Alternate_Names.ToString() + "|";
+            //    line += material.Value.CAS_Number.ToString() + "|";
+            //    line += material.Value.Icon_Color.ToString() + "|";
+            //    line += material.Value.Block.ToString() + "|";
+            //    line += material.Value.Group.ToString() + "|";
+            //    line += material.Value.Period.ToString() + "|";
+            //    line += material.Value.Series.ToString() + "|";
+            //    line += material.Value.Atomic_Weight.ToString() + "|";
+            //    line += material.Value.Brinell_Hardness.ToString() + "|";
+            //    line += material.Value.Bulk_Modulus.ToString() + "|";
+            //    line += material.Value.Liquid_Density.ToString() + "|";
+            //    line += material.Value.Mohs_Hardness.ToString() + "|";
+            //    line += material.Value.Molar_Volume.ToString() + "|";
+            //    line += material.Value.Poission_Ratio.ToString() + "|";
+            //    line += material.Value.ModulusOfRigidity.ToString() + "|";
+            //    line += material.Value.Sound_Speed.ToString() + "|";
+            //    line += material.Value.Thermal_Conductivity.ToString() + "|";
+            //    line += material.Value.Thermal_Expansion.ToString() + "|";
+            //    line += material.Value.Vickers_Hardness.ToString() + "|";
+            //    line += material.Value.ModulusOfElasticity.ToString() + "|";
+            //    line += material.Value.Absolute_Boiling_Point.ToString() + "|";
+            //    line += material.Value.Absolute_Melting_Point.ToString() + "|";
+            //    line += material.Value.Adiabatic_Index.ToString() + "|";
+            //    line += material.Value.Boiling_Point.ToString() + "|";
+            //    line += material.Value.Critical_Pressure.ToString() + "|";
+            //    line += material.Value.Critical_Temperature.ToString() + "|";
+            //    line += material.Value.Curie_Point.ToString() + "|";
+            //    line += material.Value.Fusion_Heat.ToString() + "|";
+            //    line += material.Value.Melting_Point.ToString() + "|";
+            //    line += material.Value.Neel_Point.ToString() + "|";
+            //    line += material.Value.Phase.ToString() + "|";
+            //    line += material.Value.Specific_Heat.ToString() + "|";
+            //    line += material.Value.Superconducting_Point.ToString() + "|";
+            //    line += material.Value.Vaporization_Heat.ToString() + "|";
+            //    line += material.Value.Color.ToString() + "|";
+            //    line += material.Value.Electrical_Conductivity.ToString() + "|";
+            //    line += material.Value.Electrical_Type.ToString() + "|";
+            //    line += material.Value.Magnetic_Type.ToString() + "|";
+            //    line += material.Value.Mass_Magnetic_Susceptibility.ToString() + "|";
+            //    line += material.Value.Molar_Magnetic_Susceptibility.ToString() + "|";
+            //    line += material.Value.Resistivity.ToString() + "|";
+            //    line += material.Value.Volume_Magnetic_Susceptibility.ToString() + "|";
+            //    line += material.Value.Allotropic_Multiplicities.ToString() + "|";
+            //    line += material.Value.Electron_Affinity.ToString() + "|";
+            //    line += material.Value.Gas_Atomic_Multiplicities.ToString() + "|";
+            //    line += material.Value.Valence.ToString() + "|";
+            //    line += material.Value.Crystal_Structure.ToString() + "|";
+            //    line += material.Value.Lattice_Angles.ToString() + "|";
+            //    line += material.Value.Lattice_Constants.ToString() + "|";
+            //    line += material.Value.Space_Group_Number.ToString() + "|";
+            //    line += material.Value.Space_Group_Name.ToString() + "|";
+            //    line += material.Value.Atomic_Radius.ToString() + "|";
+            //    line += material.Value.Covalent_Radius.ToString() + "|";
+            //    line += material.Value.Electron_Configuration.ToString() + "|";
+            //    line += material.Value.Electron_Configuration_String.ToString() + "|";
+            //    line += material.Value.Electron_Shell_Configuration.ToString() + "|";
+            //    line += material.Value.Ionization_Energies.ToString() + "|";
+            //    line += material.Value.Quantum_Numbers.ToString() + "|";
+            //    line += material.Value.Van_Der_Waals_Radius.ToString() + "|";
+            //    line += material.Value.Decay_Mode.ToString() + "|";
+            //    line += material.Value.HalfLife.ToString() + "|";
+            //    line += material.Value.Isotope_Abundances.ToString() + "|";
+            //    line += material.Value.Lifetime.ToString() + "|";
+            //    line += material.Value.Neutron_Cross_Section.ToString() + "|";
+            //    line += material.Value.Neutron_Mass_Absorption.ToString() + "|";
+            //    line += material.Value.Radioactive.ToString() + "|";
+            //    line += material.Value.Stable_Isotopes.ToString() + "|";
+            //    line += material.Value.Crust_Abundance.ToString() + "|";
+            //    line += material.Value.Human_Abundance.ToString() + "|";
+            //    line += material.Value.Meteorite_Abundance.ToString() + "|";
+            //    line += material.Value.Ocean_Abundance.ToString() + "|";
+            //    line += material.Value.Solar_Abundance.ToString() + "|";
+            //    line += material.Value.Universe_Abundance.ToString() + "|";
+            //    line += material.Value.Radius_Empirical.ToString() + "|";
+            //    line += material.Value.Radius_Calculated.ToString() + "|";
+            //    line += material.Value.Radius_Van_Der_Waals.ToString() + "|";
+            //    line += material.Value.Radius_Covalent_Single_Bond.ToString() + "|";
+            //    line += material.Value.Radius_Covalent_Triple_Bond.ToString() + "|";
+            //    line += material.Value.Radius_Metallic.ToString() + "||||||||||||";
+
+            //    lines.Add(line);
+            //}
+
+            //await FileIO.WriteLinesAsync(materialsFile, lines);
+            //CachedFileManager.DeferUpdates(materialsFile);
+            //_ = await CachedFileManager.CompleteUpdatesAsync(materialsFile);
         }
 
         #region Sections
@@ -691,227 +823,332 @@ using System.IO;
         /// <returns>True if successful.</returns>
         internal static async Task<int> LoadSectionsAsync()
         {
+            Debug.WriteLine($"InstalledLocation Path {Windows.ApplicationModel.Package.Current.InstalledLocation.Path}");
+            Debug.WriteLine($"LocalFolder Path {LocalFolder.Path}");
+
+            StorageFile sectionsDataFile = null;
+
             try
             {
-                if (await LocalFolder.TryGetItemAsync("Sections.Data") == null)
-                {
-                    StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
-                    string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Steel 250 UB 37|200000000000|0.0000502116060000000000000000|0.004770|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.146|0.256|0.009|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Steel 410 UB 60|200000000000|0.0001961423633750000000000000|0.00778050|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.178|0.4060|0.0105|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Steel 610 UB 125|200000000000|0.0008849453840416666666666667|0.01610450|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.229|0.6120|0.0155|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Concrete 100x100 25MPa|200000000000|0.0000083333333333333333333333|0.01|2450|2.61|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.1|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Concrete 200x200 25MPa|200000000000|0.0001333333333333333333333333|0.04000000|2450|10.44000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.2000|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Concrete 300x300 25MPa|200000000000|0.000675000000|0.090000|2450|23.490000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.300|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 70x35|200000000000|0.0000010004166666666666666667|0.002450|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.070|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 90x35|200000000000|0.000002126250|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 70x45|200000000000|0.0000005315625|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.070|0.045|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 90x45|200000000000|0.000002733750|0.004050|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.045|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
-                    await FileIO.WriteTextAsync(tempFile, tempString);
-                }
-
-                sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
-                IList<string> lines = new List<string>();
-                lines = await FileIO.ReadLinesAsync(sectionsFile);
-                foreach (string line in lines)
-                {
-                    string[] words = line.Split('|');
-                    Section tmpSection = new Section(
-                        Convert.ToString(words[0]),
-                        Convert.ToDecimal(words[1]),
-                        Convert.ToDecimal(words[2]),
-                        Convert.ToDecimal(words[3]),
-                        Convert.ToDecimal(words[4]),
-                        Convert.ToDecimal(words[5]),
-                        Convert.ToByte(words[6]),
-                        Convert.ToByte(words[7]),
-                        Convert.ToByte(words[8]),
-                        Convert.ToByte(words[9]),
-                        (CanvasDashStyle)Convert.ToInt32(words[10]),
-                        Convert.ToSingle(words[11]),
-                        (CanvasCapStyle)Convert.ToInt32(words[12]),
-                        (CanvasCapStyle)Convert.ToInt32(words[13]),
-                        Convert.ToDecimal(words[14]),
-                        Convert.ToDecimal(words[15]),
-                        Convert.ToDecimal(words[16]),
-                        Convert.ToDecimal(words[17]),
-                        Convert.ToDecimal(words[18]),
-                        Convert.ToDecimal(words[19]),
-                        Convert.ToDecimal(words[20]),
-                        Convert.ToString(words[21]),
-                        Convert.ToDecimal(words[22]),
-                        Convert.ToDecimal(words[23]),
-                        Convert.ToDecimal(words[24]),
-                        Convert.ToDecimal(words[25]),
-                        Convert.ToDecimal(words[26]),
-                        Convert.ToDecimal(words[27]),
-                        Convert.ToDecimal(words[28]),
-                        Convert.ToString(words[29]),
-                        Convert.ToDecimal(words[30]),
-                        Convert.ToDecimal(words[31]),
-                        Convert.ToDecimal(words[32]),
-                        Convert.ToDecimal(words[33]),
-                        Convert.ToDecimal(words[34]),
-                        Convert.ToDecimal(words[35]),
-                        Convert.ToDecimal(words[36]),
-                        Convert.ToDecimal(words[37]));
-
-                    Model.Sections.AddNewSection(
-                        tmpSection.Name,
-                        tmpSection.E,
-                        tmpSection.I,
-                        tmpSection.Area,
-                        tmpSection.Density,
-                        tmpSection.CostPerLength,
-                        tmpSection.Alpha,
-                        tmpSection.Red,
-                        tmpSection.Green,
-                        tmpSection.Blue,
-                        tmpSection.Line,
-                        tmpSection.LineWeight,
-                        tmpSection.NearCapStyle,
-                        tmpSection.FarCapStyle,
-                        tmpSection.CostHorizontalTransport,
-                        tmpSection.CostVerticalTransport,
-                        tmpSection.CostNodeFixed,
-                        tmpSection.CostNodeFree,
-                        tmpSection.CostNodePinned,
-                        tmpSection.CostNodeRoller,
-                        tmpSection.CostNodeTrack,
-                        tmpSection.SectionProfile,
-                        tmpSection.SectionProfileProperty1,
-                        tmpSection.SectionProfileProperty2,
-                        tmpSection.SectionProfileProperty3,
-                        tmpSection.SectionProfileProperty4,
-                        tmpSection.SectionProfileProperty5,
-                        tmpSection.SectionProfileProperty6,
-                        tmpSection.SectionProfileProperty7,
-                        tmpSection.Material,
-                        tmpSection.MaintenancePerLength,
-                        tmpSection.MaintenanceNodeFree,
-                        tmpSection.MaintenanceFixed,
-                        tmpSection.MaintenancePinned,
-                        tmpSection.MaintenanceRoller,
-                        tmpSection.MaintenanceTrack,
-                        tmpSection.FactorVerticalTransport,
-                        tmpSection.FactorHorizontalTransport);
-                }
-
-                Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
+                sectionsDataFile = await LocalFolder.GetFileAsync("Sections.json");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to load sections. " + ex.Message);
-                WService.ReportException(ex);
+                Debug.WriteLine("File Not Found: " + ex.Message);
             }
 
-            Section tempSection = Model.Sections.LoadLastCurrentSectionSection();
-            Model.Sections.CurrentSection = new Section(
-                                                        tempSection.Name,
-                                                        tempSection.E,
-                                                        tempSection.I,
-                                                        tempSection.Area,
-                                                        tempSection.Density,
-                                                        tempSection.CostPerLength,
-                                                        tempSection.Alpha,
-                                                        tempSection.Red,
-                                                        tempSection.Green,
-                                                        tempSection.Blue,
-                                                        tempSection.Line,
-                                                        tempSection.LineWeight,
-                                                        tempSection.NearCapStyle,
-                                                        tempSection.FarCapStyle,
-                                                        tempSection.CostHorizontalTransport,
-                                                        tempSection.CostVerticalTransport,
-                                                        tempSection.CostNodeFree,
-                                                        tempSection.CostNodeFixed,
-                                                        tempSection.CostNodePinned,
-                                                        tempSection.CostNodeRoller,
-                                                        tempSection.CostNodeTrack,
-                                                        tempSection.SectionProfile,
-                                                        tempSection.SectionProfileProperty1,
-                                                        tempSection.SectionProfileProperty2,
-                                                        tempSection.SectionProfileProperty3,
-                                                        tempSection.SectionProfileProperty4,
-                                                        tempSection.SectionProfileProperty5,
-                                                        tempSection.SectionProfileProperty6,
-                                                        tempSection.SectionProfileProperty7,
-                                                        tempSection.Material,
-                                                        tempSection.MaintenancePerLength,
-                                                        tempSection.MaintenanceNodeFree,
-                                                        tempSection.MaintenanceFixed,
-                                                        tempSection.MaintenancePinned,
-                                                        tempSection.MaintenanceRoller,
-                                                        tempSection.MaintenanceTrack,
-                                                        tempSection.FactorVerticalTransport,
-                                                        tempSection.FactorHorizontalTransport);
+            try
+            {
+                if (sectionsDataFile == null)
+                {
+                    // Copy the file from the install folder to the local folder
+                    var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Data");
+                    var file = await folder.GetFileAsync("Sections.json");
+                    if (file != null)
+                    {
+                        sectionsDataFile = await file.CopyAsync(LocalFolder, "Sections.json", NameCollisionOption.FailIfExists);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("File Not Copied: " + ex.Message);
+            }
+
+            try
+            {
+                string json = await Windows.Storage.FileIO.ReadTextAsync(sectionsDataFile);
+                Debug.WriteLine("Section JSON: " + json);
+                Model.Sections.LoadSections(JsonConvert.DeserializeObject<Dictionary<string, Section>>(json));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Json Not Found: " + ex.Message);
+            }
 
             return Model.Sections.Count;
         }
+
+        /// <summary>
+        /// Loads the sections from disk.
+        /// </summary>
+        /// <returns>True if successful.</returns>
+        //internal static async Task<int> oldLoadSectionsAsync()
+        //{
+        //    Debug.WriteLine($"InstalledLocation Path {Windows.ApplicationModel.Package.Current.InstalledLocation.Path}");
+        //    Debug.WriteLine($"LocalFolder Path {LocalFolder.Path}");
+
+        //    IStorageItem sectionsDataFile = await LocalFolder.TryGetItemAsync("Sections.json");
+
+        //    if (sectionsFile == null)
+        //    {
+        //        // Copy the file from the install folder to the local folder
+        //        var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Data");
+        //        var file = await folder.GetFileAsync("Sections.json");
+        //        if (file != null)
+        //        {
+        //            sectionsDataFile = await file.CopyAsync(LocalFolder, "Sections.json", NameCollisionOption.FailIfExists);
+        //        }
+        //    }
+
+        //    //try
+        //    //{
+                
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    WService.ReportException(ex);
+        //    //}
+
+        //    try
+        //    {
+        //        if (await LocalFolder.TryGetItemAsync("Sections.Data") == null)
+        //        {
+        //            StorageFile tempFile = await LocalFolder.CreateFileAsync("Sections.Data", CreationCollisionOption.ReplaceExisting);
+        //            string tempString = "Default|200000000000|0.0000666666666666666666666667|0.0200|2450|2.0000|255|192|192|192|0|3.2|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.1|0.200|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Steel 150 UB 18|200000000000|0.0000085391265302666666666667|0.00239372|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.075|0.155|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Steel 200 UB 30|200000000000|0.0000267427055096|0.00380472|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.134|0.207|0.0083|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Steel 250 UB 37|200000000000|0.0000502116060000000000000000|0.004770|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.146|0.256|0.009|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Steel 410 UB 60|200000000000|0.0001961423633750000000000000|0.00778050|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.178|0.4060|0.0105|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Steel 610 UB 125|200000000000|0.0008849453840416666666666667|0.01610450|2450|0.00000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|I Beam|0.229|0.6120|0.0155|0|0|0|0|Steel, Structural|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Concrete 100x100 25MPa|200000000000|0.0000083333333333333333333333|0.01|2450|2.61|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.1|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Concrete 200x200 25MPa|200000000000|0.0001333333333333333333333333|0.04000000|2450|10.44000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.2000|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Concrete 300x300 25MPa|200000000000|0.000675000000|0.090000|2450|23.490000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Square|0.300|0|0|0|0|0|0|Concrete 25MPa|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 70x35|200000000000|0.0000010004166666666666666667|0.002450|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.070|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 90x35|200000000000|0.000002126250|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.035|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 70x45|200000000000|0.0000005315625|0.003150|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.070|0.045|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 90x45|200000000000|0.000002733750|0.004050|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.045|0.090|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 100x100|200000000000|0.000022|0.1|2450|100|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0|0|0|0|0|0|0|Default|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 165x65|200000000000|0.00002433234375|0.010725|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.165|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            tempString += "Timber 260x65|200000000000|0.0000952033333333333333333333|0.016900|2450|0.000000|255|192|192|192|0|1.5|2|2|0|0|0|0|0|0|0|Solid Rectangle|0.065|0.260|0|0|0|0|0|Timber, Douglas Fur|0|0|0|0|0|0|0|0|\n";
+        //            await FileIO.WriteTextAsync(tempFile, tempString);
+        //        }
+
+        //        sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
+        //        IList<string> lines = new List<string>();
+        //        lines = await FileIO.ReadLinesAsync(sectionsFile);
+        //        foreach (string line in lines)
+        //        {
+        //            string[] words = line.Split('|');
+        //            Section tmpSection = new Section(
+        //                Convert.ToString(words[0]),
+        //                Convert.ToDecimal(words[1]),
+        //                Convert.ToDecimal(words[2]),
+        //                Convert.ToDecimal(words[3]),
+        //                Convert.ToDecimal(words[4]),
+        //                Convert.ToDecimal(words[5]),
+        //                Convert.ToByte(words[6]),
+        //                Convert.ToByte(words[7]),
+        //                Convert.ToByte(words[8]),
+        //                Convert.ToByte(words[9]),
+        //                (CanvasDashStyle)Convert.ToInt32(words[10]),
+        //                Convert.ToSingle(words[11]),
+        //                (CanvasCapStyle)Convert.ToInt32(words[12]),
+        //                (CanvasCapStyle)Convert.ToInt32(words[13]),
+        //                Convert.ToDecimal(words[14]),
+        //                Convert.ToDecimal(words[15]),
+        //                Convert.ToDecimal(words[16]),
+        //                Convert.ToDecimal(words[17]),
+        //                Convert.ToDecimal(words[18]),
+        //                Convert.ToDecimal(words[19]),
+        //                Convert.ToDecimal(words[20]),
+        //                Convert.ToString(words[21]),
+        //                Convert.ToDecimal(words[22]),
+        //                Convert.ToDecimal(words[23]),
+        //                Convert.ToDecimal(words[24]),
+        //                Convert.ToDecimal(words[25]),
+        //                Convert.ToDecimal(words[26]),
+        //                Convert.ToDecimal(words[27]),
+        //                Convert.ToDecimal(words[28]),
+        //                Convert.ToString(words[29]),
+        //                Convert.ToDecimal(words[30]),
+        //                Convert.ToDecimal(words[31]),
+        //                Convert.ToDecimal(words[32]),
+        //                Convert.ToDecimal(words[33]),
+        //                Convert.ToDecimal(words[34]),
+        //                Convert.ToDecimal(words[35]),
+        //                Convert.ToDecimal(words[36]),
+        //                Convert.ToDecimal(words[37]));
+
+        //            Model.Sections.AddNewSection(
+        //                tmpSection.Name,
+        //                tmpSection.E,
+        //                tmpSection.I,
+        //                tmpSection.Area,
+        //                tmpSection.Density,
+        //                tmpSection.CostPerLength,
+        //                tmpSection.Alpha,
+        //                tmpSection.Red,
+        //                tmpSection.Green,
+        //                tmpSection.Blue,
+        //                tmpSection.Line,
+        //                tmpSection.LineWeight,
+        //                tmpSection.NearCapStyle,
+        //                tmpSection.FarCapStyle,
+        //                tmpSection.CostHorizontalTransport,
+        //                tmpSection.CostVerticalTransport,
+        //                tmpSection.CostNodeFixed,
+        //                tmpSection.CostNodeFree,
+        //                tmpSection.CostNodePinned,
+        //                tmpSection.CostNodeRoller,
+        //                tmpSection.CostNodeTrack,
+        //                tmpSection.SectionProfile,
+        //                tmpSection.SectionProfileProperty1,
+        //                tmpSection.SectionProfileProperty2,
+        //                tmpSection.SectionProfileProperty3,
+        //                tmpSection.SectionProfileProperty4,
+        //                tmpSection.SectionProfileProperty5,
+        //                tmpSection.SectionProfileProperty6,
+        //                tmpSection.SectionProfileProperty7,
+        //                tmpSection.Material,
+        //                tmpSection.MaintenancePerLength,
+        //                tmpSection.MaintenanceNodeFree,
+        //                tmpSection.MaintenanceFixed,
+        //                tmpSection.MaintenancePinned,
+        //                tmpSection.MaintenanceRoller,
+        //                tmpSection.MaintenanceTrack,
+        //                tmpSection.FactorVerticalTransport,
+        //                tmpSection.FactorHorizontalTransport);
+        //        }
+
+        //        Model.Sections.CurrentSection = Model.Sections.LoadLastCurrentSectionSection();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine("Failed to load sections. " + ex.Message);
+        //        WService.ReportException(ex);
+        //    }
+
+        //    Section tempSection = Model.Sections.LoadLastCurrentSectionSection();
+        //    Model.Sections.CurrentSection = new Section(
+        //                                                tempSection.Name,
+        //                                                tempSection.E,
+        //                                                tempSection.I,
+        //                                                tempSection.Area,
+        //                                                tempSection.Density,
+        //                                                tempSection.CostPerLength,
+        //                                                tempSection.Alpha,
+        //                                                tempSection.Red,
+        //                                                tempSection.Green,
+        //                                                tempSection.Blue,
+        //                                                tempSection.Line,
+        //                                                tempSection.LineWeight,
+        //                                                tempSection.NearCapStyle,
+        //                                                tempSection.FarCapStyle,
+        //                                                tempSection.CostHorizontalTransport,
+        //                                                tempSection.CostVerticalTransport,
+        //                                                tempSection.CostNodeFree,
+        //                                                tempSection.CostNodeFixed,
+        //                                                tempSection.CostNodePinned,
+        //                                                tempSection.CostNodeRoller,
+        //                                                tempSection.CostNodeTrack,
+        //                                                tempSection.SectionProfile,
+        //                                                tempSection.SectionProfileProperty1,
+        //                                                tempSection.SectionProfileProperty2,
+        //                                                tempSection.SectionProfileProperty3,
+        //                                                tempSection.SectionProfileProperty4,
+        //                                                tempSection.SectionProfileProperty5,
+        //                                                tempSection.SectionProfileProperty6,
+        //                                                tempSection.SectionProfileProperty7,
+        //                                                tempSection.Material,
+        //                                                tempSection.MaintenancePerLength,
+        //                                                tempSection.MaintenanceNodeFree,
+        //                                                tempSection.MaintenanceFixed,
+        //                                                tempSection.MaintenancePinned,
+        //                                                tempSection.MaintenanceRoller,
+        //                                                tempSection.MaintenanceTrack,
+        //                                                tempSection.FactorVerticalTransport,
+        //                                                tempSection.FactorHorizontalTransport);
+
+
+
+
+        //    string json = JsonConvert.SerializeObject(Model.Sections, Formatting.None);
+
+        //    Debug.WriteLine(json);
+
+        //    //File.WriteAllText(BasePath + "index.json", json);
+
+
+        //    return Model.Sections.Count;
+        //}
 
         /// <summary>
         /// Save the sections to disk.
         /// </summary>
         internal static async void SaveSectionsAsync()
         {
-            sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
+            Debug.WriteLine("SaveSectionsAsync");
 
-            IList<string> lines = new List<string>();
-            foreach (KeyValuePair<string, Section> section in Model.Sections)
+            try
             {
-                string line = section.Value.Name.ToString() + "|";
-                line += section.Value.E.ToString() + "|";
-                line += section.Value.I.ToString() + "|";
-                line += section.Value.Area.ToString() + "|";
-                line += section.Value.Density.ToString() + "|";
-                line += section.Value.CostPerLength.ToString() + "|";
-                line += section.Value.Alpha.ToString() + "|";
-                line += section.Value.Red.ToString() + "|";
-                line += section.Value.Green.ToString() + "|";
-                line += section.Value.Blue.ToString() + "|";
-                line += Convert.ToInt32(section.Value.Line).ToString() + "|";
-                line += section.Value.LineWeight.ToString() + "|";
-                line += Convert.ToInt32(section.Value.NearCapStyle).ToString() + "|";
-                line += Convert.ToInt32(section.Value.FarCapStyle).ToString() + "|";
+                string json = JsonConvert.SerializeObject(Model.Sections, Formatting.Indented);
 
-                line += section.Value.CostHorizontalTransport.ToString() + "|";
-                line += section.Value.CostVerticalTransport.ToString() + "|";
-                line += section.Value.CostNodeFixed.ToString() + "|";
-                line += section.Value.CostNodeFree.ToString() + "|";
-                line += section.Value.CostNodePinned.ToString() + "|";
-                line += section.Value.CostNodeRoller.ToString() + "|";
-                line += section.Value.CostNodeTrack.ToString() + "|";
+                Debug.WriteLine("SaveSectionsAsync JSON " + json);
 
-                line += section.Value.SectionProfile.ToString() + "|";
-                line += section.Value.SectionProfileProperty1.ToString() + "|";
-                line += section.Value.SectionProfileProperty2.ToString() + "|";
-                line += section.Value.SectionProfileProperty3.ToString() + "|";
-                line += section.Value.SectionProfileProperty4.ToString() + "|";
-                line += section.Value.SectionProfileProperty5.ToString() + "|";
-                line += section.Value.SectionProfileProperty6.ToString() + "|";
-                line += section.Value.SectionProfileProperty7.ToString() + "|";
-                line += section.Value.Material.ToString() + "|";
-
-                line += section.Value.MaintenancePerLength.ToString() + "|";
-                line += section.Value.MaintenanceNodeFree.ToString() + "|";
-                line += section.Value.MaintenanceFixed.ToString() + "|";
-                line += section.Value.MaintenancePinned.ToString() + "|";
-                line += section.Value.MaintenanceRoller.ToString() + "|";
-                line += section.Value.MaintenanceTrack.ToString() + "|";
-                line += section.Value.FactorVerticalTransport.ToString() + "|";
-                line += section.Value.FactorHorizontalTransport.ToString() + "|";
-
-                lines.Add(line);
+                sectionsFile = await LocalFolder.GetFileAsync("Sections.json");
+                await FileIO.WriteTextAsync(sectionsFile, json);
+                //CachedFileManager.DeferUpdates(sectionsFile);
+                //_ = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("SaveSectionsAsync: " + ex.Message);
             }
 
-            await FileIO.WriteLinesAsync(sectionsFile, lines);
-            CachedFileManager.DeferUpdates(sectionsFile);
-            _ = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
+            //sectionsFile = await LocalFolder.GetFileAsync("Sections.Data");
+
+            //IList<string> lines = new List<string>();
+            //foreach (KeyValuePair<string, Section> section in Model.Sections)
+            //{
+            //    string line = section.Value.Name.ToString() + "|";
+            //    line += section.Value.E.ToString() + "|";
+            //    line += section.Value.I.ToString() + "|";
+            //    line += section.Value.Area.ToString() + "|";
+            //    line += section.Value.Density.ToString() + "|";
+            //    line += section.Value.CostPerLength.ToString() + "|";
+            //    line += section.Value.Alpha.ToString() + "|";
+            //    line += section.Value.Red.ToString() + "|";
+            //    line += section.Value.Green.ToString() + "|";
+            //    line += section.Value.Blue.ToString() + "|";
+            //    line += Convert.ToInt32(section.Value.Line).ToString() + "|";
+            //    line += section.Value.LineWeight.ToString() + "|";
+            //    line += Convert.ToInt32(section.Value.NearCapStyle).ToString() + "|";
+            //    line += Convert.ToInt32(section.Value.FarCapStyle).ToString() + "|";
+
+            //    line += section.Value.CostHorizontalTransport.ToString() + "|";
+            //    line += section.Value.CostVerticalTransport.ToString() + "|";
+            //    line += section.Value.CostNodeFixed.ToString() + "|";
+            //    line += section.Value.CostNodeFree.ToString() + "|";
+            //    line += section.Value.CostNodePinned.ToString() + "|";
+            //    line += section.Value.CostNodeRoller.ToString() + "|";
+            //    line += section.Value.CostNodeTrack.ToString() + "|";
+
+            //    line += section.Value.SectionProfile.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty1.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty2.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty3.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty4.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty5.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty6.ToString() + "|";
+            //    line += section.Value.SectionProfileProperty7.ToString() + "|";
+            //    line += section.Value.Material.ToString() + "|";
+
+            //    line += section.Value.MaintenancePerLength.ToString() + "|";
+            //    line += section.Value.MaintenanceNodeFree.ToString() + "|";
+            //    line += section.Value.MaintenanceFixed.ToString() + "|";
+            //    line += section.Value.MaintenancePinned.ToString() + "|";
+            //    line += section.Value.MaintenanceRoller.ToString() + "|";
+            //    line += section.Value.MaintenanceTrack.ToString() + "|";
+            //    line += section.Value.FactorVerticalTransport.ToString() + "|";
+            //    line += section.Value.FactorHorizontalTransport.ToString() + "|";
+
+            //    lines.Add(line);
+            //}
+
+            //await FileIO.WriteLinesAsync(sectionsFile, lines);
+            //CachedFileManager.DeferUpdates(sectionsFile);
+            //_ = await CachedFileManager.CompleteUpdatesAsync(sectionsFile);
         }
 
         #endregion

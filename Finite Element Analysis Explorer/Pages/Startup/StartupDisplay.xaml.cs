@@ -50,7 +50,7 @@
                     AddItem("Loading Materials.");
                 });
 
-            int numberOfMaterials = FileManager.LoadMaterialsAsync();
+            int numberOfMaterials = FileManager.LoadMaterialsAsync().Result;
 
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
@@ -86,6 +86,7 @@
 
             try
             {
+
             }
             catch (Exception ex)
             {

@@ -62,6 +62,19 @@
         }
 
         /// <summary>
+        /// Loads the sections from a dictionary.
+        /// </summary>
+        /// <param name="items">The items to load.</param>
+        public void LoadSections(Dictionary<string, Section> items)
+        {
+            foreach (var item in items)
+            {
+                this.Add(item.Key, item.Value);
+            }
+
+        }
+
+        /// <summary>
         /// Adds a new section.
         /// </summary>
         /// <param name="name">name.</param>
@@ -109,10 +122,10 @@
             decimal area,
             decimal density,
             decimal costPerLength,
-            byte alpha,
-            byte red,
-            byte green,
-            byte blue,
+            int alpha,
+            int red,
+            int green,
+            int blue,
             CanvasDashStyle linetype,
             float lineweight,
             CanvasCapStyle nearCapStyle,

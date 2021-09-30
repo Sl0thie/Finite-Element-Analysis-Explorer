@@ -1,9 +1,8 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
-
     using Microsoft.Graphics.Canvas.Geometry;
-
+    using Newtonsoft.Json;
     using Windows.UI;
 
     /// <summary>
@@ -11,6 +10,13 @@
     /// </summary>
     internal class Section
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Section"/> class.
+        /// </summary>
+        internal Section()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Section"/> class.
         /// </summary>
@@ -59,10 +65,10 @@
             decimal area,
             decimal density,
             decimal costPerLength,
-            byte alpha,
-            byte red,
-            byte green,
-            byte blue,
+            int alpha,
+            int red,
+            int green,
+            int blue,
             CanvasDashStyle linetype,
             float lineWeight,
             CanvasCapStyle nearCapStyle,
@@ -155,6 +161,7 @@
         /// Gets or sets the E. Young’s modulus/Modulus of elasticity.
         /// https://en.wikipedia.org/wiki/Young%27s_modulus.
         /// </summary>
+        [JsonProperty(Required = Required.Always)]
         internal decimal E
         {
             get { return e; }
@@ -167,6 +174,7 @@
         /// Gets or sets the I. Second moment of area.
         /// https://en.wikipedia.org/wiki/Second_moment_of_area.
         /// </summary>
+        [JsonProperty(Required = Required.Always)]
         internal decimal I
         {
             get { return i; }
@@ -196,45 +204,49 @@
             set { density = value; }
         }
 
-        private byte alpha;
+        private int alpha;
 
         /// <summary>
         /// Gets or sets the alpha.
         /// </summary>
-        internal byte Alpha
+        [JsonProperty(Required = Required.Always)]
+        internal int Alpha
         {
             get { return alpha; }
             set { alpha = value; }
         }
 
-        private byte red;
+        private int red;
 
         /// <summary>
         /// Gets or sets the red.
         /// </summary>
-        internal byte Red
+        [JsonProperty(Required = Required.Always)]
+        internal int Red
         {
             get { return red; }
             set { red = value; }
         }
 
-        private byte green;
+        private int green;
 
         /// <summary>
         /// Gets or sets the green.
         /// </summary>
-        internal byte Green
+        [JsonProperty(Required = Required.Always)]
+        internal int Green
         {
             get { return green; }
             set { green = value; }
         }
 
-        private byte blue;
+        private int blue;
 
         /// <summary>
         /// Gets or sets the blue.
         /// </summary>
-        internal byte Blue
+        [JsonProperty(Required = Required.Always)]
+        internal int Blue
         {
             get
             {
@@ -253,6 +265,7 @@
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
+        [JsonIgnore]
         internal Color Color
         {
             get { return color; }
@@ -528,6 +541,7 @@
         /// <summary>
         /// Gets or sets the line style.
         /// </summary>
+        [JsonIgnore]
         public CanvasStrokeStyle LineStyle
         {
             get { return lineStyle; }
@@ -642,7 +656,7 @@
 
         private void UpdateColor()
         {
-            color = Color.FromArgb(alpha, red, green, blue);
+            color = Color.FromArgb((byte)alpha, (byte)red, (byte)green, (byte)blue);
         }
 
         /// <summary>

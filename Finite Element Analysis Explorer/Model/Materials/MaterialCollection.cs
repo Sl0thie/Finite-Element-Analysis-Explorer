@@ -32,5 +32,18 @@
                 currentMaterial = value;
             }
         }
+
+        /// <summary>
+        /// Loads the materials into the collection.
+        /// </summary>
+        /// <param name="items">A dictionary containing the items.</param>
+        public void LoadMaterials(Dictionary<string, Material> items)
+        {
+            foreach (var item in items)
+            {
+                this.Add(item.Key, item.Value);
+            }
+
+        }
     }
 }

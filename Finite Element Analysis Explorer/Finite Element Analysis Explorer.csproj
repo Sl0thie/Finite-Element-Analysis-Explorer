@@ -162,8 +162,14 @@
     <None Include="Connected Services\FEAE\Finite_Element_Analysis_Explorer.FEAE.ReportSessionStart2Response.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Data\Materials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Finite Element Analysis Explorer_StoreKey.pfx" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <Content Include="Data\Sections.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
