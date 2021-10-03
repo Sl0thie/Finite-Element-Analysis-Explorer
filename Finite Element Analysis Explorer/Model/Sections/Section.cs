@@ -186,6 +186,7 @@
         /// <summary>
         /// Gets or sets the area.
         /// </summary>
+        [JsonProperty(Required = Required.Always)]
         internal decimal Area
         {
             get { return area; }
@@ -198,6 +199,7 @@
         /// Gets or sets the density.
         /// https://en.wikipedia.org/wiki/Density.
         /// </summary>
+        [JsonProperty(Required = Required.Always)]
         internal decimal Density
         {
             get { return density; }
