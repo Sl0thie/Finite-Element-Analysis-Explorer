@@ -28,7 +28,6 @@
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // Debug.WriteLine("StartupDisplay Loaded");
             Current = this;
 
             // IsLoaded = true;
@@ -37,8 +36,6 @@
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            // Debug.WriteLine("StartupDisplay Unloaded");
-            // IsLoaded = false;
         }
 
         private async Task ProcessAsync()
@@ -86,7 +83,6 @@
 
             try
             {
-
             }
             catch (Exception ex)
             {

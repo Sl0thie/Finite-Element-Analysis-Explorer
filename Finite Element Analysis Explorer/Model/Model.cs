@@ -79,7 +79,7 @@
         }
 
         /// <summary>
-        /// Gets the materials collection.
+        /// Gets or sets the materials collection.
         /// </summary>
         internal static MaterialCollection Materials
         {

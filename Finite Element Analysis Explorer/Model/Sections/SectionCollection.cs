@@ -67,11 +67,10 @@
         /// <param name="items">The items to load.</param>
         public void LoadSections(Dictionary<string, Section> items)
         {
-            foreach (var item in items)
+            foreach (KeyValuePair<string, Section> item in items)
             {
-                this.Add(item.Key, item.Value);
+                Add(item.Key, item.Value);
             }
-
         }
 
         /// <summary>

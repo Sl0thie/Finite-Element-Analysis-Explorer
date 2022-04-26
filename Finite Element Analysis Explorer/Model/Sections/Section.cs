@@ -1,8 +1,11 @@
 ﻿namespace Finite_Element_Analysis_Explorer
 {
     using System;
+
     using Microsoft.Graphics.Canvas.Geometry;
+
     using Newtonsoft.Json;
+
     using Windows.UI;
 
     /// <summary>
